@@ -1,9 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBIQdZycIKoS3sVBKBiqa0_dwnVq47KW5Q",
-  authDomain: "studio-9269357231-ea935.firebaseapp.com",
-  projectId: "studio-9269357231-ea935",
-  storageBucket: "studio-9269357231-ea935.firebasestorage.app",
-  messagingSenderId: "626776869456",
-  appId: "1:626776869456:web:524bbfb0de4b57f98e9f55",
-  measurementId: "G-5SGH7BZYB0"
+  apiKey: "AIzaSyAaZDqAxhPzvoUrYONmAA8vO-E1DicrneQ",
+  authDomain: "dubainegoce-prod.firebaseapp.com",
+  projectId: "dubainegoce-prod",
+  storageBucket: "dubainegoce-prod.firebasestorage.app",
+  messagingSenderId: "472333558464",
+  appId: "1:472333558464:web:499a41a30754b51db44325"
 };
