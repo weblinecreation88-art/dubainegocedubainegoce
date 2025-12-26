@@ -5,39 +5,39 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useActionState, useEffect, useRef } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useEffect, useRef, useState } from 'react';
 import { subscribeToNewsletter } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending}>
-      {pending ? <Loader2 className="animate-spin" /> : "S'inscrire"}
-    </Button>
-  );
-}
-
 export default function Footer() {
-  const [state, formAction] = useActionState(subscribeToNewsletter, { message: '' });
+  const [pending, setPending] = useState(false);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
-  useEffect(() => {
-    if (state.message) {
+  const handleSubmit = async (formData: FormData) => {
+    setPending(true);
+    try {
+      const result = await subscribeToNewsletter({ message: '' }, formData);
       toast({
-        title: state.error ? 'Erreur' : 'Succès !',
-        description: state.message,
-        variant: state.error ? 'destructive' : 'default',
+        title: result.error ? 'Erreur' : 'Succès !',
+        description: result.message,
+        variant: result.error ? 'destructive' : 'default',
       });
-      if (!state.error) {
+      if (!result.error) {
         formRef.current?.reset();
       }
+    } catch (error) {
+      toast({
+        title: 'Erreur',
+        description: 'Une erreur est survenue',
+        variant: 'destructive',
+      });
+    } finally {
+      setPending(false);
     }
-  }, [state, toast]);
+  };
 
   return (
     <footer className="bg-secondary text-secondary-foreground border-t">
@@ -69,7 +69,15 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Newsletter</h3>
             <p className="text-sm">Reçois les lancements et sélections olfactives (sans promos).</p>
-            <form ref={formRef} action={formAction} className="flex gap-2">
+            <form
+              ref={formRef}
+              onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                handleSubmit(formData);
+              }}
+              className="flex gap-2"
+            >
               <Input
                 type="email"
                 name="email"
@@ -77,7 +85,9 @@ export default function Footer() {
                 className="bg-background"
                 required
               />
-              <SubmitButton />
+              <Button type="submit" disabled={pending}>
+                {pending ? <Loader2 className="animate-spin" /> : "S'inscrire"}
+              </Button>
             </form>
           </div>
         </div>
