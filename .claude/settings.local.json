@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node rename-images.js:*)"
+      "Bash(node rename-images.js:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
