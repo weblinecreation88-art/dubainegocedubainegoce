@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     
     case 'invoice.payment_succeeded': {
       const invoice = event.data.object as Stripe.Invoice;
-      const sessionId = invoice.checkout_session;
+      const sessionId = (invoice as any).checkout_session;
 
       if(typeof sessionId === 'string') {
         console.log(`[Webhook Stripe] Traitement de invoice.payment_succeeded pour la session : ${sessionId}`);

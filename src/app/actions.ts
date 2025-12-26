@@ -8,7 +8,6 @@ import type { Product, Order, OrderItem, ShippingMethod, CartItem } from '@/lib/
 import { getProducts } from '@/lib/data';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
-import { doc, setDoc, addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { firestore } from '@/firebase/server';
 import { z } from 'zod';
 
@@ -20,10 +19,10 @@ type GenerateSeoDescriptionInput = {
   webContext: string;
   language: string;
 };
-type GenerateSeoDescriptionOutput = { 
+type GenerateSeoDescriptionOutput = {
   focusKeyword: string;
-  metaTitle: string;
-  metaDescription: string;
+  title: string;
+  shortDescription: string;
   longDescription: string;
   category: string;
 };
@@ -141,8 +140,8 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
             stripeSessionId: session.id,
         };
 
-        const orderRef = doc(firestore, 'users', userId, 'orders', session.id);
-        await setDoc(orderRef, orderData);
+        const orderRef = firestore.collection('users').doc(userId).collection('orders').doc(session.id);
+        await orderRef.set(orderData);
         console.log(`[processSuccessfulOrder] Commande ${session.id} enregistrée dans Firestore pour l'utilisateur ${userId}.`);
 
         // --- Début de la logique d'envoi d'e-mail ---
