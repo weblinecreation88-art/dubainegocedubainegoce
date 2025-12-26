@@ -24,7 +24,8 @@
       "Bash(firebase deploy:*)",
       "Bash(firebase init:*)",
       "Bash(rm:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(firebase login:add:*)"
     ]
   }
 }
