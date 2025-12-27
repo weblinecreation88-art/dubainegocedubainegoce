@@ -52,7 +52,7 @@ export const brands: Brand[] = [
     { id: '8', name: 'Jean Couturier', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/jean-couturier-Photoroom_qja6fp.jpg' },
     { id: '9', name: 'JB Loves Fragrances', logoUrl: 'https://placehold.co/160x80' },
     { id: '10', name: 'PriveZarah', logoUrl: 'https://placehold.co/160x80' },
-    { id: '11', name: 'Asdaaf', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/Logo-Lattafa-Photoroom_cqglv6.jpg' },
+    { id: '11', name: 'Asdaaf', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766878428/images_1_rcvhyh.jpg' },
     { id: '12', name: 'Rave', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/Logo-Lattafa-Photoroom_cqglv6.jpg' },
     { id: '13', name: 'Pandora Scents', logoUrl: 'https://placehold.co/160x80' },
     { id: '14', name: 'Nasomatto', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765615616/optimysitc-world-uwxrys.png' },
