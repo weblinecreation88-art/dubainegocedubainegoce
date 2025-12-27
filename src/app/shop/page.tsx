@@ -129,8 +129,8 @@ export default function ShopPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-8 mt-12">
                 {brands.map((brand) => (
                     <Link href={`/shop/all?brands=${brand.name}`} key={brand.id}>
-                        <Card className="p-4 flex items-center justify-center h-24 transition-all duration-300 hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1">
-                            <div className="relative w-full h-12">
+                        <Card className="p-4 flex items-center justify-center h-48 transition-all duration-300 hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1">
+                            <div className="relative w-full h-24">
                                 <img
                                     src={brand.logoUrl}
                                     alt={brand.name}

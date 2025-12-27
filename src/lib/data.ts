@@ -48,7 +48,7 @@ export const brands: Brand[] = [
     { id: '4', name: 'Armaf', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/FragranceWorldLogo-Photoroom_fpuxk9.jpg' },
     { id: '5', name: 'Banafa for Oud', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/Banafa-for-Oud-Main-logo-600x254-Photoroom-Photoroom_fdcvvn.jpg' },
     { id: '6', name: 'Ard Al Zaafaran', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/IMG-20250527-WA0044_ewr99u.jpg' },
-    { id: '7', name: 'Fragrance World', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/FragranceWorldLogo-Photoroom_fpuxk9.jpg' },
+    { id: '7', name: 'Fragrance World', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766879314/images_5_fuaiqh.png' },
     { id: '8', name: 'Jean Couturier', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/jean-couturier-Photoroom_qja6fp.jpg' },
     { id: '9', name: 'JB Loves Fragrances', logoUrl: 'https://placehold.co/160x80' },
     { id: '10', name: 'PriveZarah', logoUrl: 'https://placehold.co/160x80' },
