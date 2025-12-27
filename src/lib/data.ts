@@ -51,7 +51,7 @@ export const brands: Brand[] = [
     { id: '7', name: 'Fragrance World', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766879314/images_5_fuaiqh.png' },
     { id: '8', name: 'Jean Couturier', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/jean-couturier-Photoroom_qja6fp.jpg' },
     { id: '9', name: 'JB Loves Fragrances', logoUrl: 'https://placehold.co/160x80' },
-    { id: '10', name: 'PriveZarah', logoUrl: 'https://placehold.co/160x80' },
+    { id: '10', name: 'PriveZarah', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766879597/images_6_nwoy3m.png' },
     { id: '11', name: 'Asdaaf', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766878428/images_1_rcvhyh.jpg' },
     { id: '12', name: 'Rave', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/Logo-Lattafa-Photoroom_cqglv6.jpg' },
     { id: '13', name: 'Pandora Scents', logoUrl: 'https://placehold.co/160x80' },
