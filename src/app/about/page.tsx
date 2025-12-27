@@ -56,14 +56,14 @@ export default function AboutPage() {
                     </ul>
                 </div>
                 <div>
-                    <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-2xl shadow-primary/20">
-                        <Image
-                            src="https://res.cloudinary.com/dhjwimevi/image/upload/v1765656655/1764276016802-019ac70b-7597-767a-9264-b2442c7d0760_cqyfol.webp"
-                            alt="Parfum de luxe sur un présentoir élégant"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover"
-                            data-ai-hint="perfume display elegant"
+                    <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl shadow-primary/20">
+                        <video
+                            src="https://res.cloudinary.com/dzntnjtkc/video/upload/v1766756778/grok-video-cb2fca02-2ae9-4b89-a5b2-12da1496b756_1_wadkqm.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
                         />
                     </div>
                 </div>
