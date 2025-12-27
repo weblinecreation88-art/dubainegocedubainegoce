@@ -94,29 +94,52 @@ export default function Home() {
                 </div>
 
                 <div className="relative flex items-center justify-center h-full">
-                    <div className="relative aspect-square w-full max-w-md rounded-full overflow-hidden">
-                        <div className="absolute inset-0 rounded-full bg-primary/20 blur-3xl animate-pulse"></div>
-                         <div
-                            className="absolute inset-0 rounded-full"
+                    <div className="relative aspect-square w-full max-w-md">
+                        {/* Halo doré lumineux externe avec animation pulse */}
+                        <div
+                            className="absolute inset-0 rounded-full animate-pulse"
                             style={{
-                                boxShadow: '0 0 80px 20px hsl(var(--primary)), 0 0 120px 40px hsl(var(--primary) / 0.7)',
+                                background: 'radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(212, 175, 55, 0.2) 40%, transparent 70%)',
+                                filter: 'blur(40px)',
+                                transform: 'scale(1.3)',
                             }}
                         />
-                         <AnimatePresence>
-                            <motion.video
-                                key={currentVideoIndex}
-                                src={heroVideos[currentVideoIndex]}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 1, ease: "easeInOut" }}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </AnimatePresence>
+
+                        {/* Halo doré lumineux moyen */}
+                        <div
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                                boxShadow: '0 0 60px 30px rgba(212, 175, 55, 0.6), 0 0 100px 50px rgba(212, 175, 55, 0.4), 0 0 140px 70px rgba(212, 175, 55, 0.2)',
+                            }}
+                        />
+
+                        {/* Bordure dorée brillante */}
+                        <div
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                                border: '3px solid rgba(212, 175, 55, 0.8)',
+                                boxShadow: 'inset 0 0 30px rgba(212, 175, 55, 0.5)',
+                            }}
+                        />
+
+                        {/* Container vidéo avec overflow hidden */}
+                        <div className="relative aspect-square w-full rounded-full overflow-hidden">
+                            <AnimatePresence>
+                                <motion.video
+                                    key={currentVideoIndex}
+                                    src={heroVideos[currentVideoIndex]}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 1, ease: "easeInOut" }}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </AnimatePresence>
+                        </div>
                     </div>
                 </div>
             </div>

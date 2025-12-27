@@ -25,7 +25,11 @@
       "Bash(firebase init:*)",
       "Bash(rm:*)",
       "Bash(taskkill:*)",
-      "Bash(firebase login:add:*)"
+      "Bash(firebase login:add:*)",
+      "Bash(firebase apphosting:backends:list:*)",
+      "Bash(firebase apphosting:rollouts:list:*)",
+      "Bash(firebase apphosting:backends:get:*)",
+      "Bash(firebase hosting:channel:list:*)"
     ]
   }
 }
