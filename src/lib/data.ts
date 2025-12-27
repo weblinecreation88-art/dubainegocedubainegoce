@@ -3423,9 +3423,9 @@ export const getFragranceFamilies = (): FragranceFamily[] => {
 
 export const getGenderCategories = (): GenderCategory[] => {
   return [
-    { id: '1', name: 'homme', displayName: 'Homme', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701178/MAN_b4o9tj.jpg', imageHint: 'man portrait' },
-    { id: '2', name: 'femme', displayName: 'Femme', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701178/t%C3%A9l%C3%A9chargement_8_vofpaz.jpg', imageHint: 'woman portrait' },
-    { id: '3', name: 'mixte', displayName: 'Mixte', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701177/How_To_Layer_Perfumes_Best_Fragrance_Combinations_1024x1024_u5kbr8.webp', imageHint: 'abstract texture' },
+    { id: '1', name: 'homme', displayName: 'Homme', imageUrl: 'https://res.cloudinary.com/dzntnjtkc/image/upload/v1766849661/homme_se_parfume_avec_stule_tlnhyd.jpg', imageHint: 'man applying perfume elegant' },
+    { id: '2', name: 'femme', displayName: 'Femme', imageUrl: 'https://res.cloudinary.com/dzntnjtkc/image/upload/v1766849547/femme_parfum_d5ku89.png', imageHint: 'woman perfume elegant' },
+    { id: '3', name: 'mixte', displayName: 'Mixte', imageUrl: 'https://res.cloudinary.com/dzntnjtkc/image/upload/v1766850889/ChatGPT_Image_27_d%C3%A9c._2025_16_54_23_cau8vp.png', imageHint: 'unisex perfume bottles' },
   ];
 };
 
