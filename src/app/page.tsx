@@ -16,7 +16,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
-import Autoplay from "embla-carousel-autoplay"
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { PerfumeFinderCta } from "@/components/perfume-finder-cta";
@@ -161,7 +160,6 @@ export default function Home() {
                   align: "start",
                   loop: true,
                 }}
-                plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
                 className="w-full"
               >
                 <CarouselContent>
@@ -193,7 +191,6 @@ export default function Home() {
                   align: "start",
                   loop: true,
                 }}
-                plugins={[Autoplay({ delay: 3500, stopOnInteraction: true })]}
                 className="w-full"
               >
                 <CarouselContent>
@@ -290,7 +287,6 @@ export default function Home() {
                   align: "start",
                   loop: true,
                 }}
-                 plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
                 className="w-full"
               >
                 <CarouselContent>
@@ -322,7 +318,6 @@ export default function Home() {
                 align: "start",
                 loop: true,
               }}
-               plugins={[Autoplay({ delay: 4500, stopOnInteraction: true })]}
               className="w-full"
             >
               <CarouselContent>

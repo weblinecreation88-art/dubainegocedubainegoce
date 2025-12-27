@@ -12,7 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
 import { ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
@@ -102,7 +101,6 @@ export default function ShopPage() {
                   align: "start",
                   loop: true,
                 }}
-                plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
                 className="w-full"
               >
                 <CarouselContent>
