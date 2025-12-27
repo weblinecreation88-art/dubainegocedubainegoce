@@ -42,9 +42,9 @@ export const shippingMethods: Omit<ShippingMethod, 'cost'>[] = [
 ];
 
 export const brands: Brand[] = [
-    { id: '1', name: 'Lattafa', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/Logo-Lattafa-Photoroom_cqglv6.jpg' },
-    { id: '2', name: 'Maison Alhambra', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167154/LOGO_ALHAMABRA-removebg-preview-removebg-preview-Photoroom_fz9sqi.jpg' },
-    { id: '3', name: 'Paris Corner', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167156/logo-parfum-paris-corner-600x225-Photoroom_wipypo.jpg' },
+    { id: '1', name: 'Lattafa', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766878428/images_i5ece9.jpg' },
+    { id: '2', name: 'Maison Alhambra', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766878428/maison_alhambra_hvgoch.jpg' },
+    { id: '3', name: 'Paris Corner', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766878428/images_4_qro9mk.png' },
     { id: '4', name: 'Armaf', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/FragranceWorldLogo-Photoroom_fpuxk9.jpg' },
     { id: '5', name: 'Banafa for Oud', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765167155/Banafa-for-Oud-Main-logo-600x254-Photoroom-Photoroom_fdcvvn.jpg' },
     { id: '6', name: 'Ard Al Zaafaran', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/IMG-20250527-WA0044_ewr99u.jpg' },
@@ -60,7 +60,7 @@ export const brands: Brand[] = [
     { id: '16', name: 'Hamidi', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/IMG-20250527-WA0059_izp3vj.jpg'},
     { id: '17', name: 'Loui Martin', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/IMG-20250527-WA0052_h6z84s.jpg'},
     { id: '18', name: 'Surrati', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703763/IMG-20250527-WA0054_p84ax9.jpg'},
-    { id: '19', name: 'French Avenue', logoUrl: 'https://www.frenchavenue.fr/wp-content/uploads/2024/05/Francique_63.55_HQ.png' },
+    { id: '19', name: 'French Avenue', logoUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766878429/images_3_px3y0k.png' },
     { id: '20', name: 'Guerlain', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/product-images2F9SRPbNJB9SXBM37RxXBa4bQKF9L22Fguerlain-habit-rouge_p6wexf.jpg' },
     { id: '21', name: 'Jacques Yves', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/jacques-yves-tempete_m6dczf.jpg'},
     { id: '22', name: 'Gulf Orchid', logoUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765703764/IMG-20250527-WA0047_u3l5s6.jpg'},
