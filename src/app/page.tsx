@@ -403,7 +403,7 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button asChild size="lg" className="group text-lg px-8 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700">
-                    <Link href="/shop/all?search=yara">
+                    <Link href="/parfum/yara-lattafa">
                       Découvrir YARA
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
@@ -467,8 +467,8 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button asChild size="lg" className="group text-lg px-8">
-                    <Link href="/shop/all?search=khamrah">
-                      Voir les parfums KHAMRAH
+                    <Link href="/parfum/khamrah-lattafa">
+                      Voir KHAMRAH
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -555,7 +555,7 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button asChild size="lg" className="group text-lg px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                    <Link href="/shop/all?search=zaffiro">
+                    <Link href="/parfum/zaffiro-regale-for-her-maison-alhambra">
                       Découvrir ZAFFIRO
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
@@ -602,7 +602,7 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button asChild size="lg" className="group bg-gradient-yara hover:opacity-90 text-white border-0">
-                  <Link href="/shop/all?search=lovely">
+                  <Link href="/parfum/lovely-cherie-french-avenue">
                     Découvrir LOVELY
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Link>

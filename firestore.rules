@@ -66,6 +66,15 @@ service cloud.firestore {
       return data.userId == resource.data.userId && data.productId == resource.data.productId;
     }
 
+    // Stripe subscription role helpers
+    function hasBasicSubs() {
+      return request.auth.token.stripeRole == "basic";
+    }
+
+    function hasPremiumSubs() {
+      return request.auth.token.stripeRole == "premium";
+    }
+
     // ------------------------------------------------------------------------
     // Stripe Extension Rules
     // These rules allow the Stripe extension to function correctly.
@@ -154,6 +163,18 @@ service cloud.firestore {
       match /products/{productId} {
         allow read, write: if isOwner(userId);
       }
+    }
+
+    // ------------------------------------------------------------------------
+    // Subscription-based Content Access
+    // ------------------------------------------------------------------------
+
+    match /content-basic/{doc} {
+      allow read: if hasBasicSubs() || hasPremiumSubs();
+    }
+
+    match /content-premium/{doc} {
+      allow read: if hasPremiumSubs();
     }
   }
 }
