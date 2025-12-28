@@ -171,9 +171,9 @@ export default function Header() {
                 <Image
                     src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1765916140/ChatGPT_Image_16_d%C3%A9c._2025_21_14_32_1_ajws49.png"
                     alt="DubaiNegoce Logo"
-                    width={280}
-                    height={80}
-                    className="object-contain h-20"
+                    width={560}
+                    height={160}
+                    className="object-contain h-40"
                     priority
                 />
             </Link>
@@ -185,9 +185,9 @@ export default function Header() {
                  <Image
                     src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1765916140/ChatGPT_Image_16_d%C3%A9c._2025_21_14_32_1_ajws49.png"
                     alt="DubaiNegoce Logo"
-                    width={280}
-                    height={80}
-                    className="object-contain h-20"
+                    width={560}
+                    height={160}
+                    className="object-contain h-40"
                     priority
                 />
             </Link>
