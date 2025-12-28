@@ -14,6 +14,8 @@ env:
     value: https://dubainegoce.fr
   - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     value: pk_test_51Sh5VUCVq6ZxeRDQqWdEHzIAr4pdrMeD2NEDJlKlyH1fWkCa8vArbmm0ac5e14Lp7QMS8nmTmmZXhxs2igElPH2200E624hSqD
+  - variable: NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID
+    value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
   - variable: GEMINI_API_KEY
     value: AIzaSyCCZ3zqMJ-h8sWzV1Cy0FzUIk91sd4ZLow
 
