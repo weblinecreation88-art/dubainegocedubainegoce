@@ -3369,29 +3369,6 @@ const products: Product[] = [
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
-    },
-    {
-        "id": "9999",
-        "name": "TEST - Parfum Gratuit",
-        "slug": "test-parfum-gratuit",
-        "brand": brands.find(b => b.name === 'Lattafa')!,
-        "type": "simple",
-        "gender": "mixte",
-        "family": "Floral",
-        "shortDescription": "Produit de test à 0€ avec livraison gratuite Mondial Relay",
-        "longDescription": "<p>Ceci est un produit de test créé pour effectuer des tests de commande. Prix à 0€ et livraison gratuite en Mondial Relay.</p>",
-        "metaTitle": "TEST - Parfum Gratuit | Produit de test",
-        "metaDescription": "Produit de test pour la boutique en ligne. Prix 0€ avec livraison gratuite.",
-        "price": 0,
-        "volumeMl": 0,
-        "stock": 999,
-        "isBestseller": false,
-        "isNew": true,
-        "tags": ["test"],
-        "images": ["https://placehold.co/600x400/EEE/31343C?font=open-sans&text=TEST"],
-        "reviews": [],
-        "rating": 5,
-        "productType": "perfume"
     }
 ];
 
