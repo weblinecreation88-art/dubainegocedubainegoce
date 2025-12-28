@@ -31,7 +31,7 @@ export default function ShopPage() {
       <section className="relative bg-secondary text-secondary-foreground py-20 md:py-32">
         <div className="absolute inset-0 overflow-hidden">
             <Image
-                src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766492582/elegant-perfume-bottle-with-ai-generated-splash-of-water_e39slh.jpg"
+                src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1734398682/luxury-perfume-bottles_qxhonq.jpg"
                 alt="Bannière de la boutique de parfums"
                 fill
                 className="object-cover"
