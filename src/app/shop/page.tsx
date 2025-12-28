@@ -256,8 +256,85 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Gender Categories Section */}
+      {/* YARA Iconic Section */}
       <section className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Image à gauche */}
+              <div className="relative h-[400px] lg:h-[500px]">
+                <Image
+                  src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1766911492/YARA_id3ssb.jpg"
+                  alt="YARA - Parfum Iconique"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+
+              {/* Texte à droite */}
+              <div className="p-8 lg:p-12 space-y-6">
+                <div className="inline-block">
+                  <span className="bg-gradient-to-r from-rose-600 to-pink-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider">
+                    Parfum Iconique
+                  </span>
+                </div>
+
+                <div>
+                  <h2 className="text-5xl md:text-6xl font-headline font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                    YARA
+                  </h2>
+                  <p className="text-xl text-muted-foreground">Une fragrance emblématique et intemporelle</p>
+                </div>
+
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-rose-200 dark:border-rose-800">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-6xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                      35€
+                    </span>
+                    <span className="text-2xl text-muted-foreground line-through">52.99€</span>
+                  </div>
+                  <p className="text-lg font-semibold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent mt-2">
+                    Prix exclusif - YARA
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Un classique indémodable qui séduit depuis des années
+                  </p>
+                </div>
+
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-rose-600 to-pink-600"></div>
+                    <span className="text-muted-foreground">Fragrance florale orientale</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-rose-600 to-pink-600"></div>
+                    <span className="text-muted-foreground">Sillage envoûtant et mémorable</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-rose-600 to-pink-600"></div>
+                    <span className="text-muted-foreground">Parfait pour toutes occasions</span>
+                  </li>
+                </ul>
+
+                <div className="flex gap-4 pt-4">
+                  <Button asChild size="lg" className="group text-lg px-8 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700">
+                    <Link href="/shop/all?search=yara">
+                      Découvrir YARA
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                </div>
+
+                <p className="text-xs text-muted-foreground">* Un parfum iconique à prix exceptionnel</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gender Categories Section */}
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-headline text-center mb-12">Explorer par Genre</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
