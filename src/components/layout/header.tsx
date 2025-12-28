@@ -298,8 +298,8 @@ export default function Header() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-                        <Avatar className="h-8 w-8 border-2 border-primary">
-                            <AvatarFallback className="bg-primary/20 text-primary">{getInitials(user.displayName || user.email)}</AvatarFallback>
+                        <Avatar className="h-8 w-8 border-2 border-secondary">
+                            <AvatarFallback className="bg-gradient-yara text-white font-semibold">{getInitials(user.displayName || user.email)}</AvatarFallback>
                         </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
@@ -313,7 +313,7 @@ export default function Header() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button variant="ghost" size="icon" asChild className="text-primary hover:text-primary/80">
+                <Button variant="ghost" size="icon" asChild className="text-secondary hover:text-accent transition-colors">
                   <Link href="/login">
                     <User className="h-5 w-5" />
                     <span className="sr-only">Compte</span>
@@ -322,12 +322,12 @@ export default function Header() {
               )
             )}
 
-            <Button variant="ghost" size="icon" asChild className="text-primary hover:text-primary/80">
+            <Button variant="ghost" size="icon" asChild className="text-secondary hover:text-accent transition-colors">
                 <Link href="/cart">
                     <div className="relative">
                         <ShoppingCart className="h-5 w-5" />
                         {isMounted && cartCount > 0 && (
-                            <Badge variant="destructive" className="absolute -top-2 -right-2 h-4 w-4 justify-center rounded-full p-0 text-xs">
+                            <Badge className="absolute -top-2 -right-2 h-4 w-4 justify-center rounded-full p-0 text-xs bg-gradient-yara text-white border-0">
                             {cartCount}
                             </Badge>
                         )}
