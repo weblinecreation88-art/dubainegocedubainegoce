@@ -28,8 +28,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Static Pages with priorities from the plan
   const staticPages = [
-    { url: `${siteUrl}/`, priority: 1.0, changeFrequency: 'daily' },
-    { url: `${siteUrl}/shop`, priority: 0.9, changeFrequency: 'weekly' },
+    { url: `${siteUrl}/`, priority: 1.0, changeFrequency: 'daily' }, // Page d'accueil avec sections YARA, générateur
+    { url: `${siteUrl}/shop`, priority: 0.95, changeFrequency: 'daily' }, // Boutique avec sections promo LOVELY, KAMRAH, ZAFFIRO, YARA
+    { url: `${siteUrl}/shop/all`, priority: 0.9, changeFrequency: 'weekly' }, // Catalogue complet
     { url: `${siteUrl}/blog`, priority: 0.7, changeFrequency: 'monthly' },
     { url: `${siteUrl}/about`, priority: 0.7, changeFrequency: 'monthly' },
     { url: `${siteUrl}/contact`, priority: 0.6, changeFrequency: 'yearly' },
