@@ -109,8 +109,8 @@ export default function Header() {
              <div className="lg:hidden">
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon" className="text-secondary hover:text-accent transition-colors">
-                            <Menu className="h-6 w-6" />
+                        <Button variant="ghost" size="icon">
+                            <Menu className="h-6 w-6 icon-hover" />
                             <span className="sr-only">Ouvrir le menu</span>
                         </Button>
                     </SheetTrigger>
@@ -213,8 +213,8 @@ export default function Header() {
                                             />
                                             <div className="absolute inset-0 bg-black/50"></div>
                                             <div className="relative z-10 text-white">
-                                                <Package className="h-6 w-6 text-primary" />
-                                                <div className="mb-2 mt-4 text-lg font-medium">
+                                                <Package className="h-6 w-6 icon-gold" />
+                                                <div className="mb-2 mt-4 text-lg font-medium shimmer-gold">
                                                     Toute la collection
                                                 </div>
                                                 <p className="text-sm leading-tight text-white/80">
@@ -239,8 +239,8 @@ export default function Header() {
                                     <li className="col-start-2">
                                         <Dialog>
                                             <DialogTrigger asChild>
-                                                <button className="flex w-full items-center gap-2 rounded-md p-3 hover:bg-accent">
-                                                    <Sparkles className="h-5 w-5 text-primary" />
+                                                <button className="flex w-full items-center gap-2 rounded-md p-3 hover:bg-accent transition-colors">
+                                                    <Sparkles className="h-5 w-5 icon-hover" />
                                                     <div>
                                                         <p className="text-sm font-medium">Trouver mon parfum</p>
                                                         <p className="text-xs text-muted-foreground">Nos experts vous conseillent pour trouver votre sillage parfait.</p>
@@ -311,21 +311,21 @@ export default function Header() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button variant="ghost" size="icon" asChild className="text-secondary hover:text-accent transition-colors">
+                <Button variant="ghost" size="icon" asChild>
                   <Link href="/login">
-                    <User className="h-5 w-5" />
+                    <User className="h-5 w-5 icon-hover" />
                     <span className="sr-only">Compte</span>
                   </Link>
                 </Button>
               )
             )}
 
-            <Button variant="ghost" size="icon" asChild className="text-secondary hover:text-accent transition-colors">
+            <Button variant="ghost" size="icon" asChild>
                 <Link href="/cart">
                     <div className="relative">
-                        <ShoppingCart className="h-5 w-5" />
+                        <ShoppingCart className="h-5 w-5 icon-hover" />
                         {isMounted && cartCount > 0 && (
-                            <Badge className="absolute -top-2 -right-2 h-4 w-4 justify-center rounded-full p-0 text-xs bg-gradient-yara text-white border-0">
+                            <Badge className="absolute -top-2 -right-2 h-4 w-4 justify-center rounded-full p-0 text-xs bg-primary text-white border-0">
                             {cartCount}
                             </Badge>
                         )}
