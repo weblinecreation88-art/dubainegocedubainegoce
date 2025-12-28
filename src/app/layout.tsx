@@ -11,6 +11,7 @@ import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import { FaqChatbot } from '@/components/faq-chatbot';
 import { CookieConsent } from '@/components/cookie-consent';
+import { StructuredData } from '@/components/structured-data';
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 
@@ -74,14 +75,14 @@ const ReassuranceSection = () => {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Dubainegoce – Parfums de Dubaï authentiques à prix accessibles',
+    default: 'Dubainegoce – Parfums de Dubaï à 35€ | Livraison Mondial Relay Offerte',
     template: '%s | Dubainegoce',
   },
-  description: 'Découvrez les meilleurs parfums de Dubaï. Lattafa, Maison Alhambra. Parfums authentiques, dupes de luxe et créations originales à 35€. Livraison rapide.',
-  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum arabe pas cher', 'parfum inspiration', 'parfums authentiques Émirats', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'Khamrah', 'Yara'],
+  description: 'Nouveau site, nouveaux prix ! Parfums authentiques de Dubaï (Lattafa, Alhambra, Fragrance World) à prix unique 35€. YARA, Khamrah, Zaffiro, Lovely. Livraison Mondial Relay OFFERTE.',
+  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum 35 euros', 'Yara Lattafa', 'Khamrah', 'Zaffiro', 'Lovely', 'parfum arabe pas cher', 'livraison gratuite parfum', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'parfums authentiques Émirats'],
   openGraph: {
-    title: 'Dubainegoce - L\'Excellence des Parfums de Dubaï Authentiques',
-    description: 'Explorez notre sélection de parfums authentiques de Dubaï. Fragrances rares, dupes de luxe et best-sellers à prix unique.',
+    title: 'Dubainegoce - Parfums de Dubaï Authentiques à 35€ | Livraison Offerte',
+    description: 'Nouveau site ! Parfums iconiques YARA, Khamrah, Zaffiro, Lovely à prix unique 35€. Livraison Mondial Relay OFFERTE pour célébrer notre lancement.',
     url: siteUrl,
     siteName: 'Dubainegoce',
     images: [
@@ -89,7 +90,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Sélection de parfums de Dubaï sur Dubainegoce',
+        alt: 'Parfums de Dubaï authentiques - YARA, Khamrah, Zaffiro - DubaiNegoce',
       },
     ],
     locale: 'fr_FR',
@@ -97,8 +98,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dubainegoce - Parfums de Dubaï Authentiques',
-    description: 'Les plus grandes marques de parfums de Dubaï (Lattafa, Alhambra) à prix accessible. Trouvez votre sillage unique.',
+    title: 'Dubainegoce - Parfums de Dubaï à 35€ | Livraison Offerte',
+    description: 'Nouveau site ! YARA, Khamrah, Zaffiro, Lovely et + à 35€. Livraison Mondial Relay OFFERTE. Parfums 100% authentiques de Dubaï.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -153,6 +154,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
+          <StructuredData />
           <FirebaseClientProvider>
             <CartProvider>
               <AnnouncementBar />
