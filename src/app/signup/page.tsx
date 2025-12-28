@@ -112,7 +112,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Nom complet</FormLabel>
                     <FormControl>
-                      <Input placeholder="ex: Jean Dupont" {...field} />
+                      <Input placeholder="ex: Jean Dupont" autoComplete="name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -125,7 +125,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="votre.email@exemple.com" {...field} />
+                      <Input placeholder="votre.email@exemple.com" autoComplete="email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,7 +138,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder="6+ caractères" {...field} />
+                      <Input type="password" placeholder="6+ caractères" autoComplete="new-password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -174,7 +174,7 @@ export default function Header() {
                     width={140}
                     height={40}
                     className="object-contain"
-                    style={{ height: 'auto' }}
+                    style={{ width: 'auto', height: 'auto' }}
                     priority
                 />
             </Link>
@@ -189,7 +189,7 @@ export default function Header() {
                     width={140}
                     height={40}
                     className="object-contain"
-                    style={{ height: 'auto' }}
+                    style={{ width: 'auto', height: 'auto' }}
                     priority
                 />
             </Link>
