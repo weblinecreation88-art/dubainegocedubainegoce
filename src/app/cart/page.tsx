@@ -92,7 +92,7 @@ export default function CartPage() {
 
   const handleCheckout = useCallback(async () => {
     if (!user || !firestore) {
-      router.push('/login?redirect=/cart?fromLogin=true');
+      router.push('/login?redirect=/cart&fromLogin=true');
       return;
     }
 
