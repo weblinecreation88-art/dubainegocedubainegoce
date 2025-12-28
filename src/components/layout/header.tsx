@@ -296,8 +296,8 @@ export default function Header() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-                        <Avatar className="h-8 w-8 border-2 border-secondary">
-                            <AvatarFallback className="bg-gradient-yara text-white font-semibold">{getInitials(user.displayName || user.email)}</AvatarFallback>
+                        <Avatar className="h-8 w-8 border-2 border-primary">
+                            <AvatarFallback className="bg-primary text-secondary-foreground font-semibold">{getInitials(user.displayName || user.email)}</AvatarFallback>
                         </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
