@@ -19,6 +19,7 @@ import { ReassuranceSection } from "@/components/layout/reassurance-section";
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { PerfumeFinderCta } from "@/components/perfume-finder-cta";
+import { GoogleReviewsCta } from "@/components/google-reviews-cta";
 
 export default function Home() {
   const fragranceFamilies = getFragranceFamilies();
@@ -627,6 +628,13 @@ export default function Home() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Google Reviews CTA */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <GoogleReviewsCta />
         </div>
       </section>
 
