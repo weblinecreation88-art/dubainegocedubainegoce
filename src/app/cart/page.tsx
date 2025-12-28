@@ -11,7 +11,7 @@ import { Trash2, ShoppingBag, Loader2, TicketPercent } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
@@ -90,7 +90,7 @@ export default function CartPage() {
   const shippingCost = selectedShipping?.cost || 0;
   const totalAmount = subtotal + shippingCost;
 
-  const handleCheckout = async () => {
+  const handleCheckout = useCallback(async () => {
     if (!user || !firestore) {
       router.push('/login?redirect=/cart?fromLogin=true');
       return;
@@ -173,7 +173,7 @@ export default function CartPage() {
         })
         setIsCheckingOut(false);
     }
-  };
+  }, [user, firestore, router, cart, toast, totalAmount, selectedShipping]);
 
   // Auto-checkout when returning from login
   useEffect(() => {
@@ -185,7 +185,8 @@ export default function CartPage() {
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [shouldAutoCheckout, user, firestore, cart.length]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldAutoCheckout, user, firestore, cart.length, isCheckingOut]);
 
   return (
     <div className="container mx-auto px-4 py-12">

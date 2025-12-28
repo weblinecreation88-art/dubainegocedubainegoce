@@ -109,7 +109,7 @@ export default function Header() {
              <div className="lg:hidden">
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon" className="text-primary hover:text-primary/80">
+                        <Button variant="ghost" size="icon" className="text-secondary hover:text-accent transition-colors">
                             <Menu className="h-6 w-6" />
                             <span className="sr-only">Ouvrir le menu</span>
                         </Button>
