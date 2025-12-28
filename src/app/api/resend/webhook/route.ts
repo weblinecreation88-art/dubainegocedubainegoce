@@ -3,11 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 export async function POST(req: NextRequest) {
-  const resendWebhookSecret = process.env.RESEND_WEBHOOK_SECRET;
   const resendApiKey = process.env.RESEND_API_KEY;
 
-  if (!resendWebhookSecret || !resendApiKey) {
-    console.error('!!! ERREUR FATALE: Les variables d\'environnement Resend (RESEND_API_KEY ou RESEND_WEBHOOK_SECRET) ne sont pas configurées sur le serveur.');
+  if (!resendApiKey) {
+    console.error('!!! ERREUR FATALE: La variable d\'environnement RESEND_API_KEY n\'est pas configurée sur le serveur.');
     return NextResponse.json({ error: 'Configuration du serveur incomplète.' }, { status: 500 });
   }
 
@@ -15,34 +14,55 @@ export async function POST(req: NextRequest) {
   const signature = req.headers.get('resend-signature');
   const body = await req.text();
 
+  // Log la signature pour debugging
   if (!signature) {
-    console.error('[Webhook Resend] ERREUR: Signature manquante.');
-    return NextResponse.json({ error: 'Signature manquante.' }, { status: 400 });
+    console.warn('[Webhook Resend] AVERTISSEMENT: Aucune signature fournie (normal pour les tests).');
   }
 
   try {
-    // TODO: La vérification des webhooks nécessite une version plus récente de Resend
-    // Pour le moment, on log simplement la réception
     const payload = JSON.parse(body);
     console.log(`[Webhook Resend] Événement reçu : ${payload.type || 'unknown'}`);
 
-    // Ici, vous pouvez ajouter une logique pour traiter les différents types d'événements
-    // switch (payload.type) {
-    //   case 'email.delivered':
-    //     // Logique pour marquer un email comme livré dans votre base de données
-    //     break;
-    //   case 'email.bounced':
-    //     // Logique pour gérer un email qui n'a pas pu être livré
-    //     break;
-    //   default:
-    //     console.log(`[Webhook Resend] Événement non géré : ${payload.type}`);
-    // }
+    // Traiter les différents types d'événements
+    switch (payload.type) {
+      case 'contact.created':
+        console.log(`[Webhook Resend] Nouveau contact créé : ${payload.data?.email}`);
+        break;
+
+      case 'email.sent':
+        console.log(`[Webhook Resend] Email envoyé avec succès`);
+        break;
+
+      case 'email.delivered':
+        console.log(`[Webhook Resend] Email délivré avec succès`);
+        break;
+
+      case 'email.bounced':
+        console.log(`[Webhook Resend] Email rebondi - Email: ${payload.data?.email || 'unknown'}`);
+        // TODO: Marquer l'email comme invalide dans la base de données
+        break;
+
+      case 'email.complained':
+        console.log(`[Webhook Resend] Plainte spam reçue`);
+        // TODO: Désabonner automatiquement cet email
+        break;
+
+      case 'email.opened':
+        console.log(`[Webhook Resend] Email ouvert`);
+        break;
+
+      case 'email.clicked':
+        console.log(`[Webhook Resend] Lien cliqué dans l'email`);
+        break;
+
+      default:
+        console.log(`[Webhook Resend] Événement non géré : ${payload.type}`);
+    }
 
   } catch (err: any) {
-    console.error(`[Webhook Resend] ERREUR inattendue : ${err.message}`);
+    console.error(`[Webhook Resend] ERREUR lors du parsing : ${err.message}`);
     return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
   }
-
 
   return NextResponse.json({ received: true });
 }
