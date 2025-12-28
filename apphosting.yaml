@@ -30,19 +30,11 @@ secretEnvironmentVariables:
     secret: STRIPE_SECRET_KEY
   - key: STRIPE_WEBHOOK_SECRET
     # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
-    # Attention: Ne pas confondre avec le webhook Resend.
     secret: STRIPE_WEBHOOK_SECRET
-  # --- Secrets Resend (LIVE) ---
-  - key: RESEND_API_KEY
-    # Votre clé API Resend (commence par re_...)
-    secret: RESEND_API_KEY
-  - key: RESEND_AUDIENCE_ID
-    # L'ID de votre audience de newsletter Resend
-    secret: RESEND_AUDIENCE_ID
-  - key: RESEND_WEBHOOK_SECRET
-    # La clé de signature du webhook Resend (commence par whsec_...)
-    # Attention: Similaire au format de Stripe, mais provient de Resend.
-    secret: RESEND_WEBHOOK_SECRET
+  # --- Secrets SendGrid ---
+  - key: SENDGRID_API_KEY
+    # Votre clé API SendGrid (commence par SG....)
+    secret: SENDGRID_API_KEY
 headers:
   - # Set a Cache-Control header for all static assets.
     source: /_next/static/**
