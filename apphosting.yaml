@@ -15,7 +15,7 @@ env:
   - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     value: pk_test_51Sh5VUCVq6ZxeRDQqWdEHzIAr4pdrMeD2NEDJlKlyH1fWkCa8vArbmm0ac5e14Lp7QMS8nmTmmZXhxs2igElPH2200E624hSqD
   - variable: GEMINI_API_KEY
-    value: AIzaSyDC9RCfdy3zx2KShhRmXyrCivSglUEmt3Q
+    value: AIzaSyCCZ3zqMJ-h8sWzV1Cy0FzUIk91sd4ZLow
 
 # This section specifies the secrets that should be exposed to the backend as
 # environment variables.
