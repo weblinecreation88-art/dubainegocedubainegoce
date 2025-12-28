@@ -96,6 +96,15 @@ export default function CartPage() {
       return;
     }
 
+    if (cart.length === 0) {
+      toast({
+        variant: "destructive",
+        title: "Panier vide",
+        description: "Votre panier est vide. Ajoutez des produits avant de passer commande.",
+      });
+      return;
+    }
+
     setIsCheckingOut(true);
 
     try {
@@ -113,7 +122,7 @@ export default function CartPage() {
             },
             quantity: item.quantity,
         }));
-        
+
         const checkoutPayload: DocumentData = {
             mode: 'payment',
             line_items: lineItems,
@@ -151,6 +160,7 @@ export default function CartPage() {
                 unsubscribe();
             }
             if (url) {
+                unsubscribe();
                 window.location.assign(url);
             }
         });
