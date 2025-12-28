@@ -185,8 +185,7 @@ export default function CartPage() {
       }, 100);
       return () => clearTimeout(timer);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldAutoCheckout, user, firestore, cart.length, isCheckingOut]);
+  }, [shouldAutoCheckout, user, firestore, cart.length, isCheckingOut, handleCheckout]);
 
   return (
     <div className="container mx-auto px-4 py-12">
