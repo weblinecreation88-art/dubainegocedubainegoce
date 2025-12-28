@@ -226,16 +226,16 @@ export default function Header() {
                                         </a>
                                         </NavigationMenuLink>
                                     </li>
-                                    <ListItem href="/shop?brands=Lattafa" title="Lattafa">
+                                    <ListItem href="/shop/all?brands=Lattafa" title="Lattafa">
                                         Le leader incontesté des parfums orientaux.
                                     </ListItem>
-                                    <ListItem href="/shop?brands=Maison%20Alhambra" title="Maison Alhambra">
+                                    <ListItem href="/shop/all?brands=Maison%20Alhambra" title="Maison Alhambra">
                                         L'art du dupe de luxe, par Lattafa.
                                     </ListItem>
-                                    <ListItem href="/shop?brands=Fragrance%20World" title="Fragrance World">
+                                    <ListItem href="/shop/all?brands=Fragrance%20World" title="Fragrance World">
                                         Créativité et audace dans chaque flacon.
                                     </ListItem>
-                                     <ListItem href="/shop?brands=French%20Avenue" title="French Avenue">
+                                     <ListItem href="/shop/all?brands=French%20Avenue" title="French Avenue">
                                         L'élégance française, l'inspiration d'ailleurs.
                                      </ListItem>
                                     <li className="col-start-2">
