@@ -339,9 +339,11 @@ export default function Header() {
       </div>
 
       {/* Mobile Search Bar - Below Header */}
-      <div className="lg:hidden border-t bg-background">
-        <div className="container py-2">
-          <SearchBar />
+      <div className="lg:hidden border-t bg-white dark:bg-card">
+        <div className="container py-2 flex justify-center">
+          <div className="w-full max-w-md">
+            <SearchBar />
+          </div>
         </div>
       </div>
     </header>
