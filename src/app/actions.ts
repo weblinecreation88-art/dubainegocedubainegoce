@@ -7,7 +7,7 @@ import { answerFaq } from '@/ai/flows/faq-chatbot';
 import type { Product, Order, OrderItem, ShippingMethod, CartItem } from '@/lib/types';
 import { getProducts } from '@/lib/data';
 import Stripe from 'stripe';
-import { Resend } from 'resend';
+import { sendOrderConfirmationEmail } from '@/lib/sendgrid';
 import { firestore } from '@/firebase/server';
 import { z } from 'zod';
 
@@ -33,12 +33,6 @@ type RecommendPerfumesOutput = { recommendations: { slug: string; reason: string
 type AnswerFaqInput = { question: string; };
 type AnswerFaqOutput = { answer: string; };
 
-
-// Initialisation de Resend
-const resendApiKey = process.env.RESEND_API_KEY;
-const fromEmail = process.env.FROM_EMAIL || 'contact@resend.woosenteur.fr'; // Default to a consistent sender
-const resendAudienceId = process.env.RESEND_AUDIENCE_ID;
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // Initialisation de Stripe
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -145,59 +139,33 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
         console.log(`[processSuccessfulOrder] Commande ${session.id} enregistrée dans Firestore pour l'utilisateur ${userId}.`);
 
         // --- Début de la logique d'envoi d'e-mail ---
-        console.log("[processSuccessfulOrder] Préparation de l'envoi d'e-mail via Resend.");
-        if (!resend || !fromEmail) {
-          console.warn("[processSuccessfulOrder] AVERTISSEMENT: Resend n'est pas configuré (RESEND_API_KEY ou fromEmail manquant). E-mail de confirmation non envoyé.");
+        console.log("[processSuccessfulOrder] Préparation de l'envoi d'e-mail via SendGrid.");
+        const userEmail = session.customer_details?.email;
+        const customerName = session.customer_details?.name || 'Client(e)';
+
+        if (!userEmail) {
+            console.error(`[processSuccessfulOrder] ERREUR: Adresse e-mail du client manquante pour la session ${sessionId}. E-mail non envoyé.`);
         } else {
-            const userEmail = session.customer_details?.email;
-            const customerName = session.customer_details?.name || 'Client(e)';
-            
-            if (!userEmail) {
-                console.error(`[processSuccessfulOrder] ERREUR: Adresse e-mail du client manquante pour la session ${sessionId}. E-mail non envoyé.`);
-            } else {
-                 const itemsHtml = orderData.orderItems.map(item => `
-                    <tr>
-                        <td style="padding: 8px; border: 1px solid #ddd;">${item.name}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">${item.quantity}</td>
-                        <td style="padding: 8px; border: 1px solid #ddd;">${item.itemPrice.toFixed(2)} €</td>
-                    </tr>
-                `).join('');
-                
-                const invoiceLinkHtml = invoice?.invoice_pdf ? 
-                    `<p>Vous pouvez télécharger votre facture ici : <a href="${invoice.invoice_pdf}">Télécharger la facture</a></p>` : '';
+            try {
+                console.log(`[processSuccessfulOrder] Tentative d'envoi d'email à ${userEmail}...`);
+                const emailResult = await sendOrderConfirmationEmail(
+                    userEmail,
+                    customerName,
+                    session.id,
+                    orderData.orderItems,
+                    orderData.totalAmount,
+                    invoice?.invoice_pdf || undefined
+                );
 
-
-                const emailHtml = `
-                    <h1>Confirmation de votre commande</h1>
-                    <p>Bonjour ${customerName},</p>
-                    <p>Merci pour votre achat chez DubaiNegoce. Voici le récapitulatif de votre commande <strong>#${session.id.substring(0, 8)}</strong>.</p>
-                    <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px;">
-                        <thead>
-                            <tr><th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Produit</th><th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Quantité</th><th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Prix unitaire</th></tr>
-                        </thead>
-                        <tbody>${itemsHtml}</tbody>
-                    </table>
-                    <p><strong>Montant total : ${orderData.totalAmount.toFixed(2)} €</strong></p>
-                    ${invoiceLinkHtml}
-                    <p>Vous recevrez un autre e-mail lorsque votre commande sera expédiée.</p>
-                    <p>L'équipe DubaiNegoce</p>
-                `;
-                
-                try {
-                  console.log(`[processSuccessfulOrder] Tentative d'envoi d'email à ${userEmail} depuis ${fromEmail}...`);
-                  await resend.emails.send({
-                      from: `DubaiNegoce <${fromEmail}>`,
-                      to: [userEmail],
-                      subject: `Confirmation de votre commande DubaiNegoce #${session.id.substring(0, 8)}`,
-                      html: emailHtml,
-                  });
-                  console.log(`[processSuccessfulOrder] Email de confirmation envoyé avec succès à ${userEmail} pour la session ${sessionId}.`);
-                } catch (emailError: any) {
-                  console.error(`[processSuccessfulOrder] ERREUR lors de l'envoi de l'e-mail via Resend à ${userEmail}:`, emailError);
-                  // Ne pas bloquer le succès de la commande pour une erreur d'email
-                  // mais retourner un message pour indiquer le problème partiel.
-                  return { success: true, message: `Commande enregistrée, mais l'envoi de l'e-mail a échoué: ${emailError.message}` };
+                if (emailResult.success) {
+                    console.log(`[processSuccessfulOrder] Email de confirmation envoyé avec succès à ${userEmail} pour la session ${sessionId}.`);
+                } else {
+                    console.error(`[processSuccessfulOrder] ERREUR lors de l'envoi de l'e-mail à ${userEmail}:`, emailResult.error);
+                    return { success: true, message: `Commande enregistrée, mais l'envoi de l'e-mail a échoué: ${emailResult.error}` };
                 }
+            } catch (emailError: any) {
+                console.error(`[processSuccessfulOrder] ERREUR lors de l'envoi de l'e-mail via SendGrid à ${userEmail}:`, emailError);
+                return { success: true, message: `Commande enregistrée, mais l'envoi de l'e-mail a échoué: ${emailError.message}` };
             }
         }
         
@@ -216,18 +184,13 @@ const newsletterSchema = z.object({
 
 /**
  * Abonne un utilisateur à la newsletter.
+ * TODO: Implémenter avec SendGrid Marketing Campaigns API si besoin
  */
 export async function subscribeToNewsletter(
   prevState: any,
   formData: FormData
 ): Promise<{ message: string; error?: boolean }> {
-  if (!resend || !resendAudienceId) {
-    console.error("Resend n'est pas configuré. Vérifiez RESEND_API_KEY et RESEND_AUDIENCE_ID.");
-    return {
-      message: "Le service de newsletter n'est pas disponible pour le moment.",
-      error: true,
-    };
-  }
+  console.log("Newsletter: Fonctionnalité en cours de migration vers SendGrid.");
 
   const validatedFields = newsletterSchema.safeParse({
     email: formData.get('email'),
@@ -239,30 +202,31 @@ export async function subscribeToNewsletter(
       error: true,
     };
   }
-  
+
   const { email } = validatedFields.data;
 
+  // Pour l'instant, on enregistre simplement dans Firestore
   try {
-    const { data, error } = await resend.contacts.create({
-      email: email,
-      audienceId: resendAudienceId,
-      unsubscribed: false,
-    });
-
-    if (error) {
-      // Spécifiquement gérer le cas où l'utilisateur est déjà inscrit
-      if (error.name === 'validation_error' && error.message.includes('already exists')) {
-           return { message: "Vous êtes déjà inscrit(e) à notre newsletter !" };
-      }
-      // Pour les autres erreurs Resend, les loguer et renvoyer un message générique
-      console.error('Erreur Resend lors de l\'inscription:', error);
-      return { message: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.', error: true };
+    if (!firestore) {
+      throw new Error("Firestore n'est pas configuré.");
     }
 
+    await firestore.collection('newsletter_subscribers').doc(email).set({
+      email: email,
+      subscribedAt: new Date().toISOString(),
+      status: 'active'
+    });
+
+    console.log(`[Newsletter] Email ${email} ajouté à la liste d'abonnés.`);
     return { message: "Merci ! Vous êtes bien inscrit(e) à notre newsletter." };
   } catch (e: any) {
-    // Gérer les erreurs inattendues (ex: problème réseau)
-    console.error('Erreur inattendue lors de l\'inscription à la newsletter:', e);
+    console.error('Erreur lors de l\'inscription à la newsletter:', e);
+
+    // Gérer le cas où l'email existe déjà
+    if (e.code === 6) { // ALREADY_EXISTS
+      return { message: "Vous êtes déjà inscrit(e) à notre newsletter !" };
+    }
+
     return { message: 'Une erreur serveur est survenue. Veuillez réessayer plus tard.', error: true };
   }
 }
