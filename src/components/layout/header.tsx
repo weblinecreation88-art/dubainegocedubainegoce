@@ -32,6 +32,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { SearchDialog } from '../search-dialog';
+import { SearchBar } from '../search-bar';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ScrollArea } from '../ui/scroll-area';
 import { Dialog, DialogTrigger } from '../ui/dialog';
@@ -119,7 +120,6 @@ export default function Header() {
                           <SheetDescription className="sr-only">Naviguez à travers les différentes sections du site.</SheetDescription>
                            <div className="flex items-center justify-between">
                              <span className="font-bold text-lg font-headline">Menu</span>
-                             <ThemeToggle />
                           </div>
                         </SheetHeader>
                         <ScrollArea className="flex-1">
@@ -166,14 +166,6 @@ export default function Header() {
                         </ScrollArea>
                     </SheetContent>
                 </Sheet>
-            </div>
-            <div className="lg:hidden">
-              <SearchDialog>
-                  <Button variant="ghost" size="icon" className="text-primary hover:text-primary/80">
-                    <Search className="h-5 w-5" />
-                    <span className="sr-only">Rechercher</span>
-                  </Button>
-                </SearchDialog>
             </div>
              <Link href="/" className="hidden lg:flex items-center">
                 <Image
@@ -291,15 +283,14 @@ export default function Header() {
             </div>
         </div>
 
-        {/* Right Section: Icons */}
-        <div className="flex flex-1 items-center justify-end gap-1">
-            <div className="hidden lg:flex">
-                <SearchDialog>
-                  <Button variant="ghost" size="icon" className="text-primary hover:text-primary/80">
-                    <Search className="h-5 w-5" />
-                    <span className="sr-only">Rechercher</span>
-                  </Button>
-                </SearchDialog>
+        {/* Right Section: Search Bar & Icons */}
+        <div className="flex flex-1 items-center justify-end gap-2">
+            <div className="hidden lg:block lg:max-w-xs lg:w-full">
+                <SearchBar />
+            </div>
+
+            <div className="lg:block">
+              <ThemeToggle />
             </div>
 
             {!isUserLoading && (
@@ -344,9 +335,13 @@ export default function Header() {
                 <span className="sr-only">Panier</span>
                 </Link>
             </Button>
-            <div className="hidden lg:block">
-              <ThemeToggle />
-            </div>
+        </div>
+      </div>
+
+      {/* Mobile Search Bar - Below Header */}
+      <div className="lg:hidden border-t bg-background">
+        <div className="container py-2">
+          <SearchBar />
         </div>
       </div>
     </header>
