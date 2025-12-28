@@ -173,8 +173,7 @@ export default function Header() {
                     alt="DubaiNegoce Logo"
                     width={140}
                     height={40}
-                    className="object-contain"
-                    style={{ width: 'auto', height: 'auto' }}
+                    className="object-contain h-10"
                     priority
                 />
             </Link>
@@ -188,8 +187,7 @@ export default function Header() {
                     alt="DubaiNegoce Logo"
                     width={140}
                     height={40}
-                    className="object-contain"
-                    style={{ width: 'auto', height: 'auto' }}
+                    className="object-contain h-10"
                     priority
                 />
             </Link>
