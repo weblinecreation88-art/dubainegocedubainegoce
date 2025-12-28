@@ -32,30 +32,39 @@ export default function CartPage() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
   const [isClient, setIsClient] = useState(false);
+  const [shouldAutoCheckout, setShouldAutoCheckout] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
     setIsClient(true);
-    
+
+    // Check if user just came back from login
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('fromLogin') === 'true' && user) {
+      setShouldAutoCheckout(true);
+      // Clean up URL
+      router.replace('/cart', { scroll: false });
+    }
+
     const handlePopState = () => {
       setIsCheckingOut(false);
     };
-    
+
     window.addEventListener('popstate', handlePopState);
-    
+
     const handleVisibilityChange = () => {
         if (document.visibilityState === 'visible') {
             setIsCheckingOut(false);
         }
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     return () => {
       window.removeEventListener('popstate', handlePopState);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, []);
+  }, [user, router]);
 
   const totalItems = getCartCount();
   const totalWeight = totalItems * PERFUME_WEIGHT_G;
@@ -83,7 +92,7 @@ export default function CartPage() {
 
   const handleCheckout = async () => {
     if (!user || !firestore) {
-      router.push('/login?redirect=/cart');
+      router.push('/login?redirect=/cart?fromLogin=true');
       return;
     }
 
@@ -156,6 +165,17 @@ export default function CartPage() {
     }
   };
 
+  // Auto-checkout when returning from login
+  useEffect(() => {
+    if (shouldAutoCheckout && user && firestore && cart.length > 0 && !isCheckingOut) {
+      setShouldAutoCheckout(false);
+      // Small delay to ensure state is ready
+      const timer = setTimeout(() => {
+        handleCheckout();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldAutoCheckout, user, firestore, cart.length]);
 
   return (
     <div className="container mx-auto px-4 py-12">
