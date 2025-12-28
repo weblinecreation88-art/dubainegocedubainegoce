@@ -12,21 +12,18 @@
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 45 68% 52%;
     --primary-foreground: 40 33% 97%;
-    --secondary: 346 77% 60%; /* Rose YARA - Couleur principale du gradient */
-    --secondary-foreground: 0 0% 100%; /* Texte blanc sur fond rose */
+    --secondary: 220 13% 15%; /* Bleu nuit profond */
+    --secondary-foreground: 40 33% 97%; /* Texte clair sur fond sombre */
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%; /* Gris plus foncé pour une meilleure lisibilité */
-    --accent: 340 82% 67%; /* Pink YARA - Couleur secondaire du gradient */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%; /* Rouge pour les alertes */
+    --accent: 220 13% 20%; /* Bleu nuit légèrement plus clair pour l'accentuation */
+    --accent-foreground: 40 33% 97%;
+    --destructive: 38 92% 50%; /* Or/Ambre pour les alertes */
     --destructive-foreground: 0 0% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 346 77% 60%;
+    --ring: 45 68% 52%;
     --radius: 0.5rem;
-    /* Gradient YARA */
-    --gradient-yara-from: 346 77% 60%; /* rose-600 */
-    --gradient-yara-to: 340 82% 67%; /* pink-600 */
   }
 
   .dark {
@@ -38,20 +35,17 @@
     --popover-foreground: 40 33% 97%;
     --primary: 45 68% 52%;
     --primary-foreground: 215 28% 10%;
-    --secondary: 346 77% 60%; /* Rose YARA - Couleur principale du gradient */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 13% 15%; /* Bleu nuit profond */
+    --secondary-foreground: 40 33% 97%;
     --muted: 220 13% 15%;
     --muted-foreground: 40 33% 80%;
-    --accent: 340 82% 67%; /* Pink YARA - Couleur secondaire du gradient */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%; /* Rouge pour les alertes (mode sombre) */
+    --accent: 220 13% 20%;
+    --accent-foreground: 40 33% 97%;
+    --destructive: 38 92% 50%; /* Or/Ambre pour les alertes (mode sombre) */
     --destructive-foreground: 0 0% 98%;
     --border: 220 13% 20%; /* Bordure assortie */
     --input: 220 13% 25%;
-    --ring: 346 77% 60%;
-    /* Gradient YARA */
-    --gradient-yara-from: 346 77% 60%; /* rose-600 */
-    --gradient-yara-to: 340 82% 67%; /* pink-600 */
+    --ring: 45 68% 52%;
   }
 }
 
@@ -77,22 +71,3 @@
   }
 }
 
-@layer utilities {
-  /* Gradient YARA pour fond */
-  .bg-gradient-yara {
-    background: linear-gradient(to right, hsl(var(--gradient-yara-from)), hsl(var(--gradient-yara-to)));
-  }
-
-  /* Gradient YARA pour texte */
-  .text-gradient-yara {
-    background: linear-gradient(to right, hsl(var(--gradient-yara-from)), hsl(var(--gradient-yara-to)));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Bordure avec gradient YARA */
-  .border-gradient-yara {
-    border-image: linear-gradient(to right, hsl(var(--gradient-yara-from)), hsl(var(--gradient-yara-to))) 1;
-  }
-}
