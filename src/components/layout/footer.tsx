@@ -40,17 +40,17 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-secondary text-secondary-foreground border-t">
+    <footer className="bg-card text-card-foreground border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Collections</h3>
+            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Collections</h3>
             <ul className="space-y-2">
               <li><Link href="/shop" className="hover:text-primary transition-colors">Tous les produits</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Support</h3>
+            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Support</h3>
             <ul className="space-y-2">
               <li><Link href="/about" className="hover:text-primary transition-colors">À Propos</Link></li>
               <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
@@ -59,7 +59,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Légal</h3>
+            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Légal</h3>
             <ul className="space-y-2">
               <li><Link href="/terms" className="hover:text-primary transition-colors">Conditions Générales</Link></li>
               <li><Link href="/privacy" className="hover:text-primary transition-colors">Politique de Confidentialité</Link></li>
@@ -67,7 +67,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Newsletter</h3>
+            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Newsletter</h3>
             <p className="text-sm">Reçois les lancements et sélections olfactives (sans promos).</p>
             <form
               ref={formRef}
