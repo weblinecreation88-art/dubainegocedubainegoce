@@ -110,8 +110,77 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Gender Categories Section */}
+      {/* KAMRAH Promo Section */}
       <section className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Image à gauche */}
+              <div className="relative h-[400px] lg:h-[500px]">
+                <Image
+                  src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1764270620/Screenshot_2025-06-02-00-12-11-453_com.android.chrome-edit_1_prxl15.jpg"
+                  alt="KAMRAH - Offre promotionnelle"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+
+              {/* Texte à droite */}
+              <div className="p-8 lg:p-12 space-y-6">
+                <div className="inline-block">
+                  <span className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider">
+                    Promotion Exclusive
+                  </span>
+                </div>
+
+                <div>
+                  <h2 className="text-5xl md:text-6xl font-headline font-bold text-primary mb-2">KAMRAH</h2>
+                  <p className="text-xl text-muted-foreground">L'élégance orientale à prix fixe</p>
+                </div>
+
+                <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg border-2 border-primary/20">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-6xl font-bold text-primary">35€</span>
+                    <span className="text-2xl text-muted-foreground line-through">49.99€</span>
+                  </div>
+                  <p className="text-lg font-semibold text-primary mt-2">Prix fixe - Toutes les fragrances KAMRAH</p>
+                  <p className="text-sm text-muted-foreground mt-2">Profitez de cette offre exceptionnelle sur l'ensemble de la collection</p>
+                </div>
+
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span className="text-muted-foreground">Toutes les variantes incluses</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span className="text-muted-foreground">Qualité premium garantie</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span className="text-muted-foreground">Livraison rapide</span>
+                  </li>
+                </ul>
+
+                <div className="flex gap-4 pt-4">
+                  <Button asChild size="lg" className="group text-lg px-8">
+                    <Link href="/shop/all?brands=Kamrah">
+                      Voir les parfums KAMRAH
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                </div>
+
+                <p className="text-xs text-muted-foreground">* Offre valable dans la limite des stocks disponibles</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gender Categories Section */}
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-headline text-center mb-12">Explorer par Genre</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
