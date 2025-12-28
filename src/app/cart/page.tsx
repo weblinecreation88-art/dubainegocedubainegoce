@@ -127,6 +127,7 @@ export default function CartPage() {
             mode: 'payment',
             line_items: lineItems,
             allow_promotion_codes: true,
+            payment_method_configuration: process.env.NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID,
             shipping_address_collection: {
                 allowed_countries: ['FR', 'BE', 'LU', 'CH'],
             },
