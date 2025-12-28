@@ -18,21 +18,8 @@ export const getColissimoCost = (weightInGrams: number): number => {
 };
 
 export const getMondialRelayCost = (weightInGrams: number): number => {
-    if (weightInGrams <= 0) return 0;
-    if (weightInGrams <= 250) return 3.99;
-    if (weightInGrams <= 500) return 3.99;
-    if (weightInGrams <= 750) return 4.49;
-    if (weightInGrams <= 1000) return 4.49;
-    if (weightInGrams <= 2000) return 6.19;
-    if (weightInGrams <= 3000) return 6.99;
-    if (weightInGrams <= 4000) return 8.49;
-    if (weightInGrams <= 5000) return 11.99;
-    if (weightInGrams <= 7000) return 14.89;
-    if (weightInGrams <= 10000) return 15.89;
-    if (weightInGrams <= 15000) return 23.39;
-    if (weightInGrams <= 20000) return 23.89;
-    if (weightInGrams <= 25000) return 34.89;
-    return 34.89; // Fallback for weights over 25kg
+    // Livraison Mondial Relay gratuite sans condition
+    return 0;
 };
 
 
@@ -3381,6 +3368,29 @@ const products: Product[] = [
         "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/11/product-images2F9SRPbNJB9SXBM37RxXBa4bQKF9L22Ffrench-avenue-liqude-brun.png"],
         "reviews": [],
         "rating": 4.8,
+        "productType": "perfume"
+    },
+    {
+        "id": "9999",
+        "name": "TEST - Parfum Gratuit",
+        "slug": "test-parfum-gratuit",
+        "brand": brands.find(b => b.name === 'Lattafa')!,
+        "type": "simple",
+        "gender": "mixte",
+        "family": "Floral",
+        "shortDescription": "Produit de test à 0€ avec livraison gratuite Mondial Relay",
+        "longDescription": "<p>Ceci est un produit de test créé pour effectuer des tests de commande. Prix à 0€ et livraison gratuite en Mondial Relay.</p>",
+        "metaTitle": "TEST - Parfum Gratuit | Produit de test",
+        "metaDescription": "Produit de test pour la boutique en ligne. Prix 0€ avec livraison gratuite.",
+        "price": 0,
+        "volumeMl": 0,
+        "stock": 999,
+        "isBestseller": false,
+        "isNew": true,
+        "tags": ["test"],
+        "images": ["https://placehold.co/600x400/EEE/31343C?font=open-sans&text=TEST"],
+        "reviews": [],
+        "rating": 5,
         "productType": "perfume"
     }
 ];
