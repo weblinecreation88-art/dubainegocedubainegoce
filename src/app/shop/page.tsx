@@ -53,15 +53,15 @@ export default function ShopPage() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Image à gauche */}
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
-              <Image
-                src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1766907448/LOVELY-Photoroom_z0r2jf.jpg"
-                alt="LOVELY - Le parfum le plus vendu"
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+            {/* Vidéo à gauche */}
+            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/20 flex items-center justify-center">
+              <video
+                src="https://res.cloudinary.com/dzntnjtkc/video/upload/v1766911628/LOVELY-Photoroom_animation_egw64l.mp4"
+                className="w-full h-full object-contain"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
 
