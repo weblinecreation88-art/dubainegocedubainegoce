@@ -5,6 +5,18 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
+
+# Variables d'environnement publiques (non-secrètes)
+env:
+  - variable: FROM_EMAIL
+    value: contact@dubainegoce.fr
+  - variable: NEXT_PUBLIC_APP_URL
+    value: https://dubainegoce.fr
+  - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    value: pk_test_51Sh5VUCVq6ZxeRDQqWdEHzIAr4pdrMeD2NEDJlKlyH1fWkCa8vArbmm0ac5e14Lp7QMS8nmTmmZXhxs2igElPH2200E624hSqD
+  - variable: GEMINI_API_KEY
+    value: AIzaSyDC9RCfdy3zx2KShhRmXyrCivSglUEmt3Q
+
 # This section specifies the secrets that should be exposed to the backend as
 # environment variables.
 # IMPORTANT: You must create these secrets in Google Cloud Secret Manager.
