@@ -3,7 +3,7 @@
 import { getProductBySlug, getProducts, getRelatedProducts } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
-import { Star, Truck, ShieldCheck } from 'lucide-react';
+import { Star, Truck, ShieldCheck, RotateCcw } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProductCard } from '@/components/product/product-card';
@@ -109,19 +109,26 @@ export default function ProductPage({ params }: Props) {
             Ajouter au panier
           </AddToCartButton>
 
-          <div className="border rounded-lg p-4 space-y-4">
+          <div className="border border-secondary/20 rounded-lg p-4 space-y-4 bg-gradient-to-br from-rose-50/30 to-pink-50/30 dark:from-rose-950/10 dark:to-pink-950/10">
             <div className="flex items-center gap-4">
-                <Truck className="h-6 w-6 text-primary" />
+                <Truck className="h-6 w-6 text-secondary" />
                 <div>
                     <p className="font-semibold">Livraison Rapide</p>
                     <p className="text-sm text-muted-foreground">Expédié en 48h, livraison Colissimo ou Mondial Relay.</p>
                 </div>
             </div>
              <div className="flex items-center gap-4">
-                <ShieldCheck className="h-6 w-6 text-primary" />
+                <ShieldCheck className="h-6 w-6 text-secondary" />
                 <div>
                     <p className="font-semibold">100% Authentique</p>
                     <p className="text-sm text-muted-foreground">Produits importés directement de Dubaï.</p>
+                </div>
+            </div>
+             <div className="flex items-center gap-4">
+                <RotateCcw className="h-6 w-6 text-secondary" />
+                <div>
+                    <p className="font-semibold">Satisfait ou Remboursé</p>
+                    <p className="text-sm text-muted-foreground">Retournez votre précieux sous 14 jours et nous vous remboursons.</p>
                 </div>
             </div>
           </div>
