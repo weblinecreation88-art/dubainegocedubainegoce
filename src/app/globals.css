@@ -71,3 +71,62 @@
   }
 }
 
+@layer utilities {
+  /* Icônes dorées */
+  .icon-gold {
+    @apply text-primary;
+  }
+
+  /* Icônes avec effet hover doré vers indigo */
+  .icon-hover {
+    @apply text-primary transition-colors duration-300;
+  }
+
+  .icon-hover:hover {
+    @apply text-indigo-600;
+  }
+
+  /* Boutons avec effet hover */
+  .btn-gold-hover {
+    @apply transition-all duration-300;
+  }
+
+  .btn-gold-hover:hover {
+    @apply ring-2 ring-indigo-500 ring-offset-2;
+  }
+
+  /* Liens avec effet hover doré vers indigo */
+  .link-gold-hover {
+    @apply text-primary hover:text-indigo-600 transition-colors duration-300;
+  }
+
+  /* Bordures dorées avec hover indigo */
+  .border-gold-hover {
+    @apply border-primary hover:border-indigo-600 transition-colors duration-300;
+  }
+
+  /* Effet de brillance doré */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .shimmer-gold {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(45 100% 70%) 50%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
