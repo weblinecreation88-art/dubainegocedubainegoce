@@ -103,9 +103,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-16 items-center">
-        {/* Left Section: Mobile Menu & Desktop Logo */}
-        <div className="flex flex-1 justify-start items-center gap-2">
+      <div className="container flex h-16 items-center justify-between lg:grid lg:grid-cols-[200px_1fr_200px] lg:gap-4">
+        {/* Left Section: Mobile Menu / Desktop Logo */}
+        <div className="flex items-center gap-2 lg:justify-start">
              <div className="lg:hidden">
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
@@ -180,7 +180,7 @@ export default function Header() {
         </div>
 
         {/* Center Section: Navigation Menu (Desktop) / Centered Logo (Mobile) */}
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex justify-center items-center">
             <Link href="/" className="lg:hidden flex items-center">
                  <Image
                     src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1765916140/ChatGPT_Image_16_d%C3%A9c._2025_21_14_32_1_ajws49.png"
@@ -282,8 +282,8 @@ export default function Header() {
         </div>
 
         {/* Right Section: Search Bar & Icons */}
-        <div className="flex flex-1 items-center justify-end gap-2">
-            <div className="hidden lg:block lg:max-w-xs lg:w-full">
+        <div className="flex items-center justify-end gap-2">
+            <div className="hidden lg:block lg:max-w-[180px]">
                 <SearchBar />
             </div>
 
