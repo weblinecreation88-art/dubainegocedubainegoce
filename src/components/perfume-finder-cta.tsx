@@ -25,7 +25,7 @@ export function PerfumeFinderCta() {
                                 Laissez notre expert en parfums vous guider. Répondez à quelques questions et trouvez le sillage qui vous correspond parfaitement.
                             </CardDescription>
                             <DialogTrigger asChild>
-                                <Button size="lg" className="mt-6 group bg-gradient-yara hover:opacity-90 text-white border-0">
+                                <Button size="lg" className="mt-6 group bg-primary hover:bg-primary/90 text-white border-0">
                                     Trouver mon parfum
                                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                 </Button>
