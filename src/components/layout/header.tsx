@@ -104,8 +104,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center justify-between lg:grid lg:grid-cols-[200px_1fr_200px] lg:gap-4">
-        {/* Left Section: Mobile Menu / Desktop Logo */}
+        {/* Left Section: Mobile Menu + Theme Toggle / Desktop Logo */}
         <div className="flex items-center gap-2 lg:justify-start">
+             {/* Mobile menu burger */}
              <div className="lg:hidden">
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
@@ -167,6 +168,13 @@ export default function Header() {
                     </SheetContent>
                 </Sheet>
             </div>
+
+            {/* Mobile theme toggle - à gauche pour symétrie */}
+            <div className="lg:hidden">
+              <ThemeToggle />
+            </div>
+
+             {/* Desktop logo - à gauche */}
              <Link href="/" className="hidden lg:flex items-center">
                 <Image
                     src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1765916140/ChatGPT_Image_16_d%C3%A9c._2025_21_14_32_1_ajws49.png"
@@ -287,7 +295,8 @@ export default function Header() {
                 <SearchBar />
             </div>
 
-            <div className="lg:block">
+            {/* Theme toggle - uniquement desktop (mobile à gauche) */}
+            <div className="hidden lg:block">
               <ThemeToggle />
             </div>
 
