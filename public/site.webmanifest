@@ -1,0 +1,23 @@
+{
+  "name": "Dubainegoce - Parfums de Dubaï Authentiques",
+  "short_name": "Dubainegoce",
+  "description": "Parfums authentiques de Dubaï à prix fixe 35€. Lattafa, Maison Alhambra, Fragrance World.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#D4AF37",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}
