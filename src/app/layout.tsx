@@ -137,7 +137,6 @@ export const metadata: Metadata = {
   verification: {
     // google: 'XXXXX', // A ajouter une fois que vous avez le code de la Search Console
   },
-  manifest: '/manifest.webmanifest',
   alternates: {
     canonical: siteUrl,
   },

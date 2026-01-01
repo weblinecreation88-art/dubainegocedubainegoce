@@ -29,7 +29,28 @@
       "Bash(firebase apphosting:backends:list:*)",
       "Bash(firebase apphosting:rollouts:list:*)",
       "Bash(firebase apphosting:backends:get:*)",
-      "Bash(firebase hosting:channel:list:*)"
+      "Bash(firebase hosting:channel:list:*)",
+      "Bash(gcloud config set:*)",
+      "Bash(gcloud auth:*)",
+      "Bash(gcloud secrets create:*)",
+      "Bash(git reset:*)",
+      "Bash(git restore:*)",
+      "Bash(firebase ext:list:*)",
+      "Bash(firebase ext:install:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(firebase ext:configure:*)",
+      "Bash(firebase ext:update:*)",
+      "Bash(timeout /t 10)",
+      "Bash(gcloud secrets:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(firebase apphosting:backends:create:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+      "Bash(timeout /t 5)",
+      "Bash(stripe --version:*)",
+      "Bash(winget:*)"
     ]
   }
 }

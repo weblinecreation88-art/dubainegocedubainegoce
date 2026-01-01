@@ -9,7 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2, ShoppingBag, Loader2, TicketPercent } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { useUser, useFirestore } from '@/firebase';
+import { useUser } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -18,7 +18,6 @@ import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
-import { collection, addDoc, onSnapshot, DocumentData } from 'firebase/firestore';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
@@ -27,7 +26,6 @@ const PERFUME_WEIGHT_G = 750;
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
   const { user } = useUser();
-  const firestore = useFirestore();
   const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
@@ -91,7 +89,7 @@ export default function CartPage() {
   const totalAmount = subtotal + shippingCost;
 
   const handleCheckout = useCallback(async () => {
-    if (!user || !firestore) {
+    if (!user) {
       router.push('/login?redirect=/cart&fromLogin=true');
       return;
     }
@@ -123,50 +121,32 @@ export default function CartPage() {
             quantity: item.quantity,
         }));
 
-        const checkoutPayload: DocumentData = {
-            mode: 'payment',
-            line_items: lineItems,
-            allow_promotion_codes: true,
-            payment_method_configuration: process.env.NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID,
-            shipping_address_collection: {
-                allowed_countries: ['FR', 'BE', 'LU', 'CH'],
-            },
-            invoice_creation: {
-                enabled: true,
-            },
-            success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${totalAmount.toFixed(2)}`,
-            cancel_url: `${appUrl}/cart`,
-            metadata: {
-              userId: user.uid,
-              shippingMethod: selectedShipping.id,
-            }
-        };
+        const response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            lineItems,
+            userId: user.uid,
+            shippingMethod: selectedShipping.id,
+            totalAmount: totalAmount.toFixed(2),
+          }),
+        });
 
-        if (selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID) {
-            checkoutPayload.shipping_options = [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }];
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Erreur lors de la création de la session');
         }
 
-        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), checkoutPayload);
-
-        const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-            const { error, url } = snap.data() as { error?: { message: string }, url?: string };
-            if (error) {
-                console.error(`An error occurred with the Stripe session: ${error.message}`);
-                toast({
-                  variant: "destructive",
-                  title: "Erreur de paiement",
-                  description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
-                })
-                setIsCheckingOut(false);
-                unsubscribe();
-            }
-            if (url) {
-                unsubscribe();
-                window.location.assign(url);
-            }
-        });
+        if (data.url) {
+          window.location.assign(data.url);
+        } else {
+          throw new Error('URL de paiement non reçue');
+        }
     } catch(error: any) {
-        console.error("Error creating checkout session document:", error);
+        console.error("Error creating checkout session:", error);
          toast({
             variant: "destructive",
             title: "Erreur de paiement",
@@ -174,11 +154,11 @@ export default function CartPage() {
         })
         setIsCheckingOut(false);
     }
-  }, [user, firestore, router, cart, toast, totalAmount, selectedShipping]);
+  }, [user, router, cart, toast, totalAmount, selectedShipping]);
 
   // Auto-checkout when returning from login
   useEffect(() => {
-    if (shouldAutoCheckout && user && firestore && cart.length > 0 && !isCheckingOut) {
+    if (shouldAutoCheckout && user && cart.length > 0 && !isCheckingOut) {
       setShouldAutoCheckout(false);
       // Small delay to ensure state is ready
       const timer = setTimeout(() => {
@@ -186,7 +166,8 @@ export default function CartPage() {
       }, 100);
       return () => clearTimeout(timer);
     }
-  }, [shouldAutoCheckout, user, firestore, cart.length, isCheckingOut, handleCheckout]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldAutoCheckout, user, cart.length, isCheckingOut]);
 
   return (
     <div className="container mx-auto px-4 py-12">
