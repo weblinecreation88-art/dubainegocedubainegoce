@@ -33,7 +33,11 @@ service cloud.firestore {
     }
     
     function isNewUserDocValid(userId) {
-      return request.resource.data.id == userId;
+      let data = request.resource.data;
+      return data.id == userId
+        && data.email is string
+        && (!('firstName' in data) || data.firstName is string)
+        && (!('lastName' in data) || data.lastName is string);
     }
 
     function isUserDocImmutable() {
