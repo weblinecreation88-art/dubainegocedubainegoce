@@ -186,7 +186,7 @@ export default function RootLayout({
             <CartProvider>
               <AnnouncementBar />
               <Header />
-              <main className="flex-grow">{children}</main>
+              <main className="flex-grow pt-[10.5rem] lg:pt-[6.5rem]">{children}</main>
               <ReassuranceSection />
               <Footer />
               <Toaster />
