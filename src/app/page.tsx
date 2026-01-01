@@ -175,6 +175,14 @@ export default function Home() {
                 <CarouselPrevious className="hidden md:flex" />
                 <CarouselNext className="hidden md:flex" />
               </Carousel>
+              <div className="flex justify-center mt-8">
+                <Button asChild size="lg" variant="outline" className="group">
+                  <Link href="/shop">
+                    Voir toutes les nouveautés
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </section>
       )}
@@ -206,6 +214,14 @@ export default function Home() {
                 <CarouselPrevious className="hidden md:flex" />
                 <CarouselNext className="hidden md:flex" />
               </Carousel>
+              <div className="flex justify-center mt-8">
+                <Button asChild size="lg" className="group bg-primary hover:bg-primary/90">
+                  <Link href="/shop">
+                    Explorer toute la collection
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </section>
       )}
@@ -303,6 +319,14 @@ export default function Home() {
                 <CarouselPrevious className="hidden md:flex" />
                 <CarouselNext className="hidden md:flex" />
               </Carousel>
+              <div className="flex justify-center mt-8">
+                <Button asChild size="lg" variant="outline" className="group">
+                  <Link href="/shop/all?brands=Fragrance%20World">
+                    Voir toute la collection Fragrance World
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </section>
       )}
@@ -334,6 +358,14 @@ export default function Home() {
               <CarouselPrevious className="hidden md:flex" />
               <CarouselNext className="hidden md:flex" />
             </Carousel>
+            <div className="flex justify-center mt-8">
+              <Button asChild size="lg" variant="outline" className="group">
+                <Link href="/shop/all?brands=Lattafa">
+                  Découvrir tous les parfums Lattafa
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       )}
