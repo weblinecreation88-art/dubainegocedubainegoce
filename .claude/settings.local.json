@@ -50,7 +50,8 @@
       "Bash(ls:*)",
       "Bash(timeout /t 5)",
       "Bash(stripe --version:*)",
-      "Bash(winget:*)"
+      "Bash(winget:*)",
+      "Bash(npx update-browserslist-db@latest)"
     ]
   }
 }
