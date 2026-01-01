@@ -3,54 +3,65 @@ import { getProducts } from '@/lib/data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
+  const currentDate = new Date();
 
-  // Products
+  // Products - Haute priorité pour SEO produits
   const products = getProducts();
   const productUrls = products.map(product => ({
     url: `${siteUrl}/parfum/${product.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as 'weekly',
-    priority: 0.8,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.85, // Augmenté car pages produits = conversion
   }));
 
-  // Blog Posts
+  // Blog Posts - Content marketing pour SEO
   const blogPosts = [
-    { slug: 'alhambra-ete-2025' },
-    { slug: 'tendances-parfums-orientaux-2025' },
-    { slug: 'top-5-lattafa-2025' },
+    { slug: 'alhambra-ete-2025', lastMod: new Date('2025-01-01') },
+    { slug: 'tendances-parfums-orientaux-2025', lastMod: new Date('2025-01-01') },
+    { slug: 'top-5-lattafa-2025', lastMod: new Date('2025-01-01') },
   ];
   const blogUrls = blogPosts.map(post => ({
     url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as 'monthly',
-    priority: 0.7,
+    lastModified: post.lastMod,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75, // Blog important pour SEO informationnel
   }));
 
-  // Static Pages with priorities from the plan
-  const staticPages = [
-    { url: `${siteUrl}/`, priority: 1.0, changeFrequency: 'daily' }, // Page d'accueil avec sections YARA, générateur
-    { url: `${siteUrl}/shop`, priority: 0.95, changeFrequency: 'daily' }, // Boutique avec sections promo LOVELY, KAMRAH, ZAFFIRO, YARA
-    { url: `${siteUrl}/shop/all`, priority: 0.9, changeFrequency: 'weekly' }, // Catalogue complet
-    { url: `${siteUrl}/blog`, priority: 0.7, changeFrequency: 'monthly' },
-    { url: `${siteUrl}/about`, priority: 0.7, changeFrequency: 'monthly' },
-    { url: `${siteUrl}/contact`, priority: 0.6, changeFrequency: 'yearly' },
-    { url: `${siteUrl}/faq`, priority: 0.7, changeFrequency: 'monthly' },
-    { url: `${siteUrl}/privacy`, priority: 0.3, changeFrequency: 'yearly' },
-    { url: `${siteUrl}/terms`, priority: 0.3, changeFrequency: 'yearly' },
-    { url: `${siteUrl}/shipping`, priority: 0.6, changeFrequency: 'yearly' },
+  // Static Pages - Optimisé pour SEO 2025
+  const staticPages: Array<{url: string; priority: number; changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'}> = [
+    // Pages principales - Priorité maximale
+    { url: `${siteUrl}/`, priority: 1.0, changeFrequency: 'daily' },
+    { url: `${siteUrl}/shop`, priority: 0.95, changeFrequency: 'daily' },
+    { url: `${siteUrl}/shop/all`, priority: 0.92, changeFrequency: 'daily' },
+
+    // Pages catégories marques - Haute priorité SEO
+    { url: `${siteUrl}/shop/all?brands=Lattafa`, priority: 0.90, changeFrequency: 'weekly' },
+    { url: `${siteUrl}/shop/all?brands=Maison%20Alhambra`, priority: 0.90, changeFrequency: 'weekly' },
+    { url: `${siteUrl}/shop/all?brands=Fragrance%20World`, priority: 0.88, changeFrequency: 'weekly' },
+    { url: `${siteUrl}/shop/all?brands=French%20Avenue`, priority: 0.88, changeFrequency: 'weekly' },
+
+    // Pages informatives - SEO E-E-A-T
+    { url: `${siteUrl}/blog`, priority: 0.80, changeFrequency: 'weekly' },
+    { url: `${siteUrl}/about`, priority: 0.75, changeFrequency: 'monthly' },
+    { url: `${siteUrl}/faq`, priority: 0.72, changeFrequency: 'monthly' },
+    { url: `${siteUrl}/contact`, priority: 0.70, changeFrequency: 'monthly' },
+
+    // Pages utilitaires - Priorité moyenne
+    { url: `${siteUrl}/shipping`, priority: 0.65, changeFrequency: 'monthly' },
+
+    // Pages légales - Priorité basse mais nécessaires
+    { url: `${siteUrl}/mentions-legales`, priority: 0.35, changeFrequency: 'yearly' },
+    { url: `${siteUrl}/privacy`, priority: 0.32, changeFrequency: 'yearly' },
+    { url: `${siteUrl}/terms`, priority: 0.32, changeFrequency: 'yearly' },
   ].map(page => ({
     url: page.url,
-    lastModified: new Date(),
-    changeFrequency: page.changeFrequency as 'daily' | 'weekly' | 'monthly' | 'yearly',
+    lastModified: currentDate,
+    changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
 
-  // Filter out disallowed pages from the sitemap
-  const disallowedPaths = ['/signup', '/login', '/cart', '/checkout', '/account'];
-  const finalStaticPages = staticPages.filter(page => !disallowedPaths.some(path => page.url.endsWith(path)));
-
   return [
-    ...finalStaticPages,
+    ...staticPages,
     ...productUrls,
     ...blogUrls,
   ];
