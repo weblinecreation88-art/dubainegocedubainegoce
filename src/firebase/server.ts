@@ -8,8 +8,22 @@ function getAdminApp(): App {
   if (getApps().length > 0) {
     return getApp();
   }
-  
-  // In Google Cloud environments (like Firebase App Hosting), 
+
+  // Try to load credentials from environment variable first (for local development)
+  const serviceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+
+  if (serviceAccountKey) {
+    try {
+      const serviceAccount = JSON.parse(serviceAccountKey);
+      return initializeApp({
+        credential: cert(serviceAccount)
+      });
+    } catch (error) {
+      console.error('[Firebase Admin] Error parsing FIREBASE_SERVICE_ACCOUNT_KEY:', error);
+    }
+  }
+
+  // In Google Cloud environments (like Firebase App Hosting),
   // initializeApp() with no arguments automatically discovers the project's credentials.
   return initializeApp();
 }
