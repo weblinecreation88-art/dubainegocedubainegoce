@@ -15,7 +15,7 @@ env:
   - variable: NEXT_PUBLIC_APP_URL
     value: https://dubainegoce.fr
   - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-    value: pk_test_51Sh5VUCVq6ZxeRDQqWdEHzIAr4pdrMeD2NEDJlKlyH1fWkCa8vArbmm0ac5e14Lp7QMS8nmTmmZXhxs2igElPH2200E624hSqD
+    value: pk_live_51SjlzeAIq9NC7F5auCgm8m2QD3aQ3myNockeSayCfDDut8wZeqTxitT7g50gR9zfXLU4BFeESt5qGBAcjCGqCMfB00EnOdP7H7
   - variable: NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID
     value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
   - variable: GEMINI_API_KEY
