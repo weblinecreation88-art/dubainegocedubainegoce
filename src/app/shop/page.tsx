@@ -49,66 +49,6 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Featured Best Seller Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Vidéo à gauche */}
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/20 flex items-center justify-center">
-              <video
-                src="https://res.cloudinary.com/dzntnjtkc/video/upload/v1766911628/LOVELY-Photoroom_animation_egw64l.mp4"
-                className="w-full h-full object-contain"
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            </div>
-
-            {/* Texte à droite */}
-            <div className="space-y-6">
-              <div>
-                <p className="text-primary font-semibold text-sm uppercase tracking-wide mb-2">Notre Best-Seller N°1</p>
-                <h2 className="text-4xl md:text-5xl font-headline font-bold">LOVELY</h2>
-              </div>
-
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Découvrez notre parfum le plus vendu, une fragrance envoûtante qui séduit par son élégance et sa sophistication.
-                LOVELY capture l'essence même du luxe oriental avec ses notes délicates et raffinées.
-              </p>
-
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold mb-2">Notes de tête</h3>
-                  <p className="text-muted-foreground">Bergamote, Poire, Fleur d'Oranger</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Notes de cœur</h3>
-                  <p className="text-muted-foreground">Jasmin, Rose de Damas, Pivoine</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2">Notes de fond</h3>
-                  <p className="text-muted-foreground">Musc Blanc, Vanille, Bois de Santal</p>
-                </div>
-              </div>
-
-              <div className="flex gap-4 pt-4">
-                <Button asChild size="lg" className="group">
-                  <Link href="/shop/all">
-                    Découvrir ce parfum
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/shop/all">
-                    Voir tous les best-sellers
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* KAMRAH Promo Section */}
       <section className="py-16 md:py-24 bg-card">
