@@ -570,66 +570,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LOVELY Best Seller Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Texte à gauche */}
-            <div className="space-y-6 order-2 lg:order-1">
-              <div>
-                <p className="text-secondary font-semibold text-sm uppercase tracking-wide mb-2">Notre Best-Seller N°1</p>
-                <h2 className="text-4xl md:text-5xl font-headline font-bold text-gradient-yara">LOVELY</h2>
-              </div>
-
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Découvrez notre parfum le plus vendu, une fragrance envoûtante qui séduit par son élégance et sa sophistication.
-                LOVELY capture l'essence même du luxe oriental avec ses notes délicates et raffinées.
-              </p>
-
-              <div className="space-y-4 bg-gradient-to-br from-rose-50/30 to-pink-50/30 dark:from-rose-950/10 dark:to-pink-950/10 border border-secondary/20 rounded-xl p-6">
-                <div>
-                  <h3 className="font-semibold mb-2 text-secondary">Notes de tête</h3>
-                  <p className="text-muted-foreground">Bergamote, Poire, Fleur d'Oranger</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-secondary">Notes de cœur</h3>
-                  <p className="text-muted-foreground">Jasmin, Rose de Damas, Pivoine</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-secondary">Notes de fond</h3>
-                  <p className="text-muted-foreground">Musc Blanc, Vanille, Bois de Santal</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button asChild size="lg" className="group bg-gradient-yara hover:opacity-90 text-white border-0">
-                  <Link href="/parfum/lovely-cherie-french-avenue">
-                    Découvrir LOVELY
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10">
-                  <Link href="/shop">
-                    Voir tous les best-sellers
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Vidéo à droite */}
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/20 dark:to-purple-950/20 flex items-center justify-center order-1 lg:order-2">
-              <video
-                src="https://res.cloudinary.com/dzntnjtkc/video/upload/v1766911628/LOVELY-Photoroom_animation_egw64l.mp4"
-                className="w-full h-full object-contain"
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Google Reviews CTA */}
       <section className="py-16 bg-background">
