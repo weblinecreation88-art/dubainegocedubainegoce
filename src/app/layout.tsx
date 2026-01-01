@@ -75,14 +75,39 @@ const ReassuranceSection = () => {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Dubainegoce – Parfums de Dubaï à 35€ | Livraison Mondial Relay Offerte',
+    default: 'Dubainegoce – Parfums de Dubaï à 35€ | Lattafa, Alhambra, Fragrance World | Livraison Offerte',
     template: '%s | Dubainegoce',
   },
-  description: 'Nouveau site, nouveaux prix ! Parfums authentiques de Dubaï (Lattafa, Alhambra, Fragrance World) à prix unique 35€. YARA, Khamrah, Zaffiro, Lovely. Livraison Mondial Relay OFFERTE.',
-  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum 35 euros', 'Yara Lattafa', 'Khamrah', 'Zaffiro', 'Lovely', 'parfum arabe pas cher', 'livraison gratuite parfum', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'parfums authentiques Émirats'],
+  description: 'Parfums authentiques de Dubaï à prix fixe 35€. Découvrez YARA, Khamrah, Asad, Badee, Fakhar par Lattafa, Zaffiro par Alhambra. Livraison Mondial Relay OFFERTE. Importés directement de Dubaï.',
+  keywords: [
+    'parfums Dubaï',
+    'parfums orientaux',
+    'Lattafa France',
+    'Yara Lattafa',
+    'Khamrah Lattafa',
+    'Asad Lattafa',
+    'Badee Lattafa',
+    'Maison Alhambra',
+    'Zaffiro Alhambra',
+    'Fragrance World',
+    'French Avenue',
+    'parfum oriental pas cher',
+    'parfum arabe authentique',
+    'parfum 35 euros',
+    'livraison gratuite parfum',
+    'parfum homme Dubaï',
+    'parfum femme Dubaï',
+    'parfum mixte oriental',
+    'Qaed Al Fursan',
+    'Fakhar Black',
+    'Mayar Lattafa',
+    'parfum longue tenue',
+    'eau de parfum Dubaï',
+    'parfumerie orientale en ligne',
+  ],
   openGraph: {
-    title: 'Dubainegoce - Parfums de Dubaï Authentiques à 35€ | Livraison Offerte',
-    description: 'Nouveau site ! Parfums iconiques YARA, Khamrah, Zaffiro, Lovely à prix unique 35€. Livraison Mondial Relay OFFERTE pour célébrer notre lancement.',
+    title: 'Dubainegoce - Parfums Authentiques de Dubaï | Lattafa, Alhambra | Prix Fixe 35€',
+    description: 'Découvrez notre collection exclusive de parfums orientaux : YARA, Khamrah, Asad, Zaffiro. Prix fixe 35€. Livraison Mondial Relay OFFERTE. 100% authentiques, importés de Dubaï.',
     url: siteUrl,
     siteName: 'Dubainegoce',
     images: [
@@ -90,7 +115,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Parfums de Dubaï authentiques - YARA, Khamrah, Zaffiro - DubaiNegoce',
+        alt: 'Parfums de Dubaï authentiques - Lattafa, Maison Alhambra, Fragrance World - DubaiNegoce',
       },
     ],
     locale: 'fr_FR',
@@ -98,8 +123,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dubainegoce - Parfums de Dubaï à 35€ | Livraison Offerte',
-    description: 'Nouveau site ! YARA, Khamrah, Zaffiro, Lovely et + à 35€. Livraison Mondial Relay OFFERTE. Parfums 100% authentiques de Dubaï.',
+    title: 'Dubainegoce - Parfums de Dubaï Authentiques | Prix Fixe 35€',
+    description: 'YARA, Khamrah, Asad, Zaffiro et plus encore. Prix fixe 35€. Livraison Mondial Relay OFFERTE. Parfums 100% authentiques importés de Dubaï.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -113,6 +138,9 @@ export const metadata: Metadata = {
     // google: 'XXXXX', // A ajouter une fois que vous avez le code de la Search Console
   },
   manifest: '/manifest.webmanifest',
+  alternates: {
+    canonical: siteUrl,
+  },
 };
 
 export default function RootLayout({
