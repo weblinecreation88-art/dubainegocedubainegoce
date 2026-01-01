@@ -102,7 +102,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
+    <header className="fixed top-10 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between lg:grid lg:grid-cols-[200px_1fr_200px] lg:gap-4">
         {/* Left Section: Mobile Menu + Theme Toggle / Desktop Logo */}
         <div className="flex items-center gap-2 lg:justify-start">
@@ -346,7 +346,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Search Bar - Below Header */}
-      <div className="lg:hidden border-t bg-white dark:bg-card">
+      <div className="lg:hidden border-t bg-background">
         <div className="container py-2 flex justify-center">
           <div className="w-full max-w-md">
             <SearchBar />
