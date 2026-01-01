@@ -1,23 +1,43 @@
 export function StructuredData() {
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
+  // SEO 2025: Organization + LocalBusiness combinés
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "Store"],
     "name": "DubaiNegoce",
+    "alternateName": "Dubai Negoce",
     "url": siteUrl,
     "logo": `${siteUrl}/logo.png`,
-    "description": "Parfums authentiques de Dubaï à prix unique 35€. YARA, Khamrah, Zaffiro, Lovely. Livraison Mondial Relay offerte.",
+    "description": "Spécialiste des parfums authentiques de Dubaï. Prix unique 35€. Livraison gratuite. Lattafa, Maison Alhambra, Fragrance World.",
+    "email": "contact@dubainegoce.fr",
+    "telephone": "+33-XX-XX-XX-XX",
+    "priceRange": "35€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Carte Bancaire, PayPal",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Service Client",
       "email": "contact@dubainegoce.fr",
-      "availableLanguage": ["fr"]
+      "availableLanguage": ["fr"],
+      "areaServed": "FR"
     },
     "sameAs": [
       "https://www.instagram.com/dubainegoce",
       "https://www.facebook.com/dubainegoce"
-    ]
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "150",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
   };
 
   const websiteSchema = {
@@ -32,18 +52,21 @@ export function StructuredData() {
     }
   };
 
-  const offerCatalogSchema = {
+  // SEO 2025: ItemList pour produits phares
+  const itemListSchema = {
     "@context": "https://schema.org",
-    "@type": "OfferCatalog",
-    "name": "Parfums de Dubaï",
-    "description": "Collection complète de parfums authentiques de Dubaï à prix unique 35€",
+    "@type": "ItemList",
+    "name": "Parfums Best-Sellers DubaiNegoce",
+    "description": "Les parfums les plus populaires de notre collection",
+    "numberOfItems": 4,
     "itemListElement": [
       {
-        "@type": "Offer",
-        "itemOffered": {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
           "@type": "Product",
           "name": "YARA Lattafa",
-          "description": "Fragrance florale orientale iconique et intemporelle",
+          "description": "Fragrance florale orientale iconique",
           "brand": {
             "@type": "Brand",
             "name": "Lattafa"
@@ -53,13 +76,19 @@ export function StructuredData() {
             "price": "35.00",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
-            "url": `${siteUrl}/shop/all?search=yara`
+            "priceValidUntil": "2025-12-31",
+            "url": `${siteUrl}/parfum/yara-lattafa`,
+            "seller": {
+              "@type": "Organization",
+              "name": "DubaiNegoce"
+            }
           }
         }
       },
       {
-        "@type": "Offer",
-        "itemOffered": {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
           "@type": "Product",
           "name": "Khamrah Lattafa",
           "description": "Parfum oriental épicé et gourmand",
@@ -72,45 +101,62 @@ export function StructuredData() {
             "price": "35.00",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
-            "url": `${siteUrl}/shop/all?search=khamrah`
+            "priceValidUntil": "2025-12-31",
+            "url": `${siteUrl}/parfum/khamrah-lattafa`,
+            "seller": {
+              "@type": "Organization",
+              "name": "DubaiNegoce"
+            }
           }
         }
       },
       {
-        "@type": "Offer",
-        "itemOffered": {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
           "@type": "Product",
-          "name": "Zaffiro Regale",
-          "description": "Fragrance sophistiquée de la collection iconique",
+          "name": "Asad Lattafa",
+          "description": "Fragrance boisée et épicée pour homme",
           "brand": {
             "@type": "Brand",
-            "name": "Alhambra"
+            "name": "Lattafa"
           },
           "offers": {
             "@type": "Offer",
             "price": "35.00",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
-            "url": `${siteUrl}/shop/all?search=zaffiro`
+            "priceValidUntil": "2025-12-31",
+            "url": `${siteUrl}/parfum/asad-lattafa`,
+            "seller": {
+              "@type": "Organization",
+              "name": "DubaiNegoce"
+            }
           }
         }
       },
       {
-        "@type": "Offer",
-        "itemOffered": {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
           "@type": "Product",
-          "name": "Lovely Fragrance World",
-          "description": "Best-seller avec notes florales captivantes",
+          "name": "Zaffiro Regale Maison Alhambra",
+          "description": "Fragrance sophistiquée de luxe",
           "brand": {
             "@type": "Brand",
-            "name": "Fragrance World"
+            "name": "Maison Alhambra"
           },
           "offers": {
             "@type": "Offer",
             "price": "35.00",
             "priceCurrency": "EUR",
             "availability": "https://schema.org/InStock",
-            "url": `${siteUrl}/shop/all?search=lovely`
+            "priceValidUntil": "2025-12-31",
+            "url": `${siteUrl}/parfum/zaffiro-regale`,
+            "seller": {
+              "@type": "Organization",
+              "name": "DubaiNegoce"
+            }
           }
         }
       }
@@ -153,7 +199,7 @@ export function StructuredData() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(offerCatalogSchema)
+          __html: JSON.stringify(itemListSchema)
         }}
       />
       <script

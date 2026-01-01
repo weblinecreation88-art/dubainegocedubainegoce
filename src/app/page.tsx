@@ -15,7 +15,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { ReassuranceSection } from "@/components/layout/reassurance-section";
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { PerfumeFinderCta } from "@/components/perfume-finder-cta";
@@ -144,8 +143,31 @@ export default function Home() {
             </div>
         </div>
       </section>
-      
-      <ReassuranceSection />
+
+      {/* SEO Content Section - Optimisé pour 2025 */}
+      <section className="py-12 md:py-16 bg-card">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="prose prose-lg dark:prose-invert mx-auto">
+            <h2 className="text-3xl md:text-4xl font-headline text-center mb-6">
+              Parfums de Dubaï Authentiques | Prix Fixe 35€
+            </h2>
+            <div className="text-base md:text-lg leading-relaxed space-y-4">
+              <p>
+                Bienvenue chez <strong>DubaiNegoce</strong>, votre spécialiste des <strong>parfums orientaux authentiques</strong> importés directement de Dubaï. Nous proposons une sélection exclusive de <strong>parfums de luxe à prix accessible</strong> : tous nos <strong>parfums sont à 35€</strong> avec la <strong>livraison Mondial Relay GRATUITE</strong>.
+              </p>
+              <p>
+                Découvrez les plus grandes marques de <strong>parfumerie de Dubaï</strong> : <strong>Lattafa</strong> (avec les iconiques <strong>YARA</strong>, <strong>Khamrah</strong>, <strong>Asad</strong>), <strong>Maison Alhambra</strong> (célèbre pour <strong>Zaffiro</strong>), <strong>Fragrance World</strong> et <strong>French Avenue</strong>. Chaque <strong>eau de parfum</strong> est <strong>100% authentique</strong>, garantie et contrôlée.
+              </p>
+              <p>
+                Que vous recherchiez un <strong>parfum homme</strong>, un <strong>parfum femme</strong> ou une fragrance <strong>mixte unisexe</strong>, notre collection répond à toutes les envies : notes <strong>oud</strong>, <strong>boisées</strong>, <strong>florales</strong>, <strong>gourmandes</strong> ou <strong>épicées</strong>. Tous nos parfums offrent une <strong>tenue longue durée</strong> exceptionnelle.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                <strong>Stock permanent</strong> • <strong>Livraison rapide 48-72h</strong> • <strong>Service client français</strong> • <strong>Paiement sécurisé</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* New Arrivals Section */}
       {newArrivals.length > 0 && (
