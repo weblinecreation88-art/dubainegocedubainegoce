@@ -9,7 +9,6 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { CartProvider } from '@/context/cart-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
-import { FaqChatbot } from '@/components/faq-chatbot';
 import { CookieConsent } from '@/components/cookie-consent';
 import { StructuredData } from '@/components/structured-data';
 import Script from 'next/script';
@@ -206,7 +205,6 @@ export default function RootLayout({
               <ReassuranceSection />
               <Footer />
               <Toaster />
-              <FaqChatbot />
               <CookieConsent />
             </CartProvider>
           </FirebaseClientProvider>
