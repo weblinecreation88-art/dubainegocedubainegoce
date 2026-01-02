@@ -30,13 +30,16 @@ secretEnvironmentVariables:
   - key: STRIPE_SECRET_KEY
     # La clé secrète LIVE de Stripe (commence par sk_live_...)
     secret: STRIPE_SECRET_KEY
+    version: latest
   - key: STRIPE_WEBHOOK_SECRET
     # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
     secret: STRIPE_WEBHOOK_SECRET
+    version: latest
   # --- Secrets SendGrid ---
   - key: SENDGRID_API_KEY
     # Votre clé API SendGrid (commence par SG....)
     secret: SENDGRID_API_KEY
+    version: latest
 headers:
   - # Set a Cache-Control header for all static assets.
     source: /_next/static/**
