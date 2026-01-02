@@ -51,7 +51,22 @@
       "Bash(timeout /t 5)",
       "Bash(stripe --version:*)",
       "Bash(winget:*)",
-      "Bash(npx update-browserslist-db@latest)"
+      "Bash(npx update-browserslist-db@latest)",
+      "Bash(gcloud config:*)",
+      "Bash(node add-test-product.js:*)",
+      "Bash(curl:*)",
+      "Bash(firebase logout:*)",
+      "Bash(node add-test-1-centime.js:*)",
+      "Bash(sort:*)",
+      "Bash(cat:*)",
+      "Bash(gcloud projects get-iam-policy:*)",
+      "Bash(gcloud iam service-accounts list:*)",
+      "Bash(tasklist:*)",
+      "Bash(firebase ext:uninstall:*)",
+      "Bash(firebase login:*)",
+      "Bash(git stash:*)",
+      "Bash(dir:*)",
+      "Bash(gcloud services list:*)"
     ]
   }
 }
