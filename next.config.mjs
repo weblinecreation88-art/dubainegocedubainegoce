@@ -65,6 +65,8 @@ const config = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Mode standalone pour Docker/App Hosting
+  output: 'standalone',
 };
 
 // Configuration PWA
