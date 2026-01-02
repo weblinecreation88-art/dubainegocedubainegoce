@@ -147,7 +147,7 @@ export default function Home() {
       {/* SEO Content Section - Optimisé pour 2025 */}
       <section className="py-12 md:py-16 bg-card">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="prose prose-lg dark:prose-invert mx-auto">
+          <div className="prose prose-lg dark:prose-invert mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-headline text-center mb-6">
               Parfums de Dubaï Authentiques | Prix Fixe 35€
             </h2>
