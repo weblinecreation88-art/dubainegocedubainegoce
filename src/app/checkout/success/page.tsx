@@ -43,8 +43,8 @@ function SuccessContent() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                     <div className="text-center text-secondary-foreground bg-secondary p-4 rounded-md flex items-center justify-center gap-3">
-                        <MailCheck className="h-5 w-5 text-primary flex-shrink-0" />
+                     <div className="text-center text-white bg-green-600 dark:bg-green-700 p-4 rounded-md flex items-center justify-center gap-3">
+                        <MailCheck className="h-5 w-5 text-white flex-shrink-0" />
                         <span>Un e-mail de confirmation vous sera envoyé d'une minute à l'autre.</span>
                     </div>
                 </CardContent>
