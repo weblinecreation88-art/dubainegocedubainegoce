@@ -28,31 +28,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Static Pages - Optimisé pour SEO 2025
-  const staticPages: Array<{url: string; priority: number; changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never'}> = [
+  const staticPages = [
     // Pages principales - Priorité maximale
-    { url: `${siteUrl}/`, priority: 1.0, changeFrequency: 'daily' },
-    { url: `${siteUrl}/shop`, priority: 0.95, changeFrequency: 'daily' },
-    { url: `${siteUrl}/shop/all`, priority: 0.92, changeFrequency: 'daily' },
+    { url: `${siteUrl}/`, priority: 1.0, changeFrequency: 'daily' as const },
+    { url: `${siteUrl}/shop`, priority: 0.95, changeFrequency: 'daily' as const },
+    { url: `${siteUrl}/shop/all`, priority: 0.92, changeFrequency: 'daily' as const },
 
     // Pages catégories marques - Haute priorité SEO
-    { url: `${siteUrl}/shop/all?brands=Lattafa`, priority: 0.90, changeFrequency: 'weekly' },
-    { url: `${siteUrl}/shop/all?brands=Maison%20Alhambra`, priority: 0.90, changeFrequency: 'weekly' },
-    { url: `${siteUrl}/shop/all?brands=Fragrance%20World`, priority: 0.88, changeFrequency: 'weekly' },
-    { url: `${siteUrl}/shop/all?brands=French%20Avenue`, priority: 0.88, changeFrequency: 'weekly' },
+    { url: `${siteUrl}/shop/all?brands=Lattafa`, priority: 0.90, changeFrequency: 'weekly' as const },
+    { url: `${siteUrl}/shop/all?brands=Maison%20Alhambra`, priority: 0.90, changeFrequency: 'weekly' as const },
+    { url: `${siteUrl}/shop/all?brands=Fragrance%20World`, priority: 0.88, changeFrequency: 'weekly' as const },
+    { url: `${siteUrl}/shop/all?brands=French%20Avenue`, priority: 0.88, changeFrequency: 'weekly' as const },
 
     // Pages informatives - SEO E-E-A-T
-    { url: `${siteUrl}/blog`, priority: 0.80, changeFrequency: 'weekly' },
-    { url: `${siteUrl}/about`, priority: 0.75, changeFrequency: 'monthly' },
-    { url: `${siteUrl}/faq`, priority: 0.72, changeFrequency: 'monthly' },
-    { url: `${siteUrl}/contact`, priority: 0.70, changeFrequency: 'monthly' },
+    { url: `${siteUrl}/blog`, priority: 0.80, changeFrequency: 'weekly' as const },
+    { url: `${siteUrl}/about`, priority: 0.75, changeFrequency: 'monthly' as const },
+    { url: `${siteUrl}/faq`, priority: 0.72, changeFrequency: 'monthly' as const },
+    { url: `${siteUrl}/contact`, priority: 0.70, changeFrequency: 'monthly' as const },
 
     // Pages utilitaires - Priorité moyenne
-    { url: `${siteUrl}/shipping`, priority: 0.65, changeFrequency: 'monthly' },
+    { url: `${siteUrl}/shipping`, priority: 0.65, changeFrequency: 'monthly' as const },
 
     // Pages légales - Priorité basse mais nécessaires
-    { url: `${siteUrl}/mentions-legales`, priority: 0.35, changeFrequency: 'yearly' },
-    { url: `${siteUrl}/privacy`, priority: 0.32, changeFrequency: 'yearly' },
-    { url: `${siteUrl}/terms`, priority: 0.32, changeFrequency: 'yearly' },
+    { url: `${siteUrl}/mentions-legales`, priority: 0.35, changeFrequency: 'yearly' as const },
+    { url: `${siteUrl}/privacy`, priority: 0.32, changeFrequency: 'yearly' as const },
+    { url: `${siteUrl}/terms`, priority: 0.32, changeFrequency: 'yearly' as const },
   ].map(page => ({
     url: page.url,
     lastModified: currentDate,
