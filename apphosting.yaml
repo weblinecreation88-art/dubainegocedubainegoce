@@ -21,7 +21,7 @@ env:
   # - variable: NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID
   #   value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
   - variable: GEMINI_API_KEY
-    value: AIzaSyCCZ3zqMJ-h8sWzV1Cy0FzUIk91sd4ZLow
+    value: AIzaSyDYbp8HUvKRpQMwY1GX8vK1KmYyJS52Xsk
 
   # --- Secrets (références à Google Cloud Secret Manager) ---
   # La clé secrète LIVE de Stripe (commence par sk_live_...)
