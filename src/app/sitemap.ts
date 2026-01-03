@@ -5,6 +5,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
   const currentDate = new Date();
 
+  // SEO 2026: Mise à jour quotidienne pour améliorer le crawl rate
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   // Products - Haute priorité pour SEO produits
   const products = getProducts();
   const productUrls = products.map(product => ({
