@@ -3402,7 +3402,7 @@ export const getFragranceFamilies = (): FragranceFamily[] => {
         { id: '1', name: 'Floral', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701178/missdior_missdiorperfume_missdiorbloomingbouquet_dior_aeshetic_perfume_perfumecollection_xigqgw.jpg', imageHint: 'flowers' },
         { id: '2', name: 'Boisé', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701178/Oud_-_50ml_qms8bq.jpg', imageHint: 'forest' },
         { id: '3', name: 'Oriental', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701176/t%C3%A9l%C3%A9chargement_7_xcnxry.jpg', imageHint: 'spices market' },
-        { id: '4', name: 'Fruité', imageUrl: 'https://res.cloudinary.com/dzntnjtkc/image/upload/v1766320316/grok-video-e0b263cc-d799-4eaf-af37-19a495bddfb7_athtqf.mp4', imageHint: 'fruit basket' },
+        { id: '4', name: 'Fruité', imageUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766907448/LOVELY-Photoroom_z0r2jf.jpg', imageHint: 'fruit basket' },
         { id: '8', name: 'Aromatique', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701177/Tom_Ford_Mandarino_Di_Amalfi_bzgfcw.jpg', imageHint: 'herbs garden' },
         { id: '10', name: 'Ambré', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701176/A_Cozy_Slice_of_Heaven_eowrfb.jpg', imageHint: 'amber stone' },
     ];
