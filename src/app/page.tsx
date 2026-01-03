@@ -76,19 +76,21 @@ export default function Home() {
         <div className="absolute inset-0 bg-background dark:bg-black"></div>
         <div className="container mx-auto h-full px-4">
             <div className="relative z-10 h-full grid md:grid-cols-2 items-center gap-8">
-                <div className="text-left">
+                <div className="text-center md:text-left">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold mb-4 text-foreground">
                         L'Essence de Dubaï, Capturée dans un Flacon
                     </h1>
-                    <p className="text-lg md:text-xl max-w-xl mb-8 text-muted-foreground">
+                    <p className="text-lg md:text-xl max-w-xl mb-8 text-muted-foreground mx-auto md:mx-0">
                         Découvrez notre sélection exclusive de parfums rares et authentiques, importés directement pour vous.
                     </p>
-                    <Button asChild size="lg" className="group">
-                        <Link href="/shop">
-                        Explorer la Collection
-                        <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                        </Link>
-                    </Button>
+                    <div className="flex justify-center md:justify-start">
+                        <Button asChild size="lg" className="group">
+                            <Link href="/shop">
+                            Explorer la Collection
+                            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="relative flex items-center justify-center h-full">
