@@ -8,8 +8,9 @@ runConfig:
   # Région de déploiement (europe-west4 = Pays-Bas, optimal pour la France)
   region: europe-west4
 
-# Variables d'environnement publiques (non-secrètes)
+# Environment variables (public values and secret references)
 env:
+  # --- Variables publiques (non-secrètes) ---
   - variable: FROM_EMAIL
     value: contact@dubainegoce.fr
   - variable: NEXT_PUBLIC_APP_URL
@@ -21,21 +22,15 @@ env:
   - variable: GEMINI_API_KEY
     value: AIzaSyCCZ3zqMJ-h8sWzV1Cy0FzUIk91sd4ZLow
 
-# This section specifies the secrets that should be exposed to the backend as
-# environment variables.
-# IMPORTANT: You must create these secrets in Google Cloud Secret Manager.
-# Ces secrets doivent correspondre aux clés LIVE de vos services.
-secretEnvironmentVariables:
-  # --- Secrets Stripe (LIVE) ---
-  - key: STRIPE_SECRET_KEY
-    # La clé secrète LIVE de Stripe (commence par sk_live_...)
+  # --- Secrets (références à Google Cloud Secret Manager) ---
+  # La clé secrète LIVE de Stripe (commence par sk_live_...)
+  - variable: STRIPE_SECRET_KEY
     secret: STRIPE_SECRET_KEY
-  - key: STRIPE_WEBHOOK_SECRET
-    # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
+  # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
+  - variable: STRIPE_WEBHOOK_SECRET
     secret: STRIPE_WEBHOOK_SECRET
-  # --- Secrets SendGrid ---
-  - key: SENDGRID_API_KEY
-    # Votre clé API SendGrid (commence par SG....)
+  # Votre clé API SendGrid (commence par SG....)
+  - variable: SENDGRID_API_KEY
     secret: SENDGRID_API_KEY
 headers:
   - # Set a Cache-Control header for all static assets.
