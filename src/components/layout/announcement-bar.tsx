@@ -5,12 +5,12 @@ export function AnnouncementBar() {
       <div className="container mx-auto px-4">
         <div className="h-10 w-full whitespace-nowrap">
           <div className="animate-marquee py-2.5">
-            <span className="mx-4 font-semibold">🚀 TEST SECRETS STRIPE - Déploiement avec secrets mis à jour</span>
-            <span className="mx-4">🎁 Pour célébrer votre confiance : Livraison Mondial Relay OFFERTE dès maintenant !</span>
+            <span className="mx-4 font-semibold">🎁 Livraison Mondial Relay OFFERTE dès maintenant !</span>
             <span className="mx-4">💎 Tous nos parfums authentiques à prix unique : 35€</span>
-            <span className="mx-4 font-semibold">🚀 TEST SECRETS STRIPE - Déploiement avec secrets mis à jour</span>
-            <span className="mx-4">🎁 Pour célébrer votre confiance : Livraison Mondial Relay OFFERTE dès maintenant !</span>
+            <span className="mx-4">✨ 100% Authentiques - Importés directement de Dubaï</span>
+            <span className="mx-4 font-semibold">🎁 Livraison Mondial Relay OFFERTE dès maintenant !</span>
             <span className="mx-4">💎 Tous nos parfums authentiques à prix unique : 35€</span>
+            <span className="mx-4">✨ 100% Authentiques - Importés directement de Dubaï</span>
           </div>
         </div>
       </div>
