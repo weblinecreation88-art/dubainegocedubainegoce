@@ -30,7 +30,13 @@ type RecommendPerfumesOutput = z.infer<typeof RecommendPerfumesOutputSchema>;
 export async function recommendPerfumes(
   input: RecommendPerfumesInput
 ): Promise<RecommendPerfumesOutput> {
-  return recommendPerfumesFlow(input);
+  try {
+    return await recommendPerfumesFlow(input);
+  } catch (error: any) {
+    console.error('[recommendPerfumes] Erreur:', error.message);
+    // Retourner un résultat vide en cas d'erreur au lieu de crasher
+    return { recommendations: [] };
+  }
 }
 
 // Prepare the product catalog data for the prompt
