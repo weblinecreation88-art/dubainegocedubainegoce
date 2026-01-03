@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Authentification Firebase - DubaiNegoce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button.logout {
+            background: #f44336;
+        }
+        button.logout:hover {
+            background: #da190b;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Authentification Firebase</h1>
+
+        <div id="user-info" class="status info" style="display: none;">
+            <strong>Utilisateur connecté:</strong>
+            <div id="user-details"></div>
+            <button class="logout" onclick="logout()">Se déconnecter</button>
+        </div>
+
+        <div id="auth-forms">
+            <h2>Inscription</h2>
+            <div class="form-group">
+                <label>Nom complet</label>
+                <input type="text" id="signup-name" placeholder="Jean Dupont">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="signup-email" placeholder="test@example.com">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="signup-password" placeholder="6+ caractères">
+            </div>
+            <button onclick="signup()">Créer un compte</button>
+
+            <hr style="margin: 30px 0;">
+
+            <h2>Connexion</h2>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="login-email" placeholder="test@example.com">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="login-password" placeholder="Votre mot de passe">
+            </div>
+            <button onclick="login()">Se connecter</button>
+        </div>
+
+        <div id="status"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js';
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged,
+            updateProfile
+        } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js';
+        import {
+            getFirestore,
+            doc,
+            setDoc
+        } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js';
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAV88WVaPpsFXL_ttucwvJgyLvei1KVsK4",
+            authDomain: "dubainegoce-227c3.firebaseapp.com",
+            projectId: "dubainegoce-227c3",
+            storageBucket: "dubainegoce-227c3.firebasestorage.app",
+            messagingSenderId: "169777208416",
+            appId: "1:169777208416:web:3364bb1c57d9b4f26c7705"
+        };
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Écouter les changements d'état d'authentification
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('user-info').style.display = 'block';
+                document.getElementById('auth-forms').style.display = 'none';
+                document.getElementById('user-details').innerHTML = `
+                    <p>UID: ${user.uid}</p>
+                    <p>Email: ${user.email}</p>
+                    <p>Nom: ${user.displayName || 'Non défini'}</p>
+                `;
+                showStatus('Utilisateur connecté!', 'success');
+            } else {
+                document.getElementById('user-info').style.display = 'none';
+                document.getElementById('auth-forms').style.display = 'block';
+            }
+        });
+
+        // Fonction d'inscription
+        window.signup = async function() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (!name || !email || !password) {
+                showStatus('Veuillez remplir tous les champs', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showStatus('Le mot de passe doit contenir au moins 6 caractères', 'error');
+                return;
+            }
+
+            try {
+                showStatus('Création du compte...', 'info');
+
+                // Créer l'utilisateur
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Mettre à jour le profil
+                await updateProfile(user, { displayName: name });
+
+                // Créer le document utilisateur dans Firestore
+                const userDocRef = doc(db, 'users', user.uid);
+                const userData = {
+                    id: user.uid,
+                    email: user.email,
+                    firstName: name.split(' ')[0] || '',
+                    lastName: name.split(' ').slice(1).join(' ') || '',
+                };
+
+                await setDoc(userDocRef, userData, { merge: true });
+
+                showStatus('✅ Compte créé avec succès!', 'success');
+
+                // Vider les champs
+                document.getElementById('signup-name').value = '';
+                document.getElementById('signup-email').value = '';
+                document.getElementById('signup-password').value = '';
+
+            } catch (error) {
+                let errorMessage = 'Erreur lors de la création du compte';
+
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'Cette adresse email est déjà utilisée';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Adresse email invalide';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'Le mot de passe est trop faible';
+                }
+
+                showStatus('❌ ' + errorMessage + ': ' + error.message, 'error');
+                console.error('Erreur signup:', error);
+            }
+        };
+
+        // Fonction de connexion
+        window.login = async function() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (!email || !password) {
+                showStatus('Veuillez remplir tous les champs', 'error');
+                return;
+            }
+
+            try {
+                showStatus('Connexion en cours...', 'info');
+                await signInWithEmailAndPassword(auth, email, password);
+                showStatus('✅ Connexion réussie!', 'success');
+
+                // Vider les champs
+                document.getElementById('login-email').value = '';
+                document.getElementById('login-password').value = '';
+
+            } catch (error) {
+                let errorMessage = 'Email ou mot de passe incorrect';
+
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'Aucun compte associé à cet email';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Mot de passe incorrect';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Adresse email invalide';
+                }
+
+                showStatus('❌ ' + errorMessage, 'error');
+                console.error('Erreur login:', error);
+            }
+        };
+
+        // Fonction de déconnexion
+        window.logout = async function() {
+            try {
+                await signOut(auth);
+                showStatus('Déconnecté avec succès', 'success');
+            } catch (error) {
+                showStatus('Erreur lors de la déconnexion: ' + error.message, 'error');
+                console.error('Erreur logout:', error);
+            }
+        };
+
+        // Afficher un message de statut
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = message;
+            statusDiv.className = 'status ' + type;
+            statusDiv.style.display = 'block';
+
+            if (type === 'success' || type === 'info') {
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        window.showStatus = showStatus;
+    </script>
+</body>
+</html>
