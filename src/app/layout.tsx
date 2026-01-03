@@ -108,13 +108,17 @@ export const metadata: Metadata = {
     'parfum femme oriental',
     'parfum mixte',
 
-    // Long-tail 2025
-    'meilleur parfum oriental 2025',
+    // Long-tail 2026 - Tendances IA et recherche vocale
+    'meilleur parfum oriental 2026',
     'parfum longue tenue pas cher',
     'eau de parfum Dubaï',
     'parfumerie orientale en ligne',
     'dupes parfums luxe',
     'parfum oud naturel',
+    'parfum niche abordable',
+    'parfum authentique importé Dubaï',
+    'quel parfum oriental acheter 2026',
+    'où acheter parfum Lattafa en France',
   ],
   openGraph: {
     title: 'Parfums Dubaï 35€ | Lattafa, Alhambra | Livraison GRATUITE',
@@ -170,7 +174,26 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
         <link rel="canonical" href={siteUrl} />
         <meta name="robots" content="index, follow" />
+
+        {/* Favicons et Icons PWA */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        {/* PWA Manifest - SEO 2026 */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#d4af37" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#1a1f2e" media="(prefers-color-scheme: dark)" />
+
+        {/* PWA Tags pour iOS */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="DubaiNegoce" />
+
+        {/* Performance & SEO 2026 */}
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
