@@ -4,24 +4,24 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 42 30% 94%; /* Beige Sable de Dubai #F5F1E8 */
     --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
+    --card: 40 33% 97%; /* Cartes légèrement plus claires que le fond */
     --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
+    --popover: 40 33% 97%;
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 45 68% 52%;
     --primary-foreground: 40 33% 97%;
     --secondary: 220 13% 15%; /* Bleu nuit profond */
     --secondary-foreground: 40 33% 97%; /* Texte clair sur fond sombre */
-    --muted: 210 40% 96.1%;
+    --muted: 42 25% 90%; /* Muted harmonisé avec le beige */
     --muted-foreground: 215.4 16.3% 46.9%; /* Gris plus foncé pour une meilleure lisibilité */
     --accent: 220 13% 20%; /* Bleu nuit légèrement plus clair pour l'accentuation */
     --accent-foreground: 40 33% 97%;
     --destructive: 38 92% 50%; /* Or/Ambre pour les alertes */
     --destructive-foreground: 0 0% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: 42 20% 85%; /* Bordure harmonisée avec le beige */
+    --input: 42 20% 88%; /* Input harmonisé avec le beige */
     --ring: 45 68% 52%;
     --radius: 0.5rem;
   }
