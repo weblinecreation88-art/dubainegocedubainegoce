@@ -45,6 +45,11 @@ export default function PrivacyPolicyPage() {
                     <li>Prévenir les activités frauduleuses.</li>
                 </ul>
 
+                <h3>Google Customer Reviews</h3>
+                <p>
+                    Nous participons au programme Google Customer Reviews, qui permet aux clients de noter leur expérience d'achat. Après votre commande, Google pourra vous envoyer un e-mail pour vous inviter à participer à une enquête de satisfaction. Dans ce cadre, certaines informations concernant votre commande (telles que l'ID de commande, l'adresse e-mail de l'acheteur, le pays de livraison et la date de livraison estimée, ainsi que les GTINs des produits achetés) sont partagées avec Google. Votre participation à cette enquête est entièrement volontaire et n'affecte en rien l'utilisation de notre site.
+                </p>
+
                 <h2>Sécurité de vos informations</h2>
                 <p>
                     Nous utilisons des mesures de sécurité administratives, techniques et physiques pour aider à protéger vos informations personnelles. Bien que nous ayons pris des mesures raisonnables pour sécuriser les informations personnelles que vous nous fournissez, veuillez être conscient que malgré nos efforts, aucune mesure de sécurité n'est parfaite ou impénétrable.

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { GoogleAdsConversionTracker } from '@/components/google-ads-conversion-tracker';
 import { useSearchParams } from 'next/navigation';
+import { GoogleCustomerReviewsOptIn } from '@/components/google-customer-reviews-opt-in';
 
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 const GOOGLE_ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || 'p87pCJPoh9UbEPeJ2aED';
@@ -31,6 +32,14 @@ function SuccessContent() {
                 conversionLabel={GOOGLE_ADS_CONVERSION_LABEL}
                 transactionId={transactionId}
                 value={totalAmount ? parseFloat(totalAmount) : 0}
+            />
+            <GoogleCustomerReviewsOptIn
+                merchantId={5079397995} // REMPLACEZ PAR VOTRE ID DE MARCHAND
+                orderId={transactionId || ''}
+                email="customer@example.com" // REMPLACEZ PAR L'EMAIL RÉEL DU CLIENT
+                deliveryCountry="FR" // REMPLACEZ PAR LE CODE PAYS DE LIVRAISON RÉEL
+                estimatedDeliveryDate={new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)}
+                products={[]}
             />
             <Card>
                 <CardHeader>

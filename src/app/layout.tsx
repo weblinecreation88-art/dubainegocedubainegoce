@@ -231,6 +231,8 @@ export default function RootLayout({
             gtag('config', 'G-HM2MMVGBP7');
           `}
         </Script>
+        {/* Google Customer Reviews - platform.js */}
+        <Script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer strategy="afterInteractive" />
 
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col overflow-x-hidden')}>
