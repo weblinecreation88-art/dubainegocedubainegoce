@@ -30,7 +30,7 @@ function generateProductFeed() {
         <g:price>${product.price.toFixed(2)} EUR</g:price>
         <g:condition>new</g:condition>
         <g:availability>${product.stock > 0 ? 'in stock' : 'out of stock'}</g:availability>
-        <g:gtin></g:gtin> // Placeholder for GTIN, if you have one
+        <g:gtin></g:gtin>
         <g:mpn>${product.id}</g:mpn>
         <g:google_product_category>Health & Beauty > Personal Care > Cosmetics > Perfume & Cologne</g:google_product_category>
       </item>`;
