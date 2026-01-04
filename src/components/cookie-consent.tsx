@@ -11,22 +11,62 @@ export function CookieConsent() {
 
   useEffect(() => {
     try {
-      const consent = localStorage.getItem('cookie_consent');
+      const consent = sessionStorage.getItem('cookie_consent');
       if (!consent) {
         setShowBanner(true);
+      } else if (consent === 'true') {
+        // If consent was previously granted, update gtag
+        // @ts-ignore
+        window.dataLayer = window.dataLayer || [];
+        // @ts-ignore
+        window.gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'analytics_storage': 'granted',
+        });
+      } else if (consent === 'false') {
+        // If consent was previously denied, update gtag
+        // @ts-ignore
+        window.dataLayer = window.dataLayer || [];
+        // @ts-ignore
+        window.gtag('consent', 'update', {
+          'ad_storage': 'denied',
+          'analytics_storage': 'denied',
+        });
       }
     } catch (error) {
-      // localStorage is not available (e.g., in server-side rendering or private browsing)
-      // We can choose to not show the banner or handle it differently
+      // sessionStorage is not available
     }
   }, []);
 
   const handleAccept = () => {
     try {
-      localStorage.setItem('cookie_consent', 'true');
+      sessionStorage.setItem('cookie_consent', 'true');
+      // @ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      // @ts-ignore
+      window.gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted',
+      });
       setShowBanner(false);
     } catch (error) {
-       setShowBanner(false);
+      setShowBanner(false);
+    }
+  };
+
+  const handleReject = () => {
+    try {
+      sessionStorage.setItem('cookie_consent', 'false');
+      // @ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      // @ts-ignore
+      window.gtag('consent', 'update', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+      });
+      setShowBanner(false);
+    } catch (error) {
+      setShowBanner(false);
     }
   };
 
@@ -57,7 +97,7 @@ export function CookieConsent() {
                     <Button onClick={handleAccept} className="w-full">
                         Accepter
                     </Button>
-                     <Button variant="outline" onClick={() => setShowBanner(false)} className="w-full">
+                     <Button variant="outline" onClick={handleReject} className="w-full">
                         Refuser
                     </Button>
                 </div>

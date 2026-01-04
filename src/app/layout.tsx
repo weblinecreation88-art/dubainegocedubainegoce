@@ -194,6 +194,19 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <Script id="google-consent-mode" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'analytics_storage': 'denied',
+              'wait_for_update': 500,
+            });
+            gtag('js', new Date());
+            gtag('config', 'G-HM2MMVGBP7'); // Replace with your GA4 Measurement ID
+          `}
+        </Script>
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -203,6 +216,22 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
+
+        {/* Google tag (gtag.js) - Google Analytics 4 */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-HM2MMVGBP7"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HM2MMVGBP7');
+          `}
+        </Script>
+
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col overflow-x-hidden')}>
         <noscript>
@@ -213,6 +242,11 @@ export default function RootLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             ></iframe>
         </noscript>
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=G-HM2MMVGBP7"
+            height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe>
+        </noscript>
+
         <ThemeProvider
             attribute="class"
             defaultTheme="light"
