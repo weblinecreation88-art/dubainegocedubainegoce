@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate-feed": "tsx src/scripts/generate-product-feed.ts"
   },
   "dependencies": {
     "@genkit-ai/google-genai": "^1.0.0",
