@@ -30,8 +30,11 @@ function generateProductFeed() {
         <g:price>${product.price.toFixed(2)} EUR</g:price>
         <g:condition>new</g:condition>
         <g:availability>${product.stock > 0 ? 'in stock' : 'out of stock'}</g:availability>
-        <g:gtin></g:gtin>
-        <g:mpn>${product.id}</g:mpn>
+        <g:gtin></g:gtin> <!-- Replace with actual GTIN if available -->
+        <g:mpn>${product.id}</g:mpn> <!-- Consider using a real MPN if product.id is not it -->
+        <g:identifier_exists>${product.gtin || product.mpn || product.id ? 'true' : 'false'}</g:identifier_exists>
+        <g:gender>${product.gender === 'mixte' ? 'unisex' : product.gender}</g:gender>
+        <g:product_type>${product.family}</g:product_type>
         <g:google_product_category>Health & Beauty > Personal Care > Cosmetics > Perfume & Cologne</g:google_product_category>
       </item>`;
     }
