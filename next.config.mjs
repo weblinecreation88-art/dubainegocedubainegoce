@@ -61,12 +61,41 @@ const config = {
     }
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/parfum/philos-pura',
+        destination: '/shop/all',
+        permanent: true,
+      },
+      {
+        source: '/parfum/no-2-men',
+        destination: '/shop/all',
+        permanent: true,
+      },
+      {
+        source: '/parfum/versencia-oro',
+        destination: '/shop/all',
+        permanent: true,
+      },
+      {
+        source: '/parfum/qaed-al-fursan',
+        destination: '/shop/all',
+        permanent: true,
+      },
+      {
+        source: '/parfum/jardin-de-paris',
+        destination: '/shop/all',
+        permanent: true,
+      },
+    ];
+  },
   // Optimisations de performance
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  // Mode standalone pour Docker/App Hosting
-  output: 'standalone',
+  // Mode export pour PWA/Capacitor (APK)
+  output: 'export',
 };
 
 // Configuration PWA

@@ -1,65 +1,67 @@
-import { getProducts } from '@/lib/data';
-import { Product } from '@/lib/types';
-import fs from 'fs';
+// src/scripts/generate-product-feed.ts
+import { getProducts } from '../lib/data';
+import { create } from 'xmlbuilder2';
+import { writeFileSync } from 'fs';
 import path from 'path';
 
-function escapeXml(unsafe: string) {
-  return unsafe.replace(/[<>&'"]/g, function (c) {
-    switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '': return '&apos;';
-      case '"': return '&quot;';
-    }
-    return c;
-  });
-}
+const generateProductFeed = () => {
+  console.log('Starting product feed generation...');
 
-function generateProductFeed() {
   const products = getProducts();
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
-  let xml = `<?xml version="1.0"?>
-<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
-<channel>
-<title>DubaiNegoce Product Feed</title>
-<link>https://dubainegoce.fr</link>
-<description>Flux de produits pour Google Merchant Center</description>
-`;
+  const root = create({ version: '1.0', encoding: 'UTF-8' })
+    .ele('rss', { 'xmlns:g': 'http://base.google.com/ns/1.0', version: '2.0' })
+      .ele('channel')
+        .ele('title').txt('DubaiNegoce Product Feed').up()
+        .ele('link').txt(siteUrl).up()
+        .ele('description').txt('Flux de produits pour Google Merchant Center').up();
 
-  products.forEach((product: Product) => {
-    // Ensure the product has at least one image
+  products.forEach(product => {
+    const item = root.ele('item');
+    item.ele('g:id').txt(product.id).up();
+    item.ele('g:title').txt(product.name).up();
+    item.ele('g:description').txt(product.shortDescription).up();
+    item.ele('g:link').txt(`${siteUrl}/parfum/${product.slug}`).up();
+    
     if (product.images && product.images.length > 0) {
-      const productUrl = `https://dubainegoce.fr/parfum/${product.slug}`;
-      const imageUrl = product.images[0];
-
-      xml += `<item>
-        <g:id>${escapeXml(product.id)}</g:id>
-        <g:title>${escapeXml(product.name)}</g:title>
-        <g:description>${escapeXml(product.shortDescription)}</g:description>
-        <g:link>${productUrl}</g:link>
-        <g:image_link>${imageUrl}</g:image_link>
-        <g:brand>${escapeXml(product.brand.name)}</g:brand>
-        <g:price>${product.price.toFixed(2)} EUR</g:price>
-        <g:condition>new</g:condition>
-        <g:availability>${product.stock > 0 ? 'in stock' : 'out of stock'}</g:availability>
-        <g:gtin></g:gtin> <!-- Replace with actual GTIN if available -->
-        <g:mpn>${escapeXml(product.id)}</g:mpn> <!-- Consider using a real MPN if product.id is not it -->
-        <g:identifier_exists>${product.id ? 'true' : 'false'}</g:identifier_exists>
-        <g:gender>${product.gender === 'mixte' ? 'unisex' : product.gender}</g:gender>
-        <g:product_type>${escapeXml(product.family)}</g:product_type>
-        <g:google_product_category>Health & Beauty > Personal Care > Cosmetics > Perfume & Cologne</g:google_product_category>
-      </item>`;
+      item.ele('g:image_link').txt(product.images[0]).up();
     }
+
+    item.ele('g:brand').txt(product.brand.name).up();
+    item.ele('g:price').txt(`${product.price.toFixed(2)} EUR`).up();
+    item.ele('g:condition').txt('new').up();
+    item.ele('g:availability').txt(product.stock > 0 ? 'in stock' : 'out of stock').up();
+    
+    // Google requires either GTIN or MPN + Brand. 
+    // Providing MPN as product.id as a fallback.
+    item.ele('g:gtin').txt('').up(); // Add real GTIN if you have it
+    item.ele('g:mpn').txt(product.id).up();
+    item.ele('g:identifier_exists').txt('yes').up();
+
+    if (product.gender) {
+        // Map your gender to Google's accepted values
+        const gender = product.gender === 'mixte' ? 'unisex' : product.gender;
+        item.ele('g:gender').txt(gender).up();
+    }
+
+    if (product.family) {
+      item.ele('g:product_type').txt(product.family).up();
+    }
+
+    item.ele('g:google_product_category').txt('Health & Beauty > Personal Care > Cosmetics > Perfume & Cologne').up();
   });
 
-  xml += `</channel>
-</rss>`;
-
-  const filePath = path.join(process.cwd(), 'public', 'product-feed.xml');
-  fs.writeFileSync(filePath, xml, 'utf8');
-  console.log(`Product feed generated at ${filePath}`);
-}
+  const xml = root.end({ prettyPrint: true });
+  const outputPath = path.join(process.cwd(), 'public', 'product-feed5.xml');
+  
+  try {
+    writeFileSync(outputPath, xml, 'utf8');
+    console.log(`✅ Product feed generated successfully at ${outputPath}`);
+    console.log(`✅ Total products included: ${products.length}`);
+  } catch (error) {
+    console.error('❌ Error writing product feed file:', error);
+  }
+};
 
 generateProductFeed();
-

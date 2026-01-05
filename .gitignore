@@ -58,3 +58,6 @@ nul
 /public/workbox-*.js.map
 /public/worker-*.js.map
 *.zip
+
+# Ignore environment files in extensions directory
+extensions/*.env
