@@ -33,10 +33,10 @@ export default function LegalPage() {
                 <h2>Hébergement du Site</h2>
                 <p>
                     Le site DubaiNegoce est hébergé par :<br />
-                    <strong>Vercel Inc.</strong><br />
-                    440 N Rengstorff Ave,<br />
-                    Mountain View, CA 94043, USA<br />
-                    Email : privacy@vercel.com
+                    <strong>Google Cloud Firebase</strong><br />
+                    88 11th Ave,<br />
+                    New York, NY 10011, USA<br />
+                    URL : https://firebase.google.com
                 </p>
 
                 <h2>Propriété Intellectuelle</h2>
