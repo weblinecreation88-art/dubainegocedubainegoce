@@ -19,12 +19,12 @@ export function Filters({ brands, families, genders }: FiltersProps) {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
-    const activeBrands = new Set(searchParams.getAll('brands'));
-    const activeFamilies = new Set(searchParams.getAll('families'));
-    const activeGenders = new Set(searchParams.getAll('genders'));
+    const activeBrands = new Set(searchParams?.getAll('brands') || []);
+    const activeFamilies = new Set(searchParams?.getAll('families') || []);
+    const activeGenders = new Set(searchParams?.getAll('genders') || []);
 
     const handleFilterChange = useCallback((type: 'brands' | 'families' | 'genders', value: string) => {
-        const current = new URLSearchParams(Array.from(searchParams.entries()));
+        const current = new URLSearchParams(Array.from(searchParams?.entries() || []));
         
         const filterSet = new Set(current.getAll(type));
 

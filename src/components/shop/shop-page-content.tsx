@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ProductGrid } from '@/components/shop/product-grid';
 import { Filters } from '@/components/shop/filters';
@@ -12,119 +12,161 @@ import type { Product, Brand, FragranceFamily, GenderCategory } from '@/lib/type
 import { ScrollArea } from '../ui/scroll-area';
 
 interface ShopPageContentProps {
-    products: Product[];
-    brands: Brand[];
-    families: FragranceFamily[];
-    genders: GenderCategory[];
+  products: Product[];
+  brands: Brand[];
+  fragranceFamilies: FragranceFamily[];
+  genders: GenderCategory[];
 }
 
-export default function ShopPageContent({ products, brands, families, genders }: ShopPageContentProps) {
-    const searchParams = useSearchParams();
-    const [sort, setSort] = useState(searchParams.get('sort') || 'newest');
-    const [isSheetOpen, setIsSheetOpen] = useState(false);
+export function ShopPageContent({ products, brands, fragranceFamilies, genders }: ShopPageContentProps) {
+  const searchParams = useSearchParams();
+  const [sort, setSort] = useState('default');
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedFamilies, setSelectedFamilies] = useState<string[]>([]);
+  const [selectedGenders, setSelectedGenders] = useState<string[]>([]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
-    const activeFilters = useMemo(() => {
-        const filters: { [key: string]: Set<string> } = {
-            brands: new Set(searchParams.getAll('brands')),
-            families: new Set(searchParams.getAll('families')),
-            genders: new Set(searchParams.getAll('genders')),
-        };
-        return filters;
-    }, [searchParams]);
+  useEffect(() => {
+    if (searchParams) {
+      setSort(searchParams.get('sort') || 'default');
+      setSelectedBrands(searchParams.getAll('brands'));
+      setSelectedFamilies(searchParams.getAll('families'));
+      setSelectedGenders(searchParams.getAll('genders'));
+    }
+  }, [searchParams]);
 
-    const filteredProducts = useMemo(() => {
-        let filtered = products;
+  const filteredAndSortedProducts = useMemo(() => {
+    let filtered = products;
 
-        if (activeFilters.brands.size > 0) {
-            filtered = filtered.filter(p => activeFilters.brands.has(p.brand.name));
-        }
-        if (activeFilters.families.size > 0) {
-            filtered = filtered.filter(p => activeFilters.families.has(p.family));
-        }
-        if (activeFilters.genders.size > 0) {
-            filtered = filtered.filter(p => activeFilters.genders.has(p.gender));
-        }
-        
-        return filtered;
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter(p => selectedBrands.includes(p.brand.name));
+    }
 
-    }, [products, activeFilters]);
-
-    const sortedProducts = useMemo(() => {
-        return [...filteredProducts].sort((a, b) => {
-            switch (sort) {
-                case 'price-asc':
-                    return a.price - b.price;
-                case 'price-desc':
-                    return b.price - a.price;
-                case 'name-asc':
-                    return a.name.localeCompare(b.name);
-                case 'name-desc':
-                    return b.name.localeCompare(a.name);
-                case 'newest':
-                default:
-                    return b.id.localeCompare(a.id); // Assuming higher ID is newer
-            }
-        });
-    }, [filteredProducts, sort]);
+    if (selectedFamilies.length > 0) {
+      filtered = filtered.filter(p => selectedFamilies.includes(p.family));
+    }
     
-    const FilterComponent = (
-        <Filters brands={brands} families={families} genders={genders} />
-    );
+    if (selectedGenders.length > 0) {
+        filtered = filtered.filter(p => selectedGenders.includes(p.gender));
+    }
 
-    return (
-        <div className="container mx-auto px-4 py-12">
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-headline">Notre Collection</h1>
-                <p className="text-muted-foreground mt-2">
-                    Explorez un monde de senteurs uniques et trouvez votre signature.
-                </p>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                {/* Desktop Filters */}
-                <aside className="hidden lg:block lg:col-span-1">
-                     <div className="sticky top-24 space-y-6">
-                        <h2 className="text-2xl font-headline">Filtres</h2>
-                        <ScrollArea className="h-[calc(100vh-12rem)]">
-                            {FilterComponent}
+    filtered = filtered.filter(p => p.price >= priceRange[0] && p.price <= priceRange[1]);
+
+    switch (sort) {
+      case 'price-asc':
+        return filtered.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return filtered.sort((a, b) => b.price - a.price);
+      case 'name-asc':
+        return filtered.sort((a, b) => a.name.localeCompare(b.name));
+      case 'name-desc':
+        return filtered.sort((a, b) => b.name.localeCompare(a.name));
+      default:
+        return filtered;
+    }
+  }, [products, sort, selectedBrands, selectedFamilies, selectedGenders, priceRange]);
+  
+  const handleFilterChange = (type: 'brands' | 'families' | 'genders' | 'price', value: any) => {
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
+    
+    if (type === 'brands') {
+        setSelectedBrands(value);
+        params.delete('brands');
+        value.forEach((brand: string) => params.append('brands', brand));
+    }
+    if (type === 'families') {
+        setSelectedFamilies(value);
+        params.delete('families');
+        value.forEach((family: string) => params.append('families', family));
+    }
+    if (type === 'genders') {
+        setSelectedGenders(value);
+        params.delete('genders');
+        value.forEach((gender: string) => params.append('genders', gender));
+    }
+    if (type === 'price') {
+      setPriceRange(value);
+      params.set('price_min', value[0]);
+      params.set('price_max', value[1]);
+    }
+
+    window.history.pushState(null, '', `?${params.toString()}`);
+  };
+
+  const handleSortChange = (value: string) => {
+    setSort(value);
+    const params = new URLSearchParams(searchParams ? searchParams.toString() : '');
+    params.set('sort', value);
+    window.history.pushState(null, '', `?${params.toString()}`);
+  }
+
+  const clearFilters = () => {
+    setSelectedBrands([]);
+    setSelectedFamilies([]);
+    setSelectedGenders([]);
+    setPriceRange([0, 500]);
+    setSort('default');
+    window.history.pushState(null, '', window.location.pathname);
+  }
+
+  const filtersComponent = (
+    <div className="space-y-6">
+        <Filters 
+            brands={brands}
+            families={fragranceFamilies}
+            genders={genders}
+        />
+        <Button onClick={clearFilters} variant="outline" className="w-full">
+            Réinitialiser les filtres
+        </Button>
+    </div>
+  );
+
+  return (
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <aside className="hidden lg:block">
+            <h2 className="text-lg font-semibold mb-4">Filtres</h2>
+            {filtersComponent}
+        </aside>
+
+        <main className="lg:col-span-3">
+          <div className="flex justify-between items-center mb-4">
+            <div className='lg:hidden'>
+                <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                    <SheetTrigger asChild>
+                        <Button variant="outline">
+                            <Filter className="mr-2 h-4 w-4" /> Filtres
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                        <SheetHeader>
+                            <SheetTitle>Filtres</SheetTitle>
+                            <SheetDescription>
+                                Affinez votre recherche pour trouver le parfum parfait.
+                            </SheetDescription>
+                        </SheetHeader>
+                        <ScrollArea className="h-[calc(100%-150px)]">
+                            <div className="p-4">
+                                {filtersComponent}
+                            </div>
                         </ScrollArea>
-                     </div>
-                </aside>
-
-                {/* Products Grid */}
-                <main className="lg:col-span-3">
-                    <div className="flex justify-between items-center mb-6">
-                         <p className="text-sm text-muted-foreground">
-                            Affichage de {sortedProducts.length} produit(s)
-                        </p>
-                        {/* Mobile Filters Trigger */}
-                        <div className="lg:hidden">
-                            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                                <SheetTrigger asChild>
-                                    <Button variant="outline">
-                                        <Filter className="mr-2 h-4 w-4" />
-                                        Filtres
-                                    </Button>
-                                </SheetTrigger>
-                                <SheetContent side="left" className="p-0 flex flex-col">
-                                    <SheetHeader className="p-4 border-b">
-                                        <SheetTitle>Filtres</SheetTitle>
-                                        <SheetDescription className="sr-only">Appliquez des filtres pour affiner les résultats</SheetDescription>
-                                    </SheetHeader>
-                                    <ScrollArea className="flex-1 p-4">
-                                        {FilterComponent}
-                                    </ScrollArea>
-                                    <SheetFooter className="p-4 border-t">
-                                        <Button onClick={() => setIsSheetOpen(false)} className="w-full">Voir les résultats</Button>
-                                    </SheetFooter>
-                                </SheetContent>
-                            </Sheet>
-                        </div>
-                        <Sort onSortChange={setSort} />
-                    </div>
-                    <ProductGrid products={sortedProducts} />
-                </main>
+                        <SheetFooter className='p-4'>
+                            <Button onClick={() => setIsSheetOpen(false)} className='w-full'>Voir les {filteredAndSortedProducts.length} produits</Button>
+                        </SheetFooter>
+                    </SheetContent>
+                </Sheet>
             </div>
-        </div>
-    );
+            <p className="text-sm text-gray-500 hidden sm:block">
+              {filteredAndSortedProducts.length} produits trouvés
+            </p>
+            <Sort onSortChange={handleSortChange} />
+          </div>
+
+          <ProductGrid products={filteredAndSortedProducts} />
+        </main>
+      </div>
+    </div>
+  );
 }

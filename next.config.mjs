@@ -1,5 +1,3 @@
-import withPWA from 'next-pwa';
-
 /** @type {import('next').NextConfig} */
 const config = {
   eslint: {
@@ -95,39 +93,7 @@ const config = {
   poweredByHeader: false,
   reactStrictMode: true,
   // Mode export pour PWA/Capacitor (APK)
-  output: 'export',
+  // output: 'export',
 };
 
-// Configuration PWA
-const pwaConfig = withPWA({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-  runtimeCaching: [
-    {
-      urlPattern: /^https:\/\/res\.cloudinary\.com\/.*/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'cloudinary-images',
-        expiration: {
-          maxEntries: 200,
-          maxAgeSeconds: 30 * 24 * 60 * 60, // 30 jours
-        },
-      },
-    },
-    {
-      urlPattern: /^https:\/\/fonts\.(?:gstatic|googleapis)\.com\/.*/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'google-fonts',
-        expiration: {
-          maxEntries: 20,
-          maxAgeSeconds: 365 * 24 * 60 * 60, // 1 an
-        },
-      },
-    },
-  ],
-})(config);
-
-export default pwaConfig;
+export default config;

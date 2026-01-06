@@ -11,11 +11,11 @@ export function Sort({ onSortChange }: SortProps) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const currentSort = searchParams.get('sort') || 'newest';
+    const currentSort = searchParams ? searchParams.get('sort') || 'newest' : 'newest';
 
     const handleSortChange = (value: string) => {
         onSortChange(value);
-        const current = new URLSearchParams(Array.from(searchParams.entries()));
+        const current = new URLSearchParams(Array.from(searchParams ? searchParams.entries() : []));
         current.set('sort', value);
         router.push(`${pathname}?${current.toString()}`);
     }

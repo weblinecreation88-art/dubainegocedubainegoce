@@ -38,7 +38,7 @@ function LoginPageContent() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get('redirect') || '/';
+  const redirectUrl = searchParams?.get('redirect') || '/';
   const auth = useAuth();
   const { user, isUserLoading } = useUser();
   const { toast } = useToast();

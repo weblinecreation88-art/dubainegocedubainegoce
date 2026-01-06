@@ -13,12 +13,11 @@ import { GoogleCustomerReviewsOptIn } from '@/components/google-customer-reviews
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 const GOOGLE_ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || 'p87pCJPoh9UbEPeJ2aED';
 
-
 function SuccessContent() {
     const { clearCart } = useCart();
     const searchParams = useSearchParams();
-    const transactionId = searchParams.get('session_id');
-    const totalAmount = searchParams.get('total');
+    const transactionId = searchParams ? searchParams.get('session_id') : null;
+    const totalAmount = searchParams ? searchParams.get('total') : null;
 
     useEffect(() => {
         clearCart();

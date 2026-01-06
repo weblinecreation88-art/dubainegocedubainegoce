@@ -1,7 +1,7 @@
 
 import { Metadata } from 'next';
 import { getProducts, getBrands, getFragranceFamilies, getGenderCategories } from '@/lib/data';
-import ShopPageContent from '@/components/shop/shop-page-content';
+import { ShopPageContent } from '@/components/shop/shop-page-content';
 import { Suspense } from 'react';
 import ShopAllLoading from './loading';
 
@@ -21,7 +21,7 @@ export default function ShopAllPage() {
         <ShopPageContent 
             products={products}
             brands={brands}
-            families={families}
+            fragranceFamilies={families}
             genders={genders}
         />
     </Suspense>
