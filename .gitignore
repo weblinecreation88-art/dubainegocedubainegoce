@@ -1,0 +1,65 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.genkit/*
+.env*
+
+# firebase
+firebase-debug.log
+firestore-debug.log
+*-firebase-adminsdk-*.json
+
+# secrets and keys
+geekkey.txt
+nul
+dubainegoce-back-296a4-70cf6df0c024.json
+
+# PWA files
+/public/sw.js
+/public/workbox-*.js
+/public/worker-*.js
+/public/sw.js.map
+/public/workbox-*.js.map
+/public/worker-*.js.map
+*.zip
+
+# Ignore environment files in extensions directory
+extensions/*.envdubainegoce-back-296a4-70cf6df0c024.json
+dubainegoce-back-296a4-70cf6df0c024.json
+extensions/firestore-stripe-payments.env

@@ -1,0 +1,58 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+# Secrets IAM permissions granted - ready for deployment
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+  # Région de déploiement (europe-west4 = Pays-Bas, optimal pour la France)
+  region: europe-west4
+
+# Environment variables (public values and secret references)
+env:
+  # --- Variables publiques (non-secrètes) ---
+  - variable: FROM_EMAIL
+    value: contact@dubainegoce.fr
+  - variable: NEXT_PUBLIC_APP_URL
+    value: https://dubainegoce.fr
+  - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    value: pk_live_51SjlzeAIq9NC7F5auCgm8m2QD3aQ3myNockeSayCfDDut8wZeqTxitT7g50gR9zfXLU4BFeESt5qGBAcjCGqCMfB00EnOdP7H7
+  # - variable: NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID
+  #   value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
+  - variable: GEMINI_API_KEY
+    value: AIzaSyDYbp8HUvKRpQMwY1GX8vK1KmYyJS52Xsk
+
+  # --- Secrets (références à Google Cloud Secret Manager) ---
+  # La clé secrète LIVE de Stripe (commence par sk_live_...)
+  - variable: STRIPE_SECRET_KEY
+    secret: STRIPE_SECRET_KEY
+  # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
+  - variable: STRIPE_WEBHOOK_SECRET
+    secret: STRIPE_WEBHOOK_SECRET
+  # Votre clé API SendGrid (commence par SG....)
+  - variable: SENDGRID_API_KEY
+    secret: SENDGRID_API_KEY
+headers:
+  - # Set a Cache-Control header for all static assets.
+    source: /_next/static/**
+    headers:
+      - key: Cache-Control
+        value: public, max-age=31536000, immutable
+  - # Add security headers to all responses.
+    source: /**
+    headers:
+      - key: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains; preload
+      - key: X-Content-Type-Options
+        value: nosniff
+      - key: X-Frame-Options
+        value: SAMEORIGIN
+      - key: X-XSS-Protection
+        value: "1; mode=block"
+      - key: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - key: Content-Security-Policy
+        value: >-
+          frame-ancestors 'self';
+          upgrade-insecure-requests;

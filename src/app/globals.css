@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 30% 94%; /* Beige Sable de Dubai #F5F1E8 */
+    --foreground: 222.2 84% 4.9%;
+    --card: 40 33% 97%; /* Cartes légèrement plus claires que le fond */
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 40 33% 97%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 45 68% 52%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 220 13% 15%; /* Bleu nuit profond */
+    --secondary-foreground: 40 33% 97%; /* Texte clair sur fond sombre */
+    --muted: 42 25% 90%; /* Muted harmonisé avec le beige */
+    --muted-foreground: 215.4 16.3% 46.9%; /* Gris plus foncé pour une meilleure lisibilité */
+    --accent: 220 13% 20%; /* Bleu nuit légèrement plus clair pour l'accentuation */
+    --accent-foreground: 40 33% 97%;
+    --destructive: 38 92% 50%; /* Or/Ambre pour les alertes */
+    --destructive-foreground: 0 0% 98%;
+    --border: 42 20% 85%; /* Bordure harmonisée avec le beige */
+    --input: 42 20% 88%; /* Input harmonisé avec le beige */
+    --ring: 45 68% 52%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 13% 5%; /* Fond presque noir */
+    --foreground: 40 33% 97%;
+    --card: 220 13% 10%; /* Cartes en bleu nuit très sombre */
+    --card-foreground: 40 33% 97%;
+    --popover: 220 13% 10%;
+    --popover-foreground: 40 33% 97%;
+    --primary: 45 68% 52%;
+    --primary-foreground: 215 28% 10%;
+    --secondary: 220 13% 15%; /* Bleu nuit profond */
+    --secondary-foreground: 40 33% 97%;
+    --muted: 220 13% 15%;
+    --muted-foreground: 40 33% 80%;
+    --accent: 220 13% 20%;
+    --accent-foreground: 40 33% 97%;
+    --destructive: 38 92% 50%; /* Or/Ambre pour les alertes (mode sombre) */
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 20%; /* Bordure assortie */
+    --input: 220 13% 25%;
+    --ring: 45 68% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+      padding-right: 100%; /* Ensures a smooth loop */
+  }
+}
+
+@layer utilities {
+  /* Icônes dorées */
+  .icon-gold {
+    @apply text-primary;
+  }
+
+  /* Icônes avec effet hover doré vers indigo */
+  .icon-hover {
+    @apply text-primary transition-colors duration-300;
+  }
+
+  .icon-hover:hover {
+    @apply text-indigo-600;
+  }
+
+  /* Boutons avec effet hover */
+  .btn-gold-hover {
+    @apply transition-all duration-300;
+  }
+
+  .btn-gold-hover:hover {
+    @apply ring-2 ring-indigo-500 ring-offset-2;
+  }
+
+  /* Liens avec effet hover doré vers indigo */
+  .link-gold-hover {
+    @apply text-primary hover:text-indigo-600 transition-colors duration-300;
+  }
+
+  /* Bordures dorées avec hover indigo */
+  .border-gold-hover {
+    @apply border-primary hover:border-indigo-600 transition-colors duration-300;
+  }
+
+  /* Effet de brillance doré */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .shimmer-gold {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(45 100% 70%) 50%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
