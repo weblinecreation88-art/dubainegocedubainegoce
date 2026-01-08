@@ -18,7 +18,7 @@ import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
+const appUrl = typeof window !== 'undefined' ? window.location.origin : (process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr');
 
 const PERFUME_WEIGHT_G = 750;
 
@@ -60,15 +60,23 @@ export default function CartPage() {
 
   
   const handleCheckout = async () => {
-    if (isUserLoading) return;
+    console.log('🛒 handleCheckout called');
+    if (isUserLoading) {
+      console.log('⏳ User is still loading');
+      return;
+    }
     if (!user || !firestore) {
+      console.log('❌ No user or firestore, redirecting to login');
       router.push('/login?redirect=/cart');
       return;
     }
 
+    console.log('✅ User authenticated:', user.uid);
+    console.log('📍 App URL:', appUrl);
     setIsCheckingOut(true);
 
     try {
+        console.log('📝 Creating checkout session...');
         const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
             mode: 'payment',
             line_items: cart.map(item => ({
@@ -100,12 +108,14 @@ export default function CartPage() {
             }
         });
 
+        console.log('✅ Checkout session document created:', checkoutSessionRef.id);
+
         let unsubscribeCalled = false;
         let unsubscribe: (() => void) | null = null;
 
         const timeout = setTimeout(() => {
             if (!unsubscribeCalled && unsubscribe) {
-                console.error('Checkout session timeout after 30 seconds');
+                console.error('⏱️ Checkout session timeout after 30 seconds');
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
                 unsubscribe();
@@ -116,16 +126,18 @@ export default function CartPage() {
             if (unsubscribeCalled) return;
 
             const data = snap.data() as { error?: { message: string }, url?: string };
+            console.log('📡 Snapshot received:', data);
             const { error, url } = data;
 
             if (error) {
-                console.error(`An error occurred with the Stripe session: ${error.message}`);
+                console.error(`❌ Stripe session error: ${error.message}`);
                 clearTimeout(timeout);
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
                 if (unsubscribe) unsubscribe();
             }
             if (url) {
+                console.log('🎉 Stripe URL received, redirecting:', url);
                 clearTimeout(timeout);
                 unsubscribeCalled = true;
                 if (unsubscribe) unsubscribe();
