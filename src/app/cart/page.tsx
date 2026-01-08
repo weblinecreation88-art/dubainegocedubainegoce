@@ -21,6 +21,7 @@ import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 const PERFUME_WEIGHT_G = 750;
 
 export default function CartPage() {
+  const appUrl = typeof window !== 'undefined' ? window.location.origin : (process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr');
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
   const { user, isUserLoading } = useUser();
   const firestore = useFirestore();
