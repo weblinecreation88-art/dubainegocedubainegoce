@@ -18,8 +18,6 @@ import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 
-const appUrl = typeof window !== 'undefined' ? window.location.origin : (process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr');
-
 const PERFUME_WEIGHT_G = 750;
 
 export default function CartPage() {
