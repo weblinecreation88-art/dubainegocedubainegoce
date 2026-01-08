@@ -78,7 +78,7 @@ export default function CartPage() {
                         name: item.name,
                         images: [item.image],
                         metadata: {
-                           productId: item.id, // Ajout du productId pour la réconciliation
+                           productId: item.id,
                         }
                     },
                     unit_amount: Math.round(item.price * 100),
@@ -100,17 +100,44 @@ export default function CartPage() {
             }
         });
 
+        let unsubscribeCalled = false;
+        const timeout = setTimeout(() => {
+            if (!unsubscribeCalled) {
+                console.error('Checkout session timeout after 30 seconds');
+                setIsCheckingOut(false);
+                unsubscribeCalled = true;
+            }
+        }, 30000);
+
         const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-            const { error, url } = snap.data() as { error?: { message: string }, url?: string };
+            if (unsubscribeCalled) return;
+            
+            const data = snap.data() as { error?: { message: string }, url?: string };
+            const { error, url } = data;
+            
             if (error) {
                 console.error(`An error occurred with the Stripe session: ${error.message}`);
+                clearTimeout(timeout);
                 setIsCheckingOut(false);
+                unsubscribeCalled = true;
                 unsubscribe();
             }
             if (url) {
+                clearTimeout(timeout);
+                unsubscribeCalled = true;
+                unsubscribe();
                 window.location.assign(url);
             }
         });
+
+        // Cleanup on unmount
+        return () => {
+            clearTimeout(timeout);
+            if (!unsubscribeCalled) {
+                unsubscribeCalled = true;
+                unsubscribe();
+            }
+        };
     } catch(error) {
         console.error("Error creating checkout session document:", error);
         setIsCheckingOut(false);
