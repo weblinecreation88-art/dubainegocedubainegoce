@@ -59,24 +59,15 @@ export default function CartPage() {
 
   
   const handleCheckout = async () => {
-    console.log('🛒 handleCheckout called');
-    if (isUserLoading) {
-      console.log('⏳ User is still loading');
-      return;
-    }
+    if (isUserLoading) return;
     if (!user || !firestore) {
-      console.log('❌ No user or firestore, redirecting to login');
       router.push('/login?redirect=/cart');
       return;
     }
 
-    console.log('✅ User authenticated:', user.uid);
-    console.log('📍 App URL:', appUrl);
     setIsCheckingOut(true);
 
     try {
-        console.log('📝 Creating checkout session...');
-        console.log('📦 Selected shipping:', selectedShipping.name, '- Cost:', selectedShipping.cost, '€');
 
         // Prepare line items (products + shipping as a separate item)
         const lineItems = [
@@ -126,14 +117,12 @@ export default function CartPage() {
             }
         });
 
-        console.log('✅ Checkout session document created:', checkoutSessionRef.id);
-
         let unsubscribeCalled = false;
         let unsubscribe: (() => void) | null = null;
 
         const timeout = setTimeout(() => {
             if (!unsubscribeCalled && unsubscribe) {
-                console.error('⏱️ Checkout session timeout after 30 seconds');
+                console.error('Checkout session timeout after 30 seconds');
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
                 unsubscribe();
@@ -144,18 +133,16 @@ export default function CartPage() {
             if (unsubscribeCalled) return;
 
             const data = snap.data() as { error?: { message: string }, url?: string };
-            console.log('📡 Snapshot received:', data);
             const { error, url } = data;
 
             if (error) {
-                console.error(`❌ Stripe session error: ${error.message}`);
+                console.error(`An error occurred with the Stripe session: ${error.message}`);
                 clearTimeout(timeout);
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
                 if (unsubscribe) unsubscribe();
             }
             if (url) {
-                console.log('🎉 Stripe URL received, redirecting:', url);
                 clearTimeout(timeout);
                 unsubscribeCalled = true;
                 if (unsubscribe) unsubscribe();
