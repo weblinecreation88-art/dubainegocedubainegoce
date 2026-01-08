@@ -101,8 +101,10 @@ export default function CartPage() {
         });
 
         let unsubscribeCalled = false;
+        let unsubscribe: (() => void) | null = null;
+
         const timeout = setTimeout(() => {
-            if (!unsubscribeCalled) {
+            if (!unsubscribeCalled && unsubscribe) {
                 console.error('Checkout session timeout after 30 seconds');
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
@@ -110,7 +112,7 @@ export default function CartPage() {
             }
         }, 30000);
 
-        const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
+        unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
             if (unsubscribeCalled) return;
 
             const data = snap.data() as { error?: { message: string }, url?: string };
@@ -121,12 +123,12 @@ export default function CartPage() {
                 clearTimeout(timeout);
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
-                unsubscribe();
+                if (unsubscribe) unsubscribe();
             }
             if (url) {
                 clearTimeout(timeout);
                 unsubscribeCalled = true;
-                unsubscribe();
+                if (unsubscribe) unsubscribe();
                 window.location.assign(url);
             }
         });
