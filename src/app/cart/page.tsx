@@ -75,9 +75,11 @@ export default function CartPage() {
 
     try {
         console.log('📝 Creating checkout session...');
-        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
-            mode: 'payment',
-            line_items: cart.map(item => ({
+        console.log('📦 Selected shipping:', selectedShipping.name, '- Cost:', selectedShipping.cost, '€');
+
+        // Prepare line items (products + shipping as a separate item)
+        const lineItems = [
+            ...cart.map(item => ({
                 price_data: {
                     currency: 'eur',
                     product_data: {
@@ -91,8 +93,24 @@ export default function CartPage() {
                 },
                 quantity: item.quantity,
             })),
-            shipping_options: selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID ? [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }] : [],
-             shipping_address_collection: {
+            // Add shipping as a line item
+            {
+                price_data: {
+                    currency: 'eur',
+                    product_data: {
+                        name: `Livraison ${selectedShipping.name}`,
+                        description: selectedShipping.description,
+                    },
+                    unit_amount: Math.round(selectedShipping.cost * 100),
+                },
+                quantity: 1,
+            }
+        ];
+
+        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
+            mode: 'payment',
+            line_items: lineItems,
+            shipping_address_collection: {
                 allowed_countries: ['FR', 'BE', 'LU', 'CH'],
             },
             invoice_creation: {
@@ -103,6 +121,7 @@ export default function CartPage() {
             metadata: {
               userId: user.uid,
               shippingMethod: selectedShipping.id,
+              shippingCost: selectedShipping.cost.toString(),
             }
         });
 
