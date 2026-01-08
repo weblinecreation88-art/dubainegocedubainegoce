@@ -185,8 +185,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#d4af37" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#1a1f2e" media="(prefers-color-scheme: dark)" />
 
-        {/* PWA Tags pour iOS */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        {/* PWA Tags pour iOS et Android */}
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="DubaiNegoce" />
 
