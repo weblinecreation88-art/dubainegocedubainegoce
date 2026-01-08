@@ -106,15 +106,16 @@ export default function CartPage() {
                 console.error('Checkout session timeout after 30 seconds');
                 setIsCheckingOut(false);
                 unsubscribeCalled = true;
+                unsubscribe();
             }
         }, 30000);
 
         const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
             if (unsubscribeCalled) return;
-            
+
             const data = snap.data() as { error?: { message: string }, url?: string };
             const { error, url } = data;
-            
+
             if (error) {
                 console.error(`An error occurred with the Stripe session: ${error.message}`);
                 clearTimeout(timeout);
@@ -129,15 +130,6 @@ export default function CartPage() {
                 window.location.assign(url);
             }
         });
-
-        // Cleanup on unmount
-        return () => {
-            clearTimeout(timeout);
-            if (!unsubscribeCalled) {
-                unsubscribeCalled = true;
-                unsubscribe();
-            }
-        };
     } catch(error) {
         console.error("Error creating checkout session document:", error);
         setIsCheckingOut(false);
