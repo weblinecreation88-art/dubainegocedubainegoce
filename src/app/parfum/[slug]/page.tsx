@@ -86,7 +86,7 @@ export default function ProductPage({ params }: Props) {
             <div className="flex items-center gap-2 mt-2">
                 <div className="flex items-center">
                     {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`h-5 w-5 ${i < Math.round(product.rating) ? 'text-primary fill-primary' : 'text-muted-foreground/50'}`} />
+                        <Star key={i} className={`h-5 w-5 ${i < Math.round(product.rating) ? 'text-dubainegoce-color fill-dubainegoce-color' : 'text-muted-foreground/50'}`} />
                     ))}
                 </div>
                 <span className="text-sm text-muted-foreground">({product.rating.toFixed(1)})</span>
@@ -101,7 +101,7 @@ export default function ProductPage({ params }: Props) {
           <p className="text-lg text-muted-foreground">{product.shortDescription}</p>
 
           <div className="flex items-baseline gap-4">
-             <span className="text-4xl font-bold text-primary">{product.price.toFixed(2)} €</span>
+             <span className="text-4xl font-bold text-dubainegoce-color">{product.price.toFixed(2)} €</span>
              {product.volumeMl > 0 && <span className="text-sm text-muted-foreground">/ {product.volumeMl}ml</span>}
           </div>
 
@@ -109,23 +109,23 @@ export default function ProductPage({ params }: Props) {
             Ajouter au panier
           </AddToCartButton>
 
-          <div className="border border-secondary/20 rounded-lg p-4 space-y-4 bg-gradient-to-br from-rose-50/30 to-pink-50/30 dark:from-rose-950/10 dark:to-pink-950/10">
+          <div className="border border-dubainegoce-color/20 rounded-lg p-4 space-y-4 bg-gradient-to-br from-rose-50/30 to-pink-50/30 dark:from-rose-950/10 dark:to-pink-950/10">
             <div className="flex items-center gap-4">
-                <Truck className="h-6 w-6 text-secondary" />
+                <Truck className="h-6 w-6 text-dubainegoce-color" />
                 <div>
                     <p className="font-semibold">Livraison Rapide</p>
                     <p className="text-sm text-muted-foreground">Expédié en 48h, livraison Colissimo ou Mondial Relay.</p>
                 </div>
             </div>
              <div className="flex items-center gap-4">
-                <ShieldCheck className="h-6 w-6 text-secondary" />
+                <ShieldCheck className="h-6 w-6 text-dubainegoce-color" />
                 <div>
                     <p className="font-semibold">100% Authentique</p>
                     <p className="text-sm text-muted-foreground">Produits importés directement de Dubaï.</p>
                 </div>
             </div>
              <div className="flex items-center gap-4">
-                <RotateCcw className="h-6 w-6 text-secondary" />
+                <RotateCcw className="h-6 w-6 text-dubainegoce-color" />
                 <div>
                     <p className="font-semibold">Satisfait ou Remboursé</p>
                     <p className="text-sm text-muted-foreground">Retournez votre précieux sous 14 jours et nous vous remboursons.</p>
@@ -137,7 +137,7 @@ export default function ProductPage({ params }: Props) {
       
       <div className="mt-16">
         <Tabs defaultValue="description" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-3 bg-dubainegoce-color/10">
             <TabsTrigger value="description">Description</TabsTrigger>
             <TabsTrigger value="additional-info">Infos complémentaires</TabsTrigger>
             <TabsTrigger value="reviews">Avis</TabsTrigger>

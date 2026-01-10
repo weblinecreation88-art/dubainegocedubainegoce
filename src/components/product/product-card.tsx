@@ -25,13 +25,13 @@ export function ProductCard({ product }: ProductCardProps) {
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                         <div className="absolute top-2 left-2 flex flex-col gap-2">
-                            {product.isBestseller && <Badge>Best-seller</Badge>}
+                            {product.isBestseller && <Badge className="bg-dubainegoce-color text-primary-foreground hover:bg-dubainegoce-color/80">Best-seller</Badge>}
                             {product.isNew && <Badge variant="secondary">Nouveau</Badge>}
                         </div>
                     </div>
                 </CardHeader>
                 <CardContent className="p-4 flex-grow">
-                    <CardTitle className="text-lg font-headline group-hover:text-primary transition-colors min-h-[2.5em]">
+                    <CardTitle className="text-lg font-headline group-hover:text-dubainegoce-color transition-colors min-h-[2.5em]">
                         {product.name}
                     </CardTitle>
                     <CardDescription className="text-sm mt-1">{product.brand.name}</CardDescription>

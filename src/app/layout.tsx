@@ -12,125 +12,23 @@ import { FirebaseClientProvider } from '@/firebase';
 import { CookieConsent } from '@/components/cookie-consent';
 import { StructuredData } from '@/components/structured-data';
 import Script from 'next/script';
-import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
-
-const reassurances = [
-  {
-    icon: <ShieldCheck className="w-6 h-6 mr-3 text-primary" />,
-    title: "100% Authentique",
-    description: "Importé directement de Dubaï"
-  },
-  {
-    icon: <Lock className="w-6 h-6 mr-3 text-primary" />,
-    title: "Prix Juste et Fixe",
-    description: "Le luxe accessible à 35€"
-  },
-  {
-    icon: <Rocket className="w-6 h-6 mr-3 text-primary" />,
-    title: "Livraison Rapide",
-    description: "Colissimo 48h ou Mondial Relay"
-  },
-  {
-    icon: <Phone className="w-6 h-6 mr-3 text-primary" />,
-    title: "Support Français",
-    description: "Notre équipe vous répond 24h/7j"
-  },
-];
-
-const ReassuranceSection = () => {
-    const reassuranceContent = (
-      <div className="flex items-center">
-        {reassurances.map((item, index) => (
-          <div key={index} className="flex items-center mx-6">
-            {item.icon}
-            <div className="text-left">
-              <h3 className="font-headline text-base sm:text-lg font-semibold whitespace-nowrap">{item.title}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-
-    return (
-        <section className="py-8 sm:py-12 bg-card border-y overflow-hidden">
-            <div className="flex">
-                <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around">
-                    {reassuranceContent}
-                    {reassuranceContent}
-                </div>
-                 <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around" aria-hidden="true">
-                    {reassuranceContent}
-                    {reassuranceContent}
-                </div>
-            </div>
-        </section>
-    );
-}
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://parfumeriepassion.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: 'Parfums de Dubaï 35€ | Lattafa, Alhambra, Fragrance World | Livraison Gratuite',
-    template: '%s | DubaiNegoce - Parfums Orientaux',
-  },
-  description: 'Parfums authentiques de Dubaï à prix fixe 35€ - Livraison GRATUITE. Découvrez YARA, Khamrah, Asad (Lattafa), Zaffiro (Alhambra) et 50+ fragrances. 100% authentiques, importés directement de Dubaï. Stock permanent, livraison rapide 48-72h.',
-  keywords: [
-    // Mots-clés principaux SEO 2025
-    'parfums Dubaï authentiques',
-    'parfums orientaux France',
-    'parfum arabe pas cher',
-
-    // Marques principales
-    'Lattafa France',
-    'Yara Lattafa parfum',
-    'Khamrah Lattafa',
-    'Asad Lattafa',
-    'Badee Al Oud Lattafa',
-    'Fakhar Black Lattafa',
-    'Qaed Al Fursan',
-    'Mayar Lattafa',
-
-    'Maison Alhambra France',
-    'Zaffiro Maison Alhambra',
-
-    'Fragrance World',
-    'French Avenue',
-
-    // Intentions transactionnelles
-    'acheter parfum Dubaï',
-    'parfum oriental 35 euros',
-    'parfum pas cher livraison gratuite',
-    'parfum homme Dubaï',
-    'parfum femme oriental',
-    'parfum mixte',
-
-    // Long-tail 2026 - Tendances IA et recherche vocale
-    'meilleur parfum oriental 2026',
-    'parfum longue tenue pas cher',
-    'eau de parfum Dubaï',
-    'parfumerie orientale en ligne',
-    'dupes parfums luxe',
-    'parfum oud naturel',
-    'parfum niche abordable',
-    'parfum authentique importé Dubaï',
-    'quel parfum oriental acheter 2026',
-    'où acheter parfum Lattafa en France',
-  ],
+  title: 'Parfumerie Passion | Parfums, Soins & Cosmétiques partout au Maroc',
+  description: 'Parfumerie Passion, votre boutique en ligne de parfums de niche, parfums designer, soins et cosmétiques de luxe. Achat en ligne simple, livraison rapide au Maroc, produits 100% authentiques et service client premium.',
   openGraph: {
-    title: 'Parfums Dubaï 35€ | Lattafa, Alhambra | Livraison GRATUITE',
-    description: 'Découvrez notre collection exclusive de parfums orientaux authentiques : YARA, Khamrah, Asad, Zaffiro. Prix unique 35€. Livraison Mondial Relay OFFERTE. 100% authentiques, importés directement de Dubaï.',
+    title: 'Parfumerie Passion | Parfums, Soins & Cosmétiques partout au Maroc',
+    description: 'Parfumerie Passion, votre boutique en ligne de parfums de niche, parfums designer, soins et cosmétiques de luxe. Achat en ligne simple, livraison rapide au Maroc, produits 100% authentiques et service client premium.',
     url: siteUrl,
-    siteName: 'DubaiNegoce',
+    siteName: 'Parfumerie Passion',
     images: [
       {
-        url: `${siteUrl}/og-image.png`,
+        url: 'http://parfumeriepassion.com/cdn/shop/files/logo2024-05-11_153538.png?height=628&pad_color=ffffff&v=1715434557&width=1200',
         width: 1200,
-        height: 630,
-        alt: 'DubaiNegoce - Parfums authentiques de Dubaï - Lattafa, Maison Alhambra, Fragrance World',
+        height: 628,
       },
     ],
     locale: 'fr_FR',
@@ -138,27 +36,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Parfums Dubaï 35€ | Lattafa, Alhambra',
-    description: 'YARA, Khamrah, Asad, Zaffiro. Prix fixe 35€. Livraison OFFERTE. 100% authentiques importés de Dubaï.',
-    images: [`${siteUrl}/og-image.png`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    'max-snippet': -1,
-    'max-image-preview': 'large',
-    'max-video-preview': -1,
+    title: 'Parfumerie Passion | Parfums, Soins & Cosmétiques partout au Maroc',
+    description: 'Parfumerie Passion, votre boutique en ligne de parfums de niche, parfums designer, soins et cosmétiques de luxe. Achat en ligne simple, livraison rapide au Maroc, produits 100% authentiques et service client premium.',
   },
   verification: {
-    // google: 'XXXXX', // À ajouter après vérification Search Console
+    google: 'ogy3NbdeJqMKhL0h_oUNaIsT38mEfZTl6XmIt1wVDno',
   },
   alternates: {
     canonical: siteUrl,
   },
-  authors: [{ name: 'DubaiNegoce' }],
-  creator: 'DubaiNegoce',
-  publisher: 'DubaiNegoce',
-  category: 'Parfumerie',
 };
 
 export default function RootLayout({
@@ -167,88 +53,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" className="js" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-        <link rel="canonical" href={siteUrl} />
-        <meta name="robots" content="index, follow" />
-
-        {/* Favicons et Icons PWA */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-        {/* PWA Manifest - SEO 2026 */}
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#d4af37" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#1a1f2e" media="(prefers-color-scheme: dark)" />
-
-        {/* PWA Tags pour iOS */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="DubaiNegoce" />
-
-        {/* Performance & SEO 2026 */}
-        <meta name="format-detection" content="telephone=no" />
-        <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <Script id="google-consent-mode" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              'ad_storage': 'denied',
-              'analytics_storage': 'denied',
-              'wait_for_update': 500,
-            });
-            gtag('js', new Date());
-            gtag('config', 'G-HM2MMVGBP7'); // Replace with your GA4 Measurement ID
-          `}
-        </Script>
-        <Script id="google-tag-manager" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
-          `}
-        </Script>
-
-        {/* Google tag (gtag.js) - Google Analytics 4 */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-HM2MMVGBP7"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-HM2MMVGBP7');
-          `}
-        </Script>
-        {/* Google Customer Reviews - platform.js */}
-        <Script src="https://apis.google.com/js/platform.js?onload=renderOptIn" async defer strategy="afterInteractive" />
-
+        <meta name="google-site-verification" content="ogy3NbdeJqMKhL0h_oUNaIsT38mEfZTl6XmIt1wVDno" />
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="theme-color" content="" />
+        <link rel="canonical" href="https://parfumeriepassion.com/" />
+        <link rel="icon" type="image/png" href="//parfumeriepassion.com/cdn/shop/files/WhatsApp_Image_2024-05-11_at_15.33.38.jpg?crop=center&height=32&v=1715434456&width=32" />
+        <link rel="preconnect" href="https://fonts.shopifycdn.com" crossOrigin="true" />
+        <script src="//parfumeriepassion.com/cdn/shop/t/1/assets/constants.js?v=58251544750838685771715426689" defer></script>
+        <script src="//parfumeriepassion.com/cdn/shop/t/1/assets/pubsub.js?v=158357773527763999511715426690" defer></script>
+        <script src="//parfumeriepassion.com/cdn/shop/t/1/assets/global.js?v=136628361274817707361715426689" defer></script>
+        <script src="//parfumeriepassion.com/cdn/shop/t/1/assets/animations.js?v=88693664871331136111715426688" defer></script>
+        <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script>
+        <meta name="facebook-domain-verification" content="6sl9biwhil87ea9v2rhk79im3o4jjh" />
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col overflow-x-hidden')}>
-        <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            ></iframe>
-        </noscript>
-        <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=G-HM2MMVGBP7"
-            height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe>
-        </noscript>
-
         <ThemeProvider
             attribute="class"
             defaultTheme="light"
@@ -261,7 +83,6 @@ export default function RootLayout({
               <AnnouncementBar />
               <Header />
               <main className="flex-grow pt-[10.5rem] lg:pt-[6.5rem]">{children}</main>
-              <ReassuranceSection />
               <Footer />
               <Toaster />
               <CookieConsent />

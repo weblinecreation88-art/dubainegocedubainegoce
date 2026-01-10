@@ -44,30 +44,30 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Collections</h3>
+            <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">Collections</h3>
             <ul className="space-y-2">
-              <li><Link href="/shop" className="hover:text-primary transition-colors">Tous les produits</Link></li>
+              <li><Link href="/shop" className="hover:text-dubainegoce-color transition-colors">Tous les produits</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Support</h3>
+            <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">Support</h3>
             <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-primary transition-colors">À Propos</Link></li>
-              <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-              <li><Link href="/shipping" className="hover:text-primary transition-colors">Politique de retour</Link></li>
-              <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+              <li><Link href="/about" className="hover:text-dubainegoce-color transition-colors">À Propos</Link></li>
+              <li><Link href="/contact" className="hover:text-dubainegoce-color transition-colors">Contact</Link></li>
+              <li><Link href="/shipping" className="hover:text-dubainegoce-color transition-colors">Politique de retour</Link></li>
+              <li><Link href="/faq" className="hover:text-dubainegoce-color transition-colors">FAQ</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Légal</h3>
+            <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">Légal</h3>
             <ul className="space-y-2">
-              <li><Link href="/terms" className="hover:text-primary transition-colors">Conditions Générales</Link></li>
-              <li><Link href="/privacy" className="hover:text-primary transition-colors">Politique de Confidentialité</Link></li>
-              <li><Link href="/mentions-legales" className="hover:text-primary transition-colors">Mentions Légales</Link></li>
+              <li><Link href="/terms" className="hover:text-dubainegoce-color transition-colors">Conditions Générales</Link></li>
+              <li><Link href="/privacy" className="hover:text-dubainegoce-color transition-colors">Politique de Confidentialité</Link></li>
+              <li><Link href="/mentions-legales" className="hover:text-dubainegoce-color transition-colors">Mentions Légales</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Newsletter</h3>
+            <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">Newsletter</h3>
             <p className="text-sm">Reçois les lancements et sélections olfactives (sans promos).</p>
             <form
               ref={formRef}

@@ -198,7 +198,7 @@ export async function subscribeToNewsletter(
 
   if (!validatedFields.success) {
     return {
-      message: validatedFields.error.errors[0].message,
+      message: validatedFields.error.issues[0].message,
       error: true,
     };
   }

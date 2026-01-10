@@ -41,16 +41,16 @@ import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../
 import { PerfumeFinder } from '../perfume-finder';
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>>
+(({ className, title, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
@@ -64,7 +64,7 @@ const ListItem = React.forwardRef<
     </li>
   )
 })
-ListItem.displayName = "ListItem"
+ListItem.displayName = 'ListItem'
 
 
 export default function Header() {
@@ -114,8 +114,8 @@ export default function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-40 w-full transition-colors duration-300 ease-in-out",
-      isScrolled ? "border-b bg-background/90 backdrop-blur-sm" : "border-b border-transparent"
+      'sticky top-10 z-40 w-full transition-colors duration-300 ease-in-out',
+      isScrolled ? 'border-b bg-background/90 backdrop-blur-sm' : 'border-b border-transparent'
     )}>
       <div className="container flex h-16 items-center justify-between">
         {/* Left Section: Mobile Menu */}
@@ -185,7 +185,7 @@ export default function Header() {
         <div className="flex justify-center items-center flex-1 lg:flex-none">
           <Link href="/" className="flex items-center">
              <Image
-                src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1765916140/ChatGPT_Image_16_d%C3%A9c._2025_21_14_32_1_ajws49.png"
+                src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1767710387/logo_dubainegoce_b63bgw.png"
                 alt="DubaiNegoce Logo"
                 width={140} // Adjusted width
                 height={40} // Adjusted height
@@ -326,7 +326,7 @@ export default function Header() {
                     <div className="relative">
                         <ShoppingCart className="h-5 w-5 icon-hover" />
                         {isMounted && cartCount > 0 && (
-                            <Badge className="absolute -top-2 -right-2 h-4 w-4 justify-center rounded-full p-0 text-xs bg-primary text-white border-0">
+                            <Badge className="absolute -top-2 -right-2 h-4 w-4 justify-center rounded-full p-0 text-xs bg-dubainegoce-color text-white border-0">
                             {cartCount}
                             </Badge>
                         )}
@@ -334,15 +334,6 @@ export default function Header() {
                 <span className="sr-only">Panier</span>
                 </Link>
             </Button>
-        </div>
-      </div>
-
-      {/* Mobile Search Bar - Below Header */}
-      <div className="lg:hidden border-t bg-background">
-        <div className="container py-2 flex justify-center">
-          <div className="w-full max-w-md">
-            <SearchBar />
-          </div>
         </div>
       </div>
     </header>

@@ -11,21 +11,21 @@ import Image from 'next/image';
 export function PerfumeFinderCta() {
     return (
         <Dialog>
-            <Card className="overflow-hidden bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20 border-secondary/20">
+            <Card className="overflow-hidden bg-gradient-to-r from-yellow-50/50 to-amber-50/50 dark:from-yellow-950/20 dark:to-amber-950/20 border-dubainegoce-color/20">
                 <div className="grid md:grid-cols-2 items-center">
                     <div className="p-8 md:p-12">
                         <CardHeader className="p-0">
-                            <div className="flex items-center gap-3 text-secondary mb-2">
+                            <div className="flex items-center gap-3 text-dubainegoce-color mb-2">
                                 <Sparkles className="h-6 w-6"/>
                             </div>
-                            <CardTitle className="text-3xl font-headline text-gradient-yara">Vous n'êtes pas sûr ?</CardTitle>
+                            <CardTitle className="text-3xl font-headline bg-gradient-to-r from-dubainegoce-color to-amber-400 bg-clip-text text-transparent">Vous n'êtes pas sûr ?</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 mt-4">
                             <CardDescription className="text-lg">
                                 Laissez notre expert en parfums vous guider. Répondez à quelques questions et trouvez le sillage qui vous correspond parfaitement.
                             </CardDescription>
                             <DialogTrigger asChild>
-                                <Button size="lg" className="mt-6 group bg-primary hover:bg-primary/90 text-white border-0">
+                                <Button size="lg" className="mt-6 group bg-dubainegoce-color hover:bg-dubainegoce-color/90 text-primary-foreground">
                                     Trouver mon parfum
                                     <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                 </Button>
@@ -47,7 +47,7 @@ export function PerfumeFinderCta() {
 
             <DialogContent className="sm:max-w-4xl">
                  <DialogHeader>
-                    <DialogTitle className="text-3xl font-headline text-gradient-yara text-center">Votre Sillage Unique</DialogTitle>
+                    <DialogTitle className="text-3xl font-headline bg-gradient-to-r from-dubainegoce-color to-amber-400 bg-clip-text text-transparent text-center">Votre Sillage Unique</DialogTitle>
                     <DialogDescription className="text-center">
                        Laissez-nous vous guider vers le parfum de vos rêves.
                     </DialogDescription>

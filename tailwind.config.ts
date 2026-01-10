@@ -19,10 +19,11 @@ const config = {
     },
     extend: {
       fontFamily: {
-        headline: ['Playfair Display', 'serif'],
-        body: ['PT Sans', 'sans-serif'],
+        headline: ['Assistant', 'sans-serif'],
+        body: ['Assistant', 'sans-serif'],
       },
       colors: {
+        'dubainegoce-color': '#ead198',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

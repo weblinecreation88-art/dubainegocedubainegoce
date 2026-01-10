@@ -1,7 +1,7 @@
 
 export function AnnouncementBar() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground overflow-hidden">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-dubainegoce-color text-primary-foreground overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="h-10 w-full whitespace-nowrap">
           <div className="animate-marquee py-2.5">
