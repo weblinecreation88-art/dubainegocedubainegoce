@@ -40,35 +40,47 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-card text-card-foreground border-t">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white border-t border-[#c58a3d]/20">
+      <div className="container mx-auto px-4 pt-20 pb-10">
+        {/* Logo et Description */}
+        <div className="mb-12 text-center">
+          <Link href="/">
+            <span className="text-4xl md:text-5xl font-headline font-bold tracking-wider text-white hover:text-[#c58a3d] transition-colors inline-block">
+              DUBAI<span className="text-[#c58a3d]">NEGOCE</span>
+            </span>
+          </Link>
+          <p className="mt-4 max-w-xl mx-auto text-gray-400 italic text-sm md:text-base">
+            Votre ambassadeur de la haute parfumerie orientale. L'élégance de Dubaï à portée de main.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Collections</h3>
+            <h3 className="text-sm font-semibold text-[#c58a3d] uppercase tracking-wider">Collections</h3>
             <ul className="space-y-2">
-              <li><Link href="/shop" className="hover:text-primary transition-colors">Tous les produits</Link></li>
+              <li><Link href="/shop" className="hover:text-[#c58a3d] transition-colors text-gray-300">Tous les produits</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Support</h3>
+            <h3 className="text-sm font-semibold text-[#c58a3d] uppercase tracking-wider">Support</h3>
             <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-primary transition-colors">À Propos</Link></li>
-              <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-              <li><Link href="/shipping" className="hover:text-primary transition-colors">Politique de retour</Link></li>
-              <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+              <li><Link href="/about" className="hover:text-[#c58a3d] transition-colors text-gray-300">À Propos</Link></li>
+              <li><Link href="/contact" className="hover:text-[#c58a3d] transition-colors text-gray-300">Contact</Link></li>
+              <li><Link href="/shipping" className="hover:text-[#c58a3d] transition-colors text-gray-300">Politique de retour</Link></li>
+              <li><Link href="/faq" className="hover:text-[#c58a3d] transition-colors text-gray-300">FAQ</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Légal</h3>
+            <h3 className="text-sm font-semibold text-[#c58a3d] uppercase tracking-wider">Légal</h3>
             <ul className="space-y-2">
-              <li><Link href="/terms" className="hover:text-primary transition-colors">Conditions Générales</Link></li>
-              <li><Link href="/privacy" className="hover:text-primary transition-colors">Politique de Confidentialité</Link></li>
-              <li><Link href="/mentions-legales" className="hover:text-primary transition-colors">Mentions Légales</Link></li>
+              <li><Link href="/terms" className="hover:text-[#c58a3d] transition-colors text-gray-300">Conditions Générales</Link></li>
+              <li><Link href="/privacy" className="hover:text-[#c58a3d] transition-colors text-gray-300">Politique de Confidentialité</Link></li>
+              <li><Link href="/mentions-legales" className="hover:text-[#c58a3d] transition-colors text-gray-300">Mentions Légales</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-secondary uppercase tracking-wider">Newsletter</h3>
-            <p className="text-sm">Reçois les lancements et sélections olfactives (sans promos).</p>
+            <h3 className="text-sm font-semibold text-[#c58a3d] uppercase tracking-wider">Newsletter</h3>
+            <p className="text-sm text-gray-300">Reçois les lancements et sélections olfactives (sans promos).</p>
             <form
               ref={formRef}
               onSubmit={(e) => {
@@ -82,42 +94,78 @@ export default function Footer() {
                 type="email"
                 name="email"
                 placeholder="Votre email"
-                className="bg-background"
+                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
                 required
               />
-              <Button type="submit" disabled={pending}>
+              <Button type="submit" disabled={pending} className="gradient-amber text-white hover:shadow-amber-glow">
                 {pending ? <Loader2 className="animate-spin" /> : "S'inscrire"}
               </Button>
             </form>
           </div>
         </div>
-        <Separator className="my-8" />
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex flex-col md:flex-row items-center gap-4">
-                 <Link href="/">
-                    <span className="font-bold text-lg font-headline">DubaiNegoce</span>
-                </Link>
-                <div className="flex items-center gap-3">
-                    <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                        <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ width: 'auto', height: 'auto' }} />
-                    </a>
-                    <a
-                        href="https://g.page/r/CYfNDXizM9KSEAE/review"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:opacity-80 transition-opacity"
-                    >
-                        <Image
-                            src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg"
-                            alt="Google Reviews"
-                            width={74}
-                            height={24}
-                            style={{ width: 'auto', height: 'auto' }}
-                        />
-                    </a>
-                </div>
+
+        <Separator className="my-8 bg-white/10" />
+
+        {/* Liens rapides */}
+        <div className="flex justify-center space-x-8 mb-8 flex-wrap gap-y-4">
+          <Link href="/shop" className="text-gray-400 hover:text-[#c58a3d] transition-colors text-sm">
+            Collections
+          </Link>
+          <Link href="/about" className="text-gray-400 hover:text-[#c58a3d] transition-colors text-sm">
+            À Propos
+          </Link>
+          <Link href="/contact" className="text-gray-400 hover:text-[#c58a3d] transition-colors text-sm">
+            Contact
+          </Link>
+          <Link href="/shipping" className="text-gray-400 hover:text-[#c58a3d] transition-colors text-sm">
+            Livraison
+          </Link>
+          <Link href="/faq" className="text-gray-400 hover:text-[#c58a3d] transition-colors text-sm">
+            FAQ
+          </Link>
+        </div>
+
+        <Separator className="my-8 bg-white/5" />
+
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            {/* Avis clients */}
+            <div className="flex items-center gap-4">
+                <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                    <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ width: 'auto', height: 'auto' }} />
+                </a>
+                <a
+                    href="https://g.page/r/CYfNDXizM9KSEAE/review"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity"
+                >
+                    <Image
+                        src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg"
+                        alt="Google Reviews"
+                        width={74}
+                        height={24}
+                        style={{ width: 'auto', height: 'auto' }}
+                    />
+                </a>
             </div>
-          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.</p>
+
+            {/* Copyright et liens légaux */}
+            <div className="text-center md:text-right">
+              <p className="text-sm text-gray-400 mb-2">
+                &copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.
+              </p>
+              <div className="flex space-x-6 text-xs text-gray-500 justify-center md:justify-end">
+                <Link href="/privacy" className="hover:text-[#c58a3d] transition-colors">
+                  Confidentialité
+                </Link>
+                <Link href="/terms" className="hover:text-[#c58a3d] transition-colors">
+                  CGV
+                </Link>
+                <Link href="/mentions-legales" className="hover:text-[#c58a3d] transition-colors">
+                  Mentions Légales
+                </Link>
+              </div>
+            </div>
         </div>
       </div>
     </footer>

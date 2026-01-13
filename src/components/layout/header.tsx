@@ -114,8 +114,8 @@ export default function Header() {
 
   return (
     <header className={cn(
-      "fixed top-10 z-40 w-full transition-colors duration-300 ease-in-out",
-      isScrolled ? "border-b bg-background/90 backdrop-blur-sm" : "border-b border-transparent"
+      "fixed top-10 z-40 w-full transition-all duration-300 ease-in-out",
+      isScrolled ? "glass border-b border-white/20" : "border-b border-transparent bg-black/20 backdrop-blur-sm"
     )}>
       <div className="container flex h-16 items-center justify-between lg:grid lg:grid-cols-[200px_1fr_200px] lg:gap-4 relative">
         {/* Left Section: Mobile Menu + Theme Toggle / Desktop Logo */}

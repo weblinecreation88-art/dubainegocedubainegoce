@@ -14,32 +14,42 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
 
     return (
-        <Card className="flex flex-col h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg group">
+        <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl group bg-white rounded-2xl border border-gray-200">
             <Link href={`/parfum/${product.slug}`} className="flex flex-col flex-grow">
-                <CardHeader className="p-0 border-b">
-                    <div className="aspect-square w-full relative overflow-hidden">
+                <CardHeader className="p-0">
+                    <div className="aspect-[3/4] w-full relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                         <ProductImage
                             alt={product.name}
                             images={product.images}
                             sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                         />
-                        <div className="absolute top-2 left-2 flex flex-col gap-2">
-                            {product.isBestseller && <Badge>Best-seller</Badge>}
-                            {product.isNew && <Badge variant="secondary">Nouveau</Badge>}
+                        <div className="absolute top-3 left-3 flex flex-col gap-2">
+                            {product.isBestseller && <Badge className="bg-[#c58a3d] text-white hover:bg-[#b67a2d] font-semibold">Best-seller</Badge>}
+                            {product.isNew && <Badge variant="secondary" className="bg-green-500 text-white hover:bg-green-600 font-semibold">Nouveau</Badge>}
                         </div>
                     </div>
                 </CardHeader>
-                <CardContent className="p-4 flex-grow">
-                    <CardTitle className="text-lg font-headline group-hover:text-primary transition-colors min-h-[2.5em]">
+                <CardContent className="p-6 flex-grow space-y-2">
+                    {/* Catégorie en jaune */}
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#c58a3d]">
+                        {product.family || 'Fragrances Orientales'}
+                    </p>
+
+                    {/* Titre du produit */}
+                    <CardTitle className="text-xl font-headline font-bold text-gray-900 group-hover:text-[#c58a3d] transition-colors leading-tight">
                         {product.name}
                     </CardTitle>
-                    <CardDescription className="text-sm mt-1">{product.brand.name}</CardDescription>
+
+                    {/* Marque */}
+                    <CardDescription className="text-sm text-gray-600 font-medium">
+                        {product.brand.name}
+                    </CardDescription>
                 </CardContent>
             </Link>
-            <CardFooter className="p-4 pt-0 flex flex-col items-start gap-4">
-                 <p className="text-xl font-bold text-primary">{product.price.toFixed(2)} €</p>
-                <AddToCartButton product={product} className="w-full" />
+            <CardFooter className="p-6 pt-0 flex flex-col items-start gap-4">
+                 <p className="text-2xl font-bold text-gray-900">{product.price.toFixed(2)} €</p>
+                <AddToCartButton product={product} className="w-full bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] hover:from-[#b67a2d] hover:to-[#a56a1d] text-white transition-all duration-300 font-bold rounded-xl py-3 shadow-lg hover:shadow-xl hover:scale-105" />
             </CardFooter>
         </Card>
     );
