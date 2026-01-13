@@ -30,7 +30,7 @@ export default function BlogPostPage() {
                     La maison Lattafa est devenue une référence incontournable pour les amateurs de parfums orientaux. Avec ses créations de haute qualité à prix doux, elle a su conquérir le cœur de millions d'utilisateurs. Voici notre sélection des 5 parfums Lattafa à absolument découvrir ou redécouvrir en 2025.
                 </p>
 
-                <h2>1. <Link href="/parfum/khamrah">Khamrah</Link></h2>
+                <h2>1. <Link href="/parfum/asad-lattafa">Asad</Link></h2>
                 <p>
                     Incontournable et viral, Khamrah est le parfum gourmand par excellence. Avec ses notes de datte, de cannelle, de praliné et de vanille, il est d'un réconfort absolu. C'est le parfum parfait pour les soirées d'hiver, un véritable délice olfactif qui ne laisse personne indifférent. Son sillage est puissant et sa tenue est légendaire.
                 </p>

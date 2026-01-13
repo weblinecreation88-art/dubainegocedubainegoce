@@ -26,27 +26,23 @@ export default function Home() {
 
   const bestsellersSlugs = [
     'yara-lattafa',
-    'khamrah-lattafa',
     'asad-lattafa',
     'ameer-al-oudh-intense-oud-lattafa',
-    'badee-parfum-lattafa',
-    'qaed-al-fursan',
+    'badee-al-oud-oud-for-glory-lattafa',
     'fakhar-black-lattafa',
     'mayar-lattafa'
   ];
   const bestsellers = getProducts().filter(p => bestsellersSlugs.includes(p.slug));
 
-  const featuredPerfume = getProducts().find(p => p.slug === 'khamrah-lattafa');
+  const featuredPerfume = getProducts().find(p => p.slug === 'asad-lattafa');
   const allFwProducts = getProducts().filter(p => p.brand.name === 'Fragrance World');
 
   const lattafaSlugs = [
-    'khamrah-lattafa',
     'asad-lattafa',
     'yara-lattafa',
-    'badee-parfum-lattafa',
+    'badee-al-oud-oud-for-glory-lattafa',
     'fakhar-black-lattafa',
     'ameer-al-oudh-intense-oud-lattafa',
-    'qaed-al-fursan',
     'mayar-lattafa',
   ];
   const lattafaProducts = getProducts().filter(p => lattafaSlugs.includes(p.slug));
@@ -315,97 +311,103 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-10">
             {/* Collection 1 - Orientale */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="card-modern group relative bg-card p-0 shadow-xl hover:shadow-2xl"
-            >
-              <div className="h-64 overflow-hidden">
-                <Image
-                  src="https://res.cloudinary.com/dhjwimevi/image/upload/v1765701180/vanilla_so_sweet_nrxsay.png"
-                  alt="Parfums Orientaux"
-                  width={800}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-8 group-hover:bg-gradient-to-br group-hover:from-gray-500 group-hover:to-amber-600 group-hover:text-white transition-all duration-300">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-[#b67a2d] group-hover:bg-white group-hover:text-[#b67a2d] transition-colors">
-                  <Sparkles className="h-6 w-6" />
+            <Link href="/shop">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="card-modern group relative bg-card p-0 shadow-xl hover:shadow-2xl cursor-pointer"
+              >
+                <div className="h-64 overflow-hidden">
+                  <Image
+                    src="https://res.cloudinary.com/dhjwimevi/image/upload/v1765701180/vanilla_so_sweet_nrxsay.png"
+                    alt="Parfums Orientaux"
+                    width={800}
+                    height={400}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <h4 className="mb-4 text-2xl font-headline font-bold">Orientaux Précieux</h4>
-                <p className="text-muted-foreground group-hover:text-white/90 leading-relaxed mb-6 italic">
-                  "L'essence de l'Orient dans des compositions envoûtantes et mystérieuses"
-                </p>
-                <div className="flex items-center text-[#c58a3d] group-hover:text-white font-bold cursor-pointer">
-                  <span>Voir la collection</span>
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                <div className="p-8 group-hover:bg-gradient-to-br group-hover:from-gray-500 group-hover:to-amber-600 group-hover:text-white transition-all duration-300">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-[#b67a2d] group-hover:bg-white group-hover:text-[#b67a2d] transition-colors">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
+                  <h4 className="mb-4 text-2xl font-headline font-bold">Orientaux Précieux</h4>
+                  <p className="text-muted-foreground group-hover:text-white/90 leading-relaxed mb-6 italic">
+                    "L'essence de l'Orient dans des compositions envoûtantes et mystérieuses"
+                  </p>
+                  <div className="flex items-center text-[#c58a3d] group-hover:text-white font-bold">
+                    <span>Voir la collection</span>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
 
             {/* Collection 2 - Boisé */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="card-modern group relative bg-card p-0 shadow-xl hover:shadow-2xl"
-            >
-              <div className="h-64 overflow-hidden">
-                <Image
-                  src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1764270620/Screenshot_2025-06-02-00-12-11-453_com.android.chrome-edit_1_prxl15.jpg"
-                  alt="Parfums Boisés"
-                  width={800}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-8 group-hover:bg-gradient-to-br group-hover:from-gray-500 group-hover:to-amber-600 group-hover:text-white transition-all duration-300">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-[#b67a2d] group-hover:bg-white group-hover:text-[#b67a2d] transition-colors">
-                  <Sparkles className="h-6 w-6" />
+            <Link href="/shop">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="card-modern group relative bg-card p-0 shadow-xl hover:shadow-2xl cursor-pointer"
+              >
+                <div className="h-64 overflow-hidden">
+                  <Image
+                    src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1764270620/Screenshot_2025-06-02-00-12-11-453_com.android.chrome-edit_1_prxl15.jpg"
+                    alt="Parfums Boisés"
+                    width={800}
+                    height={400}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <h4 className="mb-4 text-2xl font-headline font-bold">Notes Boisées</h4>
-                <p className="text-muted-foreground group-hover:text-white/90 leading-relaxed mb-6 italic">
-                  "La noblesse du bois de oud et des essences rares du désert"
-                </p>
-                <div className="flex items-center text-[#c58a3d] group-hover:text-white font-bold cursor-pointer">
-                  <span>Voir la collection</span>
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                <div className="p-8 group-hover:bg-gradient-to-br group-hover:from-gray-500 group-hover:to-amber-600 group-hover:text-white transition-all duration-300">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-[#b67a2d] group-hover:bg-white group-hover:text-[#b67a2d] transition-colors">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
+                  <h4 className="mb-4 text-2xl font-headline font-bold">Notes Boisées</h4>
+                  <p className="text-muted-foreground group-hover:text-white/90 leading-relaxed mb-6 italic">
+                    "La noblesse du bois de oud et des essences rares du désert"
+                  </p>
+                  <div className="flex items-center text-[#c58a3d] group-hover:text-white font-bold">
+                    <span>Voir la collection</span>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
 
             {/* Collection 3 - Floral */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="card-modern group relative bg-card p-0 shadow-xl hover:shadow-2xl"
-            >
-              <div className="h-64 overflow-hidden">
-                <Image
-                  src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1766911492/YARA_id3ssb.jpg"
-                  alt="Parfums Floraux"
-                  width={800}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-8 group-hover:bg-gradient-to-br group-hover:from-gray-500 group-hover:to-amber-600 group-hover:text-white transition-all duration-300">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-[#b67a2d] group-hover:bg-white group-hover:text-[#b67a2d] transition-colors">
-                  <Sparkles className="h-6 w-6" />
+            <Link href="/shop">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="card-modern group relative bg-card p-0 shadow-xl hover:shadow-2xl cursor-pointer"
+              >
+                <div className="h-64 overflow-hidden">
+                  <Image
+                    src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1766911492/YARA_id3ssb.jpg"
+                    alt="Parfums Floraux"
+                    width={800}
+                    height={400}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <h4 className="mb-4 text-2xl font-headline font-bold">Jardins Floraux</h4>
-                <p className="text-muted-foreground group-hover:text-white/90 leading-relaxed mb-6 italic">
-                  "L'élégance des roses de Taif et des fleurs précieuses d'Orient"
-                </p>
-                <div className="flex items-center text-[#c58a3d] group-hover:text-white font-bold cursor-pointer">
-                  <span>Voir la collection</span>
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                <div className="p-8 group-hover:bg-gradient-to-br group-hover:from-gray-500 group-hover:to-amber-600 group-hover:text-white transition-all duration-300">
+                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-[#b67a2d] group-hover:bg-white group-hover:text-[#b67a2d] transition-colors">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
+                  <h4 className="mb-4 text-2xl font-headline font-bold">Jardins Floraux</h4>
+                  <p className="text-muted-foreground group-hover:text-white/90 leading-relaxed mb-6 italic">
+                    "L'élégance des roses de Taif et des fleurs précieuses d'Orient"
+                  </p>
+                  <div className="flex items-center text-[#c58a3d] group-hover:text-white font-bold">
+                    <span>Voir la collection</span>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </section>
@@ -1057,8 +1059,8 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button asChild size="lg" className="group text-lg px-8">
-                    <Link href="/shop/all?search=khamrah">
-                      Voir KHAMRAH
+                    <Link href="/parfum/asad-lattafa">
+                      Voir ASAD
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
