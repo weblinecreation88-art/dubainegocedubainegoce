@@ -836,41 +836,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Perfume Section */}
-      {featuredPerfume && (
-        <section className="py-16 md:py-24 bg-card">
-            <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    <div className="prose prose-invert prose-headings:font-headline prose-headings:text-primary max-w-none">
-                        <p className="text-primary font-semibold">Parfum à l'honneur</p>
-                        <h2 className="text-4xl md:text-5xl mt-2">{featuredPerfume.name}</h2>
-                        <p className="text-lg text-muted-foreground">
-                           {featuredPerfume.shortDescription}
-                        </p>
-                        <Button asChild size="lg" className="group mt-4">
-                            <Link href={`/parfum/${featuredPerfume.slug}`}>
-                                Découvrir ce trésor
-                                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                            </Link>
-                        </Button>
-                    </div>
-                    <div>
-                        <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl shadow-primary/20">
-                            <video
-                                src="https://res.cloudinary.com/dhjwimevi/video/upload/v1766255881/grok-video-00e16448-d9d4-42d7-b008-a52bb2d894e6_mrdac7.mp4"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                preload="metadata"
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-      )}
+      {/* Featured Perfume Section - KHAMRAH */}
+      <section className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4">
+              <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                  <div className="prose prose-invert prose-headings:font-headline prose-headings:text-primary max-w-none">
+                      <p className="text-primary font-semibold">Parfum à l'honneur</p>
+                      <h2 className="text-4xl md:text-5xl mt-2">KHAMRAH</h2>
+                      <p className="text-lg text-muted-foreground">
+                         Un chef-d'œuvre oriental aux notes envoûtantes de cannelle, vanille et oud. KHAMRAH de Lattafa est devenu une icône incontournable de la parfumerie orientale.
+                      </p>
+                      <Button asChild size="lg" className="group mt-4">
+                          <Link href="/shop/all?search=khamrah">
+                              Découvrir ce trésor
+                              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                          </Link>
+                      </Button>
+                  </div>
+                  <div>
+                      <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl shadow-primary/20">
+                          <video
+                              src="https://res.cloudinary.com/dhjwimevi/video/upload/v1766255881/grok-video-00e16448-d9d4-42d7-b008-a52bb2d894e6_mrdac7.mp4"
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              preload="metadata"
+                              className="absolute inset-0 w-full h-full object-cover"
+                          />
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
 
       <div className="my-16 container mx-auto px-4">
           <PerfumeFinderCta />
