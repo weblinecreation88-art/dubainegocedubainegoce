@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
+import { getFragranceFamilies, getNewArrivals, getProducts, getGenderCategories } from "@/lib/data";
+import { Card } from "@/components/ui/card";
 import { ProductCard } from "@/components/product/product-card";
 import { SocialFollowSection } from "@/components/layout/social-follow-section";
 import {
@@ -23,6 +24,7 @@ import { GoogleReviewsCta } from "@/components/google-reviews-cta";
 export default function Home() {
   const fragranceFamilies = getFragranceFamilies();
   const newArrivals = getNewArrivals();
+  const genders = getGenderCategories();
 
   const bestsellersSlugs = [
     'yara-lattafa',
@@ -69,132 +71,151 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Design Moderne avec Image */}
-      <section className="relative min-h-screen w-full overflow-hidden flex items-center">
-        {/* Image en arrière-plan */}
+      {/* Hero Section - Deux colonnes : Texte + Vidéo */}
+      <section className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center">
+        {/* Fond décoratif */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://res.cloudinary.com/dzagwz94z/image/upload/v1768321014/hero_baroque_rouge_bpajum.png"
-            alt="Parfums de luxe - Design baroque oriental"
-            fill
-            className="object-cover"
-            priority
-          />
-
-          {/* Overlay gradient sophistiqué */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-
-          {/* Effet de particules bleues (effet visuel subtil) */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#c58a3d] rounded-full animate-pulse blur-sm"></div>
-            <div className="absolute top-1/3 left-1/3 w-1 h-1 bg-[#b67a2d] rounded-full animate-pulse blur-sm delay-75"></div>
-            <div className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-[#122561] rounded-full animate-pulse blur-sm delay-150"></div>
-            <div className="absolute top-2/3 left-1/4 w-1 h-1 bg-[#c58a3d] rounded-full animate-pulse blur-sm delay-300"></div>
-          </div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c58a3d]/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#c58a3d]/5 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Contenu principal - Texte à gauche */}
-        <div className="relative z-10 w-full py-20 md:py-32">
+        <div className="relative z-10 w-full py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <div className="max-w-2xl">
-              {/* Badge premium */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 mb-8 rounded-full border border-[#c58a3d]/30 bg-[#c58a3d]/10 backdrop-blur-md"
-              >
-                <Sparkles className="h-4 w-4 text-[#c58a3d]" />
-                <span className="text-[#c58a3d] font-semibold text-sm tracking-wider uppercase">
-                  L'Âme de Dubaï en Flacon
-                </span>
-              </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-              {/* Titre principal */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-headline font-bold mb-6 text-white leading-tight"
-              >
-                Fragrances{' '}
-                <span className="bg-gradient-to-r from-[#d4a053] via-[#c58a3d] to-[#b67a2d] bg-clip-text text-transparent">
-                  Prestigieuses
-                </span>
-                {' '}d'Orient
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed"
-              >
-                Découvrez une collection exclusive de parfums rares. DubaiNegoce sélectionne pour vous les essences les plus précieuses, entre tradition séculaire et modernité audacieuse.
-              </motion.p>
-
-              {/* Prix fixe badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="inline-block mb-10 px-8 py-4 rounded-2xl bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] shadow-2xl shadow-[#c58a3d]/30"
-              >
-                <p className="text-white font-bold text-3xl md:text-4xl">
-                  35€
-                  <span className="text-lg md:text-xl font-normal ml-2 opacity-90">
-                    / Flacon
-                  </span>
-                </p>
-                <p className="text-white/90 text-sm mt-1">
-                  Prix fixe • Livraison gratuite
-                </p>
-              </motion.div>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1 }}
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  className="group bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] hover:from-[#b67a2d] hover:to-[#a56a1d] text-white px-10 py-7 text-lg font-bold shadow-2xl shadow-[#c58a3d]/30 rounded-xl transition-all hover:scale-105"
+              {/* Colonne Gauche - Texte */}
+              <div>
+                {/* Badge premium */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 mb-8 rounded-full border border-[#c58a3d]/30 bg-[#c58a3d]/10 backdrop-blur-md"
                 >
-                  <Link href="/shop">
-                    Explorer la Collection
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
+                  <Sparkles className="h-4 w-4 text-[#c58a3d]" />
+                  <span className="text-[#c58a3d] font-semibold text-sm tracking-wider uppercase">
+                    L'Âme de Dubaï en Flacon
+                  </span>
+                </motion.div>
+
+                {/* Titre principal */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold mb-6 text-white leading-tight"
+                >
+                  Fragrances{' '}
+                  <span className="bg-gradient-to-r from-[#d4a053] via-[#c58a3d] to-[#b67a2d] bg-clip-text text-transparent">
+                    Prestigieuses
+                  </span>
+                  {' '}d'Orient
+                </motion.h1>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed"
+                >
+                  Découvrez une collection exclusive de parfums rares. DubaiNegoce sélectionne pour vous les essences les plus précieuses.
+                </motion.p>
+
+                {/* Prix fixe badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                  className="inline-block mb-8 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] shadow-2xl shadow-[#c58a3d]/30"
+                >
+                  <p className="text-white font-bold text-2xl md:text-3xl">
+                    35€
+                    <span className="text-base font-normal ml-2 opacity-90">
+                      / Flacon
+                    </span>
+                  </p>
+                  <p className="text-white/90 text-sm mt-1">
+                    Prix fixe • Livraison gratuite
+                  </p>
+                </motion.div>
+
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1 }}
+                  className="mb-8"
+                >
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] hover:from-[#b67a2d] hover:to-[#a56a1d] text-white px-8 py-6 text-lg font-bold shadow-2xl shadow-[#c58a3d]/30 rounded-xl transition-all hover:scale-105"
+                  >
+                    <Link href="/shop">
+                      Explorer la Collection
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                </motion.div>
+
+                {/* Trust badges */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 1.2 }}
+                  className="flex flex-wrap gap-4 text-gray-400 text-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-green-400"></div>
+                    <span>100% Authentique</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-blue-400"></div>
+                    <span>Livraison Rapide</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-[#c58a3d]"></div>
+                    <span>Paiement Sécurisé</span>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Colonne Droite - Vidéo */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="relative"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-[#c58a3d]/20 border-2 border-[#c58a3d]/30">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full aspect-[4/5] object-cover"
+                  >
+                    <source src="https://res.cloudinary.com/dhjwimevi/video/upload/v1768402825/WhatsApp_Video_2026-01-09_at_11.14.29_m4vr47.mp4" type="video/mp4" />
+                    Votre navigateur ne supporte pas la vidéo.
+                  </video>
+                  {/* Overlay léger */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+
+                  {/* Badge sur la vidéo */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-black/60 backdrop-blur-md rounded-xl p-4 border border-[#c58a3d]/30">
+                      <p className="text-[#c58a3d] font-bold text-lg">KHAMRAH</p>
+                      <p className="text-white/80 text-sm">Le parfum iconique de Lattafa</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Décoration autour de la vidéo */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-[#c58a3d]/30 rounded-2xl -z-10"></div>
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 border-2 border-[#c58a3d]/20 rounded-2xl -z-10"></div>
               </motion.div>
 
-              {/* Trust badges */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="mt-12 flex flex-wrap gap-6 text-gray-300 text-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-green-400"></div>
-                  <span>100% Authentique</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-blue-400"></div>
-                  <span>Livraison Rapide</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-purple-400"></div>
-                  <span>Paiement Sécurisé</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-[#c58a3d]"></div>
-                  <span>Service Client FR</span>
-                </div>
-              </motion.div>
             </div>
           </div>
         </div>
@@ -242,6 +263,53 @@ export default function Home() {
                 <div className="text-gray-400 uppercase tracking-widest text-xs font-bold">
                   {stat.label}
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gender Categories Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-headline text-center mb-12"
+          >
+            Explorer par <span className="text-[#c58a3d]">Genre</span>
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {genders.map((gender, index) => (
+              <motion.div
+                key={gender.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Link href={`/shop/all?genders=${gender.name}`}>
+                  <Card className="overflow-hidden group relative text-center rounded-2xl h-full border-2 border-transparent hover:border-[#c58a3d]/50 transition-all duration-300">
+                    <div className="relative w-full h-80">
+                      <Image
+                        src={gender.imageUrl}
+                        alt={gender.displayName}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col items-center justify-end p-6">
+                      <h3 className="text-3xl font-headline text-white mb-2">{gender.displayName}</h3>
+                      <span className="inline-flex items-center text-[#c58a3d] font-semibold group-hover:text-white transition-colors">
+                        Voir la sélection
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-2" />
+                      </span>
+                    </div>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
