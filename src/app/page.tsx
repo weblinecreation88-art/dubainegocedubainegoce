@@ -1029,7 +1029,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-headline font-bold text-primary mb-2">KHAMRAH</h2>
+                  <h2 className="text-5xl md:text-6xl font-headline font-bold text-primary mb-2">KHAMRAH QAHWA</h2>
                   <p className="text-xl text-muted-foreground">L'élégance orientale à prix fixe</p>
                 </div>
 
@@ -1038,14 +1038,14 @@ export default function Home() {
                     <span className="text-6xl font-bold text-primary">35€</span>
                     <span className="text-2xl text-muted-foreground line-through">49.99€</span>
                   </div>
-                  <p className="text-lg font-semibold text-primary mt-2">Prix fixe - Toutes les fragrances KHAMRAH</p>
-                  <p className="text-sm text-muted-foreground mt-2">Profitez de cette offre exceptionnelle sur l'ensemble de la collection</p>
+                  <p className="text-lg font-semibold text-primary mt-2">Prix fixe - Toutes les fragrances KHAMRAH QAHWA</p>
+                  <p className="text-sm text-muted-foreground mt-2">Un parfum gourmand aux notes de café et de vanille</p>
                 </div>
 
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-primary"></div>
-                    <span className="text-muted-foreground">Toutes les variantes incluses</span>
+                    <span className="text-muted-foreground">Notes de café torréfié</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-primary"></div>
@@ -1059,8 +1059,8 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button asChild size="lg" className="group text-lg px-8">
-                    <Link href="/parfum/asad-lattafa">
-                      Voir ASAD
+                    <Link href="/shop/all?search=khamrah">
+                      Voir KHAMRAH QAHWA
                       <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -1073,7 +1073,7 @@ export default function Home() {
               <div className="relative h-[400px] lg:h-[500px] order-1 lg:order-2">
                 <Image
                   src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1764270620/Screenshot_2025-06-02-00-12-11-453_com.android.chrome-edit_1_prxl15.jpg"
-                  alt="KHAMRAH - Offre promotionnelle"
+                  alt="KHAMRAH QAHWA - Parfum Lattafa aux notes de café"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
