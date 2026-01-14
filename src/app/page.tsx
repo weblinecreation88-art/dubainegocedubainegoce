@@ -58,8 +58,6 @@ export default function Home() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [bestsellerApi, setBestsellerApi] = React.useState<any>();
   const [newArrivalsApi, setNewArrivalsApi] = React.useState<any>();
-  const [fwApi, setFwApi] = React.useState<any>();
-  const [lattafaApi, setLattafaApi] = React.useState<any>();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,24 +83,6 @@ export default function Home() {
     }, 3000);
     return () => clearInterval(interval);
   }, [newArrivalsApi]);
-
-  // Autoplay pour Fragrance World
-  useEffect(() => {
-    if (!fwApi) return;
-    const interval = setInterval(() => {
-      fwApi.scrollNext();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [fwApi]);
-
-  // Autoplay pour Lattafa
-  useEffect(() => {
-    if (!lattafaApi) return;
-    const interval = setInterval(() => {
-      lattafaApi.scrollNext();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [lattafaApi]);
 
 
   return (
@@ -782,6 +762,72 @@ export default function Home() {
           </section>
       )}
 
+      {/* Featured Brand Section - My Fragrance World */}
+      {allFwProducts.length > 0 && (
+          <section className="py-16 md:py-24 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                  <h2 className="text-3xl font-headline">My Fragrance World</h2>
+                  <p className="text-muted-foreground mt-2">L'audace et la créativité à leur paroxysme.</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {allFwProducts.slice(0, 8).map((product, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                  >
+                    <ProductCard product={product} />
+                  </motion.div>
+                ))}
+              </div>
+              <div className="flex justify-center mt-8">
+                <Button asChild size="lg" variant="outline" className="group">
+                  <Link href="/shop/all?brands=Fragrance%20World">
+                    Voir toute la collection Fragrance World
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </section>
+      )}
+
+      {/* Lattafa Section */}
+      {lattafaProducts.length > 0 && (
+        <section className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl font-headline">L'Univers Lattafa</h2>
+                <p className="text-muted-foreground mt-2">Plongez dans les créations iconiques de Lattafa.</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {lattafaProducts.slice(0, 8).map((product, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex justify-center mt-8">
+              <Button asChild size="lg" variant="outline" className="group">
+                <Link href="/shop/all?brands=Lattafa">
+                  Découvrir tous les parfums Lattafa
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Fragrance Families Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -845,86 +891,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </section>
-      )}
-
-      {/* Featured Brand Section - My Fragrance World */}
-      {allFwProducts.length > 0 && (
-          <section className="py-16 md:py-24 bg-background overflow-hidden">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                  <h2 className="text-3xl font-headline">My Fragrance World</h2>
-                  <p className="text-muted-foreground mt-2">L'audace et la créativité à leur paroxysme.</p>
-              </div>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                setApi={setFwApi}
-                className="w-full"
-              >
-                <CarouselContent>
-                  {allFwProducts.slice(0, 8).map((product, index) => (
-                    <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                      <div className="p-1">
-                        <ProductCard product={product} />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
-              <div className="flex justify-center mt-8">
-                <Button asChild size="lg" variant="outline" className="group">
-                  <Link href="/shop/all?brands=Fragrance%20World">
-                    Voir toute la collection Fragrance World
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </section>
-      )}
-      
-      {/* Lattafa Section */}
-      {lattafaProducts.length > 0 && (
-        <section className="py-16 md:py-24 bg-card">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl font-headline">L'Univers Lattafa</h2>
-                <p className="text-muted-foreground mt-2">Plongez dans les créations iconiques de Lattafa.</p>
-            </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              setApi={setLattafaApi}
-              className="w-full"
-            >
-              <CarouselContent>
-                {lattafaProducts.map((product, index) => (
-                  <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                    <div className="p-1">
-                      <ProductCard product={product} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
-            <div className="flex justify-center mt-8">
-              <Button asChild size="lg" variant="outline" className="group">
-                <Link href="/shop/all?brands=Lattafa">
-                  Découvrir tous les parfums Lattafa
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
-            </div>
-          </div>
         </section>
       )}
 
