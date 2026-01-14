@@ -271,7 +271,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center border-r border-white/10 last:border-none px-4"
+                className="text-center md:border-r border-white/10 md:last:border-none px-4"
               >
                 <div className="text-4xl mb-3">{stat.icon}</div>
                 <div className="text-3xl md:text-5xl font-headline font-bold bg-gradient-to-r from-[#d4a053] via-[#c58a3d] to-[#b67a2d] bg-clip-text text-transparent mb-2">
