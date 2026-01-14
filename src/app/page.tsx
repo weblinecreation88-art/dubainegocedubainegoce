@@ -44,6 +44,8 @@ export default function Home() {
     'fakhar-black-lattafa',
     'ameer-al-oudh-intense-oud-lattafa',
     'mayar-lattafa',
+    'ramz-gold-lattafa-mixte',
+    'raghba-lattafa-mixte',
   ];
   const lattafaProducts = getProducts().filter(p => lattafaSlugs.includes(p.slug));
 
@@ -56,8 +58,6 @@ export default function Home() {
   ];
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [bestsellerApi, setBestsellerApi] = React.useState<any>();
-  const [newArrivalsApi, setNewArrivalsApi] = React.useState<any>();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,24 +65,6 @@ export default function Home() {
     }, 5000); // Change video every 5 seconds
     return () => clearInterval(interval);
   }, [heroVideos.length]);
-
-  // Autoplay pour Best-sellers
-  useEffect(() => {
-    if (!bestsellerApi) return;
-    const interval = setInterval(() => {
-      bestsellerApi.scrollNext();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [bestsellerApi]);
-
-  // Autoplay pour Nouveautés
-  useEffect(() => {
-    if (!newArrivalsApi) return;
-    const interval = setInterval(() => {
-      newArrivalsApi.scrollNext();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [newArrivalsApi]);
 
 
   return (
@@ -622,26 +604,35 @@ export default function Home() {
                   <h2 className="text-3xl font-headline">Nouveautés</h2>
                   <p className="text-muted-foreground mt-2">Les dernières pépites de notre collection.</p>
               </div>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                setApi={setNewArrivalsApi}
-                className="w-full"
+
+              {/* Grille 4x2 */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true }}
               >
-                <CarouselContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {newArrivals.slice(0, 8).map((product, index) => (
-                    <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                      <div className="p-1">
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="relative group">
+                        {/* Badge "Nouveau" flottant */}
+                        <div className="absolute -top-2 -right-2 z-20 bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-green-500/50 animate-pulse">
+                          ✨ Nouveau
+                        </div>
                         <ProductCard product={product} />
                       </div>
-                    </CarouselItem>
+                    </motion.div>
                   ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
+                </div>
+              </motion.div>
+
               <div className="flex justify-center mt-8">
                 <Button asChild size="lg" variant="outline" className="group">
                   <Link href="/shop">
@@ -689,45 +680,32 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              {/* Carousel avec style amélioré */}
+              {/* Grille 4x2 */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                  setApi={setBestsellerApi}
-                  className="w-full"
-                >
-                  <CarouselContent className="-ml-2 md:-ml-4">
-                    {bestsellers.map((product, index) => (
-                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.4, delay: index * 0.1 }}
-                          viewport={{ once: true }}
-                          className="h-full"
-                        >
-                          <div className="relative group">
-                            {/* Badge "Best-Seller" flottant */}
-                            <div className="absolute -top-2 -right-2 z-20 bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-[#c58a3d]/50 animate-pulse">
-                              ⭐ Best
-                            </div>
-                            <ProductCard product={product} />
-                          </div>
-                        </motion.div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="hidden md:flex -left-12 h-12 w-12 border-2 border-[#c58a3d] bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800" />
-                  <CarouselNext className="hidden md:flex -right-12 h-12 w-12 border-2 border-[#c58a3d] bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800" />
-                </Carousel>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {bestsellers.slice(0, 8).map((product, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="relative group">
+                        {/* Badge "Best-Seller" flottant */}
+                        <div className="absolute -top-2 -right-2 z-20 bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-[#c58a3d]/50 animate-pulse">
+                          ⭐ Best
+                        </div>
+                        <ProductCard product={product} />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
 
               {/* CTA Button avec effet de glow */}
