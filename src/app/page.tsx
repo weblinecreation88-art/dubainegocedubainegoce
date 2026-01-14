@@ -32,7 +32,9 @@ export default function Home() {
     'ameer-al-oudh-intense-oud-lattafa',
     'badee-al-oud-oud-for-glory-lattafa',
     'fakhar-black-lattafa',
-    'mayar-lattafa'
+    'mayar-lattafa',
+    'eclaire-lattafa',
+    'kenzie-marshmallow-french-avenue'
   ];
   const bestsellers = getProducts().filter(p => bestsellersSlugs.includes(p.slug));
 
