@@ -8,7 +8,6 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { getFragranceFamilies, getNewArrivals, getProducts, getGenderCategories } from "@/lib/data";
 import { Card } from "@/components/ui/card";
 import { ProductCard } from "@/components/product/product-card";
-import { SocialFollowSection } from "@/components/layout/social-follow-section";
 import {
   Carousel,
   CarouselContent,
@@ -774,9 +773,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Social Follow Section */}
-      <SocialFollowSection />
 
     </div>
   );
