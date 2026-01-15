@@ -259,7 +259,7 @@ export default function CartPage() {
                 </div>
                 <div className="flex justify-between">
                   <span>Livraison</span>
-                  <span>{selectedShipping.cost > 0 ? `${selectedShipping.cost.toFixed(2)} €` : 'Gratuite'}</span>
+                  <span>{selectedShipping.cost.toFixed(2)} €</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">

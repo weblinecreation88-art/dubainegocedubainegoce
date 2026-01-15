@@ -67,7 +67,17 @@
       "Bash(git stash:*)",
       "Bash(dir:*)",
       "Bash(gcloud services list:*)",
-      "Bash(gcloud logging read:*)"
+      "Bash(gcloud logging read:*)",
+      "Bash(npx tsx:*)",
+      "Bash(node check-images.js:*)",
+      "Bash(timeout 10 tail:*)",
+      "Bash(timeout:*)",
+      "Bash(for slug in \"khamrah-lattafa\" \"yara-lattafa\" \"zaffiro-regale-maison-alhambra\")",
+      "Bash(do echo -n \"$slug: \")",
+      "Bash(done)",
+      "Bash(npx ts-node:*)",
+      "Bash(node src/scripts/generate-seo-descriptions.js:*)",
+      "Bash(cmd /c \"taskkill /F /PID 24852\")"
     ]
   }
 }

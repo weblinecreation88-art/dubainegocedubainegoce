@@ -9,7 +9,7 @@ export function StructuredData() {
     "alternateName": "Dubai Negoce",
     "url": siteUrl,
     "logo": `${siteUrl}/logo.png`,
-    "description": "Spécialiste des parfums authentiques de Dubaï. Prix unique 35€. Livraison gratuite. Lattafa, Maison Alhambra, Fragrance World.",
+    "description": "Spécialiste des parfums authentiques de Dubaï. Prix unique 35€. Livraison Mondial Relay dès 5,10€. Lattafa, Maison Alhambra, Fragrance World.",
     "email": "contact@dubainegoce.fr",
     "telephone": "+33-XX-XX-XX-XX",
     "priceRange": "35€",

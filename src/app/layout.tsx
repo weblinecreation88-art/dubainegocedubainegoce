@@ -74,10 +74,10 @@ const ReassuranceSection = () => {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Parfums de Dubaï 35€ | Lattafa, Alhambra, Fragrance World | Livraison Gratuite',
+    default: 'Parfums de Dubaï 35€ | Lattafa, Alhambra, Fragrance World | DubaiNegoce',
     template: '%s | DubaiNegoce - Parfums Orientaux',
   },
-  description: 'Parfums authentiques de Dubaï à prix fixe 35€ - Livraison GRATUITE. Découvrez YARA, Khamrah, Asad (Lattafa), Zaffiro (Alhambra) et 50+ fragrances. 100% authentiques, importés directement de Dubaï. Stock permanent, livraison rapide 48-72h.',
+  description: 'Parfums authentiques de Dubaï à prix fixe 35€. Découvrez YARA, Khamrah, Asad (Lattafa), Zaffiro (Alhambra) et 140+ fragrances. 100% authentiques, importés directement de Dubaï. Stock permanent, livraison Mondial Relay dès 5,10€.',
   keywords: [
     // Mots-clés principaux SEO 2025
     'parfums Dubaï authentiques',
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     // Intentions transactionnelles
     'acheter parfum Dubaï',
     'parfum oriental 35 euros',
-    'parfum pas cher livraison gratuite',
+    'parfum pas cher',
     'parfum homme Dubaï',
     'parfum femme oriental',
     'parfum mixte',
@@ -121,8 +121,8 @@ export const metadata: Metadata = {
     'où acheter parfum Lattafa en France',
   ],
   openGraph: {
-    title: 'Parfums Dubaï 35€ | Lattafa, Alhambra | Livraison GRATUITE',
-    description: 'Découvrez notre collection exclusive de parfums orientaux authentiques : YARA, Khamrah, Asad, Zaffiro. Prix unique 35€. Livraison Mondial Relay OFFERTE. 100% authentiques, importés directement de Dubaï.',
+    title: 'Parfums Dubaï 35€ | Lattafa, Alhambra | DubaiNegoce',
+    description: 'Découvrez notre collection exclusive de parfums orientaux authentiques : YARA, Khamrah, Asad, Zaffiro. Prix unique 35€. 100% authentiques, importés directement de Dubaï. Livraison Mondial Relay dès 5,10€.',
     url: siteUrl,
     siteName: 'DubaiNegoce',
     images: [
@@ -139,7 +139,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Parfums Dubaï 35€ | Lattafa, Alhambra',
-    description: 'YARA, Khamrah, Asad, Zaffiro. Prix fixe 35€. Livraison OFFERTE. 100% authentiques importés de Dubaï.',
+    description: 'YARA, Khamrah, Asad, Zaffiro. Prix fixe 35€. 100% authentiques importés de Dubaï. Livraison dès 5,10€.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {

@@ -137,7 +137,7 @@ export default function Home() {
                     </span>
                   </p>
                   <p className="text-white/90 text-sm mt-1">
-                    Prix fixe • Livraison gratuite
+                    Prix fixe 35€ • Livraison dès 5,10€
                   </p>
                 </motion.div>
 
@@ -758,7 +758,7 @@ export default function Home() {
             </h2>
             <div className="text-base md:text-lg leading-relaxed space-y-4">
               <p>
-                Bienvenue chez <strong>DubaiNegoce</strong>, votre spécialiste des <strong>parfums orientaux authentiques</strong> importés directement de Dubaï. Nous proposons une sélection exclusive de <strong>parfums de luxe à prix accessible</strong> : tous nos <strong>parfums sont à 35€</strong> avec la <strong>livraison Mondial Relay GRATUITE</strong>.
+                Bienvenue chez <strong>DubaiNegoce</strong>, votre spécialiste des <strong>parfums orientaux authentiques</strong> importés directement de Dubaï. Nous proposons une sélection exclusive de <strong>parfums de luxe à prix accessible</strong> : tous nos <strong>parfums sont à 35€</strong>. <strong>Livraison Mondial Relay dès 5,10€</strong>.
               </p>
               <p>
                 Découvrez les plus grandes marques de <strong>parfumerie de Dubaï</strong> : <strong>Lattafa</strong> (avec les iconiques <strong>YARA</strong>, <strong>Khamrah</strong>, <strong>Asad</strong>), <strong>Maison Alhambra</strong> (célèbre pour <strong>Zaffiro</strong>), <strong>Fragrance World</strong> et <strong>French Avenue</strong>. Chaque <strong>eau de parfum</strong> est <strong>100% authentique</strong>, garantie et contrôlée.

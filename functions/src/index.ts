@@ -119,3 +119,53 @@ export const generateGoogleFeed = functions.https.onCall(async (data, context) =
     throw new functions.https.HttpsError('internal', 'Failed to generate product feed.', error.message);
   }
 });
+
+/**
+ * Cloud Function to update stock for all products
+ * Sets stock to 100 for all products to fix Google Merchant Center inventory issues
+ *
+ * Usage: Call this function from Firebase Console or via HTTP
+ */
+export const updateAllProductsStock = functions.https.onCall(async (data, context) => {
+  console.log("Starting stock update for all products...");
+
+  try {
+    // Get all products from Firestore
+    const productsSnapshot = await db.collection('products').get();
+
+    if (productsSnapshot.empty) {
+      console.log("No products found in Firestore");
+      return { success: false, message: 'No products found' };
+    }
+
+    console.log(`Found ${productsSnapshot.size} products to update`);
+
+    const batch = db.batch();
+    let updatedCount = 0;
+
+    // Update each product with stock = 100
+    productsSnapshot.forEach((doc) => {
+      const productRef = db.collection('products').doc(doc.id);
+      batch.update(productRef, {
+        stock: 100,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      });
+      updatedCount++;
+    });
+
+    // Commit the batch update
+    await batch.commit();
+
+    console.log(`Successfully updated stock for ${updatedCount} products`);
+
+    return {
+      success: true,
+      message: `Updated ${updatedCount} products with stock: 100`,
+      count: updatedCount
+    };
+
+  } catch (error) {
+    console.error("Error updating stock:", error);
+    throw new functions.https.HttpsError('internal', 'Failed to update product stock');
+  }
+});

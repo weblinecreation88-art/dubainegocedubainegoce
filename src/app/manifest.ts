@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'DubaiNegoce - Parfums de Dubaï Authentiques',
     short_name: 'DubaiNegoce',
-    description: 'Parfums authentiques de Dubaï à prix fixe 35€. Lattafa, Maison Alhambra, Fragrance World. Livraison gratuite.',
+    description: 'Parfums authentiques de Dubaï à prix fixe 35€. Lattafa, Maison Alhambra, Fragrance World. Livraison dès 5,10€.',
     start_url: '/',
     scope: '/',
     display: 'standalone',

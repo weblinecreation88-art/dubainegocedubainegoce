@@ -18,8 +18,18 @@ export const getColissimoCost = (weightInGrams: number): number => {
 };
 
 export const getMondialRelayCost = (weightInGrams: number): number => {
-    // Livraison Mondial Relay gratuite sans condition
-    return 0;
+    // Grille tarifaire Mondial Relay 2026
+    if (weightInGrams <= 0) return 0;
+    if (weightInGrams <= 250) return 4.10;
+    if (weightInGrams <= 500) return 4.10;
+    if (weightInGrams <= 750) return 5.10;
+    if (weightInGrams <= 1000) return 5.10;
+    if (weightInGrams <= 2000) return 6.60;
+    if (weightInGrams <= 4000) return 7.99;
+    if (weightInGrams <= 5000) return 15.99;
+    if (weightInGrams <= 7000) return 15.99;
+    if (weightInGrams <= 10000) return 15.99;
+    return 15.99; // Fallback for weights over 10kg
 };
 
 
