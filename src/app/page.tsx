@@ -71,9 +71,9 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-hidden">
       {/* Hero Section - Deux colonnes : Texte + Vidéo */}
-      <section className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center">
+      <section className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center overflow-hidden">
         {/* Fond décoratif */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c58a3d]/10 rounded-full blur-3xl"></div>
@@ -197,7 +197,7 @@ export default function Home() {
                     playsInline
                     className="w-full aspect-[4/5] object-cover"
                   >
-                    <source src="https://res.cloudinary.com/dhjwimevi/video/upload/v1768402825/WhatsApp_Video_2026-01-09_at_11.14.29_m4vr47.mp4" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/dhjwimevi/video/upload/2026-01-10-083830581_oem7s6.mp4" type="video/mp4" />
                     Votre navigateur ne supporte pas la vidéo.
                   </video>
                   {/* Overlay léger */}
@@ -342,9 +342,9 @@ export default function Home() {
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                       viewport={{ once: true }}
                     >
-                      <div className="relative group">
+                      <div className="relative group pt-2">
                         {/* Badge "Nouveau" flottant */}
-                        <div className="absolute -top-2 -right-2 z-20 bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-green-500/50 animate-pulse">
+                        <div className="absolute top-0 right-0 z-20 bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg shadow-green-500/50 animate-pulse">
                           ✨ Nouveau
                         </div>
                         <ProductCard product={product} />
@@ -368,7 +368,7 @@ export default function Home() {
       
       {/* Bestsellers Section - Enhanced */}
       {bestsellers.length > 0 && (
-          <section id="bestsellers" className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900 scroll-mt-20 relative overflow-hidden">
+          <section id="bestsellers" className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-black dark:to-gray-900 scroll-mt-20 relative overflow-x-hidden">
             {/* Effets décoratifs en arrière-plan */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#c58a3d]/5 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#c58a3d]/5 rounded-full blur-3xl"></div>
@@ -417,9 +417,9 @@ export default function Home() {
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                       viewport={{ once: true }}
                     >
-                      <div className="relative group">
+                      <div className="relative group pt-2">
                         {/* Badge "Best-Seller" flottant */}
-                        <div className="absolute -top-2 -right-2 z-20 bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg shadow-[#c58a3d]/50 animate-pulse">
+                        <div className="absolute top-0 right-0 z-20 bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] text-white px-2 py-1 rounded-full text-xs font-bold shadow-lg shadow-[#c58a3d]/50 animate-pulse">
                           ⭐ Best
                         </div>
                         <ProductCard product={product} />
