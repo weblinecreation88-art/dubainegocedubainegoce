@@ -197,7 +197,7 @@ export default function Home() {
                     playsInline
                     className="w-full aspect-[4/5] object-cover"
                   >
-                    <source src="https://res.cloudinary.com/dhjwimevi/video/upload/2026-01-10-083830581_oem7s6.mp4" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/db2ljqpdt/video/upload/v1768561698/lv_7517293458105683261_20260116120630_cvnhe7.mp4" type="video/mp4" />
                     Votre navigateur ne supporte pas la vidéo.
                   </video>
                   {/* Overlay léger */}
