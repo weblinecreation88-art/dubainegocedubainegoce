@@ -22,8 +22,7 @@ env:
   #   value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
   - variable: GEMINI_API_KEY
     value: AIzaSyDYbp8HUvKRpQMwY1GX8vK1KmYyJS52Xsk
-  - variable: NEXT_PUBLIC_SENDCLOUD_ID
-    secret: SENDCLOUD_ID
+
 
   # --- Secrets (références à Google Cloud Secret Manager) ---
   # La clé secrète LIVE de Stripe (commence par sk_live_...)
