@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
-import { MondialRelayWidget, type PointRelais } from '@/components/mondial-relay-widget';
+import { BoxtalMapWidget, type PointRelais } from '@/components/boxtal-map-widget';
 
 const PERFUME_WEIGHT_G = 750;
 
@@ -263,9 +263,9 @@ export default function CartPage() {
                 </CardContent>
              </Card>
 
-             {/* Widget Mondial Relay */}
+             {/* Widget Boxtal Map pour Points Relais */}
              {selectedShippingId === 'mondial-relay' && (
-               <MondialRelayWidget
+               <BoxtalMapWidget
                  onPointSelected={setSelectedRelayPoint}
                  selectedPoint={selectedRelayPoint}
                />

@@ -14,6 +14,7 @@
     "postinstall": "cd functions && npm install"
   },
   "dependencies": {
+    "@boxtal/parcel-point-map": "0.0.9",
     "@genkit-ai/google-genai": "^1.0.0",
     "@genkit-ai/next": "^1.0.0",
     "@hookform/resolvers": "^3.9.0",
