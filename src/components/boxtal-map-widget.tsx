@@ -32,6 +32,14 @@ export function BoxtalMapWidget({ onPointSelected, selectedPoint }: BoxtalMapWid
 
   const accessToken = process.env.NEXT_PUBLIC_BOXTAL_MAP_ACCESS_TOKEN;
 
+  useEffect(() => {
+    console.log('[Boxtal Debug] Environment check:', {
+      hasAccessToken: !!accessToken,
+      tokenPrefix: accessToken ? accessToken.substring(0, 5) + '...' : 'undefined',
+      nodeEnv: process.env.NODE_ENV
+    });
+  }, [accessToken]);
+
   const initializeMap = useCallback(async (zipCode: string, city?: string) => {
     if (!mapContainerRef.current || !accessToken) {
       if (!accessToken) {
