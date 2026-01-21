@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
-import { BoxtalMapWidget, type PointRelais } from '@/components/boxtal-map-widget';
+import { SendcloudMapWidget, type PointRelais } from '@/components/sendcloud-map-widget';
 
 const PERFUME_WEIGHT_G = 750;
 
@@ -59,7 +59,7 @@ export default function CartPage() {
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const totalAmount = subtotal + (selectedShipping?.cost || 0);
 
-  
+
   const handleCheckout = async () => {
     if (isUserLoading) return;
     if (!user || !firestore) {
@@ -77,95 +77,95 @@ export default function CartPage() {
 
     try {
 
-        // Prepare line items (products + shipping as a separate item)
-        const lineItems = [
-            ...cart.map(item => ({
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: item.name,
-                        images: [item.image],
-                        metadata: {
-                           productId: item.id,
-                        }
-                    },
-                    unit_amount: Math.round(item.price * 100),
-                },
-                quantity: item.quantity,
-            })),
-            // Add shipping as a line item
-            {
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: `Livraison ${selectedShipping.name}`,
-                        description: selectedShipping.description,
-                    },
-                    unit_amount: Math.round(selectedShipping.cost * 100),
-                },
-                quantity: 1,
-            }
-        ];
-
-        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
-            mode: 'payment',
-            line_items: lineItems,
-            shipping_address_collection: {
-                allowed_countries: ['FR', 'BE', 'LU', 'CH'],
+      // Prepare line items (products + shipping as a separate item)
+      const lineItems = [
+        ...cart.map(item => ({
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: item.name,
+              images: [item.image],
+              metadata: {
+                productId: item.id,
+              }
             },
-            invoice_creation: {
-                enabled: true,
+            unit_amount: Math.round(item.price * 100),
+          },
+          quantity: item.quantity,
+        })),
+        // Add shipping as a line item
+        {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: `Livraison ${selectedShipping.name}`,
+              description: selectedShipping.description,
             },
-            success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${appUrl}/cart`,
-            metadata: {
-              userId: user.uid,
-              shippingMethod: selectedShipping.id,
-              shippingCost: selectedShipping.cost.toString(),
-              ...(selectedRelayPoint && {
-                relayPointId: selectedRelayPoint.id,
-                relayPointName: selectedRelayPoint.name,
-                relayPointAddress: selectedRelayPoint.address,
-                relayPointCity: `${selectedRelayPoint.postalCode} ${selectedRelayPoint.city}`,
-              }),
-            }
-        });
+            unit_amount: Math.round(selectedShipping.cost * 100),
+          },
+          quantity: 1,
+        }
+      ];
 
-        let unsubscribeCalled = false;
-        let unsubscribe: (() => void) | null = null;
+      const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
+        mode: 'payment',
+        line_items: lineItems,
+        shipping_address_collection: {
+          allowed_countries: ['FR', 'BE', 'LU', 'CH'],
+        },
+        invoice_creation: {
+          enabled: true,
+        },
+        success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${appUrl}/cart`,
+        metadata: {
+          userId: user.uid,
+          shippingMethod: selectedShipping.id,
+          shippingCost: selectedShipping.cost.toString(),
+          ...(selectedRelayPoint && {
+            relayPointId: selectedRelayPoint.id,
+            relayPointName: selectedRelayPoint.name,
+            relayPointAddress: selectedRelayPoint.address,
+            relayPointCity: `${selectedRelayPoint.postalCode} ${selectedRelayPoint.city}`,
+          }),
+        }
+      });
 
-        const timeout = setTimeout(() => {
-            if (!unsubscribeCalled && unsubscribe) {
-                console.error('Checkout session timeout after 30 seconds');
-                setIsCheckingOut(false);
-                unsubscribeCalled = true;
-                unsubscribe();
-            }
-        }, 30000);
+      let unsubscribeCalled = false;
+      let unsubscribe: (() => void) | null = null;
 
-        unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-            if (unsubscribeCalled) return;
+      const timeout = setTimeout(() => {
+        if (!unsubscribeCalled && unsubscribe) {
+          console.error('Checkout session timeout after 30 seconds');
+          setIsCheckingOut(false);
+          unsubscribeCalled = true;
+          unsubscribe();
+        }
+      }, 30000);
 
-            const data = snap.data() as { error?: { message: string }, url?: string };
-            const { error, url } = data;
+      unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
+        if (unsubscribeCalled) return;
 
-            if (error) {
-                console.error(`An error occurred with the Stripe session: ${error.message}`);
-                clearTimeout(timeout);
-                setIsCheckingOut(false);
-                unsubscribeCalled = true;
-                if (unsubscribe) unsubscribe();
-            }
-            if (url) {
-                clearTimeout(timeout);
-                unsubscribeCalled = true;
-                if (unsubscribe) unsubscribe();
-                window.location.assign(url);
-            }
-        });
-    } catch(error) {
-        console.error("Error creating checkout session document:", error);
-        setIsCheckingOut(false);
+        const data = snap.data() as { error?: { message: string }, url?: string };
+        const { error, url } = data;
+
+        if (error) {
+          console.error(`An error occurred with the Stripe session: ${error.message}`);
+          clearTimeout(timeout);
+          setIsCheckingOut(false);
+          unsubscribeCalled = true;
+          if (unsubscribe) unsubscribe();
+        }
+        if (url) {
+          clearTimeout(timeout);
+          unsubscribeCalled = true;
+          if (unsubscribe) unsubscribe();
+          window.location.assign(url);
+        }
+      });
+    } catch (error) {
+      console.error("Error creating checkout session document:", error);
+      setIsCheckingOut(false);
     }
   };
 
@@ -181,14 +181,14 @@ export default function CartPage() {
 
       {!isClient || cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center bg-card p-12 rounded-lg">
-            <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-            <h2 className="text-2xl font-headline">Votre panier est vide</h2>
-            <p className="text-muted-foreground mt-2 max-w-md mb-6">
-                On dirait que vous n'avez pas encore ajouté de trésors olfactifs.
-            </p>
-            <Button asChild>
-                <Link href="/shop">Continuer mes achats</Link>
-            </Button>
+          <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
+          <h2 className="text-2xl font-headline">Votre panier est vide</h2>
+          <p className="text-muted-foreground mt-2 max-w-md mb-6">
+            On dirait que vous n'avez pas encore ajouté de trésors olfactifs.
+          </p>
+          <Button asChild>
+            <Link href="/shop">Continuer mes achats</Link>
+          </Button>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -214,62 +214,62 @@ export default function CartPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-end justify-between h-full ml-4">
-                     <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
-                    <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
-                        <Trash2 className="h-4 w-4 text-muted-foreground" />
-                    </Button>
+                  <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
+                  <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
+                    <Trash2 className="h-4 w-4 text-muted-foreground" />
+                  </Button>
                 </div>
               </Card>
             ))}
-             <div className="text-right mt-4">
-                <Button variant="outline" onClick={clearCart}>
-                    Vider le panier
-                </Button>
+            <div className="text-right mt-4">
+              <Button variant="outline" onClick={clearCart}>
+                Vider le panier
+              </Button>
             </div>
           </div>
 
           <div className="lg:col-span-1 space-y-6 sticky top-24">
-             <Card>
-                <CardHeader>
-                    <CardTitle>Méthode de livraison</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <RadioGroup
-                        value={selectedShippingId}
-                        onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
-                        className="space-y-4"
+            <Card>
+              <CardHeader>
+                <CardTitle>Méthode de livraison</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup
+                  value={selectedShippingId}
+                  onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
+                  className="space-y-4"
+                >
+                  {dynamicShippingMethods.map((method) => (
+                    <Label
+                      key={method.id}
+                      htmlFor={method.id}
+                      className={cn(
+                        "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
+                        selectedShippingId === method.id && "border-primary ring-2 ring-primary"
+                      )}
                     >
-                       {dynamicShippingMethods.map((method) => (
-                         <Label
-                           key={method.id}
-                           htmlFor={method.id}
-                           className={cn(
-                               "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
-                               selectedShippingId === method.id && "border-primary ring-2 ring-primary"
-                           )}
-                         >
-                           <RadioGroupItem value={method.id} id={method.id} />
-                           <method.icon className="h-6 w-6 text-muted-foreground" />
-                           <div className="flex-1">
-                               <p className="font-semibold">{method.name}</p>
-                               <p className="text-sm text-muted-foreground">{method.description}</p>
-                           </div>
-                           <p className="font-semibold text-sm">
-                                {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
-                           </p>
-                         </Label>
-                       ))}
-                    </RadioGroup>
-                </CardContent>
-             </Card>
+                      <RadioGroupItem value={method.id} id={method.id} />
+                      <method.icon className="h-6 w-6 text-muted-foreground" />
+                      <div className="flex-1">
+                        <p className="font-semibold">{method.name}</p>
+                        <p className="text-sm text-muted-foreground">{method.description}</p>
+                      </div>
+                      <p className="font-semibold text-sm">
+                        {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
+                      </p>
+                    </Label>
+                  ))}
+                </RadioGroup>
+              </CardContent>
+            </Card>
 
-             {/* Widget Boxtal Map pour Points Relais */}
-             {selectedShippingId === 'mondial-relay' && (
-               <BoxtalMapWidget
-                 onPointSelected={setSelectedRelayPoint}
-                 selectedPoint={selectedRelayPoint}
-               />
-             )}
+            {/* Widget Sendcloud Map pour Points Relais */}
+            {selectedShippingId === 'mondial-relay' && (
+              <SendcloudMapWidget
+                onPointSelected={setSelectedRelayPoint}
+                selectedPoint={selectedRelayPoint}
+              />
+            )}
 
             <Card>
               <CardHeader>
