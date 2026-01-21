@@ -9,83 +9,84 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Code postal invalide' }, { status: 400 });
   }
 
-  const accessKey = process.env.BOXTAL_ACCESS_KEY;
-  const secretKey = process.env.BOXTAL_SECRET_KEY;
-
-  if (!accessKey || !secretKey) {
-    console.error('[Boxtal] API keys not configured');
-    return NextResponse.json({ error: 'Configuration API manquante' }, { status: 500 });
-  }
-
   try {
-    // Boxtal API v3 - Recherche de points relais
-    const credentials = Buffer.from(`${accessKey}:${secretKey}`).toString('base64');
+    // Utiliser l'API publique Mondial Relay (widget officiel)
+    // Cette API est utilisee par le widget JavaScript officiel de Mondial Relay
+    const apiUrl = `https://widget.mondialrelay.com/parcelshop-picker/v4_0/api/parcelshops?country=${country}&postcode=${cp}&limit=10`;
 
-    // API Boxtal v3 pour les points relais
-    const apiUrl = `https://api.boxtal.com/v3/parcel-points?country=${country}&zipCode=${cp}&carrier=MONR_ECONOMIQUE`;
-
-    console.log('[Boxtal] Fetching:', apiUrl);
+    console.log('[MondialRelay] Fetching:', apiUrl);
 
     const response = await fetch(apiUrl, {
       method: 'GET',
       headers: {
-        'Authorization': `Basic ${credentials}`,
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      },
+    });
+
+    console.log('[MondialRelay] Response status:', response.status);
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('[MondialRelay] Data received:', JSON.stringify(data).substring(0, 300));
+
+      if (data && Array.isArray(data) && data.length > 0) {
+        const formattedPoints = data.slice(0, 10).map((point: any) => ({
+          Num: point.id || point.parcelShopId,
+          LgAdr1: point.name,
+          LgAdr3: point.address?.streetName || point.streetName || '',
+          CP: point.address?.postalCode || point.postalCode || cp,
+          Ville: point.address?.city || point.city || '',
+          Pays: point.address?.countryCode || point.countryCode || country,
+          Latitude: point.geoLocation?.latitude || point.latitude,
+          Longitude: point.geoLocation?.longitude || point.longitude,
+        }));
+
+        return NextResponse.json({
+          success: true,
+          points: formattedPoints,
+          count: formattedPoints.length,
+          source: 'mondialrelay'
+        });
+      }
+    }
+
+    // Essayer une autre API publique: api.mondialrelay.com
+    const altApiUrl = `https://api.mondialrelay.com/parcelshop-picker/v3/parcelshops?country=${country}&postcode=${cp}`;
+    console.log('[MondialRelay] Trying alt API:', altApiUrl);
+
+    const altResponse = await fetch(altApiUrl, {
+      method: 'GET',
+      headers: {
         'Accept': 'application/json',
       },
     });
 
-    console.log('[Boxtal] Response status:', response.status);
+    if (altResponse.ok) {
+      const altData = await altResponse.json();
+      if (altData && Array.isArray(altData) && altData.length > 0) {
+        const formattedPoints = altData.slice(0, 10).map((point: any) => ({
+          Num: point.id || point.parcelShopId || point.ID,
+          LgAdr1: point.name || point.Nom,
+          LgAdr3: point.address?.streetName || point.Adresse1 || '',
+          CP: point.address?.postalCode || point.CP || cp,
+          Ville: point.address?.city || point.Ville || '',
+          Pays: country,
+          Latitude: point.Latitude,
+          Longitude: point.Longitude,
+        }));
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('[Boxtal] API error:', response.status, errorText);
-
-      // Fallback vers des points generiques si l'API echoue
-      return NextResponse.json({
-        success: true,
-        points: generateFallbackPoints(cp),
-        count: 3,
-        source: 'fallback'
-      });
+        return NextResponse.json({
+          success: true,
+          points: formattedPoints,
+          count: formattedPoints.length,
+          source: 'mondialrelay-alt'
+        });
+      }
     }
 
-    const data = await response.json();
-    console.log('[Boxtal] Data received:', JSON.stringify(data).substring(0, 500));
-
-    // Adapter selon la structure de reponse de l'API v3
-    let points: any[] = [];
-
-    if (data && Array.isArray(data)) {
-      points = data;
-    } else if (data && data.parcelPoints) {
-      points = data.parcelPoints;
-    } else if (data && data.data) {
-      points = data.data;
-    } else if (data && data.points) {
-      points = data.points;
-    }
-
-    if (points.length > 0) {
-      const formattedPoints = points.slice(0, 10).map((point: any) => ({
-        Num: point.code || point.id || point.parcelPointCode,
-        LgAdr1: point.name || point.parcelPointName,
-        LgAdr3: point.address?.street || point.street || point.address?.line1 || '',
-        CP: point.address?.zipCode || point.address?.zipcode || point.zipCode || cp,
-        Ville: point.address?.city || point.city || '',
-        Pays: point.address?.country || point.country || country,
-        Latitude: point.location?.latitude || point.latitude,
-        Longitude: point.location?.longitude || point.longitude,
-      }));
-
-      return NextResponse.json({
-        success: true,
-        points: formattedPoints,
-        count: formattedPoints.length,
-        source: 'boxtal'
-      });
-    }
-
-    // Si pas de resultats, utiliser le fallback
+    // Fallback vers des points generiques
+    console.log('[MondialRelay] Using fallback points');
     return NextResponse.json({
       success: true,
       points: generateFallbackPoints(cp),
@@ -94,7 +95,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('[Boxtal] Error:', error);
+    console.error('[MondialRelay] Error:', error);
 
     // Fallback en cas d'erreur
     return NextResponse.json({
