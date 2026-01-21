@@ -22,6 +22,8 @@ env:
   #   value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
   - variable: GEMINI_API_KEY
     value: AIzaSyDYbp8HUvKRpQMwY1GX8vK1KmYyJS52Xsk
+  - variable: NEXT_PUBLIC_BOXTAL_MAP_ACCESS_TOKEN
+    value: 7NTY7WL4ZXM19R9HUZG3UWOENECAP50FIC8QELNL
 
   # --- Secrets (références à Google Cloud Secret Manager) ---
   # La clé secrète LIVE de Stripe (commence par sk_live_...)
