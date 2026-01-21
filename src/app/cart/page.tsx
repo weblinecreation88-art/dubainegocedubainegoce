@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
+import { MondialRelayWidget, type PointRelais } from '@/components/mondial-relay-widget';
 
 const PERFUME_WEIGHT_G = 750;
 
@@ -29,6 +30,7 @@ export default function CartPage() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
   const [isClient, setIsClient] = useState(false);
+  const [selectedRelayPoint, setSelectedRelayPoint] = useState<PointRelais | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -62,6 +64,12 @@ export default function CartPage() {
     if (isUserLoading) return;
     if (!user || !firestore) {
       router.push('/login?redirect=/cart');
+      return;
+    }
+
+    // Verifier qu'un point relais est selectionne si Mondial Relay est choisi
+    if (selectedShippingId === 'mondial-relay' && !selectedRelayPoint) {
+      alert('Veuillez selectionner un point relais avant de continuer.');
       return;
     }
 
@@ -114,6 +122,12 @@ export default function CartPage() {
               userId: user.uid,
               shippingMethod: selectedShipping.id,
               shippingCost: selectedShipping.cost.toString(),
+              ...(selectedRelayPoint && {
+                relayPointId: selectedRelayPoint.id,
+                relayPointName: selectedRelayPoint.name,
+                relayPointAddress: selectedRelayPoint.address,
+                relayPointCity: `${selectedRelayPoint.postalCode} ${selectedRelayPoint.city}`,
+              }),
             }
         });
 
@@ -248,6 +262,15 @@ export default function CartPage() {
                     </RadioGroup>
                 </CardContent>
              </Card>
+
+             {/* Widget Mondial Relay */}
+             {selectedShippingId === 'mondial-relay' && (
+               <MondialRelayWidget
+                 onPointSelected={setSelectedRelayPoint}
+                 selectedPoint={selectedRelayPoint}
+               />
+             )}
+
             <Card>
               <CardHeader>
                 <CardTitle>Récapitulatif</CardTitle>

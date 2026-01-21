@@ -77,6 +77,7 @@ export async function POST(req: NextRequest) {
           const customerEmail = session.customer_details?.email || 'Non fourni';
           const customerName = session.customer_details?.name || 'Non fourni';
           const shippingAddress = session.shipping_details?.address;
+          const metadata = session.metadata || {};
 
           let addressText = 'Non fournie';
           if (shippingAddress) {
@@ -88,6 +89,17 @@ export async function POST(req: NextRequest) {
             ].filter(Boolean).join('\n');
           }
 
+          // Point Relais info
+          let relayPointText = '';
+          if (metadata.relayPointName) {
+            relayPointText = `
+
+📍 <b>Point Relais:</b>
+${metadata.relayPointName}
+${metadata.relayPointAddress || ''}
+${metadata.relayPointCity || ''}`;
+          }
+
           const telegramMessage = `
 🎉 <b>NOUVELLE COMMANDE!</b>
 
@@ -96,7 +108,9 @@ export async function POST(req: NextRequest) {
 📧 <b>Email:</b> ${customerEmail}
 
 📦 <b>Adresse de livraison:</b>
-${addressText}
+${addressText}${relayPointText}
+
+🚚 <b>Methode:</b> ${metadata.shippingMethod || 'Non specifie'}
 
 🔗 <b>Session ID:</b> ${session.id}
           `.trim();
