@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
-import { SendcloudMapWidget, type PointRelais } from '@/components/sendcloud-map-widget';
+import { MondialRelayWidget, type PointRelais } from '@/components/mondial-relay-widget';
 
 const PERFUME_WEIGHT_G = 750;
 
@@ -263,9 +263,9 @@ export default function CartPage() {
               </CardContent>
             </Card>
 
-            {/* Widget Sendcloud Map pour Points Relais */}
+            {/* Widget Points Relais */}
             {selectedShippingId === 'mondial-relay' && (
-              <SendcloudMapWidget
+              <MondialRelayWidget
                 onPointSelected={setSelectedRelayPoint}
                 selectedPoint={selectedRelayPoint}
               />

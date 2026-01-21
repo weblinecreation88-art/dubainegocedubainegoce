@@ -77,7 +77,8 @@
       "Bash(done)",
       "Bash(npx ts-node:*)",
       "Bash(node src/scripts/generate-seo-descriptions.js:*)",
-      "Bash(cmd /c \"taskkill /F /PID 24852\")"
+      "Bash(cmd /c \"taskkill /F /PID 24852\")",
+      "Bash(cmd /c \"taskkill /F /PID 20948\")"
     ]
   }
 }
