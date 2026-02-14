@@ -185,3 +185,16 @@ export async function subscribeToNewsletter(
     return { message: 'Une erreur serveur est survenue. Veuillez réessayer plus tard.', error: true };
   }
 }
+
+/**
+ * Placeholder for the FAQ chatbot action to fix the build error.
+ * TODO: Implement actual AI logic here (e.g., using Genkit).
+ */
+export async function runAnswerFaq(params: { question: string }): Promise<{ answer: string }> {
+  console.log("runAnswerFaq called with:", params);
+  
+  // Simulated response
+  return {
+    answer: "Je suis désolé, je ne peux pas encore répondre à vos questions. Cette fonctionnalité est en cours de développement.",
+  };
+}
