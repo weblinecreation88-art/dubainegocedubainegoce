@@ -12,45 +12,60 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-
     return (
-        <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-2xl group bg-white rounded-2xl border border-gray-200">
-            <Link href={`/parfum/${product.slug}`} className="flex flex-col flex-grow">
-                <CardHeader className="p-0">
-                    <div className="aspect-[3/4] w-full relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                        <ProductImage
-                            alt={product.name}
-                            images={product.images}
-                            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute top-3 left-3 flex flex-col gap-2">
-                            {product.isBestseller && <Badge className="bg-[#c58a3d] text-white hover:bg-[#b67a2d] font-semibold">Best-seller</Badge>}
-                            {product.isNew && <Badge variant="secondary" className="bg-green-500 text-white hover:bg-green-600 font-semibold">Nouveau</Badge>}
-                        </div>
-                    </div>
-                </CardHeader>
-                <CardContent className="p-6 flex-grow space-y-2">
-                    {/* Catégorie en jaune */}
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#c58a3d]">
-                        {product.family || 'Fragrances Orientales'}
-                    </p>
+        <div className="group flex flex-col h-full bg-white transition-all duration-700">
+            <Link href={`/parfum/${product.slug}`} className="relative aspect-[3/4] overflow-hidden bg-[#F5F5F5]">
+                <ProductImage
+                    alt={product.name}
+                    images={product.images}
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                    className="object-contain p-8 transition-transform duration-1000 group-hover:scale-105"
+                />
 
-                    {/* Titre du produit */}
-                    <CardTitle className="text-xl font-headline font-bold text-gray-900 group-hover:text-[#c58a3d] transition-colors leading-tight">
-                        {product.name}
-                    </CardTitle>
+                {/* Subtle Luxury Badges */}
+                <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    {product.isBestseller && (
+                        <span className="bg-black text-white text-[8px] uppercase tracking-widest px-3 py-1 font-luxury-body">
+                            Best-seller
+                        </span>
+                    )}
+                    {product.isNew && (
+                        <span className="bg-[#D4AF37] text-white text-[8px] uppercase tracking-widest px-3 py-1 font-luxury-body">
+                            Nouveau
+                        </span>
+                    )}
+                </div>
 
-                    {/* Marque */}
-                    <CardDescription className="text-sm text-gray-600 font-medium">
-                        {product.brand.name}
-                    </CardDescription>
-                </CardContent>
+                {/* Quick Add Overlay - Luxury Style */}
+                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-white/80 backdrop-blur-sm">
+                    <AddToCartButton product={product} className="w-full btn-primary-modern py-2 text-[8px]" />
+                </div>
             </Link>
-            <CardFooter className="p-6 pt-0 flex flex-col items-start gap-4">
-                 <p className="text-2xl font-bold text-gray-900">{product.price.toFixed(2)} €</p>
-                <AddToCartButton product={product} className="w-full bg-gradient-to-r from-[#c58a3d] to-[#b67a2d] hover:from-[#b67a2d] hover:to-[#a56a1d] text-white transition-all duration-300 font-bold rounded-xl py-3 shadow-lg hover:shadow-xl hover:scale-105" />
-            </CardFooter>
-        </Card>
+
+            <div className="py-6 space-y-2 text-center">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] font-luxury-body">
+                    {product.brand.name}
+                </p>
+                <h3 className="text-lg font-luxury-headline text-black tracking-wide group-hover:text-[#D4AF37] transition-colors line-clamp-1">
+                    {product.name}
+                </h3>
+
+                {/* Olfactory Notes for better guidance */}
+                <div className="flex flex-wrap justify-center gap-1.5 px-4">
+                    <span className="text-[9px] uppercase tracking-wider text-black/40 border border-black/5 px-2 py-0.5 rounded-full">
+                        {product.family}
+                    </span>
+                    {(product.topNotes || []).slice(0, 2).map((note, i) => (
+                        <span key={i} className="text-[9px] uppercase tracking-wider text-black/40 border border-black/5 px-2 py-0.5 rounded-full">
+                            {note}
+                        </span>
+                    ))}
+                </div>
+
+                <p className="text-sm font-luxury-body text-black/60 pt-2">
+                    {product.price.toFixed(2)} €
+                </p>
+            </div>
+        </div>
     );
 }

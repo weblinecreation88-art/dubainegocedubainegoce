@@ -7,77 +7,23 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { CartProvider } from '@/context/cart-context';
-import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import { CookieConsent } from '@/components/cookie-consent';
 import { StructuredData } from '@/components/structured-data';
+import { ReassuranceSection } from '@/components/layout/reassurance-section';
 import Script from 'next/script';
-import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
 
-const reassurances = [
-  {
-    icon: <ShieldCheck className="w-6 h-6 mr-3 text-primary" />,
-    title: "100% Authentique",
-    description: "Importé directement de Dubaï"
-  },
-  {
-    icon: <Lock className="w-6 h-6 mr-3 text-primary" />,
-    title: "Prix Juste et Fixe",
-    description: "Le luxe accessible à 35€"
-  },
-  {
-    icon: <Rocket className="w-6 h-6 mr-3 text-primary" />,
-    title: "Livraison Rapide",
-    description: "Colissimo 48h ou Mondial Relay"
-  },
-  {
-    icon: <Phone className="w-6 h-6 mr-3 text-primary" />,
-    title: "Support Français",
-    description: "Notre équipe vous répond 24h/7j"
-  },
-];
-
-const ReassuranceSection = () => {
-    const reassuranceContent = (
-      <div className="flex items-center">
-        {reassurances.map((item, index) => (
-          <div key={index} className="flex items-center mx-6">
-            {item.icon}
-            <div className="text-left">
-              <h3 className="font-headline text-base sm:text-lg font-semibold whitespace-nowrap">{item.title}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-
-    return (
-        <section className="py-8 sm:py-12 bg-card border-y overflow-hidden">
-            <div className="flex">
-                <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around">
-                    {reassuranceContent}
-                    {reassuranceContent}
-                </div>
-                 <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around" aria-hidden="true">
-                    {reassuranceContent}
-                    {reassuranceContent}
-                </div>
-            </div>
-        </section>
-    );
-}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Parfums de Dubaï 35€ | Lattafa, Alhambra, Fragrance World | DubaiNegoce',
+    default: 'DubaiNegoce | Parfums de Dubaï 35€ | Lattafa, Alhambra',
     template: '%s | DubaiNegoce - Parfums Orientaux',
   },
-  description: 'Parfums authentiques de Dubaï à prix fixe 35€. Découvrez YARA, Khamrah, Asad (Lattafa), Zaffiro (Alhambra) et 140+ fragrances. 100% authentiques, importés directement de Dubaï. Stock permanent, livraison Mondial Relay dès 5,10€.',
+  description: 'Découvrez notre sélection de parfums orientaux authentiques par une équipe de passionnés. Collections Lattafa, Alhambra à prix unique 35€. Authenticité garantie.',
   keywords: [
     // Mots-clés principaux SEO 2025
     'parfums Dubaï authentiques',
@@ -121,8 +67,8 @@ export const metadata: Metadata = {
     'où acheter parfum Lattafa en France',
   ],
   openGraph: {
-    title: 'Parfums Dubaï 35€ | Lattafa, Alhambra | DubaiNegoce',
-    description: 'Découvrez notre collection exclusive de parfums orientaux authentiques : YARA, Khamrah, Asad, Zaffiro. Prix unique 35€. 100% authentiques, importés directement de Dubaï. Livraison Mondial Relay dès 5,10€.',
+    title: 'DubaiNegoce | Parfums de Dubaï à 35€',
+    description: 'Une équipe de passionnés vous propose les meilleurs parfums de Dubaï. Lattafa, Alhambra à 35€. 100% Authentique.',
     url: siteUrl,
     siteName: 'DubaiNegoce',
     images: [
@@ -130,7 +76,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'DubaiNegoce - Parfums authentiques de Dubaï - Lattafa, Maison Alhambra, Fragrance World',
+        alt: 'DubaiNegoce - Parfums Orientaux Authentiques',
       },
     ],
     locale: 'fr_FR',
@@ -237,30 +183,29 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col overflow-x-hidden')}>
         <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            ></iframe>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
         </noscript>
         <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=G-HM2MMVGBP7"
-            height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=G-HM2MMVGBP7"
+            height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe>
         </noscript>
 
         <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
         >
           <StructuredData />
           <FirebaseClientProvider>
             <CartProvider>
-              <AnnouncementBar />
               <Header />
-              <main className="flex-grow pt-[10.5rem] lg:pt-[6.5rem]">{children}</main>
+              <main className="flex-grow pt-[2rem] lg:pt-[3.5rem]">{children}</main>
               <ReassuranceSection />
               <Footer />
               <Toaster />
