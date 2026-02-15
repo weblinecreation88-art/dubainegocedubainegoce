@@ -11,6 +11,7 @@ import { AddToCartButton } from '@/components/product/add-to-cart-button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { ProductImage } from '@/components/product/product-image';
+import { JsonLd } from '@/components/seo/json-ld';
 
 type Props = {
   params: { slug: string };
@@ -176,6 +177,26 @@ export default function ProductPage({ params }: Props) {
           </div>
         </div>
       )}
+
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.name,
+        image: product.images,
+        description: product.shortDescription,
+        brand: {
+          '@type': 'Brand',
+          name: product.brand.name,
+        },
+        offers: {
+          '@type': 'Offer',
+          url: `https://dubainegoce.fr/parfum/${product.slug}`,
+          priceCurrency: 'EUR',
+          price: product.price,
+          availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+          itemCondition: 'https://schema.org/NewCondition',
+        },
+      }} />
     </div>
   );
 }
