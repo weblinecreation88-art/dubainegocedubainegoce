@@ -11,7 +11,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "generate-feed": "tsx src/scripts/generate-product-feed.ts",
-    "generate-tiktok-csv": "tsx src/scripts/generate-tiktok-csv.ts",
+    "generate-tiktok-export": "tsx src/scripts/generate-tiktok-xlsx.ts",
     "postinstall": "cd functions && npm install"
   },
   "dependencies": {
@@ -66,6 +66,7 @@
     "stripe": "^16.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "xlsx": "0.18.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
