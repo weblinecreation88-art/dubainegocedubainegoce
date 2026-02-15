@@ -3169,5 +3169,137 @@
         <g:price>4.90 EUR</g:price>
       </g:shipping>
     </item>
+    <item>
+      <g:id>5004</g:id>
+      <g:title>Kenzie Marshmallow</g:title>
+      <g:description>Une douceur irrésistible de guimauve et de fleur d'oranger. Kenzie Marshmallow est un nuage sucré et réconfortant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/kenzie-marshmallow-100ml</g:link>
+      <g:image_link>https://res.cloudinary.com/dhjwimevi/image/upload/v1766237734/IMG-20250527-WA0041_t56umt.jpg</g:image_link>
+      <g:brand>Fragrance World</g:brand>
+      <g:price>35.00 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:quantity>50</g:quantity>
+      <g:mpn>5004</g:mpn>
+      <g:identifier_exists>true</g:identifier_exists>
+      <g:gender>female</g:gender>
+      <g:product_type>Parfums &gt; Gourmand</g:product_type>
+      <g:google_product_category>469</g:google_product_category>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Standard</g:service>
+        <g:price>4.90 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>5005</g:id>
+      <g:title>Kenzie Candid Vanilla</g:title>
+      <g:description>L'élégance florale rencontrant la gourmandise de la vanille. Kenzie Candid Vanilla est une déclaration de féminité audacieuse.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/kenzie-candid-vanilla-100ml</g:link>
+      <g:image_link>https://res.cloudinary.com/dhjwimevi/image/upload/v1766237737/IMG-20250527-WA0042_tz3skc.jpg</g:image_link>
+      <g:brand>Fragrance World</g:brand>
+      <g:price>35.00 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:quantity>50</g:quantity>
+      <g:mpn>5005</g:mpn>
+      <g:identifier_exists>true</g:identifier_exists>
+      <g:gender>female</g:gender>
+      <g:product_type>Parfums &gt; Floral Gourmand</g:product_type>
+      <g:google_product_category>469</g:google_product_category>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Standard</g:service>
+        <g:price>4.90 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>5006</g:id>
+      <g:title>Eclair</g:title>
+      <g:description>Eclair de Lattafa, une explosion de caramel et de lait chaud. Le dupe parfait de Bianco Latte.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/eclair-lattafa-100ml</g:link>
+      <g:image_link>https://res.cloudinary.com/dhjwimevi/image/upload/v1766237747/IMG-20250527-WA0049_il6qgi.jpg</g:image_link>
+      <g:brand>Lattafa</g:brand>
+      <g:price>35.00 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:quantity>50</g:quantity>
+      <g:mpn>5006</g:mpn>
+      <g:identifier_exists>true</g:identifier_exists>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &gt; Gourmand</g:product_type>
+      <g:google_product_category>469</g:google_product_category>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Standard</g:service>
+        <g:price>4.90 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>5001</g:id>
+      <g:title>Liquid Brun</g:title>
+      <g:description>Liquid Brun, l'élégance ambrée et épicée. Un équilibre parfait de vanille bourbon, cardamome et praline pour une signature inoubliable.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/liquid-brun-100ml</g:link>
+      <g:image_link>https://res.cloudinary.com/dhjwimevi/image/upload/v1766237711/Liquide_Brun_zf1vxa.jpg</g:image_link>
+      <g:brand>French Avenue</g:brand>
+      <g:price>35.00 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:quantity>50</g:quantity>
+      <g:mpn>5001</g:mpn>
+      <g:identifier_exists>true</g:identifier_exists>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &gt; Gourmand Épicé</g:product_type>
+      <g:google_product_category>469</g:google_product_category>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Standard</g:service>
+        <g:price>4.90 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>5007</g:id>
+      <g:title>Kenzie Pistachio</g:title>
+      <g:description>Une gourmandise irrésistible à la pistache. Kenzie Pistachio est un délice crémeux et sucré.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/kenzie-pistachio-100ml</g:link>
+      <g:image_link>https://res.cloudinary.com/dhjwimevi/image/upload/v1766237733/IMG-20250527-WA0040_hd9lwd.jpg</g:image_link>
+      <g:brand>Fragrance World</g:brand>
+      <g:price>35.00 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:quantity>50</g:quantity>
+      <g:mpn>5007</g:mpn>
+      <g:identifier_exists>true</g:identifier_exists>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &gt; Gourmand</g:product_type>
+      <g:google_product_category>469</g:google_product_category>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Standard</g:service>
+        <g:price>4.90 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>5002</g:id>
+      <g:title>Azzure Aoud</g:title>
+      <g:description>La rencontre majestueuse de l'Oud et de la fraîcheur océanique. Azzure Aoud est une signature unique, puissante et raffinée.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/azzure-aoud-100ml</g:link>
+      <g:image_link>https://res.cloudinary.com/dhjwimevi/image/upload/v1766238264/Azzure_Oud_fjhetl.jpg</g:image_link>
+      <g:brand>French Avenue</g:brand>
+      <g:price>35.00 EUR</g:price>
+      <g:condition>new</g:condition>
+      <g:availability>in_stock</g:availability>
+      <g:quantity>50</g:quantity>
+      <g:mpn>5002</g:mpn>
+      <g:identifier_exists>true</g:identifier_exists>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &gt; Oriental Boisé</g:product_type>
+      <g:google_product_category>469</g:google_product_category>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Standard</g:service>
+        <g:price>4.90 EUR</g:price>
+      </g:shipping>
+    </item>
   </channel>
 </rss>
