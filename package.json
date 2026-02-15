@@ -11,6 +11,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "generate-feed": "tsx src/scripts/generate-product-feed.ts",
+    "generate-tiktok-csv": "tsx src/scripts/generate-tiktok-csv.ts",
     "postinstall": "cd functions && npm install"
   },
   "dependencies": {
