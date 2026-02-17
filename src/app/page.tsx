@@ -73,9 +73,9 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
             {getProducts()
-              .filter(p => ['5004', '5005', '5006', '5001', '5007', '5002', '3914'].includes(p.id))
+              .filter(p => ['5004', '5005', '5006', '5001', '5007', '5002', '3914', '3917'].includes(p.id))
               .sort((a, b) => {
-                const order = ['5004', '5005', '5006', '5001', '5007', '5002', '3914'];
+                const order = ['5004', '5005', '5006', '5001', '5007', '5002', '3914', '3917'];
                 return order.indexOf(a.id) - order.indexOf(b.id);
               })
               .map((product) => (
