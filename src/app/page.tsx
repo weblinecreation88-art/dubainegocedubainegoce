@@ -73,9 +73,9 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
             {getProducts()
-              .filter(p => ['5004', '5005', '5006', '5001', '5007', '5002'].includes(p.id))
+              .filter(p => ['5004', '5005', '5006', '5001', '5007', '5002', '3914'].includes(p.id))
               .sort((a, b) => {
-                const order = ['5004', '5005', '5006', '5001', '5007', '5002'];
+                const order = ['5004', '5005', '5006', '5001', '5007', '5002', '3914'];
                 return order.indexOf(a.id) - order.indexOf(b.id);
               })
               .map((product) => (
@@ -165,8 +165,8 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-luxury-headline text-black">NOS MEILLEURES VENTES</h2>
             <div className="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-6"></div>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 max-w-6xl mx-auto">
-            {bestsellers.slice(0, 6).map((product) => (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 max-w-7xl mx-auto">
+            {bestsellers.slice(0, 8).map((product) => (
               <ProductCard key={product.id} product={product as any} />
             ))}
           </div>
