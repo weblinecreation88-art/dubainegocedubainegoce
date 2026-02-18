@@ -71,7 +71,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-luxury-headline text-black">NOUVELLE ARRIVAGE</h2>
             <div className="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-6"></div>
           </div>
-          <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16 max-w-7xl mx-auto">
             {getProducts()
               .filter(p => ['5004', '5005', '5006', '5001', '5007', '5002', '3914', '3917'].includes(p.id))
               .sort((a, b) => {
@@ -79,9 +79,7 @@ export default function Home() {
                 return order.indexOf(a.id) - order.indexOf(b.id);
               })
               .map((product) => (
-                <div key={product.id} className="w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.33%-1.5rem)] max-w-sm">
-                  <ProductCard product={product} />
-                </div>
+                <ProductCard key={product.id} product={product} />
               ))}
           </div>
         </div>
