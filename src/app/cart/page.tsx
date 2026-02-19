@@ -18,6 +18,7 @@ import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 import { MondialRelayWidget, type PointRelais } from '@/components/mondial-relay-widget';
+import { ShieldCheck, Lock } from 'lucide-react';
 
 const PERFUME_WEIGHT_G = 750;
 
@@ -290,11 +291,23 @@ export default function CartPage() {
                   <span>{totalAmount.toFixed(2)} €</span>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full" size="lg" onClick={handleCheckout} disabled={isCheckingOut || isUserLoading}>
+              <CardFooter className="flex-col gap-3">
+                <Button className="w-full bg-black text-white hover:bg-[#D4AF37] hover:text-white rounded-none h-14 font-luxury-body text-[10px] uppercase tracking-[0.3em] transition-all duration-300" size="lg" onClick={handleCheckout} disabled={isCheckingOut || isUserLoading}>
                   {isCheckingOut ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  Passer la commande
+                  {isCheckingOut ? 'Redirection...' : 'Passer la commande →'}
                 </Button>
+                {/* Security badges */}
+                <div className="w-full flex items-center justify-center gap-2 text-black/30">
+                  <Lock className="h-3 w-3" />
+                  <span className="text-[9px] uppercase tracking-wider font-luxury-body">Paiement 100% sécurisé SSL</span>
+                </div>
+                <div className="w-full flex items-center justify-center gap-4 pt-1">
+                  <span className="text-[9px] text-black/30 font-luxury-body flex items-center gap-1.5">
+                    <ShieldCheck className="h-3 w-3 text-[#D4AF37]" /> Stripe
+                  </span>
+                  <span className="text-[9px] text-black/30 font-luxury-body">Visa / Mastercard</span>
+                  <span className="text-[9px] text-black/30 font-luxury-body">PayPal</span>
+                </div>
               </CardFooter>
             </Card>
           </div>

@@ -118,7 +118,12 @@ export default function Footer() {
 
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-[#c58a3d] uppercase tracking-wider">Newsletter</h3>
-            <p className="text-sm text-gray-300">Reçois nos découvertes et conseils de passionnés.</p>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Rejoins +1000 passionnés. Nouvelles collections, conseils olfactifs et offres exclusives en avant-première.
+            </p>
+            <p className="text-xs text-[#c58a3d] font-semibold">
+              🎁 Guide offert : "Top 10 parfums orientaux à 35€"
+            </p>
             <form
               ref={formRef}
               onSubmit={(e) => {
@@ -132,13 +137,14 @@ export default function Footer() {
                 type="email"
                 name="email"
                 placeholder="Votre email"
-                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 rounded-none"
                 required
               />
-              <Button type="submit" disabled={pending} className="gradient-amber text-white hover:shadow-amber-glow">
-                {pending ? <Loader2 className="animate-spin" /> : "Go"}
+              <Button type="submit" disabled={pending} className="gradient-amber text-white hover:shadow-amber-glow rounded-none shrink-0">
+                {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : "S'inscrire"}
               </Button>
             </form>
+            <p className="text-[10px] text-gray-500">Sans spam. Désabonnement en 1 clic.</p>
           </div>
         </div>
 

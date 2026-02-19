@@ -2,16 +2,23 @@
 
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { AddToCartButton } from './add-to-cart-button';
-import { Badge } from '../ui/badge';
 import { ProductImage } from './product-image';
 
 interface ProductCardProps {
     product: Product;
 }
 
+function getStockUrgency(stock: number): { label: string; className: string } | null {
+    if (stock <= 0) return { label: 'Rupture de stock', className: 'bg-red-500 text-white' };
+    if (stock <= 3) return { label: `Plus que ${stock} en stock`, className: 'bg-red-500 text-white' };
+    if (stock <= 7) return { label: `Stock limité`, className: 'bg-orange-500 text-white' };
+    return null;
+}
+
 export function ProductCard({ product }: ProductCardProps) {
+    const stockUrgency = getStockUrgency(product.stock);
+
     return (
         <div className="group flex flex-col h-full bg-white transition-all duration-700">
             <Link href={`/parfum/${product.slug}`} className="relative aspect-[3/4] overflow-hidden bg-[#F5F5F5]">
@@ -22,7 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     className="object-contain p-8 transition-transform duration-1000 group-hover:scale-105"
                 />
 
-                {/* Subtle Luxury Badges */}
+                {/* Badges */}
                 <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.isBestseller && (
                         <span className="bg-black text-white text-[8px] uppercase tracking-widest px-3 py-1 font-luxury-body">
@@ -34,9 +41,14 @@ export function ProductCard({ product }: ProductCardProps) {
                             Nouveau
                         </span>
                     )}
+                    {stockUrgency && (
+                        <span className={`text-[8px] uppercase tracking-widest px-3 py-1 font-luxury-body ${stockUrgency.className}`}>
+                            {stockUrgency.label}
+                        </span>
+                    )}
                 </div>
 
-                {/* Quick Add Overlay - Luxury Style */}
+                {/* Quick Add Overlay */}
                 <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-white/80 backdrop-blur-sm">
                     <AddToCartButton product={product} className="w-full btn-primary-modern py-2 text-[8px]" />
                 </div>
@@ -50,7 +62,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     {product.name}
                 </h3>
 
-                {/* Olfactory Notes for better guidance */}
+                {/* Olfactory Notes */}
                 <div className="flex flex-wrap justify-center gap-1.5 px-4">
                     <span className="text-[9px] uppercase tracking-wider text-black/40 border border-black/5 px-2 py-0.5 rounded-full">
                         {product.family}
@@ -64,6 +76,9 @@ export function ProductCard({ product }: ProductCardProps) {
 
                 <p className="text-sm font-luxury-body text-black/60 pt-2">
                     {product.price.toFixed(2)} €
+                    {product.volumeMl > 0 && (
+                        <span className="text-[10px] text-black/30 ml-1">/ {product.volumeMl}ml</span>
+                    )}
                 </p>
             </div>
         </div>

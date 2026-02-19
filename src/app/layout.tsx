@@ -11,6 +11,7 @@ import { FirebaseClientProvider } from '@/firebase';
 import { CookieConsent } from '@/components/cookie-consent';
 import { StructuredData } from '@/components/structured-data';
 import { ReassuranceSection } from '@/components/layout/reassurance-section';
+import { ExitIntentPopup } from '@/components/exit-intent-popup';
 import Script from 'next/script';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
@@ -210,6 +211,7 @@ export default function RootLayout({
               <Footer />
               <Toaster />
               <CookieConsent />
+              <ExitIntentPopup />
             </CartProvider>
           </FirebaseClientProvider>
         </ThemeProvider>

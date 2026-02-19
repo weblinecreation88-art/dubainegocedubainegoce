@@ -7,10 +7,14 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Quote,
+  Star,
+  ShieldCheck,
+  Truck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product/product-card";
 import { GoogleReviewsCta } from "@/components/google-reviews-cta";
+import { CustomerReviewsSection } from "@/components/customer-reviews-section";
 import { getNewArrivals, getBestsellers, getProducts } from "@/lib/data";
 
 export default function Home() {
@@ -48,7 +52,7 @@ export default function Home() {
             <p className="text-sm md:text-lg text-white/90 font-luxury-body max-w-2xl mx-auto leading-relaxed tracking-wide opacity-90 italic">
               "Le parfum est la forme la plus intense du souvenir."
             </p>
-            <div className="pt-8">
+            <div className="pt-8 flex flex-col items-center gap-6">
               <Button
                 asChild
                 className="btn-primary-modern bg-white text-black hover:bg-[#D4AF37] hover:text-white border-none px-12 py-8 rounded-none transition-all duration-500"
@@ -57,6 +61,28 @@ export default function Home() {
                   DÉCOUVRIR LA COLLECTION
                 </Link>
               </Button>
+
+              {/* Trust badges sous le CTA */}
+              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
+                <div className="flex items-center gap-2 text-white/80">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-3 w-3 fill-[#D4AF37] text-[#D4AF37]" />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-luxury-body tracking-wider">4.9/5 · 150+ avis</span>
+                </div>
+                <span className="text-white/20 hidden md:block">|</span>
+                <div className="flex items-center gap-2 text-white/80">
+                  <ShieldCheck className="h-3.5 w-3.5 text-[#D4AF37]" />
+                  <span className="text-[10px] font-luxury-body tracking-wider">100% Authentique</span>
+                </div>
+                <span className="text-white/20 hidden md:block">|</span>
+                <div className="flex items-center gap-2 text-white/80">
+                  <Truck className="h-3.5 w-3.5 text-[#D4AF37]" />
+                  <span className="text-[10px] font-luxury-body tracking-wider">Livraison dès 48h</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -180,6 +206,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Customer Reviews Section */}
+      <CustomerReviewsSection />
 
       {/* Philosophy Section */}
       <section className="py-40 bg-[#F9F9F9]">
