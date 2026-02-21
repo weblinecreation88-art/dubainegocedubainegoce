@@ -181,7 +181,7 @@ export default function Home() {
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 tracking-wider">ELEGANCE REDEFINED</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 tracking-wider">ÉLÉGANCE REDÉFINIE</h2>
           <p className="max-w-xl mx-auto text-gray-300 text-lg md:text-xl font-light tracking-wide mb-10">
             Explorez l'harmonie parfaite entre les traditions orientales délicates et le luxe contemporain.
           </p>
