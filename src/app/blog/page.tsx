@@ -14,24 +14,24 @@ export const metadata: Metadata = {
 const blogPosts = [
     {
         title: 'À découvrir cet été 2025 : la marque Alhambra continue de captiver',
-        description: "La marque Alhambra continue de captiver l'univers du bijou senteur avec ses créations uniques pour l'été 2025.",
+        description: 'La marque Alhambra continue de captiver l’univers du bijou senteur avec ses créations uniques pour l\'été 2025.',
         link: '/blog/alhambra-ete-2025',
-        imageUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1768337452/Maison_Alhambra_Zaffiro_Collection_Regale_Edp_Eau_De_Parfum_For_Unisex___100_Ml-1-Photoroom-Photoroom_jhkuzd.jpg',
-        imageHint: 'Zaffiro Maison Alhambra'
+        imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765958123/ChatGPT_Image_29_juil._2025_01_03_23_f4fvfe.png',
+        imageHint: 'perfume display'
     },
     {
         title: 'Parfumerie 2025 : comment la tendance des parfums orientaux redéfinit le marché',
         description: 'La tendance des parfums orientaux redéfinit le marché avec ses notes riches et complexes. Découvrez ce qui vous attend pour 2025.',
         link: '/blog/tendances-parfums-orientaux-2025',
-        imageUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1764270620/Screenshot_2025-06-02-00-12-11-453_com.android.chrome-edit_1_prxl15.jpg',
-        imageHint: 'Parfum oriental Khamrah'
+        imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png',
+        imageHint: 'oriental perfume market'
     },
     {
         title: 'Top 5 des parfums Lattafa à absolument tester en 2025',
         description: 'Découvrez notre sélection des incontournables de la maison Lattafa pour l\'année 2025, des fragrances qui marquent les esprits.',
         link: '/blog/top-5-lattafa-2025',
-        imageUrl: 'https://res.cloudinary.com/dzntnjtkc/image/upload/v1766911492/YARA_id3ssb.jpg',
-        imageHint: 'YARA Lattafa'
+        imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png',
+        imageHint: 'Lattafa perfume collection'
     }
 ];
 

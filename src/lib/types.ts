@@ -28,35 +28,6 @@ export interface ProductOption {
   values: string[];
 }
 
-export interface PyramidOlfactive {
-  tete: string[];
-  coeur: string[];
-  fond: string[];
-}
-
-export interface SEOCaracteristiques {
-  intensite: string;
-  tenue: string;
-  sillage: string;
-  saison: string[];
-}
-
-export interface SEOData {
-  focusKeyword: string;
-  title: string;
-  shortDescription: string;
-  longDescription: string;
-  metaTitle: string;
-  metaDescription: string;
-  tags: string[];
-  imageAlts: string[];
-  category: string;
-  pyramidOlfactive: PyramidOlfactive;
-  occasions: string[];
-  conseils: string;
-  caracteristiques: SEOCaracteristiques;
-}
-
 export interface Product {
   id: string;
   name: string;
@@ -84,7 +55,6 @@ export interface Product {
   faq?: FaqItem[];
   productType?: 'perfume' | 'cosmetic';
   options?: ProductOption[];
-  seo?: SEOData;
 }
 
 export interface FragranceFamily {

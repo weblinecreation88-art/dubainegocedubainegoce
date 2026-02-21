@@ -1,0 +1,23 @@
+# Guide pour les robots d'exploration
+User-agent: *
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /login/
+Disallow: /signup/
+
+# Autoriser les pages importantes
+Allow: /
+Allow: /shop
+Allow: /parfum/
+Allow: /blog
+Allow: /about
+Allow: /contact
+Allow: /faq
+Allow: /privacy
+Allow: /terms
+Allow: /shipping
+Allow: /perfume-finder
+
+# Emplacement du sitemap
+Sitemap: https://dubainegoce.fr/sitemap.xml

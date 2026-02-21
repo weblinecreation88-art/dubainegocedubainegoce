@@ -5,55 +5,47 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    /* Blanc pur pour fond clair */
-    --foreground: 0 0% 9%;
-    /* Noir profond pour le texte */
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    /* Blanc pur pour les cartes */
-    --card-foreground: 0 0% 9%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
-    --primary: 43 65% 53%;
-    /* Antique Gold #D4AF37 */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 98%;
-    /* Gris extrêmement clair */
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 98%;
-    --muted-foreground: 0 0% 40%;
-    --accent: 43 65% 53%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
-    --ring: 43 65% 53%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%; /* Noir profond */
+    --primary-foreground: 210 40% 98%; /* Blanc */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%; /* Rouge standard pour erreur */
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%; /* Anneau de focus sombre */
     --radius: 0.5rem;
-    /* Plus subtil pour le luxe */
   }
-
+ 
   .dark {
-    --background: 0 0% 5%;
-    /* Noir plus profond */
-    --foreground: 0 0% 98%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 43 65% 53%;
-    /* Antique Gold #D4AF37 */
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 43 65% 53%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 43 65% 53%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%; /* Blanc pour le contenu primaire en dark mode */
+    --primary-foreground: 222.2 47.4% 11.2%; /* Noir */
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
@@ -61,90 +53,19 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
-
+  
   @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-
-    to {
-      transform: translateX(-100%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
   }
 
   .animate-marquee {
-    display: inline-block;
-    animation: marquee 30s linear infinite;
-    white-space: nowrap;
-    padding-right: 100%;
-    /* Ensures a smooth loop */
-  }
-}
-
-@layer utilities {
-
-  /* === GLASSMORPHISM EFFECTS === */
-  .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
-  }
-
-  .glass-dark {
-    @apply bg-black/10 backdrop-blur-md border border-black/20;
-  }
-
-  /* === GRADIENT JAUNE/DORÉ === */
-  .gradient-amber {
-    @apply bg-gradient-to-r from-[#c58a3d] to-[#b67a2d];
-  }
-
-  .gradient-amber-text {
-    @apply bg-gradient-to-r from-[#d4a053] via-[#c58a3d] to-[#b67a2d] bg-clip-text text-transparent;
-  }
-
-  /* === OMBRES LUMINEUSES DORÉES === */
-  .shadow-amber-glow {
-    box-shadow: 0 0 40px rgba(197, 138, 61, 0.3), 0 0 80px rgba(197, 138, 61, 0.2);
-  }
-
-  .shadow-amber-xl {
-    box-shadow: 0 20px 25px -5px rgba(197, 138, 61, 0.3), 0 8px 10px -6px rgba(197, 138, 61, 0.2);
-  }
-
-  /* === TYPOGRAPHY === */
-  .font-luxury-headline {
-    font-family: 'Playfair Display', serif;
-    @apply tracking-wide;
-  }
-
-  .font-luxury-body {
-    font-family: 'Montserrat', sans-serif;
-    @apply tracking-normal;
-  }
-
-  /* === BOUTONS MODERNES === */
-  .btn-modern {
-    @apply rounded-none px-10 py-4 font-body uppercase tracking-[0.2em] text-xs transition-all duration-500 hover:tracking-[0.3em];
-  }
-
-  .btn-primary-modern {
-    @apply btn-modern bg-black text-white hover:bg-[#D4AF37] border border-black hover:border-[#D4AF37];
-  }
-
-  .btn-outline-modern {
-    @apply btn-modern bg-transparent text-black border border-black hover:bg-black hover:text-white;
-  }
-
-  /* === ICÔNES === */
-  .icon-luxury {
-    @apply stroke-[1px] transition-transform duration-300 hover:scale-110;
-  }
-
-  /* === OVERLAY GRADIENTS === */
-  .overlay-luxury {
-    @apply absolute inset-0 bg-black/20 transition-opacity duration-500 hover:opacity-40;
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+      padding-right: 100%; /* Ensures a smooth loop */
   }
 }

@@ -1,25 +1,12 @@
-
 'use client';
 
 import Link from 'next/link';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-} from '@/components/ui/navigation-menu';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingCart, User, Package, Sparkles } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, Sparkles, Phone, Truck } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
-import { ThemeToggle } from '../theme-toggle';
 import { useCart } from '@/context/cart-context';
 import { Badge } from '../ui/badge';
-import Image from 'next/image';
 import { useUser, useAuth } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import {
@@ -32,38 +19,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '../ui/avatar';
 import { SearchDialog } from '../search-dialog';
-import { SearchBar } from '../search-bar';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ScrollArea } from '../ui/scroll-area';
-import { Dialog, DialogTrigger } from '../ui/dialog';
-import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog';
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
-
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
+import { PerfumeFinder } from '../perfume-finder';
+import { ThemeToggle } from '../theme-toggle';
 
 export default function Header() {
   const { getCartCount, clearCart } = useCart();
@@ -72,19 +32,9 @@ export default function Header() {
 
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   const cartCount = getCartCount();
@@ -110,94 +60,183 @@ export default function Header() {
   }
 
   return (
-    <header className={cn(
-      "fixed top-0 z-50 w-full transition-all duration-500 ease-in-out py-4",
-      isScrolled ? "bg-white/90 backdrop-blur-md border-b border-black/5 py-2" : "bg-white border-b border-black/5"
-    )}>
-      <div className="container mx-auto px-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-black text-white border-b border-gray-900 flex flex-col">
+      {/* Top Utility Bar */}
+      <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
+        <div className="container mx-auto flex justify-between items-center px-4">
+          <div className="flex items-center gap-2">
+            <Phone className="h-3.5 w-3.5 text-gray-400" />
+            <span>Service Client : <a href="tel:+33758999726" className="font-semibold hover:text-white transition-colors">+33758999726</a></span>
+          </div>
+          <Link href="/livraison-et-paiement" className="flex items-center gap-2 hover:text-white transition-colors group">
+            <Truck className="h-3.5 w-3.5 text-gray-400 group-hover:text-white transition-colors" />
+            <span className="font-medium">Livraison et Paiement</span>
+          </Link>
+        </div>
+      </div>
 
-        {/* Left Section: Mobile Menu / Desktop Nav links */}
-        <div className="flex-1 flex items-center">
+      <div className="container flex h-16 items-center justify-between">
+
+        {/* Left Section: Mobile Menu & Desktop Logo */}
+        <div className="flex items-center gap-4">
+          {/* Mobile Menu Trigger */}
           <div className="lg:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="hover:bg-transparent">
-                  <Menu className="h-5 w-5 icon-luxury" />
-                  <span className="sr-only">Menu</span>
+                <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Ouvrir le menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[300px] border-r-0 p-0 font-luxury-body">
-                <div className="p-8 flex flex-col gap-8 mt-12">
-                  <Link href="/shop" onClick={handleLinkClick} className="text-sm uppercase tracking-widest text-black hover:text-[#D4AF37] transition-colors">Boutique</Link>
-                  <Link href="/shop/all?brands=Lattafa" onClick={handleLinkClick} className="text-sm uppercase tracking-widest text-black hover:text-[#D4AF37] transition-colors">Lattafa</Link>
-                  <Link href="/shop/all?brands=French%20Avenue" onClick={handleLinkClick} className="text-sm uppercase tracking-widest text-black hover:text-[#D4AF37] transition-colors">French Avenue</Link>
-                  <Link href="/blog" onClick={handleLinkClick} className="text-sm uppercase tracking-widest text-black hover:text-[#D4AF37] transition-colors">Blog</Link>
-                  <Link href="/contact" onClick={handleLinkClick} className="text-sm uppercase tracking-widest text-black hover:text-[#D4AF37] transition-colors">Contact</Link>
-                </div>
+              <SheetContent side="left" className="w-[300px] sm:w-[360px] p-0 flex flex-col bg-background text-foreground">
+                <SheetHeader className="p-4 border-b">
+                  <SheetTitle className="sr-only">Menu Principal</SheetTitle>
+                  <SheetDescription className="sr-only">Naviguez à travers les différentes sections du site.</SheetDescription>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-lg font-headline">Menu</span>
+                    <ThemeToggle />
+                  </div>
+                </SheetHeader>
+                <ScrollArea className="flex-1">
+                  <div className="flex flex-col gap-4 p-4">
+                    <Link href="/shop" onClick={handleLinkClick} className="text-base font-semibold">Toute la Boutique</Link>
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="maisons">
+                        <AccordionTrigger>Marques de Parfums</AccordionTrigger>
+                        <AccordionContent>
+                          <div className="flex flex-col gap-3 pl-4 pt-2">
+                            <Link href="/shop?brands=Lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
+                            <Link href="/shop?brands=French%20Avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
+                            <Link href="/shop?brands=Maison%20Alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
+                            <Link href="/shop?brands=Fragrance%20World" onClick={handleLinkClick} className="text-sm">Fragrance World</Link>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                    <Link href="/blog" onClick={handleLinkClick} className="text-base font-semibold">Blog</Link>
+                    <Link href="/about" onClick={handleLinkClick} className="text-base font-semibold">À Propos</Link>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button className="flex w-full items-center gap-2 rounded-md py-2 text-left font-semibold">
+                          <Sparkles className="h-5 w-5 text-primary" />
+                          <span>Trouver mon parfum (IA)</span>
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-4xl text-foreground bg-background">
+                        <DialogHeader>
+                          <DialogTitle className="text-3xl font-headline text-primary text-center">Votre Sillage Unique</DialogTitle>
+                          <DialogDescription className="text-center">
+                            Laissez-nous vous guider vers le parfum de vos rêves.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <PerfumeFinder />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                </ScrollArea>
               </SheetContent>
             </Sheet>
           </div>
 
-          <div className="hidden lg:flex items-center gap-8">
-            <Link href="/shop" className="text-[10px] uppercase tracking-[0.25em] font-luxury-body text-black hover:text-[#D4AF37] transition-colors">Boutique</Link>
-            <Link href="/shop/all?brands=Lattafa" className="text-[10px] uppercase tracking-[0.25em] font-luxury-body text-black hover:text-[#D4AF37] transition-colors">Lattafa</Link>
-            <Link href="/shop/all?brands=French%20Avenue" className="text-[10px] uppercase tracking-[0.25em] font-luxury-body text-black hover:text-[#D4AF37] transition-colors">French Avenue</Link>
-          </div>
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <span className="font-headline font-bold text-xl md:text-2xl tracking-widest uppercase">
+              Dubaï Négoce
+            </span>
+          </Link>
         </div>
 
-        {/* Center Section: Logo */}
-        <div className="flex-none px-4">
-          <Link href="/" className="block">
-            <h1 className="text-2xl md:text-3xl font-luxury-headline text-black tracking-tighter logo-shimmer">
-              DUBAINEGOCE
-            </h1>
+        {/* Center Section: Navigation Menu (Desktop) */}
+        <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
+          <Link href="/shop?brands=Lattafa" className="hover:text-gray-300 transition-colors uppercase">
+            Lattafa
+          </Link>
+          <Link href="/shop?brands=French%20Avenue" className="hover:text-gray-300 transition-colors uppercase">
+            French Avenue
+          </Link>
+          <Link href="/shop?brands=Maison%20Alhambra" className="hover:text-gray-300 transition-colors uppercase">
+            Maison Alhambra
+          </Link>
+          <Link href="/shop?brands=Fragrance%20World" className="hover:text-gray-300 transition-colors uppercase">
+            Fragrance World
+          </Link>
+          <Link href="/shop" className="hover:text-gray-300 transition-colors opacity-70">
+            Tout voir
           </Link>
         </div>
 
         {/* Right Section: Icons */}
-        <div className="flex-1 flex items-center justify-end gap-1 md:gap-4">
-          <div className="hidden md:block">
-            <SearchBar />
+        <div className="flex items-center justify-end gap-1 md:gap-3">
+          <SearchDialog>
+            <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+              <Search className="h-5 w-5" />
+              <span className="sr-only">Rechercher</span>
+            </Button>
+          </SearchDialog>
+
+          <div className="hidden lg:block">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800" title="Conseiller IA">
+                  <Sparkles className="h-5 w-5" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-4xl text-foreground bg-background">
+                <DialogHeader>
+                  <DialogTitle className="text-3xl font-headline text-primary text-center">Votre Sillage Unique</DialogTitle>
+                  <DialogDescription className="text-center">
+                    Laissez-nous vous guider vers le parfum de vos rêves.
+                  </DialogDescription>
+                </DialogHeader>
+                <PerfumeFinder />
+              </DialogContent>
+            </Dialog>
           </div>
 
           {!isUserLoading && (
             user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-8 w-8 rounded-full hover:bg-transparent">
-                    <User className="h-5 w-5 icon-luxury" />
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-800 p-0">
+                    <Avatar className="h-8 w-8 border border-gray-700">
+                      <AvatarFallback className="bg-gray-900 text-white text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
+                    </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="font-luxury-body text-xs">
-                  <DropdownMenuLabel className="uppercase tracking-widest">Mon Compte</DropdownMenuLabel>
+                <DropdownMenuContent align="end" className="text-foreground bg-background">
+                  <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild><Link href="/account">Profil</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/account/orders">Commandes</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/account/orders">Mes commandes</Link></DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>Déconnexion</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="ghost" size="icon" asChild className="hover:bg-transparent">
+              <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800">
                 <Link href="/login">
-                  <User className="h-5 w-5 icon-luxury" />
+                  <User className="h-5 w-5" />
+                  <span className="sr-only">Compte</span>
                 </Link>
               </Button>
             )
           )}
 
-          <Button variant="ghost" size="icon" asChild className="hover:bg-transparent">
+          <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800 relative">
             <Link href="/cart">
-              <div className="relative">
-                <ShoppingCart className="h-5 w-5 icon-luxury" />
-                {isMounted && cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-3 w-3 items-center justify-center rounded-full bg-[#D4AF37] text-[8px] text-white">
-                    {cartCount}
-                  </span>
-                )}
-              </div>
+              <ShoppingCart className="h-5 w-5" />
+              {isMounted && cartCount > 0 && (
+                <Badge variant="destructive" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-primary text-primary-foreground">
+                  {cartCount}
+                </Badge>
+              )}
+              <span className="sr-only">Panier</span>
             </Link>
           </Button>
+
+          <div className="hidden lg:block ml-2">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

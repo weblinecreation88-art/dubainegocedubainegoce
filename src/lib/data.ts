@@ -3542,7 +3542,7 @@ export const getBrands = (): Brand[] => {
 
 export const getFragranceFamilies = (): FragranceFamily[] => {
     return [
-        { id: '1', name: 'Floral', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701178/missdior_missdiorperfume_missdiorbloomingbouquet_dior_aeshetic_perfume_perfumecollection_xigqgw.jpg', imageHint: 'flowers' },
+        { id: '1', name: 'Floral', imageUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1771702460/Como_Moiselle_Maison_Alhambra_ufr6jc.jpg', imageHint: 'flowers' },
         { id: '2', name: 'Boisé', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701178/Oud_-_50ml_qms8bq.jpg', imageHint: 'forest' },
         { id: '3', name: 'Oriental', imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765701176/t%C3%A9l%C3%A9chargement_7_xcnxry.jpg', imageHint: 'spices market' },
         { id: '4', name: 'Fruité', imageUrl: 'https://res.cloudinary.com/db2ljqpdt/image/upload/v1766907448/LOVELY-Photoroom_z0r2jf.jpg', imageHint: 'fruit basket' },

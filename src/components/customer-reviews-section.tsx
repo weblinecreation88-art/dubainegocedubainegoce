@@ -1,92 +1,88 @@
 'use client';
 
-import { Star, Quote } from 'lucide-react';
+import { Star, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 
 const reviews = [
   {
-    name: 'Sonia M.',
-    city: 'Paris',
+    name: 'Amine Abdelhafidh',
+    title: 'Commande de deux parfums',
     rating: 5,
-    product: 'Yara — Lattafa',
-    comment: 'Je suis tombée amoureuse de ce parfum dès la première vaporisation. Tenue incroyable, plus de 8h sur ma peau. Et le prix... franchement imbattable par rapport aux grandes marques.',
-    date: 'Janvier 2025',
+    comment: 'Commande de deux parfums maison Alhambra (Woody oud et lovely cherry). Très bonne tenue et très bon sillage. Odeur quasi identique aux TF. Envoie rapide!',
+    date: '28 Août 2024',
   },
   {
-    name: 'Karim B.',
-    city: 'Lyon',
+    name: 'Tristan T.',
+    title: 'Un service de qualité et rapide',
     rating: 5,
-    product: 'Khamrah — Lattafa',
-    comment: 'Livraison ultra rapide, parfum reçu en 48h nickel. Le flacon est magnifique, le parfum dure toute la journée. Mon entourage me demande tous ce que je porte. Top !!',
-    date: 'Décembre 2024',
+    comment: 'Un service de qualité et rapide.',
+    date: '15 Juin 2024',
   },
   {
-    name: 'Yasmine D.',
-    city: 'Marseille',
+    name: 'Romain',
+    title: 'Envoi rapide et soigné',
     rating: 5,
-    product: 'Zaffiro Regale — Alhambra',
-    comment: 'Service client impeccable, à l\'écoute et là pour vous tout au long du processus. Le parfum est exactement comme décrit, oriental et envoûtant. Je recommande vivement.',
-    date: 'Février 2025',
+    comment: 'Envoi rapide et soigné. Produit conforme. Je suis ravi, merci.',
+    date: '23 Mai 2024',
   },
   {
-    name: 'Thomas L.',
-    city: 'Bordeaux',
+    name: 'Diane Joliana NDANGA',
+    title: 'Service client disponible',
     rating: 5,
-    product: 'Asad — Lattafa',
-    comment: 'Rapport qualité/prix au top ! J\'ai testé beaucoup de parfums orientaux, celui-là est dans mon top 3. Vendeur aimable et courtois, et livraison super rapide.',
-    date: 'Janvier 2025',
+    comment: 'Commande reçue dans les délais, et le parfum a une odeur qui dure toute la journée. Service client disponible et aimable. J’ai apprécié mon expérience et recommande fortement.',
+    date: '21 Août 2024',
   },
 ];
 
 export function CustomerReviewsSection() {
   return (
-    <section className="py-32 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 space-y-4">
-          <span className="text-[10px] uppercase tracking-[0.4em] text-[#D4AF37] font-luxury-body">Ils nous font confiance</span>
-          <h2 className="text-4xl md:text-5xl font-luxury-headline text-black">CE QUE DISENT NOS CLIENTS</h2>
-          <div className="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-6"></div>
+    <section className="py-20 bg-white dark:bg-card border-y border-gray-100 dark:border-gray-800">
+      <div className="container mx-auto px-4 max-w-7xl">
 
-          {/* Global rating */}
-          <div className="flex items-center justify-center gap-3 pt-4">
-            <div className="flex items-center gap-1">
+        {/* En-tête Trustpilot */}
+        <div className="flex flex-col items-center text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-6 text-gray-900 dark:text-white">Nos clients parlent de nous</h2>
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-2xl font-bold text-gray-900 dark:text-white">Excellent</span>
+            <div className="flex items-center gap-1.5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-[#D4AF37] text-[#D4AF37]" />
+                <div key={i} className="bg-[#00b67a] p-1.5 rounded-sm">
+                  <Star className="h-6 w-6 fill-white text-white" />
+                </div>
               ))}
             </div>
-            <span className="text-lg font-luxury-headline text-black">4.9/5</span>
-            <span className="text-sm text-black/40 font-luxury-body">· +150 avis vérifiés</span>
+            <p className="text-base text-muted-foreground mt-2">
+              Avis vérifiés sur{' '}
+              <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer" className="font-semibold text-gray-900 dark:text-gray-100 hover:underline">Trustpilot</a>
+              {' '}et{' '}
+              <a href="https://www.trustindex.io/reviews/dubainegoce.fr" target="_blank" rel="noopener noreferrer" className="font-semibold text-gray-900 dark:text-gray-100 hover:underline">Trustindex</a>
+            </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        {/* Grille des avis */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {reviews.map((review, i) => (
-            <div key={i} className="bg-[#F9F9F9] p-6 flex flex-col gap-4 hover:shadow-md transition-shadow duration-300">
-              {/* Stars */}
-              <div className="flex items-center gap-1">
+            <div key={i} className="bg-gray-50 dark:bg-background border border-gray-100 dark:border-gray-800 rounded-lg p-6 flex flex-col hover:shadow-lg hover:border-gray-200 transition-all duration-300">
+              <div className="flex items-center gap-1 mb-4">
                 {[...Array(review.rating)].map((_, j) => (
-                  <Star key={j} className="h-3.5 w-3.5 fill-[#D4AF37] text-[#D4AF37]" />
+                  <div key={j} className="bg-[#00b67a] p-1 rounded-sm">
+                    <Star className="h-3.5 w-3.5 fill-white text-white" />
+                  </div>
                 ))}
               </div>
-
-              {/* Quote */}
-              <p className="text-sm text-black/70 font-luxury-body leading-relaxed italic flex-grow">
-                "{review.comment}"
+              <h4 className="font-bold text-base text-gray-900 dark:text-white mb-2 leading-snug">{review.title}</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow">
+                {review.comment}
               </p>
-
-              {/* Product */}
-              <div className="border-t border-black/5 pt-3">
-                <p className="text-[9px] uppercase tracking-wider text-[#D4AF37] font-luxury-body mb-1">
-                  {review.product}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-luxury-headline text-black">{review.name}</p>
-                    <p className="text-[10px] text-black/40 font-luxury-body">{review.city} · {review.date}</p>
-                  </div>
-                  {/* Verified badge */}
-                  <span className="text-[8px] uppercase tracking-wider bg-green-50 text-green-600 px-2 py-1 border border-green-100">
-                    ✓ Vérifié
+              <div className="pt-6 mt-auto">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">{review.name}</p>
+                <div className="flex items-center gap-2 mt-1.5 text-xs text-muted-foreground">
+                  <span>{review.date}</span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1 text-gray-500">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Avis vérifié
                   </span>
                 </div>
               </div>
@@ -94,17 +90,26 @@ export function CustomerReviewsSection() {
           ))}
         </div>
 
-        {/* CTA to Google Reviews */}
-        <div className="text-center mt-12">
-          <Link
-            href="https://g.page/r/CYfNDXizM9KSEAE/review"
+        {/* Boutons d'action */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="https://fr.trustpilot.com/review/dubainegoce.fr"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] font-luxury-body text-black/50 hover:text-[#D4AF37] transition-colors border-b border-black/10 pb-1"
+            className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-card text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
-            Voir tous les avis Google →
-          </Link>
+            Voir les avis sur Trustpilot
+          </a>
+          <a
+            href="https://www.trustindex.io/reviews/dubainegoce.fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-card text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          >
+            Voir les avis sur Trustindex
+          </a>
         </div>
+
       </div>
     </section>
   );

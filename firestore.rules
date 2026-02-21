@@ -33,11 +33,7 @@ service cloud.firestore {
     }
     
     function isNewUserDocValid(userId) {
-      let data = request.resource.data;
-      return data.id == userId
-        && data.email is string
-        && (!('firstName' in data) || data.firstName is string)
-        && (!('lastName' in data) || data.lastName is string);
+      return request.resource.data.id == userId;
     }
 
     function isUserDocImmutable() {
@@ -68,15 +64,6 @@ service cloud.firestore {
     function isReviewImmutable() {
       let data = request.resource.data;
       return data.userId == resource.data.userId && data.productId == resource.data.productId;
-    }
-
-    // Stripe subscription role helpers
-    function hasBasicSubs() {
-      return request.auth.token.stripeRole == "basic";
-    }
-
-    function hasPremiumSubs() {
-      return request.auth.token.stripeRole == "premium";
     }
 
     // ------------------------------------------------------------------------
@@ -167,18 +154,6 @@ service cloud.firestore {
       match /products/{productId} {
         allow read, write: if isOwner(userId);
       }
-    }
-
-    // ------------------------------------------------------------------------
-    // Subscription-based Content Access
-    // ------------------------------------------------------------------------
-
-    match /content-basic/{doc} {
-      allow read: if hasBasicSubs() || hasPremiumSubs();
-    }
-
-    match /content-premium/{doc} {
-      allow read: if hasPremiumSubs();
     }
   }
 }

@@ -11,62 +11,22 @@ export function CookieConsent() {
 
   useEffect(() => {
     try {
-      const consent = sessionStorage.getItem('cookie_consent');
+      const consent = localStorage.getItem('cookie_consent');
       if (!consent) {
         setShowBanner(true);
-      } else if (consent === 'true') {
-        // If consent was previously granted, update gtag
-        // @ts-ignore
-        window.dataLayer = window.dataLayer || [];
-        // @ts-ignore
-        window.gtag('consent', 'update', {
-          'ad_storage': 'granted',
-          'analytics_storage': 'granted',
-        });
-      } else if (consent === 'false') {
-        // If consent was previously denied, update gtag
-        // @ts-ignore
-        window.dataLayer = window.dataLayer || [];
-        // @ts-ignore
-        window.gtag('consent', 'update', {
-          'ad_storage': 'denied',
-          'analytics_storage': 'denied',
-        });
       }
     } catch (error) {
-      // sessionStorage is not available
+      // localStorage is not available (e.g., in server-side rendering or private browsing)
+      // We can choose to not show the banner or handle it differently
     }
   }, []);
 
   const handleAccept = () => {
     try {
-      sessionStorage.setItem('cookie_consent', 'true');
-      // @ts-ignore
-      window.dataLayer = window.dataLayer || [];
-      // @ts-ignore
-      window.gtag('consent', 'update', {
-        'ad_storage': 'granted',
-        'analytics_storage': 'granted',
-      });
+      localStorage.setItem('cookie_consent', 'true');
       setShowBanner(false);
     } catch (error) {
-      setShowBanner(false);
-    }
-  };
-
-  const handleReject = () => {
-    try {
-      sessionStorage.setItem('cookie_consent', 'false');
-      // @ts-ignore
-      window.dataLayer = window.dataLayer || [];
-      // @ts-ignore
-      window.gtag('consent', 'update', {
-        'ad_storage': 'denied',
-        'analytics_storage': 'denied',
-      });
-      setShowBanner(false);
-    } catch (error) {
-      setShowBanner(false);
+       setShowBanner(false);
     }
   };
 
@@ -82,8 +42,8 @@ export function CookieConsent() {
             showBanner ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         )}>
             <CardHeader className="flex-row items-start gap-4 space-y-0">
-                <div className="p-2 bg-muted rounded-full mt-1">
-                    <Cookie className="h-6 w-6 text-muted-foreground" />
+                <div className="p-2 bg-primary/10 rounded-full mt-1">
+                    <Cookie className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                     <CardTitle className="text-lg">Nous utilisons des cookies</CardTitle>
@@ -97,7 +57,7 @@ export function CookieConsent() {
                     <Button onClick={handleAccept} className="w-full">
                         Accepter
                     </Button>
-                     <Button variant="outline" onClick={handleReject} className="w-full">
+                     <Button variant="outline" onClick={() => setShowBanner(false)} className="w-full">
                         Refuser
                     </Button>
                 </div>

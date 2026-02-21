@@ -1,39 +1,34 @@
 # Settings to manage and configure a Firebase App Hosting backend.
 # https://firebase.google.com/docs/app-hosting/configure
-# Secrets IAM permissions granted - ready for deployment
 
 runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
-  # Région de déploiement (europe-west4 = Pays-Bas, optimal pour la France)
-  region: europe-west4
-
-# Environment variables (public values and secret references)
-env:
-  # --- Variables publiques (non-secrètes) ---
-  - variable: FROM_EMAIL
-    value: contact@dubainegoce.fr
-  - variable: NEXT_PUBLIC_APP_URL
-    value: https://dubainegoce.fr
-  - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-    value: pk_live_51SjlzeAIq9NC7F5auCgm8m2QD3aQ3myNockeSayCfDDut8wZeqTxitT7g50gR9zfXLU4BFeESt5qGBAcjCGqCMfB00EnOdP7H7
-  # - variable: NEXT_PUBLIC_STRIPE_PAYMENT_METHOD_CONFIG_ID
-  #   value: pmc_1SjO2RE0RxlSMWpM4yfxBms3
-  - variable: GEMINI_API_KEY
-    value: AIzaSyDYbp8HUvKRpQMwY1GX8vK1KmYyJS52Xsk
-
-
-  # --- Secrets (références à Google Cloud Secret Manager) ---
-  # La clé secrète LIVE de Stripe (commence par sk_live_...)
-  - variable: STRIPE_SECRET_KEY
+# This section specifies the secrets that should be exposed to the backend as
+# environment variables.
+# IMPORTANT: You must create these secrets in Google Cloud Secret Manager.
+# Ces secrets doivent correspondre aux clés LIVE de vos services.
+secretEnvironmentVariables:
+  # --- Secrets Stripe (LIVE) ---
+  - key: STRIPE_SECRET_KEY
+    # La clé secrète LIVE de Stripe (commence par sk_live_...)
     secret: STRIPE_SECRET_KEY
-  # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
-  - variable: STRIPE_WEBHOOK_SECRET
+  - key: STRIPE_WEBHOOK_SECRET
+    # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
+    # Attention: Ne pas confondre avec le webhook Resend.
     secret: STRIPE_WEBHOOK_SECRET
-  # Votre clé API SendGrid (commence par SG....)
-  - variable: SENDGRID_API_KEY
-    secret: SENDGRID_API_KEY
+  # --- Secrets Resend (LIVE) ---
+  - key: RESEND_API_KEY
+    # Votre clé API Resend (commence par re_...)
+    secret: RESEND_API_KEY
+  - key: RESEND_AUDIENCE_ID
+    # L'ID de votre audience de newsletter Resend
+    secret: RESEND_AUDIENCE_ID
+  - key: RESEND_WEBHOOK_SECRET
+    # La clé de signature du webhook Resend (commence par whsec_...)
+    # Attention: Similaire au format de Stripe, mais provient de Resend.
+    secret: RESEND_WEBHOOK_SECRET
 headers:
   - # Set a Cache-Control header for all static assets.
     source: /_next/static/**

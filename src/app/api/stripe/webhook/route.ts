@@ -5,37 +5,6 @@ import { headers } from 'next/headers';
 import { buffer } from 'node:stream/consumers';
 import { processSuccessfulOrder } from '@/app/actions';
 
-// Fonction pour envoyer une alerte Telegram
-async function sendTelegramAlert(message: string) {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!botToken || !chatId) {
-    console.warn('[Telegram] Token ou Chat ID non configuré');
-    return;
-  }
-
-  try {
-    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'HTML'
-      })
-    });
-
-    if (response.ok) {
-      console.log('[Telegram] Alerte envoyée avec succès');
-    } else {
-      console.error('[Telegram] Erreur envoi:', await response.text());
-    }
-  } catch (error) {
-    console.error('[Telegram] Erreur:', error);
-  }
-}
-
 export async function POST(req: NextRequest) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -63,7 +32,7 @@ export async function POST(req: NextRequest) {
     case 'checkout.session.completed': {
       const session = event.data.object as Stripe.Checkout.Session;
       console.log(`[Webhook Stripe] Traitement de checkout.session.completed pour la session : ${session.id}`);
-
+      
       try {
         const result = await processSuccessfulOrder(session.id);
         if (!result.success) {
@@ -71,51 +40,6 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ error: `Échec du traitement de la commande: ${result.message}` }, { status: 500 });
         } else {
           console.log(`[Webhook Stripe] Commande pour la session ${session.id} traitée avec succès.`);
-
-          // Envoyer alerte Telegram
-          const amount = session.amount_total ? (session.amount_total / 100).toFixed(2) : '0.00';
-          const customerEmail = session.customer_details?.email || 'Non fourni';
-          const customerName = session.customer_details?.name || 'Non fourni';
-          const shippingAddress = session.shipping_details?.address;
-          const metadata = session.metadata || {};
-
-          let addressText = 'Non fournie';
-          if (shippingAddress) {
-            addressText = [
-              shippingAddress.line1,
-              shippingAddress.line2,
-              `${shippingAddress.postal_code} ${shippingAddress.city}`,
-              shippingAddress.country
-            ].filter(Boolean).join('\n');
-          }
-
-          // Point Relais info
-          let relayPointText = '';
-          if (metadata.relayPointName) {
-            relayPointText = `
-
-📍 <b>Point Relais:</b>
-${metadata.relayPointName}
-${metadata.relayPointAddress || ''}
-${metadata.relayPointCity || ''}`;
-          }
-
-          const telegramMessage = `
-🎉 <b>NOUVELLE COMMANDE!</b>
-
-💰 <b>Montant:</b> ${amount}€
-👤 <b>Client:</b> ${customerName}
-📧 <b>Email:</b> ${customerEmail}
-
-📦 <b>Adresse de livraison:</b>
-${addressText}${relayPointText}
-
-🚚 <b>Methode:</b> ${metadata.shippingMethod || 'Non specifie'}
-
-🔗 <b>Session ID:</b> ${session.id}
-          `.trim();
-
-          await sendTelegramAlert(telegramMessage);
         }
       } catch (error: any) {
         console.error(`[Webhook Stripe] ERREUR CRITIQUE lors du traitement de la commande pour la session ${session.id}:`, error);

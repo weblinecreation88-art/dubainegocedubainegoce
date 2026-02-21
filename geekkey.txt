@@ -1,0 +1,20 @@
+# --- Configuration Stripe (Indispensable pour le paiement) ---
+# Allez sur https://dashboard.stripe.com/test/apikeys pour les clés de test
+STRIPE_SECRET_KEY=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
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_51LRHKJE0RxlSMWpMj7QnXH4uHb4GOxdsUi47AO3Jmu19RtEIxjOrjhQyjNEUC8V06Ijj62lWBcfl4XyoYsqzrs9x00nH0TrDK8
+STRIPE_WEBHOOK_SECRET=whsec_etXxM5zI2FUZVUaDc3gXABPFaIn44NoY
+NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID=we_1OQeF2E0RxlSMWpMRBiZoOqK
+
+# --- Configuration Resend (Emails transactionnels) ---
+RESEND_API_KEY=re_49fMk2Rp_HMeaZRPgGVngBFSmaG4MYYtq
+RESEND_AUDIENCE_ID=5e4d5e4d-5e4d-5e4d-5e4d-5e4d5e4d5e4d
+FROM_EMAIL=contact@woosenteur.fr
+
+# --- Configuration App ---
+NEXT_PUBLIC_APP_URL=https://dubainegoce.fr
+# --- Configuration Firebase Admin ---
+# Nécessaire pour enregistrer les commandes dans Firestore
+FIREBASE_SERVICE_ACCOUNT_KEY={  "type": "service_account",  "project_id": "studio-9269357231-ea935",  "private_key_id": "c970ac35ea3877057d3f4a32d36801aabe4da43b",  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCsi6MMJDgNyIwk\nnlUlYVk5PCRx7pHU2DqAHtxf7rRV3AX6K5ZtjLSOSYJDfC3i2QA3KHw4c4jSHFwb\naMuOufKwjAqDjch5oqRaSTLOZ6N6H8GCJ6DZYoNd3IAO2CpXYiH1/tPQl1ZdinTf\nxyJDmdx6KYyRG1MyWalEIFTmY9UGCqylT998vvmtSd2kKQt/M+hqh0l3R1WAvlNK\ncB8Zw7nCwxSGFmZn29fOpS0w/Njsf2PW6wJJ7RgoW4StxFTalArPenqpz7XWF+v6\n9A9gob+OE4xocj87zz7RwbT7VnqSeLccZiJruET7mCL3Sh3y4R7GyKAZtOlrx+UO\n0eh/0PYzAgMBAAECggEALUq+Muqy+BNDjj0tlpFWLWr3Gh0IlLlpqcXwDRKIrd0C\niKe2Ze1AW/U5x2MqXFif8NqkuODC8nxVRTCd9kojRWqNO/kUvbEOuVBrkLittdnu\nHq8uTsHIP/QofT0K6EMvLPaGPUPsfMNiaHdKLDqQIFUVu+VTUm0svGBMSOm9ukbW\nqcRd6UwmWgPlMlbvpOkkZxaaF+aIKzc1DX/GUIic69DcCTjfDP6JxT2IqL0WyGm1\nuylc/9FUBWALpvD+WL7uem1BL8MvHLn1kvUm40itNYZFXB3iNDUEK1gBUG6I02/X\nbGetFR6BuJUxjcEm/xpsF98Z0ip1KeNYL59amiEYgQKBgQDXYU+PSUqIgjc/2reK\neYna7dhmFeE9vIbt7tSXhYGLYrCmavIUPqkseIHz4W0yW498EAzSo4NQxGqZy82H\ne8EGBlYABAmDP/obOTXKfiIXrJQ+96GcAKcIpbeKmxHMRPJw84qBalHxEAw5AXz8\nNwCRG3T+7SSs5Kc/imbPrqNn8wKBgQDNFj3G8UcPUoimeVYX3Aex57kYDVsUbAZ2\nebrAw0ESvBIEAJw2z7lNZS2JuW3gq2NwtwDTtjZK5jluzdXOdepokr23PkU9WMaA\n4ExbOs9Kz7E6+3lECQEgz/AVgZbhYBJDTHtbDWZnk6Ue2TRC/UnRzjhTycsSThDT\nqgPRjyAIwQKBgQDVq9ObKjHINa8MKTb3KNZLnLSXqlM3xSXzPIIqBCfdmT35C5Y3\n4WZCGReLVHPZhp5VjTK7cb5fzUyYYWj4ZRy8lmKRR3AMhtbgVSR5TCMUa4Dy6wao\nVrlfSdBJsMe6aBhBWEtrUogSaEJH96MAMKzeSGgMVEWTRJBr6ClRFkdEYwKBgEd9\nUkmP/6JCtem58B3fEDuet/G/bhlfUp1n74aUSZG7R1hn0gx1OnXVKBuTLM8dT0uS\nL1KdeK2BNVH/pGEUz4JmbIV8ymwJDyELjvJaPLoqTfBuiqYBsYf7lAgbJToo4BTf\nizyBHkpKuEtZkZMscdgV16K1e/lEhy8RW8Vn69XBAoGBAMZMnAYLkZ07nMEe+KFk\nbWMDgj7lXw2IllCc7nN1zq/AvhLu7ZHScmcOmpoTgFnPOlv/in320N92Q7g8KLFd\nPiMy8DfS/xjpJDG1v0x0eTrVImkf1ttvs3TqkSrOmtuknHDkB4yJbDO+OD8c4Ud/\nUJLeC8Q5jRSreQOlms9bHonl\n-----END PRIVATE KEY-----\n",  "client_email": "firebase-adminsdk-fbsvc@studio-9269357231-ea935.iam.gserviceaccount.com",  "client_id": "109547474736312123381",  "auth_uri": "https://accounts.google.com/o/oauth2/auth",  "token_uri": "https://oauth2.googleapis.com/token",  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40studio-9269357231-ea935.iam.gserviceaccount.com","universe_domain": "googleapis.com"}
+
+GOOGLE_GENAI_API_KEY=AIzaSyBRo4IOTQUcUty49aTlKP7zRdye8xNK1sk
+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

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useCart } from '@/context/cart-context';
@@ -6,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, Loader2 } from 'lucide-react';
+import { Trash2, ShoppingBag, Loader2, TicketPercent, Lock, ShieldCheck } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
@@ -16,25 +17,44 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
-import { collection, addDoc, onSnapshot } from 'firebase/firestore';
-import { MondialRelayWidget, type PointRelais } from '@/components/mondial-relay-widget';
-import { ShieldCheck, Lock } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { collection, addDoc, onSnapshot, DocumentData } from 'firebase/firestore';
+
+const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
 const PERFUME_WEIGHT_G = 750;
 
 export default function CartPage() {
-  const appUrl = typeof window !== 'undefined' ? window.location.origin : (process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr');
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
-  const { user, isUserLoading } = useUser();
+  const { user } = useUser();
   const firestore = useFirestore();
   const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
   const [isClient, setIsClient] = useState(false);
-  const [selectedRelayPoint, setSelectedRelayPoint] = useState<PointRelais | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     setIsClient(true);
+    
+    const handlePopState = () => {
+      setIsCheckingOut(false);
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    
+    const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible') {
+            setIsCheckingOut(false);
+        }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const totalItems = getCartCount();
@@ -56,117 +76,83 @@ export default function CartPage() {
     return dynamicShippingMethods.find(m => m.id === selectedShippingId) || dynamicShippingMethods[0];
   }, [selectedShippingId, dynamicShippingMethods]);
 
-
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const totalAmount = subtotal + (selectedShipping?.cost || 0);
-
+  
+  const shippingCost = selectedShipping?.cost || 0;
+  const totalAmount = subtotal + shippingCost;
 
   const handleCheckout = async () => {
-    if (isUserLoading) return;
     if (!user || !firestore) {
       router.push('/login?redirect=/cart');
-      return;
-    }
-
-    // Verifier qu'un point relais est selectionne si Mondial Relay est choisi
-    if (selectedShippingId === 'mondial-relay' && !selectedRelayPoint) {
-      alert('Veuillez selectionner un point relais avant de continuer.');
       return;
     }
 
     setIsCheckingOut(true);
 
     try {
-
-      // Prepare line items (products + shipping as a separate item)
-      const lineItems = [
-        ...cart.map(item => ({
-          price_data: {
-            currency: 'eur',
-            product_data: {
-              name: item.name,
-              images: [item.image],
-              metadata: {
-                productId: item.id,
-              }
+        const lineItems = cart.map(item => ({
+            price_data: {
+                currency: 'eur',
+                product_data: {
+                    name: item.name,
+                    images: [item.image],
+                    metadata: {
+                       productId: item.id,
+                    }
+                },
+                unit_amount: Math.round(item.price * 100),
             },
-            unit_amount: Math.round(item.price * 100),
-          },
-          quantity: item.quantity,
-        })),
-        // Add shipping as a line item
-        {
-          price_data: {
-            currency: 'eur',
-            product_data: {
-              name: `Livraison ${selectedShipping.name}`,
-              description: selectedShipping.description,
+            quantity: item.quantity,
+        }));
+        
+        const checkoutPayload: DocumentData = {
+            mode: 'payment',
+            line_items: lineItems,
+            allow_promotion_codes: true,
+            shipping_address_collection: {
+                allowed_countries: ['FR', 'BE', 'LU', 'CH'],
             },
-            unit_amount: Math.round(selectedShipping.cost * 100),
-          },
-          quantity: 1,
+            invoice_creation: {
+                enabled: true,
+            },
+            success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${totalAmount.toFixed(2)}`,
+            cancel_url: `${appUrl}/cart`,
+            metadata: {
+              userId: user.uid,
+              shippingMethod: selectedShipping.id,
+            }
+        };
+
+        if (selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID) {
+            checkoutPayload.shipping_options = [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }];
         }
-      ];
 
-      const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
-        mode: 'payment',
-        line_items: lineItems,
-        shipping_address_collection: {
-          allowed_countries: ['FR', 'BE', 'LU', 'CH'],
-        },
-        invoice_creation: {
-          enabled: true,
-        },
-        success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${appUrl}/cart`,
-        metadata: {
-          userId: user.uid,
-          shippingMethod: selectedShipping.id,
-          shippingCost: selectedShipping.cost.toString(),
-          ...(selectedRelayPoint && {
-            relayPointId: selectedRelayPoint.id,
-            relayPointName: selectedRelayPoint.name,
-            relayPointAddress: selectedRelayPoint.address,
-            relayPointCity: `${selectedRelayPoint.postalCode} ${selectedRelayPoint.city}`,
-          }),
-        }
-      });
+        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), checkoutPayload);
 
-      let unsubscribeCalled = false;
-      let unsubscribe: (() => void) | null = null;
-
-      const timeout = setTimeout(() => {
-        if (!unsubscribeCalled && unsubscribe) {
-          console.error('Checkout session timeout after 30 seconds');
-          setIsCheckingOut(false);
-          unsubscribeCalled = true;
-          unsubscribe();
-        }
-      }, 30000);
-
-      unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-        if (unsubscribeCalled) return;
-
-        const data = snap.data() as { error?: { message: string }, url?: string };
-        const { error, url } = data;
-
-        if (error) {
-          console.error(`An error occurred with the Stripe session: ${error.message}`);
-          clearTimeout(timeout);
-          setIsCheckingOut(false);
-          unsubscribeCalled = true;
-          if (unsubscribe) unsubscribe();
-        }
-        if (url) {
-          clearTimeout(timeout);
-          unsubscribeCalled = true;
-          if (unsubscribe) unsubscribe();
-          window.location.assign(url);
-        }
-      });
-    } catch (error) {
-      console.error("Error creating checkout session document:", error);
-      setIsCheckingOut(false);
+        const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
+            const { error, url } = snap.data() as { error?: { message: string }, url?: string };
+            if (error) {
+                console.error(`An error occurred with the Stripe session: ${error.message}`);
+                toast({
+                  variant: "destructive",
+                  title: "Erreur de paiement",
+                  description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
+                })
+                setIsCheckingOut(false);
+                unsubscribe();
+            }
+            if (url) {
+                window.location.assign(url);
+            }
+        });
+    } catch(error: any) {
+        console.error("Error creating checkout session document:", error);
+         toast({
+            variant: "destructive",
+            title: "Erreur de paiement",
+            description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
+        })
+        setIsCheckingOut(false);
     }
   };
 
@@ -182,14 +168,14 @@ export default function CartPage() {
 
       {!isClient || cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center bg-card p-12 rounded-lg">
-          <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-          <h2 className="text-2xl font-headline">Votre panier est vide</h2>
-          <p className="text-muted-foreground mt-2 max-w-md mb-6">
-            On dirait que vous n'avez pas encore ajouté de trésors olfactifs.
-          </p>
-          <Button asChild>
-            <Link href="/shop">Continuer mes achats</Link>
-          </Button>
+            <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
+            <h2 className="text-2xl font-headline">Votre panier est vide</h2>
+            <p className="text-muted-foreground mt-2 max-w-md mb-6">
+                On dirait que vous n'avez pas encore ajouté de trésors olfactifs.
+            </p>
+            <Button asChild>
+                <Link href="/shop">Continuer mes achats</Link>
+            </Button>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -215,63 +201,54 @@ export default function CartPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-end justify-between h-full ml-4">
-                  <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
-                  <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
-                    <Trash2 className="h-4 w-4 text-muted-foreground" />
-                  </Button>
+                     <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
+                    <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
+                        <Trash2 className="h-4 w-4 text-muted-foreground" />
+                    </Button>
                 </div>
               </Card>
             ))}
-            <div className="text-right mt-4">
-              <Button variant="outline" onClick={clearCart}>
-                Vider le panier
-              </Button>
+             <div className="text-right mt-4">
+                <Button variant="outline" onClick={clearCart}>
+                    Vider le panier
+                </Button>
             </div>
           </div>
 
           <div className="lg:col-span-1 space-y-6 sticky top-24">
-            <Card>
-              <CardHeader>
-                <CardTitle>Méthode de livraison</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <RadioGroup
-                  value={selectedShippingId}
-                  onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
-                  className="space-y-4"
-                >
-                  {dynamicShippingMethods.map((method) => (
-                    <Label
-                      key={method.id}
-                      htmlFor={method.id}
-                      className={cn(
-                        "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
-                        selectedShippingId === method.id && "border-primary ring-2 ring-primary"
-                      )}
+             <Card>
+                <CardHeader>
+                    <CardTitle>Méthode de livraison</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <RadioGroup
+                        value={selectedShippingId}
+                        onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
+                        className="space-y-4"
                     >
-                      <RadioGroupItem value={method.id} id={method.id} />
-                      <method.icon className="h-6 w-6 text-muted-foreground" />
-                      <div className="flex-1">
-                        <p className="font-semibold">{method.name}</p>
-                        <p className="text-sm text-muted-foreground">{method.description}</p>
-                      </div>
-                      <p className="font-semibold text-sm">
-                        {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
-                      </p>
-                    </Label>
-                  ))}
-                </RadioGroup>
-              </CardContent>
-            </Card>
-
-            {/* Widget Points Relais */}
-            {selectedShippingId === 'mondial-relay' && (
-              <MondialRelayWidget
-                onPointSelected={setSelectedRelayPoint}
-                selectedPoint={selectedRelayPoint}
-              />
-            )}
-
+                       {dynamicShippingMethods.map((method) => (
+                         <Label
+                           key={method.id}
+                           htmlFor={method.id}
+                           className={cn(
+                               "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
+                               selectedShippingId === method.id && "border-primary ring-2 ring-primary"
+                           )}
+                         >
+                           <RadioGroupItem value={method.id} id={method.id} />
+                           <method.icon className="h-6 w-6 text-muted-foreground" />
+                           <div className="flex-1">
+                               <p className="font-semibold">{method.name}</p>
+                               <p className="text-sm text-muted-foreground">{method.description}</p>
+                           </div>
+                           <p className="font-semibold text-sm">
+                                {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
+                           </p>
+                         </Label>
+                       ))}
+                    </RadioGroup>
+                </CardContent>
+             </Card>
             <Card>
               <CardHeader>
                 <CardTitle>Récapitulatif</CardTitle>
@@ -283,8 +260,12 @@ export default function CartPage() {
                 </div>
                 <div className="flex justify-between">
                   <span>Livraison</span>
-                  <span>{selectedShipping.cost.toFixed(2)} €</span>
+                  <span>{shippingCost > 0 ? `${shippingCost.toFixed(2)} €` : 'Gratuite'}</span>
                 </div>
+                <Separator />
+                 <p className="text-sm text-muted-foreground">
+                    Vous avez un code promo ? Vous pourrez l'ajouter sur la page de paiement.
+                 </p>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
@@ -292,21 +273,20 @@ export default function CartPage() {
                 </div>
               </CardContent>
               <CardFooter className="flex-col gap-3">
-                <Button className="w-full bg-black text-white hover:bg-[#D4AF37] hover:text-white rounded-none h-14 font-luxury-body text-[10px] uppercase tracking-[0.3em] transition-all duration-300" size="lg" onClick={handleCheckout} disabled={isCheckingOut || isUserLoading}>
+                <Button className="w-full" size="lg" onClick={handleCheckout} disabled={isCheckingOut || cart.length === 0}>
                   {isCheckingOut ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  {isCheckingOut ? 'Redirection...' : 'Passer la commande →'}
+                  {user ? (isCheckingOut ? 'Redirection...' : 'Passer la commande →') : 'Se connecter pour commander'}
                 </Button>
-                {/* Security badges */}
-                <div className="w-full flex items-center justify-center gap-2 text-black/30">
+                <div className="w-full flex items-center justify-center gap-2 text-muted-foreground">
                   <Lock className="h-3 w-3" />
-                  <span className="text-[9px] uppercase tracking-wider font-luxury-body">Paiement 100% sécurisé SSL</span>
+                  <span className="text-[10px] uppercase tracking-wider">Paiement 100% sécurisé SSL</span>
                 </div>
-                <div className="w-full flex items-center justify-center gap-4 pt-1">
-                  <span className="text-[9px] text-black/30 font-luxury-body flex items-center gap-1.5">
-                    <ShieldCheck className="h-3 w-3 text-[#D4AF37]" /> Stripe
+                <div className="w-full flex items-center justify-center gap-4">
+                  <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                    <ShieldCheck className="h-3 w-3 text-primary" /> Stripe
                   </span>
-                  <span className="text-[9px] text-black/30 font-luxury-body">Visa / Mastercard</span>
-                  <span className="text-[9px] text-black/30 font-luxury-body">PayPal</span>
+                  <span className="text-[10px] text-muted-foreground">Visa / Mastercard</span>
+                  <span className="text-[10px] text-muted-foreground">PayPal</span>
                 </div>
               </CardFooter>
             </Card>
@@ -316,3 +296,5 @@ export default function CartPage() {
     </div>
   );
 }
+
+    

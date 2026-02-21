@@ -40,5 +40,3 @@ npm run build
 - Blog avec articles SEO
 - Chatbot FAQ avec AI
 - Gestion des commandes
-
-

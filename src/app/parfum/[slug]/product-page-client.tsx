@@ -42,9 +42,9 @@ export function ProductPageClient() {
   if (!msg) return null;
 
   return (
-    <div className={`flex items-center gap-2 px-4 py-3 border ${msg.urgent ? 'border-orange-200 bg-orange-50' : 'border-black/5 bg-[#F9F9F9]'}`}>
-      <Clock className={`h-4 w-4 shrink-0 ${msg.urgent ? 'text-orange-500' : 'text-[#D4AF37]'}`} />
-      <p className={`text-[10px] uppercase tracking-wider font-luxury-body ${msg.urgent ? 'text-orange-600' : 'text-black/50'}`}>
+    <div className={`flex items-center gap-2 px-4 py-3 rounded-md border ${msg.urgent ? 'border-orange-200 bg-orange-50 dark:bg-orange-900/20' : 'border-border bg-muted/30'}`}>
+      <Clock className={`h-4 w-4 shrink-0 ${msg.urgent ? 'text-orange-500' : 'text-primary'}`} />
+      <p className={`text-xs font-medium ${msg.urgent ? 'text-orange-600 dark:text-orange-400' : 'text-muted-foreground'}`}>
         {msg.text}
       </p>
     </div>

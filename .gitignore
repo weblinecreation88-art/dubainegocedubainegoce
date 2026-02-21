@@ -43,23 +43,3 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
-*-firebase-adminsdk-*.json
-
-# secrets and keys
-geekkey.txt
-nul
-dubainegoce-back-296a4-70cf6df0c024.json
-
-# PWA files
-/public/sw.js
-/public/workbox-*.js
-/public/worker-*.js
-/public/sw.js.map
-/public/workbox-*.js.map
-/public/worker-*.js.map
-*.zip
-
-# Ignore environment files in extensions directory
-extensions/*.envdubainegoce-back-296a4-70cf6df0c024.json
-dubainegoce-back-296a4-70cf6df0c024.json
-extensions/firestore-stripe-payments.env
