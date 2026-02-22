@@ -9,6 +9,7 @@ import { MessageSquare, Send, X, Bot, User, Loader2 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { runAnswerFaq } from '@/app/actions';
 import { cn } from '@/lib/utils';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 type Message = {
   text: string;
@@ -17,27 +18,24 @@ type Message = {
 
 export function FaqChatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      text: 'Bonjour ! Je suis l\'assistant de DubaiNegoce. Comment puis-je vous aider ?',
+      sender: 'bot',
+    },
+  ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      setMessages([
-        {
-          text: 'Bonjour ! Je suis l\'assistant de DubaiNegoce. Comment puis-je vous aider ?',
-          sender: 'bot',
-        },
-      ]);
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
     if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+      const scrollElement = scrollAreaRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (scrollElement) {
+        scrollElement.scrollTop = scrollElement.scrollHeight;
+      }
     }
-  }, [messages]);
+  }, [messages, isOpen]);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,73 +73,86 @@ export function FaqChatbot() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="fixed bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm"
           >
-            <Card className="flex h-[60vh] flex-col shadow-2xl">
-              <CardHeader className="flex-row items-center justify-between border-b">
+            <Card className="flex h-[60vh] flex-col shadow-2xl border-primary/20">
+              <CardHeader className="flex-row items-center justify-between border-b bg-muted/30 py-3">
                 <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded-full">
-                        <Bot className="h-6 w-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-lg">Assistant DubaiNegoce</CardTitle>
+                  <div className="p-2 bg-primary/10 rounded-full">
+                    <Bot className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-base">Assistant DubaiNegoce</CardTitle>
+                    <p className="text-[10px] text-muted-foreground flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                      En ligne
+                    </p>
+                  </div>
                 </div>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}>
                   <X className="h-4 w-4" />
                 </Button>
               </CardHeader>
-              <CardContent className="flex-1 p-0">
-                <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
-                  <div className="space-y-4">
+              <CardContent className="flex-1 p-0 overflow-hidden">
+                <ScrollArea className="h-full" ref={scrollAreaRef}>
+                  <div className="p-4 space-y-4">
                     {messages.map((message, index) => (
                       <div
                         key={index}
                         className={cn(
-                          'flex items-start gap-3',
+                          'flex items-start gap-2',
                           message.sender === 'user' ? 'justify-end' : 'justify-start'
                         )}
                       >
                         {message.sender === 'bot' && (
-                          <Avatar className="h-8 w-8 bg-primary/20 text-primary">
-                            <Bot className="h-5 w-5" />
+                          <Avatar className="h-8 w-8 border border-primary/10">
+                            <AvatarFallback className="bg-primary/5">
+                              <Bot className="h-4 w-4 text-primary" />
+                            </AvatarFallback>
                           </Avatar>
                         )}
                         <div
                           className={cn(
-                            'max-w-[80%] rounded-xl px-4 py-2',
+                            'max-w-[80%] rounded-2xl px-3.5 py-2 shadow-sm',
                             message.sender === 'user'
-                              ? 'bg-primary text-primary-foreground'
-                              : 'bg-muted'
+                              ? 'bg-primary text-primary-foreground rounded-tr-none'
+                              : 'bg-muted rounded-tl-none'
                           )}
                         >
-                          <p className="text-sm">{message.text}</p>
+                          <p className="text-sm leading-relaxed">{message.text}</p>
                         </div>
-                         {message.sender === 'user' && (
-                          <Avatar className="h-8 w-8 bg-muted text-muted-foreground">
-                            <User className="h-5 w-5" />
+                        {message.sender === 'user' && (
+                          <Avatar className="h-8 w-8 border border-muted-foreground/10">
+                            <AvatarFallback className="bg-muted text-muted-foreground">
+                              <User className="h-4 w-4" />
+                            </AvatarFallback>
                           </Avatar>
                         )}
                       </div>
                     ))}
                     {isLoading && (
-                       <div className="flex items-start gap-3 justify-start">
-                           <Avatar className="h-8 w-8 bg-primary/20 text-primary">
-                            <Bot className="h-5 w-5" />
-                          </Avatar>
-                          <div className="bg-muted rounded-xl px-4 py-3">
-                              <Loader2 className="h-5 w-5 animate-spin text-primary" />
-                          </div>
-                       </div>
+                      <div className="flex items-start gap-2 justify-start">
+                        <Avatar className="h-8 w-8 border border-primary/10">
+                          <AvatarFallback className="bg-primary/5">
+                            <Bot className="h-4 w-4 text-primary" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="bg-muted rounded-2xl rounded-tl-none px-4 py-3">
+                          <Loader2 className="h-4 w-4 animate-spin text-primary" />
+                        </div>
+                      </div>
                     )}
                   </div>
                 </ScrollArea>
               </CardContent>
-              <CardFooter className="border-t p-4">
+              <CardFooter className="border-t p-3 bg-muted/10">
                 <form onSubmit={handleSendMessage} className="flex w-full items-center gap-2">
                   <Input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Posez votre question..."
                     disabled={isLoading}
+                    className="bg-background border-primary/10 focus-visible:ring-primary/20"
                   />
-                  <Button type="submit" size="icon" disabled={isLoading}>
+                  <Button type="submit" size="icon" disabled={isLoading} className="shrink-0 h-9 w-9">
                     <Send className="h-4 w-4" />
                   </Button>
                 </form>
@@ -153,17 +164,17 @@ export function FaqChatbot() {
 
       <Button
         size="icon"
-        className="fixed bottom-4 right-4 z-50 h-16 w-16 rounded-full shadow-2xl"
+        className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-105"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} key="close">
-              <X className="h-8 w-8" />
+            <motion.div initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} key="close">
+              <X className="h-6 w-6" />
             </motion.div>
           ) : (
-            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} key="open">
-              <MessageSquare className="h-8 w-8" />
+            <motion.div initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} key="open">
+              <MessageSquare className="h-6 w-6" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -171,10 +182,3 @@ export function FaqChatbot() {
     </>
   );
 }
-
-// Add a simple Avatar component if not available elsewhere
-const Avatar = ({ className, children }: { className?: string; children: React.ReactNode }) => (
-  <div className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-full", className)}>
-    {children}
-  </div>
-);

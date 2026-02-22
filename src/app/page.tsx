@@ -5,15 +5,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Star, ShieldCheck, Truck } from "lucide-react";
 import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
+import { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product/product-card";
 import { SocialFollowSection } from "@/components/layout/social-follow-section";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from 'framer-motion';
@@ -34,7 +28,9 @@ export default function Home() {
     'infini-oud-maison-alhambra-mixte',
     'yeah-maison-alhambra'
   ];
-  const bestsellers = getProducts().filter(p => bestsellersSlugs.includes(p.slug));
+  const bestsellers = bestsellersSlugs
+    .map(slug => getProducts().find(p => p.slug === slug))
+    .filter((p): p is Product => p !== undefined);
 
   const featuredPerfume = getProducts().find(p => p.slug === 'khamrah-lattafa');
   const allFwProducts = getProducts().filter(p => p.brand.name === 'Fragrance World');
@@ -43,13 +39,19 @@ export default function Home() {
     'khamrah-lattafa',
     'asad-lattafa',
     'yara-lattafa',
+    'ana-abiyedh-60ml-lattafa',
+    'come-moiselle-maison-alhambra',
+    'leonie-maison-alhambra',
     'badee-parfum-lattafa',
     'fakhar-black-lattafa',
     'ameer-al-oudh-intense-oud-lattafa',
     'qaed-al-fursan',
     'mayar-lattafa',
+    'sakeena-lattafa',
   ];
-  const lattafaProducts = getProducts().filter(p => lattafaSlugs.includes(p.slug));
+  const lattafaProducts = lattafaSlugs
+    .map(slug => getProducts().find(p => p.slug === slug))
+    .filter((p): p is Product => p !== undefined);
 
   const heroVideos = [
     "https://res.cloudinary.com/dzntnjtkc/video/upload/v1766320321/grok-video-62d89989-e362-4f7b-8748-be7160716d9d_s0bycy.mp4",
@@ -143,25 +145,13 @@ export default function Home() {
                 Tout voir <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full relative"
-            >
-              <CarouselContent className="-ml-4">
-                {newArrivals.slice(0, 10).map((product, index) => (
-                  <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                    <div className="transition-transform duration-300 hover:-translate-y-1">
-                      <ProductCard product={product} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex -left-4 bg-white/80 hover:bg-white shadow-md border-0 text-black h-10 w-10" />
-              <CarouselNext className="hidden md:flex -right-4 bg-white/80 hover:bg-white shadow-md border-0 text-black h-10 w-10" />
-            </Carousel>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+              {newArrivals.slice(0, 8).map((product, index) => (
+                <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
             <div className="mt-8 text-center md:hidden">
               <Button asChild variant="outline" className="w-full sm:w-auto">
                 <Link href="/shop/all">Voir toutes les nouveautés</Link>
@@ -200,25 +190,13 @@ export default function Home() {
             <div className="flex justify-between items-end mb-10">
               <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nos Best Sellers</h2>
             </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full relative"
-            >
-              <CarouselContent className="-ml-4">
-                {bestsellers.map((product, index) => (
-                  <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                    <div className="transition-transform duration-300 hover:-translate-y-1">
-                      <ProductCard product={product} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex -left-4 bg-white/80 hover:bg-white shadow-md border-0 text-black h-10 w-10" />
-              <CarouselNext className="hidden md:flex -right-4 bg-white/80 hover:bg-white shadow-md border-0 text-black h-10 w-10" />
-            </Carousel>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+              {bestsellers.slice(0, 8).map((product, index) => (
+                <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -264,25 +242,13 @@ export default function Home() {
               <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100 mb-2">La Collection Lattafa</h2>
               <p className="text-muted-foreground">Une sélection méticuleuse des créations iconiques de la Maison Lattafa.</p>
             </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: false,
-              }}
-              className="w-full relative"
-            >
-              <CarouselContent className="-ml-4">
-                {lattafaProducts.map((product, index) => (
-                  <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                    <div className="transition-transform duration-300 hover:-translate-y-1">
-                      <ProductCard product={product} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex -left-4 bg-white/80 hover:bg-white shadow-md border-0 text-black h-10 w-10" />
-              <CarouselNext className="hidden md:flex -right-4 bg-white/80 hover:bg-white shadow-md border-0 text-black h-10 w-10" />
-            </Carousel>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+              {lattafaProducts.slice(0, 12).map((product, index) => (
+                <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}

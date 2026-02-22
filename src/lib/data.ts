@@ -3334,29 +3334,7 @@ const products: Product[] = [
         "rating": 4.7,
         "productType": "perfume"
     },
-    {
-        "id": "4311",
-        "name": "Liquide Brun",
-        "slug": "liquide-brun-french-avenue-essentiel",
-        "brand": brands.find(b => b.name === 'French Avenue')!,
-        "type": "dupe",
-        "gender": "mixte",
-        "family": "Ambré",
-        "shortDescription": "Découvrez Liquide Brun French Avenue, une fragrance ambré aux notes de bergamote et jasmin. Laissez-vous séduire par ce parfum inoubliable.",
-        "longDescription": "<h2>Introduction</h2>\n\n<p><strong>Liquide Brun French Avenue</strong> est une création olfactive exceptionnelle signée French Avenue. Ce parfum ambré incarne l'élégance et la sophistication, offrant une expérience sensorielle unique. Dès les premières notes, vous serez transporté dans un univers de raffinement où chaque ingrédient a été minutieusement sélectionné pour créer une harmonie parfaite.</p>\n\n<h3>Pyramide Olfactive</h3>\n\n<p>La pyramide olfactive de <strong>Liquide Brun</strong> s'ouvre sur des notes de tête vibrantes de <strong>bergamote, cardamome, cannelle</strong>, créant une première impression mémorable. Le cœur révèle ensuite des accords de <strong>jasmin, ambre, labdanum</strong>, apportant profondeur et caractère à cette composition. Enfin, le fond somptueux de <strong>vanille, oud, benjoin</strong> assure une tenue remarquable et un sillage envoûtant.</p>\n\n<h2>Pour qui ?</h2>\n\n<p><strong>Liquide Brun French Avenue</strong> a été conçu pour tous ceux qui recherchent l'excellence. Ce parfum unisexe s'adresse à ceux qui apprécient les fragrances de qualité et souhaitent affirmer leur personnalité avec distinction. Son intensité intense et son sillage puissant, sensuel en font le compagnon idéal pour marquer les esprits.</p>\n\n<p>Avec une tenue de <strong>8 à 12 heures</strong>, cette eau de parfum vous accompagne du matin au soir sans nécessiter de retouche. Une fragrance enveloppante qui laisse une trace mémorable.</p>\n\n<h2>Dans quelles occasions ?</h2>\n\n<p>Cette fragrance ambré de French Avenue excelle particulièrement lors des toutes les occasions, sorties en couple, événements mondains. Les saisons idéales pour porter <strong>Liquide Brun</strong> sont automne et hiver, où ses notes se révèlent dans toute leur splendeur.</p>\n\n<p>Que vous recherchiez un parfum signature pour le quotidien ou une fragrance d'exception pour les moments importants, <strong>Liquide Brun French Avenue</strong> saura répondre à vos attentes les plus exigeantes. Laissez-vous séduire par cette création qui allie tradition orientale et modernité.</p>",
-        "metaTitle": "Liquide Brun French Avenue | Parfum Ambré Unisexe",
-        "metaDescription": "Découvrez Liquide Brun French Avenue, une fragrance ambré aux notes de bergamote et jasmin. Laissez-vous séduire par ce parfum inoubliable.",
-        "price": 35,
-        "volumeMl": 100,
-        "stock": 10,
-        "isBestseller": false,
-        "isNew": true,
-        "tags": ["liquide brun", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "bergamote", "cardamome", "vanille", "oud", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/11/product-images2F9SRPbNJB9SXBM37RxXBa4bQKF9L22Ffrench-avenue-liqude-brun.png"],
-        "reviews": [],
-        "rating": 4.8,
-        "productType": "perfume"
-    },
+
     {
         "id": "5004",
         "name": "Kenzie Marshmallow",
