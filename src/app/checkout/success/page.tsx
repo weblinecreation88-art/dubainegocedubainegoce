@@ -14,19 +14,36 @@ const GOOGLE_ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSIO
 
 
 function SuccessContent() {
-    const { clearCart } = useCart();
+    const { cart, clearCart } = useCart();
     const searchParams = useSearchParams();
     const transactionId = searchParams.get('session_id');
     const totalAmount = searchParams.get('total');
 
     useEffect(() => {
+        // GTM Tracking: purchase
+        if (typeof window !== 'undefined' && (window as any).dataLayer && cart.length > 0) {
+            (window as any).dataLayer.push({
+                event: 'purchase',
+                ecommerce: {
+                    transaction_id: transactionId,
+                    value: totalAmount ? parseFloat(totalAmount) : 0,
+                    currency: 'EUR',
+                    items: cart.map(item => ({
+                        item_id: item.id,
+                        item_name: item.name,
+                        price: item.price,
+                        quantity: item.quantity
+                    }))
+                }
+            });
+        }
         clearCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
-            <GoogleAdsConversionTracker 
+            <GoogleAdsConversionTracker
                 googleAdsId={GOOGLE_ADS_ID}
                 conversionLabel={GOOGLE_ADS_CONVERSION_LABEL}
                 transactionId={transactionId}
@@ -43,12 +60,12 @@ function SuccessContent() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                     <div className="text-center text-secondary-foreground bg-secondary p-4 rounded-md flex items-center justify-center gap-3">
+                    <div className="text-center text-secondary-foreground bg-secondary p-4 rounded-md flex items-center justify-center gap-3">
                         <MailCheck className="h-5 w-5 text-primary flex-shrink-0" />
                         <span>Un e-mail de confirmation vous sera envoyé d'une minute à l'autre.</span>
                     </div>
                 </CardContent>
-                 <CardFooter className="flex justify-center">
+                <CardFooter className="flex justify-center">
                     <Button asChild variant="outline">
                         <Link href="/shop">
                             Continuer mes achats

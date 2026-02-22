@@ -36,21 +36,21 @@ export default function CartPage() {
 
   useEffect(() => {
     setIsClient(true);
-    
+
     const handlePopState = () => {
       setIsCheckingOut(false);
     };
-    
+
     window.addEventListener('popstate', handlePopState);
-    
+
     const handleVisibilityChange = () => {
-        if (document.visibilityState === 'visible') {
-            setIsCheckingOut(false);
-        }
+      if (document.visibilityState === 'visible') {
+        setIsCheckingOut(false);
+      }
     };
-    
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+
     return () => {
       window.removeEventListener('popstate', handlePopState);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
@@ -77,7 +77,7 @@ export default function CartPage() {
   }, [selectedShippingId, dynamicShippingMethods]);
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  
+
   const shippingCost = selectedShipping?.cost || 0;
   const totalAmount = subtotal + shippingCost;
 
@@ -89,70 +89,87 @@ export default function CartPage() {
 
     setIsCheckingOut(true);
 
-    try {
-        const lineItems = cart.map(item => ({
-            price_data: {
-                currency: 'eur',
-                product_data: {
-                    name: item.name,
-                    images: [item.image],
-                    metadata: {
-                       productId: item.id,
-                    }
-                },
-                unit_amount: Math.round(item.price * 100),
-            },
-            quantity: item.quantity,
-        }));
-        
-        const checkoutPayload: DocumentData = {
-            mode: 'payment',
-            line_items: lineItems,
-            allow_promotion_codes: true,
-            shipping_address_collection: {
-                allowed_countries: ['FR', 'BE', 'LU', 'CH'],
-            },
-            invoice_creation: {
-                enabled: true,
-            },
-            success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${totalAmount.toFixed(2)}`,
-            cancel_url: `${appUrl}/cart`,
-            metadata: {
-              userId: user.uid,
-              shippingMethod: selectedShipping.id,
-            }
-        };
-
-        if (selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID) {
-            checkoutPayload.shipping_options = [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }];
+    // GTM Tracking: begin_checkout
+    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: 'begin_checkout',
+        ecommerce: {
+          value: totalAmount,
+          currency: 'EUR',
+          items: cart.map(item => ({
+            item_id: item.id,
+            item_name: item.name,
+            price: item.price,
+            quantity: item.quantity
+          }))
         }
+      });
+    }
 
-        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), checkoutPayload);
+    try {
+      const lineItems = cart.map(item => ({
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: item.name,
+            images: [item.image],
+            metadata: {
+              productId: item.id,
+            }
+          },
+          unit_amount: Math.round(item.price * 100),
+        },
+        quantity: item.quantity,
+      }));
 
-        const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-            const { error, url } = snap.data() as { error?: { message: string }, url?: string };
-            if (error) {
-                console.error(`An error occurred with the Stripe session: ${error.message}`);
-                toast({
-                  variant: "destructive",
-                  title: "Erreur de paiement",
-                  description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
-                })
-                setIsCheckingOut(false);
-                unsubscribe();
-            }
-            if (url) {
-                window.location.assign(url);
-            }
-        });
-    } catch(error: any) {
-        console.error("Error creating checkout session document:", error);
-         toast({
+      const checkoutPayload: DocumentData = {
+        mode: 'payment',
+        line_items: lineItems,
+        allow_promotion_codes: true,
+        shipping_address_collection: {
+          allowed_countries: ['FR', 'BE', 'LU', 'CH'],
+        },
+        invoice_creation: {
+          enabled: true,
+        },
+        success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${totalAmount.toFixed(2)}`,
+        cancel_url: `${appUrl}/cart`,
+        metadata: {
+          userId: user.uid,
+          shippingMethod: selectedShipping.id,
+        }
+      };
+
+      if (selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID) {
+        checkoutPayload.shipping_options = [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }];
+      }
+
+      const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), checkoutPayload);
+
+      const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
+        const { error, url } = snap.data() as { error?: { message: string }, url?: string };
+        if (error) {
+          console.error(`An error occurred with the Stripe session: ${error.message}`);
+          toast({
             variant: "destructive",
             title: "Erreur de paiement",
             description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
-        })
-        setIsCheckingOut(false);
+          })
+          setIsCheckingOut(false);
+          unsubscribe();
+        }
+        if (url) {
+          window.location.assign(url);
+        }
+      });
+    } catch (error: any) {
+      console.error("Error creating checkout session document:", error);
+      toast({
+        variant: "destructive",
+        title: "Erreur de paiement",
+        description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
+      })
+      setIsCheckingOut(false);
     }
   };
 
@@ -168,14 +185,14 @@ export default function CartPage() {
 
       {!isClient || cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center bg-card p-12 rounded-lg">
-            <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-            <h2 className="text-2xl font-headline">Votre panier est vide</h2>
-            <p className="text-muted-foreground mt-2 max-w-md mb-6">
-                On dirait que vous n'avez pas encore ajouté de trésors olfactifs.
-            </p>
-            <Button asChild>
-                <Link href="/shop">Continuer mes achats</Link>
-            </Button>
+          <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
+          <h2 className="text-2xl font-headline">Votre panier est vide</h2>
+          <p className="text-muted-foreground mt-2 max-w-md mb-6">
+            On dirait que vous n'avez pas encore ajouté de trésors olfactifs.
+          </p>
+          <Button asChild>
+            <Link href="/shop">Continuer mes achats</Link>
+          </Button>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -201,54 +218,54 @@ export default function CartPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-end justify-between h-full ml-4">
-                     <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
-                    <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
-                        <Trash2 className="h-4 w-4 text-muted-foreground" />
-                    </Button>
+                  <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
+                  <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
+                    <Trash2 className="h-4 w-4 text-muted-foreground" />
+                  </Button>
                 </div>
               </Card>
             ))}
-             <div className="text-right mt-4">
-                <Button variant="outline" onClick={clearCart}>
-                    Vider le panier
-                </Button>
+            <div className="text-right mt-4">
+              <Button variant="outline" onClick={clearCart}>
+                Vider le panier
+              </Button>
             </div>
           </div>
 
           <div className="lg:col-span-1 space-y-6 sticky top-24">
-             <Card>
-                <CardHeader>
-                    <CardTitle>Méthode de livraison</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <RadioGroup
-                        value={selectedShippingId}
-                        onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
-                        className="space-y-4"
+            <Card>
+              <CardHeader>
+                <CardTitle>Méthode de livraison</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup
+                  value={selectedShippingId}
+                  onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
+                  className="space-y-4"
+                >
+                  {dynamicShippingMethods.map((method) => (
+                    <Label
+                      key={method.id}
+                      htmlFor={method.id}
+                      className={cn(
+                        "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
+                        selectedShippingId === method.id && "border-primary ring-2 ring-primary"
+                      )}
                     >
-                       {dynamicShippingMethods.map((method) => (
-                         <Label
-                           key={method.id}
-                           htmlFor={method.id}
-                           className={cn(
-                               "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
-                               selectedShippingId === method.id && "border-primary ring-2 ring-primary"
-                           )}
-                         >
-                           <RadioGroupItem value={method.id} id={method.id} />
-                           <method.icon className="h-6 w-6 text-muted-foreground" />
-                           <div className="flex-1">
-                               <p className="font-semibold">{method.name}</p>
-                               <p className="text-sm text-muted-foreground">{method.description}</p>
-                           </div>
-                           <p className="font-semibold text-sm">
-                                {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
-                           </p>
-                         </Label>
-                       ))}
-                    </RadioGroup>
-                </CardContent>
-             </Card>
+                      <RadioGroupItem value={method.id} id={method.id} />
+                      <method.icon className="h-6 w-6 text-muted-foreground" />
+                      <div className="flex-1">
+                        <p className="font-semibold">{method.name}</p>
+                        <p className="text-sm text-muted-foreground">{method.description}</p>
+                      </div>
+                      <p className="font-semibold text-sm">
+                        {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
+                      </p>
+                    </Label>
+                  ))}
+                </RadioGroup>
+              </CardContent>
+            </Card>
             <Card>
               <CardHeader>
                 <CardTitle>Récapitulatif</CardTitle>
@@ -263,9 +280,9 @@ export default function CartPage() {
                   <span>{shippingCost > 0 ? `${shippingCost.toFixed(2)} €` : 'Gratuite'}</span>
                 </div>
                 <Separator />
-                 <p className="text-sm text-muted-foreground">
-                    Vous avez un code promo ? Vous pourrez l'ajouter sur la page de paiement.
-                 </p>
+                <p className="text-sm text-muted-foreground">
+                  Vous avez un code promo ? Vous pourrez l'ajouter sur la page de paiement.
+                </p>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
@@ -297,4 +314,3 @@ export default function CartPage() {
   );
 }
 
-    

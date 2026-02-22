@@ -7,6 +7,7 @@ import { ProductImage } from './product-image';
 
 interface ProductCardProps {
     product: Product;
+    priority?: boolean;
 }
 
 function getStockBadge(stock: number): { label: string; className: string } | null {
@@ -16,7 +17,7 @@ function getStockBadge(stock: number): { label: string; className: string } | nu
     return null;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, priority = false }: ProductCardProps) {
     const stockBadge = getStockBadge(product.stock);
 
     return (
@@ -24,10 +25,11 @@ export function ProductCard({ product }: ProductCardProps) {
             <Link href={`/parfum/${product.slug}`} className="flex flex-col flex-grow">
                 <div className="relative aspect-square w-full overflow-hidden bg-gray-50 dark:bg-black/20">
                     <ProductImage
-                        alt={product.name}
+                        alt={`Parfum ${product.brand.name} ${product.name} - Dubai Negoce`}
                         images={product.images}
                         sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
                         className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                        priority={priority}
                     />
                     <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
                         {product.isBestseller && <Badge className="bg-black text-white hover:bg-black/80 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">TOP</Badge>}

@@ -1,18 +1,22 @@
-'use client';
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Star, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
 import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
 import { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product/product-card";
 import { SocialFollowSection } from "@/components/layout/social-follow-section";
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
-import React, { useState, useEffect } from "react";
-import { AnimatePresence, motion } from 'framer-motion';
+import React from "react";
+import { HeroBanner } from "@/components/layout/hero-banner";
 import { PerfumeFinderCta } from "@/components/perfume-finder-cta";
 import { CustomerReviewsSection } from "@/components/customer-reviews-section";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
+  description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
+};
 
 export default function Home() {
   const fragranceFamilies = getFragranceFamilies();
@@ -31,9 +35,6 @@ export default function Home() {
   const bestsellers = bestsellersSlugs
     .map(slug => getProducts().find(p => p.slug === slug))
     .filter((p): p is Product => p !== undefined);
-
-  const featuredPerfume = getProducts().find(p => p.slug === 'khamrah-lattafa');
-  const allFwProducts = getProducts().filter(p => p.brand.name === 'Fragrance World');
 
   const lattafaSlugs = [
     'khamrah-lattafa',
@@ -62,69 +63,9 @@ export default function Home() {
     "https://res.cloudinary.com/dzntnjtkc/video/upload/v1766756032/grok-video-5a5cac64-5a42-4637-a03e-1a419dbb96a6_vx2bon.mp4"
   ];
 
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % heroVideos.length);
-    }, 5000); // Change video every 5 seconds
-    return () => clearInterval(interval);
-  }, [heroVideos.length]);
-
-
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black">
-        {/* Full width video background */}
-        <div className="absolute inset-0 w-full h-full">
-          <AnimatePresence>
-            <motion.video
-              key={currentVideoIndex}
-              src={heroVideos[currentVideoIndex]}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-60"
-            />
-          </AnimatePresence>
-        </div>
-
-        <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-center px-4">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-4 tracking-wider drop-shadow-2xl"
-          >
-            L'ESSENCE DE DUBAÏ
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-sm md:text-lg text-gray-200 mb-10 tracking-[0.3em] uppercase font-light drop-shadow-lg"
-          >
-            Collection Exclusive de Parfums Orientaux
-          </motion.p>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <Button asChild size="lg" className="bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
-              <Link href="/shop">
-                Découvrir la Collection
-              </Link>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      <HeroBanner videos={heroVideos} />
 
       {/* Trust bar */}
       <div className="w-full bg-black text-white py-3">
@@ -140,7 +81,7 @@ export default function Home() {
         <section className="py-16 md:py-24 bg-white dark:bg-background">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-end mb-10">
-              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nouveautés</h2>
+              <h1 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nouveautés Parfums Orientaux</h1>
               <Link href="/shop/all" className="hidden md:flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Tout voir <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
@@ -148,7 +89,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
               {newArrivals.slice(0, 8).map((product, index) => (
                 <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
-                  <ProductCard product={product} />
+                  <ProductCard product={product} priority={index < 4} />
                 </div>
               ))}
             </div>
@@ -164,10 +105,11 @@ export default function Home() {
       {/* Featured Banner Section */}
       <section className="relative py-32 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 opacity-40">
-          <img
+          <Image
             src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1768337222/la_vita_bella_ozdrni.png"
-            alt="Luxury Perfume La Vita Bella"
-            className="absolute inset-0 w-full h-full object-cover"
+            alt="Parfum de Luxe La Vita Bella - Collection Orientale Dubai Negoce"
+            fill
+            className="object-cover"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
@@ -214,7 +156,7 @@ export default function Home() {
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-100">
                   <Image
                     src={family.imageUrl}
-                    alt={family.name}
+                    alt={`Gammes de Parfums ${family.name} - Dubai Negoce`}
                     data-ai-hint={family.imageHint}
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"

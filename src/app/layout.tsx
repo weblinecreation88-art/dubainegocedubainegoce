@@ -14,6 +14,7 @@ import { CookieConsent } from '@/components/cookie-consent';
 import { ExitIntentPopup } from '@/components/exit-intent-popup';
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
@@ -126,6 +127,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect Cloudinary pour réduire la latence des images/vidéos */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
         <link rel="canonical" href={siteUrl} />
         <meta name="robots" content="index, follow" />
@@ -155,6 +160,40 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Dubainegoce',
+              url: siteUrl,
+              logo: `${siteUrl}/logo.png`,
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+33 7 58 99 97 26',
+                contactType: 'customer service',
+              },
+              sameAs: [
+                'https://www.instagram.com/dubai_negoce/',
+                'https://www.tiktok.com/@dubai_negoce',
+              ],
+            }}
+          />
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Dubainegoce',
+              url: siteUrl,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: `${siteUrl}/shop?q={search_term_string}`,
+                },
+                'query-input': 'required name=search_term_string',
+              },
+            }}
+          />
           <FirebaseClientProvider>
             <CartProvider>
               <div className="sticky top-0 z-50 w-full">

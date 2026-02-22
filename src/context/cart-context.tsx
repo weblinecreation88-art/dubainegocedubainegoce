@@ -41,7 +41,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const handleStorageChange = (e: StorageEvent) => {
-             if (e.key === 'dubainegoce_cart') {
+            if (e.key === 'dubainegoce_cart') {
                 setCart(getInitialCart());
             }
         };
@@ -62,6 +62,21 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }, [cart]);
 
     const addToCart = (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
+        // GTM Tracking
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+            (window as any).dataLayer.push({
+                event: 'add_to_cart',
+                ecommerce: {
+                    items: [{
+                        item_id: item.id,
+                        item_name: item.name,
+                        price: item.price,
+                        quantity: item.quantity || 1
+                    }]
+                }
+            });
+        }
+
         setCart(prevCart => {
             const existingItem = prevCart.find(i => i.id === item.id);
             if (existingItem) {
@@ -92,7 +107,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const clearCart = () => {
         setCart([]);
     };
-    
+
     const getCartCount = useCallback(() => {
         return cart.reduce((count, item) => count + item.quantity, 0);
     }, [cart]);
