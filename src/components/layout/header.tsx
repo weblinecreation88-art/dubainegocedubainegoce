@@ -60,7 +60,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-black text-white border-b border-gray-900 flex flex-col">
+    <header className="w-full bg-black text-white border-b border-gray-900 flex flex-col">
       {/* Top Utility Bar */}
       <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
         <div className="container mx-auto flex justify-between items-center px-4">

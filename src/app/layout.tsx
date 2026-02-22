@@ -157,8 +157,10 @@ export default function RootLayout({
         >
           <FirebaseClientProvider>
             <CartProvider>
-              <AnnouncementBar />
-              <Header />
+              <div className="sticky top-0 z-50 w-full">
+                <AnnouncementBar />
+                <Header />
+              </div>
               <main className="flex-grow">{children}</main>
               <ReassuranceSection />
               <Footer />
