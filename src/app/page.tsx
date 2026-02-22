@@ -25,14 +25,14 @@ export default function Home() {
   const newArrivals = getNewArrivals();
 
   const bestsellersSlugs = [
-    'yara-lattafa',
-    'khamrah-lattafa',
-    'asad-lattafa',
-    'ameer-al-oudh-intense-oud-lattafa',
-    'badee-parfum-lattafa',
-    'qaed-al-fursan',
-    'fakhar-black-lattafa',
-    'mayar-lattafa'
+    'woody-oud-80-ml-maison-alhambra',
+    'the-tux-maison-alhambra-mixte',
+    'toscano-leather-maison-alhambra',
+    'jean-lowe-matiere-maison-alhambra',
+    'glacier-pour-homme-maison-alhambra',
+    'kismet-for-women-maison-alhambra',
+    'infini-oud-maison-alhambra-mixte',
+    'yeah-maison-alhambra'
   ];
   const bestsellers = getProducts().filter(p => bestsellersSlugs.includes(p.slug));
 
