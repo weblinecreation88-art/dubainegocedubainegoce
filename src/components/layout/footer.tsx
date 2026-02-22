@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { useEffect, useRef, useState } from 'react';
 import { subscribeToNewsletter } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Footer() {
@@ -57,6 +57,27 @@ export default function Footer() {
               <li><Link href="/livraison-et-paiement" className="hover:text-primary transition-colors">Livraison et Paiement</Link></li>
               <li><Link href="/shipping" className="hover:text-primary transition-colors">Politique de retour</Link></li>
               <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+              <li className="pt-2">
+                <div className="flex items-start gap-2 text-xs text-muted-foreground group">
+                  <Phone className="h-4 w-4 text-primary shrink-0" />
+                  <div className="space-y-1">
+                    <p className="font-semibold text-secondary-foreground">Retours & Support Technique</p>
+                    <a href="tel:+33758999726" className="hover:text-primary transition-colors break-all">+33 7 58 99 97 26</a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <Mail className="h-4 w-4 text-primary shrink-0" />
+                  <a href="mailto:contact@dubainegoce.fr" className="hover:text-primary transition-colors break-all">contact@dubainegoce.fr</a>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <MapPin className="h-4 w-4 text-primary shrink-0" />
+                  <span>54 Rue Alphonse Durand<br />78200 Mantes-la-Jolie, Paris</span>
+                </div>
+              </li>
             </ul>
           </div>
           <div className="space-y-4">

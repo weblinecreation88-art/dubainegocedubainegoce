@@ -66,7 +66,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center gap-2">
             <Phone className="h-3.5 w-3.5 text-gray-400" />
-            <span>Service Client : <a href="tel:+33758999726" className="font-semibold hover:text-white transition-colors">+33758999726</a></span>
+            <span>Service Client : <a href="tel:+33758999726" className="font-semibold hover:text-white transition-colors">+33 7 58 99 97 26</a></span>
           </div>
           <Link href="/livraison-et-paiement" className="flex items-center gap-2 hover:text-white transition-colors group">
             <Truck className="h-3.5 w-3.5 text-gray-400 group-hover:text-white transition-colors" />
