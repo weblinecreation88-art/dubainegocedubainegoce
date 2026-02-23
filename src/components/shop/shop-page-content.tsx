@@ -16,20 +16,39 @@ interface ShopPageContentProps {
     brands: Brand[];
     families: FragranceFamily[];
     genders: GenderCategory[];
+    title?: string;
+    description?: string;
 }
 
-export default function ShopPageContent({ products, brands, families, genders }: ShopPageContentProps) {
+export default function ShopPageContent({
+    products,
+    brands,
+    families,
+    genders,
+    title = 'Notre Collection',
+    description = 'Explorez un monde de senteurs uniques et trouvez votre signature.',
+}: ShopPageContentProps) {
     const searchParams = useSearchParams();
     const [sort, setSort] = useState(searchParams.get('sort') || 'newest');
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
+    // Compute global price range from product catalog
+    const { globalMin, globalMax } = useMemo(() => {
+        const prices = products.map(p => p.price);
+        return {
+            globalMin: Math.floor(Math.min(...prices)),
+            globalMax: Math.ceil(Math.max(...prices)),
+        };
+    }, [products]);
+
     const activeFilters = useMemo(() => {
-        const filters: { [key: string]: Set<string> } = {
+        return {
             brands: new Set(searchParams.getAll('brands')),
             families: new Set(searchParams.getAll('families')),
             genders: new Set(searchParams.getAll('genders')),
+            priceMin: searchParams.get('priceMin') ? parseInt(searchParams.get('priceMin')!) : null,
+            priceMax: searchParams.get('priceMax') ? parseInt(searchParams.get('priceMax')!) : null,
         };
-        return filters;
     }, [searchParams]);
 
     const filteredProducts = useMemo(() => {
@@ -44,58 +63,63 @@ export default function ShopPageContent({ products, brands, families, genders }:
         if (activeFilters.genders.size > 0) {
             filtered = filtered.filter(p => activeFilters.genders.has(p.gender));
         }
-        
-        return filtered;
+        if (activeFilters.priceMin !== null) {
+            filtered = filtered.filter(p => p.price >= activeFilters.priceMin!);
+        }
+        if (activeFilters.priceMax !== null) {
+            filtered = filtered.filter(p => p.price <= activeFilters.priceMax!);
+        }
 
+        return filtered;
     }, [products, activeFilters]);
 
     const sortedProducts = useMemo(() => {
         return [...filteredProducts].sort((a, b) => {
             switch (sort) {
-                case 'price-asc':
-                    return a.price - b.price;
-                case 'price-desc':
-                    return b.price - a.price;
-                case 'name-asc':
-                    return a.name.localeCompare(b.name);
-                case 'name-desc':
-                    return b.name.localeCompare(a.name);
+                case 'price-asc': return a.price - b.price;
+                case 'price-desc': return b.price - a.price;
+                case 'name-asc': return a.name.localeCompare(b.name);
+                case 'name-desc': return b.name.localeCompare(a.name);
+                case 'bestsellers': return (b.isBestseller ? 1 : 0) - (a.isBestseller ? 1 : 0);
                 case 'newest':
-                default:
-                    return b.id.localeCompare(a.id); // Assuming higher ID is newer
+                default: return b.id.localeCompare(a.id);
             }
         });
     }, [filteredProducts, sort]);
-    
+
     const FilterComponent = (
-        <Filters brands={brands} families={families} genders={genders} />
+        <Filters
+            brands={brands}
+            families={families}
+            genders={genders}
+            minPrice={globalMin}
+            maxPrice={globalMax}
+        />
     );
 
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-headline">Notre Collection</h1>
-                <p className="text-muted-foreground mt-2">
-                    Explorez un monde de senteurs uniques et trouvez votre signature.
-                </p>
+                <h1 className="text-4xl font-headline">{title}</h1>
+                <p className="text-muted-foreground mt-2">{description}</p>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Desktop Filters */}
                 <aside className="hidden lg:block lg:col-span-1">
-                     <div className="sticky top-24 space-y-6">
+                    <div className="sticky top-24 space-y-6">
                         <h2 className="text-2xl font-headline">Filtres</h2>
                         <ScrollArea className="h-[calc(100vh-12rem)]">
                             {FilterComponent}
                         </ScrollArea>
-                     </div>
+                    </div>
                 </aside>
 
                 {/* Products Grid */}
                 <main className="lg:col-span-3">
                     <div className="flex justify-between items-center mb-6">
-                         <p className="text-sm text-muted-foreground">
-                            Affichage de {sortedProducts.length} produit(s)
+                        <p className="text-sm text-muted-foreground">
+                            {sortedProducts.length} produit{sortedProducts.length !== 1 ? 's' : ''}
                         </p>
                         {/* Mobile Filters Trigger */}
                         <div className="lg:hidden">
@@ -115,7 +139,9 @@ export default function ShopPageContent({ products, brands, families, genders }:
                                         {FilterComponent}
                                     </ScrollArea>
                                     <SheetFooter className="p-4 border-t">
-                                        <Button onClick={() => setIsSheetOpen(false)} className="w-full">Voir les résultats</Button>
+                                        <Button onClick={() => setIsSheetOpen(false)} className="w-full">
+                                            Voir les {sortedProducts.length} résultats
+                                        </Button>
                                     </SheetFooter>
                                 </SheetContent>
                             </Sheet>

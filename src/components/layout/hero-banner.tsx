@@ -7,9 +7,10 @@ import Link from "next/link";
 
 interface HeroBannerProps {
     videos: string[];
+    posters?: string[];
 }
 
-export function HeroBanner({ videos }: HeroBannerProps) {
+export function HeroBanner({ videos, posters }: HeroBannerProps) {
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ export function HeroBanner({ videos }: HeroBannerProps) {
                     <motion.video
                         key={currentVideoIndex}
                         src={videos[currentVideoIndex]}
+                        poster={posters?.[currentVideoIndex]}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}

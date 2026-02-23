@@ -7,6 +7,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { CartProvider } from '@/context/cart-context';
+import { WishlistProvider } from '@/context/wishlist-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import { FaqChatbot } from '@/components/faq-chatbot';
@@ -145,7 +146,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={cn('font-body antialiased min-h-screen flex flex-col overflow-x-hidden')}>
+      <body className={cn('font-body antialiased min-h-screen')}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -196,17 +197,24 @@ export default function RootLayout({
           />
           <FirebaseClientProvider>
             <CartProvider>
-              <div className="sticky top-0 z-50 w-full">
-                <AnnouncementBar />
-                <Header />
-              </div>
-              <main className="flex-grow">{children}</main>
-              <ReassuranceSection />
-              <Footer />
-              <Toaster />
-              <FaqChatbot />
-              <CookieConsent />
-              <ExitIntentPopup />
+              <WishlistProvider>
+                <div
+                  className="z-[9999] w-full bg-black"
+                  style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
+                >
+                  <AnnouncementBar />
+                  <Header />
+                </div>
+                <main className="flex-grow pt-[104px] md:pt-[132px] lg:pt-[132px]">
+                  {children}
+                </main>
+                <ReassuranceSection />
+                <Footer />
+                <Toaster />
+                <FaqChatbot />
+                <CookieConsent />
+                <ExitIntentPopup />
+              </WishlistProvider>
             </CartProvider>
           </FirebaseClientProvider>
         </ThemeProvider>

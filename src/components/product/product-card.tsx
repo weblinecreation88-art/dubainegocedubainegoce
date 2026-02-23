@@ -1,9 +1,13 @@
-
+'use client';
 
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { Badge } from '../ui/badge';
 import { ProductImage } from './product-image';
+import { Heart } from 'lucide-react';
+import { useWishlist } from '@/context/wishlist-context';
+import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
 
 interface ProductCardProps {
     product: Product;
@@ -19,6 +23,14 @@ function getStockBadge(stock: number): { label: string; className: string } | nu
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
     const stockBadge = getStockBadge(product.stock);
+    const { isInWishlist, toggleWishlist } = useWishlist();
+    const isFavorite = isInWishlist(product.id);
+
+    const handleWishlistClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleWishlist(product.id);
+    };
 
     return (
         <div className="flex flex-col h-full bg-white dark:bg-card rounded-md overflow-hidden border border-gray-100 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-200 dark:hover:border-gray-700 group text-center">
@@ -35,6 +47,13 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                         {product.isBestseller && <Badge className="bg-black text-white hover:bg-black/80 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">TOP</Badge>}
                         {product.isNew && <Badge variant="secondary" className="bg-emerald-500 text-white hover:bg-emerald-600 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">NOUV</Badge>}
                     </div>
+                    <button
+                        onClick={handleWishlistClick}
+                        className="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black transition-colors z-20 group/heart"
+                        aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+                    >
+                        <Heart className={cn("h-4 w-4 transition-colors", isFavorite ? "fill-red-500 text-red-500" : "text-gray-400 group-hover/heart:text-red-500")} />
+                    </button>
                     {stockBadge && (
                         <div className="absolute bottom-2 left-0 right-0 flex justify-center z-10">
                             <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full shadow-sm ${stockBadge.className}`}>

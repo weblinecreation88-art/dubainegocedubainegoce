@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingCart, User, Sparkles, Phone, Truck } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, Sparkles, Phone, Truck, Heart } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '@/context/cart-context';
 import { Badge } from '../ui/badge';
+import { useWishlist } from '@/context/wishlist-context';
 import { useUser, useAuth } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import {
@@ -28,6 +29,7 @@ import { ThemeToggle } from '../theme-toggle';
 export default function Header() {
   const { getCartCount, clearCart } = useCart();
   const { user, isUserLoading } = useUser();
+  const { wishlist } = useWishlist();
   const auth = useAuth();
 
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -60,7 +62,7 @@ export default function Header() {
   }
 
   return (
-    <header className="w-full bg-black text-white border-b border-gray-900 flex flex-col">
+    <div className="w-full bg-black text-white border-b border-gray-900 flex flex-col">
       {/* Top Utility Bar */}
       <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
         <div className="container mx-auto flex justify-between items-center px-4">
@@ -132,6 +134,10 @@ export default function Header() {
                         <PerfumeFinder />
                       </DialogContent>
                     </Dialog>
+                    <Link href="/wishlist" onClick={handleLinkClick} className="flex items-center gap-2 text-base font-semibold">
+                      <Heart className="h-5 w-5" />
+                      <span>Mes Favoris ({wishlist.length})</span>
+                    </Link>
                   </div>
                 </ScrollArea>
               </SheetContent>
@@ -222,6 +228,18 @@ export default function Header() {
             )
           )}
 
+          <Button variant="ghost" size="icon" asChild className="hidden sm:flex text-white hover:text-gray-300 hover:bg-gray-800 relative" title="Mes Favoris">
+            <Link href="/wishlist">
+              <Heart className="h-5 w-5" />
+              {isMounted && wishlist.length > 0 && (
+                <Badge variant="secondary" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-emerald-500 text-white">
+                  {wishlist.length}
+                </Badge>
+              )}
+              <span className="sr-only">Favoris</span>
+            </Link>
+          </Button>
+
           <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800 relative">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
@@ -239,6 +257,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
