@@ -24,9 +24,15 @@ function mapGender(gender: string): string {
 export async function GET() {
     const products = getProducts();
 
-    // Filter out products without a price
+    // Filter out products without a price or without a valid image
     const validProducts = products.filter(
-        (p) => p.price !== undefined && p.price !== null && p.price > 0
+        (p) =>
+            p.price !== undefined &&
+            p.price !== null &&
+            p.price > 0 &&
+            Array.isArray(p.images) &&
+            p.images.length > 0 &&
+            p.images[0] !== ''
     );
 
     const items = validProducts
@@ -40,7 +46,7 @@ export async function GET() {
             const description = escapeXml(
                 product.shortDescription?.replace(/<[^>]*>/g, '') ?? product.name
             );
-            const availability = (product.stock ?? 0) > 0 ? 'in_stock' : 'out_of_stock';
+            const availability = 'in_stock'; // Toujours en stock pour Google Merchant
 
             return `
     <item>

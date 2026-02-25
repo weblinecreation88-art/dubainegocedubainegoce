@@ -115,6 +115,7 @@ export function Filters({ brands, families, genders, minPrice = 0, maxPrice = 20
                 </AccordionItem>
 
                 {/* ─── Marques ─── */}
+                {brands.length > 0 && (
                 <AccordionItem value="brands">
                     <AccordionTrigger className="text-base font-semibold">Marques</AccordionTrigger>
                     <AccordionContent>
@@ -134,6 +135,7 @@ export function Filters({ brands, families, genders, minPrice = 0, maxPrice = 20
                         </ScrollArea>
                     </AccordionContent>
                 </AccordionItem>
+                )}
 
                 {/* ─── Familles Olfactives ─── */}
                 <AccordionItem value="families">

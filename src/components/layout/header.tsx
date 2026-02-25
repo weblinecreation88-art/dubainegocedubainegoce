@@ -107,10 +107,10 @@ export default function Header() {
                         <AccordionTrigger>Marques de Parfums</AccordionTrigger>
                         <AccordionContent>
                           <div className="flex flex-col gap-3 pl-4 pt-2">
-                            <Link href="/shop?brands=Lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
-                            <Link href="/shop?brands=French%20Avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
-                            <Link href="/shop?brands=Maison%20Alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
-                            <Link href="/shop?brands=Fragrance%20World" onClick={handleLinkClick} className="text-sm">Fragrance World</Link>
+                            <Link href="/shop/marque/lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
+                            <Link href="/shop/marque/french-avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
+                            <Link href="/shop/marque/maison-alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
+                            <Link href="/shop/marque/fragrance-world" onClick={handleLinkClick} className="text-sm">Fragrance World</Link>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -154,16 +154,16 @@ export default function Header() {
 
         {/* Center Section: Navigation Menu (Desktop) */}
         <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
-          <Link href="/shop?brands=Lattafa" className="hover:text-gray-300 transition-colors uppercase">
+          <Link href="/shop/marque/lattafa" className="hover:text-gray-300 transition-colors uppercase">
             Lattafa
           </Link>
-          <Link href="/shop?brands=French%20Avenue" className="hover:text-gray-300 transition-colors uppercase">
+          <Link href="/shop/marque/french-avenue" className="hover:text-gray-300 transition-colors uppercase">
             French Avenue
           </Link>
-          <Link href="/shop?brands=Maison%20Alhambra" className="hover:text-gray-300 transition-colors uppercase">
+          <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-300 transition-colors uppercase">
             Maison Alhambra
           </Link>
-          <Link href="/shop?brands=Fragrance%20World" className="hover:text-gray-300 transition-colors uppercase">
+          <Link href="/shop/marque/fragrance-world" className="hover:text-gray-300 transition-colors uppercase">
             Fragrance World
           </Link>
           <Link href="/shop" className="hover:text-gray-300 transition-colors opacity-70">
