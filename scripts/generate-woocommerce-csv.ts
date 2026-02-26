@@ -26,7 +26,7 @@ for (const p of products) {
     const weightVal = p.volumeMl ? (p.volumeMl / 1000).toString() : '';
     const weight = escapeCsv(weightVal);
 
-    const price = escapeCsv(p.price);
+    const price = escapeCsv(p.price != null ? String(p.price) : '');
 
     rows.push([name, brand, category, weight, price]);
 }
