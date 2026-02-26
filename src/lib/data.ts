@@ -438,7 +438,7 @@ const products: Product[] = [
     },
     {
         "id": "1812",
-        "name": "Grise",
+        "name": "Grise Maison Alhambra",
         "slug": "grise-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -454,7 +454,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["grise", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "citron", "bergamote", "musc", "mousse de chêne", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/maison-alhambra--grise-100ml_baytik.jpg"],
+        "images": ["/images-parfums/grise-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -599,7 +599,7 @@ const products: Product[] = [
     },
     {
         "id": "1820",
-        "name": "My Rose Sublime",
+        "name": "My Rose Sublime Lattafa",
         "slug": "my-rose-sublime-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -615,7 +615,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["my rose sublime", "lattafa", "parfum floral", "parfum femme", "eau de parfum lattafa", "poire", "mandarine", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029878-1-jpg.webp"],
+        "images": ["/images-parfums/my-rose-sublime-lattafa.webp"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -691,7 +691,7 @@ const products: Product[] = [
     },
     {
         "id": "1824",
-        "name": "Infini Oud",
+        "name": "Infini Oud Maison Alhambra Mixte",
         "slug": "infini-oud-maison-alhambra-mixte",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -707,7 +707,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["infini oud", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "gingembre", "cannelle", "benjoin", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/27-removebg-preview.png"],
+        "images": ["/images-parfums/infini-oud-maison-alhambra-mixte.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -967,7 +967,7 @@ const products: Product[] = [
     },
     {
         "id": "1837",
-        "name": "Tabac",
+        "name": "Tabac Maison Alhambra",
         "slug": "tabac-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -983,7 +983,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["tabac", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "poivre rose", "cannelle", "bois de santal", "ambre gris", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029809-jpg.webp"],
+        "images": ["/images-parfums/tabac-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1841,7 +1841,7 @@ const products: Product[] = [
     },
     {
         "id": "1876",
-        "name": "By Saffron",
+        "name": "By Saffron Maison Alhambra",
         "slug": "by-saffron-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1857,14 +1857,14 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["by saffron", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "poivre rose", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/03/1000035789.jpg", "https://www.frenchavenue.fr/wp-content/uploads/2024/03/1000035789.jpg"],
+        "images": ["/images-parfums/by-saffron-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
     },
     {
         "id": "1877",
-        "name": "Lovely Chèrie",
+        "name": "Lovely Cherie Maison Alhambra",
         "slug": "lovely-cherie-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1880,7 +1880,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["lovely chèrie", "maison alhambra", "parfum gourmand", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "café", "musc", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/Alhambra-lovely-cherie-removebg-preview.png"],
+        "images": ["/images-parfums/lovely-cherie-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1979,7 +1979,7 @@ const products: Product[] = [
     },
     {
         "id": "1884",
-        "name": "Musk Vanille",
+        "name": "Musk Vanille Maison Alhambra",
         "slug": "musk-vanille-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "simple",
@@ -1995,7 +1995,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["musk vanille", "maison alhambra", "parfum gourmand", "parfum femme", "eau de parfum maison alhambra", "bergamote", "orange", "benjoin", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/Laissez-vous-envouter-par-le-parfum-Musk-Vanille-de-Maison-Alhambra.png"],
+        "images": ["/images-parfums/musk-vanille-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3129,7 +3129,7 @@ const products: Product[] = [
     },
     {
         "id": "4211",
-        "name": "L'Immensité",
+        "name": "Limmensite Maison Alhambra",
         "slug": "limmensite-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -3145,7 +3145,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["l'immensité", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "safran", "bois de santal", "oud", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0048.jpg"],
+        "images": ["/images-parfums/limmensite-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3389,7 +3389,7 @@ const products: Product[] = [
     },
     {
         "id": "5006",
-        "name": "Eclair",
+        "name": "Eclair Lattafa 100ml",
         "slug": "eclair-lattafa-100ml",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -3405,7 +3405,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["eclair", "lattafa", "bianco latte dupe", "parfum caramel", "parfum lait"],
-        "images": ["https://res.cloudinary.com/dhjwimevi/image/upload/v1766237747/IMG-20250527-WA0049_il6qgi.jpg"],
+        "images": ["/images-parfums/eclair-lattafa-100ml.webp"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
