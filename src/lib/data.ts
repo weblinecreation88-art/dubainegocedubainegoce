@@ -70,7 +70,7 @@ export const reviews: Review[] = [];
 const products: Product[] = [
     {
         "id": "1794",
-        "name": "Woody Oud",
+        "name": "Woody Oud 80 Ml Maison Alhambra",
         "slug": "woody-oud-80-ml-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -93,7 +93,7 @@ const products: Product[] = [
     },
     {
         "id": "1795",
-        "name": "The Tux",
+        "name": "The Tux Maison Alhambra Mixte",
         "slug": "the-tux-maison-alhambra-mixte",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -116,7 +116,7 @@ const products: Product[] = [
     },
     {
         "id": "1796",
-        "name": "Ramz Silver",
+        "name": "Ramz Silver Lattafa",
         "slug": "ramz-silver-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -139,7 +139,7 @@ const products: Product[] = [
     },
     {
         "id": "1797",
-        "name": "Ramz Gold",
+        "name": "Ramz Gold Lattafa Mixte",
         "slug": "ramz-gold-lattafa-mixte",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -162,7 +162,7 @@ const products: Product[] = [
     },
     {
         "id": "1798",
-        "name": "Raghba",
+        "name": "Raghba Lattafa Mixte",
         "slug": "raghba-lattafa-mixte",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -185,7 +185,7 @@ const products: Product[] = [
     },
     {
         "id": "1800",
-        "name": "Qaa'ed",
+        "name": "Qaaed Lattafa",
         "slug": "qaaed-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -208,7 +208,7 @@ const products: Product[] = [
     },
     {
         "id": "1801",
-        "name": "Ana Abiyedh Rouge",
+        "name": "Ana Abiyedh Rouge 60ml Lattafa",
         "slug": "ana-abiyedh-rouge-60ml-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -277,7 +277,7 @@ const products: Product[] = [
     },
     {
         "id": "1804",
-        "name": "Ejaazi",
+        "name": "Ejaazi Lattafa",
         "slug": "ejaazi-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -300,7 +300,7 @@ const products: Product[] = [
     },
     {
         "id": "1805",
-        "name": "Yeah",
+        "name": "Yeah Maison Alhambra",
         "slug": "yeah-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -323,7 +323,7 @@ const products: Product[] = [
     },
     {
         "id": "1806",
-        "name": "Maahir",
+        "name": "Maahir Lattafa",
         "slug": "maahir-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -369,7 +369,7 @@ const products: Product[] = [
     },
     {
         "id": "1809",
-        "name": "Asad",
+        "name": "Asad Lattafa",
         "slug": "asad-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -415,7 +415,7 @@ const products: Product[] = [
     },
     {
         "id": "1811",
-        "name": "Glacier Pour Homme",
+        "name": "Glacier Pour Homme Maison Alhambra",
         "slug": "glacier-pour-homme-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -484,7 +484,7 @@ const products: Product[] = [
     },
     {
         "id": "1815",
-        "name": "Badee Al Oud (Oud for Glory)",
+        "name": "Badee Al Oud Oud For Glory Lattafa",
         "slug": "badee-al-oud-oud-for-glory-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -507,7 +507,7 @@ const products: Product[] = [
     },
     {
         "id": "1816",
-        "name": "Oud Mood",
+        "name": "Oud Mood Lattafa",
         "slug": "oud-mood-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -553,7 +553,7 @@ const products: Product[] = [
     },
     {
         "id": "1818",
-        "name": "Ana Abiyedh",
+        "name": "Ana Abiyedh 60ml Lattafa",
         "slug": "ana-abiyedh-60ml-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -622,7 +622,7 @@ const products: Product[] = [
     },
     {
         "id": "1821",
-        "name": "Toscano Leather",
+        "name": "Toscano Leather Maison Alhambra",
         "slug": "toscano-leather-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -645,7 +645,7 @@ const products: Product[] = [
     },
     {
         "id": "1822",
-        "name": "Jean Lowe Matière",
+        "name": "Jean Lowe Matiere Maison Alhambra",
         "slug": "jean-lowe-matiere-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -668,7 +668,7 @@ const products: Product[] = [
     },
     {
         "id": "1823",
-        "name": "Glacier Le Noir",
+        "name": "Glacier Le Noir Maison Alhambra",
         "slug": "glacier-le-noir-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -714,7 +714,7 @@ const products: Product[] = [
     },
     {
         "id": "1825",
-        "name": "La Vita Bella",
+        "name": "La Vita Bella Maison Alhambra",
         "slug": "la-vita-bella-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -760,7 +760,7 @@ const products: Product[] = [
     },
     {
         "id": "1827",
-        "name": "Kismet for Women",
+        "name": "Kismet For Women Maison Alhambra",
         "slug": "kismet-for-women-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -783,7 +783,7 @@ const products: Product[] = [
     },
     {
         "id": "1828",
-        "name": "Perseus",
+        "name": "Perseus Maison Alhambra",
         "slug": "perseus-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -829,7 +829,7 @@ const products: Product[] = [
     },
     {
         "id": "1830",
-        "name": "Versencia Crystal",
+        "name": "Versencia Crystal Maison Alhambra",
         "slug": "versencia-crystal-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -852,7 +852,7 @@ const products: Product[] = [
     },
     {
         "id": "1831",
-        "name": "Ameer Al Oudh Intense Oud",
+        "name": "Ameer Al Oudh Intense Oud Lattafa",
         "slug": "ameer-al-oudh-intense-oud-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -875,7 +875,7 @@ const products: Product[] = [
     },
     {
         "id": "1832",
-        "name": "Najdia",
+        "name": "Najdia Lattafa",
         "slug": "najdia-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -898,7 +898,7 @@ const products: Product[] = [
     },
     {
         "id": "1833",
-        "name": "Ajwad",
+        "name": "Ajwad Lattafa",
         "slug": "ajwad-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -921,7 +921,7 @@ const products: Product[] = [
     },
     {
         "id": "1834",
-        "name": "Salvo Intense",
+        "name": "Salvo Intense Maison Alhambra",
         "slug": "salvo-intense-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -944,7 +944,7 @@ const products: Product[] = [
     },
     {
         "id": "1835",
-        "name": "Maahir Black Edition",
+        "name": "Maahir Black Edition Lattafa",
         "slug": "maahir-black-edition-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -990,7 +990,7 @@ const products: Product[] = [
     },
     {
         "id": "1838",
-        "name": "Kismet Moscow",
+        "name": "Kismet Moscow Maison Alhambra",
         "slug": "kismet-moscow-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1082,7 +1082,7 @@ const products: Product[] = [
     },
     {
         "id": "1842",
-        "name": "Avant",
+        "name": "Avant Maison Alhambra",
         "slug": "avant-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1105,7 +1105,7 @@ const products: Product[] = [
     },
     {
         "id": "1843",
-        "name": "Opera Noir",
+        "name": "Opera Noir Maison Alhambra",
         "slug": "opera-noir-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1197,7 +1197,7 @@ const products: Product[] = [
     },
     {
         "id": "1847",
-        "name": "Maahir Legacy",
+        "name": "Maahir Legacy Lattafa",
         "slug": "maahir-legacy-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -1289,7 +1289,7 @@ const products: Product[] = [
     },
     {
         "id": "1851",
-        "name": "Sakeena",
+        "name": "Sakeena Lattafa",
         "slug": "sakeena-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -1312,7 +1312,7 @@ const products: Product[] = [
     },
     {
         "id": "1852",
-        "name": "Mayar",
+        "name": "Mayar Lattafa",
         "slug": "mayar-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -1335,7 +1335,7 @@ const products: Product[] = [
     },
     {
         "id": "1853",
-        "name": "Andaleeb",
+        "name": "Andaleeb Asdaaf",
         "slug": "andaleeb-asdaaf",
         "brand": brands.find(b => b.name === 'Asdaaf')!,
         "type": "dupe",
@@ -1358,7 +1358,7 @@ const products: Product[] = [
     },
     {
         "id": "1854",
-        "name": "So Candid",
+        "name": "So Candid Maison Alhambra",
         "slug": "so-candid-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1404,7 +1404,7 @@ const products: Product[] = [
     },
     {
         "id": "1856",
-        "name": "Jean Lowe Nouveau",
+        "name": "Jean Lowe Nouveau Maison Alhambra",
         "slug": "jean-lowe-nouveau-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1427,7 +1427,7 @@ const products: Product[] = [
     },
     {
         "id": "1857",
-        "name": "Jean Lowe Ombre",
+        "name": "Jean Lowe Ombre Maison Alhambra",
         "slug": "jean-lowe-ombre-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1450,7 +1450,7 @@ const products: Product[] = [
     },
     {
         "id": "1858",
-        "name": "Kismet Angel",
+        "name": "Kismet Angel Maison Alhambra",
         "slug": "kismet-angel-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1473,7 +1473,7 @@ const products: Product[] = [
     },
     {
         "id": "1859",
-        "name": "Tharwah Gold",
+        "name": "Tharwah Gold Lattafa Pride",
         "slug": "tharwah-gold-lattafa-pride",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -1496,7 +1496,7 @@ const products: Product[] = [
     },
     {
         "id": "1861",
-        "name": "A King",
+        "name": "A King Fragrance World",
         "slug": "a-king-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1519,7 +1519,7 @@ const products: Product[] = [
     },
     {
         "id": "1862",
-        "name": "K King",
+        "name": "K King Fragrance World",
         "slug": "k-king-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1542,7 +1542,7 @@ const products: Product[] = [
     },
     {
         "id": "1863",
-        "name": "J",
+        "name": "J Fragrance World",
         "slug": "j-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1565,7 +1565,7 @@ const products: Product[] = [
     },
     {
         "id": "1864",
-        "name": "Queen Q",
+        "name": "Queen Q Fragrance World",
         "slug": "queen-q-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1588,7 +1588,7 @@ const products: Product[] = [
     },
     {
         "id": "1865",
-        "name": "Pose As Rose",
+        "name": "Pose As Rose Fragrance World",
         "slug": "pose-as-rose-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1611,7 +1611,7 @@ const products: Product[] = [
     },
     {
         "id": "1866",
-        "name": "Dark As Wood",
+        "name": "Dark As Wood Fragrance World",
         "slug": "dark-as-wood-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1634,7 +1634,7 @@ const products: Product[] = [
     },
     {
         "id": "1867",
-        "name": "Jorge Di Profumo",
+        "name": "Jorge Di Profumo Maison Alhambra",
         "slug": "jorge-di-profumo-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1657,7 +1657,7 @@ const products: Product[] = [
     },
     {
         "id": "1868",
-        "name": "Porto Neroli",
+        "name": "Porto Neroli Maison Alhambra",
         "slug": "porto-neroli-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1703,7 +1703,7 @@ const products: Product[] = [
     },
     {
         "id": "1870",
-        "name": "Confidential Private Gold",
+        "name": "Confidential Private Gold Lattafa",
         "slug": "confidential-private-gold-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -1749,7 +1749,7 @@ const products: Product[] = [
     },
     {
         "id": "1872",
-        "name": "Karat",
+        "name": "Karat Maison Alhambra",
         "slug": "karat-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1772,7 +1772,7 @@ const products: Product[] = [
     },
     {
         "id": "1873",
-        "name": "Eternal Oud",
+        "name": "Eternal Oud Lattafa Pride",
         "slug": "eternal-oud-lattafa-pride",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "dupe",
@@ -1818,7 +1818,7 @@ const products: Product[] = [
     },
     {
         "id": "1875",
-        "name": "Infini Rose",
+        "name": "Infini Rose Maison Alhambra",
         "slug": "infini-rose-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1887,7 +1887,7 @@ const products: Product[] = [
     },
     {
         "id": "1878",
-        "name": "Rose Petals",
+        "name": "Rose Petals Maison Alhambra",
         "slug": "rose-petals-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -1910,7 +1910,7 @@ const products: Product[] = [
     },
     {
         "id": "1879",
-        "name": "Fresh as Citrus",
+        "name": "Fresh As Citrus Fragrance World",
         "slug": "fresh-as-citrus-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -1956,7 +1956,7 @@ const products: Product[] = [
     },
     {
         "id": "1881",
-        "name": "Baroque Rouge Extrait",
+        "name": "Baroque Rouge Extrait Maison Alhambra",
         "slug": "baroque-rouge-extrait-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -2002,7 +2002,7 @@ const products: Product[] = [
     },
     {
         "id": "1885",
-        "name": "Jean Lowe Immortal",
+        "name": "Jean Lowe Immortal Maison Alhambra",
         "slug": "jean-lowe-immortal-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -2209,7 +2209,7 @@ const products: Product[] = [
     },
     {
         "id": "1924",
-        "name": "Pure Passion",
+        "name": "Pure Passion Fragrance World",
         "slug": "pure-passion-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -2232,7 +2232,7 @@ const products: Product[] = [
     },
     {
         "id": "1925",
-        "name": "Cuir Leather",
+        "name": "Cuir Leather Fragrance World",
         "slug": "cuir-leather-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -2255,7 +2255,7 @@ const products: Product[] = [
     },
     {
         "id": "1926",
-        "name": "Invicto",
+        "name": "Invicto Fragrance World",
         "slug": "invicto-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -2347,7 +2347,7 @@ const products: Product[] = [
     },
     {
         "id": "1930",
-        "name": "Cocktail Intense",
+        "name": "Cocktail Intense Fragrance World",
         "slug": "cocktail-intense-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -2370,7 +2370,7 @@ const products: Product[] = [
     },
     {
         "id": "2618",
-        "name": "Teriaq",
+        "name": "Teriaq Lattafa Mixte",
         "slug": "teriaq-lattafa-mixte",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "original",
@@ -2439,7 +2439,7 @@ const products: Product[] = [
     },
     {
         "id": "2812",
-        "name": "Spectre Ghost",
+        "name": "Spectre Ghost Fragrance World",
         "slug": "spectre-ghost-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -2508,7 +2508,7 @@ const products: Product[] = [
     },
     {
         "id": "2840",
-        "name": "Suits",
+        "name": "Suits Fragrance World",
         "slug": "suits-fragrance-world",
         "brand": brands.find(b => b.name === 'Fragrance World')!,
         "type": "dupe",
@@ -2531,7 +2531,7 @@ const products: Product[] = [
     },
     {
         "id": "2870",
-        "name": "Jean Lowe Noir",
+        "name": "Jean Lowe Noir Maison Alhambra",
         "slug": "jean-lowe-noir-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -2554,7 +2554,7 @@ const products: Product[] = [
     },
     {
         "id": "3042",
-        "name": "Yara",
+        "name": "Yara Lattafa",
         "slug": "yara-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -2600,7 +2600,7 @@ const products: Product[] = [
     },
     {
         "id": "3421",
-        "name": "Tobacco Touch",
+        "name": "Tobacco Touch Maison Alhambra",
         "slug": "tobacco-touch-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -2692,7 +2692,7 @@ const products: Product[] = [
     },
     {
         "id": "3850",
-        "name": "Aether Extrait",
+        "name": "Aether Extrait French Avenue",
         "slug": "aether-extrait-french-avenue",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
@@ -2738,7 +2738,7 @@ const products: Product[] = [
     },
     {
         "id": "3878",
-        "name": "Lumière Elle",
+        "name": "Lumiere Elle French Avenue",
         "slug": "lumiere-elle-french-avenue",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
@@ -2761,7 +2761,7 @@ const products: Product[] = [
     },
     {
         "id": "3913",
-        "name": "Sweet Paradise",
+        "name": "Sweet Paradise French Avenue",
         "slug": "sweet-paradise-french-avenue",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
@@ -2784,7 +2784,7 @@ const products: Product[] = [
     },
     {
         "id": "3914",
-        "name": "Royal Blend Nero",
+        "name": "Royal Blend Nero French Avenue",
         "slug": "royal-blend-nero-french-avenue",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
@@ -2830,7 +2830,7 @@ const products: Product[] = [
     },
     {
         "id": "3919",
-        "name": "After Effect",
+        "name": "After Effect French Avenue",
         "slug": "after-effect-french-avenue",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
@@ -2853,7 +2853,7 @@ const products: Product[] = [
     },
     {
         "id": "3921",
-        "name": "Glorious Oud",
+        "name": "Glorious Oud French Avenue",
         "slug": "glorious-oud-french-avenue",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
@@ -2922,7 +2922,7 @@ const products: Product[] = [
     },
     {
         "id": "4181",
-        "name": "Éclaire",
+        "name": "Eclaire Lattafa",
         "slug": "eclaire-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -2945,7 +2945,7 @@ const products: Product[] = [
     },
     {
         "id": "4182",
-        "name": "Pistachio",
+        "name": "Pistachio Ard Al Zaafaran",
         "slug": "pistachio-ard-al-zaafaran",
         "brand": brands.find(b => b.name === 'Ard Al Zaafaran')!,
         "type": "dupe",
@@ -3037,7 +3037,7 @@ const products: Product[] = [
     },
     {
         "id": "4186",
-        "name": "Yara Candy",
+        "name": "Yara Candy Lattafa",
         "slug": "yara-candy-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -3060,7 +3060,7 @@ const products: Product[] = [
     },
     {
         "id": "4187",
-        "name": "Yara Moi",
+        "name": "Yara Moi Lattafa",
         "slug": "yara-moi-lattafa",
         "brand": brands.find(b => b.name === 'Lattafa')!,
         "type": "simple",
@@ -3106,7 +3106,7 @@ const products: Product[] = [
     },
     {
         "id": "4209",
-        "name": "Bint Hooran Rose Passion",
+        "name": "Bint Hooran Rose Passion Ard Al Zaafaran",
         "slug": "bint-hooran-rose-passion-ard-al-zaafaran",
         "brand": brands.find(b => b.name === 'Ard Al Zaafaran')!,
         "type": "simple",
@@ -3244,7 +3244,7 @@ const products: Product[] = [
     },
     {
         "id": "4217",
-        "name": "Léonie",
+        "name": "Leonie Maison Alhambra",
         "slug": "leonie-maison-alhambra",
         "brand": brands.find(b => b.name === 'Maison Alhambra')!,
         "type": "dupe",
@@ -3415,7 +3415,7 @@ const products: Product[] = [
     },
     {
         "id": "5001",
-        "name": "Liquid Brun",
+        "name": "Liquid Brun 100ml",
         "slug": "liquid-brun-100ml",
         "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
