@@ -62,7 +62,7 @@ export default function Header() {
   }
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-black/95 backdrop-blur-sm text-white border-b border-gray-800 flex flex-col">
+    <div className="relative z-50 w-full bg-black/95 backdrop-blur-sm text-white border-b border-gray-800 flex flex-col">
       {/* Top Utility Bar */}
       <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
         <div className="container mx-auto flex justify-between items-center px-4">
@@ -77,10 +77,11 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="container flex h-16 items-center justify-between">
+      {/* Main Row */}
+      <div className="container relative flex h-16 items-center">
 
-        {/* Left Section: Mobile Menu & Desktop Logo */}
-        <div className="flex items-center gap-4">
+        {/* LEFT: Menu burger + Search (mobile) | Logo (desktop) */}
+        <div className="flex items-center gap-1 lg:gap-4 z-10">
           {/* Mobile Menu Trigger */}
           <div className="lg:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -110,7 +111,6 @@ export default function Header() {
                             <Link href="/shop/marque/lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
                             <Link href="/shop/marque/french-avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
                             <Link href="/shop/marque/maison-alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
-                            <Link href="/shop/marque/fragrance-world" onClick={handleLinkClick} className="text-sm">Fragrance World</Link>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -144,42 +144,65 @@ export default function Header() {
             </Sheet>
           </div>
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+          {/* Search - mobile only (affiché à gauche pour symétrie) */}
+          <div className="lg:hidden">
+            <SearchDialog>
+              <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Rechercher</span>
+              </Button>
+            </SearchDialog>
+          </div>
+
+          {/* Logo - desktop only */}
+          <Link href="/" className="hidden lg:flex items-center">
             <span className="font-headline font-bold text-xl md:text-2xl tracking-widest uppercase">
               Dubaï Négoce
             </span>
           </Link>
         </div>
 
-        {/* Center Section: Navigation Menu (Desktop) */}
-        <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
-          <Link href="/shop/marque/lattafa" className="hover:text-gray-300 transition-colors uppercase">
-            Lattafa
-          </Link>
-          <Link href="/shop/marque/french-avenue" className="hover:text-gray-300 transition-colors uppercase">
-            French Avenue
-          </Link>
-          <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-300 transition-colors uppercase">
-            Maison Alhambra
-          </Link>
-          <Link href="/shop/marque/fragrance-world" className="hover:text-gray-300 transition-colors uppercase">
-            Fragrance World
-          </Link>
-          <Link href="/shop" className="hover:text-gray-300 transition-colors opacity-70">
-            Tout voir
-          </Link>
+        {/* CENTER - Logo mobile (centré) | Nav desktop */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="pointer-events-auto">
+            {/* Logo centré - mobile only */}
+            <Link href="/" className="lg:hidden flex items-center">
+              <span className="font-headline font-bold text-xl tracking-widest uppercase">
+                Dubaï Négoce
+              </span>
+            </Link>
+
+            {/* Navigation desktop - sans Fragrance World */}
+            <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
+              <Link href="/shop/marque/lattafa" className="hover:text-gray-300 transition-colors uppercase">
+                Lattafa
+              </Link>
+              <Link href="/shop/marque/french-avenue" className="hover:text-gray-300 transition-colors uppercase">
+                French Avenue
+              </Link>
+              <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-300 transition-colors uppercase">
+                Maison Alhambra
+              </Link>
+              <Link href="/shop" className="hover:text-gray-300 transition-colors opacity-70">
+                Tout voir
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Right Section: Icons */}
-        <div className="flex items-center justify-end gap-1 md:gap-3">
-          <SearchDialog>
-            <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Rechercher</span>
-            </Button>
-          </SearchDialog>
+        {/* RIGHT: Icons */}
+        <div className="ml-auto flex items-center gap-1 lg:gap-3 z-10">
+          {/* Search - desktop only */}
+          <div className="hidden lg:flex">
+            <SearchDialog>
+              <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Rechercher</span>
+              </Button>
+            </SearchDialog>
+          </div>
 
+          {/* AI Advisor - desktop only */}
           <div className="hidden lg:block">
             <Dialog>
               <DialogTrigger asChild>
@@ -199,6 +222,7 @@ export default function Header() {
             </Dialog>
           </div>
 
+          {/* User - toujours visible */}
           {!isUserLoading && (
             user ? (
               <DropdownMenu>
@@ -228,6 +252,7 @@ export default function Header() {
             )
           )}
 
+          {/* Heart / Favoris - caché sur mobile */}
           <Button variant="ghost" size="icon" asChild className="hidden sm:flex text-white hover:text-gray-300 hover:bg-gray-800 relative" title="Mes Favoris">
             <Link href="/wishlist">
               <Heart className="h-5 w-5" />
@@ -240,6 +265,7 @@ export default function Header() {
             </Link>
           </Button>
 
+          {/* Panier - toujours visible */}
           <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800 relative">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
@@ -252,6 +278,7 @@ export default function Header() {
             </Link>
           </Button>
 
+          {/* Theme Toggle - desktop only */}
           <div className="hidden lg:block ml-2">
             <ThemeToggle />
           </div>
