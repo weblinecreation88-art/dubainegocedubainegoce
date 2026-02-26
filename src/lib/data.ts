@@ -86,7 +86,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["woody oud", "maison alhambra", "parfum boisé", "parfum mixte", "eau de parfum maison alhambra", "gingembre", "cardamome", "ambre", "mousse de chêne", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-woody-oud.webp"],
+        "images": ["/images-parfums/woody-oud-80-ml-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -109,7 +109,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["the tux", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "cassis", "galbanum", "vétiver", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-the-tux.webp"],
+        "images": ["/images-parfums/the-tux-maison-alhambra-mixte.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -132,7 +132,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ramz silver", "lattafa", "parfum fruité", "parfum homme", "eau de parfum lattafa", "pomme", "ananas", "musc blanc", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ramz-silver.webp"],
+        "images": ["/images-parfums/ramz-silver-lattafa.webp"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -155,7 +155,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ramz gold", "lattafa", "parfum fruité", "parfum mixte", "eau de parfum lattafa", "ananas", "pomme", "patchouli", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ramz-gold.webp"],
+        "images": ["/images-parfums/ramz-gold-lattafa-mixte.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -178,7 +178,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["raghba", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "bergamote", "orange", "benjoin", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-raghba.webp"],
+        "images": ["/images-parfums/raghba-lattafa-mixte.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -201,7 +201,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["qaa'ed", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "poivre rose", "safran", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-qaa-ed.webp"],
+        "images": ["/images-parfums/qaaed-lattafa.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -224,7 +224,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["ana abiyedh rouge", "lattafa", "parfum ambré", "parfum femme", "eau de parfum lattafa", "safran", "bergamote", "vanille", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ana-abiyedh-rouge.webp"],
+        "images": ["/images-parfums/ana-abiyedh-rouge-60ml-lattafa.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -293,7 +293,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["ejaazi", "lattafa", "parfum aromatique", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "ambre gris", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ejaazi.webp"],
+        "images": ["/images-parfums/ejaazi-lattafa.webp"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -316,7 +316,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["yeah", "maison alhambra", "parfum aromatique", "parfum homme", "eau de parfum maison alhambra", "gingembre", "cannelle", "bois de santal", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-yeah.webp"],
+        "images": ["/images-parfums/yeah-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -339,7 +339,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["maahir", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cardamome", "safran", "ambre gris", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-maahir.webp"],
+        "images": ["/images-parfums/maahir-lattafa.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -385,7 +385,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["asad", "lattafa", "parfum oriental", "parfum homme", "eau de parfum lattafa", "cannelle", "bergamote", "benjoin", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-asad.webp"],
+        "images": ["/images-parfums/asad-lattafa.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -431,7 +431,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["glacier pour homme", "maison alhambra", "parfum aromatique", "parfum homme", "eau de parfum maison alhambra", "bergamote", "poivre rose", "labdanum", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-glacier-pour-homme.webp"],
+        "images": ["/images-parfums/glacier-pour-homme-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -500,7 +500,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["badee al oud (oud for glory)", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "bergamote", "cannelle", "bois de santal", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-badee-al-oud.webp"],
+        "images": ["/images-parfums/badee-al-oud-oud-for-glory-lattafa.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -523,7 +523,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["oud mood", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cannelle", "gingembre", "vanille", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-oud-mood.webp"],
+        "images": ["/images-parfums/oud-mood-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -569,7 +569,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["ana abiyedh", "lattafa", "parfum musqué", "parfum mixte", "eau de parfum lattafa", "safran", "gingembre", "vanille", "ambre gris", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ana-abiyedh.webp"],
+        "images": ["/images-parfums/ana-abiyedh-60ml-lattafa.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -638,7 +638,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["toscano leather", "maison alhambra", "parfum cuir", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "safran", "oud", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-toscano-leather.webp"],
+        "images": ["/images-parfums/toscano-leather-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -661,7 +661,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["jean lowe matière", "maison alhambra", "parfum floral", "parfum femme", "eau de parfum maison alhambra", "bergamote", "poire", "bois de santal", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-jean-lowe-matiere.webp"],
+        "images": ["/images-parfums/jean-lowe-matiere-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -684,7 +684,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["glacier le noir", "maison alhambra", "parfum oriental", "parfum homme", "eau de parfum maison alhambra", "poivre rose", "bergamote", "labdanum", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-glacier-le-noir.webp"],
+        "images": ["/images-parfums/glacier-le-noir-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -730,7 +730,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["la vita bella", "maison alhambra", "parfum gourmand", "parfum femme", "eau de parfum maison alhambra", "bergamote", "orange", "musc", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-la-vita-bella.webp"],
+        "images": ["/images-parfums/la-vita-bella-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -776,7 +776,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["kismet for women", "maison alhambra", "parfum oriental", "parfum femme", "eau de parfum maison alhambra", "gingembre", "cannelle", "ambre gris", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-kismet-for-women.webp"],
+        "images": ["/images-parfums/kismet-for-women-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -799,7 +799,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["perseus", "maison alhambra", "parfum oriental", "parfum homme", "eau de parfum maison alhambra", "safran", "poivre rose", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-perseus.webp"],
+        "images": ["/images-parfums/perseus-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -845,7 +845,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["versencia crystal", "maison alhambra", "parfum floral", "parfum femme", "eau de parfum maison alhambra", "feuille de violette", "bergamote", "patchouli", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-versencia-crystal.webp"],
+        "images": ["/images-parfums/versencia-crystal-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -868,7 +868,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["ameer al oudh intense oud", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "bois de santal", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ameer-al-oudh-intense-oud.webp"],
+        "images": ["/images-parfums/ameer-al-oudh-intense-oud-lattafa.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -891,7 +891,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["najdia", "lattafa", "parfum aquatique", "parfum mixte", "eau de parfum lattafa", "safran", "poivre rose", "benjoin", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-najdia.webp"],
+        "images": ["/images-parfums/najdia-lattafa.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -914,7 +914,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["ajwad", "lattafa", "parfum fruité", "parfum mixte", "eau de parfum lattafa", "poire", "cassis", "musc blanc", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-ajwad.webp"],
+        "images": ["/images-parfums/ajwad-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -937,7 +937,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["salvo intense", "maison alhambra", "parfum aromatique", "parfum homme", "eau de parfum maison alhambra", "safran", "cardamome", "vanille", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-salvo-intense.webp"],
+        "images": ["/images-parfums/salvo-intense-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -960,7 +960,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["maahir black edition", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "gingembre", "cannelle", "ambre gris", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-maahir-black-edition.webp"],
+        "images": ["/images-parfums/maahir-black-edition-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1006,7 +1006,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["kismet moscow", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "safran", "benjoin", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-kismet-moscow.webp"],
+        "images": ["/images-parfums/kismet-moscow-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1098,7 +1098,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["avant", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "citron", "cassis", "vétiver", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-avant.webp"],
+        "images": ["/images-parfums/avant-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1121,7 +1121,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["opera noir", "maison alhambra", "parfum oriental", "parfum femme", "eau de parfum maison alhambra", "poivre rose", "bergamote", "ambre gris", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-opera-noir.webp"],
+        "images": ["/images-parfums/opera-noir-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1213,7 +1213,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["maahir legacy", "lattafa", "parfum hespéridé", "parfum mixte", "eau de parfum lattafa", "poivre rose", "cardamome", "benjoin", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-maahir-legacy.webp"],
+        "images": ["/images-parfums/maahir-legacy-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1305,7 +1305,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["sakeena", "lattafa", "parfum gourmand", "parfum femme", "eau de parfum lattafa", "cardamome", "noisette", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-sakeena.jpg"],
+        "images": ["/images-parfums/sakeena-lattafa.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1328,7 +1328,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["mayar", "lattafa", "parfum fruité", "parfum femme", "eau de parfum lattafa", "bergamote", "poire", "patchouli", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-mayar.webp"],
+        "images": ["/images-parfums/mayar-lattafa.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1351,7 +1351,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["andaleeb", "asdaaf", "parfum floral", "parfum femme", "eau de parfum asdaaf", "cassis", "poire", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/asdaaf-andaleeb.webp"],
+        "images": ["/images-parfums/andaleeb-asdaaf.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1374,7 +1374,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["so candid", "maison alhambra", "parfum chypré", "parfum femme", "eau de parfum maison alhambra", "aldéhydes", "bergamote", "mousse de chêne", "vétiver", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-so-candid.webp"],
+        "images": ["/images-parfums/so-candid-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1420,7 +1420,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["jean lowe nouveau", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cannelle", "poivre rose", "musc", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-jean-lowe-nouveau.webp"],
+        "images": ["/images-parfums/jean-lowe-nouveau-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1443,7 +1443,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["jean lowe ombre", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "safran", "cardamome", "ambre gris", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-jean-lowe-ombre.webp"],
+        "images": ["/images-parfums/jean-lowe-ombre-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1466,7 +1466,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["kismet angel", "maison alhambra", "parfum gourmand", "parfum mixte", "eau de parfum maison alhambra", "orange", "bergamote", "ambre", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-kismet-angel.webp"],
+        "images": ["/images-parfums/kismet-angel-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1489,7 +1489,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["tharwah gold", "lattafa", "parfum floral", "parfum mixte", "eau de parfum lattafa", "bergamote", "poire", "patchouli", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-tharwah-gold.webp"],
+        "images": ["/images-parfums/tharwah-gold-lattafa-pride.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1512,7 +1512,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["a king", "fragrance world", "parfum aromatique", "parfum homme", "eau de parfum fragrance world", "cannelle", "gingembre", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-a-king.webp"],
+        "images": ["/images-parfums/a-king-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1535,7 +1535,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["k king", "fragrance world", "parfum aromatique", "parfum homme", "eau de parfum fragrance world", "safran", "cardamome", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-k-king.webp"],
+        "images": ["/images-parfums/k-king-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1558,7 +1558,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["j", "fragrance world", "parfum fougère", "parfum homme", "eau de parfum fragrance world", "poivre rose", "bergamote", "benjoin", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-j.webp"],
+        "images": ["/images-parfums/j-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1581,7 +1581,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["queen q", "fragrance world", "parfum aromatique", "parfum femme", "eau de parfum fragrance world", "poivre rose", "safran", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-queen-q.webp"],
+        "images": ["/images-parfums/queen-q-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1604,7 +1604,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pose as rose", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "bergamote", "poire", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-pose-as-rose.webp"],
+        "images": ["/images-parfums/pose-as-rose-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1627,7 +1627,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["dark as wood", "fragrance world", "parfum boisé", "parfum mixte", "eau de parfum fragrance world", "poivre noir", "gingembre", "patchouli", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-dark-as-wood.webp"],
+        "images": ["/images-parfums/dark-as-wood-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1650,7 +1650,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["jorge di profumo", "maison alhambra", "parfum aquatique", "parfum homme", "eau de parfum maison alhambra", "cardamome", "safran", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-jorge-di-profumo.webp"],
+        "images": ["/images-parfums/jorge-di-profumo-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1673,7 +1673,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["porto neroli", "maison alhambra", "parfum hespéridé", "parfum mixte", "eau de parfum maison alhambra", "safran", "cardamome", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-porto-neroli.webp"],
+        "images": ["/images-parfums/porto-neroli-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1719,7 +1719,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["confidential private gold", "lattafa", "parfum fruité", "parfum mixte", "eau de parfum lattafa", "pomme", "framboise", "ambre", "musc blanc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-confidential-private-gold.webp"],
+        "images": ["/images-parfums/confidential-private-gold-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1765,7 +1765,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["karat", "maison alhambra", "parfum fruité", "parfum mixte", "eau de parfum maison alhambra", "pomme", "poire", "musc blanc", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-karat.webp"],
+        "images": ["/images-parfums/karat-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1788,7 +1788,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["eternal oud", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cardamome", "safran", "bois de santal", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-eternal-oud.webp"],
+        "images": ["/images-parfums/eternal-oud-lattafa-pride.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1834,7 +1834,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["infini rose", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "bergamote", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-infini-rose.webp"],
+        "images": ["/images-parfums/infini-rose-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1903,7 +1903,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["rose petals", "maison alhambra", "parfum floral", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "poire", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-rose-petals.webp"],
+        "images": ["/images-parfums/rose-petals-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1926,7 +1926,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["fresh as citrus", "fragrance world", "parfum aromatique", "parfum mixte", "eau de parfum fragrance world", "safran", "cardamome", "labdanum", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-fresh-as-citrus.webp"],
+        "images": ["/images-parfums/fresh-as-citrus-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1972,7 +1972,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["baroque rouge extrait", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "épices", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-baroque-rouge-extrait.webp"],
+        "images": ["/images-parfums/baroque-rouge-extrait-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2018,7 +2018,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["jean lowe immortal", "maison alhambra", "parfum ambré", "parfum homme", "eau de parfum maison alhambra", "bergamote", "épices", "oud", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-jean-lowe-immortal.webp"],
+        "images": ["/images-parfums/jean-lowe-immortal-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2225,7 +2225,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pure passion", "fragrance world", "parfum fruité", "parfum mixte", "eau de parfum fragrance world", "citron", "bergamote", "patchouli", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-pure-passion.webp"],
+        "images": ["/images-parfums/pure-passion-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2248,7 +2248,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["cuir leather", "fragrance world", "parfum cuir", "parfum mixte", "eau de parfum fragrance world", "safran", "bergamote", "patchouli", "vétiver", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-cuir-leather.webp"],
+        "images": ["/images-parfums/cuir-leather-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2271,7 +2271,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["invicto", "fragrance world", "parfum aquatique", "parfum homme", "eau de parfum fragrance world", "gingembre", "safran", "musc", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-invicto.webp"],
+        "images": ["/images-parfums/invicto-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2363,7 +2363,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["cocktail intense", "fragrance world", "parfum gourmand", "parfum mixte", "eau de parfum fragrance world", "cardamome", "bergamote", "benjoin", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-cocktail-intense.webp"],
+        "images": ["/images-parfums/cocktail-intense-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2386,7 +2386,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": true,
         "tags": ["teriaq", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "noisette", "café", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-teriaq.webp"],
+        "images": ["/images-parfums/teriaq-lattafa-mixte.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2455,7 +2455,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["spectre ghost", "fragrance world", "parfum ambré", "parfum mixte", "eau de parfum fragrance world", "safran", "cardamome", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-spectre-ghost.webp"],
+        "images": ["/images-parfums/spectre-ghost-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2524,7 +2524,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["suits", "fragrance world", "parfum chypré", "parfum homme", "eau de parfum fragrance world", "galbanum", "bergamote", "ciste", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fragrance-world-suits.webp"],
+        "images": ["/images-parfums/suits-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2547,7 +2547,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["jean lowe noir", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "safran", "bergamote", "benjoin", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-jean-lowe-noir.webp"],
+        "images": ["/images-parfums/jean-lowe-noir-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2570,7 +2570,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["yara", "lattafa", "parfum gourmand", "parfum femme", "eau de parfum lattafa", "orange", "cardamome", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-yara.webp"],
+        "images": ["/images-parfums/yara-lattafa.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2616,7 +2616,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["tobacco touch", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cannelle", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-tobacco-touch.webp"],
+        "images": ["/images-parfums/tobacco-touch-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2708,7 +2708,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["aether extrait", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "cannelle", "cardamome", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/french-avenue-aether-extrait.webp"],
+        "images": ["/images-parfums/aether-extrait-french-avenue.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2754,7 +2754,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["lumière elle", "french avenue", "parfum chypré", "parfum femme", "eau de parfum french avenue", "bergamote", "citron", "mousse de chêne", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/french-avenue-lumiere-elle.webp"],
+        "images": ["/images-parfums/lumiere-elle-french-avenue.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2777,7 +2777,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["sweet paradise", "french avenue", "parfum floral", "parfum femme", "eau de parfum french avenue", "litchi", "cassis", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/french-avenue-sweet-paradise.webp"],
+        "images": ["/images-parfums/sweet-paradise-french-avenue.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2800,7 +2800,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["royal blend nero", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "cardamome", "cannelle", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/french-avenue-royal-blend-nero.webp"],
+        "images": ["/images-parfums/royal-blend-nero-french-avenue.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2846,7 +2846,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["after effect", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "cardamome", "cannelle", "oud", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/french-avenue-after-effect.webp"],
+        "images": ["/images-parfums/after-effect-french-avenue.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2869,7 +2869,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["glorious oud", "french avenue", "parfum oriental", "parfum mixte", "eau de parfum french avenue", "safran", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/french-avenue-glorious-oud.webp"],
+        "images": ["/images-parfums/glorious-oud-french-avenue.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2938,7 +2938,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["éclaire", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "café", "noisette", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-eclair.webp"],
+        "images": ["/images-parfums/eclaire-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2961,7 +2961,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pistachio", "ard al zaafaran", "parfum gourmand", "parfum mixte", "eau de parfum ard al zaafaran", "noisette", "café", "benjoin", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ard-al-zaafaran-pistachio.webp"],
+        "images": ["/images-parfums/pistachio-ard-al-zaafaran.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3053,7 +3053,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["yara candy", "lattafa", "parfum fruité", "parfum femme", "eau de parfum lattafa", "cassis", "bergamote", "musc blanc", "bois de cashmeran", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-yara-candy.webp"],
+        "images": ["/images-parfums/yara-candy-lattafa.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3076,7 +3076,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["yara moi", "lattafa", "parfum fruité", "parfum femme", "eau de parfum lattafa", "bergamote", "pomme", "bois de cashmeran", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lattafa-yara-moi.webp"],
+        "images": ["/images-parfums/yara-moi-lattafa.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3122,7 +3122,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["bint hooran rose passion", "ard al zaafaran", "parfum floral", "parfum femme", "eau de parfum ard al zaafaran", "bergamote", "mandarine", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ard-al-zaafaran-bint-hooran-rose-passion.webp"],
+        "images": ["/images-parfums/bint-hooran-rose-passion-ard-al-zaafaran.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3260,7 +3260,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["léonie", "maison alhambra", "parfum ambré", "parfum femme", "eau de parfum maison alhambra", "cannelle", "épices", "oud", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maison-alhambra-leonie.webp"],
+        "images": ["/images-parfums/leonie-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3431,7 +3431,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["liquid brun", "french avenue", "parfum vanille", "althair dupe", "parfum épicé"],
-        "images": ["/images-parfums/french-avenue-liquid-brun.webp"],
+        "images": ["/images-parfums/liquid-brun-100ml.webp"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
