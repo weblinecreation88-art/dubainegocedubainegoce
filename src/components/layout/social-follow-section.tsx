@@ -40,9 +40,9 @@ const socialLinks = [
 
 export function SocialFollowSection() {
   return (
-    <section className="py-16 md:py-24 bg-card">
+    <section className="py-24 md:py-36 bg-card">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl font-headline">Suivez notre aventure</h2>
           <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
             Rejoignez notre communauté pour ne rien manquer de nos nouveautés,

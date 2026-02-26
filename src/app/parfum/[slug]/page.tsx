@@ -191,7 +191,7 @@ export default function ProductPage({ params }: Props) {
 
         <div className="mt-16">
           <Tabs defaultValue="description" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-3 sticky top-[104px] md:top-[132px] z-40">
               <TabsTrigger value="description">Description</TabsTrigger>
               <TabsTrigger value="additional-info">Infos complémentaires</TabsTrigger>
               <TabsTrigger value="reviews">Avis</TabsTrigger>

@@ -86,15 +86,15 @@ export default function Home() {
 
       {/* Trend This Week / Nouveautés */}
       {newArrivals.length > 0 && (
-        <section className="py-20 md:py-32 bg-white dark:bg-background">
+        <section className="py-28 md:py-44 bg-white dark:bg-background">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-14">
+            <div className="flex justify-between items-end mb-16 md:mb-20">
               <h1 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nouveautés Parfums Orientaux</h1>
               <Link href="/shop/all" className="hidden md:flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Tout voir <ArrowRight className="ml-1 h-4 w-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {newArrivals.slice(0, 8).map((product, index) => (
                 <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
                   <ProductCard product={product} priority={index < 4} />
@@ -111,7 +111,7 @@ export default function Home() {
       )}
 
       {/* Featured Banner Section */}
-      <section className="relative py-32 bg-black text-white overflow-hidden">
+      <section className="relative py-44 md:py-56 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 opacity-40">
           <Image
             src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1768337222/la_vita_bella_ozdrni.png"
@@ -135,12 +135,12 @@ export default function Home() {
 
       {/* Best Sellers Section */}
       {bestsellers.length > 0 && (
-        <section className="py-20 md:py-32 bg-gray-50 dark:bg-muted/10">
+        <section className="py-28 md:py-44 bg-gray-50 dark:bg-muted/10">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-14">
+            <div className="flex justify-between items-end mb-16 md:mb-20">
               <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nos Best Sellers</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {bestsellers.slice(0, 8).map((product, index) => (
                 <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
                   <ProductCard product={product} />
@@ -152,13 +152,13 @@ export default function Home() {
       )}
 
       {/* Explore Our Collection / Categories */}
-      <section className="py-20 md:py-32 bg-white dark:bg-background">
+      <section className="py-28 md:py-44 bg-white dark:bg-background">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-14 text-center">
+          <div className="mb-16 md:mb-20 text-center">
             <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100 mb-2">Découvrir par Famille</h2>
             <p className="text-muted-foreground">Trouvez la signature olfactive qui vous correspond.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10">
             {fragranceFamilies.slice(0, 4).map((family) => (
               <Link href={`/shop/all?families=${family.name}`} key={family.id} className="group cursor-pointer block">
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-gray-100">
@@ -186,13 +186,13 @@ export default function Home() {
 
       {/* Lattafa Focus Section */}
       {lattafaProducts.length > 0 && (
-        <section className="py-20 md:py-32 bg-gray-50 dark:bg-muted/10">
+        <section className="py-28 md:py-44 bg-gray-50 dark:bg-muted/10">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 md:mb-20">
               <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100 mb-2">La Collection Lattafa</h2>
               <p className="text-muted-foreground">Une sélection méticuleuse des créations iconiques de la Maison Lattafa.</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {lattafaProducts.slice(0, 12).map((product, index) => (
                 <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
                   <ProductCard product={product} />
@@ -208,7 +208,7 @@ export default function Home() {
         <CustomerReviewsSection />
       </div>
 
-      <div className="container mx-auto px-4 py-20 md:py-32">
+      <div className="container mx-auto px-4 py-28 md:py-44">
         <PerfumeFinderCta />
       </div>
 
