@@ -2869,7 +2869,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie candid vanilla", "french avenue", "parfum gourmand", "parfum mixte", "eau de parfum french avenue", "café", "cardamome", "musc", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/kenzie-candid-vanilla-french-avenue.png"],
+        "images": ["/images-parfums/kenzie-candid-vanilla-french-avenue.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3310,7 +3310,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "candid vanilla", "parfum floral", "scandal dupe", "fragrance world", "vanille"],
-        "images": ["/images-parfums/kenzie-candid-vanilla-french-avenue.png"],
+        "images": ["/images-parfums/kenzie-candid-vanilla-100ml.webp"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
