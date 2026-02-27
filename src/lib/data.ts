@@ -454,7 +454,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["grise", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "citron", "bergamote", "musc", "mousse de chêne", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/grise-maison-alhambra.webp"],
+        "images": ["/images-parfums/grise-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1029,7 +1029,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["niche royal rouge", "maison alhambra", "parfum ambré", "parfum femme", "eau de parfum maison alhambra", "safran", "bergamote", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/niche-royal-rouge-maison-alhambra.png"],
+        "images": ["/images-parfums/niche-royal-rouge-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1121,7 +1121,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["opera noir", "maison alhambra", "parfum oriental", "parfum femme", "eau de parfum maison alhambra", "poivre rose", "bergamote", "ambre gris", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/opera-noir-maison-alhambra.webp"],
+        "images": ["/images-parfums/opera-noir-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1167,7 +1167,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["olivia blossom", "maison alhambra", "parfum chypré", "parfum femme", "eau de parfum maison alhambra", "cassis", "aldéhydes", "patchouli", "ciste", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/olivia-blossom-maison-alhambra.png"],
+        "images": ["/images-parfums/olivia-blossom-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1190,7 +1190,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["majd al sultan", "asdaaf", "parfum oriental", "parfum mixte", "eau de parfum asdaaf", "cannelle", "poivre rose", "benjoin", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/majd-al-sultan-asdaaf.png"],
+        "images": ["/images-parfums/majd-al-sultan-asdaaf.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1236,7 +1236,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["pure oudi", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "poivre rose", "gingembre", "vanille", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/pure-oudi-lattafa.png"],
+        "images": ["/images-parfums/pure-oudi-lattafa.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1420,7 +1420,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["jean lowe nouveau", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cannelle", "poivre rose", "musc", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/jean-lowe-nouveau-maison-alhambra.webp"],
+        "images": ["/images-parfums/jean-lowe-nouveau-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1512,7 +1512,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["a king", "fragrance world", "parfum aromatique", "parfum homme", "eau de parfum fragrance world", "cannelle", "gingembre", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/a-king-fragrance-world.webp"],
+        "images": ["/images-parfums/a-king-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1535,7 +1535,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["k king", "fragrance world", "parfum aromatique", "parfum homme", "eau de parfum fragrance world", "safran", "cardamome", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/k-king-fragrance-world.webp"],
+        "images": ["/images-parfums/k-king-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1558,7 +1558,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["j", "fragrance world", "parfum fougère", "parfum homme", "eau de parfum fragrance world", "poivre rose", "bergamote", "benjoin", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/j-fragrance-world.webp"],
+        "images": ["/images-parfums/j-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1581,7 +1581,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["queen q", "fragrance world", "parfum aromatique", "parfum femme", "eau de parfum fragrance world", "poivre rose", "safran", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/queen-q-fragrance-world.webp"],
+        "images": ["/images-parfums/queen-q-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1604,7 +1604,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pose as rose", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "bergamote", "poire", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/pose-as-rose-fragrance-world.webp"],
+        "images": ["/images-parfums/pose-as-rose-fragrance-world.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1627,7 +1627,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["dark as wood", "fragrance world", "parfum boisé", "parfum mixte", "eau de parfum fragrance world", "poivre noir", "gingembre", "patchouli", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/dark-as-wood-fragrance-world.webp"],
+        "images": ["/images-parfums/dark-as-wood-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1857,7 +1857,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["by saffron", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "poivre rose", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/by-saffron-maison-alhambra.webp"],
+        "images": ["/images-parfums/by-saffron-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1880,7 +1880,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["lovely chèrie", "maison alhambra", "parfum gourmand", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "café", "musc", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lovely-cherie-maison-alhambra.webp"],
+        "images": ["/images-parfums/lovely-cherie-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1995,7 +1995,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["musk vanille", "maison alhambra", "parfum gourmand", "parfum femme", "eau de parfum maison alhambra", "bergamote", "orange", "benjoin", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/musk-vanille-maison-alhambra.webp"],
+        "images": ["/images-parfums/musk-vanille-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2363,7 +2363,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["cocktail intense", "fragrance world", "parfum gourmand", "parfum mixte", "eau de parfum fragrance world", "cardamome", "bergamote", "benjoin", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/cocktail-intense-fragrance-world.webp"],
+        "images": ["/images-parfums/cocktail-intense-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2478,7 +2478,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["zaffiro regale", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "épices", "cardamome", "oud", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/zaffiro-regale-maison-alhambra-unisex.png"],
+        "images": ["/images-parfums/zaffiro-regale-maison-alhambra-unisex.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2501,7 +2501,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["zaffiro collection crafted oud", "maison alhambra", "parfum boisé", "parfum mixte", "eau de parfum maison alhambra", "poivre noir", "citron", "mousse de chêne", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/zaffiro-collection-crafted-oud-maison-alhambra.png"],
+        "images": ["/images-parfums/zaffiro-collection-crafted-oud-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2593,7 +2593,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["amber neroli", "fragrance world", "parfum ambré", "parfum mixte", "eau de parfum fragrance world", "cardamome", "cannelle", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/amber-neroli-fragrance-world.png"],
+        "images": ["/images-parfums/amber-neroli-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3339,7 +3339,7 @@ const products: Product[] = [
         "id": "5004",
         "name": "Kenzie Marshmallow",
         "slug": "kenzie-marshmallow-100ml",
-        "brand": brands.find(b => b.name === 'Fragrance World')!,
+        "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
         "gender": "femme",
         "family": "Gourmand",
@@ -3353,7 +3353,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "marshmallow", "parfum guimauve", "gourmand", "fragrance world"],
-        "images": ["/images-parfums/kenzie-marshmallow-100ml.png"],
+        "images": ["/images-parfums/kenzie-marshmallow-french-avenue.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
@@ -3365,7 +3365,7 @@ const products: Product[] = [
         "id": "5005",
         "name": "Kenzie Candid Vanilla",
         "slug": "kenzie-candid-vanilla-100ml",
-        "brand": brands.find(b => b.name === 'Fragrance World')!,
+        "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
         "gender": "femme",
         "family": "Floral Gourmand",
@@ -3379,7 +3379,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "candid vanilla", "parfum floral", "scandal dupe", "fragrance world", "vanille"],
-        "images": ["/images-parfums/kenzie-candid-vanilla-100ml.jpg"],
+        "images": ["/images-parfums/kenzie-candid-vanilla-french-avenue.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
@@ -3443,7 +3443,7 @@ const products: Product[] = [
         "id": "5007",
         "name": "Kenzie Pistachio",
         "slug": "kenzie-pistachio-100ml",
-        "brand": brands.find(b => b.name === 'Fragrance World')!,
+        "brand": brands.find(b => b.name === 'French Avenue')!,
         "type": "dupe",
         "gender": "mixte",
         "family": "Gourmand",
