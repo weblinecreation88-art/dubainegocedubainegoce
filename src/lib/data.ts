@@ -132,7 +132,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ramz silver", "lattafa", "parfum fruité", "parfum homme", "eau de parfum lattafa", "pomme", "ananas", "musc blanc", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ramz-silver-lattafa.webp"],
+        "images": ["/images-parfums/ramz-silver-lattafa.png"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -155,7 +155,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ramz gold", "lattafa", "parfum fruité", "parfum mixte", "eau de parfum lattafa", "ananas", "pomme", "patchouli", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ramz-gold-lattafa-mixte.webp"],
+        "images": ["/images-parfums/ramz-gold-lattafa-mixte.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -178,7 +178,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["raghba", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "bergamote", "orange", "benjoin", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/raghba-lattafa-mixte.webp"],
+        "images": ["/images-parfums/raghba-lattafa-mixte.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -201,7 +201,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["qaa'ed", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "poivre rose", "safran", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/qaaed-lattafa.webp"],
+        "images": ["/images-parfums/qaaed-lattafa.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -224,7 +224,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["ana abiyedh rouge", "lattafa", "parfum ambré", "parfum femme", "eau de parfum lattafa", "safran", "bergamote", "vanille", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ana-abiyedh-rouge-60ml-lattafa.webp"],
+        "images": ["/images-parfums/ana-abiyedh-rouge-60ml-lattafa.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -247,7 +247,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["fakhar black", "lattafa", "parfum aromatique", "parfum homme", "eau de parfum lattafa", "poivre rose", "bergamote", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/fakhar-silver-lattafa-eau-de-parfum-mixte-jpg.webp"],
+        "images": ["/images-parfums/fakhar-black-lattafa.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -270,7 +270,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["fakhar rose gold", "lattafa", "parfum floral", "parfum femme", "eau de parfum lattafa", "bergamote", "poire", "cèdre", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Capture-decran-2024-03-31-180211.png", "https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029827-jpg.webp"],
+        "images": ["/images-parfums/fakhar-rose-gold-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -293,7 +293,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["ejaazi", "lattafa", "parfum aromatique", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "ambre gris", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ejaazi-lattafa.webp"],
+        "images": ["/images-parfums/ejaazi-lattafa.png"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -339,7 +339,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["maahir", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cardamome", "safran", "ambre gris", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maahir-lattafa.webp"],
+        "images": ["/images-parfums/maahir-lattafa.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -362,7 +362,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["confidential platinum", "lattafa", "parfum aromatique", "parfum mixte", "eau de parfum lattafa", "gingembre", "poivre rose", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Confidential-Platinum.jpg"],
+        "images": ["/images-parfums/confidential-platinum-lattafa.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -385,7 +385,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["asad", "lattafa", "parfum oriental", "parfum homme", "eau de parfum lattafa", "cannelle", "bergamote", "benjoin", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/asad-lattafa.webp"],
+        "images": ["/images-parfums/asad-lattafa.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -408,7 +408,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["fakhar wasam", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "musc", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/527167d186647dc1dc14433967afc41c.jpg"],
+        "images": ["/images-parfums/fakhar-wasam-lattafa.jpg"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -477,7 +477,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["safwaan l'autre musk", "lattafa", "parfum musqué", "parfum mixte", "eau de parfum lattafa", "gingembre", "cannelle", "bois de santal", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029898-1-jpg.webp"],
+        "images": ["/images-parfums/safwaan-lautre-musk-lattafa.png"],
         "reviews": [],
         "rating": 4.4,
         "productType": "perfume"
@@ -500,7 +500,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["badee al oud (oud for glory)", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "bergamote", "cannelle", "bois de santal", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/badee-al-oud-oud-for-glory-lattafa.webp"],
+        "images": ["/images-parfums/badee-al-oud-oud-for-glory-lattafa.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -523,7 +523,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["oud mood", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cannelle", "gingembre", "vanille", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/oud-mood-lattafa.webp"],
+        "images": ["/images-parfums/oud-mood-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -546,7 +546,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["velvet oud", "lattafa", "parfum cuir", "parfum mixte", "eau de parfum lattafa", "safran", "bergamote", "ambre", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029886-1-jpg.webp"],
+        "images": ["/images-parfums/velvet-oud-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -569,7 +569,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["ana abiyedh", "lattafa", "parfum musqué", "parfum mixte", "eau de parfum lattafa", "safran", "gingembre", "vanille", "ambre gris", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ana-abiyedh-60ml-lattafa.webp"],
+        "images": ["/images-parfums/ana-abiyedh-60ml-lattafa.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -592,7 +592,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["safwaan l'autre oud", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "bergamote", "gingembre", "bois de santal", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1-1-jpg.webp"],
+        "images": ["/images-parfums/safwaan-lautre-oud-lattafa.png"],
         "reviews": [],
         "rating": 4.4,
         "productType": "perfume"
@@ -753,7 +753,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["minerva", "maison alhambra", "parfum cuir", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "poivre", "oud", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000030241-jpg.webp"],
+        "images": ["/images-parfums/minerva-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -822,7 +822,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["al noble safeer", "lattafa", "parfum aromatique", "parfum mixte", "eau de parfum lattafa", "cannelle", "safran", "ambre gris", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029844-jpg.webp"],
+        "images": ["/images-parfums/al-noble-safeer-lattafa.png"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -868,7 +868,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["ameer al oudh intense oud", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "bois de santal", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ameer-al-oudh-intense-oud-lattafa.webp"],
+        "images": ["/images-parfums/ameer-al-oudh-intense-oud-lattafa.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -914,7 +914,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["ajwad", "lattafa", "parfum fruité", "parfum mixte", "eau de parfum lattafa", "poire", "cassis", "musc blanc", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ajwad-lattafa.webp"],
+        "images": ["/images-parfums/ajwad-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -960,7 +960,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["maahir black edition", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "gingembre", "cannelle", "ambre gris", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maahir-black-edition-lattafa.webp"],
+        "images": ["/images-parfums/maahir-black-edition-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1029,7 +1029,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["niche royal rouge", "maison alhambra", "parfum ambré", "parfum femme", "eau de parfum maison alhambra", "safran", "bergamote", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000031004-jpg.webp"],
+        "images": ["/images-parfums/niche-royal-rouge-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1052,7 +1052,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["al noble wazeer", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "bergamote", "cardamome", "vanille", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000030295-1-jpg.webp"],
+        "images": ["/images-parfums/al-noble-wazeer-lattafa.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1075,7 +1075,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["galatea", "maison alhambra", "parfum aromatique", "parfum mixte", "eau de parfum maison alhambra", "gingembre", "poivre rose", "ambre gris", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000031000-jpg.webp"],
+        "images": ["/images-parfums/galatea-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1144,7 +1144,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["hercules", "maison alhambra", "parfum oriental", "parfum homme", "eau de parfum maison alhambra", "bergamote", "cannelle", "musc", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Capture-decran-2024-09-17-222435.png"],
+        "images": ["/images-parfums/hercules-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1167,7 +1167,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["olivia blossom", "maison alhambra", "parfum chypré", "parfum femme", "eau de parfum maison alhambra", "cassis", "aldéhydes", "patchouli", "ciste", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000030657-jpg.webp"],
+        "images": ["/images-parfums/olivia-blossom-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1190,7 +1190,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["majd al sultan", "asdaaf", "parfum oriental", "parfum mixte", "eau de parfum asdaaf", "cannelle", "poivre rose", "benjoin", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000030427-jpg.webp"],
+        "images": ["/images-parfums/majd-al-sultan-asdaaf.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1213,7 +1213,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["maahir legacy", "lattafa", "parfum hespéridé", "parfum mixte", "eau de parfum lattafa", "poivre rose", "cardamome", "benjoin", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/maahir-legacy-lattafa.webp"],
+        "images": ["/images-parfums/maahir-legacy-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1236,7 +1236,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["pure oudi", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "poivre rose", "gingembre", "vanille", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Capture-decran-2024-03-24-141355.png"],
+        "images": ["/images-parfums/pure-oudi-lattafa.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1259,7 +1259,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["oud mood reminiscence", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "vanille", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/lattafa-oud-mood-silver-reminiscence-100ml-apa-de-parfum.jpg"],
+        "images": ["/images-parfums/oud-mood-reminiscence-lattafa.png"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"
@@ -1282,7 +1282,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["musk mood", "lattafa", "parfum musqué", "parfum mixte", "eau de parfum lattafa", "safran", "cardamome", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/1000029789-jpg.webp"],
+        "images": ["/images-parfums/musk-mood-lattafa-mixte.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1305,7 +1305,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["sakeena", "lattafa", "parfum gourmand", "parfum femme", "eau de parfum lattafa", "cardamome", "noisette", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/sakeena-lattafa.jpg"],
+        "images": ["/images-parfums/sakeena-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1328,7 +1328,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["mayar", "lattafa", "parfum fruité", "parfum femme", "eau de parfum lattafa", "bergamote", "poire", "patchouli", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/mayar-lattafa.webp"],
+        "images": ["/images-parfums/mayar-lattafa.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1397,7 +1397,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["côme moiselle", "maison alhambra", "parfum chypré", "parfum femme", "eau de parfum maison alhambra", "galbanum", "aldéhydes", "mousse de chêne", "vétiver", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Capture-decran-2024-04-08-155043.png"],
+        "images": ["/images-parfums/come-moiselle-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1489,7 +1489,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["tharwah gold", "lattafa", "parfum floral", "parfum mixte", "eau de parfum lattafa", "bergamote", "poire", "patchouli", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/tharwah-gold-lattafa-pride.webp"],
+        "images": ["/images-parfums/tharwah-gold-lattafa-pride.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1696,7 +1696,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["l'intrude", "maison alhambra", "parfum floral", "parfum femme", "eau de parfum maison alhambra", "feuille de violette", "bergamote", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/11/lintrude.jpeg"],
+        "images": ["/images-parfums/lintrude-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1719,7 +1719,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["confidential private gold", "lattafa", "parfum fruité", "parfum mixte", "eau de parfum lattafa", "pomme", "framboise", "ambre", "musc blanc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/confidential-private-gold-lattafa.webp"],
+        "images": ["/images-parfums/confidential-private-gold-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1742,7 +1742,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 107.9", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "bergamote", "cassis", "vanille", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/11/fragrance-world.webp"],
+        "images": ["/images-parfums/francique-107-9-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1788,7 +1788,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["eternal oud", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cardamome", "safran", "bois de santal", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/eternal-oud-lattafa-pride.webp"],
+        "images": ["/images-parfums/eternal-oud-lattafa-pride.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1811,7 +1811,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 63.55", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "cassis", "litchi", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2023/12/Francique-63.55-Fragrance-World.webp"],
+        "images": ["/images-parfums/francique-63-55-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1949,7 +1949,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["victorioso victory", "maison alhambra", "parfum ambré", "parfum homme", "eau de parfum maison alhambra", "safran", "bergamote", "oud", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/07/1000052572.jpg"],
+        "images": ["/images-parfums/victorioso-victory-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2041,7 +2041,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["black afgano", "fragrance world", "parfum oriental", "parfum mixte", "eau de parfum fragrance world", "poivre rose", "cannelle", "bois de santal", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/BLACK-AFGANO.jpg"],
+        "images": ["/images-parfums/black-afgano-fragrance-world.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2064,7 +2064,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["optimystic blanc", "fragrance world", "parfum musqué", "parfum mixte", "eau de parfum fragrance world", "bergamote", "cardamome", "bois de santal", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Optimystic-blanc-de-fragrance-world.jpg"],
+        "images": ["/images-parfums/optimystic-blanc-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2087,7 +2087,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["optimystic noir", "fragrance world", "parfum ambré", "parfum mixte", "eau de parfum fragrance world", "cannelle", "bergamote", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Optimystic-EDP.png"],
+        "images": ["/images-parfums/optimystic-noir-fragrance-world.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2110,7 +2110,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["mocha wood", "fragrance world", "parfum gourmand", "parfum mixte", "eau de parfum fragrance world", "bergamote", "orange", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Mocha-Wood-de-Fragrance-World.jpg"],
+        "images": ["/images-parfums/mocha-wood-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2133,7 +2133,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["tour de havana", "fragrance world", "parfum oriental", "parfum homme", "eau de parfum fragrance world", "safran", "gingembre", "benjoin", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/tour-de-havana.jpg"],
+        "images": ["/images-parfums/tour-de-havana-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2156,7 +2156,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["extreme aoud", "fragrance world", "parfum boisé", "parfum mixte", "eau de parfum fragrance world", "citron", "lavande", "bois de santal", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Extreme-aoud-de-Fragrance-world.jpg"],
+        "images": ["/images-parfums/extreme-aoud-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2179,7 +2179,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["absolute oud magnificent 7", "fragrance world", "parfum oriental", "parfum mixte", "eau de parfum fragrance world", "poivre rose", "safran", "bois de santal", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Absolute-Oud-Magnifcent-7.jpeg"],
+        "images": ["/images-parfums/absolute-oud-magnificent-7-fragrance-world.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2294,7 +2294,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["tudor", "paris corner", "parfum oriental", "parfum homme", "eau de parfum paris corner", "gingembre", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/01/Tudor1_1800x1800.webp"],
+        "images": ["/images-parfums/tudor-paris-corner.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2386,7 +2386,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": true,
         "tags": ["teriaq", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "noisette", "café", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/teriaq-lattafa-mixte.webp"],
+        "images": ["/images-parfums/teriaq-lattafa-mixte.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2409,7 +2409,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["tempête", "jacques yves", "parfum boisé", "parfum mixte", "eau de parfum jacques yves", "bergamote", "citron", "bois de santal", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/03/jacques-yves-tempete.jpg"],
+        "images": ["/images-parfums/tempete-jacques-yves.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2432,7 +2432,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["the artist no.1", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "gingembre", "safran", "vanille", "ambre gris", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-29-220550.png"],
+        "images": ["/images-parfums/the-artist-no1-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2478,7 +2478,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["zaffiro regale", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "épices", "cardamome", "oud", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-31-095049.png", "https://www.frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-31-094928.png"],
+        "images": ["/images-parfums/zaffiro-regale-maison-alhambra-unisex.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2501,7 +2501,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["zaffiro collection crafted oud", "maison alhambra", "parfum boisé", "parfum mixte", "eau de parfum maison alhambra", "poivre noir", "citron", "mousse de chêne", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-31-110150.png"],
+        "images": ["/images-parfums/zaffiro-collection-crafted-oud-maison-alhambra.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2570,7 +2570,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["yara", "lattafa", "parfum gourmand", "parfum femme", "eau de parfum lattafa", "orange", "cardamome", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/yara-lattafa.webp"],
+        "images": ["/images-parfums/yara-lattafa.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2593,7 +2593,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["amber neroli", "fragrance world", "parfum ambré", "parfum mixte", "eau de parfum fragrance world", "cardamome", "cannelle", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2024/08/Amber-Neroli-1.png"],
+        "images": ["/images-parfums/amber-neroli-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2639,7 +2639,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 107.9", "french avenue", "parfum floral", "parfum femme", "eau de parfum french avenue", "cassis", "poire", "cèdre", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/Francique-107.9-%E2%80%93-French-Avenue.jpeg", "https://www.frenchavenue.fr/wp-content/uploads/2025/05/Francique-107.9-%E2%80%93-French-Avenue1.jpeg"],
+        "images": ["/images-parfums/francique-107-9-french-avenue.jpeg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2662,7 +2662,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 63.55", "french avenue", "parfum floral", "parfum femme", "eau de parfum french avenue", "feuille de violette", "litchi", "bois de santal", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/Francique-63.55-%E2%80%93-French-Avenue.jpeg", "https://www.frenchavenue.fr/wp-content/uploads/2025/05/Francique_63.55_HQ.png"],
+        "images": ["/images-parfums/francique-63-55-french-avenue.jpeg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2685,7 +2685,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["irida extrait", "french avenue", "parfum floral", "parfum mixte", "eau de parfum french avenue", "bergamote", "mandarine", "vanille", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/Irida-Extrait-%E2%80%93-French-Avenue.jpg"],
+        "images": ["/images-parfums/irida-extrait-french-avenue.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2731,7 +2731,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["lumière garçon", "french avenue", "parfum boisé", "parfum homme", "eau de parfum french avenue", "poivre noir", "lavande", "ambre", "mousse de chêne", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/Capture-decran-2025-05-18-144111.png", "https://www.frenchavenue.fr/wp-content/uploads/2025/05/Capture-decran-2025-05-18-144127.png"],
+        "images": ["/images-parfums/lumiere-garcon-french-avenue.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2823,7 +2823,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["azzure aoud", "french avenue", "parfum boisé", "parfum mixte", "eau de parfum french avenue", "citron", "poivre noir", "bois de santal", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/Azzure-Oud-1.jpeg", "https://www.frenchavenue.fr/wp-content/uploads/2025/05/Azzure-Oud.jpeg"],
+        "images": ["/images-parfums/azzure-aoud-french-avenue.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2892,7 +2892,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie marshmallow", "french avenue", "parfum gourmand", "parfum femme", "eau de parfum french avenue", "café", "orange", "vanille", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0041.jpg"],
+        "images": ["/images-parfums/kenzie-marshmallow-french-avenue.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2915,7 +2915,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie candid vanilla", "french avenue", "parfum gourmand", "parfum mixte", "eau de parfum french avenue", "café", "cardamome", "musc", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0042.jpg"],
+        "images": ["/images-parfums/kenzie-candid-vanilla-french-avenue.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2938,7 +2938,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["éclaire", "lattafa", "parfum gourmand", "parfum mixte", "eau de parfum lattafa", "café", "noisette", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/eclaire-lattafa.webp"],
+        "images": ["/images-parfums/eclaire-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2984,7 +2984,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ithra mango", "ard al zaafaran", "parfum fruité", "parfum mixte", "eau de parfum ard al zaafaran", "pomme", "cassis", "bois de cashmeran", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0043.jpg"],
+        "images": ["/images-parfums/ithra-mango-ard-al-zaafaran.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3007,7 +3007,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ithra cotton candy", "ard al zaafaran", "parfum gourmand", "parfum mixte", "eau de parfum ard al zaafaran", "café", "orange", "vanille", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0045.jpg"],
+        "images": ["/images-parfums/ithra-cotton-candy-ard-al-zaafaran.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -3030,7 +3030,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["vanilla latte", "gulf orchid", "parfum gourmand", "parfum mixte", "eau de parfum gulf orchid", "café", "bergamote", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0047.jpg"],
+        "images": ["/images-parfums/vanilla-latte-gulf-orchid.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3053,7 +3053,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["yara candy", "lattafa", "parfum fruité", "parfum femme", "eau de parfum lattafa", "cassis", "bergamote", "musc blanc", "bois de cashmeran", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/yara-candy-lattafa.webp"],
+        "images": ["/images-parfums/yara-candy-lattafa.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3076,7 +3076,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["yara moi", "lattafa", "parfum fruité", "parfum femme", "eau de parfum lattafa", "bergamote", "pomme", "bois de cashmeran", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/yara-moi-lattafa.webp"],
+        "images": ["/images-parfums/yara-moi-lattafa.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3099,7 +3099,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["fleur de coton", "sublime", "parfum floral", "parfum mixte", "eau de parfum sublime", "poire", "litchi", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0061.jpg"],
+        "images": ["/images-parfums/fleur-de-coton-sublime.png"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -3168,7 +3168,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["omniyat", "surrati", "parfum oriental", "parfum mixte", "eau de parfum surrati", "gingembre", "safran", "ambre gris", "benjoin", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0054.jpg"],
+        "images": ["/images-parfums/omniyat-surrati.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3191,7 +3191,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["killer", "loui martin", "parfum gourmand", "parfum mixte", "eau de parfum loui martin", "cardamome", "noisette", "ambre", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0051.jpg"],
+        "images": ["/images-parfums/killer-loui-martin.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3214,7 +3214,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["good girl by killer", "loui martin", "parfum oriental", "parfum femme", "eau de parfum loui martin", "cannelle", "bergamote", "ambre gris", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0052.jpg"],
+        "images": ["/images-parfums/good-girl-by-killer-loui-martin.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3237,7 +3237,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["verato white musk", "mirada", "parfum musqué", "parfum mixte", "eau de parfum mirada", "cardamome", "gingembre", "bois de santal", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0055.jpg"],
+        "images": ["/images-parfums/verato-white-musk-mirada.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -3283,7 +3283,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["qandeel", "ard al zaafaran", "parfum oriental", "parfum mixte", "eau de parfum ard al zaafaran", "safran", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0050.jpg"],
+        "images": ["/images-parfums/qandeel-ard-al-zaafaran.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -3306,7 +3306,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["mirada perla", "mirada", "parfum floral", "parfum femme", "eau de parfum mirada", "bergamote", "poire", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0053.jpg"],
+        "images": ["/images-parfums/mirada-perla-mirada.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3329,7 +3329,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["fondue tropical", "hamidi", "parfum fruité", "parfum mixte", "eau de parfum hamidi", "poire", "pomme", "ambre", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://www.frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0059.jpg"],
+        "images": ["/images-parfums/fondue-tropical-hamidi.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3353,7 +3353,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "marshmallow", "parfum guimauve", "gourmand", "fragrance world"],
-        "images": ["https://res.cloudinary.com/dhjwimevi/image/upload/v1766237734/IMG-20250527-WA0041_t56umt.jpg"],
+        "images": ["/images-parfums/kenzie-marshmallow-100ml.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
@@ -3379,7 +3379,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "candid vanilla", "parfum floral", "scandal dupe", "fragrance world", "vanille"],
-        "images": ["https://res.cloudinary.com/dhjwimevi/image/upload/v1766237737/IMG-20250527-WA0042_tz3skc.jpg"],
+        "images": ["/images-parfums/kenzie-candid-vanilla-100ml.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
@@ -3405,7 +3405,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["eclair", "lattafa", "bianco latte dupe", "parfum caramel", "parfum lait"],
-        "images": ["/images-parfums/eclair-lattafa-100ml.webp"],
+        "images": ["/images-parfums/eclair-lattafa-100ml.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
@@ -3457,7 +3457,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "pistachio", "parfum pistache", "yum pistachio dupe", "fragrance world", "gourmand"],
-        "images": ["https://res.cloudinary.com/dhjwimevi/image/upload/v1766237733/IMG-20250527-WA0040_hd9lwd.jpg"],
+        "images": ["/images-parfums/kenzie-pistachio-100ml.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
@@ -3483,7 +3483,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["azzure aoud", "french avenue", "parfum oud", "notes marines", "oriental frais"],
-        "images": ["https://res.cloudinary.com/dhjwimevi/image/upload/v1766238264/Azzure_Oud_fjhetl.jpg"],
+        "images": ["/images-parfums/azzure-aoud-100ml.png"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
