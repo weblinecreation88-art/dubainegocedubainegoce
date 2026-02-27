@@ -1742,7 +1742,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 107.9", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "bergamote", "cassis", "vanille", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/francique-107-9-fragrance-world.webp"],
+        "images": ["/images-parfums/francique-107-9-fragrance-world.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1811,7 +1811,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 63.55", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "cassis", "litchi", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/francique-63-55-fragrance-world.webp"],
+        "images": ["/images-parfums/francique-63-55-fragrance-world.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2064,7 +2064,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["optimystic blanc", "fragrance world", "parfum musqué", "parfum mixte", "eau de parfum fragrance world", "bergamote", "cardamome", "bois de santal", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/optimystic-blanc-fragrance-world.png"],
+        "images": ["/images-parfums/optimystic-blanc-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2133,7 +2133,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["tour de havana", "fragrance world", "parfum oriental", "parfum homme", "eau de parfum fragrance world", "safran", "gingembre", "benjoin", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/tour-de-havana-fragrance-world.jpg"],
+        "images": ["/images-parfums/tour-de-havana-fragrance-world.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2639,7 +2639,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 107.9", "french avenue", "parfum floral", "parfum femme", "eau de parfum french avenue", "cassis", "poire", "cèdre", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/francique-107-9-french-avenue.jpeg"],
+        "images": ["/images-parfums/francique-107-9-french-avenue.png"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2662,7 +2662,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["francique 63.55", "french avenue", "parfum floral", "parfum femme", "eau de parfum french avenue", "feuille de violette", "litchi", "bois de santal", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/francique-63-55-french-avenue.jpeg"],
+        "images": ["/images-parfums/francique-63-55-french-avenue.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3379,7 +3379,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "candid vanilla", "parfum floral", "scandal dupe", "fragrance world", "vanille"],
-        "images": ["/images-parfums/kenzie-candid-vanilla-100ml.png"],
+        "images": ["/images-parfums/kenzie-candid-vanilla-100ml.jpg"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
