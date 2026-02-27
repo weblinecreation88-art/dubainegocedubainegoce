@@ -114,8 +114,8 @@ export default function Home() {
       <section className="relative py-44 md:py-56 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 opacity-40">
           <Image
-            src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1768337222/la_vita_bella_ozdrni.png"
-            alt="Parfum de Luxe La Vita Bella - Collection Orientale Dubai Negoce"
+            src="https://res.cloudinary.com/dzagwz94z/image/upload/v1772042666/Fakhar_Black_-_Lattafa_bfnvrk.png"
+            alt="Fakhar Black Lattafa - Élégance Redéfinie Dubai Negoce"
             fill
             className="object-cover"
           />
