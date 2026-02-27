@@ -3284,7 +3284,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie", "marshmallow", "parfum guimauve", "gourmand", "fragrance world"],
-        "images": ["/images-parfums/kenzie-marshmallow-french-avenue.png"],
+        "images": ["/images-parfums/kenzie-marshmallow-100ml.jpg"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
