@@ -109,6 +109,7 @@ export default function Home() {
             src="https://res.cloudinary.com/dzagwz94z/image/upload/v1772042733/Omniyat_-_Surrati_ice7gl.png"
             alt="Omniyat Surrati - Élégance Redéfinie Dubai Negoce"
             fill
+            priority
             className="object-cover"
           />
         </div>
