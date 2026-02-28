@@ -56,26 +56,19 @@ export default function Home() {
     .map(slug => getProducts().find(p => p.slug === slug))
     .filter((p): p is Product => p !== undefined);
 
-  const heroVideos = [
-    "https://res.cloudinary.com/dzntnjtkc/video/upload/v1766320321/grok-video-62d89989-e362-4f7b-8748-be7160716d9d_s0bycy.mp4",
-    "https://res.cloudinary.com/dzntnjtkc/video/upload/v1766320320/grok-video-00e16448-d9d4-42d7-b008-a52bb2d894e6_uw6xgz.mp4",
-    "https://res.cloudinary.com/dzntnjtkc/video/upload/v1766320316/grok-video-e0b263cc-d799-4eaf-af37-19a495bddfb7_athtqf.mp4",
-    "https://res.cloudinary.com/dhjwimevi/video/upload/v1766255882/grok-video-0f20adcf-d493-4780-ab4f-29b6c76af0c9_rt4q9m.mp4",
-    "https://res.cloudinary.com/dhjwimevi/video/upload/v1766255882/grok-video-47eb3ac0-be42-4cdb-a184-80277705f1d4_ca1kj5.mp4",
-  ];
-
-  const posters = [
-    "https://res.cloudinary.com/dzntnjtkc/image/upload/v1766320321/grok-video-62d89989-e362-4f7b-8748-be7160716d9d_s0bycy.jpg",
-    "https://res.cloudinary.com/dzntnjtkc/image/upload/v1766320320/grok-video-00e16448-d9d4-42d7-b008-a52bb2d894e6_uw6xgz.jpg",
-    "https://res.cloudinary.com/dzntnjtkc/image/upload/v1766320316/grok-video-e0b263cc-d799-4eaf-af37-19a495bddfb7_athtqf.jpg",
-    "https://res.cloudinary.com/dhjwimevi/image/upload/v1766255882/grok-video-0f20adcf-d493-4780-ab4f-29b6c76af0c9_rt4q9m.jpg",
-    "https://res.cloudinary.com/dhjwimevi/image/upload/v1766255882/grok-video-47eb3ac0-be42-4cdb-a184-80277705f1d4_ca1kj5.jpg",
-    "https://res.cloudinary.com/dzntnjtkc/image/upload/v1766756032/grok-video-5a5cac64-5a42-4637-a03e-1a419dbb96a6_vx2bon.jpg"
+  const heroImages = [
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042739/Grise_-_Maison_Alhambra_rgvjtj.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042733/Omniyat_-_Surrati_ice7gl.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042690/Fleur_de_Coton_-_Sublime_bxfwfa.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042680/Good_Girl_by_Killer_-_Loui_Martin_rvtvqn.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042674/Niche_Royal_Rouge_-_Maison_Alhambra_i142ne.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042645/Olivia_Blossom_-_Maison_Alhambra_d9mink.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042629/Fakhar_Wasam_-_Lattafa_hwnd8d.webp",
   ];
 
   return (
     <div className="flex flex-col">
-      <HeroBanner videos={heroVideos} posters={posters} />
+      <HeroBanner images={heroImages} />
 
       {/* Trust bar */}
       <div className="w-full bg-black text-white py-4">

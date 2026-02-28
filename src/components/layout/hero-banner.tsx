@@ -1,48 +1,64 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface HeroBannerProps {
-    videos: string[];
-    posters?: string[];
+    images: string[];
 }
 
-export function HeroBanner({ videos, posters }: HeroBannerProps) {
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+export function HeroBanner({ images }: HeroBannerProps) {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+
+    const next = useCallback(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, [images.length]);
+
+    const prev = useCallback(() => {
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    }, [images.length]);
 
     useEffect(() => {
-        if (videos.length === 0) return;
-        const interval = setInterval(() => {
-            setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
-        }, 5000);
+        if (images.length === 0 || isPaused) return;
+        const interval = setInterval(next, 5000);
         return () => clearInterval(interval);
-    }, [videos.length]);
+    }, [images.length, isPaused, next]);
 
     return (
-        <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black">
-            {/* Full width video background */}
+        <section
+            className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+        >
+            {/* Image background */}
             <div className="absolute inset-0 w-full h-full">
                 <AnimatePresence mode="wait">
-                    <motion.video
-                        key={currentVideoIndex}
-                        src={videos[currentVideoIndex]}
-                        poster={posters?.[currentVideoIndex]}
+                    <motion.div
+                        key={currentIndex}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 1, ease: "easeInOut" }}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 w-full h-full object-cover opacity-60"
-                    />
+                        className="absolute inset-0 w-full h-full"
+                    >
+                        <Image
+                            src={images[currentIndex]}
+                            alt={`Hero image ${currentIndex + 1}`}
+                            fill
+                            priority={currentIndex === 0}
+                            className="object-cover opacity-60"
+                            sizes="100vw"
+                        />
+                    </motion.div>
                 </AnimatePresence>
             </div>
 
+            {/* Content */}
             <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-center px-4">
                 <motion.h1
                     initial={{ y: 20, opacity: 0 }}
@@ -71,6 +87,38 @@ export function HeroBanner({ videos, posters }: HeroBannerProps) {
                         </Link>
                     </Button>
                 </motion.div>
+            </div>
+
+            {/* Prev / Next arrows */}
+            <button
+                onClick={prev}
+                aria-label="Image précédente"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 text-white/60 hover:text-white transition-colors"
+            >
+                <ChevronLeft className="w-8 h-8" />
+            </button>
+            <button
+                onClick={next}
+                aria-label="Image suivante"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 text-white/60 hover:text-white transition-colors"
+            >
+                <ChevronRight className="w-8 h-8" />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {images.map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setCurrentIndex(i)}
+                        aria-label={`Aller à l'image ${i + 1}`}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            i === currentIndex
+                                ? "bg-white w-6"
+                                : "bg-white/40 hover:bg-white/70"
+                        }`}
+                    />
+                ))}
             </div>
         </section>
     );
