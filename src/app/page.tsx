@@ -99,7 +99,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-16 flex justify-center">
-              <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+              <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
                 <Link href="/shop/all">Voir toutes les nouveautés</Link>
               </Button>
             </div>
@@ -145,7 +145,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-16 flex justify-center">
-              <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+              <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
                 <Link href="/shop/all?sort=bestsellers">Voir tous les best sellers</Link>
               </Button>
             </div>
@@ -184,7 +184,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-16 flex justify-center">
-            <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+            <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
               <Link href="/shop/all">Explorer toutes les familles</Link>
             </Button>
           </div>
@@ -207,7 +207,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-16 flex justify-center">
-              <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+              <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
                 <Link href="/shop/all?brands=Lattafa">Voir toute la collection Lattafa</Link>
               </Button>
             </div>
