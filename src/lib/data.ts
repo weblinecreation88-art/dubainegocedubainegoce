@@ -983,7 +983,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["tabac", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "poivre rose", "cannelle", "bois de santal", "ambre gris", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/tabac-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260216/Tabac_Maison_Alhambra_x5bmpp.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1512,7 +1512,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["a king", "fragrance world", "parfum aromatique", "parfum homme", "eau de parfum fragrance world", "cannelle", "gingembre", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/a-king-fragrance-world.jpg"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260193/A_Fragrance_World_nfbo0d.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2087,7 +2087,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["mocha wood", "fragrance world", "parfum gourmand", "parfum mixte", "eau de parfum fragrance world", "bergamote", "orange", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/mocha-wood-fragrance-world.png"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1766739143/temp-uploads/temp-uploads/fragrance-world-mocha-wood.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2156,7 +2156,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["absolute oud magnificent 7", "fragrance world", "parfum oriental", "parfum mixte", "eau de parfum fragrance world", "poivre rose", "safran", "bois de santal", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/absolute-oud-magnificent-7-fragrance-world.png"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260194/ABSOLUTE_OUD_cvv56p.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2179,7 +2179,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["intro aftermath", "fragrance world", "parfum ambré", "parfum mixte", "eau de parfum fragrance world", "bergamote", "épices", "oud", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": [],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260200/Intro_Aftermath_ndzfq0.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2225,7 +2225,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["cuir leather", "fragrance world", "parfum cuir", "parfum mixte", "eau de parfum fragrance world", "safran", "bergamote", "patchouli", "vétiver", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/cuir-leather-fragrance-world.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1765796063/cuir-unknown_svr3tn.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2248,7 +2248,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["invicto", "fragrance world", "parfum aquatique", "parfum homme", "eau de parfum fragrance world", "gingembre", "safran", "musc", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/invicto-fragrance-world.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1766739141/temp-uploads/temp-uploads/fragrance-world-invicto.png"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2294,7 +2294,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["oud highness", "privezarah", "parfum oriental", "parfum mixte", "eau de parfum privezarah", "cannelle", "poivre rose", "benjoin", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": [],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260212/Oud_Highness_acp8jh.webp"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2915,7 +2915,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pistachio", "ard al zaafaran", "parfum gourmand", "parfum mixte", "eau de parfum ard al zaafaran", "noisette", "café", "benjoin", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/pistachio-ard-al-zaafaran.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260215/Pistachio_Ard_Al_Zaafaran_wmpecb.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2938,7 +2938,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["ithra mango", "ard al zaafaran", "parfum fruité", "parfum mixte", "eau de parfum ard al zaafaran", "pomme", "cassis", "bois de cashmeran", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/ithra-mango-ard-al-zaafaran.png"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260203/Ithra_Mango_kbrmfo.avif"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3053,7 +3053,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["fleur de coton", "sublime", "parfum floral", "parfum mixte", "eau de parfum sublime", "poire", "litchi", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fleur-de-coton-sublime.jpg"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260195/FLEUR_DE_COTON_i1dgxx.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
