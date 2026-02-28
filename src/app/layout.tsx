@@ -199,8 +199,7 @@ export default function RootLayout({
             <CartProvider>
               <WishlistProvider>
                 <div
-                  className="z-[9999] w-full bg-black"
-                  style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
+                  className="fixed top-0 inset-x-0 z-[9999] w-full bg-black"
                 >
                   <AnnouncementBar />
                   <Header />

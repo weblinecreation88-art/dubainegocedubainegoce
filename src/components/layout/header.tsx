@@ -62,7 +62,7 @@ export default function Header() {
   }
 
   return (
-    <div className="relative z-50 w-full bg-black/95 backdrop-blur-sm text-white border-b border-gray-800 flex flex-col">
+    <div className="w-full bg-black/95 backdrop-blur-sm text-white border-b border-gray-800 flex flex-col">
       {/* Top Utility Bar */}
       <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
         <div className="container mx-auto flex justify-between items-center px-4">
