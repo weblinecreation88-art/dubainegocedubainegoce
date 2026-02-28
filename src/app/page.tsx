@@ -49,6 +49,9 @@ export default function Home() {
     'qaed-al-fursan',
     'mayar-lattafa',
     'sakeena-lattafa',
+    'maahir-lattafa',
+    'oud-mood-lattafa',
+    'ramz-silver-lattafa',
   ];
   const lattafaProducts = lattafaSlugs
     .map(slug => getProducts().find(p => p.slug === slug))
@@ -200,7 +203,7 @@ export default function Home() {
               <p className="text-muted-foreground">Une sélection méticuleuse des créations iconiques de la Maison Lattafa.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              {lattafaProducts.slice(0, 12).map((product, index) => (
+              {lattafaProducts.slice(0, 15).map((product, index) => (
                 <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
                   <ProductCard product={product} />
                 </div>
