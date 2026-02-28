@@ -106,8 +106,8 @@ export default function Home() {
       <section className="relative py-24 md:py-36 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 opacity-40">
           <Image
-            src="https://res.cloudinary.com/dzagwz94z/image/upload/v1772042666/Fakhar_Black_-_Lattafa_bfnvrk.png"
-            alt="Fakhar Black Lattafa - Élégance Redéfinie Dubai Negoce"
+            src="https://res.cloudinary.com/dzagwz94z/image/upload/v1772042733/Omniyat_-_Surrati_ice7gl.png"
+            alt="Omniyat Surrati - Élégance Redéfinie Dubai Negoce"
             fill
             className="object-cover"
           />
