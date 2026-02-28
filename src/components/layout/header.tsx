@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingCart, User, Sparkles, Phone, Truck, Heart } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, Sparkles, Heart } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '@/context/cart-context';
 import { Badge } from '../ui/badge';
@@ -63,20 +63,6 @@ export default function Header() {
 
   return (
     <div className="w-full bg-black/95 backdrop-blur-sm text-white border-b border-gray-800 flex flex-col">
-      {/* Top Utility Bar */}
-      <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
-        <div className="container mx-auto flex justify-between items-center px-4">
-          <div className="flex items-center gap-2">
-            <Phone className="h-3.5 w-3.5 text-gray-400" />
-            <span>Service Client : <a href="tel:+33758999726" className="font-semibold hover:text-white transition-colors">+33 7 58 99 97 26</a></span>
-          </div>
-          <Link href="/livraison-et-paiement" className="flex items-center gap-2 hover:text-white transition-colors group">
-            <Truck className="h-3.5 w-3.5 text-gray-400 group-hover:text-white transition-colors" />
-            <span className="font-medium">Livraison et Paiement</span>
-          </Link>
-        </div>
-      </div>
-
       {/* Main Row */}
       <div className="container relative flex h-16 items-center">
 

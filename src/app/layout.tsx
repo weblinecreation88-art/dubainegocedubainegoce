@@ -204,7 +204,7 @@ export default function RootLayout({
                   <AnnouncementBar />
                   <Header />
                 </div>
-                <main className="flex-grow pt-[104px] md:pt-[132px] lg:pt-[132px]">
+                <main className="flex-grow pt-[104px]">
                   {children}
                 </main>
                 <ReassuranceSection />
