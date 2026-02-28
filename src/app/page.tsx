@@ -8,7 +8,6 @@ import { ProductCard } from "@/components/product/product-card";
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
 import React from "react";
 import { HeroBanner } from "@/components/layout/hero-banner";
-import { PerfumeFinderCta } from "@/components/perfume-finder-cta";
 import { CustomerReviewsSection } from "@/components/customer-reviews-section";
 import { Metadata } from "next";
 
@@ -214,10 +213,6 @@ export default function Home() {
       {/* Customer Reviews Section */}
       <div className="bg-muted/30">
         <CustomerReviewsSection />
-      </div>
-
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <PerfumeFinderCta />
       </div>
 
     </div>

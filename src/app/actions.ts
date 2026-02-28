@@ -2,7 +2,6 @@
 'use server';
 
 import { generateProductDescriptions } from '@/ai/flows/generate-product-descriptions';
-import { recommendPerfumes } from '@/ai/flows/recommend-perfumes';
 import { answerFaq } from '@/ai/flows/faq-chatbot';
 import type { Product, Order, OrderItem, ShippingMethod, CartItem } from '@/lib/types';
 import { getProducts } from '@/lib/data';
@@ -27,9 +26,6 @@ type GenerateSeoDescriptionOutput = {
   category: string;
 };
 
-type RecommendPerfumesInput = { preferences: string; pastPerfumes: string; };
-type RecommendPerfumesOutput = { recommendations: { slug: string; reason: string; }[]; };
-
 type AnswerFaqInput = { question: string; };
 type AnswerFaqOutput = { answer: string; };
 
@@ -49,12 +45,6 @@ export async function runGenerateProductDescriptions(
   input: GenerateSeoDescriptionInput
 ): Promise<GenerateSeoDescriptionOutput> {
   return await generateProductDescriptions(input);
-}
-
-export async function runRecommendPerfumes(
-  input: RecommendPerfumesInput
-): Promise<RecommendPerfumesOutput> {
-  return await recommendPerfumes(input);
 }
 
 export async function runAnswerFaq(

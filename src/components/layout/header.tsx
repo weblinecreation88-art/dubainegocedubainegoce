@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingCart, User, Sparkles, Heart } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, Heart } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '@/context/cart-context';
 import { Badge } from '../ui/badge';
@@ -22,8 +22,6 @@ import { Avatar, AvatarFallback } from '../ui/avatar';
 import { SearchDialog } from '../search-dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ScrollArea } from '../ui/scroll-area';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
-import { PerfumeFinder } from '../perfume-finder';
 import { ThemeToggle } from '../theme-toggle';
 
 export default function Header() {
@@ -103,23 +101,6 @@ export default function Header() {
                     </Accordion>
                     <Link href="/blog" onClick={handleLinkClick} className="text-base font-semibold">Blog</Link>
                     <Link href="/about" onClick={handleLinkClick} className="text-base font-semibold">À Propos</Link>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <button className="flex w-full items-center gap-2 rounded-md py-2 text-left font-semibold">
-                          <Sparkles className="h-5 w-5 text-primary" />
-                          <span>Trouver mon parfum (IA)</span>
-                        </button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-4xl text-foreground bg-background">
-                        <DialogHeader>
-                          <DialogTitle className="text-3xl font-headline text-primary text-center">Votre Sillage Unique</DialogTitle>
-                          <DialogDescription className="text-center">
-                            Laissez-nous vous guider vers le parfum de vos rêves.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <PerfumeFinder />
-                      </DialogContent>
-                    </Dialog>
                     <Link href="/wishlist" onClick={handleLinkClick} className="flex items-center gap-2 text-base font-semibold">
                       <Heart className="h-5 w-5" />
                       <span>Mes Favoris ({wishlist.length})</span>
@@ -186,26 +167,6 @@ export default function Header() {
                 <span className="sr-only">Rechercher</span>
               </Button>
             </SearchDialog>
-          </div>
-
-          {/* AI Advisor - desktop only */}
-          <div className="hidden lg:block">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100" title="Conseiller IA">
-                  <Sparkles className="h-5 w-5" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl text-foreground bg-background">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-headline text-primary text-center">Votre Sillage Unique</DialogTitle>
-                  <DialogDescription className="text-center">
-                    Laissez-nous vous guider vers le parfum de vos rêves.
-                  </DialogDescription>
-                </DialogHeader>
-                <PerfumeFinder />
-              </DialogContent>
-            </Dialog>
           </div>
 
           {/* User - toujours visible */}
