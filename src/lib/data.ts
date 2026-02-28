@@ -3241,8 +3241,7 @@ const products: Product[] = [
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
-    }
-
+    },
     {
         "id": "5006",
         "name": "Eclair Lattafa 100ml",
