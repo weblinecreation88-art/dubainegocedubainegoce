@@ -62,7 +62,7 @@ export default function Header() {
   }
 
   return (
-    <div className="w-full bg-black/95 backdrop-blur-sm text-white border-b border-gray-800 flex flex-col">
+    <div className="w-full bg-white text-black border-b border-gray-200 flex flex-col">
       {/* Main Row */}
       <div className="container relative flex h-16 items-center">
 
@@ -72,7 +72,7 @@ export default function Header() {
           <div className="lg:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+                <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Ouvrir le menu</span>
                 </Button>
@@ -133,7 +133,7 @@ export default function Header() {
           {/* Search - mobile only (affiché à gauche pour symétrie) */}
           <div className="lg:hidden">
             <SearchDialog>
-              <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+              <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Rechercher</span>
               </Button>
@@ -160,16 +160,16 @@ export default function Header() {
 
             {/* Navigation desktop - sans Fragrance World */}
             <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
-              <Link href="/shop/marque/lattafa" className="hover:text-gray-300 transition-colors uppercase">
+              <Link href="/shop/marque/lattafa" className="hover:text-gray-600 transition-colors uppercase">
                 Lattafa
               </Link>
-              <Link href="/shop/marque/french-avenue" className="hover:text-gray-300 transition-colors uppercase">
+              <Link href="/shop/marque/french-avenue" className="hover:text-gray-600 transition-colors uppercase">
                 French Avenue
               </Link>
-              <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-300 transition-colors uppercase">
+              <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-600 transition-colors uppercase">
                 Maison Alhambra
               </Link>
-              <Link href="/shop" className="hover:text-gray-300 transition-colors opacity-70">
+              <Link href="/shop" className="hover:text-gray-600 transition-colors opacity-70">
                 Tout voir
               </Link>
             </div>
@@ -181,7 +181,7 @@ export default function Header() {
           {/* Search - desktop only */}
           <div className="hidden lg:flex">
             <SearchDialog>
-              <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+              <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Rechercher</span>
               </Button>
@@ -192,7 +192,7 @@ export default function Header() {
           <div className="hidden lg:block">
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800" title="Conseiller IA">
+                <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100" title="Conseiller IA">
                   <Sparkles className="h-5 w-5" />
                 </Button>
               </DialogTrigger>
@@ -213,9 +213,9 @@ export default function Header() {
             user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-800 p-0">
-                    <Avatar className="h-8 w-8 border border-gray-700">
-                      <AvatarFallback className="bg-gray-900 text-white text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-100 p-0">
+                    <Avatar className="h-8 w-8 border border-gray-300">
+                      <AvatarFallback className="bg-gray-100 text-black text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
@@ -229,7 +229,7 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800">
+              <Button variant="ghost" size="icon" asChild className="text-black hover:text-gray-600 hover:bg-gray-100">
                 <Link href="/login">
                   <User className="h-5 w-5" />
                   <span className="sr-only">Compte</span>
@@ -239,7 +239,7 @@ export default function Header() {
           )}
 
           {/* Heart / Favoris - caché sur mobile */}
-          <Button variant="ghost" size="icon" asChild className="hidden sm:flex text-white hover:text-gray-300 hover:bg-gray-800 relative" title="Mes Favoris">
+          <Button variant="ghost" size="icon" asChild className="hidden sm:flex text-black hover:text-gray-600 hover:bg-gray-100 relative" title="Mes Favoris">
             <Link href="/wishlist">
               <Heart className="h-5 w-5" />
               {isMounted && wishlist.length > 0 && (
@@ -252,7 +252,7 @@ export default function Header() {
           </Button>
 
           {/* Panier - toujours visible */}
-          <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800 relative">
+          <Button variant="ghost" size="icon" asChild className="text-black hover:text-gray-600 hover:bg-gray-100 relative">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
               {isMounted && cartCount > 0 && (
