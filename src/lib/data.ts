@@ -2298,30 +2298,7 @@ const products: Product[] = [
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
-    },
-    {
-        "id": "1929",
-        "name": "Zaffiro Regale",
-        "slug": "zaffiro-regale-maison-alhambra",
-        "brand": brands.find(b => b.name === 'Maison Alhambra')!,
-        "type": "dupe",
-        "gender": "mixte",
-        "family": "Ambré",
-        "shortDescription": "Découvrez Zaffiro Regale Maison Alhambra, une fragrance ambré aux notes de safran et ambre. Laissez-vous séduire par ce parfum envoûtant.",
-        "longDescription": "<h2>Introduction</h2>\n\n<p><strong>Zaffiro Regale Maison Alhambra</strong> est une création olfactive exceptionnelle signée Maison Alhambra. Ce parfum ambré incarne l'élégance et la sophistication, offrant une expérience sensorielle unique. Dès les premières notes, vous serez transporté dans un univers de raffinement où chaque ingrédient a été minutieusement sélectionné pour créer une harmonie parfaite.</p>\n\n<h3>Pyramide Olfactive</h3>\n\n<p>La pyramide olfactive de <strong>Zaffiro Regale</strong> s'ouvre sur des notes de tête vibrantes de <strong>safran, bergamote, épices</strong>, créant une première impression mémorable. Le cœur révèle ensuite des accords de <strong>ambre, encens, rose</strong>, apportant profondeur et caractère à cette composition. Enfin, le fond somptueux de <strong>vanille, musc, oud</strong> assure une tenue remarquable et un sillage envoûtant.</p>\n\n<h2>Pour qui ?</h2>\n\n<p><strong>Zaffiro Regale Maison Alhambra</strong> a été conçu pour tous ceux qui recherchent l'excellence. Ce parfum unisexe s'adresse à ceux qui apprécient les fragrances de qualité et souhaitent affirmer leur personnalité avec distinction. Son intensité intense et son sillage puissant, sensuel en font le compagnon idéal pour marquer les esprits.</p>\n\n<p>Avec une tenue de <strong>8 à 12 heures</strong>, cette eau de parfum vous accompagne du matin au soir sans nécessiter de retouche. Parfait pour les mois les plus froids.</p>\n\n<h2>Dans quelles occasions ?</h2>\n\n<p>Cette fragrance ambré de Maison Alhambra excelle particulièrement lors des usage quotidien, événements mondains, sorties en couple. Les saisons idéales pour porter <strong>Zaffiro Regale</strong> sont automne et hiver, où ses notes se révèlent dans toute leur splendeur.</p>\n\n<p>Que vous recherchiez un parfum signature pour le quotidien ou une fragrance d'exception pour les moments importants, <strong>Zaffiro Regale Maison Alhambra</strong> saura répondre à vos attentes les plus exigeantes. Laissez-vous séduire par cette création qui allie tradition orientale et modernité.</p>",
-        "metaTitle": "Zaffiro Regale Maison Alhambra | Parfum Ambré Unisexe",
-        "metaDescription": "Découvrez Zaffiro Regale Maison Alhambra, une fragrance ambré aux notes de safran et ambre. Laissez-vous séduire par ce parfum envoûtant.",
-        "price": 35,
-        "volumeMl": 100,
-        "stock": 50,
-        "isBestseller": false,
-        "isNew": true,
-        "tags": ["zaffiro regale", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "safran", "bergamote", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": [],
-        "reviews": [],
-        "rating": 4.8,
-        "productType": "perfume"
-    },
+    }
     {
         "id": "1930",
         "name": "Cocktail Intense Fragrance World",
@@ -3264,60 +3241,8 @@ const products: Product[] = [
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
-    },
+    }
 
-    {
-        "id": "5004",
-        "name": "Kenzie Marshmallow",
-        "slug": "kenzie-marshmallow-100ml",
-        "brand": brands.find(b => b.name === 'French Avenue')!,
-        "type": "dupe",
-        "gender": "femme",
-        "family": "Gourmand",
-        "shortDescription": "Une douceur irrésistible de guimauve et de fleur d'oranger. Kenzie Marshmallow est un nuage sucré et réconfortant.",
-        "longDescription": "<h2>Kenzie Marshmallow - La Douceur Absolue</h2><p>Plongez dans un univers de tendresse avec <strong>Kenzie Marshmallow</strong>. Une fragrance qui évoque les souvenirs d'enfance avec une touche de sophistication moderne.</p><h3>Notes Olfactives</h3><p>Guimauve, Fleur d'Oranger, Vanille, Musc.</p>",
-        "metaTitle": "Kenzie Marshmallow | Parfum Guimauve",
-        "metaDescription": "Kenzie Marshmallow, le parfum gourmand par excellence. Guimauve, vanille et douceur infinie.",
-        "price": 35,
-        "volumeMl": 100,
-        "stock": 50,
-        "isBestseller": false,
-        "isNew": true,
-        "tags": ["kenzie", "marshmallow", "parfum guimauve", "gourmand", "fragrance world"],
-        "images": ["/images-parfums/kenzie-marshmallow-100ml.jpg"],
-        "reviews": [],
-        "rating": 5.0,
-        "productType": "perfume",
-        "topNotes": ["Bergamote", "Guimauve"],
-        "heartNotes": ["Fleur d'Oranger", "Chèvrefeuille"],
-        "baseNotes": ["Vanille", "Musc", "Ambre"]
-    },
-    {
-        "id": "5005",
-        "name": "Kenzie Candid Vanilla",
-        "slug": "kenzie-candid-vanilla-100ml",
-        "brand": brands.find(b => b.name === 'French Avenue')!,
-        "type": "dupe",
-        "gender": "femme",
-        "family": "Floral Gourmand",
-        "shortDescription": "L'élégance florale rencontrant la gourmandise de la vanille. Kenzie Candid Vanilla est une déclaration de féminité audacieuse.",
-        "longDescription": "<h2>Kenzie Candid Vanilla - L'Audace Florale et Gourmande</h2><p><strong>Kenzie Candid Vanilla</strong> est un parfum vibrant et addictif. Un bouquet floral sublimé par des notes gourmandes de vanille pour une signature unique.</p><h3>Notes Olfactives</h3><p>Tubéreuse, Jasmin, Fève Tonka, Vanille, Cacao.</p>",
-        "metaTitle": "Kenzie Candid Vanilla | Parfum Floral Vanille",
-        "metaDescription": "Découvrez Kenzie Candid Vanilla, un parfum floral et gourmand. Tubéreuse, vanille et fève tonka pour une séduction immédiate.",
-        "price": 35,
-        "volumeMl": 100,
-        "stock": 50,
-        "isBestseller": false,
-        "isNew": true,
-        "tags": ["kenzie", "candid vanilla", "parfum floral", "scandal dupe", "fragrance world", "vanille"],
-        "images": ["/images-parfums/kenzie-candid-vanilla-100ml.webp"],
-        "reviews": [],
-        "rating": 5.0,
-        "productType": "perfume",
-        "topNotes": ["Orange Sanguine", "Mandarine"],
-        "heartNotes": ["Miel", "Gardénia", "Jasmin", "Fleur d'Oranger", "Pêche"],
-        "baseNotes": ["Patchouli", "Cire d'Abeille", "Caramel", "Vanille"]
-    },
     {
         "id": "5006",
         "name": "Eclair Lattafa 100ml",
@@ -3395,32 +3320,6 @@ const products: Product[] = [
         "topNotes": ["Pistache", "Bergamote", "Rhum", "Cardamome"],
         "heartNotes": ["Pivoine", "Muguet", "Jasmin", "Framboise", "Pêche", "Poire"],
         "baseNotes": ["Crème Fouettée", "Guimauve", "Barbe à Papa", "Fève Tonka", "Bois de Santal"]
-    },
-    {
-        "id": "5002",
-        "name": "Azzure Aoud",
-        "slug": "azzure-aoud-100ml",
-        "brand": brands.find(b => b.name === 'French Avenue')!,
-        "type": "dupe",
-        "gender": "mixte",
-        "family": "Oriental Boisé",
-        "shortDescription": "La rencontre majestueuse de l'Oud et de la fraîcheur océanique. Azzure Aoud est une signature unique, puissante et raffinée.",
-        "longDescription": "<h2>Azzure Aoud - La Force des Contrastes</h2><p><strong>Azzure Aoud</strong> est une composition audacieuse qui marie la profondeur mystique du bois de Oud à la fraîcheur vivifiante des notes marines. Un parfum de caractère pour ceux qui osent se démarquer.</p><h3>Notes Olfactives</h3><p>Des notes de tête fraîches de <strong>Notes Marines</strong> et <strong>Citron</strong>, un cœur vibrant de <strong>Gingembre</strong> et <strong>Oud</strong>, reposant sur un fond intense de <strong>Patchouli</strong> et <strong>Ambre Gris</strong>.</p>",
-        "metaTitle": "Azzure Aoud | Parfum Oud Marin",
-        "metaDescription": "Azzure Aoud, l'alliance unique du Oud et des notes marines. Une fragrance puissante et sophistiquée pour hommes et femmes.",
-        "price": 35,
-        "volumeMl": 100,
-        "stock": 50,
-        "isBestseller": false,
-        "isNew": true,
-        "tags": ["azzure aoud", "french avenue", "parfum oud", "notes marines", "oriental frais"],
-        "images": ["/images-parfums/azzure-aoud-100ml.png"],
-        "reviews": [],
-        "rating": 5.0,
-        "productType": "perfume",
-        "topNotes": ["Notes Marines", "Citron"],
-        "heartNotes": ["Gingembre", "Oud"],
-        "baseNotes": ["Patchouli", "Ambre Gris"]
     }
 ];
 
@@ -3475,4 +3374,5 @@ export const getNewArrivals = (): Product[] => {
 export const getBestsellers = (): Product[] => {
     return getProducts().filter(p => p.isBestseller);
 };
+
 
