@@ -25,7 +25,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
     useEffect(() => {
         if (images.length === 0 || isPaused) return;
-        const interval = setInterval(next, 5000);
+        const interval = setInterval(next, 3000);
         return () => clearInterval(interval);
     }, [images.length, isPaused, next]);
 
