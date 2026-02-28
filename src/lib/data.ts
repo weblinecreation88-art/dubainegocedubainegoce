@@ -2298,7 +2298,7 @@ const products: Product[] = [
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
-    }
+    },
     {
         "id": "1930",
         "name": "Cocktail Intense Fragrance World",

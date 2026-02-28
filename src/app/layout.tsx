@@ -146,7 +146,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={cn('font-body antialiased min-h-screen')}>
+      <body className={cn('font-body antialiased min-h-screen flex flex-col')}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -199,12 +199,12 @@ export default function RootLayout({
             <CartProvider>
               <WishlistProvider>
                 <div
-                  className="fixed top-0 inset-x-0 z-[9999] w-full bg-black"
+                  className="sticky top-0 z-[9999] w-full bg-black"
                 >
                   <AnnouncementBar />
                   <Header />
                 </div>
-                <main className="flex-grow pt-[104px]">
+                <main className="flex-1">
                   {children}
                 </main>
                 <ReassuranceSection />
