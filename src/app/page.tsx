@@ -88,11 +88,8 @@ export default function Home() {
       {newArrivals.length > 0 && (
         <section className="py-28 md:py-44 bg-white dark:bg-background">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-16 md:mb-20">
+            <div className="mb-16 md:mb-20">
               <h1 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nouveautés Parfums Orientaux</h1>
-              <Link href="/shop/all" className="hidden md:flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                Tout voir <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {newArrivals.slice(0, 8).map((product, index) => (
@@ -101,8 +98,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="mt-8 text-center md:hidden">
-              <Button asChild variant="outline" className="w-full sm:w-auto">
+            <div className="mt-16 flex justify-center">
+              <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
                 <Link href="/shop/all">Voir toutes les nouveautés</Link>
               </Button>
             </div>
@@ -126,7 +123,7 @@ export default function Home() {
             Explorez l'harmonie parfaite entre les traditions orientales délicates et le luxe contemporain.
           </p>
           <Button asChild size="lg" className="bg-white text-black hover:bg-transparent hover:text-white border border-white rounded-none px-12 py-6 text-sm tracking-[0.2em] uppercase transition-all duration-300">
-            <Link href="/shop">
+            <Link href="/shop/all">
               Explorer
             </Link>
           </Button>
@@ -137,7 +134,7 @@ export default function Home() {
       {bestsellers.length > 0 && (
         <section className="py-28 md:py-44 bg-gray-50 dark:bg-muted/10">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-16 md:mb-20">
+            <div className="mb-16 md:mb-20">
               <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nos Best Sellers</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -146,6 +143,11 @@ export default function Home() {
                   <ProductCard product={product} />
                 </div>
               ))}
+            </div>
+            <div className="mt-16 flex justify-center">
+              <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+                <Link href="/shop/all?sort=bestsellers">Voir tous les best sellers</Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -181,6 +183,11 @@ export default function Home() {
               </Link>
             ))}
           </div>
+          <div className="mt-16 flex justify-center">
+            <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+              <Link href="/shop/all">Explorer toutes les familles</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -198,6 +205,11 @@ export default function Home() {
                   <ProductCard product={product} />
                 </div>
               ))}
+            </div>
+            <div className="mt-16 flex justify-center">
+              <Button asChild size="lg" className="bg-black text-white hover:bg-black/80 border border-black rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+                <Link href="/shop/all?brands=Lattafa">Voir toute la collection Lattafa</Link>
+              </Button>
             </div>
           </div>
         </section>
