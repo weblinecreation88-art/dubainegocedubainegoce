@@ -140,6 +140,31 @@ export default function Footer() {
               </Button>
             </form>
             <p className="text-xs text-muted-foreground">Sans spam. Désabonnement en 1 clic.</p>
+            <div className="pt-2 space-y-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Suivez-nous</p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://www.instagram.com/dubai_negoce/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Dubai Negoce"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+                >
+                  <InstagramIcon />
+                  <span>Instagram</span>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@dubai_negoce"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok Dubai Negoce"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+                >
+                  <TiktokIcon />
+                  <span>TikTok</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         <Separator className="my-8" />
@@ -151,14 +176,6 @@ export default function Footer() {
             <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer">
               <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ height: 'auto' }} />
             </a>
-            <div className="flex items-center gap-3">
-              <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dubai Negoce" className="text-muted-foreground hover:text-primary transition-colors">
-                <InstagramIcon />
-              </a>
-              <a href="https://www.tiktok.com/@dubai_negoce" target="_blank" rel="noopener noreferrer" aria-label="TikTok Dubai Negoce" className="text-muted-foreground hover:text-primary transition-colors">
-                <TiktokIcon />
-              </a>
-            </div>
           </div>
           <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.</p>
         </div>
