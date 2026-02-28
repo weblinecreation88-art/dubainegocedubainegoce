@@ -8,20 +8,18 @@ import { Separator } from '@/components/ui/separator';
 import { useEffect, useRef, useState } from 'react';
 import { subscribeToNewsletter } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Mail, MapPin, Phone } from 'lucide-react';
+import { Loader2, Mail, MapPin, Phone, Instagram, Facebook } from 'lucide-react';
 import Image from 'next/image';
-
-const InstagramIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-  </svg>
-);
 
 const TiktokIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.82a8.18 8.18 0 0 0 4.78 1.52V6.89a4.85 4.85 0 0 1-1.01-.2z"/>
+  </svg>
+);
+
+const SnapchatIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12.166 2C9.349 2 6.732 3.343 5.09 5.618c-.897 1.245-1.332 2.694-1.09 4.296-.307.163-.635.243-.97.243-.426 0-.768.337-.768.75s.342.75.768.75c.63 0 1.19-.16 1.67-.41.168.484.373.952.614 1.404-.62.48-1.576 1.29-1.576 2.28 0 .63.394 1.08.923 1.244.65 2.02 3.21 2.825 5.34 2.825.28 0 .557-.013.828-.04.594.532 1.29.796 2.04.796s1.445-.264 2.04-.796c.27.027.548.04.827.04 2.13 0 4.69-.806 5.34-2.825.53-.164.923-.613.923-1.244 0-.99-.956-1.8-1.576-2.28.24-.452.446-.92.613-1.403.48.25 1.04.41 1.67.41.426 0 .769-.337.769-.75s-.343-.75-.769-.75c-.334 0-.662-.08-.97-.243.242-1.602-.192-3.051-1.09-4.296C17.433 3.343 14.817 2 12 2h.166z"/>
   </svg>
 );
 
@@ -140,28 +138,28 @@ export default function Footer() {
               </Button>
             </form>
             <p className="text-xs text-muted-foreground">Sans spam. Désabonnement en 1 clic.</p>
-            <div className="pt-2 space-y-2">
+            <div className="pt-2 space-y-3">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Suivez-nous</p>
-              <div className="flex items-center gap-4">
-                <a
-                  href="https://www.instagram.com/dubai_negoce/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram Dubai Negoce"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-                >
-                  <InstagramIcon />
+              <div className="grid grid-cols-2 gap-2">
+                <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                  <Instagram className="h-4 w-4 shrink-0" />
                   <span>Instagram</span>
                 </a>
-                <a
-                  href="https://www.tiktok.com/@dubai_negoce"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok Dubai Negoce"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-                >
+                <a href="https://www.tiktok.com/@dubainegoce" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
                   <TiktokIcon />
                   <span>TikTok</span>
+                </a>
+                <a href="https://web.facebook.com/people/Babou-Father/100007559055739/" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                  <Facebook className="h-4 w-4 shrink-0" />
+                  <span>Facebook</span>
+                </a>
+                <a href="https://www.snapchat.com/add/dubainegoce" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                  <SnapchatIcon />
+                  <span>Snapchat</span>
                 </a>
               </div>
             </div>

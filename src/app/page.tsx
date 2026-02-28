@@ -5,7 +5,6 @@ import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
 import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
 import { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product/product-card";
-import { SocialFollowSection } from "@/components/layout/social-follow-section";
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
 import React from "react";
 import { HeroBanner } from "@/components/layout/hero-banner";
@@ -226,9 +225,6 @@ export default function Home() {
       <div className="container mx-auto px-4 py-16 md:py-24">
         <PerfumeFinderCta />
       </div>
-
-      {/* Social Follow Section */}
-      <SocialFollowSection />
 
     </div>
   );
