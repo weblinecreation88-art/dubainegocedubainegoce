@@ -11,6 +11,20 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 
+const InstagramIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
+
+const TiktokIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.82a8.18 8.18 0 0 0 4.78 1.52V6.89a4.85 4.85 0 0 1-1.01-.2z"/>
+  </svg>
+);
+
 export default function Footer() {
   const [pending, setPending] = useState(false);
   const { toast } = useToast();
@@ -45,8 +59,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Collections</h3>
-            <ul className="space-y-2">
-              <li><Link href="/shop" className="hover:text-primary transition-colors">Tous les produits</Link></li>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/shop/all" className="hover:text-primary transition-colors">Tous les parfums</Link></li>
+              <li><Link href="/shop/all?sort=newest" className="hover:text-primary transition-colors">Nouveautés</Link></li>
+              <li><Link href="/shop/all?sort=bestsellers" className="hover:text-primary transition-colors">Best Sellers</Link></li>
+              <li className="pt-1 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Marques</li>
+              <li><Link href="/shop/all?brands=Lattafa" className="hover:text-primary transition-colors">Lattafa</Link></li>
+              <li><Link href="/shop/all?brands=Maison+Alhambra" className="hover:text-primary transition-colors">Maison Alhambra</Link></li>
+              <li><Link href="/shop/all?brands=Fragrance+World" className="hover:text-primary transition-colors">Fragrance World</Link></li>
+              <li><Link href="/shop/all?brands=French+Avenue" className="hover:text-primary transition-colors">French Avenue</Link></li>
+              <li className="pt-1 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Familles</li>
+              <li><Link href="/shop/all?families=Oriental" className="hover:text-primary transition-colors">Oriental</Link></li>
+              <li><Link href="/shop/all?families=Boisé" className="hover:text-primary transition-colors">Boisé</Link></li>
+              <li><Link href="/shop/all?families=Floral" className="hover:text-primary transition-colors">Floral</Link></li>
+              <li><Link href="/shop/all?families=Gourmand" className="hover:text-primary transition-colors">Gourmand</Link></li>
             </ul>
           </div>
           <div className="space-y-4">
@@ -118,13 +144,21 @@ export default function Footer() {
         </div>
         <Separator className="my-8" />
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
             <Link href="/">
               <span className="font-bold text-lg font-headline">DubaiNegoce</span>
             </Link>
             <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer">
               <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ height: 'auto' }} />
             </a>
+            <div className="flex items-center gap-3">
+              <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dubai Negoce" className="text-muted-foreground hover:text-primary transition-colors">
+                <InstagramIcon />
+              </a>
+              <a href="https://www.tiktok.com/@dubai_negoce" target="_blank" rel="noopener noreferrer" aria-label="TikTok Dubai Negoce" className="text-muted-foreground hover:text-primary transition-colors">
+                <TiktokIcon />
+              </a>
+            </div>
           </div>
           <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.</p>
         </div>

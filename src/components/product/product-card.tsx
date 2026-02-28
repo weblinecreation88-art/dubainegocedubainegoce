@@ -4,10 +4,11 @@ import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { Badge } from '../ui/badge';
 import { ProductImage } from './product-image';
-import { Heart } from 'lucide-react';
+import { Heart, ShoppingCart } from 'lucide-react';
 import { useWishlist } from '@/context/wishlist-context';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
+import { AddToCartButton } from './add-to-cart-button';
 
 interface ProductCardProps {
     product: Product;
@@ -88,10 +89,29 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                         )}
                     </div>
                 </div>
-                <div className="px-3 pb-4 mt-auto">
+                <div className="px-3 pb-3 mt-auto">
                     <p className="text-base font-bold text-gray-900 dark:text-white">{product.price.toFixed(2)} €</p>
                 </div>
             </Link>
+            {/* Quick add — outside Link to avoid nested navigation */}
+            {product.stock > 0 ? (
+                <div className="px-3 pb-3">
+                    <AddToCartButton
+                        product={product}
+                        size="sm"
+                        className="w-full rounded-sm bg-black text-white hover:bg-black/80 text-[11px] tracking-wider uppercase py-2 gap-1.5"
+                    >
+                        <ShoppingCart className="h-3.5 w-3.5" />
+                        Ajouter
+                    </AddToCartButton>
+                </div>
+            ) : (
+                <div className="px-3 pb-3">
+                    <div className="w-full py-2 text-center text-[11px] tracking-wider uppercase text-muted-foreground border border-gray-200 rounded-sm">
+                        Rupture de stock
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

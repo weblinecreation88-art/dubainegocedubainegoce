@@ -59,14 +59,14 @@ const ReassuranceSection = () => {
   );
 
   return (
-    <section className="hidden md:block py-8 bg-black text-white border-y border-gray-900 overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-wrap justify-center items-center gap-8 text-center text-gray-300">
+    <section className="py-6 bg-black text-white border-y border-gray-900 overflow-hidden">
+      <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         {reassurances.map((item, index) => (
-          <div key={index} className="flex items-center gap-3">
-            <span className="text-white">{item.icon}</span>
+          <div key={index} className="flex items-center gap-2.5">
+            <span className="text-white shrink-0">{item.icon}</span>
             <div className="text-left">
-              <h3 className="font-headline text-sm font-semibold whitespace-nowrap text-white">{item.title}</h3>
-              <p className="text-xs opacity-70 whitespace-nowrap">{item.description}</p>
+              <h3 className="font-headline text-xs sm:text-sm font-semibold text-white leading-tight">{item.title}</h3>
+              <p className="text-[10px] sm:text-xs opacity-70 leading-tight">{item.description}</p>
             </div>
           </div>
         ))}
@@ -133,8 +133,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-        <link rel="canonical" href={siteUrl} />
-        <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`

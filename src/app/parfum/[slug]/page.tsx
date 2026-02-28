@@ -116,7 +116,18 @@ export default function ProductPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <div className="container mx-auto max-w-6xl px-4 py-12">
+      <div className="container mx-auto max-w-6xl px-4 pt-6 pb-2">
+        <nav aria-label="Fil d'Ariane" className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
+          <Link href="/" className="hover:text-foreground transition-colors">Accueil</Link>
+          <span>/</span>
+          <Link href="/shop/all" className="hover:text-foreground transition-colors">Boutique</Link>
+          <span>/</span>
+          <Link href={`/shop/all?brands=${encodeURIComponent(product.brand.name)}`} className="hover:text-foreground transition-colors">{product.brand.name}</Link>
+          <span>/</span>
+          <span className="text-foreground font-medium truncate max-w-[200px]">{product.name}</span>
+        </nav>
+      </div>
+      <div className="container mx-auto max-w-6xl px-4 py-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
           {/* Product Images */}
           <div>
@@ -145,8 +156,8 @@ export default function ProductPage({ params }: Props) {
                 <span className="text-sm text-muted-foreground">({product.rating.toFixed(1)})</span>
               </div>
               <div className="flex flex-wrap gap-2 mt-4">
-                <Link href={`/shop?families=${product.family}`}><Badge variant="secondary">{product.family}</Badge></Link>
-                <Link href={`/shop?genders=${product.gender}`}><Badge variant="secondary" className="capitalize">{product.gender}</Badge></Link>
+                <Link href={`/shop/all?families=${product.family}`}><Badge variant="secondary">{product.family}</Badge></Link>
+                <Link href={`/shop/all?genders=${product.gender}`}><Badge variant="secondary" className="capitalize">{product.gender}</Badge></Link>
                 {product.tags.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
               </div>
             </div>
@@ -216,7 +227,25 @@ export default function ProductPage({ params }: Props) {
               </div>
             </TabsContent>
             <TabsContent value="reviews" className="py-6">
-              <p>Aucun avis pour le moment.</p>
+              <div className="flex flex-col items-center gap-4 py-8 text-center">
+                <div className="flex justify-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-6 w-6 text-yellow-400 fill-yellow-400" />
+                  ))}
+                </div>
+                <p className="font-semibold text-lg">Nos clients nous font confiance</p>
+                <p className="text-muted-foreground text-sm max-w-sm">
+                  Découvrez l'ensemble de nos avis vérifiés directement sur Trustpilot — la plateforme de référence.
+                </p>
+                <a
+                  href="https://fr.trustpilot.com/review/dubainegoce.fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4 hover:text-primary transition-colors"
+                >
+                  Voir tous nos avis Trustpilot →
+                </a>
+              </div>
             </TabsContent>
           </Tabs>
         </div>
