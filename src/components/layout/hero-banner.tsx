@@ -66,7 +66,7 @@ export function HeroBanner({ videos, posters }: HeroBannerProps) {
                     transition={{ delay: 0.6 }}
                 >
                     <Button asChild size="lg" className="bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
-                        <Link href="/shop">
+                        <Link href="/shop/all">
                             Découvrir la Collection
                         </Link>
                     </Button>
