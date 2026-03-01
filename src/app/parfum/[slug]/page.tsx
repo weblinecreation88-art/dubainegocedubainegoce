@@ -208,7 +208,7 @@ export default function ProductPage({ params }: Props) {
               <TabsTrigger value="reviews">Avis</TabsTrigger>
             </TabsList>
             <TabsContent value="description" className="py-6">
-              <div className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: product.longDescription }} />
+              <div className="prose prose-invert max-w-none product-description" dangerouslySetInnerHTML={{ __html: product.longDescription }} />
               {hasOlfactoryPyramid && (
                 <>
                   <h3 className="font-headline text-xl mt-6 mb-4">Pyramide Olfactive</h3>
