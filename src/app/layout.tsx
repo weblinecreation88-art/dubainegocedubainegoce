@@ -7,6 +7,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { CartProvider } from '@/context/cart-context';
+import { WishlistProvider } from '@/context/wishlist-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import { FaqChatbot } from '@/components/faq-chatbot';
@@ -14,6 +15,7 @@ import { CookieConsent } from '@/components/cookie-consent';
 import { ExitIntentPopup } from '@/components/exit-intent-popup';
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
@@ -57,14 +59,14 @@ const ReassuranceSection = () => {
   );
 
   return (
-    <section className="hidden md:block py-8 bg-black text-white border-y border-gray-900 overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-wrap justify-center items-center gap-8 text-center text-gray-300">
+    <section className="py-6 bg-black text-white border-y border-gray-900 overflow-hidden">
+      <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         {reassurances.map((item, index) => (
-          <div key={index} className="flex items-center gap-3">
-            <span className="text-white">{item.icon}</span>
+          <div key={index} className="flex items-center gap-2.5">
+            <span className="text-white shrink-0">{item.icon}</span>
             <div className="text-left">
-              <h3 className="font-headline text-sm font-semibold whitespace-nowrap text-white">{item.title}</h3>
-              <p className="text-xs opacity-70 whitespace-nowrap">{item.description}</p>
+              <h3 className="font-headline text-xs sm:text-sm font-semibold text-white leading-tight">{item.title}</h3>
+              <p className="text-[10px] sm:text-xs opacity-70 leading-tight">{item.description}</p>
             </div>
           </div>
         ))}
@@ -126,9 +128,11 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preconnect Cloudinary pour réduire la latence des images/vidéos */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-        <link rel="canonical" href={siteUrl} />
-        <meta name="robots" content="index, follow" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
@@ -140,7 +144,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={cn('font-body antialiased min-h-screen flex flex-col overflow-x-hidden')}>
+      <body className={cn('font-body antialiased min-h-screen flex flex-col')}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -151,21 +155,63 @@ export default function RootLayout({
         </noscript>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Dubainegoce',
+              url: siteUrl,
+              logo: `${siteUrl}/logo.png`,
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+33 7 58 99 97 26',
+                contactType: 'customer service',
+              },
+              sameAs: [
+                'https://www.instagram.com/dubai_negoce/',
+                'https://www.tiktok.com/@dubai_negoce',
+              ],
+            }}
+          />
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Dubainegoce',
+              url: siteUrl,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: `${siteUrl}/shop?q={search_term_string}`,
+                },
+                'query-input': 'required name=search_term_string',
+              },
+            }}
+          />
           <FirebaseClientProvider>
             <CartProvider>
-              <AnnouncementBar />
-              <Header />
-              <main className="flex-grow">{children}</main>
-              <ReassuranceSection />
-              <Footer />
-              <Toaster />
-              <FaqChatbot />
-              <CookieConsent />
-              <ExitIntentPopup />
+              <WishlistProvider>
+                <div
+                  className="sticky top-0 z-[9999] w-full bg-black"
+                >
+                  <AnnouncementBar />
+                  <Header />
+                </div>
+                <main className="flex-1">
+                  {children}
+                </main>
+                <ReassuranceSection />
+                <Footer />
+                <Toaster />
+                <FaqChatbot />
+                <CookieConsent />
+                <ExitIntentPopup />
+              </WishlistProvider>
             </CartProvider>
           </FirebaseClientProvider>
         </ThemeProvider>

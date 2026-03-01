@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingCart, User, Sparkles, Phone, Truck } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, Heart } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '@/context/cart-context';
 import { Badge } from '../ui/badge';
+import { useWishlist } from '@/context/wishlist-context';
 import { useUser, useAuth } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import {
@@ -21,13 +22,12 @@ import { Avatar, AvatarFallback } from '../ui/avatar';
 import { SearchDialog } from '../search-dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ScrollArea } from '../ui/scroll-area';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
-import { PerfumeFinder } from '../perfume-finder';
 import { ThemeToggle } from '../theme-toggle';
 
 export default function Header() {
   const { getCartCount, clearCart } = useCart();
   const { user, isUserLoading } = useUser();
+  const { wishlist } = useWishlist();
   const auth = useAuth();
 
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -60,30 +60,17 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-black text-white border-b border-gray-900 flex flex-col">
-      {/* Top Utility Bar */}
-      <div className="hidden md:flex w-full bg-zinc-900 border-b border-zinc-800 text-xs text-gray-300 py-1.5">
-        <div className="container mx-auto flex justify-between items-center px-4">
-          <div className="flex items-center gap-2">
-            <Phone className="h-3.5 w-3.5 text-gray-400" />
-            <span>Service Client : <a href="tel:+33758999726" className="font-semibold hover:text-white transition-colors">+33758999726</a></span>
-          </div>
-          <Link href="/livraison-et-paiement" className="flex items-center gap-2 hover:text-white transition-colors group">
-            <Truck className="h-3.5 w-3.5 text-gray-400 group-hover:text-white transition-colors" />
-            <span className="font-medium">Livraison et Paiement</span>
-          </Link>
-        </div>
-      </div>
+    <div className="w-full bg-white text-black border-b border-gray-200 flex flex-col">
+      {/* Main Row */}
+      <div className="container relative flex h-16 items-center">
 
-      <div className="container flex h-16 items-center justify-between">
-
-        {/* Left Section: Mobile Menu & Desktop Logo */}
-        <div className="flex items-center gap-4">
+        {/* LEFT: Menu burger + Search (mobile) | Logo (desktop) */}
+        <div className="flex items-center gap-1 lg:gap-4 z-10">
           {/* Mobile Menu Trigger */}
           <div className="lg:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
+                <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Ouvrir le menu</span>
                 </Button>
@@ -105,101 +92,91 @@ export default function Header() {
                         <AccordionTrigger>Marques de Parfums</AccordionTrigger>
                         <AccordionContent>
                           <div className="flex flex-col gap-3 pl-4 pt-2">
-                            <Link href="/shop?brands=Lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
-                            <Link href="/shop?brands=French%20Avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
-                            <Link href="/shop?brands=Maison%20Alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
-                            <Link href="/shop?brands=Fragrance%20World" onClick={handleLinkClick} className="text-sm">Fragrance World</Link>
+                            <Link href="/shop/marque/lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
+                            <Link href="/shop/marque/french-avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
+                            <Link href="/shop/marque/maison-alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
                     <Link href="/blog" onClick={handleLinkClick} className="text-base font-semibold">Blog</Link>
                     <Link href="/about" onClick={handleLinkClick} className="text-base font-semibold">À Propos</Link>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <button className="flex w-full items-center gap-2 rounded-md py-2 text-left font-semibold">
-                          <Sparkles className="h-5 w-5 text-primary" />
-                          <span>Trouver mon parfum (IA)</span>
-                        </button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-4xl text-foreground bg-background">
-                        <DialogHeader>
-                          <DialogTitle className="text-3xl font-headline text-primary text-center">Votre Sillage Unique</DialogTitle>
-                          <DialogDescription className="text-center">
-                            Laissez-nous vous guider vers le parfum de vos rêves.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <PerfumeFinder />
-                      </DialogContent>
-                    </Dialog>
+                    <Link href="/wishlist" onClick={handleLinkClick} className="flex items-center gap-2 text-base font-semibold">
+                      <Heart className="h-5 w-5" />
+                      <span>Mes Favoris ({wishlist.length})</span>
+                    </Link>
                   </div>
                 </ScrollArea>
               </SheetContent>
             </Sheet>
           </div>
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+          {/* Search - mobile only (affiché à gauche pour symétrie) */}
+          <div className="lg:hidden">
+            <SearchDialog>
+              <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Rechercher</span>
+              </Button>
+            </SearchDialog>
+          </div>
+
+          {/* Logo - desktop only */}
+          <Link href="/" className="hidden lg:flex items-center">
             <span className="font-headline font-bold text-xl md:text-2xl tracking-widest uppercase">
               Dubaï Négoce
             </span>
           </Link>
         </div>
 
-        {/* Center Section: Navigation Menu (Desktop) */}
-        <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
-          <Link href="/shop?brands=Lattafa" className="hover:text-gray-300 transition-colors uppercase">
-            Lattafa
-          </Link>
-          <Link href="/shop?brands=French%20Avenue" className="hover:text-gray-300 transition-colors uppercase">
-            French Avenue
-          </Link>
-          <Link href="/shop?brands=Maison%20Alhambra" className="hover:text-gray-300 transition-colors uppercase">
-            Maison Alhambra
-          </Link>
-          <Link href="/shop?brands=Fragrance%20World" className="hover:text-gray-300 transition-colors uppercase">
-            Fragrance World
-          </Link>
-          <Link href="/shop" className="hover:text-gray-300 transition-colors opacity-70">
-            Tout voir
-          </Link>
+        {/* CENTER - Logo mobile (centré) | Nav desktop */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="pointer-events-auto">
+            {/* Logo centré - mobile only */}
+            <Link href="/" className="lg:hidden flex items-center">
+              <span className="font-headline font-bold text-xl tracking-widest uppercase">
+                Dubaï Négoce
+              </span>
+            </Link>
+
+            {/* Navigation desktop - sans Fragrance World */}
+            <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
+              <Link href="/shop/marque/lattafa" className="hover:text-gray-600 transition-colors uppercase">
+                Lattafa
+              </Link>
+              <Link href="/shop/marque/french-avenue" className="hover:text-gray-600 transition-colors uppercase">
+                French Avenue
+              </Link>
+              <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-600 transition-colors uppercase">
+                Maison Alhambra
+              </Link>
+              <Link href="/shop" className="hover:text-gray-600 transition-colors opacity-70">
+                Tout voir
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Right Section: Icons */}
-        <div className="flex items-center justify-end gap-1 md:gap-3">
-          <SearchDialog>
-            <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Rechercher</span>
-            </Button>
-          </SearchDialog>
-
-          <div className="hidden lg:block">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:text-gray-300 hover:bg-gray-800" title="Conseiller IA">
-                  <Sparkles className="h-5 w-5" />
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl text-foreground bg-background">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-headline text-primary text-center">Votre Sillage Unique</DialogTitle>
-                  <DialogDescription className="text-center">
-                    Laissez-nous vous guider vers le parfum de vos rêves.
-                  </DialogDescription>
-                </DialogHeader>
-                <PerfumeFinder />
-              </DialogContent>
-            </Dialog>
+        {/* RIGHT: Icons */}
+        <div className="ml-auto flex items-center gap-1 lg:gap-3 z-10">
+          {/* Search - desktop only */}
+          <div className="hidden lg:flex">
+            <SearchDialog>
+              <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Rechercher</span>
+              </Button>
+            </SearchDialog>
           </div>
 
+          {/* User - toujours visible */}
           {!isUserLoading && (
             user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-800 p-0">
-                    <Avatar className="h-8 w-8 border border-gray-700">
-                      <AvatarFallback className="bg-gray-900 text-white text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-100 p-0">
+                    <Avatar className="h-8 w-8 border border-gray-300">
+                      <AvatarFallback className="bg-gray-100 text-black text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
@@ -213,7 +190,7 @@ export default function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800">
+              <Button variant="ghost" size="icon" asChild className="text-black hover:text-gray-600 hover:bg-gray-100">
                 <Link href="/login">
                   <User className="h-5 w-5" />
                   <span className="sr-only">Compte</span>
@@ -222,7 +199,21 @@ export default function Header() {
             )
           )}
 
-          <Button variant="ghost" size="icon" asChild className="text-white hover:text-gray-300 hover:bg-gray-800 relative">
+          {/* Heart / Favoris - caché sur mobile */}
+          <Button variant="ghost" size="icon" asChild className="hidden sm:flex text-black hover:text-gray-600 hover:bg-gray-100 relative" title="Mes Favoris">
+            <Link href="/wishlist">
+              <Heart className="h-5 w-5" />
+              {isMounted && wishlist.length > 0 && (
+                <Badge variant="secondary" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-emerald-500 text-white">
+                  {wishlist.length}
+                </Badge>
+              )}
+              <span className="sr-only">Favoris</span>
+            </Link>
+          </Button>
+
+          {/* Panier - toujours visible */}
+          <Button variant="ghost" size="icon" asChild className="text-black hover:text-gray-600 hover:bg-gray-100 relative">
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
               {isMounted && cartCount > 0 && (
@@ -234,11 +225,12 @@ export default function Header() {
             </Link>
           </Button>
 
+          {/* Theme Toggle - desktop only */}
           <div className="hidden lg:block ml-2">
             <ThemeToggle />
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

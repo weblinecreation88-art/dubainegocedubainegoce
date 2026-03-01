@@ -25,8 +25,8 @@ export default function LegalPage() {
                     <strong>N° de la taxe professionnelle :</strong> 36206974<br />
                     <strong>Identifiant fiscal :</strong> 60120121<br />
                     <strong>Adresse du siège :</strong> ZONE 2 BLOC F ELBASSATINE MEKNES 50000, Maroc<br />
-                    <strong>E-mail :</strong> abderelmalki@gmail.com<br />
-                    <strong>N° de téléphone :</strong> 0699-24-55-42<br />
+                    <strong>E-mail :</strong> contact@dubainegoce.fr<br />
+                    <strong>N° de téléphone :</strong> +33 7 58 99 97 26<br />
                     <strong>Directeur de la publication :</strong> Abderrahman ELMALKI
                 </p>
 

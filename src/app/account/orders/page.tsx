@@ -3,7 +3,6 @@
 
 import { useUser, useFirestore, useCollection, useMemoFirebase } from '@/firebase';
 import { collection, query, orderBy } from 'firebase/firestore';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Package, Truck, ChevronRight } from 'lucide-react';
@@ -63,7 +62,6 @@ const getDeliveryEstimate = (order: Order): string | null => {
 
 export default function OrdersPage() {
   const { user, isUserLoading } = useUser();
-  const router = useRouter();
   const firestore = useFirestore();
 
   const ordersQuery = useMemoFirebase(() => {
@@ -73,11 +71,7 @@ export default function OrdersPage() {
 
   const { data: orders, isLoading: areOrdersLoading } = useCollection<Order>(ordersQuery);
 
-  useEffect(() => {
-    if (!isUserLoading && !user) {
-      router.push('/login?redirect=/account/orders');
-    }
-  }, [user, isUserLoading, router]);
+  // La redirection est gérée par le layout /account/layout.tsx
 
   if (isUserLoading || areOrdersLoading) {
     return (

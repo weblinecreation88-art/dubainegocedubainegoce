@@ -43,3 +43,8 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# secrets / clés sensibles - NE JAMAIS COMMITTER
+geekkey.txt
+*.key.txt
+secrets.txt

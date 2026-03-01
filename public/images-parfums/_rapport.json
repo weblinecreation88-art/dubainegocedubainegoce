@@ -1,0 +1,883 @@
+[
+  {
+    "name": "Woody Oud",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-woody-oud.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/woody-oud-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "The Tux",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-the-tux.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/the-tux-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Ramz Silver",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ramz-silver.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/ramz-lattafa-silver-au-maroc.webp"
+  },
+  {
+    "name": "Ramz Gold",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ramz-gold.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/ramz-lattafa-gold-prix-maroc.webp"
+  },
+  {
+    "name": "Raghba",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-raghba.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Raghba-Lattafa-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Qaa'ed",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-qaa-ed.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/qaaed-قائد-lattafa-au-maroc.webp"
+  },
+  {
+    "name": "Ana Abiyedh Rouge",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ana-abiyedh-rouge.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/ana-abiyedh.jpg.webp"
+  },
+  {
+    "name": "Fakhar Black",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Fakhar Rose Gold",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Ejaazi",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ejaazi.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/ejaazi-intensive-silver-lattafa.webp"
+  },
+  {
+    "name": "Yeah",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-yeah.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/yeah-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Maahir",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-maahir.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/maahir-lattafa-Eau-de-Parfum.webp"
+  },
+  {
+    "name": "Confidential Platinum",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Asad",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-asad.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/Lattafa-Asad-prix-maroc.webp"
+  },
+  {
+    "name": "Fakhar Wasam",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Glacier Pour Homme",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-glacier-pour-homme.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/Glacier-Pour-Homme-Maison-Alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Grise",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-grise.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/04/Luxe-Chic-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Safwaan L'autre Musk",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Badee Al Oud",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-badee-al-oud.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/12/Badee-Al-Oud-Noble-Blush-Lattafa-Unisex-100ml.webp"
+  },
+  {
+    "name": "Oud Mood",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-oud-mood.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/09/Oud-Mood-Lattafa-Perfumes-prix-maroc.webp"
+  },
+  {
+    "name": "Velvet Oud",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Ana Abiyedh",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ana-abiyedh.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Ana-Abiyedh-Scarlet-Lattafa-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Safwaan L'autre Oud",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "My Rose Sublime",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-my-rose-sublime.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/24-Carat-Pure-Gold-Lattafa-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Toscano Leather",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-toscano-leather.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/toscano-leather-80ml-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Jean Lowe Matiere",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-jean-lowe-matiere.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/Maison-Alhambra-Jean-Lowe-Matiere-100.webp"
+  },
+  {
+    "name": "Glacier Le Noir",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-glacier-le-noir.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/glacier-le-noir-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Infini Oud",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-infini-oud.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Infini-Musk-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "La Vita Bella",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-la-vita-bella.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/la-vita-bella-maison-alhambra-maroc.webp"
+  },
+  {
+    "name": "Minerva",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Kismet for Women",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-kismet-for-women.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/kismet-for-women-maison-alhambra-pour-femme-maroc.webp"
+  },
+  {
+    "name": "Perseus",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-perseus.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/perseus-pour-homme-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Al Noble Safeer",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Versencia Crystal",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-versencia-crystal.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/09/Versencia-Crystal-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Ameer Al Oudh Intense Oud",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ameer-al-oudh-intense-oud.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/ameer-al-oudh-intense-oud-lattafa-prix-au-maroc.webp"
+  },
+  {
+    "name": "Najdia",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-najdia.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/Oud-Najdia-Lattafa-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Ajwad",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-ajwad.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/lattafa-ajwad-60ml-prix-maroc.webp"
+  },
+  {
+    "name": "Salvo Intense",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-salvo-intense.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Salvo-Elixir-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Maahir Black Edition",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-maahir-black-edition.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/Maahir-Black-Edition-Lattafa-Parfum-Homme-100ml-au-Maroc.webp"
+  },
+  {
+    "name": "Tabac",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-tabac.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/Infini-Intoxicating-Cherry-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Kismet Moscow",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-kismet-moscow.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Kismet-Moscow-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Niche Royal Rouge",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Al Noble Wazeer",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Galatea",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Avant",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-avant.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/avant-maison-alhambra-pour-homme-maroc.webp"
+  },
+  {
+    "name": "Opera Noir",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-opera-noir.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Opera-Rouge-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Hercules",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Olivia Blossom",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Majd Al Sultan",
+    "brand": "Asdaaf",
+    "status": "not_found"
+  },
+  {
+    "name": "Maahir Legacy",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-maahir-legacy.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/maahir-legacy-lattafa-pour-homme-prix-maroc.webp"
+  },
+  {
+    "name": "Pure Oudi",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Oud Mood Reminiscence",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Musk Mood",
+    "brand": "Lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Sakeena",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-sakeena.jpg",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/sakeena-lattafa-eau-de-parfum-pour-femme.jpg"
+  },
+  {
+    "name": "Mayar",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-mayar.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/08/Mayar-Lattafa-Perfumes-pour-femme.webp"
+  },
+  {
+    "name": "Andaleeb",
+    "brand": "Asdaaf",
+    "status": "ok",
+    "file": "asdaaf-andaleeb.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/asdaaf-andaleeb-pour-femme.webp"
+  },
+  {
+    "name": "So Candid",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-so-candid.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/so-candid-maison-alhambra-POUR-FEMME-maroc.webp"
+  },
+  {
+    "name": "Come Moiselle",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Jean Lowe Nouveau",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-jean-lowe-nouveau.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/04/Jean-Lowe-Vibe-Maison-Alhambra-Parfum-Unisexe-100ml.webp"
+  },
+  {
+    "name": "Jean Lowe Ombre",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-jean-lowe-ombre.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/Jean-Low-Ombre-Maison-Alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "Kismet Angel",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-kismet-angel.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/kismet-angel-maison-alhambra-maroc.webp"
+  },
+  {
+    "name": "Tharwah Gold",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-tharwah-gold.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/tharwah-gold-lattafa-prix-maroc.webp"
+  },
+  {
+    "name": "A King",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-a-king.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/The-Kingdom-Lattafa-Parfum-Femme-100ml-au-maroc.webp"
+  },
+  {
+    "name": "K King",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-k-king.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/The-Kingdom-Lattafa-Parfum-Femme-100ml-au-maroc.webp"
+  },
+  {
+    "name": "J",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-j.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2026/02/Notes-Jazz-Fragrance-World-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Queen Q",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-queen-q.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Night-Club-Silky-Fragrance-World-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Pose As Rose",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-pose-as-rose.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2026/01/Proud-Of-You-Intense-Fragrance-World-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Dark As Wood",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-dark-as-wood.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Dark-Aoud-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Jorge Di Profumo",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-jorge-di-profumo.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/jorge-di-profumo-maison-alhambra-pour-homme.webp"
+  },
+  {
+    "name": "Porto Neroli",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-porto-neroli.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Porto-Neroli-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "L'Intrude",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Confidential Private Gold",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-confidential-private-gold.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/09/Confidential-Private-Gold-Lattafa-Perfumes-for-women-and-men.webp"
+  },
+  {
+    "name": "Francique 107.9",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Karat",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-karat.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Karat-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Eternal Oud",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-eternal-oud.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/eternal-lattafa.jpg.webp"
+  },
+  {
+    "name": "Francique 63.55",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Infini Rose",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-infini-rose.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/infini-rose-edp-maison-alhambra-prix-maroc.webp"
+  },
+  {
+    "name": "By Saffron",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-by-saffron.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Black-Saffron-Armaf-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Lovely Cherie",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-lovely-cherie.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/01/Forbidden-Love-Parfum.webp"
+  },
+  {
+    "name": "Rose Petals",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-rose-petals.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/rose-petals-maison-alhambra.webp"
+  },
+  {
+    "name": "Fresh as Citrus",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-fresh-as-citrus.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Fresh-As-Citrus-Fragrance-World-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Victorioso Victory",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Baroque Rouge Extrait",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-baroque-rouge-extrait.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/09/Baroque-Rouge-Extrait-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Musk Vanille",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-musk-vanille.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/Domino-Essence-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Jean Lowe Immortal",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-jean-lowe-immortal.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/06/Jean-Lowe-Immortal-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Black Afgano",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Optimystic Blanc",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Optimystic Noir",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Mocha Wood",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Tour De Havana",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Extreme Aoud",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Absolute Oud Magnificent 7",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Intro Aftermath",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Pure Passion",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-pure-passion.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/09/Pure-Passion-Perfume-100ml-EDP-by-Fragrance-World.webp"
+  },
+  {
+    "name": "Cuir Leather",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-cuir-leather.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/06/Black-Leather-Fragrance-World-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Invicto",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-invicto.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Invicto-Victorious-Elixir-Fragrance-World-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Tudor",
+    "brand": "Paris Corner",
+    "status": "not_found"
+  },
+  {
+    "name": "Oud Highness",
+    "brand": "PriveZarah",
+    "status": "not_found"
+  },
+  {
+    "name": "Zaffiro Regale",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Cocktail Intense",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-cocktail-intense.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/11/Olfactory-Music-Fest-Fragrance-World-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Teriaq",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-teriaq.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/01/Teriaq-Intense-Lattafa-parfum-Maroc.webp"
+  },
+  {
+    "name": "Tempete",
+    "brand": "Jacques Yves",
+    "status": "not_found"
+  },
+  {
+    "name": "The Artist No.1",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Spectre Ghost",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-spectre-ghost.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/12/Spectre-Ghost-French-Avenue-EDP-pour-Homme-80ml.webp"
+  },
+  {
+    "name": "Zaffiro Collection Crafted Oud",
+    "brand": "Maison Alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Suits",
+    "brand": "Fragrance World",
+    "status": "ok",
+    "file": "fragrance-world-suits.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Suits-Fragrance-World-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Jean Lowe Noir",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-jean-lowe-noir.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/12/Jean-Lowe-Noir-Maison-Alhambra-Pour-Homme-et-Femme-100ml.webp"
+  },
+  {
+    "name": "Yara",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-yara.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/lattafa-yara-eau-de-parfum-prix-maroc-prix-rabat-1.webp"
+  },
+  {
+    "name": "Amber Neroli",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  },
+  {
+    "name": "Tobacco Touch",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-tobacco-touch.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/04/tobacco-touch-maison-alhambra-au-maroc.webp"
+  },
+  {
+    "name": "Irida Extrait",
+    "brand": "French Avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Aether Extrait",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-aether-extrait.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/05/Aether-Extrait-French-Avenue-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Lumiere Garcon",
+    "brand": "French Avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Lumiere Elle",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-lumiere-elle.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/12/Lumiere-Elle-French-Avenue-Unisex-EDP-100ml.webp"
+  },
+  {
+    "name": "Sweet Paradise",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-sweet-paradise.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/02/Sweet-Paradise-French-Avenue-ParfumStore-Maroc.webp"
+  },
+  {
+    "name": "Royal Blend Nero",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-royal-blend-nero.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Royal-Blend-Nero-French-Avenue-Parfum-Prix-Maroc.webp"
+  },
+  {
+    "name": "Azzure Aoud",
+    "brand": "French Avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "After Effect",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-after-effect.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/After-Effect-French-Avenue-Parfum-Prix-Maroc.webp"
+  },
+  {
+    "name": "Glorious Oud",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-glorious-oud.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Glorious-Oud-French-Avenue-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Kenzie Marshmallow",
+    "brand": "French Avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Kenzie Candid Vanilla",
+    "brand": "French Avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Liquid Brun",
+    "brand": "French Avenue",
+    "status": "ok",
+    "file": "french-avenue-liquid-brun.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/12/Liquid-Brun-–-French-Avenue-pour-Homme-100-ml.webp"
+  },
+  {
+    "name": "Eclair",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-eclair.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Eclaire-Banoffi-Lattafa-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Pistachio",
+    "brand": "Ard Al Zaafaran",
+    "status": "ok",
+    "file": "ard-al-zaafaran-pistachio.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/03/Khair-Pistachio-Paris-Corner-Parfum-Maroc.webp"
+  },
+  {
+    "name": "Ithra Mango",
+    "brand": "Ard Al Zaafaran",
+    "status": "not_found"
+  },
+  {
+    "name": "Ithra Cotton Candy",
+    "brand": "Ard Al Zaafaran",
+    "status": "not_found"
+  },
+  {
+    "name": "Vanilla Latte",
+    "brand": "Gulf Orchid",
+    "status": "ok",
+    "file": "gulf-orchid-vanilla-latte.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/05/Vanilla-Voyage-Maison-Asrar-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Yara Candy",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-yara-candy.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/11/Yara-Candy-Lattafa-Eau-De-Parfum-Femme-100-ml.webp"
+  },
+  {
+    "name": "Yara Moi",
+    "brand": "Lattafa",
+    "status": "ok",
+    "file": "lattafa-yara-moi.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2024/08/LATTAFA-YARA-MOI-EAU-DE-PARFUM-100ML-POUR-FEMME.webp"
+  },
+  {
+    "name": "Fleur de Coton",
+    "brand": "Sublime",
+    "status": "ok",
+    "file": "sublime-fleur-de-coton.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/06/Aquilo-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Bint Hooran Rose Passion",
+    "brand": "Ard Al Zaafaran",
+    "status": "ok",
+    "file": "ard-al-zaafaran-bint-hooran-rose-passion.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/08/Bint-Hooran-Rose-Passion-Ard-Al-Zaafaran-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "L'Immensité",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-l-immensite.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/11/Megara-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Omniyat",
+    "brand": "Surrati",
+    "status": "not_found"
+  },
+  {
+    "name": "Killer",
+    "brand": "Loui Martin",
+    "status": "not_found"
+  },
+  {
+    "name": "Good Girl by Killer",
+    "brand": "Loui Martin",
+    "status": "not_found"
+  },
+  {
+    "name": "Verato White Musk",
+    "brand": "MIRADA",
+    "status": "not_found"
+  },
+  {
+    "name": "Leonie",
+    "brand": "Maison Alhambra",
+    "status": "ok",
+    "file": "maison-alhambra-leonie.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/06/Leonie-Intense-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Qandeel",
+    "brand": "Ard Al Zaafaran",
+    "status": "not_found"
+  },
+  {
+    "name": "Mirada Perla",
+    "brand": "MIRADA",
+    "status": "not_found"
+  },
+  {
+    "name": "Fondue Tropical",
+    "brand": "Hamidi",
+    "status": "not_found"
+  },
+  {
+    "name": "Kenzie Pistachio",
+    "brand": "Fragrance World",
+    "status": "not_found"
+  }
+]

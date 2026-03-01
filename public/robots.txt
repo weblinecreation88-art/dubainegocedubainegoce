@@ -1,23 +1,37 @@
-# Guide pour les robots d'exploration
 User-agent: *
+
+# Pages privées / compte
 Disallow: /account/
-Disallow: /cart/
-Disallow: /checkout/
 Disallow: /login/
 Disallow: /signup/
 
-# Autoriser les pages importantes
-Allow: /
-Allow: /shop
-Allow: /parfum/
-Allow: /blog
-Allow: /about
-Allow: /contact
-Allow: /faq
-Allow: /privacy
-Allow: /terms
-Allow: /shipping
-Allow: /perfume-finder
+# Panier et checkout (session utilisateur)
+Disallow: /cart/
+Disallow: /cart-2/
+Disallow: /panier/
+Disallow: /checkout/
+Disallow: /checkout-2/
 
-# Emplacement du sitemap
+# Paramètres WooCommerce à ne pas indexer
+Disallow: /*?add-to-cart=
+Disallow: /*?remove_item=
+Disallow: /*?_wpnonce=
+Disallow: /*?fbclid=
+Disallow: /*?utm_nooverride=
+
+# Anciennes routes WordPress (redirigées, mais éviter le re-crawl)
+Disallow: /produit/
+Disallow: /categorie-produit/
+Disallow: /genre/
+Disallow: /wp-content/
+Disallow: /wp-json/
+Disallow: /cgi-bin/
+Disallow: /category/
+Disallow: /feed/
+
+# Pages de test / brouillon
+Disallow: /test2/
+Disallow: /accueil-2/
+
+# Sitemap
 Sitemap: https://dubainegoce.fr/sitemap.xml

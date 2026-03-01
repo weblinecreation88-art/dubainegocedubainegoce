@@ -36,11 +36,11 @@ const reviews = [
 
 export function CustomerReviewsSection() {
   return (
-    <section className="py-20 bg-white dark:bg-card border-y border-gray-100 dark:border-gray-800">
+    <section className="py-28 md:py-44 bg-white dark:bg-card border-y border-gray-100 dark:border-gray-800">
       <div className="container mx-auto px-4 max-w-7xl">
 
         {/* En-tête Trustpilot */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex flex-col items-center text-center mb-20 md:mb-24">
           <h2 className="text-3xl md:text-4xl font-headline font-bold mb-6 text-gray-900 dark:text-white">Nos clients parlent de nous</h2>
           <div className="flex flex-col items-center gap-3">
             <span className="text-2xl font-bold text-gray-900 dark:text-white">Excellent</span>
@@ -61,7 +61,7 @@ export function CustomerReviewsSection() {
         </div>
 
         {/* Grille des avis */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {reviews.map((review, i) => (
             <div key={i} className="bg-gray-50 dark:bg-background border border-gray-100 dark:border-gray-800 rounded-lg p-6 flex flex-col hover:shadow-lg hover:border-gray-200 transition-all duration-300">
               <div className="flex items-center gap-1 mb-4">
@@ -91,7 +91,7 @@ export function CustomerReviewsSection() {
         </div>
 
         {/* Boutons d'action */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="https://fr.trustpilot.com/review/dubainegoce.fr"
             target="_blank"

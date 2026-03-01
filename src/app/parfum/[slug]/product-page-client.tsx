@@ -30,14 +30,30 @@ function getShippingMessage(): { text: string; urgent: boolean } {
   return { text: 'Expédié demain avant 14h', urgent: false };
 }
 
-export function ProductPageClient() {
+export function ProductPageClient({ product }: { product?: any }) {
   const [msg, setMsg] = useState<{ text: string; urgent: boolean } | null>(null);
 
   useEffect(() => {
+    // Tracking view_item
+    if (typeof window !== 'undefined' && (window as any).dataLayer && product) {
+      (window as any).dataLayer.push({
+        event: 'view_item',
+        ecommerce: {
+          items: [{
+            item_id: product.id,
+            item_name: product.name,
+            price: product.price,
+            brand: product.brand?.name,
+            category: product.family
+          }]
+        }
+      });
+    }
+
     setMsg(getShippingMessage());
     const interval = setInterval(() => setMsg(getShippingMessage()), 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [product]);
 
   if (!msg) return null;
 
