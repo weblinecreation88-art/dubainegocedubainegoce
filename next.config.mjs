@@ -3,6 +3,128 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  async redirects() {
+    return [
+      // ============================================================
+      // PRODUITS WOOCOMMERCE → PAGES PARFUM NEXT.JS
+      // ============================================================
+      { source: '/produit/:slug/', destination: '/parfum/:slug', permanent: true },
+      { source: '/produit/:slug', destination: '/parfum/:slug', permanent: true },
+
+      // ============================================================
+      // CATÉGORIES WOOCOMMERCE → SHOP NEXT.JS
+      // ============================================================
+
+      // Lattafa (toutes les variantes d'anciens chemins)
+      { source: '/categorie-produit/parfums-lattafa/:path*', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/categorie-produit/maison-alhambra/lattafa/:path*', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/categorie-produit/nos-marques/parfums-lattafa/:path*', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/categorie-produit/lattafa/:path*', destination: '/shop/marque/lattafa', permanent: true },
+
+      // Maison Alhambra
+      { source: '/categorie-produit/parfums-alhambra/:path*', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/categorie-produit/maison-alhambra/:path*', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/categorie-produit/nos-marques/parfums-alhambra/:path*', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/categorie-produit/alhambra-parfums/:path*', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/categorie-produit/alhambra/:path*', destination: '/shop/marque/maison-alhambra', permanent: true },
+
+      // Fragrance World
+      { source: '/categorie-produit/parfums/fragrance-world/:path*', destination: '/shop/marque/fragrance-world', permanent: true },
+      { source: '/categorie-produit/nos-marques/fragrance-world/:path*', destination: '/shop/marque/fragrance-world', permanent: true },
+
+      // Genre femme
+      { source: '/categorie-produit/parfum-femme/:path*', destination: '/shop/genre/femme', permanent: true },
+
+      // Catch-all catégories restantes
+      { source: '/categorie-produit/:path*', destination: '/shop', permanent: true },
+
+      // ============================================================
+      // GENRE → SHOP GENRE
+      // ============================================================
+      { source: '/genre/femme', destination: '/shop/genre/femme', permanent: true },
+      { source: '/genre/homme', destination: '/shop/genre/homme', permanent: true },
+      { source: '/genre/unisex', destination: '/shop/genre/mixte', permanent: true },
+      { source: '/genre/:path*', destination: '/shop', permanent: true },
+
+      // ============================================================
+      // ANCIENNES PAGES CUSTOM WORDPRESS / WOOCOMMERCE
+      // ============================================================
+      { source: '/a-propos', destination: '/about', permanent: true },
+      { source: '/a-propos/', destination: '/about', permanent: true },
+      { source: '/f-a-q', destination: '/faq', permanent: true },
+      { source: '/f-a-q/', destination: '/faq', permanent: true },
+      { source: '/parfums-de-dubai', destination: '/shop', permanent: true },
+      { source: '/parfums-de-dubai/', destination: '/shop', permanent: true },
+      { source: '/parfums-de-dubai-2', destination: '/shop', permanent: true },
+      { source: '/parfums-de-dubai-2/', destination: '/shop', permanent: true },
+      { source: '/parfums-lattafa', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/parfums-lattafa/', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/votre-parfum-de-dubai', destination: '/shop', permanent: true },
+      { source: '/votre-parfum-de-dubai/', destination: '/shop', permanent: true },
+      { source: '/accueil-2', destination: '/', permanent: true },
+      { source: '/accueil-2/', destination: '/', permanent: true },
+      { source: '/news', destination: '/blog', permanent: true },
+      { source: '/news/', destination: '/blog', permanent: true },
+      { source: '/les-parfums-equivalents-de-luxe', destination: '/shop', permanent: true },
+      { source: '/les-parfums-equivalents-de-luxe/', destination: '/shop', permanent: true },
+      { source: '/perfume-finder', destination: '/shop', permanent: true },
+      { source: '/perfume-finder/', destination: '/shop', permanent: true },
+      { source: '/my-account-2/orders', destination: '/account/orders', permanent: true },
+      { source: '/my-account-2/orders/', destination: '/account/orders', permanent: true },
+      { source: '/my-account-2', destination: '/account', permanent: true },
+      { source: '/my-account-2/', destination: '/account', permanent: true },
+      { source: '/my-account-2-2', destination: '/account', permanent: true },
+      { source: '/my-account-2-2/', destination: '/account', permanent: true },
+      { source: '/les-notes-olfactives', destination: '/shop', permanent: true },
+      { source: '/les-notes-olfactives/', destination: '/shop', permanent: true },
+      { source: '/femme', destination: '/shop/genre/femme', permanent: true },
+      { source: '/femme/', destination: '/shop/genre/femme', permanent: true },
+      { source: '/fruite', destination: '/shop', permanent: true },
+      { source: '/fruite/', destination: '/shop', permanent: true },
+      { source: '/boise-2', destination: '/shop', permanent: true },
+      { source: '/boise-2/', destination: '/shop', permanent: true },
+      { source: '/test2', destination: '/', permanent: true },
+      { source: '/test2/', destination: '/', permanent: true },
+      { source: '/cart-2', destination: '/cart', permanent: true },
+      { source: '/cart-2/', destination: '/cart', permanent: true },
+      { source: '/cart-2/:path*', destination: '/cart', permanent: true },
+      { source: '/panier', destination: '/cart', permanent: true },
+      { source: '/panier/', destination: '/cart', permanent: true },
+      { source: '/panier/:path*', destination: '/cart', permanent: true },
+      { source: '/checkout-2', destination: '/checkout', permanent: true },
+      { source: '/checkout-2/', destination: '/checkout', permanent: true },
+      { source: '/checkout-2/:path*', destination: '/checkout', permanent: true },
+      { source: '/category/:path*', destination: '/blog', permanent: true },
+
+      // ============================================================
+      // ARTICLES DE BLOG (corrections de slug)
+      // ============================================================
+      {
+        source: '/pourquoi-lattafa-simpose-comme-la-marque-de-parfum-incontournable-en-2025',
+        destination: '/blog/top-5-lattafa-2025',
+        permanent: true,
+      },
+      {
+        source: '/pourquoi-lattafa-simpose-comme-la-marque-de-parfum-incontournable-en-2025/',
+        destination: '/blog/top-5-lattafa-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/tendance-parfums-orientaux-2025',
+        destination: '/blog/tendances-parfums-orientaux-2025',
+        permanent: true,
+      },
+
+      // ============================================================
+      // FICHIERS / ROUTES WORDPRESS TECHNIQUES
+      // ============================================================
+      { source: '/wp-json/:path*', destination: '/', permanent: true },
+      { source: '/wp-content/:path*', destination: '/', permanent: true },
+      { source: '/cgi-bin/:path*', destination: '/', permanent: true },
+    ];
+  },
+
   images: {
     remotePatterns: [
       {
