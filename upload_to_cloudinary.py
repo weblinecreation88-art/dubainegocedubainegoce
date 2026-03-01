@@ -11,11 +11,11 @@ import time
 import hmac
 
 # ===================== CONFIGURATION =====================
-CLOUD_NAME = "dzntnjtkc"           # Ton cloud name (déjà connu)
-API_KEY    = ""                    # <-- Colle ta clé API ici (Cloudinary Dashboard → Settings → API Keys)
-API_SECRET = ""                    # <-- Colle ton API Secret ici
+CLOUD_NAME = "dzntnjtkc"
+API_KEY    = "547352674999197"
+API_SECRET = "hsfswSvrWAhY0gtdIL9G04r5Mb8"
 
-IMAGE_FOLDER = r"C:\Users\abder\OneDrive\Images\DUBAINGOCE IMAGE"
+IMAGE_FOLDER = r"D:\DUBAINEGOCE\public\images-parfums"
 UPLOAD_FOLDER = "parfums"          # Dossier Cloudinary de destination
 # =========================================================
 
@@ -93,6 +93,14 @@ def main():
             results[name_no_ext] = url
         else:
             print(f"  ❌ Échec pour {filename}")
+
+    # Sauvegarder le mapping dans un JSON
+    import json as json_module
+    output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "cloudinary_mapping.json")
+    with open(output_path, "w", encoding="utf-8") as f:
+        json_module.dump(results, f, ensure_ascii=False, indent=2)
+    print(f"\n✅ Mapping sauvegardé dans : {output_path}")
+    print(f"📊 {len(results)} images uploadées avec succès")
 
     print("\n\n=== RÉSULTATS (copie dans data.ts) ===")
     for name, url in results.items():

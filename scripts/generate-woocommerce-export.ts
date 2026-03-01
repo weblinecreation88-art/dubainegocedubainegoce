@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { getProducts } from '../src/lib/data';
@@ -7,6 +7,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const APP_URL = 'https://dubainegoce.fr';
+
+// Charger le mapping Cloudinary
+const mappingPath = join(__dirname, '..', 'cloudinary_mapping.json');
+const cloudinaryMapping: Record<string, string> = JSON.parse(readFileSync(mappingPath, 'utf-8'));
+
+// Résoudre l'URL image : Cloudinary si dispo, sinon URL absolue
+const resolveImageUrl = (imagePath: string): string => {
+    if (!imagePath) return '';
+    if (imagePath.startsWith('http')) return imagePath;
+    // Extraire le nom de fichier sans extension
+    const filename = imagePath.split('/').pop() ?? '';
+    const nameNoExt = filename.replace(/\.[^.]+$/, '');
+    if (cloudinaryMapping[nameNoExt]) return cloudinaryMapping[nameNoExt];
+    return `${APP_URL}${imagePath}`;
+};
 const TODAY = '2026-03-01 00:00:00';
 
 const products = getProducts();
@@ -38,10 +53,8 @@ const headers = [
 const rows: string[] = [headers.join(',')];
 
 for (const p of products) {
-    // Image URL absolue
-    const imageUrl = p.images?.[0]
-        ? (p.images[0].startsWith('http') ? p.images[0] : `${APP_URL}${p.images[0]}`)
-        : '';
+    // Image URL Cloudinary
+    const imageUrl = resolveImageUrl(p.images?.[0] ?? '');
 
     // Tags: "Brand,Family"
     const brandName = p.brand?.name ?? '';
