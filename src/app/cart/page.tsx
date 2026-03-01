@@ -112,7 +112,7 @@ export default function CartPage() {
           currency: 'eur',
           product_data: {
             name: item.name,
-            images: [item.image],
+            images: [item.image?.startsWith('http') ? item.image : `${appUrl}${item.image}`],
             metadata: {
               productId: item.id,
             }
