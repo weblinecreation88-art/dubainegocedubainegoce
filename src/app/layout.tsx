@@ -16,6 +16,7 @@ import { ExitIntentPopup } from '@/components/exit-intent-popup';
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
+import { organizationSchema } from '@/components/seo/schemas';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
