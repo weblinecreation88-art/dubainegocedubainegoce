@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dubainegoce-dev",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "node_modules\\.bin\\next.cmd", "dev", "-p", "9002"],
+      "port": 9002
+    }
+  ]
+}
