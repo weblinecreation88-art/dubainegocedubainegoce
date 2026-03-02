@@ -101,7 +101,9 @@
       "Bash(git -C D:/DUBAINEGOCE log --oneline -5)",
       "Bash(git -C D:/DUBAINEGOCE add next.config.mjs public/robots.txt)",
       "Bash(git -C:*)",
-      "Bash(gh repo view weblinecreation88-art/dubainegocedubainegoce --json name)"
+      "Bash(gh repo view weblinecreation88-art/dubainegocedubainegoce --json name)",
+      "Bash(wc -l config/.htaccess config/robots.txt scripts/*.sql)",
+      "Bash(ls -la \"D:\\\\DUBAINEGOCE\\\\src\\\\components\\\\seo\"\" 2>/dev/null || echo \"Dossier seo n 'existe pas encore\" && echo \"\" && echo \"Créer structure SEO...\" && mkdir -p \"D:DUBAINEGOCEsrccomponentsseo \")"
     ]
   }
 }
