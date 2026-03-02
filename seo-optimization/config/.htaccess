@@ -1,0 +1,299 @@
+# ╔═══════════════════════════════════════════════════════════════════════════╗
+# ║                    .HTACCESS OPTIMISÉ SEO 2026                             ║
+# ║              Pour: dubainegoce.fr - Configuration Apache                   ║
+# ║          Généré: 2026-03-02 | Expert SEO Optimization                      ║
+# ╚═══════════════════════════════════════════════════════════════════════════╝
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣ ACTIVATION MODULES APACHE REQUIS
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+</IfModule>
+
+<IfModule mod_deflate.c>
+  # Compression activée
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Headers de sécurité activés
+</IfModule>
+
+<IfModule mod_expires.c>
+  # Cache navigateur activé
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 2️⃣ REDIRECTION HTTP → HTTPS (URGENCE 1)
+# Corrige les 11,375 pages en contenu mixte
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 3️⃣ REDIRECTION WWW COHÉRENTE (www → non-www)
+# Évite contenu dupliqué
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.dubainegoce\.fr [NC]
+  RewriteRule ^(.*)$ https://dubainegoce.fr/$1 [L,R=301]
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 4️⃣ SUPPRESSION FICHIERS/DOSSIERS NON-SEO
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Bloque fichiers admin
+  RewriteRule ^(wp-admin|wp-login|admin|administrator)/?$ - [F,L]
+
+  # Supprime /index.php de l'URL
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 5️⃣ CORRECTION CHAÎNES DE REDIRECTION
+# Redirige directement sans intermédiaires
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Exemple: /old-category/ → /new-category/ (DIRECT 301)
+  # À personnaliser selon vos URLs
+  RewriteCond %{REQUEST_URI} ^/ancienne-categorie/?$
+  RewriteRule ^(.*)$ https://dubainegoce.fr/nouvelle-categorie/ [R=301,L]
+
+  # Exemple produits
+  RewriteCond %{REQUEST_URI} ^/produit-ancien-nom/?$
+  RewriteRule ^(.*)$ https://dubainegoce.fr/produit-nouveau-nom/ [R=301,L]
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 6️⃣ COMPRESSION GZIP (Réduit 60-70% du contenu)
+# Optimise ratio texte/HTML
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_deflate.c>
+  # Compression pour navigateurs modernes
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/ld+json
+
+  # Images SVG compressées
+  AddOutputFilterByType DEFLATE image/svg+xml
+
+  # Excludes
+  BrowserMatch ^Mozilla/4 ^gzip-only-text/html$
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 7️⃣ CACHE NAVIGATEUR (30 jours pour assets)
+# Améliore Core Web Vitals
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML (cache court = SEO)
+  ExpiresByType text/html "access plus 1 day"
+
+  # CSS et JavaScript (30 jours)
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType application/x-javascript "access plus 30 days"
+
+  # Images (90 jours)
+  ExpiresByType image/jpeg "access plus 90 days"
+  ExpiresByType image/gif "access plus 90 days"
+  ExpiresByType image/png "access plus 90 days"
+  ExpiresByType image/webp "access plus 90 days"
+  ExpiresByType image/x-icon "access plus 90 days"
+  ExpiresByType image/x-ms-bmp "access plus 90 days"
+
+  # Fonts (1 an)
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+  ExpiresByType application/x-font-ttf "access plus 1 year"
+  ExpiresByType application/x-font-opentype "access plus 1 year"
+
+  # JSON et JSON-LD (1 jour)
+  ExpiresByType application/json "access plus 1 day"
+  ExpiresByType application/ld+json "access plus 1 day"
+
+  # Default
+  ExpiresDefault "access plus 1 day"
+</IfModule>
+
+# Header Cache Control (backup)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|ico|css|js|pdf|txt|woff|woff2)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=86400, public"
+  </FilesMatch>
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 8️⃣ SECURITY HEADERS (Améliore confiance Google)
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_headers.c>
+  # HSTS (forcer HTTPS 1 an) - 🔒 TRÈS IMPORTANT
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Prévient clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Prévient MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Protection XSS
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy (SEO)
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions Policy (2026)
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+  # Content Security Policy (optionnel, personnaliser selon site)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https:; font-src 'self'; connect-src 'self'"
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 9️⃣ EXEMPTIONS POUR FICHIERS SYSTÈME
+# Évite erreurs 404 inutiles
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Ne pas réécrire si fichier existe
+  RewriteCond %{REQUEST_FILENAME} !-f
+  # Ne pas réécrire si dossier existe
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # Ne pas réécrire .well-known (SSL, robots.txt, etc)
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 🔟 ROBOTS.TXT ET SITEMAP.XML
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  # Robots.txt accessible
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^robots\.txt$ /robots.txt [QSA,L]
+
+  # Sitemap.xml accessible
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^sitemap\.xml$ /sitemap.xml [QSA,L]
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣1️⃣ TYPES MIME (Pour files modernes)
+# ═════════════════════════════════════════════════════════════════════════════
+
+AddType application/json .json
+AddType application/ld+json .jsonld
+AddType application/manifest+json .webmanifest
+AddType text/plain .txt
+AddType application/xml .xml
+AddType image/webp .webp
+AddType video/webm .webm
+AddType font/woff2 .woff2
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣2️⃣ PRÉVENTION HOTLINK (Économise bandwidth)
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_REFERER} !^https://dubainegoce\.fr [NC]
+  RewriteCond %{HTTP_REFERER} !^https://www\.dubainegoce\.fr [NC]
+  RewriteCond %{HTTP_REFERER} !^$ [NC]
+  RewriteCond %{REQUEST_FILENAME} \.(jpg|jpeg|png|gif|webp|pdf|mp4)$ [NC]
+  RewriteRule ^ - [F,L]
+</IfModule>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣3️⃣ PROTECTION FICHIERS SENSIBLES
+# ═════════════════════════════════════════════════════════════════════════════
+
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(env|sql|db|log|bak|tmp|swp)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣4️⃣ ERROR PAGES PERSONNALISÉES (SEO-friendly)
+# ═════════════════════════════════════════════════════════════════════════════
+
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+ErrorDocument 503 /503.html
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣5️⃣ ETAG DISABLED (Peut causer duplication)
+# ═════════════════════════════════════════════════════════════════════════════
+
+<IfModule mod_headers.c>
+  Header unset ETag
+  FileETag None
+</IfModule>

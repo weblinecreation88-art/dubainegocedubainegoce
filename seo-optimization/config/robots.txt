@@ -1,0 +1,169 @@
+# ╔═══════════════════════════════════════════════════════════════════════════╗
+# ║                       ROBOTS.TXT OPTIMISÉ SEO 2026                         ║
+# ║              Pour: dubainegoce.fr - Google/Bing Crawlers                   ║
+# ║          Généré: 2026-03-02 | Expert SEO Configuration                     ║
+# ╚═══════════════════════════════════════════════════════════════════════════╝
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 1️⃣ CRAWLERS AUTORISÉS (Google, Bing, etc.)
+# ═════════════════════════════════════════════════════════════════════════════
+
+User-agent: *
+Allow: /
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 2️⃣ RÉPERTOIRES À NE PAS CRAWLER
+# Économise budget crawl Google (évite gaspiller sur fichiers non-SEO)
+# ═════════════════════════════════════════════════════════════════════════════
+
+Disallow: /admin/
+Disallow: /administrator/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /uploads/backup/
+Disallow: /logs/
+Disallow: /cache/
+Disallow: /tmp/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /config/
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 3️⃣ PARAMÈTRES QUERY STRING À NE PAS CRAWLER
+# Évite contenu dupliqué (paramètres de tri, filtres)
+# ═════════════════════════════════════════════════════════════════════════════
+
+Disallow: /?sort=
+Disallow: /?order=
+Disallow: /?filter=
+Disallow: /?tag=
+Disallow: /?category=
+Disallow: /?search=
+Disallow: /?s=
+Disallow: /?page=
+Disallow: /?utm_
+Disallow: /?fbclid=
+Disallow: /?gclid=
+Disallow: /?ref=
+Disallow: /?session=
+Disallow: /?id=
+Disallow: /?lang=
+Disallow: /?currency=
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 4️⃣ TYPES DE FICHIERS À EXCLURE
+# Économise budget crawl (cache, assets système)
+# ═════════════════════════════════════════════════════════════════════════════
+
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.exe$
+Disallow: /*.sql$
+Disallow: /*.bak$
+Disallow: /*.log$
+Disallow: /*.swp$
+Disallow: /*.tmp$
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 5️⃣ PATTERNS À EXCLURE
+# ═════════════════════════════════════════════════════════════════════════════
+
+Disallow: /*?
+Disallow: */print/
+Disallow: */preview/
+Disallow: */draft/
+Disallow: */revision/
+Disallow: */attachment_id=
+Disallow: */p=
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 6️⃣ SITEMAP (TRÈS IMPORTANT POUR SEO)
+# ═════════════════════════════════════════════════════════════════════════════
+
+Sitemap: https://dubainegoce.fr/sitemap.xml
+Sitemap: https://dubainegoce.fr/sitemap-pages.xml
+Sitemap: https://dubainegoce.fr/sitemap-produits.xml
+Sitemap: https://dubainegoce.fr/sitemap-categories.xml
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 7️⃣ PARAMÈTRES CRAWL GOOGLE
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Délai entre requêtes (secondes)
+Crawl-delay: 1
+
+# Rate limit pour Googlebot
+Request-rate: 1 per 1 second
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 8️⃣ RÈGLES SPÉCIFIQUES PAR CRAWLER
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 1
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 3
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Autres crawlers respectables
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 1
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# 9️⃣ BLOCAGE CRAWLERS MALVEILLANTS
+# ═════════════════════════════════════════════════════════════════════════════
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: MJ12bot
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Disallow: /
