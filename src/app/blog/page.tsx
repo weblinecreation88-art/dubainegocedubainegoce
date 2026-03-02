@@ -7,8 +7,9 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Blog - DubaiNegoce',
-    description: 'Explorez nos articles sur les tendances, les marques et les secrets de la parfumerie orientale.',
+    title: 'Blog Parfums - Tendances, Guides et Avis | Dubainegoce',
+    description: 'Découvrez nos guides complets sur les parfums orientaux, les tendances 2025, et les meilleures marques (Lattafa, Maison Alhambra). Conseils d\'experts et reviews.',
+    keywords: 'guide parfum, tendances parfum 2025, review lattafa, maison alhambra, parfum oriental, conseils parfum',
 };
 
 const blogPosts = [
