@@ -45,7 +45,7 @@ export function GoogleAdsConversionTracker({ googleAdsId, conversionLabel, trans
   return (
     <Script
       id="google-ads-conversion-script"
-      strategy="afterInteractive"
+      strategy="lazyOnload"
       src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
     />
   );
