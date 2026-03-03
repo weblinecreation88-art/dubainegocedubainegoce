@@ -56,17 +56,17 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Collections</h3>
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Collections</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/shop/all" className="hover:text-primary transition-colors">Tous les parfums</Link></li>
               <li><Link href="/shop/all?sort=newest" className="hover:text-primary transition-colors">Nouveautés</Link></li>
               <li><Link href="/shop/all?sort=bestsellers" className="hover:text-primary transition-colors">Best Sellers</Link></li>
-              <li className="pt-1 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Marques</li>
+              <li className="pt-1 text-xs text-gray-700 dark:text-gray-300 font-semibold uppercase tracking-wider">Marques</li>
               <li><Link href="/shop/all?brands=Lattafa" className="hover:text-primary transition-colors">Lattafa</Link></li>
               <li><Link href="/shop/all?brands=Maison+Alhambra" className="hover:text-primary transition-colors">Maison Alhambra</Link></li>
               <li><Link href="/shop/all?brands=Fragrance+World" className="hover:text-primary transition-colors">Fragrance World</Link></li>
               <li><Link href="/shop/all?brands=French+Avenue" className="hover:text-primary transition-colors">French Avenue</Link></li>
-              <li className="pt-1 text-xs text-muted-foreground font-semibold uppercase tracking-wider">Familles</li>
+              <li className="pt-1 text-xs text-gray-700 dark:text-gray-300 font-semibold uppercase tracking-wider">Familles</li>
               <li><Link href="/shop/all?families=Oriental" className="hover:text-primary transition-colors">Oriental</Link></li>
               <li><Link href="/shop/all?families=Boisé" className="hover:text-primary transition-colors">Boisé</Link></li>
               <li><Link href="/shop/all?families=Floral" className="hover:text-primary transition-colors">Floral</Link></li>
@@ -74,7 +74,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Support</h3>
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Support</h3>
             <ul className="space-y-2">
               <li><Link href="/about" className="hover:text-primary transition-colors">À Propos</Link></li>
               <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
@@ -106,7 +106,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Légal</h3>
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Légal</h3>
             <ul className="space-y-2">
               <li><Link href="/terms" className="hover:text-primary transition-colors">Conditions Générales</Link></li>
               <li><Link href="/privacy" className="hover:text-primary transition-colors">Politique de Confidentialité</Link></li>
@@ -114,7 +114,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Newsletter</h3>
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Newsletter</h3>
             <p className="text-sm leading-relaxed">Rejoins +1000 passionnés. Nouvelles collections et offres exclusives en avant-première.</p>
             <p className="text-xs text-primary font-semibold">🎁 Guide offert : "Top 10 parfums orientaux à 35€"</p>
             <form
@@ -137,9 +137,9 @@ export default function Footer() {
                 {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : "S'inscrire"}
               </Button>
             </form>
-            <p className="text-xs text-muted-foreground">Sans spam. Désabonnement en 1 clic.</p>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Sans spam. Désabonnement en 1 clic.</p>
             <div className="pt-2 space-y-3">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Suivez-nous</p>
+              <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Suivez-nous</p>
               <div className="grid grid-cols-2 gap-2">
                 <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
@@ -175,7 +175,7 @@ export default function Footer() {
               <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ height: 'auto' }} />
             </a>
           </div>
-          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">&copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,9 @@
 
 import type { Metadata } from 'next';
 import './globals.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/pt-sans/400.css';
+import '@fontsource/pt-sans/700.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
@@ -127,15 +130,13 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Fonts self-hosted via Fontsource */}
         {/* Preconnect Cloudinary pour réduire la latence des images/vidéos */}
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+        {/* DNS prefetch for Google Tag Manager */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        <Script id="google-tag-manager" strategy="lazyOnload">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
