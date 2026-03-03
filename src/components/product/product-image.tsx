@@ -49,6 +49,7 @@ export function ProductImage({ images, alt, className, sizes, priority = false }
                     isLoaded ? "opacity-100" : "opacity-0"
                 )}
                 priority={priority}
+                decoding={priority ? "auto" : "async"}
                 onLoad={() => setIsLoaded(true)}
                 onError={handleError}
             />
