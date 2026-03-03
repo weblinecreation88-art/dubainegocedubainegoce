@@ -6,10 +6,19 @@ import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
 import { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product/product-card";
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
-import React from "react";
+import React, { Suspense } from "react";
 import { HeroBanner } from "@/components/layout/hero-banner";
-import { CustomerReviewsSection } from "@/components/customer-reviews-section";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+// Lazy load non-critical components for better initial load performance
+const CustomerReviewsSection = dynamic(
+  () => import("@/components/customer-reviews-section").then(mod => ({ default: mod.CustomerReviewsSection })),
+  {
+    loading: () => <div className="h-32 bg-muted/20 animate-pulse" />,
+    ssr: true
+  }
+);
 
 export const metadata: Metadata = {
   title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
@@ -211,10 +220,12 @@ export default function Home() {
         </section>
       )}
 
-      {/* Customer Reviews Section */}
-      <div className="bg-muted/30">
-        <CustomerReviewsSection />
-      </div>
+      {/* Customer Reviews Section - Lazy loaded for performance */}
+      <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
+        <div className="bg-muted/30">
+          <CustomerReviewsSection />
+        </div>
+      </Suspense>
 
     </div>
   );
