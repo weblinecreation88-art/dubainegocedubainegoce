@@ -40,7 +40,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                     <ProductImage
                         alt={`Parfum ${product.brand.name} ${product.name} - Dubai Negoce`}
                         images={product.images}
-                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                        sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 20vw"
                         className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                         priority={priority}
                     />

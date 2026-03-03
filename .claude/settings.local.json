@@ -103,7 +103,13 @@
       "Bash(git -C:*)",
       "Bash(gh repo view weblinecreation88-art/dubainegocedubainegoce --json name)",
       "Bash(wc -l config/.htaccess config/robots.txt scripts/*.sql)",
-      "Bash(ls -la \"D:\\\\DUBAINEGOCE\\\\src\\\\components\\\\seo\"\" 2>/dev/null || echo \"Dossier seo n 'existe pas encore\" && echo \"\" && echo \"Créer structure SEO...\" && mkdir -p \"D:DUBAINEGOCEsrccomponentsseo \")"
+      "Bash(ls -la \"D:\\\\DUBAINEGOCE\\\\src\\\\components\\\\seo\"\" 2>/dev/null || echo \"Dossier seo n 'existe pas encore\" && echo \"\" && echo \"Créer structure SEO...\" && mkdir -p \"D:DUBAINEGOCEsrccomponentsseo \")",
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(python3 -c \"from PIL import Image; print\\(''Pillow disponible''\\)\")",
+      "Bash(pip install pillow -q)",
+      "Bash(python3 scripts/convert-images-to-webp.py public/images-parfums/)",
+      "Bash(python /d/DUBAINEGOCE/scripts/convert-images-to-webp.py /d/DUBAINEGOCE/public/images-parfums/)",
+      "Bash(python scripts/convert-images-to-webp.py public/images-parfums/)"
     ]
   }
 }

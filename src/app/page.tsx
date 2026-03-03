@@ -56,13 +56,13 @@ export default function Home() {
     .filter((p): p is Product => p !== undefined);
 
   const heroImages = [
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042739/Grise_-_Maison_Alhambra_rgvjtj.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042733/Omniyat_-_Surrati_ice7gl.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042690/Fleur_de_Coton_-_Sublime_bxfwfa.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042680/Good_Girl_by_Killer_-_Loui_Martin_rvtvqn.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042674/Niche_Royal_Rouge_-_Maison_Alhambra_i142ne.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042645/Olivia_Blossom_-_Maison_Alhambra_d9mink.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/v1772042629/Fakhar_Wasam_-_Lattafa_hwnd8d.webp",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042739/Grise_-_Maison_Alhambra_rgvjtj.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042733/Omniyat_-_Surrati_ice7gl.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042690/Fleur_de_Coton_-_Sublime_bxfwfa.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042680/Good_Girl_by_Killer_-_Loui_Martin_rvtvqn.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042674/Niche_Royal_Rouge_-_Maison_Alhambra_i142ne.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042645/Olivia_Blossom_-_Maison_Alhambra_d9mink.png",
+    "https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042629/Fakhar_Wasam_-_Lattafa_hwnd8d.webp",
   ];
 
   return (
@@ -105,11 +105,12 @@ export default function Home() {
       <section className="relative py-24 md:py-36 bg-black text-white overflow-hidden">
         <div className="absolute inset-0 opacity-40">
           <Image
-            src="https://res.cloudinary.com/dzagwz94z/image/upload/v1772042733/Omniyat_-_Surrati_ice7gl.png"
+            src="https://res.cloudinary.com/dzagwz94z/image/upload/f_auto,q_80,dpr_auto/v1772042733/Omniyat_-_Surrati_ice7gl.png"
             alt="Omniyat Surrati - Élégance Redéfinie Dubai Negoce"
             fill
             priority
             className="object-cover"
+            sizes="100vw"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
