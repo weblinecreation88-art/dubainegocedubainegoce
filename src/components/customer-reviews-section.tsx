@@ -71,7 +71,7 @@ export function CustomerReviewsSection() {
                   </div>
                 ))}
               </div>
-              <h4 className="font-bold text-base text-gray-900 dark:text-white mb-2 leading-snug">{review.title}</h4>
+              <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2 leading-snug">{review.title}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed flex-grow">
                 {review.comment}
               </p>
