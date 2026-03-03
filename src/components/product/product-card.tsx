@@ -46,7 +46,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                     />
                     <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
                         {product.isBestseller && <Badge className="bg-black text-white hover:bg-black/80 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">TOP</Badge>}
-                        {product.isNew && <Badge variant="secondary" className="bg-emerald-500 text-white hover:bg-emerald-600 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">NOUV</Badge>}
+                        {product.isNew && <Badge variant="secondary" className="bg-emerald-700 text-white hover:bg-emerald-800 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">NOUV</Badge>}
                     </div>
                     <button
                         onClick={handleWishlistClick}
