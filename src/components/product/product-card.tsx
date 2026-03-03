@@ -73,19 +73,19 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                         {/* Notes olfactives / Famille */}
                         <div className="flex flex-wrap justify-center gap-1 mt-2">
                             {product.family && (
-                                <span className="text-[10px] text-gray-500 dark:text-gray-400 after:content-['•'] after:mx-1 last:after:hidden">
+                                <span className="text-[10px] text-gray-600 dark:text-gray-400 after:content-['•'] after:mx-1 last:after:hidden">
                                     {product.family}
                                 </span>
                             )}
                             {product.tags?.filter(t => t.toLowerCase() !== 'dupe').slice(0, 2).map((tag, idx) => (
-                                <span key={idx} className="text-[10px] text-gray-500 dark:text-gray-400 after:content-['•'] after:mx-1 last:after:hidden capitalize">
+                                <span key={idx} className="text-[10px] text-gray-600 dark:text-gray-400 after:content-['•'] after:mx-1 last:after:hidden capitalize">
                                     {tag}
                                 </span>
                             ))}
                         </div>
 
                         {product.volumeMl > 0 && (
-                            <p className="text-xs text-gray-400 mt-1">{product.volumeMl} ml</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{product.volumeMl} ml</p>
                         )}
                     </div>
                 </div>

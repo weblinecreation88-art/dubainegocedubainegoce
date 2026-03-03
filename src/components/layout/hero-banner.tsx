@@ -106,17 +106,18 @@ export function HeroBanner({ images }: HeroBannerProps) {
             </button>
 
             {/* Dot indicators */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
                 {images.map((_, i) => (
                     <button
                         key={i}
                         onClick={() => setCurrentIndex(i)}
                         aria-label={`Aller à l'image ${i + 1}`}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        className={`rounded-full transition-all duration-300 p-2 ${
                             i === currentIndex
-                                ? "bg-white w-6"
-                                : "bg-white/40 hover:bg-white/70"
+                                ? "bg-white w-4 h-4"
+                                : "bg-white/40 hover:bg-white/70 w-3 h-3"
                         }`}
+                        aria-current={i === currentIndex ? "true" : "false"}
                     />
                 ))}
             </div>
