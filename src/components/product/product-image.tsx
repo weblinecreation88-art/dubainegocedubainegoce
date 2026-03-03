@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { cloudinaryLoader } from '@/lib/image-loader';
 
 interface ProductImageProps {
     images: string | string[];
@@ -43,6 +44,7 @@ export function ProductImage({ images, alt, className, sizes, priority = false }
                 alt={alt}
                 fill
                 sizes={sizes}
+                loader={cloudinaryLoader}
                 className={cn(
                     className,
                     "transition-opacity duration-300",
