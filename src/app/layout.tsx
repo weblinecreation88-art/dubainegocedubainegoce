@@ -1,9 +1,6 @@
 
 import type { Metadata } from 'next';
 import './globals.css';
-import '@fontsource/playfair-display/700.css';
-import '@fontsource/pt-sans/400.css';
-import '@fontsource/pt-sans/700.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
@@ -130,7 +127,12 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        {/* Fonts self-hosted via Fontsource */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Google Fonts: Playfair Display (critical) + PT Sans (deferred) */}
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&subset=latin&display=swap" as="style" />
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&subset=latin&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&subset=latin&display=optional" rel="stylesheet" />
         {/* Preconnect Cloudinary pour réduire la latence des images/vidéos */}
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         {/* DNS prefetch for Google Tag Manager */}
