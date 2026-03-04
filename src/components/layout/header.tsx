@@ -98,6 +98,14 @@ export default function Header() {
                           </div>
                         </AccordionContent>
                       </AccordionItem>
+                      <AccordionItem value="equivalents">
+                        <AccordionTrigger>Nos Équivalents & Dupes</AccordionTrigger>
+                        <AccordionContent>
+                          <div className="flex flex-col gap-3 pl-4 pt-2">
+                            <Link href="/shop/type/equivalent" onClick={handleLinkClick} className="text-sm">Tous les Équivalents (104)</Link>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
                     </Accordion>
                     <Link href="/blog" onClick={handleLinkClick} className="text-base font-semibold">Blog</Link>
                     <Link href="/about" onClick={handleLinkClick} className="text-base font-semibold">À Propos</Link>
@@ -149,6 +157,9 @@ export default function Header() {
               </Link>
               <Link href="/shop/marque/maison-alhambra" className="hover:text-accent transition-colors uppercase">
                 Maison Alhambra
+              </Link>
+              <Link href="/shop/type/equivalent" className="hover:text-accent transition-colors uppercase text-accent font-semibold">
+                Équivalents
               </Link>
               <Link href="/shop" className="hover:text-accent transition-colors opacity-70">
                 Tout voir
