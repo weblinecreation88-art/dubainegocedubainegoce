@@ -36,6 +36,14 @@ const AffordableLuxurySection = dynamic(
   }
 );
 
+const FrenchAvenueBanner = dynamic(
+  () => import("@/components/layout/french-avenue-banner").then(mod => ({ default: mod.FrenchAvenueBanner })),
+  {
+    loading: () => <div className="h-96 bg-muted/20 animate-pulse" />,
+    ssr: true
+  }
+);
+
 export const metadata: Metadata = {
   title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
   description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
@@ -255,6 +263,11 @@ export default function Home() {
       {/* 💎 AFFORDABLE LUXURY - Dupes & Équivalents */}
       <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
         <AffordableLuxurySection />
+      </Suspense>
+
+      {/* 🇫🇷 FRENCH AVENUE - Collection Promotion */}
+      <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+        <FrenchAvenueBanner />
       </Suspense>
 
       {/* Customer Reviews Section - Lazy loaded for performance */}
