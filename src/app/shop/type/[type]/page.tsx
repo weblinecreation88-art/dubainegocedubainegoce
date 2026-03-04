@@ -74,8 +74,8 @@ export default function TypeShopPage({ params }: Props) {
   if (!typeInfo) notFound();
 
   const allProducts = getProducts();
-  // Les deux types 'equivalent' et 'dupe' pointent vers les mêmes produits
-  const products = allProducts.filter(p => p.type === 'dupe' || p.type === 'equivalent');
+  // Filtrer tous les produits de type 'dupe'
+  const products = allProducts.filter(p => p.type === 'dupe');
   const families = getFragranceFamilies();
   const genders = getGenderCategories();
 
