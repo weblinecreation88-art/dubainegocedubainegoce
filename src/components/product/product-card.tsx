@@ -99,8 +99,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                     <AddToCartButton
                         product={product}
                         size="sm"
-                        variant="accent"
-                        className="w-full rounded-sm text-[11px] tracking-wider uppercase py-2 gap-1.5"
+                        variant="outline"
+                        className="w-full rounded-sm text-[11px] tracking-wider uppercase py-2 gap-1.5 border-accent text-accent hover:bg-accent/5"
                     >
                         <ShoppingCart className="h-3.5 w-3.5" />
                         Ajouter
