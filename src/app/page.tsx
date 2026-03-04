@@ -44,6 +44,14 @@ const FrenchAvenueBanner = dynamic(
   }
 );
 
+const ViralHeroCard = dynamic(
+  () => import("@/components/layout/viral-hero-section"),
+  {
+    loading: () => <div className="h-96 bg-muted/20 animate-pulse" />,
+    ssr: true
+  }
+);
+
 export const metadata: Metadata = {
   title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
   description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
@@ -269,6 +277,21 @@ export default function Home() {
       <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
         <FrenchAvenueBanner />
       </Suspense>
+
+      {/* 🔥 VIRAL PRODUCTS - Produits Phares Incontournables */}
+      <div className="space-y-0">
+        <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+          <ViralHeroCard variant="yeah" />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+          <ViralHeroCard variant="khamrah" />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+          <ViralHeroCard variant="tudor" />
+        </Suspense>
+      </div>
 
       {/* Customer Reviews Section - Lazy loaded for performance */}
       <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
