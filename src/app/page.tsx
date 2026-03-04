@@ -28,6 +28,14 @@ const YaraSpotlight = dynamic(
   }
 );
 
+const AffordableLuxurySection = dynamic(
+  () => import("@/components/layout/affordable-luxury-section").then(mod => ({ default: mod.AffordableLuxurySection })),
+  {
+    loading: () => <div className="h-96 bg-muted/20 animate-pulse" />,
+    ssr: true
+  }
+);
+
 export const metadata: Metadata = {
   title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
   description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
@@ -243,6 +251,11 @@ export default function Home() {
           <YaraSpotlight variant="moi" />
         </Suspense>
       </div>
+
+      {/* 💎 AFFORDABLE LUXURY - Dupes & Équivalents */}
+      <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+        <AffordableLuxurySection />
+      </Suspense>
 
       {/* Customer Reviews Section - Lazy loaded for performance */}
       <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>
