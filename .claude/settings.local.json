@@ -110,7 +110,8 @@
       "Bash(python3 scripts/convert-images-to-webp.py public/images-parfums/)",
       "Bash(python /d/DUBAINEGOCE/scripts/convert-images-to-webp.py /d/DUBAINEGOCE/public/images-parfums/)",
       "Bash(python scripts/convert-images-to-webp.py public/images-parfums/)",
-      "Bash(gh repo list weblinecreation88-art)"
+      "Bash(gh repo list weblinecreation88-art)",
+      "Bash(curl -s http://localhost:3000)"
     ]
   }
 }

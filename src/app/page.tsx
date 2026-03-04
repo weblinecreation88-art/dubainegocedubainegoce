@@ -20,6 +20,14 @@ const CustomerReviewsSection = dynamic(
   }
 );
 
+const YaraSpotlight = dynamic(
+  () => import("@/components/layout/featured-yara-section"),
+  {
+    loading: () => <div className="h-96 bg-muted/20 animate-pulse" />,
+    ssr: true
+  }
+);
+
 export const metadata: Metadata = {
   title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
   description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
@@ -103,7 +111,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-10 flex justify-center">
-              <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
+              <Button asChild size="lg" variant="accent" className="border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
                 <Link href="/shop/all">Voir toutes les nouveautés</Link>
               </Button>
             </div>
@@ -151,7 +159,7 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-10 flex justify-center">
-              <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
+              <Button asChild size="lg" variant="accent" className="border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
                 <Link href="/shop/all?sort=bestsellers">Voir tous les best sellers</Link>
               </Button>
             </div>
@@ -220,6 +228,21 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* ✨ YARA SPOTLIGHTS - Featured Product Sections */}
+      <div className="space-y-0">
+        <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+          <YaraSpotlight variant="gourmand" />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+          <YaraSpotlight variant="candy" />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96 bg-muted/20 animate-pulse" />}>
+          <YaraSpotlight variant="moi" />
+        </Suspense>
+      </div>
 
       {/* Customer Reviews Section - Lazy loaded for performance */}
       <Suspense fallback={<div className="h-32 bg-muted/20 animate-pulse" />}>

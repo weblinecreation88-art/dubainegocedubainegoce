@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "dubainegoce-dev",
-      "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "node_modules\\.bin\\next.cmd", "dev", "-p", "9002"],
-      "port": 9002
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "-p", "8080"],
+      "port": 8080
     }
   ]
 }
