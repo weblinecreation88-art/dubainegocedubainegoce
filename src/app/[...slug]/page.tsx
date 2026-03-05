@@ -8,27 +8,22 @@ export default function CatchAllPage({ params }: Props) {
   const path = '/' + params.slug.join('/');
 
   // Rediriger les anciennes routes WordPress vers les nouvelles routes Next.js
-  const redirectMap: Record<string, string> = {
-    // Produits WordPress → Parfum Next.js
-    '/produit': '/shop',
+  // IMPORTANT: L'ordre des règles est important - les plus spécifiques d'abord
 
-    // Catégories WordPress → Shop Next.js
-    '/categorie-produit': '/shop',
+  // Genres spécifiques (avant /genre générique)
+  if (path.startsWith('/genre/femme')) redirect('/shop/genre/femme');
+  if (path.startsWith('/genre/homme')) redirect('/shop/genre/homme');
+  if (path.startsWith('/genre/unisex')) redirect('/shop/genre/mixte');
 
-    // Genre WordPress → Shop Genre Next.js
-    '/genre/femme': '/shop/genre/femme',
-    '/genre/homme': '/shop/genre/homme',
-    '/genre/unisex': '/shop/genre/mixte',
-    '/genre': '/shop',
-  };
+  // Catégories WordPress → Shop Next.js
+  if (path.startsWith('/categorie-produit')) redirect('/shop');
 
-  // Trouver la redirection correspondante
-  for (const [oldPath, newPath] of Object.entries(redirectMap)) {
-    if (path.startsWith(oldPath)) {
-      redirect(newPath);
-    }
-  }
+  // Genres génériques
+  if (path.startsWith('/genre')) redirect('/shop');
 
-  // Si aucune redirection ne correspond, aller à /shop (page par défaut)
+  // Produits individuels → Shop (pas vers /parfum/ qui peut ne pas exister)
+  if (path.startsWith('/produit')) redirect('/shop');
+
+  // Fallback pour toute autre route inconnue
   redirect('/shop');
 }
