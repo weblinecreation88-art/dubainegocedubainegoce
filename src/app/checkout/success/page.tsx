@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, Suspense } from 'react';
+import Script from 'next/script';
 import { useCart } from '@/context/cart-context';
 import { Loader2, CheckCircle, MailCheck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
@@ -49,6 +50,22 @@ function SuccessContent() {
                 transactionId={transactionId}
                 value={totalAmount ? parseFloat(totalAmount) : 0}
             />
+
+            {/* Google Customer Reviews */}
+            <Script
+                src="https://apis.google.com/js/platform.js?onload=renderOptIn"
+                async
+                defer
+                onLoad={() => {
+                    if (transactionId && (window as any).window) {
+                        (window as any).googleCustomerReviewsConfig = {
+                            merchantId: 5079397995,
+                            orderId: transactionId,
+                            deliveryDate: new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+                        };
+                    }
+                }}
+            />
             <Card>
                 <CardHeader>
                     <div className="mx-auto bg-green-100 dark:bg-green-900 rounded-full p-3 w-fit">
@@ -65,7 +82,8 @@ function SuccessContent() {
                         <span>Un e-mail de confirmation vous sera envoyé d'une minute à l'autre.</span>
                     </div>
                 </CardContent>
-                <CardFooter className="flex justify-center">
+                <CardFooter className="flex flex-col items-center gap-6">
+                    <div id="customer-reviews-container" className="w-full" />
                     <Button asChild variant="outline">
                         <Link href="/shop">
                             Continuer mes achats
