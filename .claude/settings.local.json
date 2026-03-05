@@ -112,7 +112,24 @@
       "Bash(python scripts/convert-images-to-webp.py public/images-parfums/)",
       "Bash(gh repo list weblinecreation88-art)",
       "Bash(curl -s http://localhost:3000)",
-      "Bash(des rues pavées, des cafés bohèmes et de la sophistication française\":*)"
+      "Bash(des rues pavées, des cafés bohèmes et de la sophistication française\":*)",
+      "Bash(lsof -i :9002)",
+      "Bash(curl -s http://localhost:9002/parfum/my-rose-sublime-lattafa)",
+      "Bash(curl -s http://localhost:9002/parfum/mirada-perla-mirada)",
+      "Bash(curl -s http://localhost:9002/parfum/k-king-fragrance-world)",
+      "Bash(curl -s http://localhost:9002/parfum/liquid-brun-100ml)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:9002)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:9002)",
+      "Bash(curl -s http://localhost:9002/shop/type/equivalent)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:9002)",
+      "Bash(curl -L \"https://dubainegoce.fr/produit/pure-oudi/\")",
+      "Bash(npm --version)",
+      "Bash(curl -s -I \"https://dubainegoce.fr/produit/pure-oudi/\")",
+      "Bash(curl -s -L -w \"\\\\nFinal URL: %{url_effective}\\\\nStatus: %{http_code}\\\\n\" \"https://dubainegoce.fr/produit/pure-oudi/\")",
+      "Bash(firebase --version)",
+      "Bash(curl -s -L -w \"\\\\nStatus: %{http_code}\\\\nFinal URL: %{url_effective}\\\\n\" \"https://dubainegoce.fr/parfum/versencia-oro-maison-alhambra\")",
+      "Bash(curl -s https://dubainegoce.fr/robots.txt)",
+      "Bash(curl -s http://localhost:9002/checkout/success)"
     ]
   }
 }

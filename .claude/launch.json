@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "dubainegoce-dev",
+      "name": "dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "-p", "8080"],
-      "port": 8080
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
     }
   ]
 }
