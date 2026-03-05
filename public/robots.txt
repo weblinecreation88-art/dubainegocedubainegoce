@@ -1,4 +1,5 @@
 User-agent: *
+Allow: /
 
 # Pages privées / compte
 Disallow: /account/
@@ -11,27 +12,30 @@ Disallow: /cart-2/
 Disallow: /panier/
 Disallow: /checkout/
 Disallow: /checkout-2/
+Disallow: /checkout-2/order-received/
 
-# Paramètres WooCommerce à ne pas indexer
+# Paramètres WooCommerce à ne pas indexer (doublons)
 Disallow: /*?add-to-cart=
 Disallow: /*?remove_item=
 Disallow: /*?_wpnonce=
 Disallow: /*?fbclid=
 Disallow: /*?utm_nooverride=
 
-# Anciennes routes WordPress (redirigées, mais éviter le re-crawl)
-Disallow: /produit/
-Disallow: /categorie-produit/
-Disallow: /genre/
-Disallow: /wp-content/
+# Répertoires système
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/wp-cron.php
 Disallow: /wp-json/
 Disallow: /cgi-bin/
-Disallow: /category/
 Disallow: /feed/
 
 # Pages de test / brouillon
 Disallow: /test2/
 Disallow: /accueil-2/
+Disallow: /my-account-2/
+Disallow: /my-account-2-2/
 
-# Sitemap
+# Sitemaps
 Sitemap: https://dubainegoce.fr/sitemap.xml
+Sitemap: https://dubainegoce.fr/sitemap-produits.xml
+Sitemap: https://dubainegoce.fr/sitemap-categories.xml
