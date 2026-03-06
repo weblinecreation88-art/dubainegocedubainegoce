@@ -10,11 +10,12 @@ interface AddToCartButtonProps {
     product: Product;
     quantity?: number;
     size?: "default" | "sm" | "lg" | "icon" | null | undefined,
+    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "accent",
     className?: string;
     children?: React.ReactNode;
 }
 
-export function AddToCartButton({ product, quantity = 1, size = "default", className, children }: AddToCartButtonProps) {
+export function AddToCartButton({ product, quantity = 1, size = "default", variant = "default", className, children }: AddToCartButtonProps) {
     const { addToCart } = useCart();
     const { toast } = useToast();
 
@@ -35,7 +36,7 @@ export function AddToCartButton({ product, quantity = 1, size = "default", class
     };
 
     return (
-        <Button onClick={handleAddToCart} size={size} className={className}>
+        <Button onClick={handleAddToCart} size={size} variant={variant} className={className}>
             {children || <>
                 <ShoppingCart className="mr-2 h-4 w-4" /> Ajouter
             </>}

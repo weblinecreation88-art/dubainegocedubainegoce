@@ -179,7 +179,7 @@ export default function ProductPage({ params }: Props) {
             {/* Shipping countdown & Tracking */}
             <ProductPageClient product={product} />
 
-            <AddToCartButton product={product} size="lg" className="w-full">
+            <AddToCartButton product={product} size="lg" className="w-full" variant="accent">
               Ajouter au panier — {product.price.toFixed(2)} €
             </AddToCartButton>
 

@@ -615,7 +615,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["my rose sublime", "lattafa", "parfum floral", "parfum femme", "eau de parfum lattafa", "poire", "mandarine", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/my-rose-sublime-lattafa.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1772644269/MY_ROSE_SUBLIME_jriqoa.jpg"],
         "reviews": [],
         "rating": 4.5,
         "productType": "perfume"

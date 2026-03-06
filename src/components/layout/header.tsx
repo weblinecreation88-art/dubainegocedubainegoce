@@ -98,6 +98,14 @@ export default function Header() {
                           </div>
                         </AccordionContent>
                       </AccordionItem>
+                      <AccordionItem value="equivalents">
+                        <AccordionTrigger>Nos Équivalents & Dupes</AccordionTrigger>
+                        <AccordionContent>
+                          <div className="flex flex-col gap-3 pl-4 pt-2">
+                            <Link href="/shop/type/equivalent" onClick={handleLinkClick} className="text-sm">Tous les Équivalents (104)</Link>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
                     </Accordion>
                     <Link href="/blog" onClick={handleLinkClick} className="text-base font-semibold">Blog</Link>
                     <Link href="/about" onClick={handleLinkClick} className="text-base font-semibold">À Propos</Link>
@@ -141,16 +149,19 @@ export default function Header() {
 
             {/* Navigation desktop - sans Fragrance World */}
             <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
-              <Link href="/shop/marque/lattafa" className="hover:text-gray-600 transition-colors uppercase">
+              <Link href="/shop/marque/lattafa" className="hover:text-accent transition-colors uppercase">
                 Lattafa
               </Link>
-              <Link href="/shop/marque/french-avenue" className="hover:text-gray-600 transition-colors uppercase">
+              <Link href="/shop/marque/french-avenue" className="hover:text-accent transition-colors uppercase">
                 French Avenue
               </Link>
-              <Link href="/shop/marque/maison-alhambra" className="hover:text-gray-600 transition-colors uppercase">
+              <Link href="/shop/marque/maison-alhambra" className="hover:text-accent transition-colors uppercase">
                 Maison Alhambra
               </Link>
-              <Link href="/shop" className="hover:text-gray-600 transition-colors opacity-70">
+              <Link href="/shop/type/equivalent" className="hover:text-accent transition-colors uppercase text-accent font-semibold">
+                Équivalents
+              </Link>
+              <Link href="/shop" className="hover:text-accent transition-colors opacity-70">
                 Tout voir
               </Link>
             </div>
@@ -204,7 +215,7 @@ export default function Header() {
             <Link href="/wishlist">
               <Heart className="h-5 w-5" />
               {isMounted && wishlist.length > 0 && (
-                <Badge variant="secondary" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-emerald-500 text-white">
+                <Badge className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-accent text-accent-foreground">
                   {wishlist.length}
                 </Badge>
               )}

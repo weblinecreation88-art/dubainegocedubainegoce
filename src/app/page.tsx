@@ -6,6 +6,7 @@ import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
 import { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product/product-card";
 import { ReassuranceSection } from "@/components/layout/reassurance-section";
+import { OurDupesSection } from "@/components/layout/our-dupes-section";
 import React, { Suspense } from "react";
 import { HeroBanner } from "@/components/layout/hero-banner";
 import dynamic from "next/dynamic";
@@ -19,6 +20,9 @@ const CustomerReviewsSection = dynamic(
     ssr: true
   }
 );
+
+// Garder UNIQUEMENT le composant principal de reviews
+// Supprimer les sections excessives pour un design épuré
 
 export const metadata: Metadata = {
   title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
@@ -61,6 +65,25 @@ export default function Home() {
     'ramz-silver-lattafa',
   ];
   const lattafaProducts = lattafaSlugs
+    .map(slug => getProducts().find(p => p.slug === slug))
+    .filter((p): p is Product => p !== undefined);
+
+  // Nos Équivalents - 12 parfums Alhambra les plus populaires
+  const dupesSlugs = [
+    'yeah-maison-alhambra',
+    'glacier-pour-homme-maison-alhambra',
+    'the-tux-maison-alhambra-mixte',
+    'grise-maison-alhambra',
+    'toscano-leather-maison-alhambra',
+    'kismet-for-women-maison-alhambra',
+    'niche-royal-rouge-maison-alhambra',
+    'infini-oud-maison-alhambra-mixte',
+    'woody-oud-80-ml-maison-alhambra',
+    'glacier-le-noir-maison-alhambra',
+    'jean-lowe-matiere-maison-alhambra',
+    'minerva-maison-alhambra',
+  ];
+  const dupesProducts = dupesSlugs
     .map(slug => getProducts().find(p => p.slug === slug))
     .filter((p): p is Product => p !== undefined);
 
@@ -111,28 +134,36 @@ export default function Home() {
         </section>
       )}
 
-      {/* Featured Banner Section */}
-      <section className="relative py-24 md:py-36 bg-black text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-40">
+      {/* French Avenue Gourmand Banner Section */}
+      <section className="relative py-24 md:py-40 bg-white dark:bg-background overflow-hidden">
+        <div className="absolute inset-0">
           <Image
-            src="https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042733/Omniyat_-_Surrati_ice7gl.png"
-            alt="Omniyat Surrati - Élégance Redéfinie Dubai Negoce"
+            src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1772640866/banner_lattafa_4_xmhamu.avif"
+            alt="French Avenue - Les Gourmandises Parfumées - Dubai Negoce"
             fill
             priority
             className="object-cover"
             sizes="100vw"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
         </div>
-        <div className="container relative z-10 mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 tracking-wider">ÉLÉGANCE REDÉFINIE</h2>
-          <p className="max-w-xl mx-auto text-gray-300 text-lg md:text-xl font-light tracking-wide mb-10">
-            Explorez l'harmonie parfaite entre les traditions orientales délicates et le luxe contemporain.
-          </p>
-          <Button asChild size="lg" className="bg-white text-black hover:bg-transparent hover:text-white border border-white rounded-none px-12 py-6 text-sm tracking-[0.2em] uppercase transition-all duration-300">
-            <Link href="/shop/all">
-              Explorer
-            </Link>
-          </Button>
+        <div className="container relative z-10 mx-auto px-4">
+          <div className="max-w-2xl">
+            <div className="inline-block mb-4">
+              <span className="text-accent font-bold text-sm tracking-[0.2em] uppercase">French Avenue</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-white mb-6 leading-tight">
+              Les Gourmandises Parfumées
+            </h2>
+            <p className="text-gray-100 text-lg md:text-xl font-light leading-relaxed mb-8">
+              Comme un éclair au chocolat, une tarte Tatin ou un macaron sucré, chaque fragrance French Avenue est une délicieuse récréation olfactive. Des parfums aussi savoureux que les meilleures pâtisseries parisiennes, avec ce clin d'œil gourmand à la douceur française.
+            </p>
+            <Button asChild size="lg" className="bg-accent text-white hover:bg-accent/90 rounded-none px-8 py-6 text-sm tracking-[0.1em] uppercase transition-all duration-300">
+              <Link href="/shop/marque/french-avenue">
+                Découvrir la Collection
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -157,6 +188,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* Our Dupes / Equivalents Section */}
+      {dupesProducts.length > 0 && (
+        <OurDupesSection products={dupesProducts} />
       )}
 
       {/* Explore Our Collection / Categories */}
