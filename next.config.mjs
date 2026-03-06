@@ -98,6 +98,22 @@ const config = {
       { source: '/category/:path*', destination: '/blog', permanent: true },
 
       // ============================================================
+      // SLUG CORRECTIONS - Old WordPress → Current slugs
+      // ============================================================
+      // Simple slugs → with brand suffix
+      { source: '/parfum/asad', destination: '/parfum/asad-lattafa', permanent: true },
+      { source: '/parfum/yara', destination: '/parfum/yara-lattafa', permanent: true },
+      { source: '/parfum/ameer-al-oudh-intense-oud', destination: '/parfum/ameer-al-oudh-intense-oud-lattafa', permanent: true },
+      { source: '/parfum/noble-wazeer-lattafa', destination: '/parfum/al-noble-wazeer-lattafa', permanent: true },
+      { source: '/parfum/saffron-maison-alhambra', destination: '/parfum/by-saffron-maison-alhambra', permanent: true },
+      { source: '/parfum/woody-oud-maison-alhambra', destination: '/parfum/woody-oud-80-ml-maison-alhambra', permanent: true },
+      { source: '/parfum/the-tux-maison-alhambra', destination: '/parfum/the-tux-maison-alhambra-mixte', permanent: true },
+      { source: '/parfum/zaffiro-regale', destination: '/parfum/zaffiro-regale-maison-alhambra-unisex', permanent: true },
+      { source: '/parfum/zaffiro-regale-for-her-maison-alhambra', destination: '/parfum/zaffiro-regale-for-her-maison-alhambra', permanent: true },
+      { source: '/parfum/lovely-cherie-french-avenue', destination: '/parfum/lovely-cherie-maison-alhambra', permanent: true },
+      { source: '/parfum/ramz-silver-lattafa-lattafa', destination: '/parfum/ramz-silver-lattafa', permanent: true },
+
+      // ============================================================
       // ARTICLES DE BLOG (corrections de slug)
       // ============================================================
       {

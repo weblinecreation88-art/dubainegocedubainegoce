@@ -1,7 +1,17 @@
 import { MetadataRoute } from 'next';
+import { getProducts } from '@/lib/data';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://dubainegoce.fr';
+
+  // Générer dynamiquement les pages produits
+  const products = getProducts();
+  const productPages: MetadataRoute.Sitemap = products.map(product => ({
+    url: `${baseUrl}/parfum/${product.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
 
   // Pages statiques principales
   const staticPages: MetadataRoute.Sitemap = [
@@ -97,9 +107,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // TODO: Ajouter pages produits dynamiques depuis Firestore
-  // const products = await getProductsFromFirestore();
-  // const productPages = products.map(product => ({...}));
-
-  return staticPages;
+  return [...staticPages, ...productPages];
 }

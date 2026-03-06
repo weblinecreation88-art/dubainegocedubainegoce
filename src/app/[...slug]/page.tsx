@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { getProductBySlug } from '@/lib/data';
 
 type Props = {
   params: { slug: string[] };
@@ -21,8 +22,20 @@ export default function CatchAllPage({ params }: Props) {
   // Genres génériques
   if (path.startsWith('/genre')) redirect('/shop');
 
-  // Produits individuels → Shop (pas vers /parfum/ qui peut ne pas exister)
-  if (path.startsWith('/produit')) redirect('/shop');
+  // Produits individuels → Essayer de trouver la page produit
+  if (path.startsWith('/produit/')) {
+    // Extraire le slug du produit (ignorer les query params)
+    const slugMatch = path.match(/^\/produit\/([^/?]+)/);
+    if (slugMatch) {
+      const productSlug = slugMatch[1];
+      const product = getProductBySlug(productSlug);
+      if (product) {
+        redirect(`/parfum/${product.slug}`);
+      }
+    }
+    // Si produit non trouvé, aller au shop
+    redirect('/shop');
+  }
 
   // Fallback pour toute autre route inconnue
   redirect('/shop');
