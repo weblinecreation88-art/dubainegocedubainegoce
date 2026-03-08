@@ -168,11 +168,11 @@ export async function POST(request: NextRequest) {
       to: [email],
       subject: `🎁 Alain, ${discount}% de réduction sur vos parfums préférés! Code: ${promoCode}`,
       html: emailHtml,
-      reply_to: 'contact@dubainegoce.fr'
+      replyTo: 'contact@dubainegoce.fr'
     });
 
     // Mettre à jour le statut dans Firestore
-    if (result.id) {
+    if (result && !result.error && 'id' in result) {
       try {
         const abandonedCartsSnapshot = await firestore
           .collection('abandoned_carts')
@@ -190,7 +190,7 @@ export async function POST(request: NextRequest) {
               sentAt: new Date().toISOString(),
               promoCode,
               discount,
-              emailId: result.id
+              emailId: (result as any).id || 'sent'
             }
           });
         }
@@ -202,7 +202,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       message: `Email de relance envoyé à ${email}`,
-      emailId: result.id,
+      emailId: (result as any).id || 'sent',
       details: {
         recipient: email,
         promoCode,

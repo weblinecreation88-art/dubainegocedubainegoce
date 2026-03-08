@@ -128,17 +128,17 @@ export async function POST(request: NextRequest) {
       to: [email],
       subject: `🎉 Bienvenue ${name}, dans la communauté DubaiNegoce!`,
       html: emailHtml,
-      reply_to: 'contact@dubainegoce.fr'
+      replyTo: 'contact@dubainegoce.fr'
     });
 
-    if (!result.id) {
+    if (!(result as any).id) {
       throw new Error('Failed to send email');
     }
 
     return NextResponse.json({
       success: true,
       message: `Email de bienvenue envoyé à ${email}`,
-      emailId: result.id,
+      emailId: (result as any).id,
       user: {
         name,
         email,
