@@ -73,10 +73,32 @@ export default function SignupPage() {
       };
 
       setDocumentNonBlocking(userDocRef, userData, { merge: true });
-      
+
+      // Envoyer l'email de bienvenue
+      try {
+        const welcomeResponse = await fetch('/api/auth/send-welcome-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: values.email,
+            name: values.name,
+            userId: user.uid
+          })
+        });
+
+        if (!welcomeResponse.ok) {
+          console.warn('⚠️ Email de bienvenue non envoyé:', await welcomeResponse.text());
+        } else {
+          console.log('✅ Email de bienvenue envoyé');
+        }
+      } catch (emailError) {
+        console.warn('⚠️ Erreur lors de l\'envoi de l\'email:', emailError);
+        // Ne pas bloquer l'inscription si l'email échoue
+      }
+
       toast({
-        title: 'Compte créé avec succès !',
-        description: 'Bienvenue sur DubaiNegoce.',
+        title: 'Compte créé avec succès ! 🎉',
+        description: 'Bienvenue sur DubaiNegoce. Un email de bienvenue vous a été envoyé !',
       });
 
       router.push('/');
