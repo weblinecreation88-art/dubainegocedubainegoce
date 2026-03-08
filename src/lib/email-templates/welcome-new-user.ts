@@ -336,7 +336,7 @@ export function renderWelcomeEmail(
               </div>
             </div>
 
-            <!-- CTA -->
+            <!-- CTA Principal -->
             <div class="cta-section">
               <p style="margin-bottom: 15px; color: #666; font-size: 14px;">
                 Prêt à explorer l'univers infini des parfums ?
@@ -346,13 +346,38 @@ export function renderWelcomeEmail(
               </a>
             </div>
 
-            <!-- Closing message -->
-            <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px; text-align: center;">
-              <p style="font-size: 14px; color: #666; margin-bottom: 10px;">
-                Des questions ? Notre équipe est là pour vous.
+            <!-- Votre compte section -->
+            <div style="margin-top: 30px; padding: 20px; background: #f0f8ff; border-radius: 8px; border-left: 3px solid #d4145a;">
+              <p style="font-size: 14px; font-weight: 600; color: #222; margin-bottom: 12px;">
+                🎯 Vos outils personnels
               </p>
-              <p style="font-size: 13px; color: #999;">
-                📧 <a href="mailto:contact@dubainegoce.fr" style="color: #d4145a; text-decoration: none;">contact@dubainegoce.fr</a>
+              <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                ✓ <a href="https://dubainegoce.fr/account/profile" style="color: #d4145a; text-decoration: none; font-weight: 500;">Gérer mon profil</a> - Modifier vos informations, changer votre mot de passe
+              </p>
+              <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                ✓ <a href="https://dubainegoce.fr/account/orders" style="color: #d4145a; text-decoration: none; font-weight: 500;">Suivre mes commandes</a> - Vérifiez l'état de vos livraisons en temps réel
+              </p>
+              <p style="font-size: 13px; color: #666; margin: 8px 0;">
+                ✓ <a href="https://dubainegoce.fr/wishlist" style="color: #d4145a; text-decoration: none; font-weight: 500;">Ma liste d'envies</a> - Sauvegardez vos parfums préférés pour plus tard
+              </p>
+            </div>
+
+            <!-- Support section -->
+            <div style="margin-top: 30px; padding: 20px; background: #fff9f3; border-radius: 8px;">
+              <p style="font-size: 14px; font-weight: 600; color: #222; margin-bottom: 12px;">
+                ❓ Besoin d'aide ?
+              </p>
+              <p style="font-size: 13px; color: #666; margin-bottom: 10px;">
+                Problème de commande, question de paiement, ou besoin de conseil ? Notre équipe vous répond rapidement :
+              </p>
+              <p style="font-size: 13px; color: #555; margin: 8px 0;">
+                📧 Email : <a href="mailto:contact@dubainegoce.fr" style="color: #d4145a; text-decoration: none; font-weight: 500;">contact@dubainegoce.fr</a>
+              </p>
+              <p style="font-size: 13px; color: #555; margin: 8px 0;">
+                📞 Téléphone : <a href="tel:+33000000000" style="color: #d4145a; text-decoration: none; font-weight: 500;">+33 (0) XXX XXX XXX</a>
+              </p>
+              <p style="font-size: 12px; color: #999; margin-top: 10px; font-style: italic;">
+                Nous sommes disponibles du lundi au vendredi, 10h-18h (UTC+1)
               </p>
             </div>
           </div>
