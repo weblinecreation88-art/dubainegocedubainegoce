@@ -374,7 +374,7 @@ export function renderWelcomeEmail(
                 📧 Email : <a href="mailto:contact@dubainegoce.fr" style="color: #d4145a; text-decoration: none; font-weight: 500;">contact@dubainegoce.fr</a>
               </p>
               <p style="font-size: 13px; color: #555; margin: 8px 0;">
-                📞 Téléphone : <a href="tel:+33000000000" style="color: #d4145a; text-decoration: none; font-weight: 500;">+33 (0) XXX XXX XXX</a>
+                📞 Téléphone : <a href="tel:+33780299333" style="color: #d4145a; text-decoration: none; font-weight: 500;">07 80 29 93 33</a>
               </p>
               <p style="font-size: 12px; color: #999; margin-top: 10px; font-style: italic;">
                 Nous sommes disponibles du lundi au vendredi, 10h-18h (UTC+1)
