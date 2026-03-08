@@ -18,7 +18,7 @@ export const getColissimoCost = (weightInGrams: number): number => {
 };
 
 export const getMondialRelayCost = (weightInGrams: number): number => {
-    // Grille tarifaire Mondial Relay 2026
+    // Grille tarifaire Mondial Relay France 2026
     if (weightInGrams <= 0) return 0;
     if (weightInGrams <= 250) return 4.10;
     if (weightInGrams <= 500) return 4.10;
@@ -30,6 +30,43 @@ export const getMondialRelayCost = (weightInGrams: number): number => {
     if (weightInGrams <= 7000) return 15.99;
     if (weightInGrams <= 10000) return 15.99;
     return 15.99; // Fallback for weights over 10kg
+};
+
+// International Mondial Relay rates for BE, NL, DE, LU
+export const getMondialRelayInternationalCost = (countryCode: string, weightInGrams: number): number => {
+    const rates: Record<string, Record<number, number>> = {
+        'BE': { // Belgique
+            250: 5.50, 500: 5.50, 750: 6.50, 1000: 6.50, 2000: 8.00,
+            4000: 9.50, 5000: 18.50, 7000: 18.50, 10000: 18.50
+        },
+        'NL': { // Pays-Bas
+            250: 5.90, 500: 5.90, 750: 6.90, 1000: 6.90, 2000: 8.50,
+            4000: 10.00, 5000: 19.50, 7000: 19.50, 10000: 19.50
+        },
+        'DE': { // Allemagne
+            250: 6.50, 500: 6.50, 750: 7.50, 1000: 7.50, 2000: 9.00,
+            4000: 10.50, 5000: 22.00, 7000: 22.00, 10000: 22.00
+        },
+        'LU': { // Luxembourg
+            250: 5.00, 500: 5.00, 750: 6.00, 1000: 6.00, 2000: 7.50,
+            4000: 8.50, 5000: 17.00, 7000: 17.00, 10000: 17.00
+        }
+    };
+
+    const countryRates = rates[countryCode];
+    if (!countryRates) return 0; // Country not supported
+
+    if (weightInGrams <= 0) return 0;
+    if (weightInGrams <= 250) return countryRates[250];
+    if (weightInGrams <= 500) return countryRates[500];
+    if (weightInGrams <= 750) return countryRates[750];
+    if (weightInGrams <= 1000) return countryRates[1000];
+    if (weightInGrams <= 2000) return countryRates[2000];
+    if (weightInGrams <= 4000) return countryRates[4000];
+    if (weightInGrams <= 5000) return countryRates[5000];
+    if (weightInGrams <= 7000) return countryRates[7000];
+    if (weightInGrams <= 10000) return countryRates[10000];
+    return countryRates[10000]; // Fallback
 };
 
 

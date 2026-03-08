@@ -13,6 +13,7 @@ import { FirebaseClientProvider } from '@/firebase';
 import { FaqChatbot } from '@/components/faq-chatbot';
 import { CookieConsent } from '@/components/cookie-consent';
 import { ExitIntentPopup } from '@/components/exit-intent-popup';
+import { CartAbandonmentPopup } from '@/components/cart-abandonment-popup';
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -215,6 +216,7 @@ export default function RootLayout({
                 <FaqChatbot />
                 <CookieConsent />
                 <ExitIntentPopup />
+                <CartAbandonmentPopup />
               </WishlistProvider>
             </CartProvider>
           </FirebaseClientProvider>

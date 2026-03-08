@@ -44,7 +44,8 @@ export function ProductPageClient({ product }: { product?: any }) {
             item_name: product.name,
             price: product.price,
             brand: product.brand?.name,
-            category: product.family
+            category: product.family,
+            item_category: product.family || 'Parfum'  // Added for GA4 compatibility
           }]
         }
       });

@@ -21,17 +21,39 @@ function SuccessContent() {
     const totalAmount = searchParams.get('total');
 
     useEffect(() => {
-        // GTM Tracking: purchase
+        // GTM Tracking: purchase (GA4 ecommerce event)
         if (typeof window !== 'undefined' && (window as any).dataLayer && cart.length > 0) {
+            const totalValue = totalAmount ? parseFloat(totalAmount) : 0;
+
             (window as any).dataLayer.push({
                 event: 'purchase',
                 ecommerce: {
                     transaction_id: transactionId,
-                    value: totalAmount ? parseFloat(totalAmount) : 0,
+                    value: totalValue,
                     currency: 'EUR',
                     items: cart.map(item => ({
                         item_id: item.id,
                         item_name: item.name,
+                        price: item.price,
+                        quantity: item.quantity
+                    }))
+                }
+            });
+
+            // Enhanced ecommerce_purchase event for better GA4 tracking
+            (window as any).dataLayer.push({
+                event: 'ecommerce_purchase',
+                ecommerce: {
+                    transaction_id: transactionId,
+                    value: totalValue,
+                    currency: 'EUR',
+                    affiliation: 'DubaiNegoce',
+                    tax: 0,
+                    shipping: 0,
+                    items: cart.map(item => ({
+                        item_id: item.id,
+                        item_name: item.name,
+                        item_category: 'Parfum',
                         price: item.price,
                         quantity: item.quantity
                     }))

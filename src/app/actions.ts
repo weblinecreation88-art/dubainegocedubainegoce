@@ -262,3 +262,48 @@ export async function subscribeToNewsletter(
     return { message: 'Une erreur serveur est survenue. Veuillez réessayer plus tard.', error: true };
   }
 }
+
+/**
+ * Tracks abandoned cart for email reminders (Day 3 and Day 7)
+ */
+export async function trackAbandonedCart(
+  cartSnapshot: CartItem[],
+  userEmail: string,
+  userId?: string
+): Promise<{ success: boolean; message?: string }> {
+  if (!firestore || cartSnapshot.length === 0) {
+    return { success: false, message: 'Invalid cart or Firestore not configured' };
+  }
+
+  try {
+    const sessionId = `${userId || userEmail}_${Date.now()}`;
+    const cartValue = cartSnapshot.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    await firestore.collection('abandoned_carts').doc(sessionId).set({
+      userId: userId || userEmail,
+      email: userEmail,
+      cartSnapshot: cartSnapshot.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: item.image
+      })),
+      cartValue: cartValue,
+      createdAt: new Date().toISOString(),
+      lastActivityAt: new Date().toISOString(),
+      emailsSent: {
+        day3: false,
+        day7: false
+      },
+      status: 'active'
+    });
+
+    console.log(`[trackAbandonedCart] Tracked abandoned cart for ${userEmail}`);
+    return { success: true };
+
+  } catch (error: any) {
+    console.error('[trackAbandonedCart] Error tracking abandoned cart:', error);
+    return { success: false, message: error.message };
+  }
+}

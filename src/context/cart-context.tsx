@@ -64,14 +64,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const addToCart = (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
         // GTM Tracking
         if (typeof window !== 'undefined' && (window as any).dataLayer) {
+            const quantity = item.quantity || 1;
+            const value = item.price * quantity;
+
             (window as any).dataLayer.push({
                 event: 'add_to_cart',
                 ecommerce: {
+                    value: value,
+                    currency: 'EUR',
                     items: [{
                         item_id: item.id,
                         item_name: item.name,
                         price: item.price,
-                        quantity: item.quantity || 1
+                        quantity: quantity
                     }]
                 }
             });

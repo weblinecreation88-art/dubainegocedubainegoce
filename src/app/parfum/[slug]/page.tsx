@@ -8,9 +8,11 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProductCard } from '@/components/product/product-card';
 import { AddToCartButton } from '@/components/product/add-to-cart-button';
+import { StockUrgencyBanner } from '@/components/product/stock-urgency-banner';
+import { CustomerReviews } from '@/components/product/customer-reviews';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { ProductImage } from '@/components/product/product-image';
+import { ProductGallery } from '@/components/product/product-gallery';
 import { ProductPageClient } from './product-page-client';
 import { RotateCcw } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -129,17 +131,13 @@ export default function ProductPage({ params }: Props) {
       </div>
       <div className="container mx-auto max-w-6xl px-4 py-8">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-          {/* Product Images */}
+          {/* Product Gallery */}
           <div>
-            <div className="relative aspect-square w-full overflow-hidden rounded-lg shadow-lg">
-              <ProductImage
-                alt={`Parfum ${product.brand.name} ${product.name} - Dubai Negoce`}
-                images={product.images}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-                priority
-              />
-            </div>
+            <ProductGallery
+              alt={`Parfum ${product.brand.name} ${product.name} - Dubai Negoce`}
+              images={product.images}
+              productName={product.name}
+            />
           </div>
 
           {/* Product Details */}
@@ -169,18 +167,21 @@ export default function ProductPage({ params }: Props) {
               {product.volumeMl > 0 && <span className="text-sm text-muted-foreground">/ {product.volumeMl}ml</span>}
             </div>
 
-            {/* Stock urgency */}
-            {product.stock > 0 && product.stock <= 7 && (
-              <div className={`text-sm font-medium px-3 py-2 rounded border ${product.stock <= 3 ? 'bg-red-50 text-red-600 border-red-200 dark:bg-red-900/20 dark:text-red-400' : 'bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-900/20 dark:text-orange-400'}`}>
-                {product.stock <= 3 ? `⚠️ Plus que ${product.stock} en stock !` : '⏳ Stock limité — commandez vite'}
-              </div>
-            )}
+            {/* Stock urgency - Enhanced banner with progress bar */}
+            <StockUrgencyBanner stock={product.stock} productName={product.name} />
 
             {/* Shipping countdown & Tracking */}
             <ProductPageClient product={product} />
 
-            <AddToCartButton product={product} size="lg" className="w-full" variant="accent">
-              Ajouter au panier — {product.price.toFixed(2)} €
+            <AddToCartButton
+              product={product}
+              size="lg"
+              className="w-full"
+              variant="accent"
+              isStockCritical={product.stock <= 2}
+              showPrice={true}
+            >
+              Ajouter au panier
             </AddToCartButton>
 
             <div className="grid grid-cols-3 gap-3">
@@ -227,25 +228,7 @@ export default function ProductPage({ params }: Props) {
               </div>
             </TabsContent>
             <TabsContent value="reviews" className="py-6">
-              <div className="flex flex-col items-center gap-4 py-8 text-center">
-                <div className="flex justify-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-6 w-6 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <p className="font-semibold text-lg">Nos clients nous font confiance</p>
-                <p className="text-muted-foreground text-sm max-w-sm">
-                  Découvrez l'ensemble de nos avis vérifiés directement sur Trustpilot — la plateforme de référence.
-                </p>
-                <a
-                  href="https://fr.trustpilot.com/review/dubainegoce.fr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4 hover:text-primary transition-colors"
-                >
-                  Voir tous nos avis Trustpilot →
-                </a>
-              </div>
+              <CustomerReviews productName={product.name} limit={5} />
             </TabsContent>
           </Tabs>
         </div>
