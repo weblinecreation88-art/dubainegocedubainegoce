@@ -192,15 +192,7 @@ const config = {
       config.externals.push('raw-body');
     }
     return config;
-  },
-
-  // Vercel Cron Jobs for email reminders
-  crons: [
-    {
-      path: '/api/cron/abandoned-cart-reminders',
-      schedule: '0 10 * * *' // Every day at 10 AM UTC
-    }
-  ]
+  }
 };
 
 export default config;
