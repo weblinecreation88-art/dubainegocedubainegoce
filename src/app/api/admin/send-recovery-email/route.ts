@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
       // Récupérer le nom du client s'il existe
       const userDoc = await firestore.collection('users').doc(userId).get();
       if (userDoc.exists && userDoc.data()?.name) {
-        customerName = userDoc.data().name;
+        customerName = userDoc.data()?.name || customerName;
       }
     } catch (e) {
       console.log('Could not fetch cart/user data:', e);
