@@ -132,7 +132,12 @@
       "Bash(curl -s http://localhost:9002/checkout/success)",
       "Bash(for slug in \"asad\" \"yara\" \"ameer-al-oudh-intense-oud\" \"noble-wazeer-lattafa\" \"jack-of-clubs\" \"saffron\" \"zaffiro-crafted-oud\" \"woody-oud\" \"narissa\" \"the-tux\" \"ombre-noir\" \"zaffiro-regale\" \"khamrah\" \"lovely-cherie\" \"ramz-silver\")",
       "Bash(echo \"=== Searching for $slug ===\")",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(xargs grep -l \"Firestore\\\\|stripe\\\\|order\")",
+      "Bash(xargs grep -l \"window.gtag\\\\|dataLayer\")",
+      "Bash(xargs grep -l \"checkout\\\\|payment\\\\|stripe\")",
+      "Bash(grep -r \"NEXT_PUBLIC_GOOGLE_ADS\\\\|NEXT_PUBLIC_GTM\" /d/DUBAINEGOCE/.env* /d/DUBAINEGOCE/src --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -n \"AddToCartButton\\\\|stock\\\\|Ajouter au panier\" /d/DUBAINEGOCE/src/app/parfum/[slug]/page.tsx)"
     ]
   }
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { adminFirestore } from '@/firebase/server';
+import { firestore } from '@/firebase/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,11 +20,11 @@ export async function GET(request: NextRequest) {
     startDate.setDate(startDate.getDate() - days);
 
     // Query all orders from all users
-    const usersSnapshot = await adminFirestore.collection('users').get();
+    const usersSnapshot = await firestore.collection('users').get();
     const orders: any[] = [];
 
     for (const userDoc of usersSnapshot.docs) {
-      const ordersSnapshot = await adminFirestore
+      const ordersSnapshot = await firestore
         .collection('users')
         .doc(userDoc.id)
         .collection('orders')

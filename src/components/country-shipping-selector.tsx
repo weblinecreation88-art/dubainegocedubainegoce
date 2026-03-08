@@ -12,7 +12,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Globe, Truck } from 'lucide-react';
-import { getMondialRelayInternationalCost, getColissimoCost, SUPPORTED_COUNTRIES, type SupportedCountry } from '@/lib/mondial-relay';
+import { getMondialRelayInternationalCost, getColissimoCost } from '@/lib/data';
+import { SUPPORTED_COUNTRIES, type SupportedCountry } from '@/lib/mondial-relay';
 import { cn } from '@/lib/utils';
 
 interface CountryShippingSelectorProps {
