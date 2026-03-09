@@ -1,28 +1,37 @@
-
 'use client';
 
 import { useCart } from '@/context/cart-context';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, Loader2, TicketPercent, Lock, ShieldCheck } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import { Trash2, ShoppingBag, Loader2 } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect, useMemo } from 'react';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
-import type { ShippingMethod } from '@/lib/types';
-import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
+import { useState, useEffect } from 'react';
+import { Input } from '@/components/ui/input';
+import { getColissimoCost, getMondialRelayCost } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
-import { collection, addDoc, onSnapshot, DocumentData } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, DocumentData, doc, setDoc } from 'firebase/firestore';
+import { CheckoutForm } from '@/components/checkout/checkout-form';
+import { OrderSummary } from '@/components/checkout/order-summary';
+import { calculateOrderTotal } from '@/lib/checkout-utils';
+import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
-
 const PERFUME_WEIGHT_G = 750;
+
+interface CheckoutFormData {
+  email: string;
+  phone?: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+  shippingMethod: 'colissimo' | 'mondial-relay';
+}
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
@@ -30,84 +39,84 @@ export default function CartPage() {
   const firestore = useFirestore();
   const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
   const [isClient, setIsClient] = useState(false);
   const { toast } = useToast();
+  const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
 
   useEffect(() => {
     setIsClient(true);
-
-    const handlePopState = () => {
-      setIsCheckingOut(false);
-    };
-
-    window.addEventListener('popstate', handlePopState);
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        setIsCheckingOut(false);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
   }, []);
 
   const totalItems = getCartCount();
   const totalWeight = totalItems * PERFUME_WEIGHT_G;
-
-  const dynamicShippingMethods = useMemo((): ShippingMethod[] => {
-    return shippingMethods.map(method => {
-      if (method.id === 'colissimo') {
-        return { ...method, cost: getColissimoCost(totalWeight) };
-      }
-      if (method.id === 'mondial-relay') {
-        return { ...method, cost: getMondialRelayCost(totalWeight) };
-      }
-      return { ...method, cost: 0 }; // Fallback for other methods
-    });
-  }, [totalWeight]);
-
-  const selectedShipping = useMemo(() => {
-    return dynamicShippingMethods.find(m => m.id === selectedShippingId) || dynamicShippingMethods[0];
-  }, [selectedShippingId, dynamicShippingMethods]);
-
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const shippingCost = selectedShipping?.cost || 0;
-  const totalAmount = subtotal + shippingCost;
-
-  const handleCheckout = async () => {
+  const handleCheckout = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
     if (!user || !firestore) {
       router.push('/login?redirect=/cart');
       return;
     }
 
-    setIsCheckingOut(true);
-
-    // GTM Tracking: begin_checkout
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      (window as any).dataLayer.push({
-        event: 'begin_checkout',
-        ecommerce: {
-          value: totalAmount,
-          currency: 'EUR',
-          items: cart.map(item => ({
-            item_id: item.id,
-            item_name: item.name,
-            price: item.price,
-            quantity: item.quantity
-          }))
-        }
+    // Validate form
+    if (formData.shippingMethod === 'mondial-relay' && !pickupPoint) {
+      toast({
+        variant: 'destructive',
+        title: 'Erreur',
+        description: 'Veuillez sélectionner un point relais',
       });
+      return;
     }
 
+    setIsCheckingOut(true);
+
     try {
-      const lineItems = cart.map(item => ({
+      // Calculate shipping cost
+      const shippingCost =
+        formData.shippingMethod === 'colissimo'
+          ? getColissimoCost(totalWeight)
+          : getMondialRelayCost(formData.country, totalWeight);
+
+      // Calculate totals with VAT
+      const { vat, total } = calculateOrderTotal(subtotal, shippingCost);
+
+      // Save shipping address to user profile
+      const userDocRef = doc(firestore, 'users', user.uid);
+      await setDoc(
+        userDocRef,
+        {
+          shippingAddress: {
+            email: formData.email,
+            phone: formData.phone || '',
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            address: formData.address,
+            city: formData.city,
+            postalCode: formData.postalCode,
+            country: formData.country,
+          },
+        },
+        { merge: true }
+      );
+
+      // GTM Tracking
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'begin_checkout',
+          ecommerce: {
+            value: total,
+            currency: 'EUR',
+            items: cart.map((item) => ({
+              item_id: item.id,
+              item_name: item.name,
+              price: item.price,
+              quantity: item.quantity,
+            })),
+          },
+        });
+      }
+
+      // Create Stripe line items
+      const lineItems = cart.map((item) => ({
         price_data: {
           currency: 'eur',
           product_data: {
@@ -115,13 +124,14 @@ export default function CartPage() {
             images: [item.image?.startsWith('http') ? item.image : `${appUrl}${item.image}`],
             metadata: {
               productId: item.id,
-            }
+            },
           },
           unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantity,
       }));
 
+      // Create checkout session
       const checkoutPayload: DocumentData = {
         mode: 'payment',
         line_items: lineItems,
@@ -132,29 +142,37 @@ export default function CartPage() {
         invoice_creation: {
           enabled: true,
         },
-        success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${totalAmount.toFixed(2)}`,
+        success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${total.toFixed(2)}`,
         cancel_url: `${appUrl}/cart`,
         metadata: {
           userId: user.uid,
-          shippingMethod: selectedShipping.id,
-        }
+          email: formData.email,
+          shippingMethod: formData.shippingMethod,
+          pickupPointId: pickupPoint?.id || '',
+          pickupPointName: pickupPoint?.name || '',
+          vat: vat.toFixed(2),
+          subtotal: subtotal.toFixed(2),
+        },
       };
 
-      if (selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID) {
+      if (formData.shippingMethod === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID) {
         checkoutPayload.shipping_options = [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }];
       }
 
-      const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), checkoutPayload);
+      const checkoutSessionRef = await addDoc(
+        collection(firestore, 'customers', user.uid, 'checkout_sessions'),
+        checkoutPayload
+      );
 
       const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-        const { error, url } = snap.data() as { error?: { message: string }, url?: string };
+        const { error, url } = snap.data() as { error?: { message: string }; url?: string };
         if (error) {
-          console.error(`An error occurred with the Stripe session: ${error.message}`);
+          console.error(`Stripe error: ${error.message}`);
           toast({
-            variant: "destructive",
-            title: "Erreur de paiement",
-            description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
-          })
+            variant: 'destructive',
+            title: 'Erreur de paiement',
+            description: error.message || 'Une erreur est survenue.',
+          });
           setIsCheckingOut(false);
           unsubscribe();
         }
@@ -163,27 +181,27 @@ export default function CartPage() {
         }
       });
     } catch (error: any) {
-      console.error("Error creating checkout session document:", error);
+      console.error('Checkout error:', error);
       toast({
-        variant: "destructive",
-        title: "Erreur de paiement",
-        description: error.message || "Une erreur est survenue lors de la création de la session de paiement.",
-      })
+        variant: 'destructive',
+        title: 'Erreur',
+        description: error.message || 'Une erreur est survenue lors de la création de la session.',
+      });
       setIsCheckingOut(false);
     }
   };
 
-
-  return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-headline">Votre Panier</h1>
-        <p className="text-muted-foreground mt-2">
-          {!isClient ? 'Chargement...' : totalItems > 0 ? `Vous avez ${totalItems} article(s) dans votre panier.` : 'Votre panier est actuellement vide.'}
-        </p>
+  if (!isClient) {
+    return (
+      <div className="container mx-auto px-4 py-12 text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto" />
       </div>
+    );
+  }
 
-      {!isClient || cart.length === 0 ? (
+  if (cart.length === 0) {
+    return (
+      <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col items-center justify-center text-center bg-card p-12 rounded-lg">
           <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
           <h2 className="text-2xl font-headline">Votre panier est vide</h2>
@@ -194,122 +212,100 @@ export default function CartPage() {
             <Link href="/shop">Continuer mes achats</Link>
           </Button>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          <div className="lg:col-span-2 space-y-4">
-            {cart.map(item => (
-              <Card key={item.id} className="flex items-center p-4">
-                <div className="relative h-24 w-24 rounded-md overflow-hidden">
-                  <Image src={item.image} alt={item.name} fill sizes="96px" className="object-cover" />
-                </div>
-                <div className="flex-grow ml-4">
-                  <Link href={`/parfum/${item.slug}`} className="font-semibold hover:text-primary">{item.name}</Link>
-                  <p className="text-sm text-muted-foreground">{item.price.toFixed(2)} €</p>
-                  <div className="flex items-center mt-2">
-                    <label htmlFor={`quantity-${item.id}`} className="text-sm mr-2">Qté:</label>
-                    <Input
-                      id={`quantity-${item.id}`}
-                      type="number"
-                      min="1"
-                      value={item.quantity}
-                      onChange={(e) => updateQuantity(item.id, parseInt(e.target.value, 10))}
-                      className="h-8 w-16"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col items-end justify-between h-full ml-4">
-                  <p className="font-semibold">{(item.price * item.quantity).toFixed(2)} €</p>
-                  <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)} aria-label="Supprimer l'article">
-                    <Trash2 className="h-4 w-4 text-muted-foreground" />
-                  </Button>
-                </div>
-              </Card>
-            ))}
-            <div className="text-right mt-4">
-              <Button variant="outline" onClick={clearCart}>
-                Vider le panier
-              </Button>
-            </div>
-          </div>
+      </div>
+    );
+  }
 
-          <div className="lg:col-span-1 space-y-6 sticky top-24">
-            <Card>
-              <CardHeader>
-                <CardTitle>Méthode de livraison</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <RadioGroup
-                  value={selectedShippingId}
-                  onValueChange={(id: ShippingMethod['id']) => setSelectedShippingId(id)}
-                  className="space-y-4"
-                >
-                  {dynamicShippingMethods.map((method) => (
-                    <Label
-                      key={method.id}
-                      htmlFor={method.id}
-                      className={cn(
-                        "flex items-center gap-4 rounded-lg border p-4 cursor-pointer transition-colors",
-                        selectedShippingId === method.id && "border-primary ring-2 ring-primary"
-                      )}
-                    >
-                      <RadioGroupItem value={method.id} id={method.id} />
-                      <method.icon className="h-6 w-6 text-muted-foreground" />
-                      <div className="flex-1">
-                        <p className="font-semibold">{method.name}</p>
-                        <p className="text-sm text-muted-foreground">{method.description}</p>
+  // Calculate costs and totals
+  const selectedShippingMethod = 'mondial-relay';
+  const shippingCost = getMondialRelayCost('FR', totalWeight);
+  const { vat, total } = calculateOrderTotal(subtotal, shippingCost);
+  const isFormValid = user !== null;
+
+  return (
+    <div className="container mx-auto px-4 py-12">
+      <div className="mb-12">
+        <h1 className="text-4xl font-headline">Finaliser votre commande</h1>
+        <p className="text-muted-foreground mt-2">
+          {totalItems} article{totalItems > 1 ? 's' : ''} dans votre panier
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* LEFT: Checkout Form */}
+        <div className="lg:col-span-2">
+          {user ? (
+            <CheckoutForm onSubmit={handleCheckout} initialEmail={user.email || ''} isLoading={isCheckingOut} />
+          ) : (
+            <Card className="p-8 text-center">
+              <p className="text-muted-foreground mb-4">Veuillez d'abord vous connecter pour continuer</p>
+              <Button asChild>
+                <Link href={`/login?redirect=/cart`}>Se connecter</Link>
+              </Button>
+            </Card>
+          )}
+        </div>
+
+        {/* RIGHT: Order Summary */}
+        <div className="lg:col-span-1">
+          <div className="space-y-4">
+            {/* Cart Items */}
+            <Card className="p-4">
+              <h3 className="font-semibold mb-4">Votre panier</h3>
+              <div className="space-y-3">
+                {cart.map((item) => (
+                  <div key={item.id} className="flex gap-3 pb-3 border-b last:pb-0 last:border-0">
+                    <div className="relative w-16 h-16 flex-shrink-0 rounded bg-muted overflow-hidden">
+                      <Image src={item.image} alt={item.name} fill className="object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">{item.name}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <button
+                          onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                          className="text-muted-foreground hover:text-foreground"
+                        >
+                          −
+                        </button>
+                        <span className="text-xs w-4 text-center">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          className="text-muted-foreground hover:text-foreground"
+                        >
+                          +
+                        </button>
                       </div>
-                      <p className="font-semibold text-sm">
-                        {method.cost > 0 ? `${method.cost.toFixed(2)} €` : 'Gratuit'}
-                      </p>
-                    </Label>
-                  ))}
-                </RadioGroup>
-              </CardContent>
+                    </div>
+                    <div className="flex flex-col items-end justify-between">
+                      <p className="text-sm font-semibold">{(item.price * item.quantity).toFixed(2)}€</p>
+                      <button onClick={() => removeFromCart(item.id)} className="p-1 hover:text-destructive">
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                <button onClick={clearCart} className="text-xs text-accent hover:underline mt-3">
+                  Vider le panier
+                </button>
+              </div>
             </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Récapitulatif</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between">
-                  <span>Sous-total</span>
-                  <span>{subtotal.toFixed(2)} €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Livraison</span>
-                  <span>{shippingCost > 0 ? `${shippingCost.toFixed(2)} €` : 'Gratuite'}</span>
-                </div>
-                <Separator />
-                <p className="text-sm text-muted-foreground">
-                  Vous avez un code promo ? Vous pourrez l'ajouter sur la page de paiement.
-                </p>
-                <Separator />
-                <div className="flex justify-between font-bold text-lg">
-                  <span>Total</span>
-                  <span>{totalAmount.toFixed(2)} €</span>
-                </div>
-              </CardContent>
-              <CardFooter className="flex-col gap-3">
-                <Button className="w-full" size="lg" onClick={handleCheckout} disabled={isCheckingOut || cart.length === 0}>
-                  {isCheckingOut ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  {user ? (isCheckingOut ? 'Redirection...' : 'Passer la commande →') : 'Se connecter pour commander'}
-                </Button>
-                <div className="w-full flex items-center justify-center gap-2 text-muted-foreground">
-                  <Lock className="h-3 w-3" />
-                  <span className="text-[10px] uppercase tracking-wider">Paiement 100% sécurisé SSL</span>
-                </div>
-                <div className="w-full flex items-center justify-center gap-4">
-                  <span className="text-[10px] text-muted-foreground flex items-center gap-1">
-                    <ShieldCheck className="h-3 w-3 text-primary" /> Stripe
-                  </span>
-                  <span className="text-[10px] text-muted-foreground">Visa / Mastercard</span>
-                  <span className="text-[10px] text-muted-foreground">PayPal</span>
-                </div>
-              </CardFooter>
-            </Card>
+
+            {/* Order Summary with VAT */}
+            <OrderSummary
+              items={cart}
+              subtotal={subtotal}
+              vat={vat}
+              shipping={shippingCost}
+              total={total}
+              shippingMethod={selectedShippingMethod}
+              selectedPickupPoint={selectedPickupPoint}
+              onSubmit={() => {}}
+              isLoading={isCheckingOut}
+              isFormValid={isFormValid}
+            />
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
