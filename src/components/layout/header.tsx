@@ -196,6 +196,12 @@ export default function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild><Link href="/account">Profil</Link></DropdownMenuItem>
                   <DropdownMenuItem asChild><Link href="/account/orders">Mes commandes</Link></DropdownMenuItem>
+                  {user?.email === 'weblinecreation88@gmail.com' && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild><Link href="/admin">📊 Tableau de Bord Admin</Link></DropdownMenuItem>
+                    </>
+                  )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>Déconnexion</DropdownMenuItem>
                 </DropdownMenuContent>
