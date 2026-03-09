@@ -45,7 +45,16 @@ export function PickupPointSelector({
       if (pickupPoints.length === 0) {
         setError('Aucun point relais trouvé pour ce code postal');
       } else {
-        setPoints(pickupPoints);
+        // Sort by distance if available, closest first
+        const sorted = [...pickupPoints].sort((a, b) => {
+          if (a.distance && b.distance) {
+            return a.distance - b.distance;
+          }
+          return 0;
+        });
+        setPoints(sorted);
+        // Auto-select the closest one
+        onSelectPoint(sorted[0]);
       }
       setSearched(true);
     } catch (err) {

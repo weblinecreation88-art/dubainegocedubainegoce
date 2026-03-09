@@ -117,10 +117,14 @@ export function CheckoutForm({
     } else if (step === 2) {
       return await form.trigger(['firstName', 'lastName', 'address', 'city', 'postalCode', 'country']);
     } else if (step === 3) {
+      // Just validate shipping method - pickup point is selected at step 4
+      return await form.trigger(['shippingMethod']);
+    } else if (step === 4) {
+      // Validate that pickup point is selected if using Mondial Relay
       if (selectedMethod === 'mondial-relay' && !selectedPickupPoint) {
         return false;
       }
-      return await form.trigger(['shippingMethod']);
+      return true;
     }
     return true;
   };

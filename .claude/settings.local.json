@@ -151,7 +151,8 @@
       "Bash(PORT=3001 npm run dev)",
       "Bash(grep -l \"checkout\\\\|checkout_sessions\" /d/DUBAINEGOCE/src/app/api/webhooks/*)",
       "Bash(grep -A 5 \"if \\(method === ''colissimo''\\)\" src/lib/checkout-utils.ts)",
-      "Bash(lsof -i :3000)"
+      "Bash(lsof -i :3000)",
+      "Bash(curl -s http://localhost:3001)"
     ]
   }
 }
