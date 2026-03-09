@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { ShoppingCart, Lock } from 'lucide-react';
-import { formatCurrency, getShippingMethodLabel } from '@/lib/checkout-utils';
+import { formatCurrency, getShippingMethodLabel, formatShippingDetail } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import Image from 'next/image';
 
@@ -19,10 +19,13 @@ interface CartItem {
 interface OrderSummaryProps {
   items: CartItem[];
   subtotal: number;
+  subtotalHT?: number;
   vat: number;
   shipping: number;
   total: number;
   shippingMethod: string;
+  shippingCostHT?: number;
+  weightG?: number;
   selectedPickupPoint?: MondialRelayPickupPoint | null;
   onSubmit: () => void;
   isLoading?: boolean;
@@ -36,6 +39,7 @@ export function OrderSummary({
   shipping,
   total,
   shippingMethod,
+  weightG = 0,
   selectedPickupPoint,
   onSubmit,
   isLoading = false,
@@ -82,24 +86,29 @@ export function OrderSummary({
           <CardTitle className="text-sm">Résumé du paiement</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          {/* Subtotal */}
+          {/* Subtotal TTC */}
           <div className="flex justify-between items-center text-sm">
-            <span className="text-muted-foreground">Sous-total</span>
+            <span className="text-muted-foreground">Parfums (TTC)</span>
             <span className="font-medium">{formatCurrency(subtotal)}</span>
           </div>
 
-          {/* VAT */}
+          {/* VAT Included */}
           <div className="flex justify-between items-center text-sm p-2 bg-amber-50 dark:bg-amber-950/30 rounded border border-amber-200 dark:border-amber-800">
-            <span className="font-semibold text-amber-700 dark:text-amber-300">TVA (20%)</span>
+            <span className="text-xs text-amber-700 dark:text-amber-300">dont TVA 20% incluse</span>
             <span className="font-bold text-amber-700 dark:text-amber-300">{formatCurrency(vat)}</span>
           </div>
 
-          {/* Shipping */}
-          <div className="flex justify-between items-center text-sm">
-            <span className="text-muted-foreground">
-              {getShippingMethodLabel(shippingMethod)}
-            </span>
-            <span className="font-medium">{formatCurrency(shipping)}</span>
+          {/* Shipping with weight detail */}
+          <div className="space-y-1 pt-2 border-t">
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-xs text-muted-foreground">
+                📦 {formatShippingDetail(shippingMethod, weightG, shipping)}
+              </span>
+            </div>
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-muted-foreground">Livraison</span>
+              <span className="font-medium">{formatCurrency(shipping)}</span>
+            </div>
           </div>
 
           <Separator className="my-2" />

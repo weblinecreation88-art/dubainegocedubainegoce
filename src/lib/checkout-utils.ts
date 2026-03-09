@@ -6,31 +6,43 @@
 export const VAT_RATE = 0.20; // 20% VAT in France/EU
 
 /**
- * Calculate VAT amount (20% of subtotal)
+ * Calculate VAT amount INCLUDED in the price (products are already TTC at 35€)
+ * Formula: VAT = (Price TTC / 1.20) * 0.20
  */
-export function calculateVAT(subtotal: number): number {
-  return Math.round(subtotal * VAT_RATE * 100) / 100;
+export function calculateVATIncluded(subtotal: number): number {
+  return Math.round((subtotal / 1.2) * VAT_RATE * 100) / 100;
 }
 
 /**
  * Calculate complete order total
+ * Products are already TTC (35€), so we don't add VAT - just show it for transparency
  */
 export function calculateOrderTotal(
   subtotal: number,
   shippingCost: number
 ): {
-  subtotal: number;
+  subtotalHT: number;
   vat: number;
+  subtotalTTC: number;
   shipping: number;
   total: number;
 } {
-  const vat = calculateVAT(subtotal);
-  const total = subtotal + vat + shippingCost;
+  // Subtotal is already TTC, calculate VAT included
+  const vatIncluded = calculateVATIncluded(subtotal);
+  const subtotalHT = Math.round((subtotal - vatIncluded) * 100) / 100;
+
+  // Shipping is usually HT, add VAT to it as well
+  const shippingVAT = Math.round((shippingCost / 1.2) * VAT_RATE * 100) / 100;
+  const shippingTTC = shippingCost + shippingVAT;
+  const totalVAT = vatIncluded + shippingVAT;
+
+  const total = subtotal + shippingTTC;
 
   return {
-    subtotal: Math.round(subtotal * 100) / 100,
-    vat: Math.round(vat * 100) / 100,
-    shipping: Math.round(shippingCost * 100) / 100,
+    subtotalHT: subtotalHT,
+    vat: Math.round(totalVAT * 100) / 100,
+    subtotalTTC: Math.round(subtotal * 100) / 100,
+    shipping: Math.round(shippingTTC * 100) / 100,
     total: Math.round(total * 100) / 100,
   };
 }
@@ -86,4 +98,35 @@ export function getDeliveryTimeframe(method: string, country: string): string {
     return '4-7 jours ouvrables';
   }
   return '7-10 jours';
+}
+
+/**
+ * Format shipping details with weight breakdown
+ * Note: Each perfume bottle = 750g
+ */
+export function formatShippingDetail(method: string, weight: number, cost: number, country?: string): string {
+  const weightKg = (weight / 1000).toFixed(2);
+  const numBottles = Math.round(weight / 750);
+
+  if (method === 'colissimo') {
+    return `Colissimo (${numBottles} flacon${numBottles > 1 ? 's' : ''}, ${weightKg}kg)`;
+  }
+
+  if (method === 'mondial-relay') {
+    // Determine weight bracket for pricing
+    let bracket = '10kg+';
+    if (weight <= 250) bracket = '≤250g';
+    else if (weight <= 500) bracket = '250-500g';
+    else if (weight <= 750) bracket = '≤750g';
+    else if (weight <= 1000) bracket = '750g-1kg';
+    else if (weight <= 2000) bracket = '1-2kg';
+    else if (weight <= 4000) bracket = '2-4kg';
+    else if (weight <= 5000) bracket = '4-5kg';
+    else if (weight <= 7000) bracket = '5-7kg';
+    else if (weight <= 10000) bracket = '7-10kg';
+
+    return `Mondial Relay (${numBottles} flacon${numBottles > 1 ? 's' : ''} • ${bracket})`;
+  }
+
+  return `${method} (${numBottles} flacon${numBottles > 1 ? 's' : ''})`;
 }

@@ -79,8 +79,8 @@ export default function CartPage() {
         shippingCost = getMondialRelayInternationalCost(formData.country, totalWeight);
       }
 
-      // Calculate totals with VAT
-      const { vat, total } = calculateOrderTotal(subtotal, shippingCost);
+      // Calculate totals (products already TTC at 35€)
+      const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
 
       // Save shipping address to user profile
       const userDocRef = doc(firestore, 'users', user.uid);
@@ -221,8 +221,8 @@ export default function CartPage() {
 
   // Calculate costs and totals (default to Mondial Relay FR for preview)
   const selectedShippingMethod = 'mondial-relay';
-  const shippingCost = getMondialRelayInternationalCost('FR', totalWeight);
-  const { vat, total } = calculateOrderTotal(subtotal, shippingCost);
+  const shippingCostHT = getMondialRelayInternationalCost('FR', totalWeight);
+  const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCostHT);
   const isFormValid = user !== null;
 
   return (
@@ -298,9 +298,11 @@ export default function CartPage() {
               items={cart}
               subtotal={subtotal}
               vat={vat}
-              shipping={shippingCost}
+              shipping={shipping}
               total={total}
               shippingMethod={selectedShippingMethod}
+              shippingCostHT={shippingCostHT}
+              weightG={totalWeight}
               selectedPickupPoint={selectedPickupPoint}
               onSubmit={() => {}}
               isLoading={isCheckingOut}
