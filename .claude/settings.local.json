@@ -141,7 +141,9 @@
       "Bash(python3 generate_fragrance_cards.py)",
       "Bash(/d/DUBAINEGOCE/MISSION_COMPLETE.txt:*)",
       "Bash(ls -la /D/DUBAINEGOCE/*.json /D/DUBAINEGOCE/*.md /D/DUBAINEGOCE/scripts/)",
-      "Bash(grep -l \"firebase-config\" D:/DUBAINEGOCE/src/app/admin/*.tsx)"
+      "Bash(grep -l \"firebase-config\" D:/DUBAINEGOCE/src/app/admin/*.tsx)",
+      "Bash(xargs sed -i \"s|from ''@/firebase/server''|from ''@/firebase/server-only''|g\")",
+      "Bash(ls -la \"D:/DUBAINEGOCE/next.config\"*)"
     ]
   }
 }

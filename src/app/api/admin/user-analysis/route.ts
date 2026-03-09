@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { firestore } from '@/firebase/server';
+import { firestore } from '@/firebase/server-only';
 
 /**
  * API Endpoint pour analyser une tentative d'achat utilisateur

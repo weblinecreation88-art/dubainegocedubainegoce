@@ -190,6 +190,10 @@ const config = {
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals.push('raw-body');
+      // firebase-admin should only be used on the server
+      config.externals.push('firebase-admin');
+      config.externals.push('firebase-admin/app');
+      config.externals.push('firebase-admin/firestore');
     }
     return config;
   }

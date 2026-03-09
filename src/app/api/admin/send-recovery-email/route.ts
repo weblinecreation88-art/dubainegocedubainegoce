@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { firestore } from '@/firebase/server';
+import { firestore } from '@/firebase/server-only';
 
 /**
  * API Endpoint pour envoyer une relance email personnalisée
