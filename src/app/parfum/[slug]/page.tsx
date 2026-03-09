@@ -1,6 +1,7 @@
 
 
 import { getProductBySlug, getProducts, getRelatedProducts } from '@/lib/data';
+import { getSmartRelatedProducts, getFrequentlyBoughtTogether, getRecommendationContextText } from '@/lib/product-recommendations';
 import { notFound } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
 import { Star, Truck, ShieldCheck } from 'lucide-react';
@@ -16,6 +17,7 @@ import { ProductGallery } from '@/components/product/product-gallery';
 import { ProductPageClient } from './product-page-client';
 import { RotateCcw } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
+import { FrequentlyBoughtTogether } from '@/components/product/frequently-bought-together';
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
 type Props = {
@@ -78,7 +80,10 @@ export default function ProductPage({ params }: Props) {
     notFound();
   }
 
-  const relatedProducts = getRelatedProducts(product);
+  // Utiliser la logique smart de recommandations
+  const relatedProducts = getSmartRelatedProducts(product, 6);
+  const frequentlyBoughtTogether = getFrequentlyBoughtTogether(product, 3);
+  const recommendationContextText = getRecommendationContextText(product);
   const hasOlfactoryPyramid = product.topNotes || product.heartNotes || product.baseNotes;
 
   const jsonLd = {
@@ -233,9 +238,23 @@ export default function ProductPage({ params }: Props) {
           </Tabs>
         </div>
 
+        {/* Section "Fréquemment achetés ensemble" */}
+        {frequentlyBoughtTogether.length > 0 && (
+          <FrequentlyBoughtTogether
+            products={frequentlyBoughtTogether}
+            currentProduct={product}
+          />
+        )}
+
+        {/* Section "Vous pourriez aussi aimer" - Produits recommandés intelligemment */}
         {relatedProducts.length > 0 && (
           <div className="mt-24">
-            <h2 className="text-3xl font-headline text-center mb-12">Vous pourriez aussi aimer</h2>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-headline mb-3">{recommendationContextText}</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Découvrez nos sélections basées sur vos préférences et les avis d'autres clients
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map(related => (
                 <ProductCard key={related.id} product={related} />
