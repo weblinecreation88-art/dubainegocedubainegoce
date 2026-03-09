@@ -1,5 +1,4 @@
 import { firestore } from '@/firebase/server';
-import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface ProductStats {
@@ -25,8 +24,7 @@ export async function GET(
     const productId = params.id;
 
     // Get all orders from Firestore
-    const ordersRef = collection(firestore, 'orders');
-    const ordersSnapshot = await getDocs(ordersRef);
+    const ordersSnapshot = await firestore.collection('orders').get();
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);

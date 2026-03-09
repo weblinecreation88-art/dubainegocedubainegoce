@@ -1,5 +1,4 @@
 import { firestore } from '@/firebase/server';
-import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -9,7 +8,7 @@ export async function GET() {
     const todayTime = today.getTime();
 
     // Fetch orders
-    const ordersSnapshot = await getDocs(collection(firestore, 'orders'));
+    const ordersSnapshot = await firestore.collection('orders').get();
     const orders: any[] = [];
     let totalRevenue = 0;
     let todayOrders = 0;
@@ -34,11 +33,11 @@ export async function GET() {
     });
 
     // Fetch users
-    const usersSnapshot = await getDocs(collection(firestore, 'users'));
+    const usersSnapshot = await firestore.collection('users').get();
     const totalUsers = usersSnapshot.size;
 
     // Fetch emails
-    const emailsSnapshot = await getDocs(collection(firestore, 'emailLogs'));
+    const emailsSnapshot = await firestore.collection('emailLogs').get();
     const emailsSent = emailsSnapshot.size;
 
     let emailsOpened = 0;

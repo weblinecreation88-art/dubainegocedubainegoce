@@ -25,9 +25,9 @@ export default function AdminEmailsPage() {
         if (!response.ok) throw new Error('Failed to fetch emails');
         const data = await response.json();
         setEmails(data);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching emails:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -132,7 +132,7 @@ export default function AdminEmailsPage() {
                   </td>
                 </tr>
               ))
-            : (
+            ) : (
               <tr>
                 <td colSpan={6} className="px-6 py-8 text-center">
                   <p className="text-muted-foreground">Aucun email trouvé</p>
@@ -146,13 +146,7 @@ export default function AdminEmailsPage() {
   );
 }
 
-interface StatCardProps {
-  label: string;
-  value: string;
-  color: string;
-}
-
-function StatCard({ label, value, color }: StatCardProps) {
+function StatCard({ label, value, color }: { label: string; value: string; color: string }) {
   return (
     <div className="bg-card border border-border rounded-lg p-4 space-y-2">
       <p className="text-sm text-muted-foreground">{label}</p>

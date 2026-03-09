@@ -1,12 +1,11 @@
 import { firestore } from '@/firebase/server';
-import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextResponse } from 'next/server';
 import { getProducts } from '@/lib/data';
 
 export async function GET() {
   try {
     const allProducts = getProducts();
-    const ordersSnapshot = await getDocs(collection(firestore, 'orders'));
+    const ordersSnapshot = await firestore.collection('orders').get();
 
     const productSalesMap = new Map<
       string,

@@ -1,10 +1,9 @@
 import { firestore } from '@/firebase/server';
-import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const emailsSnapshot = await getDocs(collection(firestore, 'emailLogs'));
+    const emailsSnapshot = await firestore.collection('emailLogs').get();
     const emails: any[] = [];
 
     emailsSnapshot.forEach((doc) => {

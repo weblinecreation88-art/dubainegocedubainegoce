@@ -1,11 +1,10 @@
 import { firestore } from '@/firebase/server';
-import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const usersSnapshot = await getDocs(collection(firestore, 'users'));
-    const ordersSnapshot = await getDocs(collection(firestore, 'orders'));
+    const usersSnapshot = await firestore.collection('users').get();
+    const ordersSnapshot = await firestore.collection('orders').get();
 
     const userOrdersMap = new Map<string, { count: number; total: number }>();
 
