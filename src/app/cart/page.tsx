@@ -10,7 +10,7 @@ import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
-import { getColissimoCost, getMondialRelayCost } from '@/lib/data';
+import { getColissimoCost, getMondialRelayCost, getMondialRelayInternationalCost } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
 import { collection, addDoc, onSnapshot, DocumentData, doc, setDoc } from 'firebase/firestore';
 import { CheckoutForm } from '@/components/checkout/checkout-form';
@@ -71,10 +71,13 @@ export default function CartPage() {
 
     try {
       // Calculate shipping cost
-      const shippingCost =
-        formData.shippingMethod === 'colissimo'
-          ? getColissimoCost(totalWeight)
-          : getMondialRelayCost(formData.country, totalWeight);
+      let shippingCost = 0;
+      if (formData.shippingMethod === 'colissimo') {
+        shippingCost = getColissimoCost(totalWeight);
+      } else {
+        // Use international rates for all countries
+        shippingCost = getMondialRelayInternationalCost(formData.country, totalWeight);
+      }
 
       // Calculate totals with VAT
       const { vat, total } = calculateOrderTotal(subtotal, shippingCost);
@@ -216,9 +219,9 @@ export default function CartPage() {
     );
   }
 
-  // Calculate costs and totals
+  // Calculate costs and totals (default to Mondial Relay FR for preview)
   const selectedShippingMethod = 'mondial-relay';
-  const shippingCost = getMondialRelayCost('FR', totalWeight);
+  const shippingCost = getMondialRelayInternationalCost('FR', totalWeight);
   const { vat, total } = calculateOrderTotal(subtotal, shippingCost);
   const isFormValid = user !== null;
 
