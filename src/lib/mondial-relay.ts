@@ -72,14 +72,48 @@ export async function getMondialRelayPickupPoints(
     // Mock implementation - replace with actual API call
     let points = MOCK_PICKUP_POINTS[countryCode] || [];
 
-    // Filter by postal code if provided (mock filter)
-    if (postalCode) {
+    // Filter by postal code if provided (mock filter based on postal code prefixes)
+    if (postalCode && countryCode === 'FR') {
       const firstTwoDigits = postalCode.substring(0, 2);
-      // In real implementation, calculate distance or filter by actual postal code proximity
-      points = points.slice(0, 2); // Return nearest 2 points for demo
+
+      // Map French postal code prefixes to regions
+      const regionalMapping: Record<string, string[]> = {
+        '75': ['FR001', 'FR002', 'FR003'], // Paris region
+        '69': ['FR004'],                    // Lyon region
+        '13': ['FR005'],                    // Marseille region
+        '31': ['FR006'],                    // Toulouse region
+        '88': ['FR004', 'FR005'],           // Vosges - nearby regions (Lyon, Marseille)
+        '68': ['FR004', 'FR001'],           // Alsace - nearby regions
+        '44': ['FR005', 'FR006'],           // Loire - nearby regions
+      };
+
+      const mappedIds = regionalMapping[firstTwoDigits];
+      if (mappedIds) {
+        points = points.filter(p => mappedIds.includes(p.id));
+      }
+    } else if (postalCode && countryCode === 'CH') {
+      const firstTwoDigits = postalCode.substring(0, 2);
+
+      // Map Swiss postal code prefixes to regions
+      const regionalMapping: Record<string, string[]> = {
+        '80': ['CH001'],  // Zurich region
+        '40': ['CH002'],  // Basel region
+        '30': ['CH003'],  // Bern region
+        '12': ['CH004'],  // Geneva region
+        '10': ['CH005'],  // Lausanne region
+      };
+
+      const mappedIds = regionalMapping[firstTwoDigits];
+      if (mappedIds) {
+        points = points.filter(p => mappedIds.includes(p.id));
+      }
+    } else if (postalCode && countryCode !== 'FR' && countryCode !== 'CH') {
+      // For other countries, return nearest 3 points
+      points = points.slice(0, 3);
     }
 
-    return points;
+    // If no postal code provided, return all points for the country
+    return points.length > 0 ? points : MOCK_PICKUP_POINTS[countryCode] || [];
 
     // Real implementation would be:
     /*
