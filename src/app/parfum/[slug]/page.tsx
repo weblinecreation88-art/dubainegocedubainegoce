@@ -18,6 +18,9 @@ import { ProductPageClient } from './product-page-client';
 import { RotateCcw } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 import { FrequentlyBoughtTogether } from '@/components/product/frequently-bought-together';
+import { LimitedOfferBanner } from '@/components/product/limited-offer-banner';
+import { PopularityBadge } from '@/components/product/popularity-badge';
+import { RecentActivity } from '@/components/product/recent-activity';
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
 type Props = {
@@ -165,12 +168,23 @@ export default function ProductPage({ params }: Props) {
               </div>
             </div>
 
+            {/* Popularity badge */}
+            <PopularityBadge isNew={product.isNew} isBestseller={product.isBestseller} rating={product.rating} />
+
             <p className="text-lg text-muted-foreground">{product.shortDescription}</p>
 
             <div className="flex items-baseline gap-4">
               <span className="text-4xl font-bold text-primary">{product.price.toFixed(2)} €</span>
               {product.volumeMl > 0 && <span className="text-sm text-muted-foreground">/ {product.volumeMl}ml</span>}
             </div>
+
+            {/* Limited offer banner */}
+            <LimitedOfferBanner
+              isBestseller={product.isBestseller}
+              isNew={product.isNew}
+              stock={product.stock}
+              hasFlashOffer={false}
+            />
 
             {/* Stock urgency - Enhanced banner with progress bar */}
             <StockUrgencyBanner stock={product.stock} productName={product.name} />
@@ -237,6 +251,9 @@ export default function ProductPage({ params }: Props) {
             </TabsContent>
           </Tabs>
         </div>
+
+        {/* Section "Activité récente" - Social proof */}
+        <RecentActivity productName={product.name} />
 
         {/* Section "Fréquemment achetés ensemble" */}
         {frequentlyBoughtTogether.length > 0 && (
