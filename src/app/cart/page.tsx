@@ -42,6 +42,8 @@ export default function CartPage() {
   const [isClient, setIsClient] = useState(false);
   const { toast } = useToast();
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
+  const [formCountry, setFormCountry] = useState('FR');
+  const [formShippingMethod, setFormShippingMethod] = useState<'colissimo' | 'mondial-relay'>('mondial-relay');
 
   useEffect(() => {
     setIsClient(true);
@@ -219,9 +221,13 @@ export default function CartPage() {
     );
   }
 
-  // Calculate costs and totals (default to Mondial Relay FR for preview)
-  const selectedShippingMethod = 'mondial-relay';
-  const shippingCostHT = getMondialRelayInternationalCost('FR', totalWeight);
+  // Calculate costs and totals based on form state
+  let shippingCostHT = 0;
+  if (formShippingMethod === 'colissimo') {
+    shippingCostHT = getColissimoCost(totalWeight);
+  } else {
+    shippingCostHT = getMondialRelayInternationalCost(formCountry, totalWeight);
+  }
   const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCostHT);
   const isFormValid = user !== null;
 
@@ -238,7 +244,14 @@ export default function CartPage() {
         {/* LEFT: Checkout Form */}
         <div className="lg:col-span-2">
           {user ? (
-            <CheckoutForm onSubmit={handleCheckout} initialEmail={user.email || ''} isLoading={isCheckingOut} />
+            <CheckoutForm
+              onSubmit={handleCheckout}
+              initialEmail={user.email || ''}
+              isLoading={isCheckingOut}
+              onCountryChange={setFormCountry}
+              onShippingMethodChange={setFormShippingMethod}
+              onPickupPointChange={setSelectedPickupPoint}
+            />
           ) : (
             <Card className="p-8 text-center">
               <p className="text-muted-foreground mb-4">Veuillez d'abord vous connecter pour continuer</p>
@@ -300,7 +313,7 @@ export default function CartPage() {
               vat={vat}
               shipping={shipping}
               total={total}
-              shippingMethod={selectedShippingMethod}
+              shippingMethod={formShippingMethod}
               shippingCostHT={shippingCostHT}
               weightG={totalWeight}
               selectedPickupPoint={selectedPickupPoint}

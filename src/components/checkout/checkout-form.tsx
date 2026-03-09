@@ -62,12 +62,18 @@ interface CheckoutFormProps {
   onSubmit: (data: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => void;
   initialEmail?: string;
   isLoading?: boolean;
+  onCountryChange?: (country: string) => void;
+  onShippingMethodChange?: (method: 'colissimo' | 'mondial-relay') => void;
+  onPickupPointChange?: (point: MondialRelayPickupPoint | null) => void;
 }
 
 export function CheckoutForm({
   onSubmit,
   initialEmail = '',
   isLoading = false,
+  onCountryChange,
+  onShippingMethodChange,
+  onPickupPointChange,
 }: CheckoutFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
@@ -90,6 +96,19 @@ export function CheckoutForm({
 
   const selectedCountry = form.watch('country');
   const selectedMethod = form.watch('shippingMethod');
+
+  // Notify parent of changes
+  useEffect(() => {
+    onCountryChange?.(selectedCountry);
+  }, [selectedCountry, onCountryChange]);
+
+  useEffect(() => {
+    onShippingMethodChange?.(selectedMethod);
+  }, [selectedMethod, onShippingMethodChange]);
+
+  useEffect(() => {
+    onPickupPointChange?.(selectedPickupPoint);
+  }, [selectedPickupPoint, onPickupPointChange]);
 
   // Validate current step
   const validateStep = async (step: number): Promise<boolean> => {

@@ -35,6 +35,10 @@ export const getMondialRelayCost = (weightInGrams: number): number => {
 // International Mondial Relay rates for BE, NL, DE, LU
 export const getMondialRelayInternationalCost = (countryCode: string, weightInGrams: number): number => {
     const rates: Record<string, Record<number, number>> = {
+        'FR': { // France
+            250: 4.05, 500: 4.05, 750: 4.05, 1000: 5.00, 2000: 6.00,
+            4000: 7.00, 5000: 8.00, 7000: 9.50, 10000: 12.00
+        },
         'BE': { // Belgique
             250: 5.50, 500: 5.50, 750: 6.50, 1000: 6.50, 2000: 8.00,
             4000: 9.50, 5000: 18.50, 7000: 18.50, 10000: 18.50
@@ -50,6 +54,10 @@ export const getMondialRelayInternationalCost = (countryCode: string, weightInGr
         'LU': { // Luxembourg
             250: 5.00, 500: 5.00, 750: 6.00, 1000: 6.00, 2000: 7.50,
             4000: 8.50, 5000: 17.00, 7000: 17.00, 10000: 17.00
+        },
+        'CH': { // Suisse
+            250: 6.50, 500: 7.00, 750: 7.50, 1000: 8.00, 2000: 10.00,
+            4000: 12.00, 5000: 15.00, 7000: 18.00, 10000: 22.00
         }
     };
 
