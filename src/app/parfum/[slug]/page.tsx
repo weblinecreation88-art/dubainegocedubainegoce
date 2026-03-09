@@ -272,8 +272,13 @@ export default function ProductPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Popularity badge */}
-            <PopularityBadge isNew={product.isNew} isBestseller={product.isBestseller} rating={product.rating} />
+            {/* Popularity badge - avec données RÉELLES */}
+            <PopularityBadge
+              productId={product.id}
+              isNew={product.isNew}
+              isBestseller={product.isBestseller}
+              rating={product.rating}
+            />
 
             <p className="text-lg text-muted-foreground">{product.shortDescription}</p>
 
@@ -356,8 +361,8 @@ export default function ProductPage({ params }: Props) {
           </Tabs>
         </div>
 
-        {/* Section "Activité récente" - Social proof */}
-        <RecentActivity productName={product.name} />
+        {/* Section "Activité récente" - Social proof avec données RÉELLES */}
+        <RecentActivity productId={product.id} productName={product.name} />
 
         {/* Section "Fréquemment achetés ensemble" */}
         {frequentlyBoughtTogether.length > 0 && (

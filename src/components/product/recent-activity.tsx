@@ -2,119 +2,118 @@
 
 import { useState, useEffect } from 'react';
 import { Users, ShoppingBag, Clock } from 'lucide-react';
+import { useProductStats } from '@/hooks/useProductStats';
 
 interface RecentActivityProps {
+  productId: string;
   productName?: string;
-  viewersCount?: number;
-  salesTodayCount?: number;
-  lastSaleMinutesAgo?: number;
 }
 
 /**
- * Génère des données réalistes d'activité simulée
+ * Affiche l'activité RÉELLE d'un produit basée sur les données Firestore
+ * - Nombre réel de ventes aujourd'hui
+ * - Dernière vente réelle
+ * - Affichage discret si aucune donnée réelle disponible (pas de données simulées)
  */
-function generateActivityData() {
-  // Entre 1 et 5 personnes regardent en ce moment
-  const viewers = Math.floor(Math.random() * 5) + 1;
-
-  // Entre 3 et 15 ventes aujourd'hui
-  const salesToday = Math.floor(Math.random() * 12) + 3;
-
-  // Dernière vente il y a entre 5 et 120 minutes
-  const lastSaleMinutes = Math.floor(Math.random() * 115) + 5;
-
-  return { viewers, salesToday, lastSaleMinutes };
-}
-
 export function RecentActivity({
+  productId,
   productName = 'ce produit',
-  viewersCount,
-  salesTodayCount,
-  lastSaleMinutesAgo,
 }: RecentActivityProps) {
-  const [activity, setActivity] = useState({
-    viewers: 0,
-    salesToday: 0,
-    lastSaleMinutes: 0,
-  });
+  const { stats, isLoading } = useProductStats(productId);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+  }, []);
 
-    // Utiliser les données fournies ou générer des données simulées
-    const data = {
-      viewers: viewersCount || Math.floor(Math.random() * 5) + 1,
-      salesToday: salesTodayCount || Math.floor(Math.random() * 12) + 3,
-      lastSaleMinutes: lastSaleMinutesAgo || Math.floor(Math.random() * 115) + 5,
-    };
+  if (!mounted || isLoading) {
+    return null; // Don't show loading state - just return nothing
+  }
 
-    setActivity(data);
-
-    // Mettre à jour les viewers toutes les 30 secondes (simule le changement)
-    const interval = setInterval(() => {
-      setActivity(prev => ({
-        ...prev,
-        viewers: Math.floor(Math.random() * 6) + 1,
-      }));
-    }, 30000);
-
-    return () => clearInterval(interval);
-  }, [viewersCount, salesTodayCount, lastSaleMinutesAgo]);
-
-  if (!mounted) {
+  // If no real data exists, don't show the component
+  // This prevents showing fake/simulated data
+  if (!stats.hasRealData) {
     return null;
   }
 
-  const formatLastSale = (minutes: number): string => {
-    if (minutes < 60) {
+  const formatLastSale = (isoDate: string | null): string => {
+    if (!isoDate) return 'Aucune vente pour le moment';
+
+    const saleDate = new Date(isoDate);
+    const now = new Date();
+    const diffMs = now.getTime() - saleDate.getTime();
+
+    const minutes = Math.floor(diffMs / (1000 * 60));
+    const hours = Math.floor(diffMs / (1000 * 60 * 60));
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+    if (minutes < 1) {
+      return 'à l\'instant';
+    } else if (minutes < 60) {
       return `il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
+    } else if (hours < 24) {
+      return `il y a ${hours} heure${hours > 1 ? 's' : ''}`;
+    } else {
+      return `il y a ${days} jour${days > 1 ? 's' : ''}`;
     }
-    const hours = Math.floor(minutes / 60);
-    return `il y a ${hours} heure${hours > 1 ? 's' : ''}`;
   };
 
   return (
-    <div className="w-full mt-8 space-y-3 p-5 bg-gradient-to-br from-muted/30 to-muted/10 rounded-lg border border-muted/50">
-      {/* Personnes regardent */}
-      <div className="flex items-center gap-3 text-sm">
-        <div className="flex-shrink-0">
-          <Users className="h-5 w-5 text-accent animate-pulse" />
+    <div className="w-full mt-8 space-y-3 p-5 bg-gradient-to-br from-accent/5 to-accent/2 rounded-lg border border-accent/20">
+      {/* Ventes aujourd'hui - DONNÉE RÉELLE */}
+      {stats.purchasesToday > 0 && (
+        <div className="flex items-center gap-3 text-sm">
+          <div className="flex-shrink-0">
+            <ShoppingBag className="h-5 w-5 text-accent" />
+          </div>
+          <div className="flex-grow">
+            <p className="text-muted-foreground">
+              <span className="font-semibold text-foreground">
+                {stats.purchasesToday} vente{stats.purchasesToday > 1 ? 's' : ''}
+              </span>{' '}
+              aujourd'hui
+            </p>
+          </div>
         </div>
-        <div className="flex-grow">
-          <p className="text-muted-foreground">
-            <span className="font-semibold text-foreground">{activity.viewers} personne{activity.viewers > 1 ? 's' : ''}</span> regarde{activity.viewers > 1 ? 'nt' : ''} {productName} en ce moment
-          </p>
-        </div>
-      </div>
+      )}
 
-      {/* Ventes aujourd'hui */}
-      <div className="flex items-center gap-3 text-sm">
-        <div className="flex-shrink-0">
-          <ShoppingBag className="h-5 w-5 text-accent" />
+      {/* Dernière vente - DONNÉE RÉELLE */}
+      {stats.lastPurchaseAt && (
+        <div className="flex items-center gap-3 text-sm">
+          <div className="flex-shrink-0">
+            <Clock className="h-5 w-5 text-accent" />
+          </div>
+          <div className="flex-grow">
+            <p className="text-muted-foreground">
+              Dernière vente:{' '}
+              <span className="font-semibold text-foreground">
+                {formatLastSale(stats.lastPurchaseAt)}
+              </span>
+            </p>
+          </div>
         </div>
-        <div className="flex-grow">
-          <p className="text-muted-foreground">
-            <span className="font-semibold text-foreground">{activity.salesToday} vente{activity.salesToday > 1 ? 's' : ''}</span> aujourd'hui
-          </p>
-        </div>
-      </div>
+      )}
 
-      {/* Dernière vente */}
-      <div className="flex items-center gap-3 text-sm">
-        <div className="flex-shrink-0">
-          <Clock className="h-5 w-5 text-accent" />
+      {/* Nombre total d'acheteurs - DONNÉE RÉELLE */}
+      {stats.totalPurchases > 0 && (
+        <div className="flex items-center gap-3 text-sm">
+          <div className="flex-shrink-0">
+            <Users className="h-5 w-5 text-accent" />
+          </div>
+          <div className="flex-grow">
+            <p className="text-muted-foreground">
+              <span className="font-semibold text-foreground">
+                {stats.totalPurchases} acheteur{stats.totalPurchases > 1 ? 's' : ''}
+              </span>{' '}
+              satisfait{stats.totalPurchases > 1 ? 's' : ''}
+            </p>
+          </div>
         </div>
-        <div className="flex-grow">
-          <p className="text-muted-foreground">
-            Dernière vente: <span className="font-semibold text-foreground">{formatLastSale(activity.lastSaleMinutes)}</span>
-          </p>
-        </div>
-      </div>
+      )}
 
-      {/* Note de confiance */}
-      <p className="text-xs text-muted-foreground italic pt-2 border-t border-muted/30">
-        ✅ Cet article est très demandé - Achetez maintenant pour éviter les délais
+      {/* Badge de confiance basé sur données réelles */}
+      <p className="text-xs text-muted-foreground italic pt-2 border-t border-accent/20">
+        ✅ Données vérifiées - {stats.purchasesToday > 0 ? 'Achat' : 'Produit'} populaire
       </p>
     </div>
   );

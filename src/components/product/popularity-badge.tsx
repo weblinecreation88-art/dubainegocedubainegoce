@@ -2,40 +2,50 @@
 
 import { useState, useEffect } from 'react';
 import { Star, TrendingUp } from 'lucide-react';
+import { useProductStats } from '@/hooks/useProductStats';
 
 interface PopularityBadgeProps {
+  productId: string;
   isNew?: boolean;
   isBestseller?: boolean;
   rating?: number;
-  purchaseCount?: number;
 }
 
 /**
- * Génère un nombre simulé de "découvertes" pour un produit
+ * Affiche les badges de popularité basés sur DONNÉES RÉELLES
+ * - "NOUVEAU" si isNew=true
+ * - "BESTSELLER" si isBestseller=true
+ * - Compte réel d'acheteurs découvrant le produit
+ * - N'affiche PAS de faux chiffres (graceful degradation)
  */
-function generatePurchaseCount(baseRating: number = 4.5): number {
-  // Simulation réaliste: plus la note est élevée, plus il y a de ventes
-  const baseCount = Math.floor(baseRating * 150);
-  const variance = Math.floor(Math.random() * 200) - 100;
-  return Math.max(100, baseCount + variance);
-}
-
 export function PopularityBadge({
+  productId,
   isNew = false,
   isBestseller = false,
   rating = 4.5,
-  purchaseCount: initialPurchaseCount,
 }: PopularityBadgeProps) {
+  const { stats, isLoading } = useProductStats(productId);
   const [displayCount, setDisplayCount] = useState(0);
   const [mounted, setMounted] = useState(false);
 
-  const purchaseCount = initialPurchaseCount || generatePurchaseCount(rating);
-
   useEffect(() => {
     setMounted(true);
+  }, []);
 
-    // Animation count-up
-    const target = purchaseCount;
+  useEffect(() => {
+    if (!mounted || isLoading || !stats.hasRealData) {
+      return;
+    }
+
+    // Use real discovery count
+    const target = stats.discoveredByCount;
+
+    if (target === 0) {
+      setDisplayCount(0);
+      return;
+    }
+
+    // Animate count-up with real data
     const duration = 2000; // 2 secondes
     const startTime = Date.now();
 
@@ -55,14 +65,14 @@ export function PopularityBadge({
     };
 
     requestAnimationFrame(animate);
-  }, [purchaseCount]);
+  }, [stats.discoveredByCount, stats.hasRealData, isLoading, mounted]);
 
-  if (!mounted) {
+  if (!mounted || isLoading) {
     return null;
   }
 
-  // N'afficher que si c'est nouveau OU si c'est un bestseller
-  if (!isNew && !isBestseller) {
+  // Only show if it's new OR bestseller AND has real data
+  if ((!isNew && !isBestseller) || !stats.hasRealData) {
     return null;
   }
 
@@ -85,7 +95,11 @@ export function PopularityBadge({
 
       <TrendingUp className="h-4 w-4 text-accent" />
       <span className="text-accent-foreground font-semibold text-sm">
-        Découvert par <span className="font-headline text-accent">{displayCount.toLocaleString('fr-FR')}</span> clients
+        Découvert par{' '}
+        <span className="font-headline text-accent">
+          {displayCount.toLocaleString('fr-FR')}
+        </span>{' '}
+        client{displayCount !== 1 ? 's' : ''}
       </span>
     </div>
   );
