@@ -191,7 +191,6 @@ export async function getMondialRelayPickupPoints(
           // Bourgogne-Franche-Comté
           '21': ['FR004'],                   // Côte-d'Or
           '25': ['FR004'],                   // Doubs
-          '39': ['FR004'],                   // Jura
           '71': ['FR004'],                   // Saône-et-Loire
           '89': ['FR004'],                   // Yonne
           '90': ['FR004'],                   // Territoire de Belfort
