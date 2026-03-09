@@ -137,7 +137,10 @@
       "Bash(xargs grep -l \"window.gtag\\\\|dataLayer\")",
       "Bash(xargs grep -l \"checkout\\\\|payment\\\\|stripe\")",
       "Bash(grep -r \"NEXT_PUBLIC_GOOGLE_ADS\\\\|NEXT_PUBLIC_GTM\" /d/DUBAINEGOCE/.env* /d/DUBAINEGOCE/src --include=\"*.ts\" --include=\"*.tsx\")",
-      "Bash(grep -n \"AddToCartButton\\\\|stock\\\\|Ajouter au panier\" /d/DUBAINEGOCE/src/app/parfum/[slug]/page.tsx)"
+      "Bash(grep -n \"AddToCartButton\\\\|stock\\\\|Ajouter au panier\" /d/DUBAINEGOCE/src/app/parfum/[slug]/page.tsx)",
+      "Bash(python3 generate_fragrance_cards.py)",
+      "Bash(/d/DUBAINEGOCE/MISSION_COMPLETE.txt:*)",
+      "Bash(ls -la /D/DUBAINEGOCE/*.json /D/DUBAINEGOCE/*.md /D/DUBAINEGOCE/scripts/)"
     ]
   }
 }
