@@ -1,4 +1,4 @@
-import { firestore } from '@/firebase/server-only';
+import { firestore } from '@/firebase/server';
 import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextRequest, NextResponse } from 'next/server';
 
