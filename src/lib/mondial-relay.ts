@@ -27,6 +27,8 @@ const MOCK_PICKUP_POINTS: Record<string, MondialRelayPickupPoint[]> = {
     { id: 'FR004', name: 'Mondial Relay Lyon Presqu\'île', address: '35 Rue de la République', postalCode: '69002', city: 'Lyon', country: 'FR', distance: 2.1 },
     { id: 'FR005', name: 'Mondial Relay Marseille Vieux Port', address: '3 Quai du Port', postalCode: '13002', city: 'Marseille', country: 'FR', distance: 1.5 },
     { id: 'FR006', name: 'Mondial Relay Toulouse Centre', address: '42 Rue du Taur', postalCode: '31000', city: 'Toulouse', country: 'FR', distance: 0.8 },
+    { id: 'FR007', name: 'Mondial Relay Strasbourg Centre', address: '10 Place Kléber', postalCode: '67000', city: 'Strasbourg', country: 'FR', distance: 1.0 },
+    { id: 'FR008', name: 'Mondial Relay Épinal', address: '28 Rue Saint-Christophe', postalCode: '88000', city: 'Épinal', country: 'FR', distance: 0.3 },
   ],
   'BE': [ // Belgium
     { id: 'BE001', name: 'Mondial Relay Bruxelles Gare', address: 'Rue de France 3', postalCode: '1000', city: 'Bruxelles', country: 'BE', distance: 0.3 },
@@ -82,9 +84,11 @@ export async function getMondialRelayPickupPoints(
         '69': ['FR004'],                    // Lyon region
         '13': ['FR005'],                    // Marseille region
         '31': ['FR006'],                    // Toulouse region
-        '88': ['FR004', 'FR005'],           // Vosges - nearby regions (Lyon, Marseille)
-        '68': ['FR004', 'FR001'],           // Alsace - nearby regions
+        '88': ['FR008', 'FR007'],           // Épinal/Vosges (Épinal + Strasbourg nearby)
+        '67': ['FR007', 'FR008'],           // Strasbourg/Alsace (Strasbourg + Épinal nearby)
+        '68': ['FR007', 'FR001'],           // Alsace Mulhouse area
         '44': ['FR005', 'FR006'],           // Loire - nearby regions
+        '54': ['FR007', 'FR008'],           // Lorraine - Nancy area
       };
 
       const mappedIds = regionalMapping[firstTwoDigits];
