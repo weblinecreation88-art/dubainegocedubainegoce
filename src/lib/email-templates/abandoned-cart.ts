@@ -208,9 +208,8 @@ export function renderAbandonedCartDay7Email(
           </div>
 
           <div class="social-proof">
-            <p style="margin: 0 0 5px 0;">✓ 2000+ clients satisfaits</p>
             <p style="margin: 0 0 5px 0;">✓ Parfums 100% authentiques</p>
-            <p style="margin: 0;">✓ Livraison rapide en 2-3 jours</p>
+            <p style="margin: 0;">✓ Livraison rapide</p>
           </div>
 
           <p style="color: #666; font-size: 14px; margin-bottom: 20px; text-align: center;">

@@ -52,7 +52,7 @@ export function CustomerReviews({
       {/* Section Header */}
       <div>
         <h3 className="text-lg font-bold mb-1">Avis des clients</h3>
-        <p className="text-sm text-muted-foreground">347 avis vérifiés</p>
+        <p className="text-sm text-muted-foreground">{reviews.length} avis vérifiés</p>
       </div>
 
       {/* Reviews List */}

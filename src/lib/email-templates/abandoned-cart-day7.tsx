@@ -173,9 +173,8 @@ export function AbandonedCartDay7Email({
             color: '#666'
           }}>
             <p style={{ margin: '0' }}>
-              ✓ 2000+ clients satisfaits<br/>
               ✓ Parfums 100% authentiques<br/>
-              ✓ Livraison rapide en 2-3 jours
+              ✓ Livraison rapide
             </p>
           </div>
 

@@ -144,7 +144,14 @@
       "Bash(grep -l \"firebase-config\" D:/DUBAINEGOCE/src/app/admin/*.tsx)",
       "Bash(xargs sed -i \"s|from ''@/firebase/server''|from ''@/firebase/server-only''|g\")",
       "Bash(ls -la \"D:/DUBAINEGOCE/next.config\"*)",
-      "Bash(xxd -l 200 src/app/admin/emails/page.tsx)"
+      "Bash(xxd -l 200 src/app/admin/emails/page.tsx)",
+      "Bash(xargs -r kill -9)",
+      "Bash(xargs -r taskkill -PID -F)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(PORT=3001 npm run dev)",
+      "Bash(grep -l \"checkout\\\\|checkout_sessions\" /d/DUBAINEGOCE/src/app/api/webhooks/*)",
+      "Bash(grep -A 5 \"if \\(method === ''colissimo''\\)\" src/lib/checkout-utils.ts)",
+      "Bash(lsof -i :3000)"
     ]
   }
 }

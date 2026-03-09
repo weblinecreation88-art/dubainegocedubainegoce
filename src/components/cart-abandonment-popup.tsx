@@ -165,10 +165,6 @@ export function CartAbandonmentPopup() {
           </div>
         </div>
 
-        {/* Social Proof (Optional) */}
-        <div className="text-xs text-muted-foreground text-center mb-4">
-          <p>✓ Utilisé par 2000+ clients satisfaits</p>
-        </div>
 
         <div className="flex gap-3">
           <AlertDialogCancel onClick={handleClosePopup}>
