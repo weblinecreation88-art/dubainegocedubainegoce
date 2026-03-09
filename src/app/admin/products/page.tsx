@@ -1,9 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { db } from '@/firebase/server';
-import { collection, getDocs } from 'firebase/firestore';
-import { getProducts } from '@/lib/data';
 import { TrendingUp, Eye, ShoppingCart } from 'lucide-react';
 
 interface ProductStats {
@@ -27,60 +24,12 @@ export default function AdminProductsPage() {
   useEffect(() => {
     const fetchProductStats = async () => {
       try {
-        // Get all products from data
-        const allProducts = getProducts();
-
-        // Fetch all orders
-        const ordersSnapshot = await getDocs(collection(db, 'orders'));
-        const productSalesMap = new Map<
-          string,
-          { sales: number; revenue: number }
-        >();
-
-        ordersSnapshot.forEach((doc) => {
-          const order = doc.data();
-          const items = order.items || [];
-          items.forEach((item: any) => {
-            const key = item.productId || item.id;
-            const current = productSalesMap.get(key) || {
-              sales: 0,
-              revenue: 0,
-            };
-            current.sales++;
-            current.revenue += (item.price || 0) * (item.quantity || 1);
-            productSalesMap.set(key, current);
-          });
-        });
-
-        // Combine product data with sales data
-        const productStats: ProductStats[] = allProducts.map((product) => {
-          const salesData = productSalesMap.get(product.id) || {
-            sales: 0,
-            revenue: 0,
-          };
-          const estimatedViews = Math.max(
-            salesData.sales * 20,
-            Math.floor(Math.random() * 500) + 50
-          ); // Estimate: 20 views per sale
-          const conversionRate =
-            estimatedViews > 0
-              ? Math.round((salesData.sales / estimatedViews) * 100)
-              : 0;
-
-          return {
-            id: product.id,
-            name: product.name,
-            brand: product.brand.name,
-            price: product.price,
-            totalSales: salesData.sales,
-            estimatedViews,
-            revenue: Math.round(salesData.revenue),
-            conversionRate,
-          };
-        });
+        const response = await fetch('/api/admin/products');
+        if (!response.ok) throw new Error('Failed to fetch products');
+        const data = await response.json();
 
         // Sort by selected criteria
-        const sorted = [...productStats].sort((a, b) => {
+        const sorted = [...data].sort((a: ProductStats, b: ProductStats) => {
           switch (sortBy) {
             case 'revenue':
               return b.revenue - a.revenue;
