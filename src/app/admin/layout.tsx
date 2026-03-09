@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { auth } from '@/lib/firebase-config';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useAuth, useUser } from '@/firebase';
+import { signOut } from 'firebase/auth';
 import { BarChart3, LogOut, Menu, X } from 'lucide-react';
 
 const ADMIN_EMAIL = 'weblinecreation88@gmail.com';
@@ -14,37 +14,33 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const auth = useAuth();
+  const { user, isUserLoading } = useUser();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (!currentUser || currentUser.email !== ADMIN_EMAIL) {
-        router.push('/admin/login');
-        setLoading(false);
-        return;
-      }
+    // If user is still loading, don't redirect yet
+    if (isUserLoading) return;
 
-      setUser(currentUser);
-      setIsAuthorized(true);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, [router]);
+    // If no user or not admin email, redirect to login
+    if (!user || user.email !== ADMIN_EMAIL) {
+      router.push('/admin/login');
+    }
+  }, [user, isUserLoading, router]);
 
   const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      router.push('/admin/login');
-    } catch (error) {
-      console.error('Error signing out:', error);
+    if (auth) {
+      try {
+        await signOut(auth);
+        router.push('/admin/login');
+      } catch (error) {
+        console.error('Error signing out:', error);
+      }
     }
   };
 
-  if (loading) {
+  // Show loading state while checking auth
+  if (isUserLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
         <div className="text-center space-y-4">
@@ -55,7 +51,8 @@ export default function AdminLayout({
     );
   }
 
-  if (!isAuthorized) {
+  // If not authorized, don't show content
+  if (!user || user.email !== ADMIN_EMAIL) {
     return null;
   }
 
@@ -183,8 +180,14 @@ interface AdminNavLinkProps {
 
 function AdminNavLink({ href, label, icon, sidebarOpen }: AdminNavLinkProps) {
   const router = useRouter();
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
-  const isActive = pathname === href;
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    // Only check pathname on client side
+    if (typeof window !== 'undefined') {
+      setIsActive(window.location.pathname === href);
+    }
+  }, [href]);
 
   return (
     <button

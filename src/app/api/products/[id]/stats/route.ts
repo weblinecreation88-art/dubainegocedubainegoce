@@ -1,5 +1,5 @@
-import { db } from '@/lib/firebase-config';
-import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
+import { firestore } from '@/firebase/server';
+import { collection, getDocs } from 'firebase-admin/firestore';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface ProductStats {
@@ -25,7 +25,7 @@ export async function GET(
     const productId = params.id;
 
     // Get all orders from Firestore
-    const ordersRef = collection(db, 'orders');
+    const ordersRef = collection(firestore, 'orders');
     const ordersSnapshot = await getDocs(ordersRef);
 
     const today = new Date();

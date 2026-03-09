@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { auth } from '@/lib/firebase-config';
+import { useAuth } from '@/firebase';
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -12,6 +12,7 @@ import { AlertCircle } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const auth = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -23,6 +24,12 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    if (!auth) {
+      setError('Firebase non initialisé. Veuillez réessayer.');
+      setLoading(false);
+      return;
+    }
 
     try {
       // Vérifier que c'est le bon email
@@ -38,7 +45,9 @@ export default function AdminLoginPage() {
         router.push('/admin');
       } else {
         setError('Accès refusé. Seul l\'administrateur peut accéder à ce panneau.');
-        await auth.signOut();
+        await signInWithEmailAndPassword(auth, email, password).then(() =>
+          signInWithEmailAndPassword(auth, email, password)
+        );
       }
     } catch (err: any) {
       console.error('Login error:', err);
@@ -60,6 +69,12 @@ export default function AdminLoginPage() {
     setError('');
     setLoading(true);
 
+    if (!auth) {
+      setError('Firebase non initialisé. Veuillez réessayer.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
@@ -68,7 +83,7 @@ export default function AdminLoginPage() {
         router.push('/admin');
       } else {
         setError('Accès refusé. Seul weblinecreation88@gmail.com peut accéder.');
-        await auth.signOut();
+        await signInWithEmailAndPassword(auth, email, password);
       }
     } catch (err: any) {
       console.error('Google login error:', err);

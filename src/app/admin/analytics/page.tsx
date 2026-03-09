@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { db } from '@/lib/firebase-config';
+import { db } from '@/firebase/server';
 import { collection, getDocs } from 'firebase/firestore';
 import { TrendingUp, BarChart3, PieChart } from 'lucide-react';
 

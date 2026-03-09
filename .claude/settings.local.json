@@ -140,7 +140,8 @@
       "Bash(grep -n \"AddToCartButton\\\\|stock\\\\|Ajouter au panier\" /d/DUBAINEGOCE/src/app/parfum/[slug]/page.tsx)",
       "Bash(python3 generate_fragrance_cards.py)",
       "Bash(/d/DUBAINEGOCE/MISSION_COMPLETE.txt:*)",
-      "Bash(ls -la /D/DUBAINEGOCE/*.json /D/DUBAINEGOCE/*.md /D/DUBAINEGOCE/scripts/)"
+      "Bash(ls -la /D/DUBAINEGOCE/*.json /D/DUBAINEGOCE/*.md /D/DUBAINEGOCE/scripts/)",
+      "Bash(grep -l \"firebase-config\" D:/DUBAINEGOCE/src/app/admin/*.tsx)"
     ]
   }
 }
