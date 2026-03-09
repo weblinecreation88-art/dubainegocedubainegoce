@@ -27,8 +27,7 @@ export function PickupPointSelector({
   const [points, setPoints] = useState<MondialRelayPickupPoint[]>([]);
   const [searched, setSearched] = useState(false);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSearch = async () => {
     setError(null);
     setPoints([]);
 
@@ -80,7 +79,7 @@ export function PickupPointSelector({
           <CardTitle className="text-sm">Recherche par code postal</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSearch} className="flex gap-2">
+          <div className="flex gap-2">
             <Input
               type="text"
               placeholder="Entrez votre code postal"
@@ -90,8 +89,9 @@ export function PickupPointSelector({
               className="flex-1"
             />
             <Button
-              type="submit"
+              type="button"
               disabled={loading || !postalCode.trim()}
+              onClick={handleSearch}
               className="bg-accent text-accent-foreground hover:bg-accent/90"
             >
               {loading ? (
@@ -103,7 +103,7 @@ export function PickupPointSelector({
                 'Rechercher'
               )}
             </Button>
-          </form>
+          </div>
         </CardContent>
       </Card>
 
