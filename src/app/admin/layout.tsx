@@ -102,6 +102,12 @@ export default function AdminLayout({
             sidebarOpen={sidebarOpen}
           />
           <AdminNavLink
+            href="/admin/abandoned-carts"
+            label="Paniers Abandonnés"
+            icon="🛒"
+            sidebarOpen={sidebarOpen}
+          />
+          <AdminNavLink
             href="/admin/users"
             label="Utilisateurs"
             icon="👥"

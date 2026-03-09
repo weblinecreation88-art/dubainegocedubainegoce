@@ -107,7 +107,7 @@ export default function ProductPage({ params }: Props) {
 
   // Utiliser la logique smart de recommandations
   const relatedProducts = getSmartRelatedProducts(product, 6);
-  const frequentlyBoughtTogether = getFrequentlyBoughtTogether(product, 3);
+  const frequentlyBoughtTogether = getFrequentlyBoughtTogether(product, 8);
   const recommendationContextText = getRecommendationContextText(product);
   const hasOlfactoryPyramid = product.topNotes || product.heartNotes || product.baseNotes;
 
