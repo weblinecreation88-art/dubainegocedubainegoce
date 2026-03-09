@@ -7,8 +7,10 @@ import type { Product, Order, OrderItem, ShippingMethod, CartItem } from '@/lib/
 import { getProducts } from '@/lib/data';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
-import { firestore } from '@/firebase/server';
 import { z } from 'zod';
+
+// NOTE: firestore is NOT imported at module level to prevent firebase-admin from being bundled into client code.
+// It will be dynamically imported inside functions that need it.
 
 // Re-defining types here as they can't be imported from "use server" files
 type GenerateSeoDescriptionInput = {
@@ -90,6 +92,10 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
     console.error("[processSuccessfulOrder] ERREUR: La clé secrète Stripe (STRIPE_SECRET_KEY) est manquante.");
     throw new Error("La configuration de Stripe est incomplète sur le serveur.");
   }
+
+  // Dynamically import firestore to prevent it from being bundled into client code
+  const { firestore } = await import('@/firebase/server');
+
   if (!firestore) {
     console.error("[processSuccessfulOrder] ERREUR: La configuration de Firestore est incomplète sur le serveur.");
     throw new Error("La configuration de Firestore est incomplète sur le serveur.");
@@ -221,6 +227,9 @@ export async function subscribeToNewsletter(
   prevState: any,
   formData: FormData
 ): Promise<{ message: string; error?: boolean }> {
+  // Dynamically import firestore to prevent it from being bundled into client code
+  const { firestore } = await import('@/firebase/server');
+
   if (!firestore) {
     console.error("Firestore n'est pas configuré.");
     return {
@@ -271,6 +280,9 @@ export async function trackAbandonedCart(
   userEmail: string,
   userId?: string
 ): Promise<{ success: boolean; message?: string }> {
+  // Dynamically import firestore to prevent it from being bundled into client code
+  const { firestore } = await import('@/firebase/server');
+
   if (!firestore || cartSnapshot.length === 0) {
     return { success: false, message: 'Invalid cart or Firestore not configured' };
   }
