@@ -291,53 +291,74 @@ export function CheckoutForm({
 
           {/* Step 2: Shipping Method (no pickup point selection) */}
           {currentStep === 2 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>🚚 Mode de livraison</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="shippingMethod"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="space-y-3"
-                        >
-                          {/* Colissimo - France only */}
-                          {selectedCountry === 'FR' && (
+            <div className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>🚚 Mode de livraison</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="shippingMethod"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="space-y-3"
+                          >
+                            {/* Colissimo - France only */}
+                            {selectedCountry === 'FR' && (
+                              <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
+                                <RadioGroupItem value="colissimo" id="colissimo" />
+                                <Label htmlFor="colissimo" className="flex-1 cursor-pointer">
+                                  <div className="font-semibold">📦 Colissimo</div>
+                                  <div className="text-sm text-muted-foreground">
+                                    Livraison à domicile - 48h en France métropolitaine
+                                  </div>
+                                </Label>
+                              </div>
+                            )}
+
+                            {/* Mondial Relay - All countries */}
                             <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
-                              <RadioGroupItem value="colissimo" id="colissimo" />
-                              <Label htmlFor="colissimo" className="flex-1 cursor-pointer">
-                                <div className="font-semibold">📦 Colissimo</div>
+                              <RadioGroupItem value="mondial-relay" id="mondial-relay" />
+                              <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer">
+                                <div className="font-semibold">🛒 Mondial Relay</div>
                                 <div className="text-sm text-muted-foreground">
-                                  Livraison à domicile - 48h en France métropolitaine
+                                  Retrait en point relais - Confirmation par SMS
                                 </div>
                               </Label>
                             </div>
-                          )}
+                          </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
 
-                          {/* Mondial Relay - All countries */}
-                          <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
-                            <RadioGroupItem value="mondial-relay" id="mondial-relay" />
-                            <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer">
-                              <div className="font-semibold">🛒 Mondial Relay</div>
-                              <div className="text-sm text-muted-foreground">
-                                Retrait en point relais - Confirmation par SMS
-                              </div>
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
+              {/* Info message for Mondial Relay */}
+              {selectedMethod === 'mondial-relay' && (
+                <Card className="border-blue-200 bg-blue-50 dark:bg-blue-950/30">
+                  <CardContent className="pt-6">
+                    <div className="flex gap-3">
+                      <div className="text-2xl flex-shrink-0">📍</div>
+                      <div className="space-y-2">
+                        <p className="font-semibold text-sm text-blue-900 dark:text-blue-100">
+                          Votre point relais a été sélectionné
+                        </p>
+                        <p className="text-sm text-blue-800 dark:text-blue-200">
+                          Votre point relais a été sélectionné à votre adresse la plus proche automatiquement. Un mail de confirmation et un SMS vous sera envoyé pour confirmation.
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
           )}
 
           {/* Navigation Buttons */}
