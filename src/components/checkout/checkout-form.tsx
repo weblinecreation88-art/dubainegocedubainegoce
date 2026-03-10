@@ -380,12 +380,13 @@ export function CheckoutForm({
             </Card>
           )}
 
-          {/* Step 4: Pickup Point Selection */}
+          {/* Step 4: Pickup Point Selection - Auto-selects closest point */}
           {currentStep === 4 && selectedMethod === 'mondial-relay' && (
             <Card>
               <CardContent className="pt-6">
                 <PickupPointSelector
                   country={selectedCountry}
+                  postalCode={form.watch('postalCode')}
                   onSelectPoint={setSelectedPickupPoint}
                   selectedPointId={selectedPickupPoint?.id}
                 />
