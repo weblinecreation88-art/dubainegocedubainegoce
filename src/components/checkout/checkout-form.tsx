@@ -127,9 +127,6 @@ export function CheckoutForm({
   };
 
   const handleSubmit = async (data: CheckoutFormData) => {
-    if (selectedMethod === 'mondial-relay' && !selectedPickupPoint) {
-      return;
-    }
     onSubmit(data, selectedPickupPoint);
   };
 
