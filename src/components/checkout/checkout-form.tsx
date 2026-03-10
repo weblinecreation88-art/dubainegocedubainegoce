@@ -32,8 +32,8 @@ import { validatePostalCode } from '@/lib/checkout-utils';
 // Form Schema
 const checkoutSchema = z.object({
   // Step 1: Personal Info
-  email: z.string().email('Email invalide'),
-  phone: z.string().regex(/^[\d\s\+\-\(\)]{8,}$/, 'Numéro de téléphone invalide').optional().or(z.literal('')),
+  email: z.string().email('Email invalide').min(1, 'Email requis'),
+  phone: z.string().regex(/^[\d\s\+\-\(\)]{8,}$/, 'Numéro de téléphone invalide (minimum 8 caractères)').min(1, 'Téléphone requis'),
 
   // Step 2: Address
   firstName: z.string().min(2, 'Prénom requis'),
@@ -196,9 +196,9 @@ export function CheckoutForm({
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Téléphone</FormLabel>
+                      <FormLabel>Téléphone *</FormLabel>
                       <FormControl>
-                        <Input placeholder="+33 6 12 34 56 78" {...field} />
+                        <Input placeholder="+33 6 12 34 56 78" {...field} required />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
