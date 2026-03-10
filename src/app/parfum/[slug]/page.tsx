@@ -17,10 +17,8 @@ import { ProductGallery } from '@/components/product/product-gallery';
 import { ProductPageClient } from './product-page-client';
 import { RotateCcw } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
-import { FrequentlyBoughtTogether } from '@/components/product/frequently-bought-together';
 import { LimitedOfferBanner } from '@/components/product/limited-offer-banner';
 import { PopularityBadge } from '@/components/product/popularity-badge';
-import { RecentActivity } from '@/components/product/recent-activity';
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
 type Props = {
@@ -106,8 +104,7 @@ export default function ProductPage({ params }: Props) {
   }
 
   // Utiliser la logique smart de recommandations
-  const relatedProducts = getSmartRelatedProducts(product, 6);
-  const frequentlyBoughtTogether = getFrequentlyBoughtTogether(product, 8);
+  const relatedProducts = getSmartRelatedProducts(product, 4);
   const recommendationContextText = getRecommendationContextText(product);
   const hasOlfactoryPyramid = product.topNotes || product.heartNotes || product.baseNotes;
 
@@ -361,17 +358,6 @@ export default function ProductPage({ params }: Props) {
           </Tabs>
         </div>
 
-        {/* Section "Activité récente" - Social proof avec données RÉELLES */}
-        <RecentActivity productId={product.id} productName={product.name} />
-
-        {/* Section "Fréquemment achetés ensemble" */}
-        {frequentlyBoughtTogether.length > 0 && (
-          <FrequentlyBoughtTogether
-            products={frequentlyBoughtTogether}
-            currentProduct={product}
-          />
-        )}
-
         {/* Section "Vous pourriez aussi aimer" - Produits recommandés intelligemment */}
         {relatedProducts.length > 0 && (
           <div className="mt-24">
@@ -381,7 +367,7 @@ export default function ProductPage({ params }: Props) {
                 Découvrez nos sélections basées sur vos préférences et les avis d'autres clients
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map(related => (
                 <ProductCard key={related.id} product={related} />
               ))}

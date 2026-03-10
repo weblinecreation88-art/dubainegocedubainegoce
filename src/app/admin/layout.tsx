@@ -120,6 +120,12 @@ export default function AdminLayout({
             sidebarOpen={sidebarOpen}
           />
           <AdminNavLink
+            href="/admin/campaigns"
+            label="Campagnes"
+            icon="📧"
+            sidebarOpen={sidebarOpen}
+          />
+          <AdminNavLink
             href="/admin/settings"
             label="Paramètres"
             icon="⚙️"

@@ -152,7 +152,9 @@
       "Bash(grep -l \"checkout\\\\|checkout_sessions\" /d/DUBAINEGOCE/src/app/api/webhooks/*)",
       "Bash(grep -A 5 \"if \\(method === ''colissimo''\\)\" src/lib/checkout-utils.ts)",
       "Bash(lsof -i :3000)",
-      "Bash(curl -s http://localhost:3001)"
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(pkill -f \"npm run dev\")",
+      "Bash(curl -s http://localhost:3001/parfum/creed-aventus)"
     ]
   }
 }
