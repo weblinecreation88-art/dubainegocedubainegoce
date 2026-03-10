@@ -60,17 +60,7 @@ export default function CartPage() {
       return;
     }
 
-    // Validate form
-    if (formData.shippingMethod === 'mondial-relay' && !pickupPoint) {
-      toast({
-        variant: 'destructive',
-        title: 'Erreur',
-        description: 'Veuillez sélectionner un point relais',
-      });
-      return;
-    }
-
-    // Save form data and move to review/payment screen
+    // Save form data
     setLastFormData(formData);
     setSelectedPickupPoint(pickupPoint);
     setFormCountry(formData.country);
@@ -98,8 +88,8 @@ export default function CartPage() {
       console.error('Error saving address:', error);
     }
 
-    // Move to payment review screen
-    setMainStep('review-payment');
+    // Proceed directly to payment (no review step)
+    await handleConfirmPayment(formData, pickupPoint);
   };
 
   const handleConfirmPayment = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
