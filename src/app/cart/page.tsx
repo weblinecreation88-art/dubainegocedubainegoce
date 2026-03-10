@@ -245,7 +245,7 @@ export default function CartPage() {
     <div className="container mx-auto px-4 py-12">
       {/* STEP 1: Review Cart */}
       {mainStep === 'review-cart' && (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
           <div className="mb-8">
             <h1 className="text-4xl font-headline">Votre panier</h1>
             <p className="text-muted-foreground mt-2">
@@ -324,7 +324,7 @@ export default function CartPage() {
 
       {/* STEP 2: Checkout Form */}
       {mainStep === 'checkout-form' && (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
           <div className="mb-8">
             <Button
               variant="ghost"
@@ -360,7 +360,7 @@ export default function CartPage() {
 
       {/* STEP 3: Review & Payment */}
       {mainStep === 'review-payment' && (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
           <div className="mb-8">
             <Button
               variant="ghost"
