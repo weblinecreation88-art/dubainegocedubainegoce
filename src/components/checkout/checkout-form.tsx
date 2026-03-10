@@ -27,9 +27,8 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { PickupPointSelector } from './pickup-point-selector';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
-import { validatePostalCode } from '@/lib/checkout-utils';
 
-// Form Schema
+// Form Schema - Simplified without postal code
 const checkoutSchema = z.object({
   // Step 1: Personal Info
   email: z.string().email('Email invalide').min(1, 'Email requis'),
@@ -40,7 +39,6 @@ const checkoutSchema = z.object({
   lastName: z.string().min(2, 'Nom requis'),
   address: z.string().min(5, 'Adresse requise'),
   city: z.string().min(2, 'Ville requise'),
-  postalCode: z.string().min(2, 'Code postal requis'),
   country: z.string().min(2, 'Pays requis'),
 
   // Step 3: Shipping
@@ -87,9 +85,8 @@ export function CheckoutForm({
       lastName: '',
       address: '',
       city: '',
-      postalCode: '',
       country: 'FR',
-      shippingMethod: 'mondial-relay',
+      shippingMethod: 'colissimo',
     },
     mode: 'onChange',
   });
@@ -115,11 +112,8 @@ export function CheckoutForm({
     if (step === 1) {
       return await form.trigger(['email', 'phone']);
     } else if (step === 2) {
-      return await form.trigger(['firstName', 'lastName', 'address', 'city', 'postalCode', 'country']);
+      return await form.trigger(['firstName', 'lastName', 'address', 'city', 'country']);
     } else if (step === 3) {
-      // Just validate shipping method - pickup point is selected at step 4
-      return await form.trigger(['shippingMethod']);
-    } else if (step === 4) {
       // Validate that pickup point is selected if using Mondial Relay
       if (selectedMethod === 'mondial-relay' && !selectedPickupPoint) {
         return false;
@@ -131,7 +125,7 @@ export function CheckoutForm({
 
   const handleNext = async () => {
     if (await validateStep(currentStep)) {
-      setCurrentStep(Math.min(currentStep + 1, 4));
+      setCurrentStep(Math.min(currentStep + 1, 3));
     }
   };
 
@@ -150,7 +144,7 @@ export function CheckoutForm({
     <div className="space-y-6">
       {/* Progress Indicator */}
       <div className="flex gap-2">
-        {[1, 2, 3, 4].map((step) => (
+        {[1, 2, 3].map((step) => (
           <div key={step} className="flex items-center gap-2">
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
@@ -163,7 +157,7 @@ export function CheckoutForm({
             >
               {step < currentStep ? <Check className="h-4 w-4" /> : step}
             </div>
-            {step < 4 && <div className={`flex-1 h-0.5 ${step < currentStep ? 'bg-accent' : 'bg-muted'}`} />}
+            {step < 3 && <div className={`flex-1 h-0.5 ${step < currentStep ? 'bg-accent' : 'bg-muted'}`} />}
           </div>
         ))}
       </div>
@@ -259,47 +253,19 @@ export function CheckoutForm({
                   )}
                 />
 
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="city"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Ville *</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Paris" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="postalCode"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Code postal *</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="75000"
-                            {...field}
-                            onChange={(e) => {
-                              field.onChange(e);
-                              // Validate postal code
-                              if (e.target.value && !validatePostalCode(e.target.value, selectedCountry)) {
-                                form.setError('postalCode', { message: 'Format invalide' });
-                              } else {
-                                form.clearErrors('postalCode');
-                              }
-                            }}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="city"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Ville *</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Paris" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <FormField
                   control={form.control}
@@ -329,69 +295,74 @@ export function CheckoutForm({
             </Card>
           )}
 
-          {/* Step 3: Shipping Method */}
+          {/* Step 3: Shipping Method & Pickup Point */}
           {currentStep === 3 && (
-            <Card>
-              <CardHeader>
-                <CardTitle>🚚 Mode de livraison</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="shippingMethod"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="space-y-3"
-                        >
-                          {/* Colissimo - France only */}
-                          {selectedCountry === 'FR' && (
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>🚚 Mode de livraison</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="shippingMethod"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="space-y-3"
+                          >
+                            {/* Colissimo - France only */}
+                            {selectedCountry === 'FR' && (
+                              <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
+                                <RadioGroupItem value="colissimo" id="colissimo" />
+                                <Label htmlFor="colissimo" className="flex-1 cursor-pointer">
+                                  <div className="font-semibold">📦 Colissimo</div>
+                                  <div className="text-sm text-muted-foreground">
+                                    Livraison à domicile - 48h en France métropolitaine
+                                  </div>
+                                </Label>
+                              </div>
+                            )}
+
+                            {/* Mondial Relay - All countries */}
                             <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
-                              <RadioGroupItem value="colissimo" id="colissimo" />
-                              <Label htmlFor="colissimo" className="flex-1 cursor-pointer">
-                                <div className="font-semibold">📦 Colissimo</div>
+                              <RadioGroupItem value="mondial-relay" id="mondial-relay" />
+                              <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer">
+                                <div className="font-semibold">🛒 Mondial Relay</div>
                                 <div className="text-sm text-muted-foreground">
-                                  Livraison à domicile - 48h en France métropolitaine
+                                  Retrait en point relais - 4-7 jours ouvrables
                                 </div>
                               </Label>
                             </div>
-                          )}
+                          </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
+              </Card>
 
-                          {/* Mondial Relay - All countries */}
-                          <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
-                            <RadioGroupItem value="mondial-relay" id="mondial-relay" />
-                            <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer">
-                              <div className="font-semibold">🛒 Mondial Relay</div>
-                              <div className="text-sm text-muted-foreground">
-                                Retrait en point relais - 4-7 jours ouvrables
-                              </div>
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Step 4: Pickup Point Selection - Auto-selects closest point */}
-          {currentStep === 4 && selectedMethod === 'mondial-relay' && (
-            <Card>
-              <CardContent className="pt-6">
-                <PickupPointSelector
-                  country={selectedCountry}
-                  postalCode={form.watch('postalCode')}
-                  onSelectPoint={setSelectedPickupPoint}
-                  selectedPointId={selectedPickupPoint?.id}
-                />
-              </CardContent>
-            </Card>
+              {/* Pickup Point Selection for Mondial Relay */}
+              {selectedMethod === 'mondial-relay' && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>📍 Sélectionner un point relais</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <PickupPointSelector
+                      country={selectedCountry}
+                      postalCode=""
+                      onSelectPoint={setSelectedPickupPoint}
+                      selectedPointId={selectedPickupPoint?.id}
+                    />
+                  </CardContent>
+                </Card>
+              )}
+            </div>
           )}
 
           {/* Navigation Buttons */}
@@ -407,7 +378,7 @@ export function CheckoutForm({
               Retour
             </Button>
 
-            {currentStep < 4 && (
+            {currentStep < 3 && (
               <Button
                 type="button"
                 onClick={handleNext}
@@ -419,10 +390,10 @@ export function CheckoutForm({
               </Button>
             )}
 
-            {currentStep === 4 && (
+            {currentStep === 3 && (
               <Button
                 type="submit"
-                disabled={isLoading || selectedMethod === 'mondial-relay' && !selectedPickupPoint}
+                disabled={isLoading || (selectedMethod === 'mondial-relay' && !selectedPickupPoint)}
                 className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 Procéder au paiement

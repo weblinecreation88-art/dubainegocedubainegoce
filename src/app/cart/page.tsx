@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, Loader2 } from 'lucide-react';
+import { Trash2, ShoppingBag, Loader2, ChevronLeft } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -28,7 +28,6 @@ interface CheckoutFormData {
   lastName: string;
   address: string;
   city: string;
-  postalCode: string;
   country: string;
   shippingMethod: 'colissimo' | 'mondial-relay';
 }
@@ -44,6 +43,8 @@ export default function CartPage() {
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
   const [formCountry, setFormCountry] = useState('FR');
   const [formShippingMethod, setFormShippingMethod] = useState<'colissimo' | 'mondial-relay'>('mondial-relay');
+  const [mainStep, setMainStep] = useState<'review-cart' | 'checkout-form' | 'review-payment'>('review-cart');
+  const [lastFormData, setLastFormData] = useState<CheckoutFormData | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -69,6 +70,44 @@ export default function CartPage() {
       return;
     }
 
+    // Save form data and move to review/payment screen
+    setLastFormData(formData);
+    setSelectedPickupPoint(pickupPoint);
+    setFormCountry(formData.country);
+    setFormShippingMethod(formData.shippingMethod);
+
+    // Save shipping address to user profile
+    try {
+      const userDocRef = doc(firestore, 'users', user.uid);
+      await setDoc(
+        userDocRef,
+        {
+          shippingAddress: {
+            email: formData.email,
+            phone: formData.phone || '',
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            address: formData.address,
+            city: formData.city,
+            country: formData.country,
+          },
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      console.error('Error saving address:', error);
+    }
+
+    // Move to payment review screen
+    setMainStep('review-payment');
+  };
+
+  const handleConfirmPayment = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
+    if (!user || !firestore) {
+      router.push('/login?redirect=/cart');
+      return;
+    }
+
     setIsCheckingOut(true);
 
     try {
@@ -83,25 +122,6 @@ export default function CartPage() {
 
       // Calculate totals (products already TTC at 35€)
       const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
-
-      // Save shipping address to user profile
-      const userDocRef = doc(firestore, 'users', user.uid);
-      await setDoc(
-        userDocRef,
-        {
-          shippingAddress: {
-            email: formData.email,
-            phone: formData.phone || '',
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            address: formData.address,
-            city: formData.city,
-            postalCode: formData.postalCode,
-            country: formData.country,
-          },
-        },
-        { merge: true }
-      );
 
       // GTM Tracking
       if (typeof window !== 'undefined' && (window as any).dataLayer) {
@@ -233,16 +253,101 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="mb-12">
-        <h1 className="text-4xl font-headline">Finaliser votre commande</h1>
-        <p className="text-muted-foreground mt-2">
-          {totalItems} article{totalItems > 1 ? 's' : ''} dans votre panier
-        </p>
-      </div>
+      {/* STEP 1: Review Cart */}
+      {mainStep === 'review-cart' && (
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-8">
+            <h1 className="text-4xl font-headline">Votre panier</h1>
+            <p className="text-muted-foreground mt-2">
+              {totalItems} article{totalItems > 1 ? 's' : ''} en attente
+            </p>
+          </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* LEFT: Checkout Form */}
-        <div className="lg:col-span-2">
+          <Card className="p-6 mb-6">
+            <div className="space-y-3">
+              {cart.map((item) => (
+                <div key={item.id} className="flex gap-3 pb-3 border-b last:pb-0 last:border-0">
+                  <div className="relative w-20 h-20 flex-shrink-0 rounded bg-muted overflow-hidden">
+                    <Image src={item.image} alt={item.name} fill className="object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium">{item.name}</p>
+                    <p className="text-sm text-muted-foreground">{item.price}€ × {item.quantity}</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <button
+                        onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        −
+                      </button>
+                      <span className="text-xs w-4 text-center">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="text-muted-foreground hover:text-foreground"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end justify-between">
+                    <p className="font-semibold">{(item.price * item.quantity).toFixed(2)}€</p>
+                    <button onClick={() => removeFromCart(item.id)} className="p-1 hover:text-destructive">
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-6 border-t space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Sous-total</span>
+                <span>{subtotal.toFixed(2)}€</span>
+              </div>
+              <div className="flex justify-between text-lg font-semibold">
+                <span>Total</span>
+                <span>{subtotal.toFixed(2)}€</span>
+              </div>
+            </div>
+
+            <button onClick={clearCart} className="text-xs text-accent hover:underline mt-4">
+              Vider le panier
+            </button>
+          </Card>
+
+          <div className="flex gap-4">
+            <Button variant="outline" asChild className="flex-1">
+              <Link href="/shop">Continuer les achats</Link>
+            </Button>
+            {user ? (
+              <Button onClick={() => setMainStep('checkout-form')} className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90">
+                Continuer vers la livraison
+              </Button>
+            ) : (
+              <Button asChild className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90">
+                <Link href="/login?redirect=/cart">Se connecter</Link>
+              </Button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* STEP 2: Checkout Form */}
+      {mainStep === 'checkout-form' && (
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-8">
+            <Button
+              variant="ghost"
+              onClick={() => setMainStep('review-cart')}
+              className="mb-4"
+            >
+              <ChevronLeft className="h-4 w-4 mr-2" />
+              Retour au panier
+            </Button>
+            <h1 className="text-4xl font-headline">Informations de livraison</h1>
+            <p className="text-muted-foreground mt-2">Entrez vos détails de livraison</p>
+          </div>
+
           {user ? (
             <CheckoutForm
               onSubmit={handleCheckout}
@@ -261,52 +366,42 @@ export default function CartPage() {
             </Card>
           )}
         </div>
+      )}
 
-        {/* RIGHT: Order Summary */}
-        <div className="lg:col-span-1">
-          <div className="space-y-4">
-            {/* Cart Items */}
-            <Card className="p-4">
-              <h3 className="font-semibold mb-4">Votre panier</h3>
+      {/* STEP 3: Review & Payment */}
+      {mainStep === 'review-payment' && (
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-8">
+            <Button
+              variant="ghost"
+              onClick={() => setMainStep('checkout-form')}
+              className="mb-4"
+            >
+              <ChevronLeft className="h-4 w-4 mr-2" />
+              Modifier les informations
+            </Button>
+            <h1 className="text-4xl font-headline">Vérifier et payer</h1>
+            <p className="text-muted-foreground mt-2">Vérifiez vos informations avant de procéder</p>
+          </div>
+
+          <div className="grid gap-6">
+            {/* Cart Summary */}
+            <Card className="p-6">
+              <h2 className="font-semibold mb-4">📦 Résumé du panier</h2>
               <div className="space-y-3">
                 {cart.map((item) => (
-                  <div key={item.id} className="flex gap-3 pb-3 border-b last:pb-0 last:border-0">
-                    <div className="relative w-16 h-16 flex-shrink-0 rounded bg-muted overflow-hidden">
-                      <Image src={item.image} alt={item.name} fill className="object-cover" />
+                  <div key={item.id} className="flex justify-between text-sm pb-3 border-b last:pb-0 last:border-0">
+                    <div>
+                      <p className="font-medium">{item.name}</p>
+                      <p className="text-muted-foreground">Quantité: {item.quantity}</p>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">{item.name}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <button
-                          onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                          className="text-muted-foreground hover:text-foreground"
-                        >
-                          −
-                        </button>
-                        <span className="text-xs w-4 text-center">{item.quantity}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="text-muted-foreground hover:text-foreground"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end justify-between">
-                      <p className="text-sm font-semibold">{(item.price * item.quantity).toFixed(2)}€</p>
-                      <button onClick={() => removeFromCart(item.id)} className="p-1 hover:text-destructive">
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
+                    <p className="font-semibold">{(item.price * item.quantity).toFixed(2)}€</p>
                   </div>
                 ))}
-                <button onClick={clearCart} className="text-xs text-accent hover:underline mt-3">
-                  Vider le panier
-                </button>
               </div>
             </Card>
 
-            {/* Order Summary with VAT */}
+            {/* Order Totals */}
             <OrderSummary
               items={cart}
               subtotal={subtotal}
@@ -317,13 +412,45 @@ export default function CartPage() {
               shippingCostHT={shippingCostHT}
               weightG={totalWeight}
               selectedPickupPoint={selectedPickupPoint}
-              onSubmit={() => {}}
+              onSubmit={() => {
+                // Dummy onSubmit since we'll handle payment separately
+              }}
               isLoading={isCheckingOut}
               isFormValid={isFormValid}
             />
+
+            {/* Payment Actions */}
+            <div className="flex gap-4 mt-8">
+              <Button
+                variant="outline"
+                onClick={() => setMainStep('checkout-form')}
+                disabled={isCheckingOut}
+                className="flex-1"
+              >
+                Retour
+              </Button>
+              <Button
+                onClick={() => {
+                  if (lastFormData) {
+                    handleConfirmPayment(lastFormData, selectedPickupPoint);
+                  }
+                }}
+                disabled={isCheckingOut || !lastFormData}
+                className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
+              >
+                {isCheckingOut ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Traitement...
+                  </>
+                ) : (
+                  'Procéder au paiement'
+                )}
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

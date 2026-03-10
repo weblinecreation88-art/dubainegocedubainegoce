@@ -92,11 +92,12 @@ export function OrderSummary({
             <span className="font-medium">{formatCurrency(subtotal)}</span>
           </div>
 
-          {/* VAT Included */}
-          <div className="flex justify-between items-center text-sm p-2 bg-amber-50 dark:bg-amber-950/30 rounded border border-amber-200 dark:border-amber-800">
-            <span className="text-xs text-amber-700 dark:text-amber-300">dont TVA 20% incluse</span>
-            <span className="font-bold text-amber-700 dark:text-amber-300">{formatCurrency(vat)}</span>
-          </div>
+          {/* VAT Mention - Show only for Colissimo */}
+          {shippingMethod === 'colissimo' && (
+            <div className="text-xs text-muted-foreground">
+              dont TVA 20% incluse
+            </div>
+          )}
 
           {/* Shipping with weight detail */}
           <div className="space-y-1 pt-2 border-t">

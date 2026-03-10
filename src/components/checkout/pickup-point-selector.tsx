@@ -30,35 +30,26 @@ export function PickupPointSelector({
   const [selectedPoint, setSelectedPoint] = useState<MondialRelayPickupPoint | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
-  // Auto-select closest point when postal code changes
+  // Load pickup points for the country when component mounts or country changes
   useEffect(() => {
-    if (postalCode && validatePostalCode(postalCode, country)) {
-      autoSelectClosestPoint();
-    }
-  }, [postalCode, country]);
+    loadAvailablePoints();
+  }, [country]);
 
-  const autoSelectClosestPoint = async () => {
+  const loadAvailablePoints = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const pickupPoints = await getMondialRelayPickupPoints(country, postalCode);
+      const pickupPoints = await getMondialRelayPickupPoints(country, '');
 
       if (pickupPoints.length === 0) {
-        setError('Aucun point relais trouvé pour cette adresse');
+        setError('Aucun point relais trouvé pour ce pays');
         setSelectedPoint(null);
       } else {
-        // Sort by distance, select closest
-        const sorted = [...pickupPoints].sort((a, b) => {
-          if (a.distance && b.distance) {
-            return a.distance - b.distance;
-          }
-          return 0;
-        });
-
-        setPoints(sorted);
-        setSelectedPoint(sorted[0]);
-        onSelectPoint(sorted[0]);
+        setPoints(pickupPoints);
+        // Don't auto-select - let user choose manually
+        setSelectedPoint(null);
+        onSelectPoint(null);
       }
     } catch (err) {
       console.error('Error selecting pickup point:', err);
@@ -263,12 +254,63 @@ export function PickupPointSelector({
     );
   }
 
-  // Empty state (no postal code)
+  // Show list to select from if nothing selected yet
+  if (points.length > 0 && !selectedPoint) {
+    return (
+      <div className="space-y-4">
+        <p className="text-sm font-medium text-muted-foreground">Sélectionnez un point relais:</p>
+        <RadioGroup
+          value=""
+          onValueChange={(pointId: string) => {
+            const selected = points.find((p: MondialRelayPickupPoint) => p.id === pointId);
+            if (selected) {
+              setSelectedPoint(selected);
+              onSelectPoint(selected);
+            }
+          }}
+        >
+          <div className="space-y-2 max-h-96 overflow-y-auto">
+            {points.map((point) => (
+              <div
+                key={point.id}
+                className="flex items-start space-x-3 p-3 border rounded-lg hover:bg-accent/10 cursor-pointer transition-colors"
+              >
+                <RadioGroupItem value={point.id} id={point.id} className="mt-1 flex-shrink-0" />
+                <Label htmlFor={point.id} className="flex-1 cursor-pointer space-y-1">
+                  <div className="font-medium text-sm">{point.name}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {point.address}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {point.postalCode} {point.city}
+                  </div>
+                </Label>
+              </div>
+            ))}
+          </div>
+        </RadioGroup>
+      </div>
+    );
+  }
+
+  // Loading state
+  if (loading) {
+    return (
+      <Card className="border-accent/50 bg-accent/5">
+        <CardContent className="pt-6 text-center space-y-3">
+          <Loader2 className="h-6 w-6 animate-spin mx-auto text-accent" />
+          <p className="text-sm font-medium">Chargement des points relais...</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  // Empty state - shouldn't happen
   return (
     <Card>
       <CardContent className="pt-6 text-center text-muted-foreground">
         <MapPin className="h-8 w-8 mx-auto mb-2 opacity-50" />
-        <p className="text-sm">Complétez votre adresse pour sélectionner un point relais</p>
+        <p className="text-sm">Aucun point relais disponible pour ce pays</p>
       </CardContent>
     </Card>
   );
