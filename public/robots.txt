@@ -8,11 +8,8 @@ Disallow: /signup/
 
 # Panier et checkout (session utilisateur)
 Disallow: /cart/
-Disallow: /cart-2/
 Disallow: /panier/
 Disallow: /checkout/
-Disallow: /checkout-2/
-Disallow: /checkout-2/order-received/
 
 # Paramètres WooCommerce à ne pas indexer (doublons)
 Disallow: /*?add-to-cart=
@@ -28,12 +25,6 @@ Disallow: /wp-content/wp-cron.php
 Disallow: /wp-json/
 Disallow: /cgi-bin/
 Disallow: /feed/
-
-# Pages de test / brouillon
-Disallow: /test2/
-Disallow: /accueil-2/
-Disallow: /my-account-2/
-Disallow: /my-account-2-2/
 
 # Sitemaps
 Sitemap: https://dubainegoce.fr/sitemap.xml
