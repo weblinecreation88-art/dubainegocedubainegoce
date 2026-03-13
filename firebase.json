@@ -1,15 +1,21 @@
 {
   "hosting": {
-    "public": "out",
+    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "build/**",
+      ".next/**",
+      "out/**"
     ],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "run": {
+          "serviceId": "dubainegoce-nextjs",
+          "region": "europe-west1"
+        }
       }
     ]
   },
