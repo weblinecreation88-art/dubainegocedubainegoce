@@ -148,6 +148,16 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
+        {/* Google Analytics 4 (GA4) */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-CPYPZD7JKB" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CPYPZD7JKB');
+          `}
+        </Script>
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col')}>
         <noscript>
