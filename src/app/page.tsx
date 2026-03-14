@@ -88,14 +88,11 @@ export default function Home() {
     .filter((p): p is Product => p !== undefined);
 
   const heroImages = [
-    // Optimized for WebP: f_webp (force WebP), q_65 (reduced quality), w_2560 (max width), dpr_auto (responsive DPR)
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042739/Grise_-_Maison_Alhambra_rgvjtj.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042733/Omniyat_-_Surrati_ice7gl.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042690/Fleur_de_Coton_-_Sublime_bxfwfa.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042680/Good_Girl_by_Killer_-_Loui_Martin_rvtvqn.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042674/Niche_Royal_Rouge_-_Maison_Alhambra_i142ne.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042645/Olivia_Blossom_-_Maison_Alhambra_d9mink.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042629/Fakhar_Wasam_-_Lattafa_hwnd8d.webp",
+    "/WhatsApp Image 2026-03-04 at 00.00.40 (1).jpeg",
+    "/WhatsApp Image 2026-03-04 at 00.00.40 (2).jpeg",
+    "/WhatsApp Image 2026-03-04 at 00.00.40 (3).jpeg",
+    "/WhatsApp Image 2026-03-04 at 00.00.40 (4).jpeg",
+    "/WhatsApp Image 2026-03-04 at 00.00.40 (6).jpeg",
   ];
 
   return (

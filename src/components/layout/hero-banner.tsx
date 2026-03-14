@@ -51,7 +51,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                             alt={`Hero image ${currentIndex + 1}`}
                             fill
                             priority={currentIndex === 0}
-                            className="object-cover opacity-60"
+                            className="object-contain opacity-90"
                             sizes="100vw"
                         />
                     </motion.div>
