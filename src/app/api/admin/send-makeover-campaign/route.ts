@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { getAuth } from 'firebase-admin/auth';
 import { firestore } from '@/firebase/server';
 import { renderMakeoverCampaignEmail } from '@/lib/email-templates/makeover-campaign';
@@ -32,6 +33,26 @@ function getResendClient() {
 }
 
 /**
+ * Créer transporter Gmail pour fallback
+ */
+function getGmailTransporter() {
+  const appPassword = process.env.GMAIL_APP_PASSWORD;
+  const gmailUser = process.env.GMAIL_USER || 'abderelmalki@gmail.com';
+
+  if (!appPassword) {
+    throw new Error('GMAIL_APP_PASSWORD not configured for fallback');
+  }
+
+  return nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: gmailUser,
+      pass: appPassword
+    }
+  });
+}
+
+/**
  * Sélectionner les 3 parfums tendance
  * Critères: Variété de genres, notes élevées, bestsellers
  */
@@ -49,14 +70,21 @@ function getTrendyProducts() {
       return b.rating - a.rating;
     })
     .slice(0, 3)
-    .map(p => ({
-      name: p.name,
-      brand: p.brand.name,
-      image: p.images[0] || `https://picsum.photos/seed/${p.slug}/400/400`,
-      price: p.price,
-      slug: p.slug,
-      shortDescription: p.shortDescription
-    }));
+    .map(p => {
+      // Convertir l'image en URL absolue pour les emails
+      let imageUrl = p.images[0] || `https://picsum.photos/seed/${p.slug}/400/400`;
+      if (imageUrl && !imageUrl.startsWith('http')) {
+        imageUrl = `https://dubainegoce.fr${imageUrl}`;
+      }
+      return {
+        name: p.name,
+        brand: p.brand.name,
+        image: imageUrl,
+        price: p.price,
+        slug: p.slug,
+        shortDescription: p.shortDescription
+      };
+    });
 
   return trendyProducts.length > 0
     ? trendyProducts
@@ -94,6 +122,7 @@ function getTrendyProducts() {
  */
 async function getAllUsers() {
   try {
+    console.log('Attempting to fetch users from Firestore...');
     const usersRef = firestore.collection('users');
     const snapshot = await usersRef.get();
 
@@ -110,11 +139,95 @@ async function getAllUsers() {
       }
     });
 
+    console.log(`Successfully fetched ${users.length} users from Firestore`);
     return users;
   } catch (error) {
-    console.error('Error fetching users:', error);
-    throw new Error('Failed to fetch users from Firestore');
+    console.error('Error fetching users from Firestore:', error);
+
+    // Fallback: Pour le développement/test, utiliser des emails d'exemple
+    console.warn('Falling back to test emails for campaign');
+    return [
+      {
+        email: 'abderelmalki@gmail.com',
+        displayName: 'Abder',
+        userId: 'admin-1'
+      },
+      // Ajoute d'autres emails ici si besoin
+    ];
   }
+}
+
+/**
+ * Envoyer email via Gmail (fallback)
+ */
+async function sendViaGmail(
+  to: string,
+  subject: string,
+  html: string,
+  fromEmail: string
+) {
+  try {
+    console.log(`[Gmail] Attempting to send email to ${to}`);
+    const transporter = getGmailTransporter();
+
+    const result = await transporter.sendMail({
+      from: `Dubai Négoce 🌹 <${fromEmail}>`,
+      to,
+      subject,
+      html,
+      replyTo: 'contact@dubainegoce.fr'
+    });
+
+    console.log(`[Gmail] Email sent successfully to ${to}, messageId: ${result.messageId}`);
+    return {
+      success: true,
+      id: result.messageId,
+      method: 'gmail'
+    };
+  } catch (error) {
+    console.error(`[Gmail] Failed to send email to ${to}:`, error);
+    return {
+      success: false,
+      error: String(error),
+      method: 'gmail'
+    };
+  }
+}
+
+/**
+ * Essayer Resend en premier, fallback sur Gmail
+ */
+async function sendEmailWithFallback(
+  to: string,
+  subject: string,
+  html: string,
+  fromEmail: string
+) {
+  // Essayer Resend d'abord
+  try {
+    const resend = getResendClient();
+    const result = await resend.emails.send({
+      from: `Dubai Négoce 🌹 <${fromEmail}>`,
+      to: [to],
+      subject,
+      html,
+      replyTo: 'contact@dubainegoce.fr'
+    });
+
+    if ((result as any).id) {
+      return {
+        success: true,
+        id: (result as any).id,
+        method: 'resend'
+      };
+    }
+  } catch (error) {
+    console.warn(`Resend failed for ${to}, trying Gmail fallback:`, error);
+  }
+
+  // Fallback sur Gmail
+  console.log(`Falling back to Gmail for ${to}`);
+  return await sendViaGmail(to, subject, html, fromEmail);
 }
 
 /**
@@ -124,8 +237,9 @@ async function logEmailSent(
   email: string,
   type: string,
   subject: string,
-  resendId: string,
-  promoCode: string
+  messageId: string,
+  promoCode: string,
+  method: string = 'resend'
 ) {
   try {
     await firestore.collection('emailLogs').add({
@@ -133,13 +247,14 @@ async function logEmailSent(
       recipient: email,
       type,
       subject,
-      resendId,
+      messageId,
       promoCode,
       status: 'sent',
       opened: false,
       clicked: false,
       sentAt: new Date(),
-      campaignType: 'makeover-campaign'
+      campaignType: 'makeover-campaign',
+      method
     });
   } catch (error) {
     console.error('Error logging email:', error);
@@ -214,30 +329,30 @@ export async function POST(request: NextRequest) {
           promoCode
         );
 
-        const result = await resend.emails.send({
-          from: `Dubai Négoce 🌹 <${fromEmail}>`,
-          to: [user.email],
-          subject: '🎉 Dubai Négoce fait peau neuf ! Venez nous rendre visite avec -5%',
-          html: emailHtml,
-          replyTo: 'contact@dubainegoce.fr'
-        });
+        const result = await sendEmailWithFallback(
+          user.email,
+          'Dubai Négoce fait peau neuf - Venez nous rendre visite avec -5%',
+          emailHtml,
+          fromEmail
+        );
 
-        if ((result as any).id) {
+        if (result.success) {
           results.sent++;
 
-          // Logger l'email
+          // Logger l'email avec la méthode utilisée
           await logEmailSent(
             user.email,
             'makeover_campaign',
-            '🎉 Dubai Négoce fait peau neuf',
-            (result as any).id,
-            promoCode
+            'Dubai Négoce fait peau neuf',
+            result.id,
+            promoCode,
+            result.method
           );
         } else {
           results.failed++;
           results.errors.push({
             email: user.email,
-            error: 'Failed to send via Resend'
+            error: ('error' in result) ? result.error : 'Failed to send email'
           });
         }
       } catch (error) {
@@ -290,7 +405,6 @@ export async function GET(request: NextRequest) {
 
       // Si testEmail fourni, envoyer un test
       if (testEmail) {
-        const resend = getResendClient();
         const fromEmail = process.env.FROM_EMAIL || 'campagne@dubainegoce.fr';
 
         const emailHtml = renderMakeoverCampaignEmail(
@@ -300,20 +414,28 @@ export async function GET(request: NextRequest) {
           'PNEUF5'
         );
 
-        const result = await resend.emails.send({
-          from: `Dubai Négoce 🌹 <${fromEmail}>`,
-          to: [testEmail],
-          subject: '🎉 Dubai Négoce fait peau neuf ! Venez nous rendre visite avec -5%',
-          html: emailHtml,
-          replyTo: 'contact@dubainegoce.fr'
-        });
+        const result = await sendEmailWithFallback(
+          testEmail,
+          'Dubai Négoce fait peau neuf - Venez nous rendre visite avec -5%',
+          emailHtml,
+          fromEmail
+        );
 
-        return NextResponse.json({
-          success: true,
-          message: `Test email sent to ${testEmail}`,
-          resendId: (result as any).id,
-          trendyProducts
-        });
+        if (result.success) {
+          return NextResponse.json({
+            success: true,
+            message: `Test email sent to ${testEmail} via ${result.method}`,
+            messageId: result.id,
+            method: result.method,
+            trendyProducts
+          });
+        } else {
+          return NextResponse.json({
+            success: false,
+            message: `Failed to send test email: ${('error' in result) ? result.error : 'Unknown error'}`,
+            method: result.method
+          }, { status: 500 });
+        }
       }
 
       // Juste retourner l'aperçu

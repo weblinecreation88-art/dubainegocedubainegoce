@@ -31,8 +31,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
     return (
         <section
-            className="relative w-full overflow-hidden bg-black md:h-screen md:min-h-[600px]"
-            style={{ height: "clamp(500px, 100vh, 100vh)" }}
+            className="relative w-full overflow-hidden bg-black h-[55vh] md:h-[75vh] md:min-h-[500px]"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
@@ -52,7 +51,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                             alt={`Hero image ${currentIndex + 1}`}
                             fill
                             priority={currentIndex === 0}
-                            className="object-contain opacity-90"
+                            className="object-cover opacity-90"
                             sizes="100vw"
                         />
                     </motion.div>

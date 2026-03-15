@@ -51,20 +51,10 @@ export function renderMakeoverCampaignEmail(
             overflow: hidden;
           }
           .header::before {
-            content: '✨';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 30px;
-            opacity: 0.3;
+            content: '';
           }
           .header::after {
-            content: '🌹';
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 30px;
-            opacity: 0.3;
+            content: '';
           }
           .header h1 {
             font-size: 36px;
@@ -123,12 +113,10 @@ export function renderMakeoverCampaignEmail(
             position: relative;
           }
           .tendance-title::before {
-            content: '🔥';
-            margin-right: 8px;
+            content: '';
           }
           .tendance-title::after {
-            content: '🔥';
-            margin-left: 8px;
+            content: '';
           }
 
           /* Products grid */
@@ -306,7 +294,7 @@ export function renderMakeoverCampaignEmail(
         <div class="container">
           <!-- Header -->
           <div class="header">
-            <h1>🌹 Dubai Négoce fait peau neuf!</h1>
+            <h1>Dubai Négoce fait peau neuf!</h1>
             <p>Venez nous rendre visite en ce moment</p>
           </div>
 
@@ -314,12 +302,12 @@ export function renderMakeoverCampaignEmail(
           <div class="content">
             <!-- Greeting -->
             <div class="greeting">
-              Bonjour <strong>${userName}</strong> 👋
+              Bonjour <strong>${userName}</strong>
             </div>
 
             <!-- Announcement -->
             <div class="announcement">
-              <h2>✨ Nouvelle ère pour Dubai Négoce</h2>
+              <h2>Nouvelle ère pour Dubai Négoce</h2>
               <p>
                 Nous avons complètement transformé notre univers pour vous offrir une meilleure expérience !
               </p>
@@ -327,7 +315,7 @@ export function renderMakeoverCampaignEmail(
                 Venez découvrir notre nouveau design, une navigation simplifiée et une offre encore plus attrayante.
               </p>
               <p style="font-weight: 600; color: #d4145a;">
-                Pour fêter ça avec vous, nous vous offrons <strong>-5% sur votre première commande</strong> ! 🎁
+                Pour fêter ça avec vous, nous vous offrons <strong>-5% sur votre première commande</strong> !
               </p>
             </div>
 
@@ -337,11 +325,17 @@ export function renderMakeoverCampaignEmail(
             </div>
 
             <div class="products-grid">
-              ${featuredProducts.map(product => `
+              ${featuredProducts.map(product => {
+                // Convertir les URLs relatives en URLs absolues pour les emails
+                let imageUrl = product.image;
+                if (imageUrl && !imageUrl.startsWith('http')) {
+                  imageUrl = `https://dubainegoce.fr${imageUrl}`;
+                }
+                return `
                 <div class="product-card">
                   <div class="product-image">
-                    ${product.image ?
-                      `<img src="${product.image}" alt="${product.name}" />`
+                    ${imageUrl ?
+                      `<img src="${imageUrl}" alt="${product.name}" />`
                       : '<span>Parfum</span>'
                     }
                   </div>
@@ -354,7 +348,8 @@ export function renderMakeoverCampaignEmail(
                     </a>
                   </div>
                 </div>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
 
             <!-- Promo Code Section -->
@@ -382,35 +377,35 @@ export function renderMakeoverCampaignEmail(
             <!-- Why section -->
             <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
               <p style="font-size: 14px; font-weight: 600; color: #222; margin-bottom: 12px;">
-                ✨ Pourquoi vous allez adorer la nouvelle version:
+                Pourquoi vous allez adorer la nouvelle version:
               </p>
               <p style="font-size: 13px; color: #666; margin: 8px 0;">
-                ✓ <strong>Interface plus intuitive</strong> - Trouvez vos parfums préférés en un clin d'œil
+                • <strong>Interface plus intuitive</strong> - Trouvez vos parfums préférés en un clin d'œil
               </p>
               <p style="font-size: 13px; color: #666; margin: 8px 0;">
-                ✓ <strong>Recommandations personnalisées</strong> - Basées sur vos goûts et historique
+                • <strong>Recommandations personnalisées</strong> - Basées sur vos goûts et historique
               </p>
               <p style="font-size: 13px; color: #666; margin: 8px 0;">
-                ✓ <strong>Livraison toujours en 48h</strong> - Partout en France métropolitaine
+                • <strong>Livraison toujours en 48h</strong> - Partout en France métropolitaine
               </p>
               <p style="font-size: 13px; color: #666; margin: 8px 0;">
-                ✓ <strong>Tarifs fixes toujours</strong> - 35€ tous nos parfums, sans augmentation
+                • <strong>Tarifs fixes toujours</strong> - 35€ tous nos parfums, sans augmentation
               </p>
             </div>
 
             <!-- Support section -->
             <div style="margin-top: 30px; padding: 20px; background: #fff9f3; border-radius: 8px;">
               <p style="font-size: 14px; font-weight: 600; color: #222; margin-bottom: 12px;">
-                💬 Des questions ?
+                Des questions ?
               </p>
               <p style="font-size: 13px; color: #666; margin-bottom: 10px;">
                 Notre équipe est là pour vous ! Contactez-nous par email ou téléphone :
               </p>
               <p style="font-size: 13px; color: #555; margin: 8px 0;">
-                📧 <a href="mailto:contact@dubainegoce.fr" style="color: #d4145a; text-decoration: none; font-weight: 500;">contact@dubainegoce.fr</a>
+                <a href="mailto:contact@dubainegoce.fr" style="color: #d4145a; text-decoration: none; font-weight: 500;">contact@dubainegoce.fr</a>
               </p>
               <p style="font-size: 13px; color: #555; margin: 8px 0;">
-                📞 <a href="tel:+33780299333" style="color: #d4145a; text-decoration: none; font-weight: 500;">07 80 29 93 33</a>
+                <a href="tel:+33780299333" style="color: #d4145a; text-decoration: none; font-weight: 500;">07 80 29 93 33</a>
               </p>
             </div>
           </div>
@@ -428,7 +423,7 @@ export function renderMakeoverCampaignEmail(
             </p>
             <div class="footer-divider">|</div>
             <p style="margin-top: 10px;">
-              Bienvenue dans la nouvelle ère de Dubai Négoce ! 🌹
+              Bienvenue dans la nouvelle ère de Dubai Négoce !
             </p>
           </div>
         </div>

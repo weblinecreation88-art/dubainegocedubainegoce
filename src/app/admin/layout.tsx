@@ -126,6 +126,12 @@ export default function AdminLayout({
             sidebarOpen={sidebarOpen}
           />
           <AdminNavLink
+            href="/admin/email-logs"
+            label="Logs Emails"
+            icon="📬"
+            sidebarOpen={sidebarOpen}
+          />
+          <AdminNavLink
             href="/admin/settings"
             label="Paramètres"
             icon="⚙️"
