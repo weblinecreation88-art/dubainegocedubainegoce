@@ -31,7 +31,8 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
     return (
         <section
-            className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black"
+            className="relative w-full overflow-hidden bg-black md:h-screen md:min-h-[600px]"
+            style={{ height: "clamp(500px, 100vh, 100vh)" }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
@@ -59,12 +60,12 @@ export function HeroBanner({ images }: HeroBannerProps) {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-center px-4">
+            <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-center px-4 py-8">
                 <motion.h1
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-4 tracking-wider drop-shadow-2xl"
+                    className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-serif text-white mb-2 sm:mb-4 tracking-wider drop-shadow-2xl"
                 >
                     L'ESSENCE DE DUBAÏ
                 </motion.h1>
@@ -72,7 +73,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="text-sm md:text-lg text-gray-200 mb-10 tracking-[0.3em] uppercase font-light drop-shadow-lg"
+                    className="text-xs sm:text-sm md:text-lg text-gray-200 mb-4 sm:mb-10 tracking-[0.15em] sm:tracking-[0.3em] uppercase font-light drop-shadow-lg max-w-md sm:max-w-none"
                 >
                     Collection Exclusive de Parfums Orientaux
                 </motion.p>

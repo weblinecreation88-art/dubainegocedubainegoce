@@ -88,11 +88,11 @@ export default function Home() {
     .filter((p): p is Product => p !== undefined);
 
   const heroImages = [
-    "/WhatsApp Image 2026-03-04 at 00.00.40 (1).jpeg",
-    "/WhatsApp Image 2026-03-04 at 00.00.40 (2).jpeg",
-    "/WhatsApp Image 2026-03-04 at 00.00.40 (3).jpeg",
-    "/WhatsApp Image 2026-03-04 at 00.00.40 (4).jpeg",
-    "/WhatsApp Image 2026-03-04 at 00.00.40 (6).jpeg",
+    "/hero-1.jpeg",
+    "/hero-2.jpeg",
+    "/hero-3.jpeg",
+    "/hero-4.jpeg",
+    "/hero-5.jpeg",
   ];
 
   return (
