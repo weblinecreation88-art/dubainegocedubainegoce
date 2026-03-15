@@ -144,6 +144,8 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        {/* TikTok Shop domain verification */}
+        <meta name="tiktok-domain-verification" content="FRFRLCPCQWAL" />
         {/* Preload hero LCP image */}
         <link rel="preload" as="image" href="/hero-1.jpeg" fetchPriority="high" />
         {/* Preconnect Cloudinary */}
