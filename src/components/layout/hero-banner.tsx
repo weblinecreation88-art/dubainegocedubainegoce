@@ -64,7 +64,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-serif text-white mb-2 sm:mb-4 tracking-wider drop-shadow-2xl"
+                    className="text-2xl sm:text-4xl md:text-7xl lg:text-8xl font-serif text-white mb-1 sm:mb-4 tracking-wider drop-shadow-2xl"
                 >
                     L'ESSENCE DE DUBAÏ
                 </motion.h1>
@@ -72,7 +72,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="text-xs sm:text-sm md:text-lg text-gray-200 mb-4 sm:mb-10 tracking-[0.15em] sm:tracking-[0.3em] uppercase font-light drop-shadow-lg max-w-md sm:max-w-none"
+                    className="text-[10px] sm:text-sm md:text-lg text-gray-200 mb-3 sm:mb-10 tracking-[0.12em] sm:tracking-[0.3em] uppercase font-light drop-shadow-lg max-w-md sm:max-w-none"
                 >
                     Collection Exclusive de Parfums Orientaux
                 </motion.p>
@@ -81,7 +81,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
                 >
-                    <Button asChild size="lg" className="bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-all duration-300">
+                    <Button asChild size="lg" className="bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white rounded-none px-6 py-3 md:px-12 md:py-7 text-xs md:text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase transition-all duration-300">
                         <Link href="/shop/all">
                             Découvrir la Collection
                         </Link>
