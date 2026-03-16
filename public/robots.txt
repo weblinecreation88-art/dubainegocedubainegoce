@@ -1,32 +1,95 @@
+# ============================================================
+# ROBOTS.TXT - dubainegoce.fr
+# Optimisé SEO 2026 - Budget crawl + Anti-bots malveillants
+# ============================================================
+
+# ── CRAWLERS AUTORISÉS ──────────────────────────────────────
 User-agent: *
 Allow: /
 
-# Pages privées / compte
+# Pages privées / compte utilisateur
 Disallow: /account/
 Disallow: /login/
 Disallow: /signup/
 
-# Panier et checkout (session utilisateur)
+# Panier et checkout (sessions utilisateur - contenu non indexable)
 Disallow: /cart/
 Disallow: /panier/
 Disallow: /checkout/
 
-# Paramètres WooCommerce à ne pas indexer (doublons)
+# Admin
+Disallow: /admin/
+
+# Fichiers système WordPress (vestiges migration)
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /wp-json/
+Disallow: /wp-login.php
+Disallow: /feed/
+Disallow: /cgi-bin/
+
+# Paramètres query string → évite contenu dupliqué
 Disallow: /*?add-to-cart=
 Disallow: /*?remove_item=
 Disallow: /*?_wpnonce=
 Disallow: /*?fbclid=
-Disallow: /*?utm_nooverride=
+Disallow: /*?gclid=
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?session=
 
-# Répertoires système
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-content/wp-cron.php
-Disallow: /wp-json/
-Disallow: /cgi-bin/
-Disallow: /feed/
+# ── GOOGLEBOT ───────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 1
 
-# Sitemaps
+# ── BINGBOT ─────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Crawl-delay: 2
+
+# ── AUTRES MOTEURS RESPECTABLES ─────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 3
+
+# ── CRAWLERS MALVEILLANTS / SCRAPERS ────────────────────────
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# ── SITEMAPS ────────────────────────────────────────────────
 Sitemap: https://dubainegoce.fr/sitemap.xml
 Sitemap: https://dubainegoce.fr/sitemap-produits.xml
 Sitemap: https://dubainegoce.fr/sitemap-categories.xml

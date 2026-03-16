@@ -10,8 +10,6 @@ import { OurDupesSection } from "@/components/layout/our-dupes-section";
 import React, { Suspense } from "react";
 import { HeroBanner } from "@/components/layout/hero-banner";
 import dynamic from "next/dynamic";
-import { Metadata } from "next";
-
 // Lazy load non-critical components for better initial load performance
 const CustomerReviewsSection = dynamic(
   () => import("@/components/customer-reviews-section").then(mod => ({ default: mod.CustomerReviewsSection })),
@@ -24,10 +22,6 @@ const CustomerReviewsSection = dynamic(
 // Garder UNIQUEMENT le composant principal de reviews
 // Supprimer les sections excessives pour un design épuré
 
-export const metadata: Metadata = {
-  title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
-  description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
-};
 
 export default function Home() {
   const fragranceFamilies = getFragranceFamilies();

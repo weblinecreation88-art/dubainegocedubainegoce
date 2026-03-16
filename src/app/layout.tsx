@@ -155,11 +155,17 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script id="google-tag-manager" strategy="lazyOnload">
           {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
+            (function() {
+              var h = window.location.hostname;
+              var ref = document.referrer || '';
+              // Exclure trafic interne : localhost, IP locale, console Firebase
+              if (h === 'localhost' || h === '127.0.0.1' || h.match(/^192\\.168\\./) || ref.indexOf('console.firebase.google.com') !== -1) return;
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            })();
           `}
         </Script>
       </head>
