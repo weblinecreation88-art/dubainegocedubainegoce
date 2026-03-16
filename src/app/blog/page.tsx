@@ -14,6 +14,41 @@ export const metadata: Metadata = {
 
 const blogPosts = [
     {
+        title: ‘Fakhar Black Lattafa : le masculin sombre qui s\’installe dans les tops’,
+        description: ‘Intense, boisé, profond — Fakhar Black est le parfum homme de Lattafa qu\’on ne s\’attendait pas à autant apprécier. Avis complet, sillage, occasions.’,
+        link: ‘/blog/fakhar-black-lattafa-homme’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png’,
+        imageHint: ‘Fakhar Black Lattafa parfum masculin sombre’
+    },
+    {
+        title: ‘Badee Al Oud Oud For Glory : l\’oriental iconique de 2025’,
+        description: ‘Pourquoi Badee Al Oud For Glory de Lattafa s\’est imposé comme référence en 2025. Oud profond, sillage imposant, tenue exceptionnelle — notre avis honnête.’,
+        link: ‘/blog/badee-al-oud-for-glory-avis’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png’,
+        imageHint: ‘Badee Al Oud For Glory Lattafa oriental’
+    },
+    {
+        title: ‘Fragrance World : la marque Dubai qui avance discrètement et s\’impose’,
+        description: ‘Moins connue que Lattafa, Fragrance World formule des parfums d\’une qualité surprenante depuis 30 ans. A King, K King, Dark As Wood — notre portrait de la marque.’,
+        link: ‘/blog/fragrance-world-marque’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png’,
+        imageHint: ‘Fragrance World Dubai marque parfum’
+    },
+    {
+        title: ‘La collection Kenzie French Avenue : les gourmands qui cartonnent sur TikTok’,
+        description: ‘Kenzie Marshmallow, Candid Vanilla, Pistachio — la série gourmande qui fait le buzz en 2026. Notes, avis, pour qui ? On a tout testé pour vous.’,
+        link: ‘/blog/kenzie-collection-french-avenue’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958123/ChatGPT_Image_29_juil._2025_01_03_23_f4fvfe.png’,
+        imageHint: ‘Kenzie French Avenue collection gourmand’
+    },
+    {
+        title: ‘Liquid Brun French Avenue : le gourmand épicé qui fait parler de lui en 2026’,
+        description: ‘Vanille bourbon, cardamome, praline — Liquid Brun de French Avenue est l\’alternative crédible à Althair que personne n\’attendait. Notre avis après test.’,
+        link: ‘/blog/liquid-brun-french-avenue’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png’,
+        imageHint: ‘Liquid Brun French Avenue gourmand épicé’
+    },
+    {
         title: ‘Les 8 meilleurs dupes de parfums de luxe à moins de 40€’,
         description: ‘Baccarat Rouge, Sauvage, Aventus, Tobacco Vanille… les alternatives qui s\’en rapprochent le plus, pour 10 à 15 fois moins cher. Comparatif honnête.’,
         link: ‘/blog/dupes-parfums-luxe’,

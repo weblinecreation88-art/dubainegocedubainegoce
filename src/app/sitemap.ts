@@ -118,6 +118,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/blog/liquid-brun-french-avenue`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/kenzie-collection-french-avenue`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/fragrance-world-marque`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/badee-al-oud-for-glory-avis`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/fakhar-black-lattafa-homme`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
