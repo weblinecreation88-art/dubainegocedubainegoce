@@ -30,6 +30,7 @@ const FaqChatbot = dynamic(() => import('@/components/faq-chatbot').then(m => ({
 const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(m => ({ default: m.CookieConsent })), { ssr: false });
 const ExitIntentPopup = dynamic(() => import('@/components/exit-intent-popup').then(m => ({ default: m.ExitIntentPopup })), { ssr: false });
 const CartAbandonmentPopup = dynamic(() => import('@/components/cart-abandonment-popup').then(m => ({ default: m.CartAbandonmentPopup })), { ssr: false });
+const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then(m => ({ default: m.AuthCartBridge })), { ssr: false });
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -237,6 +238,7 @@ export default function RootLayout({
                 <CookieConsent />
                 <ExitIntentPopup />
                 <CartAbandonmentPopup />
+                <AuthCartBridge />
               </WishlistProvider>
             </CartProvider>
           </FirebaseClientProvider>

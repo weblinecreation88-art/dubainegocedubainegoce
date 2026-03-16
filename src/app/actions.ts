@@ -288,30 +288,51 @@ export async function trackAbandonedCart(
   }
 
   try {
-    const sessionId = `${userId || userEmail}_${Date.now()}`;
+    // ID stable = 1 doc par utilisateur (upsert) — évite les doublons Firestore
+    const cleanEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
+    const docId = `${cleanEmail}_current`;
     const cartValue = cartSnapshot.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const now = new Date().toISOString();
 
-    await firestore.collection('abandoned_carts').doc(sessionId).set({
-      userId: userId || userEmail,
-      email: userEmail,
-      cartSnapshot: cartSnapshot.map(item => ({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        image: item.image
-      })),
-      cartValue: cartValue,
-      createdAt: new Date().toISOString(),
-      lastActivityAt: new Date().toISOString(),
-      emailsSent: {
-        day3: false,
-        day7: false
-      },
-      status: 'active'
-    });
+    const ref = firestore.collection('abandoned_carts').doc(docId);
+    const existing = await ref.get();
 
-    console.log(`[trackAbandonedCart] Tracked abandoned cart for ${userEmail}`);
+    if (existing.exists) {
+      // Mettre à jour le panier existant sans écraser createdAt ni emailsSent
+      await ref.update({
+        userId: userId || userEmail,
+        cartSnapshot: cartSnapshot.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image
+        })),
+        cartValue,
+        lastActivityAt: now,
+        status: 'active',
+      });
+    } else {
+      // Nouveau panier abandonné
+      await ref.set({
+        userId: userId || userEmail,
+        email: userEmail,
+        cartSnapshot: cartSnapshot.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image
+        })),
+        cartValue,
+        createdAt: now,
+        lastActivityAt: now,
+        emailsSent: { day1: false, day3: false, day7: false },
+        status: 'active',
+      });
+    }
+
+    console.log(`[trackAbandonedCart] Upserted abandoned cart for ${userEmail}`);
     return { success: true };
 
   } catch (error: any) {

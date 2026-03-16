@@ -1,7 +1,103 @@
 interface CartItem {
   name: string;
   quantity: number;
-  itemPrice: number;
+  price?: number;
+  itemPrice?: number;
+}
+
+function getItemPrice(item: CartItem): number {
+  return item.price ?? item.itemPrice ?? 0;
+}
+
+// ─────────────────────────────────────────────
+// EMAIL J+1 — Rappel doux, sans code promo
+// ─────────────────────────────────────────────
+export function renderAbandonedCartDay1Email(
+  customerName: string,
+  cartItems: CartItem[],
+  cartTotal: number,
+  cartLink: string
+): string {
+  const itemsHtml = cartItems.map(item => {
+    const price = getItemPrice(item);
+    return `
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 12px 0;">
+        <p style="margin: 0 0 4px 0; font-weight: bold; color: #1a1a1a;">${item.name}</p>
+        <p style="margin: 0; color: #888; font-size: 13px;">Quantité : ${item.quantity}</p>
+      </td>
+      <td style="padding: 12px 0; text-align: right; font-weight: bold; color: #1a1a1a;">
+        ${(price * item.quantity).toFixed(2)} €
+      </td>
+    </tr>
+  `;}).join('');
+
+  return `
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin:0;padding:0;background:#f5f5f5;font-family:Georgia,serif;">
+      <div style="max-width:600px;margin:0 auto;background:#fff;">
+
+        <!-- Header -->
+        <div style="background:#1a1a1a;padding:28px 30px;text-align:center;">
+          <h1 style="margin:0;color:#fff;font-size:22px;letter-spacing:3px;font-weight:normal;">DUBAINEGOCE</h1>
+          <p style="margin:6px 0 0;color:#aaa;font-size:11px;letter-spacing:2px;">PARFUMS AUTHENTIQUES DE DUBAÏ</p>
+        </div>
+
+        <!-- Body -->
+        <div style="padding:40px 36px;">
+          <h2 style="margin:0 0 16px;color:#1a1a1a;font-size:20px;font-weight:normal;">
+            Bonjour ${customerName},
+          </h2>
+          <p style="margin:0 0 24px;color:#555;font-size:15px;line-height:1.7;">
+            Vous avez laissé quelques parfums dans votre panier hier. Ils vous attendent toujours —
+            et les stocks restent limités sur certaines fragrances.
+          </p>
+
+          <!-- Récap panier -->
+          <div style="border:1px solid #e8e8e8;border-radius:6px;padding:20px;margin-bottom:28px;">
+            <p style="margin:0 0 16px;font-size:13px;color:#888;text-transform:uppercase;letter-spacing:1px;">Votre sélection</p>
+            <table style="width:100%;border-collapse:collapse;">
+              <tbody>
+                ${itemsHtml}
+                <tr>
+                  <td style="padding-top:14px;font-size:15px;font-weight:bold;color:#1a1a1a;border-top:2px solid #eee;">Total</td>
+                  <td style="padding-top:14px;text-align:right;font-size:15px;font-weight:bold;color:#1a1a1a;border-top:2px solid #eee;">${cartTotal.toFixed(2)} €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- CTA -->
+          <div style="text-align:center;margin-bottom:32px;">
+            <a href="${cartLink}" style="display:inline-block;background:#1a1a1a;color:#fff;padding:16px 48px;text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;">
+              Reprendre ma commande
+            </a>
+          </div>
+
+          <!-- Réassurance -->
+          <div style="display:flex;gap:12px;justify-content:center;text-align:center;font-size:12px;color:#888;">
+            <span>✓ 100% Authentique</span>
+            &nbsp;&nbsp;
+            <span>✓ Livraison Colissimo 48h</span>
+            &nbsp;&nbsp;
+            <span>✓ Paiement sécurisé</span>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background:#f9f9f9;border-top:1px solid #eee;padding:20px 36px;text-align:center;font-size:11px;color:#aaa;">
+          <p style="margin:0 0 6px;">© ${new Date().getFullYear()} Dubainegoce · <a href="${cartLink.split('/cart')[0]}/contact" style="color:#aaa;">Nous contacter</a></p>
+          <p style="margin:0;">Vous recevez cet email car vous avez un panier en cours.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
 }
 
 export function renderAbandonedCartDay3Email(

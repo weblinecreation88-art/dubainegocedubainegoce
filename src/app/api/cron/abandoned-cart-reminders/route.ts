@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { firestore } from '@/firebase/server';
 import { Resend } from 'resend';
-import { renderAbandonedCartDay3Email, renderAbandonedCartDay7Email } from '@/lib/email-templates/abandoned-cart';
+import { renderAbandonedCartDay1Email, renderAbandonedCartDay3Email, renderAbandonedCartDay7Email } from '@/lib/email-templates/abandoned-cart';
 
 const fromEmail = process.env.FROM_EMAIL || 'contact@dubainegoce.fr';
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
@@ -62,6 +62,7 @@ async function sendAbandonedCartReminders() {
       .where('status', '==', 'active')
       .get();
 
+    let day1Count = 0;
     let day3Count = 0;
     let day7Count = 0;
     const errors: string[] = [];
@@ -70,8 +71,43 @@ async function sendAbandonedCartReminders() {
       const cart = doc.data();
 
       try {
-        // Day 3 email
-        if (!cart.emailsSent.day3 && isExactlyNDaysOld(cart.createdAt, 3)) {
+        // ── Email J+1 : rappel doux (pas de promo, 3× plus efficace que J+3) ──
+        if (!cart.emailsSent?.day1 && isExactlyNDaysOld(cart.createdAt, 1)) {
+          const orders = await firestore
+            .collection('users')
+            .doc(cart.userId)
+            .collection('orders')
+            .where('orderDate', '>', cart.createdAt)
+            .limit(1)
+            .get();
+
+          if (orders.empty) {
+            const cartLink = `${appUrl}/cart`;
+            const customerName = cart.email.split('@')[0];
+
+            const emailHtml = renderAbandonedCartDay1Email(
+              customerName,
+              cart.cartSnapshot,
+              cart.cartValue,
+              cartLink
+            );
+
+            const resendClient = getResendClient();
+            await resendClient.emails.send({
+              from: `Dubainegoce <${fromEmail}>`,
+              to: [cart.email],
+              subject: `${customerName}, vos parfums vous attendent 🛒`,
+              html: emailHtml
+            });
+
+            await doc.ref.update({ 'emailsSent.day1': true });
+            day1Count++;
+            console.log(`[Day 1] Email sent to ${cart.email}`);
+          }
+        }
+
+        // ── Email J+3 : avec code promo ──
+        if (!cart.emailsSent?.day3 && isExactlyNDaysOld(cart.createdAt, 3)) {
           // Check if user hasn't ordered in the meantime
           const orders = await firestore
             .collection('users')
@@ -109,8 +145,8 @@ async function sendAbandonedCartReminders() {
           }
         }
 
-        // Day 7 email
-        if (!cart.emailsSent.day7 && isExactlyNDaysOld(cart.createdAt, 7)) {
+        // ── Email J+7 : dernière chance ──
+        if (!cart.emailsSent?.day7 && isExactlyNDaysOld(cart.createdAt, 7)) {
           // Check if user hasn't ordered in the meantime
           const orders = await firestore
             .collection('users')
@@ -161,6 +197,7 @@ async function sendAbandonedCartReminders() {
 
     return {
       success: true,
+      day1Sent: day1Count,
       day3Sent: day3Count,
       day7Sent: day7Count,
       errors
