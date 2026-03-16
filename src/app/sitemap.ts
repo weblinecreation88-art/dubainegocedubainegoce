@@ -88,6 +88,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     {
+      url: `${baseUrl}/blog/dupes-parfums-luxe`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/khamrah-lattafa-avis`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/parfums-orientaux-femme-2026`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/maison-alhambra-la-marque`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/blog/guide-parfum-oud`,
+      lastModified: new Date('2026-03-16'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

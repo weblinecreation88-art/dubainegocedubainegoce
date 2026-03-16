@@ -7,32 +7,67 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Blog Parfums - Tendances, Guides et Avis | Dubainegoce',
-    description: 'Découvrez nos guides complets sur les parfums orientaux, les tendances 2025, et les meilleures marques (Lattafa, Maison Alhambra). Conseils d\'experts et reviews.',
-    keywords: 'guide parfum, tendances parfum 2025, review lattafa, maison alhambra, parfum oriental, conseils parfum',
+    title: ‘Blog Parfums Orientaux — Guides, Avis et Dupes de Luxe | Dubainegoce’,
+    description: ‘Guides d\’achat, avis honnêtes, comparatifs dupes de luxe, décryptage de l\’oud — tout ce qu\’il faut savoir sur les parfums orientaux de Dubai (Lattafa, Maison Alhambra).’,
+    keywords: ‘guide parfum oriental, avis Khamrah, dupe parfum luxe, Maison Alhambra avis, parfum oud guide, parfum oriental femme, Lattafa meilleur parfum’,
 };
 
 const blogPosts = [
     {
-        title: 'À découvrir cet été 2025 : la marque Alhambra continue de captiver',
-        description: 'La marque Alhambra continue de captiver l’univers du bijou senteur avec ses créations uniques pour l\'été 2025.',
-        link: '/blog/alhambra-ete-2025',
-        imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765958123/ChatGPT_Image_29_juil._2025_01_03_23_f4fvfe.png',
-        imageHint: 'perfume display'
+        title: ‘Les 8 meilleurs dupes de parfums de luxe à moins de 40€’,
+        description: ‘Baccarat Rouge, Sauvage, Aventus, Tobacco Vanille… les alternatives qui s\’en rapprochent le plus, pour 10 à 15 fois moins cher. Comparatif honnête.’,
+        link: ‘/blog/dupes-parfums-luxe’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png’,
+        imageHint: ‘parfum luxe dupe comparatif’
     },
     {
-        title: 'Parfumerie 2025 : comment la tendance des parfums orientaux redéfinit le marché',
-        description: 'La tendance des parfums orientaux redéfinit le marché avec ses notes riches et complexes. Découvrez ce qui vous attend pour 2025.',
-        link: '/blog/tendances-parfums-orientaux-2025',
-        imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png',
-        imageHint: 'oriental perfume market'
+        title: ‘Khamrah Lattafa : avis complet et honnête après 1 an d\’utilisation’,
+        description: ‘Le parfum oriental le plus viral de ces dernières années. Notes, tenue, sillage, pour qui, quelle saison — tout ce que vous voulez savoir avant d\’acheter.’,
+        link: ‘/blog/khamrah-lattafa-avis’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png’,
+        imageHint: ‘Khamrah Lattafa avis review’
     },
     {
-        title: 'Top 5 des parfums Lattafa à absolument tester en 2025',
-        description: 'Découvrez notre sélection des incontournables de la maison Lattafa pour l\'année 2025, des fragrances qui marquent les esprits.',
-        link: '/blog/top-5-lattafa-2025',
-        imageUrl: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png',
-        imageHint: 'Lattafa perfume collection'
+        title: ‘7 parfums orientaux pour femme qu\’on adore en 2026’,
+        description: ‘Des floraux sucrés aux oud profonds : notre sélection des meilleures fragrances orientales féminines disponibles à moins de 40€.’,
+        link: ‘/blog/parfums-orientaux-femme-2026’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958123/ChatGPT_Image_29_juil._2025_01_03_23_f4fvfe.png’,
+        imageHint: ‘parfums orientaux femme selection’
+    },
+    {
+        title: ‘Maison Alhambra : la marque Dubai qui remplace le luxe à 200€’,
+        description: ‘Qui est vraiment Maison Alhambra ? Histoire, qualité, meilleures fragrances, comparaisons — avis honnête sur la marque qui fait parler d\’elle.’,
+        link: ‘/blog/maison-alhambra-la-marque’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958123/ChatGPT_Image_29_juil._2025_01_03_23_f4fvfe.png’,
+        imageHint: ‘Maison Alhambra marque Dubai’
+    },
+    {
+        title: ‘Tout savoir sur le parfum oud avant d\’acheter — guide complet’,
+        description: ‘Qu\’est-ce que l\’oud ? Pourquoi est-il si cher ? Comment choisir son premier oud ? Guide complet avec sélection des meilleurs oud à moins de 40€.’,
+        link: ‘/blog/guide-parfum-oud’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png’,
+        imageHint: ‘guide parfum oud bois d agar’
+    },
+    {
+        title: ‘À découvrir cet été 2025 : la marque Alhambra continue de captiver’,
+        description: ‘La marque Alhambra continue de captiver l\’univers du parfum avec ses créations uniques pour l\’été 2025.’,
+        link: ‘/blog/alhambra-ete-2025’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958123/ChatGPT_Image_29_juil._2025_01_03_23_f4fvfe.png’,
+        imageHint: ‘perfume display’
+    },
+    {
+        title: ‘Parfumerie 2025 : comment la tendance orientale redéfinit le marché’,
+        description: ‘La tendance des parfums orientaux redéfinit le marché avec ses notes riches et complexes. Décryptage.’,
+        link: ‘/blog/tendances-parfums-orientaux-2025’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765958235/ChatGPT_Image_17_d%C3%A9c._2025_08_56_48_elcbtv.png’,
+        imageHint: ‘oriental perfume market’
+    },
+    {
+        title: ‘Top 5 des parfums Lattafa à absolument tester en 2025’,
+        description: ‘Découvrez notre sélection des incontournables de la maison Lattafa pour 2025, des fragrances qui marquent les esprits.’,
+        link: ‘/blog/top-5-lattafa-2025’,
+        imageUrl: ‘https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png’,
+        imageHint: ‘Lattafa perfume collection’
     }
 ];
 
