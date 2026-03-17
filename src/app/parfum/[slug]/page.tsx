@@ -309,7 +309,7 @@ export default function ProductPage({ params }: Props) {
             <ProductPageClient product={product} />
 
             {/* Quantité + Ajouter au panier */}
-            <ProductActions product={product} />
+            <ProductActions product={product} paypalClientId={process.env.PAYPAL_CLIENT_ID} />
 
             {/* Notes olfactives */}
             {hasOlfactoryPyramid && (

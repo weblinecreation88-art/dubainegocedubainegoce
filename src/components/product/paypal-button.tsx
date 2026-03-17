@@ -8,9 +8,10 @@ interface PayPalButtonProps {
   price: number;
   productName: string;
   quantity: number;
+  clientId: string;
 }
 
-function PayPalButtonInner({ price, productName, quantity }: PayPalButtonProps) {
+function PayPalButtonInner({ price, productName, quantity }: Omit<PayPalButtonProps, 'clientId'>) {
   const [{ isPending, isRejected }] = usePayPalScriptReducer();
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
@@ -86,8 +87,7 @@ function PayPalButtonInner({ price, productName, quantity }: PayPalButtonProps) 
   );
 }
 
-export function PayPalButton({ price, productName, quantity }: PayPalButtonProps) {
-  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
+export function PayPalButton({ price, productName, quantity, clientId }: PayPalButtonProps) {
   if (!clientId) return null;
 
   return (

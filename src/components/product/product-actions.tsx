@@ -7,7 +7,7 @@ import type { Product } from '@/lib/types';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export function ProductActions({ product }: { product: Product }) {
+export function ProductActions({ product, paypalClientId }: { product: Product; paypalClientId?: string }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -48,12 +48,15 @@ export function ProductActions({ product }: { product: Product }) {
         Ajouter au panier
       </AddToCartButton>
 
-      {/* Bouton PayPal (séparateur inclus dans le composant) */}
-      <PayPalButton
-        price={product.price}
-        productName={product.name}
-        quantity={quantity}
-      />
+      {/* Bouton PayPal (clientId injecté depuis le serveur) */}
+      {paypalClientId && (
+        <PayPalButton
+          price={product.price}
+          productName={product.name}
+          quantity={quantity}
+          clientId={paypalClientId}
+        />
+      )}
     </div>
   );
 }
