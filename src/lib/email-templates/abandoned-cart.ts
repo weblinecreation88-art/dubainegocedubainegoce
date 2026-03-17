@@ -112,11 +112,11 @@ export function renderAbandonedCartDay3Email(
       <td style="padding: 10px 0;">
         <p style="margin: 0 0 5px 0; font-weight: bold;">${item.name}</p>
         <p style="margin: 0; color: #666; font-size: 14px;">
-          Quantité: ${item.quantity} × ${item.itemPrice.toFixed(2)}€
+          Quantité: ${item.quantity} × ${getItemPrice(item).toFixed(2)}€
         </p>
       </td>
       <td style="padding: 10px 0; text-align: right; font-weight: bold;">
-        ${(item.itemPrice * item.quantity).toFixed(2)}€
+        ${(getItemPrice(item) * item.quantity).toFixed(2)}€
       </td>
     </tr>
   `).join('');
@@ -214,11 +214,11 @@ export function renderAbandonedCartDay7Email(
       <td style="padding: 10px 0;">
         <p style="margin: 0 0 5px 0; font-weight: bold;">${item.name}</p>
         <p style="margin: 0; color: #666; font-size: 14px;">
-          ${item.quantity} × ${item.itemPrice.toFixed(2)}€
+          ${item.quantity} × ${getItemPrice(item).toFixed(2)}€
         </p>
       </td>
       <td style="padding: 10px 0; text-align: right; font-weight: bold;">
-        ${(item.itemPrice * item.quantity).toFixed(2)}€
+        ${(getItemPrice(item) * item.quantity).toFixed(2)}€
       </td>
     </tr>
   `).join('');
