@@ -23,14 +23,47 @@ async function getAccessToken(): Promise<string> {
 
 export async function POST(req: NextRequest) {
   try {
-    const { amount, productName, quantity } = await req.json();
+    const { amount, productName, quantity, items, total, shippingAmount } = await req.json();
 
-    if (!amount || !productName) {
+    if (!amount && !total) {
       return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 });
     }
 
-    const total = (parseFloat(amount) * (quantity || 1)).toFixed(2);
+    // Support multi-items (checkout) or single item (product page)
+    const isMultiItem = items && items.length > 0;
+    const orderTotal = total
+      ? parseFloat(total).toFixed(2)
+      : (parseFloat(amount) * (quantity || 1)).toFixed(2);
+    const shippingValue = shippingAmount ? parseFloat(shippingAmount).toFixed(2) : '0.00';
+    const itemsTotal = (parseFloat(orderTotal) - parseFloat(shippingValue)).toFixed(2);
+
     const accessToken = await getAccessToken();
+
+    const paypalItems = isMultiItem
+      ? items.map((item: { name: string; quantity: string; unit_amount: { currency_code: string; value: string } }) => ({
+          name: item.name,
+          quantity: item.quantity,
+          unit_amount: item.unit_amount,
+          category: 'PHYSICAL_GOODS',
+        }))
+      : [
+          {
+            name: productName,
+            quantity: String(quantity || 1),
+            unit_amount: {
+              currency_code: 'EUR',
+              value: parseFloat(amount).toFixed(2),
+            },
+            category: 'PHYSICAL_GOODS',
+          },
+        ];
+
+    const breakdown: Record<string, { currency_code: string; value: string }> = {
+      item_total: { currency_code: 'EUR', value: itemsTotal },
+    };
+    if (parseFloat(shippingValue) > 0) {
+      breakdown.shipping = { currency_code: 'EUR', value: shippingValue };
+    }
 
     const res = await fetch(`${PAYPAL_BASE}/v2/checkout/orders`, {
       method: 'POST',
@@ -42,28 +75,13 @@ export async function POST(req: NextRequest) {
         intent: 'CAPTURE',
         purchase_units: [
           {
-            description: `${productName}${quantity > 1 ? ` x${quantity}` : ''} — Dubai Négoce`,
+            description: `${productName} — Dubai Négoce`,
             amount: {
               currency_code: 'EUR',
-              value: total,
-              breakdown: {
-                item_total: {
-                  currency_code: 'EUR',
-                  value: total,
-                },
-              },
+              value: orderTotal,
+              breakdown,
             },
-            items: [
-              {
-                name: productName,
-                quantity: String(quantity || 1),
-                unit_amount: {
-                  currency_code: 'EUR',
-                  value: parseFloat(amount).toFixed(2),
-                },
-                category: 'PHYSICAL_GOODS',
-              },
-            ],
+            items: paypalItems,
           },
         ],
         application_context: {

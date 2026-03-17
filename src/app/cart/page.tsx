@@ -17,6 +17,7 @@ import { CheckoutForm } from '@/components/checkout/checkout-form';
 import { OrderSummary } from '@/components/checkout/order-summary';
 import { calculateOrderTotal } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
+import { PayPalCheckoutButton } from '@/components/checkout/paypal-checkout-button';
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const PERFUME_WEIGHT_G = 750;
@@ -410,15 +411,8 @@ export default function CartPage() {
             />
 
             {/* Payment Actions */}
-            <div className="flex gap-4 mt-8">
-              <Button
-                variant="outline"
-                onClick={() => setMainStep('checkout-form')}
-                disabled={isCheckingOut}
-                className="flex-1"
-              >
-                Retour
-              </Button>
+            <div className="space-y-3 mt-8">
+              {/* Bouton Stripe */}
               <Button
                 onClick={() => {
                   if (lastFormData) {
@@ -426,7 +420,7 @@ export default function CartPage() {
                   }
                 }}
                 disabled={isCheckingOut || !lastFormData}
-                className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base"
               >
                 {isCheckingOut ? (
                   <>
@@ -434,8 +428,36 @@ export default function CartPage() {
                     Traitement...
                   </>
                 ) : (
-                  'Procéder au paiement'
+                  '💳 Payer par carte bancaire'
                 )}
+              </Button>
+
+              {/* Séparateur */}
+              <div className="flex items-center gap-3">
+                <div className="flex-1 border-t border-border" />
+                <span className="text-xs text-muted-foreground">ou</span>
+                <div className="flex-1 border-t border-border" />
+              </div>
+
+              {/* Bouton PayPal */}
+              <PayPalCheckoutButton
+                items={cart}
+                total={total}
+                shippingCost={shippingCostHT}
+                disabled={!lastFormData}
+                onSuccess={(orderId) => {
+                  router.push(`/checkout/success?paypal_order=${orderId}&total=${total.toFixed(2)}`);
+                }}
+              />
+
+              {/* Retour */}
+              <Button
+                variant="ghost"
+                onClick={() => setMainStep('checkout-form')}
+                disabled={isCheckingOut}
+                className="w-full text-muted-foreground"
+              >
+                ← Modifier les informations
               </Button>
             </div>
           </div>
