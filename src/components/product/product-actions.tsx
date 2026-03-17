@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { AddToCartButton } from './add-to-cart-button';
+import { PayPalButton } from './paypal-button';
 import type { Product } from '@/lib/types';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -46,6 +47,20 @@ export function ProductActions({ product }: { product: Product }) {
       >
         Ajouter au panier
       </AddToCartButton>
+
+      {/* Séparateur */}
+      <div className="flex items-center gap-3 my-1">
+        <div className="flex-1 border-t border-border" />
+        <span className="text-xs text-muted-foreground">ou payer avec</span>
+        <div className="flex-1 border-t border-border" />
+      </div>
+
+      {/* Bouton PayPal */}
+      <PayPalButton
+        price={product.price}
+        productName={product.name}
+        quantity={quantity}
+      />
     </div>
   );
 }
