@@ -9,15 +9,6 @@
       ".next/**",
       "out/**",
       ".env*"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "run": {
-          "serviceId": "dubainegoce-nextjs",
-          "region": "europe-west1"
-        }
-      }
     ]
   },
   "firestore": {
