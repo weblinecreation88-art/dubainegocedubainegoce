@@ -16,7 +16,10 @@ function PayPalButtonInner({ price, productName, quantity }: Omit<PayPalButtonPr
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
-  if (isRejected) return null; // Cache silencieusement si PayPal indisponible
+  if (isRejected) {
+    console.error('[PayPal] SDK script failed to load. Check clientId, ad blocker, or network.');
+    return null;
+  }
 
   return (
     <div className="w-full">
@@ -48,7 +51,6 @@ function PayPalButtonInner({ price, productName, quantity }: Omit<PayPalButtonPr
             shape: 'rect',
             label: 'paypal',
             height: 45,
-            tagline: false,
           }}
           createOrder={async () => {
             const res = await fetch('/api/paypal/create-order', {
