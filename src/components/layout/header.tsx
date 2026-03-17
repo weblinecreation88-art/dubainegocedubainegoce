@@ -95,6 +95,13 @@ export default function Header() {
                             <Link href="/shop/marque/lattafa" onClick={handleLinkClick} className="text-sm">Lattafa</Link>
                             <Link href="/shop/marque/french-avenue" onClick={handleLinkClick} className="text-sm">French Avenue</Link>
                             <Link href="/shop/marque/maison-alhambra" onClick={handleLinkClick} className="text-sm">Maison Alhambra</Link>
+                            <Link href="/shop/marque/fragrance-world" onClick={handleLinkClick} className="text-sm">Fragrance World</Link>
+                            <Link href="/shop/marque/ard-al-zaafaran" onClick={handleLinkClick} className="text-sm">Ard Al Zaafaran</Link>
+                            <Link href="/shop/marque/asdaaf" onClick={handleLinkClick} className="text-sm">Asdaaf</Link>
+                            <Link href="/shop/marque/paris-corner" onClick={handleLinkClick} className="text-sm">Paris Corner</Link>
+                            <Link href="/shop/marque/mirada" onClick={handleLinkClick} className="text-sm">MIRADA</Link>
+                            <Link href="/shop/marque/hamidi" onClick={handleLinkClick} className="text-sm">Hamidi</Link>
+                            <Link href="/shop/all" onClick={handleLinkClick} className="text-sm font-semibold text-accent">→ Toutes les marques</Link>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -234,7 +241,7 @@ export default function Header() {
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5" />
               {isMounted && cartCount > 0 && (
-                <Badge variant="destructive" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-primary text-primary-foreground">
+                <Badge variant="destructive" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-accent text-accent-foreground">
                   {cartCount}
                 </Badge>
               )}

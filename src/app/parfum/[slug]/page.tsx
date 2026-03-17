@@ -4,11 +4,11 @@ import { getProductBySlug, getProducts, getRelatedProducts } from '@/lib/data';
 import { getSmartRelatedProducts, getFrequentlyBoughtTogether, getRecommendationContextText } from '@/lib/product-recommendations';
 import { notFound } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
-import { Star, Truck, ShieldCheck } from 'lucide-react';
+import { Truck, ShieldCheck } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProductCard } from '@/components/product/product-card';
-import { AddToCartButton } from '@/components/product/add-to-cart-button';
+import { ProductActions } from '@/components/product/product-actions';
 import { StockUrgencyBanner } from '@/components/product/stock-urgency-banner';
 import { CustomerReviews } from '@/components/product/customer-reviews';
 import { Badge } from '@/components/ui/badge';
@@ -96,6 +96,20 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
   };
 }
 
+function extractNotesFromHtml(html: string): { top: string[], heart: string[], base: string[] } | null {
+  const pyramidMatch = html.match(/Pyramide Olfactive[\s\S]*?<p>([\s\S]*?)<\/p>/i);
+  if (!pyramidMatch) return null;
+  const para = pyramidMatch[1];
+  const strongs = [...para.matchAll(/<strong>([^<]+)<\/strong>/g)].map(m => m[1]);
+  const noteStrongs = strongs.slice(1, 4); // skip product name, take next 3
+  if (noteStrongs.length < 3) return null;
+  return {
+    top: noteStrongs[0].split(',').map(s => s.trim()),
+    heart: noteStrongs[1].split(',').map(s => s.trim()),
+    base: noteStrongs[2].split(',').map(s => s.trim()),
+  };
+}
+
 export default function ProductPage({ params }: Props) {
   const product = getProductBySlug(params.slug);
 
@@ -106,7 +120,15 @@ export default function ProductPage({ params }: Props) {
   // Utiliser la logique smart de recommandations
   const relatedProducts = getSmartRelatedProducts(product, 4);
   const recommendationContextText = getRecommendationContextText(product);
-  const hasOlfactoryPyramid = product.topNotes || product.heartNotes || product.baseNotes;
+
+  // Notes olfactives : champs dédiés ou extraction depuis la description
+  const extractedNotes = (!product.topNotes && !product.heartNotes && !product.baseNotes)
+    ? extractNotesFromHtml(product.longDescription || '')
+    : null;
+  const topNotes = product.topNotes?.length ? product.topNotes : extractedNotes?.top ?? [];
+  const heartNotes = product.heartNotes?.length ? product.heartNotes : extractedNotes?.heart ?? [];
+  const baseNotes = product.baseNotes?.length ? product.baseNotes : extractedNotes?.base ?? [];
+  const hasOlfactoryPyramid = topNotes.length > 0 || heartNotes.length > 0 || baseNotes.length > 0;
 
   const reviewCount = Math.floor(product.rating * 50) + 20; // Simulé de façon réaliste
   const stockLevel = product.stock > 100 ? 'HighStock' : product.stock > 20 ? 'InStock' : product.stock > 0 ? 'LimitedAvailability' : 'OutOfStock';
@@ -250,22 +272,17 @@ export default function ProductPage({ params }: Props) {
           </div>
 
           {/* Product Details */}
-          <div className="space-y-6">
+          <div className="space-y-5">
+
+            {/* Marque + Titre + Prix */}
             <div>
-              <p className="text-sm text-muted-foreground">{product.brand.name}</p>
-              <h1 className="text-3xl md:text-4xl font-headline font-bold">{product.name}</h1>
-              <div className="flex items-center gap-2 mt-2">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`h-5 w-5 ${i < Math.round(product.rating) ? 'text-primary fill-primary' : 'text-muted-foreground/50'}`} />
-                  ))}
-                </div>
-                <span className="text-sm text-muted-foreground">({product.rating.toFixed(1)})</span>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-4">
-                <Link href={`/shop/all?families=${product.family}`}><Badge variant="secondary">{product.family}</Badge></Link>
-                <Link href={`/shop/all?genders=${product.gender}`}><Badge variant="secondary" className="capitalize">{product.gender}</Badge></Link>
-                {product.tags.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
+              <p className="text-sm text-muted-foreground uppercase tracking-wide">{product.brand.name}</p>
+              <h1 className="text-3xl md:text-4xl font-headline font-bold mt-1">
+                {product.name} — Eau de Parfum {product.volumeMl} ml
+              </h1>
+              <div className="flex items-baseline gap-3 mt-3">
+                <span className="text-4xl font-bold text-primary">{product.price.toFixed(2)} €</span>
+                <span className="text-sm text-muted-foreground">TTC</span>
               </div>
             </div>
 
@@ -277,13 +294,6 @@ export default function ProductPage({ params }: Props) {
               rating={product.rating}
             />
 
-            <p className="text-lg text-muted-foreground">{product.shortDescription}</p>
-
-            <div className="flex items-baseline gap-4">
-              <span className="text-4xl font-bold text-primary">{product.price.toFixed(2)} €</span>
-              {product.volumeMl > 0 && <span className="text-sm text-muted-foreground">/ {product.volumeMl}ml</span>}
-            </div>
-
             {/* Limited offer banner */}
             <LimitedOfferBanner
               isBestseller={product.isBestseller}
@@ -292,23 +302,42 @@ export default function ProductPage({ params }: Props) {
               hasFlashOffer={false}
             />
 
-            {/* Stock urgency - Enhanced banner with progress bar */}
+            {/* Stock urgency */}
             <StockUrgencyBanner stock={product.stock} productName={product.name} />
 
-            {/* Shipping countdown & Tracking */}
+            {/* Shipping countdown */}
             <ProductPageClient product={product} />
 
-            <AddToCartButton
-              product={product}
-              size="lg"
-              className="w-full"
-              variant="accent"
-              isStockCritical={product.stock <= 2}
-              showPrice={true}
-            >
-              Ajouter au panier
-            </AddToCartButton>
+            {/* Quantité + Ajouter au panier */}
+            <ProductActions product={product} />
 
+            {/* Notes olfactives */}
+            {hasOlfactoryPyramid && (
+              <div className="border-t pt-4 space-y-2">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Notes olfactives</p>
+                {topNotes.length > 0 && (
+                  <p className="text-sm"><strong>Notes de tête :</strong> {topNotes.join(', ')}</p>
+                )}
+                {heartNotes.length > 0 && (
+                  <p className="text-sm"><strong>Notes de c&oelig;ur :</strong> {heartNotes.join(', ')}</p>
+                )}
+                {baseNotes.length > 0 && (
+                  <p className="text-sm"><strong>Notes de fond :</strong> {baseNotes.join(', ')}</p>
+                )}
+              </div>
+            )}
+
+            {/* Tags & Metas */}
+            <div className="border-t pt-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Recherches similaires</p>
+              <div className="flex flex-wrap gap-2">
+                <Link href={`/shop/all?families=${product.family}`}><Badge variant="secondary">{product.family}</Badge></Link>
+                <Link href={`/shop/all?genders=${product.gender}`}><Badge variant="secondary" className="capitalize">{product.gender}</Badge></Link>
+                {product.tags.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
+              </div>
+            </div>
+
+            {/* Badge de confiance */}
             <div className="grid grid-cols-3 gap-3">
               <div className="text-center border rounded-lg p-3 hover:border-primary transition-colors">
                 <Truck className="h-5 w-5 mx-auto mb-1 text-primary" />
@@ -339,9 +368,9 @@ export default function ProductPage({ params }: Props) {
                 <>
                   <h3 className="font-headline text-xl mt-6 mb-4">Pyramide Olfactive</h3>
                   <ul className="space-y-2">
-                    {product.topNotes && product.topNotes.length > 0 && <li><strong>Notes de tête :</strong> {product.topNotes.join(', ')}</li>}
-                    {product.heartNotes && product.heartNotes.length > 0 && <li><strong>Notes de cœur :</strong> {product.heartNotes.join(', ')}</li>}
-                    {product.baseNotes && product.baseNotes.length > 0 && <li><strong>Notes de fond :</strong> {product.baseNotes.join(', ')}</li>}
+                    {topNotes.length > 0 && <li><strong>Notes de tête :</strong> {topNotes.join(', ')}</li>}
+                    {heartNotes.length > 0 && <li><strong>Notes de cœur :</strong> {heartNotes.join(', ')}</li>}
+                    {baseNotes.length > 0 && <li><strong>Notes de fond :</strong> {baseNotes.join(', ')}</li>}
                   </ul>
                 </>
               )}
