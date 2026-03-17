@@ -48,14 +48,7 @@ export function ProductActions({ product }: { product: Product }) {
         Ajouter au panier
       </AddToCartButton>
 
-      {/* Séparateur */}
-      <div className="flex items-center gap-3 my-1">
-        <div className="flex-1 border-t border-border" />
-        <span className="text-xs text-muted-foreground">ou payer avec</span>
-        <div className="flex-1 border-t border-border" />
-      </div>
-
-      {/* Bouton PayPal */}
+      {/* Bouton PayPal (séparateur inclus dans le composant) */}
       <PayPalButton
         price={product.price}
         productName={product.name}

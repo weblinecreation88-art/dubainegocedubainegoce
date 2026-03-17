@@ -1,6 +1,6 @@
 'use client';
 
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { useState } from 'react';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
 
@@ -10,11 +10,12 @@ interface PayPalButtonProps {
   quantity: number;
 }
 
-export function PayPalButton({ price, productName, quantity }: PayPalButtonProps) {
+function PayPalButtonInner({ price, productName, quantity }: PayPalButtonProps) {
+  const [{ isPending, isRejected }] = usePayPalScriptReducer();
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
-  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!;
+  if (isRejected) return null; // Cache silencieusement si PayPal indisponible
 
   return (
     <div className="w-full">
@@ -31,64 +32,75 @@ export function PayPalButton({ price, productName, quantity }: PayPalButtonProps
         </div>
       )}
 
+      {isPending && (
+        <div className="w-full h-[45px] bg-yellow-50 border border-yellow-200 rounded flex items-center justify-center gap-2 text-sm text-yellow-700">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Chargement PayPal...
+        </div>
+      )}
+
       {status !== 'success' && (
-        <PayPalScriptProvider
-          options={{
-            clientId,
-            currency: 'EUR',
-            locale: 'fr_FR',
-            intent: 'capture',
+        <PayPalButtons
+          style={{
+            layout: 'horizontal',
+            color: 'gold',
+            shape: 'rect',
+            label: 'paypal',
+            height: 45,
+            tagline: false,
           }}
-        >
-          <PayPalButtons
-            style={{
-              layout: 'horizontal',
-              color: 'gold',
-              shape: 'rect',
-              label: 'paypal',
-              height: 45,
-              tagline: false,
-            }}
-            createOrder={async () => {
-              const res = await fetch('/api/paypal/create-order', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  amount: price,
-                  productName,
-                  quantity,
-                }),
-              });
-              const data = await res.json();
-              if (!res.ok) throw new Error(data.error || 'Erreur création commande');
-              return data.id;
-            }}
-            onApprove={async (data) => {
-              const res = await fetch('/api/paypal/capture-order', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ orderID: data.orderID }),
-              });
-              const capture = await res.json();
-              if (!res.ok) {
-                setStatus('error');
-                setMessage('Le paiement n\'a pas pu être confirmé. Réessayez.');
-                return;
-              }
-              const amount = capture?.purchase_units?.[0]?.payments?.captures?.[0]?.amount?.value;
-              setStatus('success');
-              setMessage(`Paiement de ${amount ? `${amount} €` : `${(price * quantity).toFixed(2)} €`} confirmé ! Merci pour votre commande.`);
-            }}
-            onError={() => {
+          createOrder={async () => {
+            const res = await fetch('/api/paypal/create-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ amount: price, productName, quantity }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Erreur création commande');
+            return data.id;
+          }}
+          onApprove={async (data) => {
+            const res = await fetch('/api/paypal/capture-order', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ orderID: data.orderID }),
+            });
+            const capture = await res.json();
+            if (!res.ok) {
               setStatus('error');
-              setMessage('Une erreur est survenue avec PayPal. Veuillez réessayer.');
-            }}
-            onCancel={() => {
-              setStatus('idle');
-            }}
-          />
-        </PayPalScriptProvider>
+              setMessage("Le paiement n'a pas pu être confirmé. Réessayez.");
+              return;
+            }
+            const amt = capture?.purchase_units?.[0]?.payments?.captures?.[0]?.amount?.value;
+            setStatus('success');
+            setMessage(`Paiement de ${amt ? `${amt} €` : `${(price * quantity).toFixed(2)} €`} confirmé ! Merci.`);
+          }}
+          onError={() => {
+            setStatus('error');
+            setMessage('Une erreur PayPal est survenue. Veuillez réessayer.');
+          }}
+          onCancel={() => setStatus('idle')}
+        />
       )}
     </div>
+  );
+}
+
+export function PayPalButton({ price, productName, quantity }: PayPalButtonProps) {
+  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
+  if (!clientId) return null;
+
+  return (
+    <PayPalScriptProvider
+      options={{ clientId, currency: 'EUR', locale: 'fr_FR', intent: 'capture' }}
+    >
+      {/* Séparateur */}
+      <div className="flex items-center gap-3 my-1">
+        <div className="flex-1 border-t border-border" />
+        <span className="text-xs text-muted-foreground">ou payer avec</span>
+        <div className="flex-1 border-t border-border" />
+      </div>
+      <PayPalButtonInner price={price} productName={productName} quantity={quantity} />
+    </PayPalScriptProvider>
   );
 }
