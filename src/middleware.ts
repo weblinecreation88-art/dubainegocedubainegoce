@@ -49,8 +49,7 @@ export function middleware(request: NextRequest) {
       url.pathname.startsWith('/accueil-2') ||
       url.pathname.startsWith('/perfume-finder') ||
       url.pathname.startsWith('/test2') ||
-      url.pathname.startsWith('/f-a-q') ||
-      url.pathname.startsWith('/blog/')) {
+      url.pathname.startsWith('/f-a-q')) {
     return NextResponse.redirect(new URL('/', request.url), { status: 301 });
   }
 
@@ -66,8 +65,7 @@ export function middleware(request: NextRequest) {
       url.pathname.startsWith('/wp-json') ||
       url.pathname.startsWith('/wp-login') ||
       url.pathname.startsWith('/feed') ||
-      url.pathname.startsWith('/xmlrpc.php') ||
-      url.pathname.startsWith('/sitemap')) {
+      url.pathname.startsWith('/xmlrpc.php')) {
     return NextResponse.redirect(new URL('/', request.url), { status: 301 });
   }
 

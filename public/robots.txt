@@ -32,6 +32,7 @@ Disallow: /cgi-bin/
 # Paramètres query string → évite contenu dupliqué
 Disallow: /*?add-to-cart=
 Disallow: /*?remove_item=
+Disallow: /*?wc-ajax=
 Disallow: /*?_wpnonce=
 Disallow: /*?fbclid=
 Disallow: /*?gclid=
@@ -91,5 +92,3 @@ Disallow: /
 
 # ── SITEMAPS ────────────────────────────────────────────────
 Sitemap: https://dubainegoce.fr/sitemap.xml
-Sitemap: https://dubainegoce.fr/sitemap-produits.xml
-Sitemap: https://dubainegoce.fr/sitemap-categories.xml
