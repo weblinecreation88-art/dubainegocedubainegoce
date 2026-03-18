@@ -5,11 +5,25 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
+
+# Variables d'environnement publiques (disponibles au build ET au runtime)
+# Le clientId PayPal est public (exposé côté client de toute façon)
+environmentVariables:
+  - variable: NEXT_PUBLIC_PAYPAL_CLIENT_ID
+    value: AZSVA1R4EqfYKQEnx2djfVOuVbDe9XZBL2DDnLkBiOWJ6a9ucmjbyAyszvjmu0908BwMvH2srgp1Wewg
+  - variable: PAYPAL_BASE_URL
+    value: https://api-m.paypal.com
+
 # This section specifies the secrets that should be exposed to the backend as
 # environment variables.
 # IMPORTANT: You must create these secrets in Google Cloud Secret Manager.
 # Ces secrets doivent correspondre aux clés LIVE de vos services.
 secretEnvironmentVariables:
+  # --- Secrets PayPal (LIVE) ---
+  - key: PAYPAL_CLIENT_ID
+    secret: PAYPAL_CLIENT_ID
+  - key: PAYPAL_SECRET
+    secret: PAYPAL_SECRET
   # --- Secrets Stripe (LIVE) ---
   - key: STRIPE_SECRET_KEY
     # La clé secrète LIVE de Stripe (commence par sk_live_...)

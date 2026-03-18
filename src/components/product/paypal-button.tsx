@@ -18,7 +18,11 @@ function PayPalButtonInner({ price, productName, quantity }: Omit<PayPalButtonPr
 
   if (isRejected) {
     console.error('[PayPal] SDK script failed to load. Check clientId, ad blocker, or network.');
-    return null;
+    return (
+      <div className="w-full h-[45px] bg-red-50 border border-red-200 rounded flex items-center justify-center text-xs text-red-600 px-3 text-center">
+        PayPal indisponible — utilisez Stripe ou réessayez plus tard.
+      </div>
+    );
   }
 
   return (
@@ -90,11 +94,12 @@ function PayPalButtonInner({ price, productName, quantity }: Omit<PayPalButtonPr
 }
 
 export function PayPalButton({ price, productName, quantity, clientId }: PayPalButtonProps) {
-  if (!clientId) return null;
+  const id = clientId || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
+  if (!id) return null;
 
   return (
     <PayPalScriptProvider
-      options={{ clientId, currency: 'EUR', locale: 'fr_FR', intent: 'capture' }}
+      options={{ clientId: id, currency: 'EUR', locale: 'fr_FR', intent: 'capture' }}
     >
       {/* Séparateur */}
       <div className="flex items-center gap-3 my-1">
