@@ -4,6 +4,11 @@ const config = {
     ignoreDuringBuilds: true,
   },
 
+  // Clés publiques forcées au build time (indépendant de Firebase App Hosting)
+  env: {
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID: 'AZSVA1R4EqfYKQEnx2djfVOuVbDe9XZBL2DDnLkBiOWJ6a9ucmjbyAyszvjmu0908BwMvH2srgp1Wewg',
+  },
+
   async redirects() {
     return [
       // ============================================================
