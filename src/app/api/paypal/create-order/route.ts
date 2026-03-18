@@ -2,11 +2,68 @@ import { NextRequest, NextResponse } from 'next/server';
 
 // Hardcodé sur LIVE — ne pas dépendre de PAYPAL_BASE_URL (non injecté au runtime par Firebase App Hosting)
 const PAYPAL_BASE = 'https://api-m.paypal.com';
+const GCP_PROJECT = 'dubainegoce-227c3';
+
+// Cache en mémoire pour éviter des appels répétés à Secret Manager
+let cachedPaypalSecret: string | null = null;
+
+/**
+ * Récupère PAYPAL_SECRET depuis l'env ou depuis Google Cloud Secret Manager.
+ * Firebase App Hosting n'injecte pas les secrets via apphosting.yaml au runtime,
+ * donc on fetch directement depuis Secret Manager en utilisant le service account Cloud Run.
+ */
+async function getPaypalSecret(): Promise<string> {
+  // 1. Priorité : variable d'environnement (si jamais injectée)
+  if (process.env.PAYPAL_SECRET) {
+    return process.env.PAYPAL_SECRET;
+  }
+
+  // 2. Cache mémoire
+  if (cachedPaypalSecret) {
+    return cachedPaypalSecret;
+  }
+
+  // 3. Fetch depuis Secret Manager via le metadata server de Cloud Run
+  try {
+    // Obtenir le token OAuth2 du service account via le metadata server
+    const tokenRes = await fetch(
+      'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token',
+      { headers: { 'Metadata-Flavor': 'Google' } }
+    );
+
+    if (!tokenRes.ok) {
+      throw new Error(`Metadata server error: ${tokenRes.status}`);
+    }
+
+    const { access_token } = await tokenRes.json();
+
+    // Accéder au secret dans Secret Manager
+    const secretRes = await fetch(
+      `https://secretmanager.googleapis.com/v1/projects/${GCP_PROJECT}/secrets/PAYPAL_SECRET/versions/latest:access`,
+      { headers: { Authorization: `Bearer ${access_token}` } }
+    );
+
+    if (!secretRes.ok) {
+      const errBody = await secretRes.text();
+      throw new Error(`Secret Manager error: ${secretRes.status} — ${errBody}`);
+    }
+
+    const secretData = await secretRes.json();
+    const secret = Buffer.from(secretData.payload.data, 'base64').toString('utf8');
+
+    cachedPaypalSecret = secret;
+    console.log('[PayPal] PAYPAL_SECRET chargé depuis Secret Manager ✓');
+    return secret;
+  } catch (err) {
+    console.error('[PayPal] Impossible de charger PAYPAL_SECRET:', err);
+    throw new Error('PAYPAL_SECRET introuvable');
+  }
+}
 
 async function getAccessToken(): Promise<string> {
   // Préférer PAYPAL_CLIENT_ID (secret GCP) ; fallback sur NEXT_PUBLIC_ (baked au build)
   const clientId = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!;
-  const secret = process.env.PAYPAL_SECRET!;
+  const secret = await getPaypalSecret();
 
   console.log('[PayPal] getAccessToken — base:', PAYPAL_BASE, '| clientId set:', !!clientId, '| secret set:', !!secret);
 
