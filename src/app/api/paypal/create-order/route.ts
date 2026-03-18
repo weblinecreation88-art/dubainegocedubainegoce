@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const PAYPAL_BASE = process.env.PAYPAL_BASE_URL || 'https://api-m.sandbox.paypal.com';
+// Hardcodé sur LIVE — ne pas dépendre de PAYPAL_BASE_URL (non injecté au runtime par Firebase App Hosting)
+const PAYPAL_BASE = 'https://api-m.paypal.com';
 
 async function getAccessToken(): Promise<string> {
-  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!;
+  // Préférer PAYPAL_CLIENT_ID (secret GCP) ; fallback sur NEXT_PUBLIC_ (baked au build)
+  const clientId = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!;
   const secret = process.env.PAYPAL_SECRET!;
+
+  console.log('[PayPal] getAccessToken — base:', PAYPAL_BASE, '| clientId set:', !!clientId, '| secret set:', !!secret);
+
   const credentials = Buffer.from(`${clientId}:${secret}`).toString('base64');
 
   const res = await fetch(`${PAYPAL_BASE}/v1/oauth2/token`, {
@@ -16,7 +21,11 @@ async function getAccessToken(): Promise<string> {
     body: 'grant_type=client_credentials',
   });
 
-  if (!res.ok) throw new Error('Impossible d\'obtenir le token PayPal');
+  if (!res.ok) {
+    const errBody = await res.text();
+    console.error('[PayPal] OAuth error', res.status, errBody);
+    throw new Error(`Impossible d'obtenir le token PayPal (${res.status}): ${errBody}`);
+  }
   const data = await res.json();
   return data.access_token;
 }
