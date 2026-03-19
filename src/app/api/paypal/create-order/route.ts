@@ -15,7 +15,7 @@ let cachedPaypalSecret: string | null = null;
 async function getPaypalSecret(): Promise<string> {
   // 1. Priorité : variable d'environnement (si jamais injectée)
   if (process.env.PAYPAL_SECRET) {
-    return process.env.PAYPAL_SECRET;
+    return process.env.PAYPAL_SECRET.trim();
   }
 
   // 2. Cache mémoire
@@ -49,7 +49,7 @@ async function getPaypalSecret(): Promise<string> {
     }
 
     const secretData = await secretRes.json();
-    const secret = Buffer.from(secretData.payload.data, 'base64').toString('utf8');
+    const secret = Buffer.from(secretData.payload.data, 'base64').toString('utf8').trim();
 
     cachedPaypalSecret = secret;
     console.log('[PayPal] PAYPAL_SECRET chargé depuis Secret Manager ✓');
@@ -62,7 +62,7 @@ async function getPaypalSecret(): Promise<string> {
 
 async function getAccessToken(): Promise<string> {
   // Préférer PAYPAL_CLIENT_ID (secret GCP) ; fallback sur NEXT_PUBLIC_ (baked au build)
-  const clientId = process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!;
+  const clientId = (process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!).trim();
   const secret = await getPaypalSecret();
 
   console.log('[PayPal] getAccessToken — base:', PAYPAL_BASE, '| clientId set:', !!clientId, '| secret set:', !!secret);
