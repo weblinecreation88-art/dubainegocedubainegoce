@@ -89,8 +89,8 @@ export default function CartPage() {
       console.error('Error saving address:', error);
     }
 
-    // Proceed directly to payment (no review step)
-    await handleConfirmPayment(formData, pickupPoint);
+    // Go to payment step (Stripe ou PayPal)
+    setMainStep('review-payment');
   };
 
   const handleConfirmPayment = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
