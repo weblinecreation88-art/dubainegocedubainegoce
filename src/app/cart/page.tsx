@@ -421,7 +421,7 @@ export default function CartPage() {
             <PayPalCheckoutButton
               items={cart}
               total={total}
-              shippingCost={shippingCostHT}
+              shippingCost={shipping}
               disabled={!lastFormData}
               onSuccess={(orderId) => {
                 router.push(`/checkout/success?paypal_order=${orderId}&total=${total.toFixed(2)}`);
