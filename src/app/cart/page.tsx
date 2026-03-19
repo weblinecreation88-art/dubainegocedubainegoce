@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, Loader2, ChevronLeft } from 'lucide-react';
+import { Trash2, ShoppingBag, ChevronLeft } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -404,62 +404,39 @@ export default function CartPage() {
               weightG={totalWeight}
               selectedPickupPoint={selectedPickupPoint}
               onSubmit={() => {
-                // Dummy onSubmit since we'll handle payment separately
+                if (lastFormData) handleConfirmPayment(lastFormData, selectedPickupPoint);
               }}
               isLoading={isCheckingOut}
-              isFormValid={isFormValid}
+              isFormValid={isFormValid && !!lastFormData}
             />
 
-            {/* Payment Actions */}
-            <div className="space-y-3 mt-8">
-              {/* Bouton Stripe */}
-              <Button
-                onClick={() => {
-                  if (lastFormData) {
-                    handleConfirmPayment(lastFormData, selectedPickupPoint);
-                  }
-                }}
-                disabled={isCheckingOut || !lastFormData}
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base"
-              >
-                {isCheckingOut ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Traitement...
-                  </>
-                ) : (
-                  '💳 Payer par carte bancaire'
-                )}
-              </Button>
-
-              {/* Séparateur */}
-              <div className="flex items-center gap-3">
-                <div className="flex-1 border-t border-border" />
-                <span className="text-xs text-muted-foreground">ou</span>
-                <div className="flex-1 border-t border-border" />
-              </div>
-
-              {/* Bouton PayPal */}
-              <PayPalCheckoutButton
-                items={cart}
-                total={total}
-                shippingCost={shippingCostHT}
-                disabled={!lastFormData}
-                onSuccess={(orderId) => {
-                  router.push(`/checkout/success?paypal_order=${orderId}&total=${total.toFixed(2)}`);
-                }}
-              />
-
-              {/* Retour */}
-              <Button
-                variant="ghost"
-                onClick={() => setMainStep('checkout-form')}
-                disabled={isCheckingOut}
-                className="w-full text-muted-foreground"
-              >
-                ← Modifier les informations
-              </Button>
+            {/* Séparateur */}
+            <div className="flex items-center gap-3 mt-2">
+              <div className="flex-1 border-t border-border" />
+              <span className="text-xs text-muted-foreground">ou payer avec</span>
+              <div className="flex-1 border-t border-border" />
             </div>
+
+            {/* Bouton PayPal */}
+            <PayPalCheckoutButton
+              items={cart}
+              total={total}
+              shippingCost={shippingCostHT}
+              disabled={!lastFormData}
+              onSuccess={(orderId) => {
+                router.push(`/checkout/success?paypal_order=${orderId}&total=${total.toFixed(2)}`);
+              }}
+            />
+
+            {/* Retour */}
+            <Button
+              variant="ghost"
+              onClick={() => setMainStep('checkout-form')}
+              disabled={isCheckingOut}
+              className="w-full text-muted-foreground mt-2"
+            >
+              ← Modifier les informations
+            </Button>
           </div>
         </div>
       )}

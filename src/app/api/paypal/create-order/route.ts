@@ -153,7 +153,7 @@ export async function POST(req: NextRequest) {
         application_context: {
           brand_name: 'Dubai Négoce',
           locale: 'fr-FR',
-          shipping_preference: 'GET_FROM_FILE',
+          shipping_preference: 'NO_SHIPPING',
           user_action: 'PAY_NOW',
         },
       }),

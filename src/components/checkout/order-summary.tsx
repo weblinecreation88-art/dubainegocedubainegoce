@@ -30,6 +30,7 @@ interface OrderSummaryProps {
   onSubmit: () => void;
   isLoading?: boolean;
   isFormValid?: boolean;
+  showSubmitButton?: boolean;
 }
 
 export function OrderSummary({
@@ -44,9 +45,10 @@ export function OrderSummary({
   onSubmit,
   isLoading = false,
   isFormValid = true,
+  showSubmitButton = true,
 }: OrderSummaryProps) {
   return (
-    <div className="space-y-4 sticky top-4">
+    <div className="space-y-4">
       {/* Order Items */}
       <Card>
         <CardHeader className="pb-3">
@@ -139,24 +141,26 @@ export function OrderSummary({
       )}
 
       {/* Submit Button */}
-      <Button
-        onClick={onSubmit}
-        disabled={isLoading || !isFormValid}
-        className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 font-semibold text-base"
-        size="lg"
-      >
-        {isLoading ? (
-          <>
-            <span className="animate-spin inline-block mr-2">⏳</span>
-            Traitement en cours...
-          </>
-        ) : (
-          <>
-            <Lock className="h-4 w-4 mr-2" />
-            Procéder au paiement sécurisé
-          </>
-        )}
-      </Button>
+      {showSubmitButton && (
+        <Button
+          onClick={onSubmit}
+          disabled={isLoading || !isFormValid}
+          className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 font-semibold text-base"
+          size="lg"
+        >
+          {isLoading ? (
+            <>
+              <span className="animate-spin inline-block mr-2">⏳</span>
+              Traitement en cours...
+            </>
+          ) : (
+            <>
+              <Lock className="h-4 w-4 mr-2" />
+              Procéder au paiement sécurisé
+            </>
+          )}
+        </Button>
+      )}
 
       {/* Security Info */}
       <div className="text-center text-xs text-muted-foreground space-y-1">
