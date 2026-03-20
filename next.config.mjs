@@ -124,9 +124,39 @@ const config = {
       { source: '/parfum/woody-oud-maison-alhambra', destination: '/parfum/woody-oud-80-ml-maison-alhambra', permanent: true },
       { source: '/parfum/the-tux-maison-alhambra', destination: '/parfum/the-tux-maison-alhambra-mixte', permanent: true },
       { source: '/parfum/zaffiro-regale', destination: '/parfum/zaffiro-regale-maison-alhambra-unisex', permanent: true },
-      { source: '/parfum/zaffiro-regale-for-her-maison-alhambra', destination: '/parfum/zaffiro-regale-for-her-maison-alhambra', permanent: true },
+      { source: '/parfum/zaffiro-regale-for-her-maison-alhambra', destination: '/parfum/zaffiro-regale-maison-alhambra-unisex', permanent: true },
       { source: '/parfum/lovely-cherie-french-avenue', destination: '/parfum/lovely-cherie-maison-alhambra', permanent: true },
       { source: '/parfum/ramz-silver-lattafa-lattafa', destination: '/parfum/ramz-silver-lattafa', permanent: true },
+
+      // Corrections slug : variantes Google indexées mais slug changé en DB
+      { source: '/parfum/yara-tous-lattafa', destination: '/parfum/yara-lattafa', permanent: true },
+      { source: '/parfum/yara-tous-lattafa/', destination: '/parfum/yara-lattafa', permanent: true },
+      { source: '/parfum/moscow-kismet-maison-alhambra', destination: '/parfum/kismet-moscow-maison-alhambra', permanent: true },
+      { source: '/parfum/moscow-kismet-maison-alhambra/', destination: '/parfum/kismet-moscow-maison-alhambra', permanent: true },
+      { source: '/parfum/liquide-brun-french-avenue', destination: '/parfum/liquid-brun-100ml', permanent: true },
+      { source: '/parfum/liquide-brun-french-avenue/', destination: '/parfum/liquid-brun-100ml', permanent: true },
+      { source: '/parfum/zaffiro-crafted-oud-maison-alhambra', destination: '/parfum/zaffiro-collection-crafted-oud-maison-alhambra', permanent: true },
+      { source: '/parfum/zaffiro-crafted-oud-maison-alhambra/', destination: '/parfum/zaffiro-collection-crafted-oud-maison-alhambra', permanent: true },
+      { source: '/parfum/ombre-noir-jean-lowe-maison-alhambra', destination: '/parfum/jean-lowe-ombre-maison-alhambra', permanent: true },
+      { source: '/parfum/ombre-noir-jean-lowe-maison-alhambra/', destination: '/parfum/jean-lowe-ombre-maison-alhambra', permanent: true },
+
+      // Produits supprimés → page marque correspondante
+      { source: '/parfum/khamrah-lattafa', destination: '/blog/khamrah-lattafa-avis', permanent: true },
+      { source: '/parfum/khamrah-lattafa/', destination: '/blog/khamrah-lattafa-avis', permanent: true },
+      { source: '/parfum/lintrude-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/lintrude-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/versencia-oro-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/versencia-oro-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/no-2-men-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/no-2-men-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/philos-pura-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/philos-pura-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/narissa-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/narissa-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/qaed-al-fursan-lattafa', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/parfum/qaed-al-fursan-lattafa/', destination: '/shop/marque/lattafa', permanent: true },
+      { source: '/parfum/jack-of-clubs-fragrance-world', destination: '/shop/marque/fragrance-world', permanent: true },
+      { source: '/parfum/jack-of-clubs-fragrance-world/', destination: '/shop/marque/fragrance-world', permanent: true },
 
       // ============================================================
       // ARTICLES DE BLOG (corrections de slug)
