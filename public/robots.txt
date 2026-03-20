@@ -34,11 +34,22 @@ Disallow: /*?add-to-cart=
 Disallow: /*?remove_item=
 Disallow: /*?wc-ajax=
 Disallow: /*?_wpnonce=
+Disallow: /*?attachment_id=
+Disallow: /*?p=
+Disallow: /*?page_id=
 Disallow: /*?fbclid=
 Disallow: /*?gclid=
 Disallow: /*?utm_
 Disallow: /*?ref=
 Disallow: /*?session=
+
+# Flux RSS sous-pages (ex: /produit/xxx/feed/)
+Disallow: /*/feed/
+Disallow: /*/feed
+
+# Fichiers techniques non-indexables
+Disallow: /_next/static/
+Disallow: /manifest.webmanifest
 
 # ── GOOGLEBOT ───────────────────────────────────────────────
 User-agent: Googlebot

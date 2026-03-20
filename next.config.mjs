@@ -103,6 +103,16 @@ const config = {
       { source: '/category/:path*', destination: '/blog', permanent: true },
 
       // ============================================================
+      // ANCIENS SLUGS PRODUITS À LA RACINE (WooCommerce sans /produit/)
+      // ============================================================
+      { source: '/eau-de-parfum-:slug/', destination: '/parfum/:slug', permanent: true },
+      { source: '/eau-de-parfum-:slug', destination: '/parfum/:slug', permanent: true },
+      { source: '/fakhar-black-lattafa', destination: '/parfum/fakhar-black-lattafa', permanent: true },
+      { source: '/fakhar-black-lattafa/', destination: '/parfum/fakhar-black-lattafa', permanent: true },
+      { source: '/ana-abbiyadh-rouge', destination: '/parfum/ana-abbiyadh-rouge', permanent: true },
+      { source: '/ana-abbiyadh-rouge/', destination: '/parfum/ana-abbiyadh-rouge', permanent: true },
+
+      // ============================================================
       // SLUG CORRECTIONS - Old WordPress → Current slugs
       // ============================================================
       // Simple slugs → with brand suffix

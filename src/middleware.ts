@@ -8,6 +8,12 @@ export function middleware(request: NextRequest) {
   // /panier/?remove_item=xxx → /cart
   // /categorie-produit/xxx → /shop
 
+  // Old WordPress root-level product URLs: /eau-de-parfum-[slug] → /parfum/[slug]
+  if (url.pathname.startsWith('/eau-de-parfum-')) {
+    const slug = url.pathname.replace(/^\/eau-de-parfum-/, '').replace(/\/$/, '');
+    return NextResponse.redirect(new URL(`/parfum/${slug}`, request.url), { status: 301 });
+  }
+
   if (url.pathname.startsWith('/produit/')) {
     const slugMatch = url.pathname.match(/^\/produit\/([^/?]+)/);
     if (slugMatch) {
@@ -53,29 +59,42 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/', request.url), { status: 301 });
   }
 
+  // Dead WP pages with no equivalent → 410 Gone (signal définitif à Google)
+  if (url.pathname.startsWith('/livraison-3') ||
+      url.pathname.startsWith('/contact-2') ||
+      url.pathname.startsWith('/promotions')) {
+    return new NextResponse(null, { status: 410 });
+  }
+
   // WordPress account/checkout pages
   if (url.pathname.startsWith('/mon-compte/') ||
       url.pathname.startsWith('/mon-compte')) {
     return NextResponse.redirect(new URL('/', request.url), { status: 301 });
   }
 
-  // WordPress system files
+  // WordPress system files & RSS feeds → 410 Gone (évite le gaspillage de crawl budget)
   if (url.pathname.startsWith('/wp-admin') ||
       url.pathname.startsWith('/wp-content') ||
       url.pathname.startsWith('/wp-json') ||
       url.pathname.startsWith('/wp-login') ||
-      url.pathname.startsWith('/feed') ||
-      url.pathname.startsWith('/xmlrpc.php')) {
-    return NextResponse.redirect(new URL('/', request.url), { status: 301 });
+      url.pathname === '/xmlrpc.php' ||
+      url.pathname === '/feed' ||
+      url.pathname === '/feed/' ||
+      url.pathname.endsWith('/feed') ||
+      url.pathname.endsWith('/feed/')) {
+    return new NextResponse(null, { status: 410 });
   }
 
-  // WordPress query-based URLs: /?p=xxx, /?page_id=xxx, /?product_cat=xxx, /?add-to-cart=xxx
+  // WordPress query-based URLs: strip params et rediriger vers URL propre
   if (url.searchParams.has('p') ||
       url.searchParams.has('page_id') ||
+      url.searchParams.has('attachment_id') ||
       url.searchParams.has('product_cat') ||
       url.searchParams.has('product_tag') ||
       url.searchParams.has('add-to-cart') ||
-      url.searchParams.has('remove_item')) {
+      url.searchParams.has('remove_item') ||
+      url.searchParams.has('wc-ajax') ||
+      url.searchParams.has('_wpnonce')) {
     return NextResponse.redirect(new URL(url.pathname, request.url), { status: 301 });
   }
 
