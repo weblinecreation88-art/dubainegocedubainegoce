@@ -18,12 +18,30 @@ export async function generateStaticParams() {
     return Object.keys(GENDER_MAP).map(gender => ({ gender }));
 }
 
+// SEO enrichi par genre pour cibler les mots-clés à fort volume
+const GENDER_SEO: Record<string, { title: string; description: string }> = {
+    femme: {
+        title: 'Parfums Femme Orientaux — Yara, Kismet, Ana Abiyedh | Dubainegoce',
+        description: 'Sélection de parfums orientaux pour femme : Yara Lattafa, Kismet Maison Alhambra, Leonie, Ana Abiyedh. Floraux, gourmands, oud-rose — à partir de 35€. Livraison 48h.',
+    },
+    homme: {
+        title: 'Parfums Homme Orientaux — Asad, Jean Lowe, Khamrah | Dubainegoce',
+        description: 'Les meilleurs parfums pour homme de Dubai : Asad Lattafa, Jean Lowe Immortal Alhambra, Glacier et plus. Boisés, épicés, ouds authentiques — moins de 40€. Livraison rapide.',
+    },
+    mixte: {
+        title: 'Parfums Mixtes Unisexe Orientaux — Woody Oud, Khamrah | Dubainegoce',
+        description: 'Parfums mixtes et unisexes de Dubai : Woody Oud, Infini Oud, Khamrah et plus. Ouds élégants, floraux-ambrés — pour elle comme pour lui, à moins de 40€. Livraison 48h.',
+    },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const config = GENDER_MAP[params.gender];
     if (!config) return { title: 'Non trouvé' };
+    const seo = GENDER_SEO[params.gender];
+    if (seo) return seo;
     return {
-        title: `${config.label} - Dubainegoce`,
-        description: `Découvrez notre sélection de ${config.label.toLowerCase()} authentiques (Lattafa, Maison Alhambra). Filtrez par marque, famille et prix.`,
+        title: `${config.label} orientaux authentiques | Dubainegoce`,
+        description: `Découvrez notre sélection de ${config.label.toLowerCase()} authentiques (Lattafa, Maison Alhambra). Parfums Dubai à partir de 35€, livraison rapide France.`,
     };
 }
 

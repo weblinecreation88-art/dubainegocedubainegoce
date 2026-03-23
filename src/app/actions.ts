@@ -7,8 +7,10 @@ import type { Product, Order, OrderItem, ShippingMethod, CartItem } from '@/lib/
 import { getProducts } from '@/lib/data';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
-import { firestore } from '@/firebase/server';
 import { z } from 'zod';
+
+// NOTE: firestore is NOT imported at module level to prevent firebase-admin from being bundled into client code.
+// It will be dynamically imported inside functions that need it.
 
 // Re-defining types here as they can't be imported from "use server" files
 type GenerateSeoDescriptionInput = {
@@ -90,6 +92,10 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
     console.error("[processSuccessfulOrder] ERREUR: La clé secrète Stripe (STRIPE_SECRET_KEY) est manquante.");
     throw new Error("La configuration de Stripe est incomplète sur le serveur.");
   }
+
+  // Dynamically import firestore to prevent it from being bundled into client code
+  const { firestore } = await import('@/firebase/server');
+
   if (!firestore) {
     console.error("[processSuccessfulOrder] ERREUR: La configuration de Firestore est incomplète sur le serveur.");
     throw new Error("La configuration de Firestore est incomplète sur le serveur.");
@@ -221,6 +227,9 @@ export async function subscribeToNewsletter(
   prevState: any,
   formData: FormData
 ): Promise<{ message: string; error?: boolean }> {
+  // Dynamically import firestore to prevent it from being bundled into client code
+  const { firestore } = await import('@/firebase/server');
+
   if (!firestore) {
     console.error("Firestore n'est pas configuré.");
     return {
@@ -260,5 +269,74 @@ export async function subscribeToNewsletter(
   } catch (e: any) {
     console.error('Erreur lors de l\'inscription à la newsletter Firestore:', e);
     return { message: 'Une erreur serveur est survenue. Veuillez réessayer plus tard.', error: true };
+  }
+}
+
+/**
+ * Tracks abandoned cart for email reminders (Day 3 and Day 7)
+ */
+export async function trackAbandonedCart(
+  cartSnapshot: CartItem[],
+  userEmail: string,
+  userId?: string
+): Promise<{ success: boolean; message?: string }> {
+  // Dynamically import firestore to prevent it from being bundled into client code
+  const { firestore } = await import('@/firebase/server');
+
+  if (!firestore || cartSnapshot.length === 0) {
+    return { success: false, message: 'Invalid cart or Firestore not configured' };
+  }
+
+  try {
+    // ID stable = 1 doc par utilisateur (upsert) — évite les doublons Firestore
+    const cleanEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
+    const docId = `${cleanEmail}_current`;
+    const cartValue = cartSnapshot.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const now = new Date().toISOString();
+
+    const ref = firestore.collection('abandoned_carts').doc(docId);
+    const existing = await ref.get();
+
+    if (existing.exists) {
+      // Mettre à jour le panier existant sans écraser createdAt ni emailsSent
+      await ref.update({
+        userId: userId || userEmail,
+        cartSnapshot: cartSnapshot.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image
+        })),
+        cartValue,
+        lastActivityAt: now,
+        status: 'active',
+      });
+    } else {
+      // Nouveau panier abandonné
+      await ref.set({
+        userId: userId || userEmail,
+        email: userEmail,
+        cartSnapshot: cartSnapshot.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image
+        })),
+        cartValue,
+        createdAt: now,
+        lastActivityAt: now,
+        emailsSent: { day1: false, day3: false, day7: false },
+        status: 'active',
+      });
+    }
+
+    console.log(`[trackAbandonedCart] Upserted abandoned cart for ${userEmail}`);
+    return { success: true };
+
+  } catch (error: any) {
+    console.error('[trackAbandonedCart] Error tracking abandoned cart:', error);
+    return { success: false, message: error.message };
   }
 }

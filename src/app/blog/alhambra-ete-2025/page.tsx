@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
     title: 'À découvrir cet été 2025 : la marque Alhambra',
-    description: 'La marque Alhambra continue de captiver l’univers du bijou senteur avec ses créations uniques pour l\'été 2025.',
+    description: "La marque Alhambra continue de captiver l'univers du bijou senteur avec ses créations uniques pour l'été 2025.",
 };
 
 export default function BlogPostPage() {
@@ -26,7 +26,7 @@ export default function BlogPostPage() {
                 <h1>À découvrir cet été 2025 : la marque Alhambra continue de captiver</h1>
                 
                 <p className="lead">
-                    La marque Alhambra, synonyme de luxe accessible et d’inspiration orientale, continue de captiver l’univers du bijou senteur. Pour l'été 2025, elle promet des créations qui allient fraîcheur et caractère, parfaites pour les longues journées ensoleillées et les soirées douces.
+                    La marque Alhambra, synonyme de luxe accessible et d'inspiration orientale, continue de captiver l'univers du bijou senteur. Pour l'été 2025, elle promet des créations qui allient fraîcheur et caractère, parfaites pour les longues journées ensoleillées et les soirées douces.
                 </p>
 
                 <h2>L'essence de l'été par Alhambra</h2>

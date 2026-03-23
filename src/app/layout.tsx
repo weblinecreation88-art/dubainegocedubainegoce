@@ -2,6 +2,21 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { Playfair_Display, PT_Sans } from 'next/font/google';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-headline',
+  display: 'swap',
+});
+
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-body',
+  display: 'swap',
+});
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
@@ -10,9 +25,12 @@ import { CartProvider } from '@/context/cart-context';
 import { WishlistProvider } from '@/context/wishlist-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
-import { FaqChatbot } from '@/components/faq-chatbot';
-import { CookieConsent } from '@/components/cookie-consent';
-import { ExitIntentPopup } from '@/components/exit-intent-popup';
+import dynamic from 'next/dynamic';
+const FaqChatbot = dynamic(() => import('@/components/faq-chatbot').then(m => ({ default: m.FaqChatbot })), { ssr: false });
+const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(m => ({ default: m.CookieConsent })), { ssr: false });
+const ExitIntentPopup = dynamic(() => import('@/components/exit-intent-popup').then(m => ({ default: m.ExitIntentPopup })), { ssr: false });
+const CartAbandonmentPopup = dynamic(() => import('@/components/cart-abandonment-popup').then(m => ({ default: m.CartAbandonmentPopup })), { ssr: false });
+const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then(m => ({ default: m.AuthCartBridge })), { ssr: false });
 import Script from 'next/script';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -127,28 +145,32 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Google Fonts: Playfair Display (critical) + PT Sans (deferred) */}
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&subset=latin&display=swap" as="style" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&subset=latin&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&subset=latin&display=optional" rel="stylesheet" />
-        {/* Preconnect Cloudinary pour réduire la latence des images/vidéos */}
+        {/* TikTok Shop domain verification */}
+        <meta name="tiktok-domain-verification" content="FRFRLCPCQWAL" />
+        {/* Preload hero LCP image */}
+        <link rel="preload" as="image" href="/hero-1.jpeg" fetchPriority="high" />
+        {/* Preconnect Cloudinary */}
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         {/* DNS prefetch for Google Tag Manager */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script id="google-tag-manager" strategy="lazyOnload">
           {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${GTM_ID}');
+            (function() {
+              var h = window.location.hostname;
+              var ref = document.referrer || '';
+              // Exclure trafic interne : localhost, IP locale, console Firebase
+              if (h === 'localhost' || h === '127.0.0.1' || h.match(/^192\\.168\\./) || ref.indexOf('console.firebase.google.com') !== -1) return;
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            })();
           `}
         </Script>
       </head>
-      <body className={cn('font-body antialiased min-h-screen flex flex-col')}>
+      <body className={cn(playfair.variable, ptSans.variable, 'font-body antialiased min-h-screen flex flex-col')}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -215,6 +237,8 @@ export default function RootLayout({
                 <FaqChatbot />
                 <CookieConsent />
                 <ExitIntentPopup />
+                <CartAbandonmentPopup />
+                <AuthCartBridge />
               </WishlistProvider>
             </CartProvider>
           </FirebaseClientProvider>

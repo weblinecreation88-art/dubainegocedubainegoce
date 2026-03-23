@@ -129,7 +129,32 @@
       "Bash(firebase --version)",
       "Bash(curl -s -L -w \"\\\\nStatus: %{http_code}\\\\nFinal URL: %{url_effective}\\\\n\" \"https://dubainegoce.fr/parfum/versencia-oro-maison-alhambra\")",
       "Bash(curl -s https://dubainegoce.fr/robots.txt)",
-      "Bash(curl -s http://localhost:9002/checkout/success)"
+      "Bash(curl -s http://localhost:9002/checkout/success)",
+      "Bash(for slug in \"asad\" \"yara\" \"ameer-al-oudh-intense-oud\" \"noble-wazeer-lattafa\" \"jack-of-clubs\" \"saffron\" \"zaffiro-crafted-oud\" \"woody-oud\" \"narissa\" \"the-tux\" \"ombre-noir\" \"zaffiro-regale\" \"khamrah\" \"lovely-cherie\" \"ramz-silver\")",
+      "Bash(echo \"=== Searching for $slug ===\")",
+      "Bash(done)",
+      "Bash(xargs grep -l \"Firestore\\\\|stripe\\\\|order\")",
+      "Bash(xargs grep -l \"window.gtag\\\\|dataLayer\")",
+      "Bash(xargs grep -l \"checkout\\\\|payment\\\\|stripe\")",
+      "Bash(grep -r \"NEXT_PUBLIC_GOOGLE_ADS\\\\|NEXT_PUBLIC_GTM\" /d/DUBAINEGOCE/.env* /d/DUBAINEGOCE/src --include=\"*.ts\" --include=\"*.tsx\")",
+      "Bash(grep -n \"AddToCartButton\\\\|stock\\\\|Ajouter au panier\" /d/DUBAINEGOCE/src/app/parfum/[slug]/page.tsx)",
+      "Bash(python3 generate_fragrance_cards.py)",
+      "Bash(/d/DUBAINEGOCE/MISSION_COMPLETE.txt:*)",
+      "Bash(ls -la /D/DUBAINEGOCE/*.json /D/DUBAINEGOCE/*.md /D/DUBAINEGOCE/scripts/)",
+      "Bash(grep -l \"firebase-config\" D:/DUBAINEGOCE/src/app/admin/*.tsx)",
+      "Bash(xargs sed -i \"s|from ''@/firebase/server''|from ''@/firebase/server-only''|g\")",
+      "Bash(ls -la \"D:/DUBAINEGOCE/next.config\"*)",
+      "Bash(xxd -l 200 src/app/admin/emails/page.tsx)",
+      "Bash(xargs -r kill -9)",
+      "Bash(xargs -r taskkill -PID -F)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(PORT=3001 npm run dev)",
+      "Bash(grep -l \"checkout\\\\|checkout_sessions\" /d/DUBAINEGOCE/src/app/api/webhooks/*)",
+      "Bash(grep -A 5 \"if \\(method === ''colissimo''\\)\" src/lib/checkout-utils.ts)",
+      "Bash(lsof -i :3000)",
+      "Bash(curl -s http://localhost:3001)",
+      "Bash(pkill -f \"npm run dev\")",
+      "Bash(curl -s http://localhost:3001/parfum/creed-aventus)"
     ]
   }
 }

@@ -10,8 +10,6 @@ import { OurDupesSection } from "@/components/layout/our-dupes-section";
 import React, { Suspense } from "react";
 import { HeroBanner } from "@/components/layout/hero-banner";
 import dynamic from "next/dynamic";
-import { Metadata } from "next";
-
 // Lazy load non-critical components for better initial load performance
 const CustomerReviewsSection = dynamic(
   () => import("@/components/customer-reviews-section").then(mod => ({ default: mod.CustomerReviewsSection })),
@@ -24,10 +22,6 @@ const CustomerReviewsSection = dynamic(
 // Garder UNIQUEMENT le composant principal de reviews
 // Supprimer les sections excessives pour un design épuré
 
-export const metadata: Metadata = {
-  title: "Dubainegoce | L'Essence de Dubaï - Parfums Orientaux de Luxe",
-  description: "Découvrez notre collection exclusive de parfums orientaux authentiques (Lattafa, Maison Alhambra, Fragrance World). Livraison 48h. 100% Authentique.",
-};
 
 export default function Home() {
   const fragranceFamilies = getFragranceFamilies();
@@ -88,14 +82,11 @@ export default function Home() {
     .filter((p): p is Product => p !== undefined);
 
   const heroImages = [
-    // Optimized for WebP: f_webp (force WebP), q_65 (reduced quality), w_2560 (max width), dpr_auto (responsive DPR)
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042739/Grise_-_Maison_Alhambra_rgvjtj.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042733/Omniyat_-_Surrati_ice7gl.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042690/Fleur_de_Coton_-_Sublime_bxfwfa.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042680/Good_Girl_by_Killer_-_Loui_Martin_rvtvqn.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042674/Niche_Royal_Rouge_-_Maison_Alhambra_i142ne.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042645/Olivia_Blossom_-_Maison_Alhambra_d9mink.png",
-    "https://res.cloudinary.com/dzagwz94z/image/upload/f_webp,q_65,w_2560,dpr_auto/v1772042629/Fakhar_Wasam_-_Lattafa_hwnd8d.webp",
+    "/hero-1.jpeg",
+    "/hero-2.jpeg",
+    "/hero-3.jpeg",
+    "/hero-4.jpeg",
+    "/hero-5.jpeg",
   ];
 
   return (
@@ -115,8 +106,9 @@ export default function Home() {
       {newArrivals.length > 0 && (
         <section className="py-16 md:py-24 bg-white dark:bg-background">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 md:mb-14">
-              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Nouveautés Parfums Orientaux</h2>
+            <div className="mb-10 md:mb-14 text-center">
+              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">À la recherche d&apos;un Parfum Dubaï ?</p>
+              <h2 className="text-3xl md:text-4xl font-headline font-bold text-gray-900 dark:text-gray-100">Les pépites du moment</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               {newArrivals.slice(0, 8).map((product, index) => (
@@ -229,6 +221,51 @@ export default function Home() {
             <Button asChild size="lg" className="bg-black text-white hover:opacity-90 border-0 rounded-none px-12 py-7 text-sm tracking-[0.2em] uppercase transition-opacity duration-300">
               <Link href="/shop/all">Explorer toutes les familles</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Banners Homme / Femme */}
+      <section className="py-12 md:py-16 bg-white dark:bg-background">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Banner Femme */}
+            <Link href="/shop/all?genders=femme" className="group relative overflow-hidden rounded-xl aspect-[16/9] block">
+              <Image
+                src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1773725244/femme-parfum-poignet_sixg1u.png"
+                alt="Parfums pour Femme - Dubai Negoce"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 text-white">
+                <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-1">Collection</p>
+                <h3 className="text-2xl sm:text-3xl font-headline font-bold mb-3">Parfums pour Femme</h3>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider bg-white/20 hover:bg-white/30 transition-colors px-4 py-2 rounded-full w-fit">
+                  Découvrir <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
+
+            {/* Banner Homme */}
+            <Link href="/shop/all?genders=homme" className="group relative overflow-hidden rounded-xl aspect-[16/9] block">
+              <Image
+                src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1773725815/ChatGPT_Image_17_mars_2026_05_36_32_clwqv6.png"
+                alt="Parfums pour Homme - Dubai Negoce"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 text-white">
+                <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-1">Collection</p>
+                <h3 className="text-2xl sm:text-3xl font-headline font-bold mb-3">Parfums pour Homme</h3>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider bg-white/20 hover:bg-white/30 transition-colors px-4 py-2 rounded-full w-fit">
+                  Découvrir <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
