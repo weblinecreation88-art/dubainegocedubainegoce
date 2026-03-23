@@ -280,6 +280,12 @@ export default function ProductPage({ params }: Props) {
               <h1 className="text-3xl md:text-4xl font-headline font-bold mt-1">
                 {product.name} — Eau de Parfum {product.volumeMl} ml
               </h1>
+              {product.inspiredBy && (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  ✨ Inspiré de{' '}
+                  <span className="font-semibold text-foreground">{product.inspiredBy}</span>
+                </p>
+              )}
               <div className="flex items-baseline gap-3 mt-3">
                 <span className="text-4xl font-bold text-primary">{product.price.toFixed(2)} €</span>
                 <span className="text-sm text-muted-foreground">TTC</span>

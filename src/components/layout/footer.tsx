@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { useEffect, useRef, useState } from 'react';
 import { subscribeToNewsletter } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Mail, MapPin, Phone, Instagram, Facebook } from 'lucide-react';
+import { Loader2, Mail, MapPin, Phone, Instagram, Facebook, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
 const TiktokIcon = () => (
@@ -160,6 +160,11 @@ export default function Footer() {
                   className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
                   <SnapchatIcon />
                   <span>Snapchat</span>
+                </a>
+                <a href="https://www.youtube.com/@dubainegoce78" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
+                  <Youtube className="h-4 w-4 shrink-0" />
+                  <span>YouTube</span>
                 </a>
               </div>
             </div>
