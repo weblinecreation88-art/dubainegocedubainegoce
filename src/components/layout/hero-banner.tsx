@@ -58,32 +58,59 @@ export function HeroBanner({ images }: HeroBannerProps) {
                 </AnimatePresence>
             </div>
 
+            {/* Overlay pour lisibilité */}
+            <div className="absolute inset-0 bg-black/50 z-[1]" />
+
             {/* Content */}
             <div className="relative z-10 container mx-auto h-full flex flex-col justify-center items-center text-center px-4 py-8">
+                <motion.p
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-[10px] sm:text-xs text-white/70 mb-2 sm:mb-3 tracking-[0.3em] uppercase font-light"
+                >
+                    Le spécialiste des dupes de luxe de Dubaï
+                </motion.p>
                 <motion.h1
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-2xl sm:text-4xl md:text-7xl lg:text-8xl font-serif text-white mb-1 sm:mb-4 tracking-wider drop-shadow-2xl"
+                    className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-2 sm:mb-4 tracking-wide drop-shadow-2xl leading-tight max-w-4xl"
                 >
-                    L'ESSENCE DE DUBAÏ
+                    Parfums Inspirés des<br className="hidden sm:block" /> Grandes Marques
                 </motion.h1>
                 <motion.p
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-[10px] sm:text-sm md:text-lg text-gray-200 mb-3 sm:mb-10 tracking-[0.12em] sm:tracking-[0.3em] uppercase font-light drop-shadow-lg max-w-md sm:max-w-none"
+                    transition={{ delay: 0.35 }}
+                    className="text-xl sm:text-2xl md:text-3xl text-white font-bold mb-4 sm:mb-6 drop-shadow-lg"
                 >
-                    Collection Exclusive de Parfums Orientaux
+                    Tous à <span className="text-yellow-400">35€</span> · Livrés en 48h
                 </motion.p>
+                <motion.div
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.45 }}
+                    className="flex flex-wrap justify-center gap-3 sm:gap-6 mb-6 sm:mb-10 text-[10px] sm:text-xs text-white/80 tracking-widest uppercase"
+                >
+                    <span>✔ 100% Authentique</span>
+                    <span>✔ Prix unique garanti</span>
+                    <span>✔ Paiement sécurisé</span>
+                </motion.div>
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.6 }}
+                    className="flex flex-col sm:flex-row gap-3"
                 >
-                    <Button asChild size="lg" className="bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white rounded-none px-6 py-3 md:px-12 md:py-7 text-xs md:text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase transition-all duration-300">
+                    <Button asChild size="lg" className="bg-white text-black hover:bg-yellow-400 hover:text-black border border-transparent rounded-none px-6 py-3 md:px-12 md:py-7 text-xs md:text-sm tracking-[0.15em] md:tracking-[0.2em] uppercase transition-all duration-300 font-semibold">
+                        <Link href="/shop/all?sort=bestsellers">
+                            Voir les Best-Sellers
+                        </Link>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white/60 hover:bg-white/10 rounded-none px-6 py-3 md:px-10 md:py-7 text-xs md:text-sm tracking-[0.15em] uppercase transition-all duration-300">
                         <Link href="/shop/all">
-                            Découvrir la Collection
+                            Toute la Collection
                         </Link>
                     </Button>
                 </motion.div>

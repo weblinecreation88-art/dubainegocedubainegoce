@@ -55,6 +55,7 @@ export interface Product {
   faq?: FaqItem[];
   productType?: 'perfume' | 'cosmetic';
   options?: ProductOption[];
+  inspiredBy?: string;
 }
 
 export interface FragranceFamily {

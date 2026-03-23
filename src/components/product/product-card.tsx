@@ -70,6 +70,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                             {product.name}
                         </h3>
 
+                        {product.inspiredBy && (
+                            <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight">
+                                Inspiré de <span className="font-semibold text-foreground/70">{product.inspiredBy}</span>
+                            </p>
+                        )}
+
                         {/* Notes olfactives / Famille */}
                         <div className="flex flex-wrap justify-center gap-1 mt-2">
                             {product.family && (

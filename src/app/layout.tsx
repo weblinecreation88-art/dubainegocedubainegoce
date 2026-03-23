@@ -38,6 +38,7 @@ import { organizationSchema } from '@/components/seo/schemas';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 
 const reassurances = [
   {
@@ -154,6 +155,20 @@ export default function RootLayout({
         {/* DNS prefetch for Google Tag Manager */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* Google Tag (gtag.js) - Google Ads */}
+        <Script
+          id="google-ads-tag"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+        />
+        <Script id="google-ads-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
         <Script id="google-tag-manager" strategy="lazyOnload">
           {`
             (function() {

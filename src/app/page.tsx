@@ -94,11 +94,25 @@ export default function Home() {
       <HeroBanner images={heroImages} />
 
       {/* Trust bar */}
-      <div className="w-full bg-black text-white py-4">
-        <div className="container mx-auto px-4 flex flex-wrap justify-center items-center text-xs md:text-sm tracking-widest uppercase gap-6 sm:gap-12 text-center text-gray-300">
-          <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-white" /> <span className="text-white">100% Authentique</span></span>
-          <span className="hidden sm:block opacity-30">|</span>
-          <span className="flex items-center gap-2"><Truck className="h-4 w-4 text-white" /> <span className="text-white">Livraison 48h</span></span>
+      <div className="w-full bg-black text-white py-3">
+        <div className="container mx-auto px-4 flex flex-wrap justify-center items-center text-[10px] md:text-xs tracking-widest uppercase gap-4 sm:gap-10 text-center">
+          <span className="flex items-center gap-2 text-yellow-400 font-bold"><span className="text-base">💎</span> Tous les parfums à 35€</span>
+          <span className="hidden sm:block opacity-20 text-white">|</span>
+          <span className="flex items-center gap-2 text-gray-300"><ShieldCheck className="h-3.5 w-3.5 text-white" /> <span className="text-white">100% Authentique</span></span>
+          <span className="hidden sm:block opacity-20 text-white">|</span>
+          <span className="flex items-center gap-2 text-gray-300"><Truck className="h-3.5 w-3.5 text-white" /> <span className="text-white">Livraison 48h</span></span>
+          <span className="hidden sm:block opacity-20 text-white">|</span>
+          <span className="flex items-center gap-2 text-gray-300"><span className="text-white">🔒</span> <span className="text-white">Paiement sécurisé</span></span>
+        </div>
+      </div>
+
+      {/* Section prix unique - argument clé */}
+      <div className="w-full bg-yellow-400 text-black py-5 text-center">
+        <div className="container mx-auto px-4">
+          <p className="text-sm sm:text-base font-bold tracking-wide uppercase">
+            Pas de piège. Pas de surprise. <span className="underline decoration-2">Tous nos parfums sont à 35€.</span>
+          </p>
+          <p className="text-xs sm:text-sm mt-1 opacity-80">Des fragrances inspirées des plus grandes maisons — Dior, Tom Ford, Chanel, YSL — à une fraction du prix.</p>
         </div>
       </div>
 
@@ -107,7 +121,7 @@ export default function Home() {
         <section className="py-16 md:py-24 bg-white dark:bg-background">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10 md:mb-14 text-center">
-              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">À la recherche d&apos;un Parfum Dubaï ?</p>
+              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">Vous aimez les parfums de luxe ? Découvrez leurs meilleures alternatives à 35€.</p>
               <h2 className="text-3xl md:text-4xl font-headline font-bold text-gray-900 dark:text-gray-100">Les pépites du moment</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
