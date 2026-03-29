@@ -67,6 +67,23 @@ export async function GET() {
         };
         const gender = genderMap[product.gender ?? 'mixte'] ?? 'unisex';
 
+        // Manufacturer mapping for TikTok compliance (EU cosmetics)
+        const manufacturerMap: Record<string, string> = {
+            'Lattafa': 'Lattafa Perfumes - Dubai, UAE',
+            'Maison Alhambra': 'Maison Alhambra - Dubai, UAE',
+            'Fragrance World': 'Fragrance World - Dubai, UAE',
+            'French Avenue': 'French Avenue - Dubai, UAE',
+            'Asdaaf': 'Asdaaf - Dubai, UAE',
+            'Ard Al Zaafaran': 'Ard Al Zaafaran - Dubai, UAE',
+            'Paris Corner': 'Paris Corner - Dubai, UAE',
+            'Gulf Orchid': 'Gulf Orchid - Dubai, UAE',
+            'Hamidi': 'Hamidi - Dubai, UAE',
+            'MIRADA': 'Mirada - Dubai, UAE',
+            'Loui Martin': 'Loui Martin - Dubai, UAE',
+            'Surrati': 'Surrati - Dubai, UAE',
+        };
+        const manufacturer = manufacturerMap[brandName] ?? `${brandName} - Dubai, UAE`;
+
         // TikTok product category (Fragrances = 2915)
         return `
     <item>
@@ -83,6 +100,7 @@ ${additionalImages ? additionalImages + '\n' : ''}      <g:price>${product.price
       <g:google_product_category>2915</g:google_product_category>
       <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums</g:product_type>
       <g:identifier_exists>false</g:identifier_exists>
+      <g:manufacturer>${escapeXml(manufacturer)}</g:manufacturer>
       <g:custom_label_0>${escapeXml(product.brand?.name ?? '')}</g:custom_label_0>
       <g:custom_label_1>${escapeXml(product.gender ?? 'mixte')}</g:custom_label_1>
       <g:custom_label_2>${product.isBestseller ? 'bestseller' : product.isNew ? 'nouveaute' : 'standard'}</g:custom_label_2>
