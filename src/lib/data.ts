@@ -132,7 +132,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["woody oud", "maison alhambra", "parfum boisé", "parfum mixte", "eau de parfum maison alhambra", "gingembre", "cardamome", "ambre", "mousse de chêne", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/woody-oud-80-ml-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799294/parfums/woody-oud-80-ml-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -156,7 +156,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["the tux", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "cassis", "galbanum", "vétiver", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/the-tux-maison-alhambra-mixte.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799295/parfums/the-tux-maison-alhambra-mixte.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -367,7 +367,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["yeah", "maison alhambra", "parfum aromatique", "parfum homme", "eau de parfum maison alhambra", "gingembre", "cannelle", "bois de santal", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/yeah-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799295/parfums/yeah-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -485,7 +485,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["glacier pour homme", "maison alhambra", "parfum aromatique", "parfum homme", "eau de parfum maison alhambra", "bergamote", "poivre rose", "labdanum", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/glacier-pour-homme-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799296/parfums/glacier-pour-homme-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -697,7 +697,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["toscano leather", "maison alhambra", "parfum cuir", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "safran", "oud", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/toscano-leather-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799297/parfums/toscano-leather-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -721,7 +721,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["jean lowe matière", "maison alhambra", "parfum floral", "parfum femme", "eau de parfum maison alhambra", "bergamote", "poire", "bois de santal", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/jean-lowe-matiere-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799299/parfums/jean-lowe-matiere-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -745,7 +745,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["glacier le noir", "maison alhambra", "parfum oriental", "parfum homme", "eau de parfum maison alhambra", "poivre rose", "bergamote", "labdanum", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/glacier-le-noir-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799301/parfums/glacier-le-noir-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -769,7 +769,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["infini oud", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "gingembre", "cannelle", "benjoin", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/infini-oud-maison-alhambra-mixte.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799302/parfums/infini-oud-maison-alhambra-mixte.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -793,7 +793,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["la vita bella", "maison alhambra", "parfum gourmand", "parfum femme", "eau de parfum maison alhambra", "bergamote", "orange", "musc", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/la-vita-bella-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799303/parfums/la-vita-bella-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -817,7 +817,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["minerva", "maison alhambra", "parfum cuir", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "poivre", "oud", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/minerva-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799304/parfums/minerva-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -841,7 +841,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["kismet for women", "maison alhambra", "parfum oriental", "parfum femme", "eau de parfum maison alhambra", "gingembre", "cannelle", "ambre gris", "bois de santal", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/kismet-for-women-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799305/parfums/kismet-for-women-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -865,7 +865,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["perseus", "maison alhambra", "parfum oriental", "parfum homme", "eau de parfum maison alhambra", "safran", "poivre rose", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/perseus-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799307/parfums/perseus-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -912,7 +912,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["versencia crystal", "maison alhambra", "parfum floral", "parfum femme", "eau de parfum maison alhambra", "feuille de violette", "bergamote", "patchouli", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/versencia-crystal-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799308/parfums/versencia-crystal-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -959,7 +959,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["najdia", "lattafa", "parfum aquatique", "parfum mixte", "eau de parfum lattafa", "safran", "poivre rose", "benjoin", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/najdia-lattafa.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799309/parfums/najdia-lattafa.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1006,7 +1006,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["salvo intense", "maison alhambra", "parfum aromatique", "parfum homme", "eau de parfum maison alhambra", "safran", "cardamome", "vanille", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/salvo-intense-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799310/parfums/salvo-intense-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1077,7 +1077,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["kismet moscow", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "safran", "benjoin", "vanille", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/kismet-moscow-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799311/parfums/kismet-moscow-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -1172,7 +1172,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["avant", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "citron", "cassis", "vétiver", "labdanum", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/avant-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799313/parfums/avant-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1430,7 +1430,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["andaleeb", "asdaaf", "parfum floral", "parfum femme", "eau de parfum asdaaf", "cassis", "poire", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/andaleeb-asdaaf.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799313/parfums/andaleeb-asdaaf.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1454,7 +1454,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["so candid", "maison alhambra", "parfum chypré", "parfum femme", "eau de parfum maison alhambra", "aldéhydes", "bergamote", "mousse de chêne", "vétiver", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/so-candid-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799314/parfums/so-candid-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1526,7 +1526,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["jean lowe ombre", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "safran", "cardamome", "ambre gris", "labdanum", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/jean-lowe-ombre-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799315/parfums/jean-lowe-ombre-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1550,7 +1550,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["kismet angel", "maison alhambra", "parfum gourmand", "parfum mixte", "eau de parfum maison alhambra", "orange", "bergamote", "ambre", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/kismet-angel-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799316/parfums/kismet-angel-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -1742,7 +1742,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["jorge di profumo", "maison alhambra", "parfum aquatique", "parfum homme", "eau de parfum maison alhambra", "cardamome", "safran", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/jorge-di-profumo-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799374/parfums/jorge-di-profumo-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1766,7 +1766,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["porto neroli", "maison alhambra", "parfum hespéridé", "parfum mixte", "eau de parfum maison alhambra", "safran", "cardamome", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/porto-neroli-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799377/parfums/porto-neroli-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -1838,7 +1838,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["karat", "maison alhambra", "parfum fruité", "parfum mixte", "eau de parfum maison alhambra", "pomme", "poire", "musc blanc", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/karat-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799380/parfums/karat-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1910,7 +1910,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["infini rose", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "cardamome", "bergamote", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/infini-rose-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799381/parfums/infini-rose-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1982,7 +1982,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["rose petals", "maison alhambra", "parfum floral", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "poire", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/rose-petals-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799382/parfums/rose-petals-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2006,7 +2006,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["fresh as citrus", "fragrance world", "parfum aromatique", "parfum mixte", "eau de parfum fragrance world", "safran", "cardamome", "labdanum", "benjoin", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/fresh-as-citrus-fragrance-world.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799384/parfums/fresh-as-citrus-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.6,
         "productType": "perfume"
@@ -2054,7 +2054,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["baroque rouge extrait", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "bergamote", "épices", "musc", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/baroque-rouge-extrait-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799388/parfums/baroque-rouge-extrait-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2101,7 +2101,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": false,
         "tags": ["jean lowe immortal", "maison alhambra", "parfum ambré", "parfum homme", "eau de parfum maison alhambra", "bergamote", "épices", "oud", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/jean-lowe-immortal-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799389/parfums/jean-lowe-immortal-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2317,7 +2317,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pure passion", "fragrance world", "parfum fruité", "parfum mixte", "eau de parfum fragrance world", "citron", "bergamote", "patchouli", "cèdre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/pure-passion-fragrance-world.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799391/parfums/pure-passion-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2508,7 +2508,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["spectre ghost", "fragrance world", "parfum ambré", "parfum mixte", "eau de parfum fragrance world", "safran", "cardamome", "bois de santal", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/spectre-ghost-fragrance-world.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799393/parfums/spectre-ghost-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2580,7 +2580,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["suits", "fragrance world", "parfum chypré", "parfum homme", "eau de parfum fragrance world", "galbanum", "bergamote", "ciste", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/suits-fragrance-world.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799395/parfums/suits-fragrance-world.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2604,7 +2604,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["jean lowe noir", "maison alhambra", "parfum ambré", "parfum mixte", "eau de parfum maison alhambra", "safran", "bergamote", "benjoin", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/jean-lowe-noir-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799396/parfums/jean-lowe-noir-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2675,7 +2675,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["tobacco touch", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cannelle", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/tobacco-touch-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799396/parfums/tobacco-touch-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2771,7 +2771,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["aether extrait", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "cannelle", "cardamome", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/aether-extrait-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799399/parfums/aether-extrait-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2819,7 +2819,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["lumière elle", "french avenue", "parfum chypré", "parfum femme", "eau de parfum french avenue", "bergamote", "citron", "mousse de chêne", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/lumiere-elle-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799402/parfums/lumiere-elle-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -2843,7 +2843,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["sweet paradise", "french avenue", "parfum floral", "parfum femme", "eau de parfum french avenue", "litchi", "cassis", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/sweet-paradise-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799403/parfums/sweet-paradise-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2867,7 +2867,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["royal blend nero", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "cardamome", "cannelle", "vanille", "musc", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/royal-blend-nero-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799405/parfums/royal-blend-nero-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -2915,7 +2915,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["after effect", "french avenue", "parfum ambré", "parfum mixte", "eau de parfum french avenue", "cardamome", "cannelle", "oud", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/after-effect-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799408/parfums/after-effect-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2939,7 +2939,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["glorious oud", "french avenue", "parfum oriental", "parfum mixte", "eau de parfum french avenue", "safran", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/glorious-oud-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799411/parfums/glorious-oud-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"
@@ -2987,7 +2987,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["kenzie candid vanilla", "french avenue", "parfum gourmand", "parfum mixte", "eau de parfum french avenue", "café", "cardamome", "musc", "bois de santal", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/kenzie-candid-vanilla-french-avenue.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799412/parfums/kenzie-candid-vanilla-french-avenue.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3195,7 +3195,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["bint hooran rose passion", "ard al zaafaran", "parfum floral", "parfum femme", "eau de parfum ard al zaafaran", "bergamote", "mandarine", "musc", "patchouli", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/bint-hooran-rose-passion-ard-al-zaafaran.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799414/parfums/bint-hooran-rose-passion-ard-al-zaafaran.jpg"],
         "reviews": [],
         "rating": 4.7,
         "productType": "perfume"
@@ -3313,7 +3313,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["léonie", "maison alhambra", "parfum ambré", "parfum femme", "eau de parfum maison alhambra", "cannelle", "épices", "oud", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/leonie-maison-alhambra.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799417/parfums/leonie-maison-alhambra.jpg"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -3433,7 +3433,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["liquid brun", "french avenue", "parfum vanille", "althair dupe", "parfum épicé"],
-        "images": ["/images-parfums/liquid-brun-100ml.webp"],
+        "images": ["https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799418/parfums/liquid-brun-100ml.jpg"],
         "reviews": [],
         "rating": 5.0,
         "productType": "perfume",
