@@ -424,7 +424,7 @@ export default function CartPage() {
               shippingCost={shipping}
               disabled={!lastFormData}
               onSuccess={(orderId) => {
-                router.push(`/checkout/success?paypal_order=${orderId}&total=${total.toFixed(2)}`);
+                router.push(`/checkout/success?session_id=${orderId}&total=${total.toFixed(2)}`);
               }}
             />
 
