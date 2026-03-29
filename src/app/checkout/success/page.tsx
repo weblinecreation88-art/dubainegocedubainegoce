@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { GoogleAdsConversionTracker } from '@/components/google-ads-conversion-tracker';
 import { useSearchParams } from 'next/navigation';
 
-const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-17386188547';
 const GOOGLE_ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || 'p87pCJPoh9UbEPeJ2aED';
 
 
