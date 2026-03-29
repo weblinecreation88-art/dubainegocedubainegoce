@@ -12,10 +12,20 @@ function escapeXml(str: string): string {
         .replace(/'/g, '&apos;');
 }
 
+const CLOUDINARY_CLOUD = 'dzntnjtkc';
+
 function toAbsoluteUrl(path: string): string {
     if (!path) return '';
     if (path.startsWith('http://') || path.startsWith('https://')) return path;
     return `${SITE_URL}${path.startsWith('/') ? '' : '/'}${path}`;
+}
+
+// TikTok ne supporte pas WebP — conversion automatique via Cloudinary fetch
+function toTikTokImageUrl(path: string): string {
+    const absolute = toAbsoluteUrl(path);
+    if (!absolute.toLowerCase().endsWith('.webp')) return absolute;
+    // Cloudinary fetch : convertit n'importe quelle image distante en JPG
+    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/fetch/f_jpg,q_90/${encodeURIComponent(absolute)}`;
 }
 
 export async function GET() {
@@ -33,7 +43,7 @@ export async function GET() {
 
     const items = validProducts.map((product) => {
         const productUrl = `${SITE_URL}/parfum/${product.slug}`;
-        const mainImage = toAbsoluteUrl(product.images[0]);
+        const mainImage = toTikTokImageUrl(product.images[0]);
         const brandName = product.brand?.name ?? 'DubaïNégoce';
 
         // TikTok title: max 255 chars
@@ -46,7 +56,7 @@ export async function GET() {
 
         // Additional images (TikTok supports up to 9)
         const additionalImages = (product.images.slice(1, 9) ?? [])
-            .map(img => `      <g:additional_image_link>${escapeXml(toAbsoluteUrl(img))}</g:additional_image_link>`)
+            .map(img => `      <g:additional_image_link>${escapeXml(toTikTokImageUrl(img))}</g:additional_image_link>`)
             .join('\n');
 
         // Gender mapping
