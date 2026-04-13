@@ -75,8 +75,9 @@ export default function CartPage() {
     setFormCountry(formData.country);
     setFormShippingMethod(formData.shippingMethod);
 
-    // Save shipping address to user profile
+    // Save shipping address to user profile (only if user is authenticated)
     try {
+      if (!user) throw new Error('no user');
       const userDocRef = doc(firestore, 'users', user.uid);
       await setDoc(
         userDocRef,
