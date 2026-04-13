@@ -81,6 +81,9 @@ const config = {
       { source: '/my-account-2/', destination: '/account', permanent: true },
       { source: '/my-account-2-2', destination: '/account', permanent: true },
       { source: '/my-account-2-2/', destination: '/account', permanent: true },
+      { source: '/mon-compte', destination: '/account', permanent: true },
+      { source: '/mon-compte/', destination: '/account', permanent: true },
+      { source: '/mon-compte/:path*', destination: '/account', permanent: true },
       { source: '/les-notes-olfactives', destination: '/shop', permanent: true },
       { source: '/les-notes-olfactives/', destination: '/shop', permanent: true },
       { source: '/femme', destination: '/shop/genre/femme', permanent: true },
@@ -140,6 +143,10 @@ const config = {
       { source: '/parfum/ombre-noir-jean-lowe-maison-alhambra', destination: '/parfum/jean-lowe-ombre-maison-alhambra', permanent: true },
       { source: '/parfum/ombre-noir-jean-lowe-maison-alhambra/', destination: '/parfum/jean-lowe-ombre-maison-alhambra', permanent: true },
 
+      // khamrah sans suffixe
+      { source: '/parfum/khamrah', destination: '/blog/khamrah-lattafa-avis', permanent: true },
+      { source: '/parfum/khamrah/', destination: '/blog/khamrah-lattafa-avis', permanent: true },
+
       // Produits supprimés → page marque correspondante
       { source: '/parfum/khamrah-lattafa', destination: '/blog/khamrah-lattafa-avis', permanent: true },
       { source: '/parfum/khamrah-lattafa/', destination: '/blog/khamrah-lattafa-avis', permanent: true },
@@ -157,6 +164,21 @@ const config = {
       { source: '/parfum/qaed-al-fursan-lattafa/', destination: '/shop/marque/lattafa', permanent: true },
       { source: '/parfum/jack-of-clubs-fragrance-world', destination: '/shop/marque/fragrance-world', permanent: true },
       { source: '/parfum/jack-of-clubs-fragrance-world/', destination: '/shop/marque/fragrance-world', permanent: true },
+      { source: '/parfum/kenzie-candid-vanilla-100ml', destination: '/shop', permanent: true },
+      { source: '/parfum/kenzie-candid-vanilla-100ml/', destination: '/shop', permanent: true },
+      { source: '/parfum/limmensite-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/limmensite-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/liquide-brun-french-avenue-essentiel', destination: '/parfum/liquid-brun-100ml', permanent: true },
+      { source: '/parfum/liquide-brun-french-avenue-essentiel/', destination: '/parfum/liquid-brun-100ml', permanent: true },
+      { source: '/parfum/the-artist-no1-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
+      { source: '/parfum/the-artist-no1-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
+
+      // ============================================================
+      // REDIRECTIONS PAGES SPÉCIALES
+      // ============================================================
+      { source: '/sucrer', destination: '/shop', permanent: true },
+      { source: '/sucrer/', destination: '/shop', permanent: true },
+      { source: '/search/:path*', destination: '/shop', permanent: true },
 
       // ============================================================
       // ARTICLES DE BLOG (corrections de slug)
