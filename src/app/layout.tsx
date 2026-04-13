@@ -1,0 +1,264 @@
+
+import type { Metadata } from 'next';
+import './globals.css';
+import { cn } from '@/lib/utils';
+import { Playfair_Display, PT_Sans } from 'next/font/google';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-headline',
+  display: 'swap',
+});
+
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-body',
+  display: 'swap',
+});
+import { Toaster } from '@/components/ui/toaster';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+import { ThemeProvider } from '@/components/theme-provider';
+import { CartProvider } from '@/context/cart-context';
+import { WishlistProvider } from '@/context/wishlist-context';
+import { AnnouncementBar } from '@/components/layout/announcement-bar';
+import { FirebaseClientProvider } from '@/firebase';
+import dynamic from 'next/dynamic';
+const FaqChatbot = dynamic(() => import('@/components/faq-chatbot').then(m => ({ default: m.FaqChatbot })), { ssr: false });
+const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(m => ({ default: m.CookieConsent })), { ssr: false });
+const ExitIntentPopup = dynamic(() => import('@/components/exit-intent-popup').then(m => ({ default: m.ExitIntentPopup })), { ssr: false });
+const CartAbandonmentPopup = dynamic(() => import('@/components/cart-abandonment-popup').then(m => ({ default: m.CartAbandonmentPopup })), { ssr: false });
+const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then(m => ({ default: m.AuthCartBridge })), { ssr: false });
+import Script from 'next/script';
+import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
+import { organizationSchema } from '@/components/seo/schemas';
+
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
+
+const reassurances = [
+  {
+    icon: <ShieldCheck className="w-6 h-6 mr-3 text-primary" />,
+    title: "100% Authentique",
+    description: "Importé directement de Dubaï"
+  },
+  {
+    icon: <Lock className="w-6 h-6 mr-3 text-primary" />,
+    title: "Prix Juste et Fixe",
+    description: "Le luxe accessible à 35€"
+  },
+  {
+    icon: <Rocket className="w-6 h-6 mr-3 text-primary" />,
+    title: "Livraison Rapide",
+    description: "Colissimo 48h ou Mondial Relay"
+  },
+  {
+    icon: <Phone className="w-6 h-6 mr-3 text-primary" />,
+    title: "Support Français",
+    description: "Notre équipe vous répond 24h/7j"
+  },
+];
+
+const ReassuranceSection = () => {
+  const reassuranceContent = (
+    <div className="flex items-center">
+      {reassurances.map((item, index) => (
+        <div key={index} className="flex items-center mx-6">
+          {item.icon}
+          <div className="text-left">
+            <h3 className="font-headline text-base sm:text-lg font-semibold whitespace-nowrap">{item.title}</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <section className="py-6 bg-black text-white border-y border-gray-900 overflow-hidden">
+      <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+        {reassurances.map((item, index) => (
+          <div key={index} className="flex items-center gap-2.5">
+            <span className="text-white shrink-0">{item.icon}</span>
+            <div className="text-left">
+              <h3 className="font-headline text-xs sm:text-sm font-semibold text-white leading-tight">{item.title}</h3>
+              <p className="text-[10px] sm:text-xs opacity-70 leading-tight">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Dubainegoce – Parfums de Dubaï authentiques à prix accessibles',
+    template: '%s | Dubainegoce',
+  },
+  description: 'Découvrez les meilleurs parfums de Dubaï. Lattafa, Maison Alhambra. Parfums authentiques, dupes de luxe et créations originales à 35€. Livraison rapide.',
+  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum arabe pas cher', 'parfum inspiration', 'parfums authentiques Émirats', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'Khamrah', 'Yara'],
+  openGraph: {
+    title: 'Dubainegoce - L\'Excellence des Parfums de Dubaï Authentiques',
+    description: 'Explorez notre sélection de parfums authentiques de Dubaï. Fragrances rares, dupes de luxe et best-sellers à prix unique.',
+    url: siteUrl,
+    siteName: 'Dubainegoce',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Sélection de parfums de Dubaï sur Dubainegoce',
+      },
+    ],
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dubainegoce - Parfums de Dubaï Authentiques',
+    description: 'Les plus grandes marques de parfums de Dubaï (Lattafa, Alhambra) à prix accessible. Trouvez votre sillage unique.',
+    images: [`${siteUrl}/og-image.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large',
+    'max-video-preview': -1,
+  },
+  verification: {
+    // google: 'XXXXX', // A ajouter une fois que vous avez le code de la Search Console
+  },
+  manifest: '/manifest.webmanifest',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="fr" suppressHydrationWarning>
+      <head>
+        {/* TikTok Shop domain verification */}
+        <meta name="tiktok-domain-verification" content="FRFRLCPCQWAL" />
+        {/* Preload hero LCP image */}
+        <link rel="preload" as="image" href="/hero-1.jpeg" fetchPriority="high" />
+        {/* Preconnect Cloudinary */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        {/* DNS prefetch for Google Tag Manager */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        {/* Google Tag (gtag.js) - Google Ads */}
+        <Script
+          id="google-ads-tag"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+        />
+        <Script id="google-ads-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
+        <Script id="google-tag-manager" strategy="lazyOnload">
+          {`
+            (function() {
+              var h = window.location.hostname;
+              var ref = document.referrer || '';
+              // Exclure trafic interne : localhost, IP locale, console Firebase
+              if (h === 'localhost' || h === '127.0.0.1' || h.match(/^192\\.168\\./) || ref.indexOf('console.firebase.google.com') !== -1) return;
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            })();
+          `}
+        </Script>
+      </head>
+      <body className={cn(playfair.variable, ptSans.variable, 'font-body antialiased min-h-screen flex flex-col')}>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Dubainegoce',
+              url: siteUrl,
+              logo: `${siteUrl}/logo.png`,
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+33 7 58 99 97 26',
+                contactType: 'customer service',
+              },
+              sameAs: [
+                'https://www.instagram.com/dubai_negoce/',
+                'https://www.tiktok.com/@dubai_negoce',
+              ],
+            }}
+          />
+          <JsonLd
+            data={{
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Dubainegoce',
+              url: siteUrl,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: `${siteUrl}/shop?q={search_term_string}`,
+                },
+                'query-input': 'required name=search_term_string',
+              },
+            }}
+          />
+          <FirebaseClientProvider>
+            <CartProvider>
+              <WishlistProvider>
+                <div
+                  className="sticky top-0 z-[9999] w-full bg-black"
+                >
+                  <AnnouncementBar />
+                  <Header />
+                </div>
+                <main className="flex-1">
+                  {children}
+                </main>
+                <ReassuranceSection />
+                <Footer />
+                <Toaster />
+                <FaqChatbot />
+                <CookieConsent />
+                <ExitIntentPopup />
+                <CartAbandonmentPopup />
+                <AuthCartBridge />
+              </WishlistProvider>
+            </CartProvider>
+          </FirebaseClientProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

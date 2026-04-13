@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Storage Image URL Lister</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        #output { width: 100%; height: 60vh; font-family: monospace; font-size: 12px; border: 1px solid #ccc; padding: 1rem; box-sizing: border-box; }
+        button { padding: 0.8rem 1.5rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+        button:hover { background-color: #0056b3; }
+        #status { margin-top: 1rem; font-style: italic; color: #555; }
+    </style>
+</head>
+<body>
+
+    <h1>Liste des URLs des images Firebase Storage</h1>
+    <p>Ouvrez la console de votre navigateur (F12) pour vous connecter, puis cliquez sur le bouton ci-dessous pour lister les URLs du dossier 'fond gris'.</p>
+    <button id="listButton">1. Se connecter avec Google et lister les images</button>
+    <p id="status">En attente de connexion...</p>
+    <textarea id="output" readonly placeholder="Les URLs des images apparaîtront ici..."></textarea>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+
+    <script>
+        // IMPORTANT: C'est votre configuration Firebase. Elle est sécurisée pour un usage public.
+        const firebaseConfig = {
+          "projectId": "studio-9269357231-ea935",
+          "appId": "1:626776869456:web:524bbfb0de4b57f98e9f55",
+          "apiKey": "AIzaSyBIQdZycIKoS3sVBKBiqa0_dwnVq47KW5Q",
+          "authDomain": "studio-9269357231-ea935.firebaseapp.com",
+          "storageBucket": "studio-9269357231-ea935.appspot.com" // Ajout du Storage Bucket
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const storage = firebase.storage();
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+        const listButton = document.getElementById('listButton');
+        const outputArea = document.getElementById('output');
+        const statusArea = document.getElementById('status');
+
+        listButton.onclick = async () => {
+            try {
+                statusArea.textContent = "Connexion en cours...";
+                // 1. Se connecter
+                const result = await auth.signInWithPopup(googleProvider);
+                const user = result.user;
+                statusArea.textContent = `Connecté en tant que ${user.displayName}. Récupération des fichiers...`;
+
+                // 2. Lister les fichiers
+                const folderRef = storage.ref('fond gris/');
+                const res = await folderRef.listAll();
+                
+                const urlPromises = res.items.map(itemRef => 
+                    itemRef.getDownloadURL().then(url => ({
+                        name: itemRef.name,
+                        url: url
+                    }))
+                );
+
+                const urlsAndNames = await Promise.all(urlPromises);
+
+                if (urlsAndNames.length === 0) {
+                    outputArea.value = "Aucun fichier trouvé dans le dossier 'fond gris'. Vérifiez le nom du dossier et les autorisations de stockage.";
+                    return;
+                }
+                
+                // 3. Formater et afficher
+                const outputText = urlsAndNames.map(item => `"${item.name}": "${item.url}"`).join(',\\n');
+                outputArea.value = `{${outputText}}`;
+                statusArea.textContent = `${urlsAndNames.length} images trouvées. Vous pouvez maintenant copier le contenu de la zone de texte et me le donner.`;
+
+            } catch (error) {
+                console.error("Erreur:", error);
+                statusArea.textContent = `Erreur : ${error.message}`;
+                outputArea.value = `Impossible de récupérer les fichiers. Vérifiez les règles de sécurité de votre Storage Firebase. Elles doivent autoriser les lectures par les utilisateurs authentifiés. Exemple de règle : \n\n rules_version = '2'; \n service firebase.storage { \n  match /b/{bucket}/o { \n    match /{allPaths=**} { \n      allow read: if request.auth != null; \n      allow write: if request.auth != null; \n    } \n  } \n}`;
+            }
+        };
+    </script>
+
+</body>
+</html>

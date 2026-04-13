@@ -1,0 +1,73 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+
+# Variables d'environnement publiques (disponibles au build ET au runtime)
+# Le clientId PayPal est public (exposé côté client de toute façon)
+environmentVariables:
+  - variable: NEXT_PUBLIC_PAYPAL_CLIENT_ID
+    value: AZSVA1R4EqfYKQEnx2djfVOuVbDe9XZBL2DDnLkBiOWJ6a9ucmjbyAyszvjmu0908BwMvH2srgp1Wewg
+  - variable: PAYPAL_BASE_URL
+    value: https://api-m.paypal.com
+
+# This section specifies the secrets that should be exposed to the backend as
+# environment variables.
+# IMPORTANT: You must create these secrets in Google Cloud Secret Manager.
+# Ces secrets doivent correspondre aux clés LIVE de vos services.
+secretEnvironmentVariables:
+  # --- Secrets PayPal (LIVE) ---
+  - variable: PAYPAL_CLIENT_ID
+    secret: PAYPAL_CLIENT_ID
+  - variable: PAYPAL_SECRET
+    secret: PAYPAL_SECRET
+  # --- Secrets Stripe (LIVE) ---
+  - variable: STRIPE_SECRET_KEY
+    # La clé secrète LIVE de Stripe (commence par sk_live_...)
+    secret: STRIPE_SECRET_KEY
+  - variable: STRIPE_WEBHOOK_SECRET
+    # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
+    # Attention: Ne pas confondre avec le webhook Resend.
+    secret: STRIPE_WEBHOOK_SECRET
+  # --- Secrets Resend (LIVE) ---
+  - variable: RESEND_API_KEY
+    # Votre clé API Resend (commence par re_...)
+    secret: RESEND_API_KEY
+  - variable: RESEND_AUDIENCE_ID
+    # L'ID de votre audience de newsletter Resend
+    secret: RESEND_AUDIENCE_ID
+  - variable: RESEND_WEBHOOK_SECRET
+    # La clé de signature du webhook Resend (commence par whsec_...)
+    # Attention: Similaire au format de Stripe, mais provient de Resend.
+    secret: RESEND_WEBHOOK_SECRET
+  # --- Secret Cron (Google Cloud Scheduler) ---
+  - variable: CRON_SECRET
+    # Token secret pour sécuriser l'appel cron depuis Cloud Scheduler
+    # Générez un token aléatoire fort : openssl rand -hex 32
+    secret: CRON_SECRET
+headers:
+  - # Set a Cache-Control header for all static assets.
+    source: /_next/static/**
+    headers:
+      - key: Cache-Control
+        value: public, max-age=31536000, immutable
+  - # Add security headers to all responses.
+    source: /**
+    headers:
+      - key: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains; preload
+      - key: X-Content-Type-Options
+        value: nosniff
+      - key: X-Frame-Options
+        value: SAMEORIGIN
+      - key: X-XSS-Protection
+        value: "1; mode=block"
+      - key: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - key: Content-Security-Policy
+        value: >-
+          frame-ancestors 'self';
+          upgrade-insecure-requests;
