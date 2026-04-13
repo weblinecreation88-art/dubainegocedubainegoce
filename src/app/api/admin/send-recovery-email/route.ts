@@ -59,7 +59,7 @@ function renderRecoveryEmail(
         <div class="container">
           <div class="header">
             <h1>🎁 Vous avez oublié quelque chose!</h1>
-            <p>Alain, voici une offre exclusive pour vous</p>
+            <p>${customerName}, voici une offre exclusive pour vous</p>
           </div>
 
           <div class="content">
@@ -112,17 +112,12 @@ function renderRecoveryEmail(
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, userId, promoCode = 'COMEBACK5', discount = 5, apiKey } = body;
-
-    // Authentification
-    if (!apiKey || apiKey !== process.env.ADMIN_API_KEY) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { email, userId, promoCode = 'COMEBACK5', discount = 5 } = body;
 
     // Validation
-    if (!email || !userId) {
+    if (!email) {
       return NextResponse.json(
-        { error: 'email and userId required' },
+        { error: 'email required' },
         { status: 400 }
       );
     }
@@ -166,7 +161,7 @@ export async function POST(request: NextRequest) {
     const result = await resend.emails.send({
       from: `DubaiNegoce <${fromEmail}>`,
       to: [email],
-      subject: `🎁 Alain, ${discount}% de réduction sur vos parfums préférés! Code: ${promoCode}`,
+      subject: `🎁 ${customerName}, ${discount}% de réduction sur vos parfums préférés ! Code: ${promoCode}`,
       html: emailHtml,
       replyTo: 'contact@dubainegoce.fr'
     });

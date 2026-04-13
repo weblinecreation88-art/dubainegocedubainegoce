@@ -77,7 +77,7 @@ export default function AbandonedCartsPage() {
     fetchCarts();
   }, [selectedStatus, selectedDays, toast]);
 
-  const handleSendRecoveryEmail = async (cartId: string, email: string) => {
+  const handleSendRecoveryEmail = async (cartId: string, email: string, userId: string) => {
     setSendingEmail(cartId);
     try {
       const response = await fetch('/api/admin/send-recovery-email', {
@@ -85,6 +85,7 @@ export default function AbandonedCartsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
+          userId,
           promoCode: 'COMEBACK5',
           discount: 5,
         }),
@@ -308,7 +309,7 @@ export default function AbandonedCartsPage() {
                           size="sm"
                           variant="ghost"
                           disabled={sendingEmail === cart.id || cart.status === 'recovered'}
-                          onClick={() => handleSendRecoveryEmail(cart.id, cart.email)}
+                          onClick={() => handleSendRecoveryEmail(cart.id, cart.email, cart.userId)}
                           className="gap-1"
                         >
                           <Mail className="h-4 w-4" />
