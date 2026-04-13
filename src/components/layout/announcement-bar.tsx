@@ -13,7 +13,7 @@ export function AnnouncementBar() {
           </a>
           {/* Centre : Message prix */}
           <span className="flex-1 text-center tracking-wide">
-            Prix unique : tous nos parfums sont à 35€ ! L&apos;excellence de Dubaï à portée de main.
+            Prix unique : tous nos parfums sont à 35€ ! Livraison Mondial Relay dès 4,73 €
           </span>
           {/* Droite : Livraison */}
           <Link href="/livraison-et-paiement" className="hidden md:flex items-center gap-1.5 hover:opacity-80 transition-opacity">
