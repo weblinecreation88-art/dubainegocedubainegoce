@@ -13,7 +13,7 @@ export function AnnouncementBar() {
           </a>
           {/* Centre : Message prix */}
           <span className="flex-1 text-center tracking-wide">
-            Prix unique : tous nos parfums sont à 35€ ! Livraison Mondial Relay dès 4,73 €
+            Prix unique : tous nos parfums sont à <span style={{color: '#fbbf24', fontWeight: 700}}>35€</span> ! Livraison Mondial Relay dès <span style={{color: '#fbbf24', fontWeight: 700}}>4,73 €</span>
           </span>
           {/* Droite : Livraison */}
           <Link href="/livraison-et-paiement" className="hidden md:flex items-center gap-1.5 hover:opacity-80 transition-opacity">
