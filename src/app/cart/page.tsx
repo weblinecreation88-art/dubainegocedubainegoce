@@ -6,7 +6,8 @@ import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2, ShoppingBag, ChevronLeft } from 'lucide-react';
-import { useUser, useFirestore } from '@/firebase';
+import { useUser, useFirestore, useAuth } from '@/firebase';
+import { signInAnonymously } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
@@ -36,6 +37,7 @@ interface CheckoutFormData {
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
   const { user } = useUser();
+  const auth = useAuth();
   const firestore = useFirestore();
   const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -56,9 +58,15 @@ export default function CartPage() {
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleCheckout = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
-    if (!user || !firestore) {
-      router.push('/login?redirect=/cart');
-      return;
+    if (!firestore) return;
+
+    // Connexion anonyme si l'utilisateur n'est pas connecté
+    if (!user && auth) {
+      try {
+        await signInAnonymously(auth);
+      } catch (e) {
+        console.error('Anonymous sign-in failed:', e);
+      }
     }
 
     // Save form data
@@ -94,10 +102,7 @@ export default function CartPage() {
   };
 
   const handleConfirmPayment = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
-    if (!user || !firestore) {
-      router.push('/login?redirect=/cart');
-      return;
-    }
+    if (!user || !firestore) return;
 
     setIsCheckingOut(true);
 
@@ -240,7 +245,7 @@ export default function CartPage() {
     shippingCostHT = getMondialRelayInternationalCost(formCountry, totalWeight);
   }
   const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCostHT);
-  const isFormValid = user !== null;
+  const isFormValid = true;
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -310,16 +315,16 @@ export default function CartPage() {
             <Button variant="outline" asChild className="flex-1">
               <Link href="/shop">Continuer les achats</Link>
             </Button>
-            {user ? (
-              <Button onClick={() => setMainStep('checkout-form')} className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90">
-                Continuer vers la livraison
-              </Button>
-            ) : (
-              <Button asChild className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90">
-                <Link href="/login?redirect=/cart">Se connecter</Link>
-              </Button>
-            )}
+            <Button onClick={() => setMainStep('checkout-form')} className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90">
+              Continuer vers la livraison
+            </Button>
           </div>
+          {!user && (
+            <p className="text-center text-xs text-muted-foreground mt-3">
+              Vous avez déjà un compte ?{' '}
+              <Link href="/login?redirect=/cart" className="underline hover:text-foreground">Se connecter</Link>
+            </p>
+          )}
         </div>
       )}
 
@@ -339,23 +344,14 @@ export default function CartPage() {
             <p className="text-muted-foreground mt-2">Entrez vos détails de livraison</p>
           </div>
 
-          {user ? (
-            <CheckoutForm
-              onSubmit={handleCheckout}
-              initialEmail={user.email || ''}
-              isLoading={isCheckingOut}
-              onCountryChange={setFormCountry}
-              onShippingMethodChange={setFormShippingMethod}
-              onPickupPointChange={setSelectedPickupPoint}
-            />
-          ) : (
-            <Card className="p-8 text-center">
-              <p className="text-muted-foreground mb-4">Veuillez d'abord vous connecter pour continuer</p>
-              <Button asChild>
-                <Link href={`/login?redirect=/cart`}>Se connecter</Link>
-              </Button>
-            </Card>
-          )}
+          <CheckoutForm
+            onSubmit={handleCheckout}
+            initialEmail={user?.email || ''}
+            isLoading={isCheckingOut}
+            onCountryChange={setFormCountry}
+            onShippingMethodChange={setFormShippingMethod}
+            onPickupPointChange={setSelectedPickupPoint}
+          />
         </div>
       )}
 
