@@ -86,8 +86,8 @@ export default function AbandonedCartsPage() {
         body: JSON.stringify({
           email,
           userId,
-          promoCode: 'COMEBACK5',
-          discount: 5,
+          promoCode: 'RETOUR3',
+          discount: 3,
         }),
       });
 
