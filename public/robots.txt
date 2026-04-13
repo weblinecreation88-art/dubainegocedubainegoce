@@ -48,7 +48,6 @@ Disallow: /*/feed/
 Disallow: /*/feed
 
 # Fichiers techniques non-indexables
-Disallow: /_next/static/
 Disallow: /manifest.webmanifest
 
 # ── GOOGLEBOT ───────────────────────────────────────────────
