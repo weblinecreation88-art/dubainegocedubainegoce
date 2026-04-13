@@ -343,19 +343,31 @@ export default function ProductPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Badge de confiance */}
-            <div className="grid grid-cols-3 gap-3">
-              <div className="text-center border rounded-lg p-3 hover:border-primary transition-colors">
-                <Truck className="h-5 w-5 mx-auto mb-1 text-primary" />
-                <p className="text-[10px] text-muted-foreground leading-tight">Livraison<br />48h</p>
+            {/* Livraison */}
+            <div className="border rounded-lg overflow-hidden text-sm">
+              <div className="bg-muted/50 px-4 py-2 flex items-center gap-2 border-b">
+                <Truck className="h-4 w-4 text-primary flex-shrink-0" />
+                <span className="font-semibold text-xs uppercase tracking-wide">Livraison estimée</span>
               </div>
-              <div className="text-center border rounded-lg p-3 hover:border-primary transition-colors">
-                <ShieldCheck className="h-5 w-5 mx-auto mb-1 text-primary" />
-                <p className="text-[10px] text-muted-foreground leading-tight">100%<br />Authentique</p>
+              <div className="divide-y">
+                <div className="flex items-center justify-between px-4 py-3">
+                  <div>
+                    <p className="font-medium">Mondial Relay</p>
+                    <p className="text-xs text-muted-foreground">3 à 5 jours ouvrés</p>
+                  </div>
+                  <span className="font-bold text-primary">5,10 €</span>
+                </div>
+                <div className="flex items-center justify-between px-4 py-3">
+                  <div>
+                    <p className="font-medium">Colissimo</p>
+                    <p className="text-xs text-muted-foreground">2 à 3 jours ouvrés</p>
+                  </div>
+                  <span className="font-bold text-primary">9,29 €</span>
+                </div>
               </div>
-              <div className="text-center border rounded-lg p-3 hover:border-primary transition-colors">
-                <RotateCcw className="h-5 w-5 mx-auto mb-1 text-primary" />
-                <p className="text-[10px] text-muted-foreground leading-tight">Retour<br />14 jours</p>
+              <div className="bg-muted/30 px-4 py-2 flex items-center gap-2">
+                <RotateCcw className="h-3.5 w-3.5 text-muted-foreground flex-shrink-0" />
+                <span className="text-xs text-muted-foreground">Retour gratuit sous 14 jours</span>
               </div>
             </div>
           </div>
