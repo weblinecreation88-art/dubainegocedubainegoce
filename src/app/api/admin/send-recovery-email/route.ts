@@ -30,89 +30,174 @@ function renderRecoveryEmail(
   customerName: string,
   promoCode: string,
   discount: number,
-  cartValue?: number
+  cartValue?: number,
+  cartItems?: Array<{ name: string; quantity: number; price: number }>
 ): string {
-  const savedAmount = cartValue ? (cartValue * discount / 100).toFixed(2) : 'XX.XX';
-  const cartLink = `https://dubainegoce.fr/cart?promo=${promoCode}`;
+  const savedAmount = cartValue ? (cartValue * discount / 100).toFixed(2) : null;
+  const cartLink = `https://dubainegoce.fr/cart`;
+  const firstName = customerName.split(' ')[0];
 
-  return `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: linear-gradient(135deg, #d4145a 0%, #fbb034 100%); color: white; padding: 20px; border-radius: 8px 8px 0 0; text-align: center; }
-          .content { background: #f9f9f9; padding: 20px; }
-          .promo-box { background: white; border: 3px solid #d4145a; padding: 15px; margin: 20px 0; border-radius: 5px; text-align: center; }
-          .promo-code { font-size: 32px; font-weight: bold; color: #d4145a; letter-spacing: 2px; }
-          .promo-label { font-size: 12px; color: #666; margin-top: 5px; }
-          .cta-button { display: inline-block; background: #d4145a; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; }
-          .savings { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 20px 0; text-align: center; font-weight: bold; color: #856404; }
-          .footer { background: #333; color: white; padding: 15px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
-          .list { margin: 20px 0; padding: 0 20px; }
-          .list li { margin: 10px 0; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>🎁 Vous avez oublié quelque chose!</h1>
-            <p>${customerName}, voici une offre exclusive pour vous</p>
-          </div>
+  const itemsHtml = cartItems && cartItems.length > 0
+    ? cartItems.map(item => `
+        <tr>
+          <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+            <span style="font-size:14px; color:#1a1a1a; font-weight:500;">${item.name}</span>
+          </td>
+          <td style="padding: 10px 0; border-bottom: 1px solid #f0f0f0; text-align:right; font-size:14px; color:#555; white-space:nowrap;">
+            ${item.quantity} × ${item.price.toFixed(2)} €
+          </td>
+        </tr>`).join('')
+    : '';
 
-          <div class="content">
-            <h2>Bonjour ${customerName},</h2>
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre panier vous attend — DubaiNegoce</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f4f4f4; font-family: 'Helvetica Neue', Arial, sans-serif;">
 
-            <p>Nous avons remarqué que vous aviez des articles dans votre panier sur <strong>DubaiNegoce.fr</strong> !</p>
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4; padding: 30px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
 
-            <p>Pour ne pas rater cette occasion, nous vous offrons une <strong>réduction spéciale de ${discount}%</strong> sur votre commande.</p>
+          <!-- HEADER -->
+          <tr>
+            <td style="background:#0f1726; padding: 28px 40px; text-align:center;">
+              <p style="margin:0; font-size:22px; font-weight:700; letter-spacing:3px; color:#ffffff;">DUBAÏ NÉGOCE</p>
+              <p style="margin:6px 0 0; font-size:11px; color:#c9a96e; letter-spacing:2px; text-transform:uppercase;">Importé directement de Dubaï</p>
+            </td>
+          </tr>
 
-            <div class="promo-box">
-              <p class="promo-label">Votre code de réduction exclusif</p>
-              <p class="promo-code">${promoCode}</p>
-              <p class="promo-label">Valable 7 jours</p>
-            </div>
+          <!-- HERO -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #1a2540 0%, #0f1726 100%); padding: 36px 40px; text-align:center;">
+              <p style="margin:0 0 8px; font-size:13px; color:#c9a96e; letter-spacing:2px; text-transform:uppercase;">Offre exclusive</p>
+              <h1 style="margin:0 0 12px; font-size:28px; font-weight:700; color:#ffffff; line-height:1.3;">
+                ${firstName}, votre panier<br>vous attend encore…
+              </h1>
+              <p style="margin:0; font-size:15px; color:#aab4c8; line-height:1.6;">
+                Vos parfums sont réservés. Finalisez votre commande<br>et profitez de <strong style="color:#c9a96e;">${discount}% de réduction</strong> avec le code ci-dessous.
+              </p>
+            </td>
+          </tr>
 
-            ${cartValue ? `
-              <div class="savings">
-                💰 Vous économiserez jusqu'à <strong>${savedAmount}€</strong> sur cette commande!
-              </div>
-            ` : ''}
+          <!-- LIVRAISON RAPIDE BAND -->
+          <tr>
+            <td style="background:#c9a96e; padding: 0;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="50%" style="padding: 14px 20px; text-align:center; border-right: 1px solid rgba(255,255,255,0.3);">
+                    <p style="margin:0; font-size:11px; color:#ffffff; letter-spacing:1px; text-transform:uppercase; font-weight:600;">📦 Paris &amp; Île-de-France</p>
+                    <p style="margin:4px 0 0; font-size:17px; font-weight:800; color:#0f1726;">Livraison en 48h</p>
+                  </td>
+                  <td width="50%" style="padding: 14px 20px; text-align:center;">
+                    <p style="margin:0; font-size:11px; color:#ffffff; letter-spacing:1px; text-transform:uppercase; font-weight:600;">🚚 Reste de la France</p>
+                    <p style="margin:4px 0 0; font-size:17px; font-weight:800; color:#0f1726;">Livraison en 72h</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
 
-            <h3>Ce que vous trouvez chez DubaiNegoce:</h3>
-            <ul class="list">
-              <li>✅ Parfums originaux et équivalents premium</li>
-              <li>✅ Livraison rapide (48h) en France métropolitaine</li>
-              <li>✅ 100% authentique - Garantie satisfait ou remboursé</li>
-              <li>✅ Retour gratuit sous 14 jours</li>
-              <li>✅ Service client réactif</li>
-            </ul>
+          <!-- CONTENU -->
+          <tr>
+            <td style="padding: 36px 40px;">
 
-            <center>
-              <a href="${cartLink}" class="cta-button">Terminer ma commande →</a>
-            </center>
+              <!-- Panier -->
+              ${itemsHtml ? `
+              <p style="margin:0 0 12px; font-size:13px; color:#888; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Votre sélection</p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                ${itemsHtml}
+                ${cartValue ? `
+                <tr>
+                  <td style="padding-top:12px; font-size:15px; font-weight:700; color:#0f1726;">Total</td>
+                  <td style="padding-top:12px; text-align:right; font-size:15px; font-weight:700; color:#0f1726;">${cartValue.toFixed(2)} €</td>
+                </tr>` : ''}
+              </table>` : ''}
 
-            <p style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
-              Questions? Contactez-nous à <strong>contact@dubainegoce.fr</strong>
-            </p>
-          </div>
+              <!-- CODE PROMO -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
+                <tr>
+                  <td style="background:#f8f5ef; border: 2px dashed #c9a96e; border-radius:10px; padding: 24px; text-align:center;">
+                    <p style="margin:0 0 6px; font-size:12px; color:#888; text-transform:uppercase; letter-spacing:2px;">Votre code exclusif · valable 48h</p>
+                    <p style="margin:0 0 8px; font-size:36px; font-weight:800; color:#0f1726; letter-spacing:6px;">${promoCode}</p>
+                    <p style="margin:0; font-size:14px; color:#c9a96e; font-weight:600;">
+                      ${discount}% de réduction${savedAmount ? ` — économisez <strong>${savedAmount} €</strong>` : ''}
+                    </p>
+                  </td>
+                </tr>
+              </table>
 
-          <div class="footer">
-            <p>© 2026 DubaiNegoce - Tous droits réservés</p>
-            <p>Cette offre est valable 7 jours à partir de la réception de cet email</p>
-          </div>
-        </div>
-      </body>
-    </html>
-  `;
+              <!-- CTA -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+                <tr>
+                  <td align="center">
+                    <a href="${cartLink}" style="display:inline-block; background:#0f1726; color:#ffffff; text-decoration:none; padding: 16px 48px; border-radius:6px; font-size:15px; font-weight:700; letter-spacing:1px;">
+                      Finaliser ma commande →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- GARANTIES -->
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="33%" style="padding: 0 8px; text-align:center; vertical-align:top;">
+                    <div style="background:#f8f9fb; border-radius:8px; padding:16px 12px;">
+                      <p style="margin:0 0 6px; font-size:20px;">✅</p>
+                      <p style="margin:0; font-size:12px; font-weight:700; color:#0f1726;">100% Authentique</p>
+                      <p style="margin:4px 0 0; font-size:11px; color:#888;">Parfums originaux importés directement</p>
+                    </div>
+                  </td>
+                  <td width="33%" style="padding: 0 8px; text-align:center; vertical-align:top;">
+                    <div style="background:#f8f9fb; border-radius:8px; padding:16px 12px;">
+                      <p style="margin:0 0 6px; font-size:20px;">🔒</p>
+                      <p style="margin:0; font-size:12px; font-weight:700; color:#0f1726;">Paiement sécurisé</p>
+                      <p style="margin:4px 0 0; font-size:11px; color:#888;">Stripe · Carte · PayPal</p>
+                    </div>
+                  </td>
+                  <td width="33%" style="padding: 0 8px; text-align:center; vertical-align:top;">
+                    <div style="background:#f8f9fb; border-radius:8px; padding:16px 12px;">
+                      <p style="margin:0 0 6px; font-size:20px;">↩️</p>
+                      <p style="margin:0; font-size:12px; font-weight:700; color:#0f1726;">Retours gratuits</p>
+                      <p style="margin:4px 0 0; font-size:11px; color:#888;">Sous 14 jours, sans question</p>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background:#0f1726; padding: 24px 40px; text-align:center;">
+              <p style="margin:0 0 8px; font-size:13px; color:#aab4c8;">
+                Une question ? <a href="mailto:contact@dubainegoce.fr" style="color:#c9a96e; text-decoration:none;">contact@dubainegoce.fr</a>
+              </p>
+              <p style="margin:0; font-size:11px; color:#555; line-height:1.6;">
+                © 2026 DubaiNegoce · Importé directement de Dubaï<br>
+                <a href="https://dubainegoce.fr" style="color:#555; text-decoration:none;">dubainegoce.fr</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>`;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, userId, promoCode = 'COMEBACK5', discount = 5 } = body;
+    const { email, userId, promoCode = 'RETOUR3', discount = 3 } = body;
 
     // Validation
     if (!email) {
@@ -124,28 +209,46 @@ export async function POST(request: NextRequest) {
 
     // Récupérer les infos du panier abandonné
     let cartValue = 0;
+    let cartItems: Array<{ name: string; quantity: number; price: number }> = [];
     let customerName = email.split('@')[0];
 
     try {
-      const abandonedCartsSnapshot = await firestore
+      // Chercher d'abord par email (plus fiable que userId pour les paniers)
+      const byEmail = await firestore
         .collection('abandoned_carts')
-        .where('userId', '==', userId)
-        .where('status', '==', 'active')
+        .where('email', '==', email)
         .orderBy('createdAt', 'desc')
         .limit(1)
         .get();
 
-      if (!abandonedCartsSnapshot.empty) {
-        const cartData = abandonedCartsSnapshot.docs[0].data();
+      const byUserId = userId && byEmail.empty
+        ? await firestore
+            .collection('abandoned_carts')
+            .where('userId', '==', userId)
+            .orderBy('createdAt', 'desc')
+            .limit(1)
+            .get()
+        : null;
+
+      const snap = !byEmail.empty ? byEmail : byUserId;
+
+      if (snap && !snap.empty) {
+        const cartData = snap.docs[0].data();
         cartValue = cartData.cartValue || 0;
+        cartItems = (cartData.cartSnapshot || []).map((item: any) => ({
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+        }));
       }
 
-      // Récupérer le nom du client s'il existe
-      const userDoc = await firestore.collection('users').doc(userId).get();
-      if (userDoc.exists) {
-        const userData = userDoc.data();
-        if (userData?.name) {
-          customerName = userData.name;
+      // Récupérer le nom du client
+      if (userId) {
+        const userDoc = await firestore.collection('users').doc(userId).get();
+        if (userDoc.exists) {
+          const userData = userDoc.data();
+          const fullName = userData?.displayName || userData?.name || userData?.firstName;
+          if (fullName) customerName = fullName;
         }
       }
     } catch (e) {
@@ -155,13 +258,14 @@ export async function POST(request: NextRequest) {
     // Envoyer l'email
     const resend = getResendClient();
     const fromEmail = process.env.FROM_EMAIL || 'noreply@dubainegoce.fr';
+    const firstName = customerName.split(' ')[0];
 
-    const emailHtml = renderRecoveryEmail(customerName, promoCode, discount, cartValue);
+    const emailHtml = renderRecoveryEmail(customerName, promoCode, discount, cartValue, cartItems);
 
     const result = await resend.emails.send({
       from: `DubaiNegoce <${fromEmail}>`,
       to: [email],
-      subject: `🎁 ${customerName}, ${discount}% de réduction sur vos parfums préférés ! Code: ${promoCode}`,
+      subject: `${firstName}, vos parfums vous attendent — ${discount}% offerts avec le code ${promoCode}`,
       html: emailHtml,
       replyTo: 'contact@dubainegoce.fr'
     });
