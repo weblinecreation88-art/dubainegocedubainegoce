@@ -90,6 +90,19 @@ export interface OrderItem {
     image: string;
 }
 
+export interface ShippingAddress {
+    firstName?: string;
+    lastName?: string;
+    address1?: string;
+    line1?: string;
+    address2?: string;
+    city?: string;
+    postalCode?: string;
+    postal_code?: string;
+    country?: string;
+    phone?: string;
+}
+
 export interface Order {
     id: string;
     userId: string;
@@ -99,6 +112,13 @@ export interface Order {
     orderItems: OrderItem[];
     stripeSessionId?: string;
     shippingMethod?: ShippingMethod['id'];
+    customerName?: string;
+    customerEmail?: string;
+    customerPhone?: string;
+    shippingAddress?: ShippingAddress | null;
+    trackingNumber?: string;
+    trackingUrl?: string;
+    _importedFromStripe?: boolean;
 }
 
 export type ShippingMethod = {
