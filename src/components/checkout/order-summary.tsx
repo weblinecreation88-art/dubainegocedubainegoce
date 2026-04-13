@@ -165,7 +165,7 @@ export function OrderSummary({
       {/* Security Info */}
       <div className="text-center text-xs text-muted-foreground space-y-1">
         <p>🔒 Paiement sécurisé par Stripe</p>
-        <p>✅ 100% Authentique | 💚 Retour 14 jours</p>
+        <p>💚 Retour 14 jours</p>
       </div>
     </div>
   );
