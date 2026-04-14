@@ -106,16 +106,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Section prix unique - argument clé */}
-      <div className="w-full bg-yellow-400 text-black py-5 text-center">
-        <div className="container mx-auto px-4">
-          <p className="text-sm sm:text-base font-bold tracking-wide uppercase">
-            Pas de piège. Pas de surprise. <span className="underline decoration-2">Tous nos parfums sont à 35€.</span>
-          </p>
-          <p className="text-xs sm:text-sm mt-1 opacity-80">Des fragrances inspirées des plus grandes maisons — Dior, Tom Ford, Chanel, YSL — à une fraction du prix.</p>
-        </div>
-      </div>
-
       {/* Trend This Week / Nouveautés */}
       {newArrivals.length > 0 && (
         <section className="py-16 md:py-24 bg-white dark:bg-background">
