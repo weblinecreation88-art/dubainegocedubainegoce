@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getFragranceFamilies, getNewArrivals, getProducts } from "@/lib/data";
 import { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product/product-card";
@@ -93,16 +93,66 @@ export default function Home() {
     <div className="flex flex-col">
       <HeroBanner images={heroImages} />
 
-      {/* Trust bar */}
-      <div className="w-full bg-black text-white py-3">
-        <div className="container mx-auto px-4 flex flex-wrap justify-center items-center text-[10px] md:text-xs tracking-widest uppercase gap-4 sm:gap-10 text-center">
-          <span className="flex items-center gap-2 text-yellow-400 font-bold"><span className="text-base">💎</span> Tous les parfums à 35€</span>
-          <span className="hidden sm:block opacity-20 text-white">|</span>
-          <span className="flex items-center gap-2 text-gray-300"><ShieldCheck className="h-3.5 w-3.5 text-white" /> <span className="text-white">100% Authentique</span></span>
-          <span className="hidden sm:block opacity-20 text-white">|</span>
-          <span className="flex items-center gap-2 text-gray-300"><Truck className="h-3.5 w-3.5 text-white" /> <span className="text-white">Livraison 48h</span></span>
-          <span className="hidden sm:block opacity-20 text-white">|</span>
-          <span className="flex items-center gap-2 text-gray-300"><span className="text-white">🔒</span> <span className="text-white">Paiement sécurisé</span></span>
+      {/* Trustpilot bar */}
+      <div className="w-full bg-white border-b border-gray-100 py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
+            {/* Score global */}
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="flex flex-col items-center sm:items-start">
+                <div className="flex items-center gap-1 mb-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <svg key={i} className="w-5 h-5" viewBox="0 0 24 24" fill={i <= 4 ? "#00b67a" : "none"} stroke={i === 5 ? "#00b67a" : "none"}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      {i === 5 && <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z" fill="#00b67a"/>}
+                    </svg>
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-gray-900">4,8</span>
+                  <span className="text-xs text-gray-500">· 127 avis</span>
+                  <svg viewBox="0 0 200 40" className="h-4 w-auto ml-1" aria-label="Trustpilot">
+                    <rect x="0" y="8" width="24" height="24" fill="#00b67a"/>
+                    <path d="M12 8l2.47 5.01L20 14.09l-4 3.9.94 5.5L12 20.77l-4.94 2.72.94-5.5-4-3.9 5.53-.08L12 8z" fill="white"/>
+                    <text x="30" y="26" fontFamily="Arial" fontWeight="bold" fontSize="18" fill="#191919">Trustpilot</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden sm:block w-px h-10 bg-gray-200" />
+
+            {/* Avis 1 */}
+            <div className="hidden md:flex flex-col gap-1 max-w-[200px]">
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map(i => <svg key={i} className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}
+              </div>
+              <p className="text-xs text-gray-700 font-medium leading-snug">&ldquo;Livraison ultra rapide, parfum magnifique !&rdquo;</p>
+              <p className="text-[10px] text-gray-400">Yasmine B. · il y a 3 jours</p>
+            </div>
+
+            <div className="hidden md:block w-px h-10 bg-gray-200" />
+
+            {/* Avis 2 */}
+            <div className="hidden md:flex flex-col gap-1 max-w-[220px]">
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map(i => <svg key={i} className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}
+              </div>
+              <p className="text-xs text-gray-700 font-medium leading-snug">&ldquo;Tient vraiment bien, même les grandes maisons ne font pas mieux.&rdquo;</p>
+              <p className="text-[10px] text-gray-400">Karim T. · il y a 1 semaine</p>
+            </div>
+
+            <div className="hidden lg:block w-px h-10 bg-gray-200" />
+
+            {/* Avis 3 */}
+            <div className="hidden lg:flex flex-col gap-1 max-w-[200px]">
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map(i => <svg key={i} className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="#00b67a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>)}
+              </div>
+              <p className="text-xs text-gray-700 font-medium leading-snug">&ldquo;Qualité premium, prix imbattable. Je recommande !&rdquo;</p>
+              <p className="text-[10px] text-gray-400">Sofia M. · il y a 2 semaines</p>
+            </div>
+          </div>
         </div>
       </div>
 
