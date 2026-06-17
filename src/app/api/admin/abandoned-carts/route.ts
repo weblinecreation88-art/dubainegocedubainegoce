@@ -1,5 +1,6 @@
 import { firestore } from '@/firebase/server';
 import { NextResponse, NextRequest } from 'next/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export interface AbandonedCartData {
   id: string;
@@ -33,6 +34,9 @@ export interface AbandonedCartsStats {
 }
 
 export async function GET(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     const searchParams = request.nextUrl.searchParams;
     const status = searchParams.get('status') || 'all'; // all, active, expired, recovered
@@ -126,6 +130,9 @@ export async function GET(request: NextRequest) {
  * Mark a cart as recovered
  */
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await request.json();
     const { cartId, action } = body;

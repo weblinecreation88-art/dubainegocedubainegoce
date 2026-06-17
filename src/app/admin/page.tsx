@@ -9,6 +9,8 @@ import {
   Mail,
   Eye,
 } from 'lucide-react';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface DashboardMetrics {
   totalOrders: number;
@@ -38,11 +40,12 @@ export default function AdminDashboardPage() {
     emailOpenRate: 0,
     loading: true,
   });
+  const auth = useAuth();
 
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const response = await fetch('/api/admin/dashboard');
+        const response = await adminFetch(auth, '/api/admin/dashboard');
         if (!response.ok) throw new Error('Failed to fetch metrics');
         const data = await response.json();
         setMetrics({ ...data, loading: false });
@@ -55,7 +58,7 @@ export default function AdminDashboardPage() {
     fetchMetrics();
     const interval = setInterval(fetchMetrics, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [auth]);
 
   if (metrics.loading) {
     return (

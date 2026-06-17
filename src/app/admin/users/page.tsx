@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface User {
   id: string;
@@ -14,11 +16,12 @@ interface User {
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const auth = useAuth();
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/admin/users');
+        const response = await adminFetch(auth, '/api/admin/users');
         if (!response.ok) throw new Error('Failed to fetch users');
         const data = await response.json();
         setUsers(data);
@@ -30,7 +33,7 @@ export default function AdminUsersPage() {
     };
 
     fetchUsers();
-  }, []);
+  }, [auth]);
 
   const stats = {
     total: users.length,

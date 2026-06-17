@@ -5,6 +5,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { firestore } from '@/firebase/server';
 import { renderMakeoverCampaignEmail } from '@/lib/email-templates/makeover-campaign';
 import { getProducts } from '@/lib/data';
+import { requireAdmin } from '@/lib/admin-auth';
 
 /**
  * API Endpoint pour envoyer la campagne "Dubai Négoce fait peau neuf"
@@ -262,22 +263,12 @@ async function logEmailSent(
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await request.json().catch(() => ({}));
     const { promoCode = 'PNEUF5', dryRun = false } = body;
-
-    // Vérification basique d'autorisation (optionnel)
-    const authHeader = request.headers.get('authorization');
-    const isAdminRequest = authHeader?.startsWith('Bearer ') ||
-                          request.headers.get('x-internal-request') === 'true';
-
-    // Pour la sécurité, vous pouvez ajouter une vérification d'admin token
-    // if (!isAdminRequest) {
-    //   return NextResponse.json(
-    //     { error: 'Unauthorized' },
-    //     { status: 401 }
-    //   );
-    // }
 
     // Récupérer tous les utilisateurs
     const users = await getAllUsers();
@@ -396,6 +387,9 @@ export async function POST(request: NextRequest) {
  * GET /api/admin/send-makeover-campaign?preview=true
  */
 export async function GET(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     const preview = request.nextUrl.searchParams.get('preview');
     const testEmail = request.nextUrl.searchParams.get('testEmail');

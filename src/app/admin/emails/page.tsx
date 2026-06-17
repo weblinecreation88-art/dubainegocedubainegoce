@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface EmailLog {
   id: string;
@@ -17,11 +19,12 @@ export default function AdminEmailsPage() {
   const [emails, setEmails] = useState<EmailLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const auth = useAuth();
 
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-        const response = await fetch('/api/admin/emails');
+        const response = await adminFetch(auth, '/api/admin/emails');
         if (!response.ok) throw new Error('Failed to fetch emails');
         const data = await response.json();
         setEmails(data);
@@ -33,7 +36,7 @@ export default function AdminEmailsPage() {
     };
 
     fetchEmails();
-  }, []);
+  }, [auth]);
 
   const filteredEmails =
     typeFilter === 'all'

@@ -231,6 +231,10 @@ export async function GET(request: NextRequest) {
 
 // For manual testing/triggering
 export async function POST(request: NextRequest) {
+  if (!verifyAuth(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   try {
     const result = await sendAbandonedCartReminders();
     return NextResponse.json(result, { status: 200 });

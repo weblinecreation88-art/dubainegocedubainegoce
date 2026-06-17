@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, PieChart } from 'lucide-react';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface AnalyticsData {
   dailyRevenue: { date: string; revenue: number }[];
@@ -21,12 +23,13 @@ export default function AnalyticsPage() {
     deviceStats: [],
     loading: true,
   });
+  const auth = useAuth();
 
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
         // Fetch from API instead of direct Firestore
-        const response = await fetch('/api/admin/dashboard');
+        const response = await adminFetch(auth, '/api/admin/dashboard');
         if (!response.ok) throw new Error('Failed to fetch data');
         
         const dashboardData = await response.json();
@@ -89,7 +92,7 @@ export default function AnalyticsPage() {
     };
 
     fetchAnalytics();
-  }, []);
+  }, [auth]);
 
   if (data.loading) {
     return (

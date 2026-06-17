@@ -1,8 +1,12 @@
 import { firestore } from '@/firebase/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getProducts } from '@/lib/data';
+import { requireAdmin } from '@/lib/admin-auth';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     const allProducts = getProducts();
     const ordersSnapshot = await firestore.collection('orders').get();

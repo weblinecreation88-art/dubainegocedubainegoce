@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { firestore } from '@/firebase/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export async function GET(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     // Récupérer tous les logs des emails
     const logsSnapshot = await firestore

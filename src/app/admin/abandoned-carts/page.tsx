@@ -6,6 +6,8 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShoppingCart, DollarSign, TrendingUp, Clock, Mail, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface AbandonedCartData {
   id: string;
@@ -46,6 +48,7 @@ export default function AbandonedCartsPage() {
   const [selectedDays, setSelectedDays] = useState<number>(30);
   const [sendingEmail, setSendingEmail] = useState<string | null>(null);
   const { toast } = useToast();
+  const auth = useAuth();
 
   // Fetch abandoned carts
   useEffect(() => {
@@ -56,7 +59,7 @@ export default function AbandonedCartsPage() {
         if (selectedStatus !== 'all') params.append('status', selectedStatus);
         params.append('days', selectedDays.toString());
 
-        const response = await fetch(`/api/admin/abandoned-carts?${params}`);
+        const response = await adminFetch(auth, `/api/admin/abandoned-carts?${params}`);
         if (!response.ok) throw new Error('Failed to fetch carts');
 
         const data = await response.json();
@@ -75,12 +78,12 @@ export default function AbandonedCartsPage() {
     };
 
     fetchCarts();
-  }, [selectedStatus, selectedDays, toast]);
+  }, [selectedStatus, selectedDays, toast, auth]);
 
   const handleSendRecoveryEmail = async (cartId: string, email: string) => {
     setSendingEmail(cartId);
     try {
-      const response = await fetch('/api/admin/send-recovery-email', {
+      const response = await adminFetch(auth, '/api/admin/send-recovery-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -101,7 +104,7 @@ export default function AbandonedCartsPage() {
       const params = new URLSearchParams();
       if (selectedStatus !== 'all') params.append('status', selectedStatus);
       params.append('days', selectedDays.toString());
-      const refreshResponse = await fetch(`/api/admin/abandoned-carts?${params}`);
+      const refreshResponse = await adminFetch(auth, `/api/admin/abandoned-carts?${params}`);
       const data = await refreshResponse.json();
       setCarts(data.carts);
     } catch (error) {
@@ -118,7 +121,7 @@ export default function AbandonedCartsPage() {
 
   const handleMarkRecovered = async (cartId: string) => {
     try {
-      const response = await fetch('/api/admin/abandoned-carts', {
+      const response = await adminFetch(auth, '/api/admin/abandoned-carts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

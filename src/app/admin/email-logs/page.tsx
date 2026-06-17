@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface EmailLog {
   id: string;
@@ -22,15 +24,16 @@ export default function EmailLogsPage() {
   const [logs, setLogs] = useState<EmailLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchEmail, setSearchEmail] = useState('');
+  const auth = useAuth();
 
   useEffect(() => {
     fetchLogs();
-  }, []);
+  }, [auth]);
 
   async function fetchLogs() {
     try {
       setLoading(true);
-      const response = await fetch('/api/admin/email-logs');
+      const response = await adminFetch(auth, '/api/admin/email-logs');
       if (response.ok) {
         const data = await response.json();
         setLogs(data.logs || []);

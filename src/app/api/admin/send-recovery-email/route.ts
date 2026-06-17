@@ -1,18 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { firestore } from '@/firebase/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 /**
  * API Endpoint pour envoyer une relance email personnalisée
  * POST /api/admin/send-recovery-email
  *
+ * Requires an Authorization: Bearer <admin Firebase ID token | ADMIN_API_KEY> header.
+ *
  * Body:
  * {
- *   "email": "alain.guyon47@sfr.fr",
- *   "userId": "Cel70J9yBQMT2fiXVgnAL76LGjq1",
+ *   "email": "customer@example.com",
+ *   "userId": "uid",
  *   "promoCode": "COMEBACK5",
- *   "discount": 5,
- *   "apiKey": "YOUR_ADMIN_API_KEY"
+ *   "discount": 5
  * }
  */
 
@@ -59,7 +61,7 @@ function renderRecoveryEmail(
         <div class="container">
           <div class="header">
             <h1>🎁 Vous avez oublié quelque chose!</h1>
-            <p>Alain, voici une offre exclusive pour vous</p>
+            <p>Voici une offre exclusive pour vous</p>
           </div>
 
           <div class="content">
@@ -110,14 +112,12 @@ function renderRecoveryEmail(
 }
 
 export async function POST(request: NextRequest) {
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
+
   try {
     const body = await request.json();
-    const { email, userId, promoCode = 'COMEBACK5', discount = 5, apiKey } = body;
-
-    // Authentification
-    if (!apiKey || apiKey !== process.env.ADMIN_API_KEY) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { email, userId, promoCode = 'COMEBACK5', discount = 5 } = body;
 
     // Validation
     if (!email || !userId) {
@@ -166,7 +166,7 @@ export async function POST(request: NextRequest) {
     const result = await resend.emails.send({
       from: `DubaiNegoce <${fromEmail}>`,
       to: [email],
-      subject: `🎁 Alain, ${discount}% de réduction sur vos parfums préférés! Code: ${promoCode}`,
+      subject: `🎁 ${discount}% de réduction sur vos parfums préférés! Code: ${promoCode}`,
       html: emailHtml,
       replyTo: 'contact@dubainegoce.fr'
     });
@@ -225,12 +225,10 @@ export async function POST(request: NextRequest) {
  * GET /api/admin/send-recovery-email?userId=XXX&apiKey=YYY
  */
 export async function GET(request: NextRequest) {
-  try {
-    const apiKey = request.nextUrl.searchParams.get('apiKey');
-    if (!apiKey || apiKey !== process.env.ADMIN_API_KEY) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const unauthorized = await requireAdmin(request);
+  if (unauthorized) return unauthorized;
 
+  try {
     const userId = request.nextUrl.searchParams.get('userId');
     if (!userId) {
       return NextResponse.json({ error: 'userId required' }, { status: 400 });

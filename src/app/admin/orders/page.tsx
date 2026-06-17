@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/firebase';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface Order {
   id: string;
@@ -16,11 +18,12 @@ export default function AdminOrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const auth = useAuth();
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch('/api/admin/orders');
+        const response = await adminFetch(auth, '/api/admin/orders');
         if (!response.ok) throw new Error('Failed to fetch orders');
         const data = await response.json();
         setOrders(data);
@@ -32,7 +35,7 @@ export default function AdminOrdersPage() {
     };
 
     fetchOrders();
-  }, []);
+  }, [auth]);
 
   const filteredOrders =
     statusFilter === 'all'
