@@ -1,0 +1,214 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-main-bg",
+      "description": "Bannière DubaiNegoce",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765659418/ChatGPT_Image_5_ao%C3%BBt_2025_17_50_58_xsfw8e.png",
+      "imageHint": "perfume display"
+    },
+    {
+      "id": "optimysitc-uwxrys-fragrance-world",
+      "description": "Image for optimysitc-uwxrys-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615616/optimysitc-world-uwxrys.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "opera-noir-ehhvaa-maison-alhambra",
+      "description": "Image for opera-noir-ehhvaa-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615615/opera-noir-ehhvaa-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "ombre-noir-tklvnr-maison-alhambra",
+      "description": "Image for ombre-noir-tklvnr-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615606/ombre-noir-tklvnr.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "moscow-kismet-maison-alhambra",
+      "description": "Image for moscow-kismet-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615489/moscow-kismet-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "mocha-wood-iccrfb-fragrance-world",
+      "description": "Image for mocha-wood-iccrfb-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615019/mocha-wood-world-iccrfb.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "lovely-cherie-maison-alhambra",
+      "description": "Image for lovely-cherie-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615007/lovely-cherie-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "kismet-maison-alhambra",
+      "description": "Image for kismet-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765615003/kismet-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "king-fragrance-world",
+      "description": "Image for king-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614998/king-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "karat-unisexe-maison-alhambra",
+      "description": "Image for karat-unisexe-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614991/karat-unisexe-alhambra.jpg",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jorge-di-profumo-maison-alhambra",
+      "description": "Image for jorge-di-profumo-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614987/jorge-di-profumo-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jean-lowe-ombre-maison-alhambra",
+      "description": "Image for jean-lowe-ombre-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614986/jean-lowe-ombre.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jean-lowe-nouveau-ounce-maison-alhambra",
+      "description": "Image for jean-lowe-nouveau-ounce-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614983/jean-lowe-nouveau-ounce-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jean-lowe-matiere-maison-alhambra",
+      "description": "Image for jean-lowe-matiere-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614979/jean-lowe-matiere-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jean-couturier-rose-khayali-maison-alhambra",
+      "description": "Image for jean-couturier-rose-khayali-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614978/jean-couturier-rose-khayali.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jean-couturier-patchouli-jtkydn-maison-alhambra",
+      "description": "Image for jean-couturier-patchouli-jtkydn-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614975/jean-couturier-patchouli-jtkydn.jpg",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "jack-of-clubs-fragrance-world",
+      "description": "Image for jack-of-clubs-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614972/jack-of-clubs-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "invicto-fragrance-world",
+      "description": "Image for invicto-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614971/invicto-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "infini-rose-elixir-maison-alhambra",
+      "description": "Image for infini-rose-elixir-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614967/infini-rose-elixir-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "i-am-ana-abiyedh-ueclnf-lattafa",
+      "description": "Image for i-am-ana-abiyedh-ueclnf-lattafa",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614961/i-am-ana-abiyedh-ueclnf.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "for-man-top-kismet-maison-alhambra",
+      "description": "Image for for-man-top-kismet-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614711/for-man-top-kismet-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "fresh-as-citrus-fragrance-world",
+      "description": "Image for fresh-as-citrus-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614711/fresh-as-citrus-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "generic-image",
+      "description": "Image for generic-image",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614710/generic-image_gv0pbr.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "fakhar-wasam-lattafa",
+      "description": "Image for fakhar-wasam-lattafa",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614698/fakhar-wasam.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "for-arzwhl-banafa-lattafa",
+      "description": "Image for for-arzwhl-banafa-lattafa",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614698/for-arzwhl-banafa.jpg",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "dark-as-wood-julyef-fragrance-world",
+      "description": "Image for dark-as-wood-julyef-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614606/dark-as-wood-world-julyef.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "cuir-leather-fragrance-world",
+      "description": "Image for cuir-leather-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614603/cuir-leather-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "cocktail-ryzdpb-fragrance-world",
+      "description": "Image for cocktail-ryzdpb-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614593/cocktail-world-ryzdpb.jpg",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "baroque-extrait-maison-alhambra",
+      "description": "Image for baroque-extrait-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614584/baroque-extrait-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "baroque-maison-alhambra",
+      "description": "Image for baroque-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614481/baroque-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "barakkat-wtfisr-fragrance-world",
+      "description": "Image for barakkat-wtfisr-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614418/barakkat-world-wtfisr.jpg",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "avant-maison-alhambra",
+      "description": "Image for avant-maison-alhambra",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614412/avant-alhambra.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "as-tuberose-fragrance-world",
+      "description": "Image for as-tuberose-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614410/as-tuberose-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "aoud-fragrance-world",
+      "description": "Image for aoud-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614406/aoud-world.png",
+      "imageHint": "perfume bottle"
+    },
+    {
+      "id": "amber-neroli-sjlffe-fragrance-world",
+      "description": "Image for amber-neroli-sjlffe-fragrance-world",
+      "imageUrl": "https://res.cloudinary.com/dhjwimevi/image/upload/v1765614399/amber-neroli-world-sjlffe.png",
+      "imageHint": "perfume bottle"
+    }
+  ]
+}

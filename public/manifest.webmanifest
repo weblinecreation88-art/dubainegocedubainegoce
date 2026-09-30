@@ -1,0 +1,9 @@
+{
+    "name": "DubaiNegoce",
+    "short_name": "DubaiNegoce",
+    "description": "Découvrez les meilleurs parfums de Dubaï. Lattafa, Maison Alhambra. Parfums authentiques, dupes de luxe et créations originales à 35€. Livraison rapide.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0F172A",
+    "theme_color": "#C08D2C"
+}

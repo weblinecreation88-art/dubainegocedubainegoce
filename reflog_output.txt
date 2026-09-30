@@ -1,0 +1,73 @@
+7877089 HEAD@{0}: pull --rebase origin master (start): checkout 78770890186a286f9760a6503faf1090e7fdf5ae
+f29d378 HEAD@{1}: commit: Update: Apply pending changes
+22e1086 HEAD@{2}: commit: feat(cro): optimisation complète conversion visiteur → acheteur (v2)
+1b8f027 HEAD@{3}: pull origin master --rebase (finish): returning to refs/heads/master
+1b8f027 HEAD@{4}: pull origin master --rebase (start): checkout 1b8f02709d50f301457b7f308e5d992d950bdf4c
+7877089 HEAD@{5}: reset: moving to HEAD
+7877089 HEAD@{6}: commit: feat(cro): optimisation complète conversion visiteur → acheteur
+7561860 HEAD@{7}: commit: Fix: Nouvelle Arrivage layout to 4x2 grid (8 products total)
+fdef0c7 HEAD@{8}: commit: Batch 1 & 2: Add Royal Blend Nero and Azzure Aoud to Nouvelle Arrivage; update Bestsellers grid to 4 columns
+5b6a423 HEAD@{9}: commit: Add Royal Blend Nero to Nouvelle Arrivage and update Bestsellers grid to 4 columns
+72632ca HEAD@{10}: commit: feat(tiktok): switch to XLSX format for TikTok Shop import and add xlsx dependency
+8be9969 HEAD@{11}: commit: feat(tiktok): add tiktok shop bulk import export script and csv
+9aa0cc1 HEAD@{12}: commit: chore(feed): update product feed XML
+38ec3e9 HEAD@{13}: commit: chore(seo): remove static sitemap/robots to enable dynamic generation
+355ea89 HEAD@{14}: commit: fix(seo): add product structured data for GMC
+42e1742 HEAD@{15}: commit: fix(build): add missing runAnswerFaq export
+9eaf1f6 HEAD@{16}: commit: refactor(ui): daily updates - remove top bar, update typography/colors, elegant review styles
+095dd61 HEAD@{17}: commit: Update New Arrivals: Add Kenzie Pistachio, remove Sweet Paradise, update images and product details
+56de026 HEAD@{18}: commit: Trigger rebuild after secret fix
+39ff2e5 HEAD@{19}: commit: Fix: Mise a jour flux produits Google Merchant Center
+e2dd508 HEAD@{20}: commit: feat: Remove SendCloud integration
+e24cf73 HEAD@{21}: commit: MISE A JOUR DE LA CARTE MONDIAL RELAIS
+94ae643 HEAD@{22}: commit: Feat: Integration widget SendCloud pour points relais
+c4af60c HEAD@{23}: commit: fix: ensure sendcloud widget code is committed
+227f06f HEAD@{24}: commit: chore: use proper secret for SENDCLOUD_ID in apphosting
+76aefb0 HEAD@{25}: commit: chore: add debug logs for Boxtal API key
+6289f75 HEAD@{26}: commit: chore: trigger redeploy for Boxtal keys update
+015b475 HEAD@{27}: commit: fix: add Boxtal ACCESS_TOKEN to apphosting.yaml
+66739c2 HEAD@{28}: commit: fix: add type declaration for @boxtal/parcel-point-map to fix build error
+79f8b3e HEAD@{29}: commit: fix: resolve BoxtalMapWidget reference error in cart
+ea504fc HEAD@{30}: commit: Refactor: Widget Point Relais avec flow en 2 etapes
+dfe1b87 HEAD@{31}: commit: Feat: Integration widget officiel Boxtal Map pour points relais
+e039e90 HEAD@{32}: commit: Feat: Widget selection Point Relais Mondial Relay sur page panier
+a203bfe HEAD@{33}: commit: Feat: Ajout alertes Telegram pour nouvelles commandes
+fa4dcc6 HEAD@{34}: commit: Refactor: Vidéo Hero avec conversion H.264 pour compatibilité navigateurs
+b05c391 HEAD@{35}: commit: Refactor: Mise à jour vidéo Hero avec nouvelle URL Cloudinary
+f65eda8 HEAD@{36}: commit: Refactor: Mise à jour vidéo Hero avec nouvelle URL Cloudinary
+4d82967 HEAD@{37}: commit: Refactor: Mise à jour vidéo Hero avec nouvelle URL Cloudinary
+d5a8e3a HEAD@{38}: commit (amend): Refactor: Suppression livraison gratuite et ajout tarifs Mondial Relay
+95556bc HEAD@{39}: commit: Refactor: Suppression livraison gratuite et ajout tarifs Mondial Relay
+e55f765 HEAD@{40}: commit: Refactor: Remplacement images IA du blog par vraies photos de parfums
+0bd290f HEAD@{41}: commit: Refactor: Redesign section Google Reviews avec style luxe oriental
+852f2a8 HEAD@{42}: commit: Refactor: Déplacement réseaux sociaux vers le footer et suppression doublons
+c791738 HEAD@{43}: commit: Refactor: Remplacement sections YARA/ZAFFIRO par section Blog
+ff8556a HEAD@{44}: commit: Feat: Ajout Eclair et Kenzie Marshmallow aux bestsellers, suppression doublon Liquide Brun
+68f77b8 HEAD@{45}: commit: Refactor: Suppression des sections doublons sur la page d'accueil
+038abf1 HEAD@{46}: commit: Feat: Hero vidéo deux colonnes et section Explorer par Genre sur l'accueil
+d650b28 HEAD@{47}: commit: Refactor: Transformation de la page boutique en grille de produits avec filtres
+913cfe8 HEAD@{48}: commit: Feat: Application des descriptions SEO optimisées à tous les produits
+5d3660b HEAD@{49}: commit: Feat: Scripts de génération automatique de fiches SEO pour les parfums
+6cf68cb HEAD@{50}: commit: Feat: Conversion des sections Nouveautés et Best-sellers en grilles 4x2
+2e7fc8d HEAD@{51}: commit: Refactor: Déplacement et conversion Fragrance World & Lattafa en grilles 4x2
+f1c7295 HEAD@{52}: commit: Fix: Correction du parfum à l'honneur - KHAMRAH QAHWA au lieu d'ASAD
+c5ebf10 HEAD@{53}: commit: Fix: Amélioration responsive - bordures stats masquées sur mobile
+6fe09de HEAD@{54}: commit: Fix: Correction du project ID Firebase (dubainegoce-227c3 → dubainegoce)
+129e249 HEAD@{55}: commit: Fix: Correction de tous les liens cassés et ajout de liens manquants
+8f35900 HEAD@{56}: rebase (abort): returning to refs/heads/master
+90fa8a3 HEAD@{57}: pull --rebase origin master (start): checkout 90fa8a38843d94c967af4ad95dfcaeafa6bd1a31
+8f35900 HEAD@{58}: reset: moving to HEAD
+8f35900 HEAD@{59}: commit: Refonte UI: Retour au design doré #c58a3d et optimisations
+603b7b0 HEAD@{60}: commit: Fix: Replace broken image URL for Grise product in Google feed
+a3a487f HEAD@{61}: commit: Clean up: Remove debug console.log statements
+d11186b HEAD@{62}: commit: Fix: Re-add appUrl variable declaration
+101be57 HEAD@{63}: commit: Add shipping costs to Stripe checkout session
+26e61a6 HEAD@{64}: commit: Fix: Checkout button now working - Stripe payment page opens successfully
+d0e9efb HEAD@{65}: commit: Debug checkout button - Add detailed logging and fix appUrl for localhost
+d17c354 HEAD@{66}: commit: Fix Temporal Dead Zone error in checkout button
+90155fa HEAD@{67}: commit: Fix checkout button infinite loop - Remove cleanup return statement
+41b6679 HEAD@{68}: commit: Fix deprecated apple-mobile-web-app-capable meta tag - Replace with mobile-web-app-capable
+ea76153 HEAD@{69}: commit: Fix infinite loop on checkout button - Add timeout and proper cleanup for Firestore listener
+47bc19a HEAD@{70}: commit: Fix: Support Node.js >=18 in Cloud Build (allow v22)
+7c3e143 HEAD@{71}: commit: Update dependencies and README
+afa3db1 HEAD@{72}: commit (initial): Premier commit après nettoyage

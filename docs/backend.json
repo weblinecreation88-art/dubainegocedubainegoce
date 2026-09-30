@@ -1,0 +1,179 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name."
+        },
+        "address": {
+          "type": "string",
+          "description": "User's shipping address."
+        }
+      },
+      "required": [
+        "id",
+        "email"
+      ]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Represents a perfume product in the catalog.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "brandId": { "type": "string" },
+        "type": { "type": "string", "enum": ["simple", "variable", "dupe", "original"] },
+        "gender": { "type": "string", "enum": ["homme", "femme", "mixte"] },
+        "family": { "type": "string" },
+        "topNotes": { "type": "array", "items": { "type": "string" } },
+        "heartNotes": { "type": "array", "items": { "type": "string" } },
+        "baseNotes": { "type": "array", "items": { "type": "string" } },
+        "shortDescription": { "type": "string" },
+        "longDescription": { "type": "string" },
+        "metaTitle": { "type": "string" },
+        "metaDescription": { "type": "string" },
+        "price": { "type": "number" },
+        "volumeMl": { "type": "number" },
+        "stock": { "type": "number" },
+        "isBestseller": { "type": "boolean" },
+        "isNew": { "type": "boolean" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "rating": { "type": "number" }
+      },
+      "required": ["name", "slug", "brandId", "price", "stock"]
+    },
+    "Brand": {
+      "title": "Brand",
+      "description": "Represents a perfume brand.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "logoUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["name"]
+    },
+    "Review": {
+        "title": "Review",
+        "description": "A user review for a product.",
+        "type": "object",
+        "properties": {
+            "productId": { "type": "string" },
+            "userId": { "type": "string" },
+            "author": { "type": "string" },
+            "rating": { "type": "number", "minimum": 1, "maximum": 5 },
+            "title": { "type": "string" },
+            "comment": { "type": "string" },
+            "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["productId", "userId", "rating", "comment", "createdAt"]
+    },
+    "FragranceFamily": {
+        "title": "Fragrance Family",
+        "description": "Represents a fragrance family (e.g., Floral, Woody).",
+        "type": "object",
+        "properties": {
+            "name": { "type": "string" },
+            "imageUrl": { "type": "string", "format": "uri" },
+            "imageHint": { "type": "string" }
+        },
+        "required": ["name", "imageUrl"]
+    },
+    "Invoice": {
+        "title": "Invoice",
+        "description": "Represents an order invoice.",
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "orderId": { "type": "string" },
+            "userId": { "type": "string" },
+            "issueDate": { "type": "string", "format": "date-time" },
+            "totalAmount": { "type": "number" },
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "productName": { "type": "string" },
+                        "quantity": { "type": "number" },
+                        "unitPrice": { "type": "number" }
+                    },
+                    "required": ["productName", "quantity", "unitPrice"]
+                }
+            }
+        },
+        "required": ["id", "orderId", "userId", "issueDate", "totalAmount", "items"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/entities/User"
+          },
+          "description": "Stores user profile information."
+        }
+      },
+      {
+          "path": "/products/{productId}",
+          "definition": {
+              "entityName": "Product",
+              "schema": { "$ref": "#/entities/Product" },
+              "description": "The main catalog of all perfume products."
+          }
+      },
+      {
+          "path": "/brands/{brandId}",
+          "definition": {
+              "entityName": "Brand",
+              "schema": { "$ref": "#/entities/Brand" },
+              "description": "List of all perfume brands."
+          }
+      },
+      {
+          "path": "/products/{productId}/reviews/{reviewId}",
+          "definition": {
+              "entityName": "Review",
+              "schema": { "$ref": "#/entities/Review" },
+              "description": "Reviews for a specific product."
+          }
+      },
+      {
+          "path": "/fragranceFamilies/{familyId}",
+          "definition": {
+              "entityName": "FragranceFamily",
+              "schema": { "$ref": "#/entities/FragranceFamily" },
+              "description": "All available fragrance families."
+          }
+      }
+    ]
+  }
+}

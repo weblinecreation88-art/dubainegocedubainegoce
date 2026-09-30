@@ -1,0 +1,159 @@
+
+/**
+ * @file firestore.rules
+ * @description Security rules for an e-commerce perfume application, including Stripe integration.
+ *
+ * @version 1.2.0
+ *
+ * @philosophy
+ * This ruleset enforces a security model with a clear separation between public and private data.
+ * The product catalog is publicly readable. User-specific data is strictly private.
+ * User-generated content (reviews) is publicly visible but writable only by the author.
+ * Stripe-related data (customers, checkout_sessions) is managed by the official Stripe
+ * extension rules, ensuring that users can only access their own payment-related documents.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ------------------------------------------------------------------------
+    // Helper Functions
+    // ------------------------------------------------------------------------
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+    
+    function isNewUserDocValid(userId) {
+      return request.resource.data.id == userId;
+    }
+
+    function isUserDocImmutable() {
+      return request.resource.data.id == resource.data.id;
+    }
+    
+    function isNewCartValid(userId) {
+      return request.resource.data.userId == userId;
+    }
+
+    function isCartImmutable() {
+      return request.resource.data.userId == resource.data.userId;
+    }
+
+    function isNewOrderValid(userId) {
+      return request.resource.data.userId == userId;
+    }
+
+    function isOrderImmutable() {
+      return request.resource.data.userId == resource.data.userId;
+    }
+
+    function isNewReviewValid(productId) {
+      let data = request.resource.data;
+      return data.userId == request.auth.uid && data.productId == productId;
+    }
+
+    function isReviewImmutable() {
+      let data = request.resource.data;
+      return data.userId == resource.data.userId && data.productId == resource.data.productId;
+    }
+
+    // ------------------------------------------------------------------------
+    // Stripe Extension Rules
+    // These rules allow the Stripe extension to function correctly.
+    // Customers can only read their own data.
+    // ------------------------------------------------------------------------
+
+    match /customers/{uid} {
+      allow read: if request.auth.uid == uid;
+
+      match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+      match /subscriptions/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /payments/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+    }
+    
+    // The Stripe extension creates products and prices in Firestore.
+    // These are publicly readable.
+    match /products/{id} {
+        allow get, list: if true;
+        allow write: if false; // Admin-only
+
+        match /prices/{id} {
+            allow read: if true;
+        }
+
+        match /tax_rates/{id} {
+            allow read: if true;
+        }
+        
+        match /reviews/{reviewId} {
+            allow get, list: if true;
+            allow create: if isSignedIn() && isNewReviewValid(id);
+            allow update: if isExistingOwner(resource.data.userId) && isReviewImmutable();
+            allow delete: if isExistingOwner(resource.data.userId);
+        }
+    }
+
+    // ------------------------------------------------------------------------
+    // Application-Specific Collection Rules
+    // ------------------------------------------------------------------------
+    
+    match /brands/{brandId} {
+      allow get, list: if true;
+      allow write: if false; // Admin-only
+    }
+    
+    match /fragranceFamilies/{familyId} {
+        allow get, list: if true;
+        allow write: if false; // Admin-only
+    }
+
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId) && isNewUserDocValid(userId);
+      allow update: if isOwner(userId) && resource != null && isUserDocImmutable();
+      allow delete: if false;
+      
+      match /carts/{cartId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && isNewCartValid(userId);
+        allow update: if isExistingOwner(userId) && isCartImmutable();
+        allow delete: if isExistingOwner(userId);
+      }
+
+      match /orders/{orderId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isOwner(userId) && isNewOrderValid(userId);
+        allow update: if isExistingOwner(userId) && isOrderImmutable();
+        allow delete: if isExistingOwner(userId);
+
+        match /orderItems/{orderItemId} {
+          allow get, list: if isOwner(userId);
+          allow create: if isOwner(userId);
+          allow update: if isExistingOwner(userId);
+          allow delete: if isExistingOwner(userId);
+        }
+      }
+      
+      // Allow users to manage their own products subcollection
+      match /products/{productId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}

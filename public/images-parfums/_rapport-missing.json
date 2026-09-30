@@ -1,0 +1,278 @@
+[
+  {
+    "name": "Fakhar Black",
+    "brand": "Lattafa",
+    "slug": "fakhar-black-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Fakhar Rose Gold",
+    "brand": "Lattafa",
+    "slug": "fakhar-rose-gold-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Confidential Platinum",
+    "brand": "Lattafa",
+    "slug": "confidential-platinum-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Fakhar Wasam",
+    "brand": "Lattafa",
+    "slug": "fakhar-wasam-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Grise",
+    "brand": "Maison Alhambra",
+    "slug": "grise-maison-alhambra",
+    "status": "ok",
+    "file": "grise-maison-alhambra.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/04/Luxe-Chic-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Safwaan L'autre Musk",
+    "brand": "Lattafa",
+    "slug": "safwaan-lautre-musk-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Velvet Oud",
+    "brand": "Lattafa",
+    "slug": "velvet-oud-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Safwaan L'autre Oud",
+    "brand": "Lattafa",
+    "slug": "safwaan-lautre-oud-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "My Rose Sublime",
+    "brand": "Lattafa",
+    "slug": "my-rose-sublime-lattafa",
+    "status": "ok",
+    "file": "my-rose-sublime-lattafa.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/24-Carat-Pure-Gold-Lattafa-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Infini Oud",
+    "brand": "Maison Alhambra",
+    "slug": "infini-oud-maison-alhambra-mixte",
+    "status": "ok",
+    "file": "infini-oud-maison-alhambra-mixte.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Infini-Musk-Maison-Alhambra-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Minerva",
+    "brand": "Maison Alhambra",
+    "slug": "minerva-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Al Noble Safeer",
+    "brand": "Lattafa",
+    "slug": "al-noble-safeer-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Tabac",
+    "brand": "Maison Alhambra",
+    "slug": "tabac-maison-alhambra",
+    "status": "ok",
+    "file": "tabac-maison-alhambra.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/Infini-Intoxicating-Cherry-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Niche Royal Rouge",
+    "brand": "Maison Alhambra",
+    "slug": "niche-royal-rouge-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Al Noble Wazeer",
+    "brand": "Lattafa",
+    "slug": "al-noble-wazeer-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Galatea",
+    "brand": "Maison Alhambra",
+    "slug": "galatea-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Hercules",
+    "brand": "Maison Alhambra",
+    "slug": "hercules-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Olivia Blossom",
+    "brand": "Maison Alhambra",
+    "slug": "olivia-blossom-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Majd Al Sultan",
+    "brand": "Asdaaf",
+    "slug": "majd-al-sultan-asdaaf",
+    "status": "not_found"
+  },
+  {
+    "name": "Pure Oudi",
+    "brand": "Lattafa",
+    "slug": "pure-oudi-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Oud Mood Reminiscence",
+    "brand": "Lattafa",
+    "slug": "oud-mood-reminiscence-lattafa",
+    "status": "not_found"
+  },
+  {
+    "name": "Musk Mood",
+    "brand": "Lattafa",
+    "slug": "musk-mood-lattafa-mixte",
+    "status": "not_found"
+  },
+  {
+    "name": "Côme Moiselle",
+    "brand": "Maison Alhambra",
+    "slug": "come-moiselle-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "L'Intrude",
+    "brand": "Maison Alhambra",
+    "slug": "lintrude-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "By Saffron",
+    "brand": "Maison Alhambra",
+    "slug": "by-saffron-maison-alhambra",
+    "status": "ok",
+    "file": "by-saffron-maison-alhambra.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Black-Saffron-Armaf-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Lovely Chèrie",
+    "brand": "Maison Alhambra",
+    "slug": "lovely-cherie-maison-alhambra",
+    "status": "ok",
+    "file": "lovely-cherie-maison-alhambra.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/01/Forbidden-Love-Parfum.webp"
+  },
+  {
+    "name": "Victorioso Victory",
+    "brand": "Maison Alhambra",
+    "slug": "victorioso-victory-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Musk Vanille",
+    "brand": "Maison Alhambra",
+    "slug": "musk-vanille-maison-alhambra",
+    "status": "ok",
+    "file": "musk-vanille-maison-alhambra.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/12/Domino-Essence-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Tudor",
+    "brand": "Paris Corner",
+    "slug": "tudor-paris-corner",
+    "status": "not_found"
+  },
+  {
+    "name": "Zaffiro Regale",
+    "brand": "Maison Alhambra",
+    "slug": "zaffiro-regale-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "The Artist No.1",
+    "brand": "Maison Alhambra",
+    "slug": "the-artist-no1-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Zaffiro Collection Crafted Oud",
+    "brand": "Maison Alhambra",
+    "slug": "zaffiro-collection-crafted-oud-maison-alhambra",
+    "status": "not_found"
+  },
+  {
+    "name": "Francique 107.9",
+    "brand": "French Avenue",
+    "slug": "francique-107-9-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Francique 63.55",
+    "brand": "French Avenue",
+    "slug": "francique-63-55-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Irida Extrait",
+    "brand": "French Avenue",
+    "slug": "irida-extrait-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Lumière Garçon",
+    "brand": "French Avenue",
+    "slug": "lumiere-garcon-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Azzure Aoud",
+    "brand": "French Avenue",
+    "slug": "azzure-aoud-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Kenzie Marshmallow",
+    "brand": "French Avenue",
+    "slug": "kenzie-marshmallow-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "Kenzie Candid Vanilla",
+    "brand": "French Avenue",
+    "slug": "kenzie-candid-vanilla-french-avenue",
+    "status": "not_found"
+  },
+  {
+    "name": "L'Immensité",
+    "brand": "Maison Alhambra",
+    "slug": "limmensite-maison-alhambra",
+    "status": "ok",
+    "file": "limmensite-maison-alhambra.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/11/Megara-Maison-Alhambra-Parfum-au-maroc.webp"
+  },
+  {
+    "name": "Eclair",
+    "brand": "Lattafa",
+    "slug": "eclair-lattafa-100ml",
+    "status": "ok",
+    "file": "eclair-lattafa-100ml.webp",
+    "imageUrl": "https://parfumstore.ma/wp-content/uploads/2025/10/Eclaire-Banoffi-Lattafa-Parfum-au-Maroc.webp"
+  },
+  {
+    "name": "Azzure Aoud (2)",
+    "brand": "French Avenue",
+    "slug": "azzure-aoud-100ml",
+    "status": "not_found"
+  },
+  {
+    "name": "Zaffiro Regale (2)",
+    "brand": "Maison Alhambra",
+    "slug": "zaffiro-regale-maison-alhambra-unisex",
+    "status": "not_found"
+  }
+]

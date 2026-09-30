@@ -1,0 +1,192 @@
+# ╔═══════════════════════════════════════════════════════════════════════════╗
+# ║              EXEMPLES REDIRECT RULES - À ADAPTER                          ║
+# ║                    Correction Redirect Chains                             ║
+# ║          Généré: 2026-03-02 | À INCLURE DANS .htaccess                   ║
+# ╚═══════════════════════════════════════════════════════════════════════════╝
+
+# ═════════════════════════════════════════════════════════════════════════════
+# INSTRUCTIONS D'UTILISATION:
+# ═════════════════════════════════════════════════════════════════════════════
+# 1. Remplacer les exemples par VOS URLs réelles
+# 2. Ajouter ces règles dans seo-optimization/config/.htaccess
+#    dans la section "CORRECTION CHAÎNES DE REDIRECTION"
+# 3. Uploader .htaccess sur serveur (/public_html/)
+# 4. Tester chaque redirection avec: curl -I -L URL
+# 5. Vérifier 1 redirection max (pas de chaînes)
+
+# ═════════════════════════════════════════════════════════════════════════════
+# PATTERN: REDIRECT CHAIN FIX
+# ═════════════════════════════════════════════════════════════════════════════
+
+# ❌ AVANT (Chaîne: A → B → C → D):
+#    Page A → /page/old → /products/old-name → /shop/product-123
+#    (4 redirects = 0.5-2 secondes perdues!)
+
+# ✅ APRÈS (Direct: A → D):
+#    Page A → /shop/product-123 (1 redirect direct)
+
+# ═════════════════════════════════════════════════════════════════════════════
+# EXEMPLE 1: Redirect Chaîne Produit
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Chaîne identifiée: /old-produit → /produits/ancien → /shop/ancien-produit → /produits/final
+RewriteCond %{REQUEST_URI} ^/old-produit/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/produits/final [R=301,L]
+
+# Chaîne identifiée: /product-xyz → /category/xyz → /products/xyz-final
+RewriteCond %{REQUEST_URI} ^/product-xyz/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/products/xyz-final [R=301,L]
+
+# Chaîne identifiée: /item-old → /items/old → /items/updated
+RewriteCond %{REQUEST_URI} ^/item-old/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/items/updated [R=301,L]
+
+# ═════════════════════════════════════════════════════════════════════════════
+# EXEMPLE 2: Redirect Chaîne Catégorie
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Chaîne: /categorie-ancienne → /cat/old → /categories/new
+RewriteCond %{REQUEST_URI} ^/categorie-ancienne/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/categories/new [R=301,L]
+
+# Chaîne: /shop/old-cat → /categories/old-cat → /cat/new-cat
+RewriteCond %{REQUEST_URI} ^/shop/old-cat/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/cat/new-cat [R=301,L]
+
+# ═════════════════════════════════════════════════════════════════════════════
+# EXEMPLE 3: Redirect Chaîne Pages de Contenu
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Chaîne: /blog/old-post → /articles/old → /blog/articles/final
+RewriteCond %{REQUEST_URI} ^/blog/old-post/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/blog/articles/final [R=301,L]
+
+# Chaîne: /page/old → /pages/old → /help/old → /support/faq
+RewriteCond %{REQUEST_URI} ^/page/old/?$
+RewriteRule ^(.*)$ https://dubainegoce.fr/support/faq [R=301,L]
+
+# ═════════════════════════════════════════════════════════════════════════════
+# EXEMPLE 4: Redirect Chaînes Avec Paramètres
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Chaîne: /product.php?id=123 → /products/123 → /products/123-name
+RewriteCond %{REQUEST_URI} ^/product\.php$
+RewriteCond %{QUERY_STRING} ^id=(.*)$
+RewriteRule ^(.*)$ https://dubainegoce.fr/products/%1-final [R=301,L]
+
+# ═════════════════════════════════════════════════════════════════════════════
+# EXEMPLE 5: Redirect URLs Anciennes Versions Site
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Migration WooCommerce vers custom:
+RewriteCond %{REQUEST_URI} ^/woocommerce/product/(.*)$
+RewriteRule ^(.*)$ https://dubainegoce.fr/products/$1 [R=301,L]
+
+# Redirection dossier ancien:
+RewriteCond %{REQUEST_URI} ^/old-shop/(.*)$
+RewriteRule ^(.*)$ https://dubainegoce.fr/shop/$1 [R=301,L]
+
+# ═════════════════════════════════════════════════════════════════════════════
+# EXEMPLE 6: Bulk Redirects (Expressions Régulières)
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Tout ce qui commence par /old- vers /new-:
+RewriteCond %{REQUEST_URI} ^/old-(.*)$
+RewriteRule ^(.*)$ https://dubainegoce.fr/new-%1 [R=301,L]
+
+# Tout ce qui commence par /products-old vers /products:
+RewriteCond %{REQUEST_URI} ^/products-old/(.*)$
+RewriteRule ^(.*)$ https://dubainegoce.fr/products/$1 [R=301,L]
+
+# ═════════════════════════════════════════════════════════════════════════════
+# TEST & VÉRIFICATION
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Pour chaque redirect, tester avec:
+
+# ✅ Redirection simple (1 hop):
+# curl -I https://dubainegoce.fr/old-produit
+# Expected: 301 Moved Permanently
+# Location: https://dubainegoce.fr/produits/final
+
+# ✅ Suivi de redirection (devrait être 1 seul):
+# curl -I -L https://dubainegoce.fr/old-produit
+# Expected: 200 OK (après 1 seul redirect)
+
+# ═════════════════════════════════════════════════════════════════════════════
+# STRUCTURE CORRECTE DANS .htaccess FINAL
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Votre .htaccess final devrait avoir cet ordre:
+
+# 1. Activation modules
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+# </IfModule>
+
+# 2. HTTP → HTTPS
+# <IfModule mod_rewrite.c>
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# 3. WWW cohérence
+# <IfModule mod_rewrite.c>
+#   RewriteCond %{HTTP_HOST} ^www\.dubainegoce\.fr [NC]
+#   RewriteRule ^(.*)$ https://dubainegoce.fr/$1 [L,R=301]
+# </IfModule>
+
+# 4. CORRECTION CHAÎNES REDIRECTION (CETTE SECTION)
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   [Ajouter toutes les règles de redirects directes ici]
+# </IfModule>
+
+# 5. Compression, cache, sécurité, etc.
+# (reste du .htaccess)
+
+# ═════════════════════════════════════════════════════════════════════════════
+# ⚠️ ATTENTION PIÈGES COURANTS
+# ═════════════════════════════════════════════════════════════════════════════
+
+# ❌ NE PAS FAIRE:
+# - Créer boucles: /page → /page-new → /page (infini!)
+# - Utiliser R=302 (temporaire) pour redirects permanentes
+# - Oublier l'ordre des règles (plus générales en dernier)
+# - Tester sans le L flag (continue traitement)
+
+# ✅ À FAIRE:
+# - Utiliser R=301 (permanent) pour redirects SEO
+# - Mettre le L flag pour arrêter traitement
+# - Ajouter exemptions pour fichiers/dossiers existants
+# - Tester chaque redirect avant upload
+
+# ═════════════════════════════════════════════════════════════════════════════
+# MIGRATION DEPUIS SCREAMING FROG
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Screaming Frog Export → Générer règles:
+# Si vous avez export CSV de Screaming Frog avec colonnes:
+# Source, Destination1, Destination2, Destination3
+#
+# Créer règle: Source → DernièreDestination (ignorer intermédiaires)
+#
+# Exemple CSV:
+# /old-page, /page-temp, /page-new
+# → Créer: /old-page → /page-new (ignorer /page-temp)
+
+# ═════════════════════════════════════════════════════════════════════════════
+# APRÈS IMPLEMENTATION
+# ═════════════════════════════════════════════════════════════════════════════
+
+# 1. Uploader .htaccess
+# 2. Attendre 24h
+# 3. Crawler avec Screaming Frog
+# 4. Vérifier 0 redirect chains
+# 5. Submit sitemap Google
+# 6. Monitor GSC pour erreurs
+
+# ═════════════════════════════════════════════════════════════════════════════
+
+# Généré: 2026-03-02
+# Status: ✅ Exemples prêts à adapter
