@@ -64,6 +64,8 @@ interface CheckoutFormProps {
   onCountryChange?: (country: string) => void;
   onShippingMethodChange?: (method: 'colissimo' | 'mondial-relay') => void;
   onPickupPointChange?: (point: MondialRelayPickupPoint | null) => void;
+  colissimoCost?: number;
+  mondialRelayCost?: number;
 }
 
 export function CheckoutForm({
@@ -74,6 +76,8 @@ export function CheckoutForm({
   onCountryChange,
   onShippingMethodChange,
   onPickupPointChange,
+  colissimoCost,
+  mondialRelayCost,
 }: CheckoutFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
@@ -327,24 +331,54 @@ export function CheckoutForm({
                           >
                             {/* Colissimo - France only */}
                             {selectedCountry === 'FR' && (
-                              <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
+                              <div
+                                onClick={() => field.onChange('colissimo')}
+                                className={`flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors ${
+                                  field.value === 'colissimo' ? 'border-accent bg-accent/5 ring-1 ring-accent' : ''
+                                }`}
+                              >
                                 <RadioGroupItem value="colissimo" id="colissimo" />
-                                <Label htmlFor="colissimo" className="flex-1 cursor-pointer">
-                                  <div className="font-semibold">📦 Colissimo</div>
-                                  <div className="text-sm text-muted-foreground">
-                                    Livraison à domicile - 48h en France métropolitaine
+                                <Label htmlFor="colissimo" className="flex-1 cursor-pointer flex items-center justify-between">
+                                  <div>
+                                    <div className="font-semibold text-foreground">📦 Colissimo</div>
+                                    <div className="text-sm text-muted-foreground">
+                                      Livraison à domicile sous 48h
+                                    </div>
+                                  </div>
+                                  <div className="text-right">
+                                    <span className="font-bold text-sm text-foreground">
+                                      {colissimoCost !== undefined ? `${colissimoCost.toFixed(2)} €` : '5,25 €'}
+                                    </span>
                                   </div>
                                 </Label>
                               </div>
                             )}
 
                             {/* Mondial Relay - All countries */}
-                            <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
+                            <div
+                              onClick={() => field.onChange('mondial-relay')}
+                              className={`flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors ${
+                                field.value === 'mondial-relay' ? 'border-accent bg-accent/5 ring-1 ring-accent' : ''
+                              }`}
+                            >
                               <RadioGroupItem value="mondial-relay" id="mondial-relay" />
-                              <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer">
-                                <div className="font-semibold">🛒 Mondial Relay</div>
-                                <div className="text-sm text-muted-foreground">
-                                  Retrait en point relais - Confirmation par SMS
+                              <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer flex items-center justify-between">
+                                <div>
+                                  <div className="font-semibold text-foreground">🛒 Mondial Relay</div>
+                                  <div className="text-sm text-muted-foreground">
+                                    Retrait en point relais le plus proche
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  {mondialRelayCost === 0 ? (
+                                    <span className="font-bold text-sm text-green-600 dark:text-green-400">
+                                      OFFERT
+                                    </span>
+                                  ) : (
+                                    <span className="font-bold text-sm text-foreground">
+                                      {mondialRelayCost !== undefined ? `${mondialRelayCost.toFixed(2)} €` : '4,10 €'}
+                                    </span>
+                                  )}
                                 </div>
                               </Label>
                             </div>

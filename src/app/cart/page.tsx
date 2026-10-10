@@ -511,6 +511,8 @@ export default function CartPage() {
             onCountryChange={setFormCountry}
             onShippingMethodChange={setFormShippingMethod}
             onPickupPointChange={setSelectedPickupPoint}
+            colissimoCost={colissimoCost}
+            mondialRelayCost={mondialRelayCost}
           />
         </div>
       )}
