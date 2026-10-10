@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight } from 'lucide-react';
+import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -20,7 +20,7 @@ import { PayPalCheckoutButton } from '@/components/checkout/paypal-checkout-butt
 import { trackAbandonedCart } from '@/app/actions';
 
 const PERFUME_WEIGHT_G = 750;
-const FREE_SHIPPING_THRESHOLD = 60; // Livraison offerte dès 60€
+const FREE_SHIPPING_THRESHOLD = 60; // Livraison Mondial Relay offerte dès 60€ (dès 2 parfums)
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
@@ -77,6 +77,14 @@ export default function CartPage() {
   // Barre de progression pour la livraison gratuite
   const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const freeShippingProgress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
+  const isFreeShippingQualified = subtotal >= FREE_SHIPPING_THRESHOLD;
+
+  // Calcul des tarifs d'expédition transparents
+  const mondialRelayCost = isFreeShippingQualified ? 0 : getMondialRelayInternationalCost(formCountry, totalWeight);
+  const colissimoCost = getColissimoCost(totalWeight);
+  const activeShippingCost = formShippingMethod === 'colissimo' ? colissimoCost : mondialRelayCost;
+
+  const { vat, total, shipping } = calculateOrderTotal(subtotal, activeShippingCost);
 
   // Étape 2 validée : enregistrement des infos et passage au paiement
   const handleCheckoutFormSubmit = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
@@ -127,21 +135,22 @@ export default function CartPage() {
     setIsCheckingOut(true);
 
     try {
-      let shippingCost = 0;
-      if (formData.shippingMethod === 'colissimo') {
-        shippingCost = getColissimoCost(totalWeight);
-      } else {
-        shippingCost = getMondialRelayInternationalCost(formData.country, totalWeight);
-      }
+      // Tarif réel tenant compte de la gratuité éventuelle
+      const finalShippingCost =
+        formData.shippingMethod === 'colissimo'
+          ? colissimoCost
+          : isFreeShippingQualified
+          ? 0
+          : getMondialRelayInternationalCost(formData.country, totalWeight);
 
-      const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
+      const orderCalculation = calculateOrderTotal(subtotal, finalShippingCost);
 
       // GTM Tracking (begin_checkout)
       if (typeof window !== 'undefined' && (window as any).dataLayer) {
         (window as any).dataLayer.push({
           event: 'begin_checkout',
           ecommerce: {
-            value: total,
+            value: orderCalculation.total,
             currency: 'EUR',
             items: cart.map((item) => ({
               item_id: item.id,
@@ -170,8 +179,8 @@ export default function CartPage() {
             phone: formData.phone,
           },
           shippingMethod: formData.shippingMethod,
-          shippingCost: shipping,
-          total: total.toFixed(2),
+          shippingCost: finalShippingCost,
+          total: orderCalculation.total.toFixed(2),
           pickupPoint,
           userId: user?.uid || 'guest',
         }),
@@ -221,15 +230,6 @@ export default function CartPage() {
     );
   }
 
-  // Calcul dynamique des totaux
-  let shippingCostHT = 0;
-  if (formShippingMethod === 'colissimo') {
-    shippingCostHT = getColissimoCost(totalWeight);
-  } else {
-    shippingCostHT = getMondialRelayInternationalCost(formCountry, totalWeight);
-  }
-  const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCostHT);
-
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       {/* STEP 1: Review Cart */}
@@ -243,7 +243,7 @@ export default function CartPage() {
           </div>
 
           {/* Jauge de livraison gratuite */}
-          <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-6">
+          <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-4">
             <div className="flex justify-between text-xs md:text-sm font-medium mb-2">
               {remainingForFreeShipping > 0 ? (
                 <span>
@@ -252,7 +252,7 @@ export default function CartPage() {
                 </span>
               ) : (
                 <span className="text-green-600 dark:text-green-400 font-semibold flex items-center gap-1">
-                  🎉 Félicitations ! Vous bénéficiez de la livraison offerte !
+                  🎉 Félicitations ! Vous bénéficiez de la livraison Mondial Relay offerte !
                 </span>
               )}
               <span>{freeShippingProgress}%</span>
@@ -265,7 +265,33 @@ export default function CartPage() {
             </div>
           </div>
 
+          {/* Incitation Offre Duo */}
+          {totalItems === 1 && (
+            <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700/50 rounded-lg p-3.5 mb-6 text-xs text-amber-900 dark:text-amber-200 flex items-center justify-between gap-3 shadow-sm">
+              <div>
+                <p className="font-bold text-sm flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4 text-amber-600" />
+                  Offre Duo : Économisez les frais de port !
+                </p>
+                <p className="mt-0.5 text-amber-800 dark:text-amber-300">
+                  Ajoutez 1 parfum supplémentaire et votre livraison en Point Relais est <strong>100% OFFERTE</strong> (dès 60€).
+                </p>
+              </div>
+              <Button asChild size="sm" variant="outline" className="border-amber-400 bg-amber-100 hover:bg-amber-200 text-amber-950 dark:bg-amber-900 dark:hover:bg-amber-800 shrink-0 font-semibold">
+                <Link href="/shop/all">+ 1 Parfum</Link>
+              </Button>
+            </div>
+          )}
+
+          {totalItems >= 2 && (
+            <div className="bg-green-50 dark:bg-green-950/40 border border-green-300 dark:border-green-700/50 rounded-lg p-3 mb-6 text-xs text-green-900 dark:text-green-200 font-semibold flex items-center gap-2 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" />
+              <span><strong>Offre Duo activée !</strong> Vous bénéficiez de la livraison Mondial Relay offerte sur cette commande.</span>
+            </div>
+          )}
+
           <Card className="p-6 mb-6 shadow-sm">
+            {/* Liste des produits */}
             <div className="space-y-4">
               {cart.map((item) => (
                 <div key={item.id} className="flex gap-4 pb-4 border-b last:pb-0 last:border-0 items-center">
@@ -312,22 +338,109 @@ export default function CartPage() {
               ))}
             </div>
 
-            <div className="mt-6 pt-4 border-t space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Sous-total (TTC)</span>
-                <span className="font-semibold">{subtotal.toFixed(2)} €</span>
-              </div>
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Frais de livraison</span>
-                <span>Calculés à l'étape suivante</span>
+            {/* CHOIX DU MODE DE LIVRAISON DIRECTEMENT DANS LE PANIER (TRANSPARENCE TOTALE) */}
+            <div className="mt-6 pt-5 border-t space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Choisissez votre mode de livraison :
+              </p>
+
+              <div className="grid gap-2.5">
+                {/* Option 1: Mondial Relay */}
+                <label
+                  onClick={() => setFormShippingMethod('mondial-relay')}
+                  className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all ${
+                    formShippingMethod === 'mondial-relay'
+                      ? 'border-accent bg-accent/5 ring-1 ring-accent'
+                      : 'border-border hover:bg-muted/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <input
+                      type="radio"
+                      name="cart-shipping"
+                      checked={formShippingMethod === 'mondial-relay'}
+                      onChange={() => setFormShippingMethod('mondial-relay')}
+                      className="text-accent"
+                    />
+                    <div>
+                      <p className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                        🛒 Mondial Relay (Point Relais)
+                        {isFreeShippingQualified && (
+                          <span className="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">
+                            OFFERT
+                          </span>
+                        )}
+                      </p>
+                      <p className="text-[11px] text-muted-foreground">Choix du point relais à l'étape suivante</p>
+                    </div>
+                  </div>
+                  <span className="text-xs font-bold">
+                    {isFreeShippingQualified ? (
+                      <span className="text-green-600 dark:text-green-400">0,00 €</span>
+                    ) : (
+                      `${mondialRelayCost.toFixed(2)} €`
+                    )}
+                  </span>
+                </label>
+
+                {/* Option 2: Colissimo */}
+                <label
+                  onClick={() => setFormShippingMethod('colissimo')}
+                  className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all ${
+                    formShippingMethod === 'colissimo'
+                      ? 'border-accent bg-accent/5 ring-1 ring-accent'
+                      : 'border-border hover:bg-muted/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <input
+                      type="radio"
+                      name="cart-shipping"
+                      checked={formShippingMethod === 'colissimo'}
+                      onChange={() => setFormShippingMethod('colissimo')}
+                      className="text-accent"
+                    />
+                    <div>
+                      <p className="text-xs font-semibold text-foreground">
+                        📦 Colissimo Domicile (48h)
+                      </p>
+                      <p className="text-[11px] text-muted-foreground">Livré chez vous directement en boîte aux lettres</p>
+                    </div>
+                  </div>
+                  <span className="text-xs font-bold">{colissimoCost.toFixed(2)} €</span>
+                </label>
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-4 mt-4 border-t">
+            {/* Récapitulatif chiffré clair et immédiat */}
+            <div className="mt-5 pt-4 border-t space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Sous-total (TTC)</span>
+                <span className="font-medium">{subtotal.toFixed(2)} €</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">
+                  Frais de port ({formShippingMethod === 'colissimo' ? 'Colissimo' : 'Point Relais'})
+                </span>
+                <span className="font-semibold">
+                  {activeShippingCost === 0 ? (
+                    <span className="text-green-600 dark:text-green-400">OFFERT</span>
+                  ) : (
+                    `${activeShippingCost.toFixed(2)} €`
+                  )}
+                </span>
+              </div>
+              <div className="flex justify-between text-base font-bold pt-2 border-t text-foreground">
+                <span>Total TTC à payer</span>
+                <span className="text-xl text-accent">{total.toFixed(2)} €</span>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center pt-4 mt-3 border-t">
               <button onClick={clearCart} className="text-xs text-muted-foreground hover:text-destructive underline">
                 Vider le panier
               </button>
-              <span className="text-xs text-muted-foreground">Paiement 100% Sécurisé</span>
+              <span className="text-xs text-muted-foreground">🔒 Aucun frais caché</span>
             </div>
           </Card>
 
@@ -338,7 +451,7 @@ export default function CartPage() {
               size="lg"
               className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold shadow-md flex items-center justify-center gap-2"
             >
-              Commander maintenant ({subtotal.toFixed(2)} €)
+              Commander maintenant • Total : {total.toFixed(2)} €
               <ArrowRight className="h-5 w-5" />
             </Button>
 
@@ -390,7 +503,10 @@ export default function CartPage() {
           <CheckoutForm
             onSubmit={handleCheckoutFormSubmit}
             initialEmail={user?.email || ''}
-            initialData={savedUserAddress || undefined}
+            initialData={{
+              ...(savedUserAddress || {}),
+              shippingMethod: formShippingMethod,
+            }}
             isLoading={isCheckingOut}
             onCountryChange={setFormCountry}
             onShippingMethodChange={setFormShippingMethod}
@@ -422,7 +538,7 @@ export default function CartPage() {
               shipping={shipping}
               total={total}
               shippingMethod={formShippingMethod}
-              shippingCostHT={shippingCostHT}
+              shippingCostHT={activeShippingCost}
               weightG={totalWeight}
               selectedPickupPoint={selectedPickupPoint}
               onSubmit={() => {

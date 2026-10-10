@@ -61,6 +61,12 @@ export default function Header() {
 
   return (
     <div className="w-full bg-white text-black border-b border-gray-200 flex flex-col">
+      {/* Top Announcement Bar */}
+      <div className="bg-black text-white text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
+        <span>✨ <strong>OFFRE DUO</strong> : Livraison Point Relais <strong>OFFERTE</strong> dès 2 parfums (60€) !</span>
+        <span className="hidden sm:inline text-gray-400">• Expédition express 24/48h</span>
+      </div>
+
       {/* Main Row */}
       <div className="container relative flex h-16 items-center">
 

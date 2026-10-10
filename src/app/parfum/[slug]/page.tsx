@@ -318,6 +318,25 @@ export default function ProductPage({ params }: Props) {
             {/* Quantité + Ajouter au panier */}
             <ProductActions product={product} paypalClientId={process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID} />
 
+            {/* Estimation transparente des frais de port et Offre Duo */}
+            <div className="bg-muted/40 border rounded-lg p-3.5 space-y-2 text-xs">
+              <div className="flex items-center justify-between font-medium">
+                <span className="flex items-center gap-1.5 text-foreground">
+                  🛒 Point Relais (Mondial Relay)
+                </span>
+                <span className="font-semibold text-accent">Dès 4,10 € • <strong className="text-green-600 dark:text-green-400">OFFERTE dès 2 parfums</strong></span>
+              </div>
+              <div className="flex items-center justify-between text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  📦 Colissimo Domicile (48h)
+                </span>
+                <span className="font-medium text-foreground">Dès 5,25 €</span>
+              </div>
+              <div className="text-[11px] text-green-600 dark:text-green-400 font-semibold pt-1.5 border-t border-border flex items-center gap-1">
+                <span>✨ <strong>Astuce Économie :</strong> Dès 2 parfums commandés, la livraison Mondial Relay est 100% GRATUITE !</span>
+              </div>
+            </div>
+
             {/* Notes olfactives */}
             {hasOlfactoryPyramid && (
               <div className="border-t pt-4 space-y-2">
