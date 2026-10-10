@@ -5,15 +5,16 @@ import { Globe, Truck } from 'lucide-react';
 
 export const getColissimoCost = (weightInGrams: number): number => {
     if (weightInGrams <= 0) return 0;
-    // 1 flacon (~750g emballé) = 5.25€ (conforme au tarif affiché sur tout le site)
-    if (weightInGrams <= 750) return 5.25;
-    // 2 flacons (~1500g) = 6.90€
-    if (weightInGrams <= 1500) return 6.90;
-    // 3 à 4 flacons (~3000g) = 8.90€
-    if (weightInGrams <= 3000) return 8.90;
-    if (weightInGrams <= 5000) return 12.90;
-    if (weightInGrams <= 10000) return 16.90;
-    return 19.90; // Fallback pour gros colis
+    if (weightInGrams <= 250) return 5.25;
+    if (weightInGrams <= 500) return 7.35;
+    if (weightInGrams <= 750) return 9.29; // 1 flacon (~750g emballé) = 9.29€
+    if (weightInGrams <= 1000) return 9.59;
+    if (weightInGrams <= 2000) return 11.19;
+    if (weightInGrams <= 5000) return 17.39;
+    if (weightInGrams <= 10000) return 25.29;
+    if (weightInGrams <= 15000) return 31.99;
+    if (weightInGrams <= 30000) return 39.59;
+    return 39.59; // Fallback for weights over 30kg
 };
 
 export const getMondialRelayCost = (weightInGrams: number): number => {

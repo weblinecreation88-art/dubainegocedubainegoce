@@ -347,7 +347,7 @@ export function CheckoutForm({
                                   </div>
                                   <div className="text-right">
                                     <span className="font-bold text-sm text-foreground">
-                                      {colissimoCost !== undefined ? `${colissimoCost.toFixed(2)} €` : '5,25 €'}
+                                      {colissimoCost !== undefined ? `${colissimoCost.toFixed(2)} €` : '9,29 €'}
                                     </span>
                                   </div>
                                 </Label>

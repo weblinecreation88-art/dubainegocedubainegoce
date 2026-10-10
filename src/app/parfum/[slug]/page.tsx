@@ -330,7 +330,7 @@ export default function ProductPage({ params }: Props) {
                 <span className="flex items-center gap-1.5">
                   📦 Colissimo Domicile (48h)
                 </span>
-                <span className="font-medium text-foreground">Dès 5,25 €</span>
+                <span className="font-medium text-foreground">9,29 €</span>
               </div>
               <div className="text-[11px] text-green-600 dark:text-green-400 font-semibold pt-1.5 border-t border-border flex items-center gap-1">
                 <span>✨ <strong>Astuce Économie :</strong> Dès 2 parfums commandés, la livraison Mondial Relay est 100% GRATUITE !</span>
