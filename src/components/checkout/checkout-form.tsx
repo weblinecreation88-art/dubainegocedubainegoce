@@ -101,8 +101,12 @@ export function CheckoutForm({
     if (!initialData) return;
     (Object.keys(initialData) as Array<keyof CheckoutFormData>).forEach((key) => {
       const value = initialData[key];
-      if (value && !form.getValues(key)) {
-        form.setValue(key, value as never, { shouldValidate: false });
+      if (value) {
+        if (key === 'shippingMethod') {
+          form.setValue('shippingMethod', value as 'colissimo' | 'mondial-relay', { shouldValidate: true });
+        } else if (!form.getValues(key)) {
+          form.setValue(key, value as never, { shouldValidate: false });
+        }
       }
     });
   }, [initialData, form]);

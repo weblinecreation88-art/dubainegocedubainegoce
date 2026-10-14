@@ -177,16 +177,21 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
         city: stripeAddress?.city || metadata.addressCity || '',
         country: stripeAddress?.country || metadata.country || '',
       },
-      orderItems: lineItems.map(item => {
-        const product = item.price?.product as Stripe.Product;
-        return {
-          productId: product?.metadata?.productId || 'unknown',
-          quantity: item.quantity || 0,
-          itemPrice: (item.price?.unit_amount ?? 0) / 100,
-          name: product?.name || item.description || 'Article',
-          image: product?.images?.[0] || ''
-        };
-      }),
+      orderItems: lineItems
+        .filter(item => {
+          const product = item.price?.product as Stripe.Product;
+          return product?.metadata?.productId !== 'shipping';
+        })
+        .map(item => {
+          const product = item.price?.product as Stripe.Product;
+          return {
+            productId: product?.metadata?.productId || 'unknown',
+            quantity: item.quantity || 0,
+            itemPrice: (item.price?.unit_amount ?? 0) / 100,
+            name: product?.name || item.description || 'Article',
+            image: product?.images?.[0] || ''
+          };
+        }),
       stripeSessionId: session.id,
     };
 

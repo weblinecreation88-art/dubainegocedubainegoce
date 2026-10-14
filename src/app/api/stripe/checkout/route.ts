@@ -99,6 +99,20 @@ export async function POST(req: NextRequest) {
       ? 'Colissimo — livraison à domicile'
       : `Mondial Relay — ${pickupPoint?.name || 'point relais'}`;
 
+  if (shippingCost > 0) {
+    lineItems.push({
+      quantity: 1,
+      price_data: {
+        currency: 'eur',
+        unit_amount: Math.round(shippingCost * 100),
+        product_data: {
+          name: shippingLabel,
+          metadata: { productId: 'shipping' },
+        },
+      },
+    });
+  }
+
   const stripe = new Stripe(stripeSecretKey);
 
   try {
@@ -109,18 +123,6 @@ export async function POST(req: NextRequest) {
       allow_promotion_codes: true,
       // Le téléphone remonte désormais dans session.customer_details.phone
       phone_number_collection: { enabled: true },
-      shipping_address_collection: {
-        allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
-      },
-      shipping_options: [
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            display_name: shippingCost === 0 ? `${shippingLabel} — offerte` : shippingLabel,
-            fixed_amount: { amount: Math.round(shippingCost * 100), currency: 'eur' },
-          },
-        },
-      ],
       invoice_creation: { enabled: true },
       success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${orderTotal.toFixed(2)}`,
       cancel_url: `${appUrl}/cart`,
