@@ -27,23 +27,20 @@ export function calculateOrderTotal(
   shipping: number;
   total: number;
 } {
-  // Subtotal is already TTC, calculate VAT included
-  const vatIncluded = calculateVATIncluded(subtotal);
-  const subtotalHT = Math.round((subtotal - vatIncluded) * 100) / 100;
+  const cleanSubtotal = Math.round(subtotal * 100) / 100;
+  const cleanShipping = Math.round(shippingCost * 100) / 100;
+  const total = Math.round((cleanSubtotal + cleanShipping) * 100) / 100;
 
-  // Shipping is usually HT, add VAT to it as well
-  const shippingVAT = Math.round((shippingCost / 1.2) * VAT_RATE * 100) / 100;
-  const shippingTTC = shippingCost + shippingVAT;
-  const totalVAT = vatIncluded + shippingVAT;
-
-  const total = subtotal + shippingTTC;
+  // Calcul indicatif de la TVA comprise dans le total (taux 20%)
+  const totalVAT = Math.round((total - (total / (1 + VAT_RATE))) * 100) / 100;
+  const totalHT = Math.round((total - totalVAT) * 100) / 100;
 
   return {
-    subtotalHT: subtotalHT,
-    vat: Math.round(totalVAT * 100) / 100,
-    subtotalTTC: Math.round(subtotal * 100) / 100,
-    shipping: Math.round(shippingTTC * 100) / 100,
-    total: Math.round(total * 100) / 100,
+    subtotalHT: totalHT,
+    vat: totalVAT,
+    subtotalTTC: cleanSubtotal,
+    shipping: cleanShipping,
+    total: total,
   };
 }
 

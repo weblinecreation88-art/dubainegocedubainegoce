@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight, CheckCircle2, Sparkles, Store } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -364,7 +364,8 @@ export default function CartPage() {
                     />
                     <div>
                       <p className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                        🛒 Mondial Relay (Point Relais)
+                        <Store className="h-4 w-4 text-accent" />
+                        Mondial Relay (Point Relais)
                         {isFreeShippingQualified && (
                           <span className="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">
                             OFFERT
@@ -401,8 +402,9 @@ export default function CartPage() {
                       className="text-accent"
                     />
                     <div>
-                      <p className="text-xs font-semibold text-foreground">
-                        📦 Colissimo Domicile (48h)
+                      <p className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                        <Truck className="h-4 w-4 text-accent" />
+                        Colissimo Domicile (48h)
                       </p>
                       <p className="text-[11px] text-muted-foreground">Livré chez vous directement en boîte aux lettres</p>
                     </div>
@@ -430,8 +432,11 @@ export default function CartPage() {
                   )}
                 </span>
               </div>
-              <div className="flex justify-between text-base font-bold pt-2 border-t text-foreground">
-                <span>Total TTC à payer</span>
+              <div className="flex justify-between text-base font-bold pt-2 border-t text-foreground items-center">
+                <div>
+                  <span>Total à payer</span>
+                  <span className="block text-xs font-normal text-muted-foreground">TTC (TVA incluse)</span>
+                </div>
                 <span className="text-xl text-accent">{total.toFixed(2)} €</span>
               </div>
             </div>

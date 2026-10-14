@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Mail, MapPin, Truck, Store } from 'lucide-react';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 
 // Form Schema - Complet avec code postal pour Colissimo & Mondial Relay
@@ -140,24 +140,45 @@ export function CheckoutForm({
 
   return (
     <div className="space-y-6">
-      {/* Progress Indicator */}
-      <div className="flex gap-2">
-        {[1, 2].map((step) => (
-          <div key={step} className="flex items-center gap-2">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors ${
-                step < currentStep
-                  ? 'bg-accent text-accent-foreground'
-                  : step === currentStep
-                  ? 'bg-accent text-accent-foreground ring-2 ring-accent ring-offset-2'
-                  : 'bg-muted text-muted-foreground'
-              }`}
-            >
-              {step < currentStep ? <Check className="h-4 w-4" /> : step}
-            </div>
-            {step < 2 && <div className={`flex-1 h-0.5 ${step < currentStep ? 'bg-accent' : 'bg-muted'}`} />}
+      {/* Modern 2-Step Progress Indicator */}
+      <div className="grid grid-cols-2 gap-3 mb-2">
+        <div
+          className={`flex items-center gap-2.5 p-3 rounded-lg border text-xs font-semibold transition-all ${
+            currentStep === 1
+              ? 'border-accent bg-accent/10 text-foreground ring-1 ring-accent'
+              : 'border-border bg-card text-muted-foreground'
+          }`}
+        >
+          <div
+            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
+              currentStep > 1
+                ? 'bg-accent text-accent-foreground'
+                : 'bg-accent text-accent-foreground'
+            }`}
+          >
+            {currentStep > 1 ? <Check className="h-3.5 w-3.5" /> : '1'}
           </div>
-        ))}
+          <span className="truncate">1. Coordonnées & Adresse</span>
+        </div>
+
+        <div
+          className={`flex items-center gap-2.5 p-3 rounded-lg border text-xs font-semibold transition-all ${
+            currentStep === 2
+              ? 'border-accent bg-accent/10 text-foreground ring-1 ring-accent'
+              : 'border-border bg-card text-muted-foreground'
+          }`}
+        >
+          <div
+            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
+              currentStep === 2
+                ? 'bg-accent text-accent-foreground'
+                : 'bg-muted text-muted-foreground'
+            }`}
+          >
+            2
+          </div>
+          <span className="truncate">2. Mode de livraison</span>
+        </div>
       </div>
 
       <Form {...form}>
@@ -167,7 +188,10 @@ export function CheckoutForm({
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>📧 Vos informations</CardTitle>
+                  <CardTitle className="text-base flex items-center gap-2 font-semibold">
+                    <Mail className="h-4 w-4 text-accent" />
+                    Vos coordonnées
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
@@ -204,7 +228,10 @@ export function CheckoutForm({
 
               <Card>
                 <CardHeader>
-                  <CardTitle>🏠 Adresse de livraison</CardTitle>
+                  <CardTitle className="text-base flex items-center gap-2 font-semibold">
+                    <MapPin className="h-4 w-4 text-accent" />
+                    Adresse de livraison
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
@@ -315,7 +342,10 @@ export function CheckoutForm({
             <div className="space-y-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>🚚 Mode de livraison</CardTitle>
+                  <CardTitle className="text-base flex items-center gap-2 font-semibold">
+                    <Truck className="h-4 w-4 text-accent" />
+                    Mode de livraison
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <FormField
@@ -340,7 +370,10 @@ export function CheckoutForm({
                                 <RadioGroupItem value="colissimo" id="colissimo" />
                                 <Label htmlFor="colissimo" className="flex-1 cursor-pointer flex items-center justify-between">
                                   <div>
-                                    <div className="font-semibold text-foreground">📦 Colissimo</div>
+                                    <div className="font-semibold text-foreground flex items-center gap-1.5">
+                                      <Truck className="h-4 w-4 text-accent" />
+                                      Colissimo Domicile
+                                    </div>
                                     <div className="text-sm text-muted-foreground">
                                       Livraison à domicile sous 48h
                                     </div>
@@ -364,7 +397,10 @@ export function CheckoutForm({
                               <RadioGroupItem value="mondial-relay" id="mondial-relay" />
                               <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer flex items-center justify-between">
                                 <div>
-                                  <div className="font-semibold text-foreground">🛒 Mondial Relay</div>
+                                  <div className="font-semibold text-foreground flex items-center gap-1.5">
+                                    <Store className="h-4 w-4 text-accent" />
+                                    Point Relais Mondial Relay
+                                  </div>
                                   <div className="text-sm text-muted-foreground">
                                     Retrait en point relais le plus proche
                                   </div>

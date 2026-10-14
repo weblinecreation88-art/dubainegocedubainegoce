@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ShoppingCart, Lock } from 'lucide-react';
+import { ShoppingCart, Lock, Truck, MapPin } from 'lucide-react';
 import { formatCurrency, getShippingMethodLabel, formatShippingDetail } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import Image from 'next/image';
@@ -90,27 +90,27 @@ export function OrderSummary({
         <CardContent className="space-y-3">
           {/* Subtotal TTC */}
           <div className="flex justify-between items-center text-sm">
-            <span className="text-muted-foreground">Parfums (TTC)</span>
+            <span className="text-muted-foreground">Parfums</span>
             <span className="font-medium">{formatCurrency(subtotal)}</span>
           </div>
-
-          {/* VAT Mention - Show only for Colissimo */}
-          {shippingMethod === 'colissimo' && (
-            <div className="text-xs text-muted-foreground">
-              dont TVA 20% incluse
-            </div>
-          )}
 
           {/* Shipping with weight detail */}
           <div className="space-y-1 pt-2 border-t">
             <div className="flex justify-between items-center text-sm">
-              <span className="text-xs text-muted-foreground">
-                📦 {formatShippingDetail(shippingMethod, weightG, shipping)}
+              <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+                <Truck className="h-3.5 w-3.5 text-accent shrink-0" />
+                {formatShippingDetail(shippingMethod, weightG, shipping)}
               </span>
             </div>
             <div className="flex justify-between items-center text-sm">
               <span className="text-muted-foreground">Livraison</span>
-              <span className="font-medium">{formatCurrency(shipping)}</span>
+              <span className="font-medium">
+                {shipping === 0 ? (
+                  <span className="text-green-600 dark:text-green-400 font-semibold">OFFERTE</span>
+                ) : (
+                  formatCurrency(shipping)
+                )}
+              </span>
             </div>
           </div>
 
@@ -118,7 +118,10 @@ export function OrderSummary({
 
           {/* Total */}
           <div className="flex justify-between items-center text-lg font-bold text-accent">
-            <span>Total TTC</span>
+            <div>
+              <span>Total</span>
+              <span className="block text-xs font-normal text-muted-foreground">TTC (TVA incluse)</span>
+            </div>
             <span className="text-2xl">{formatCurrency(total)}</span>
           </div>
         </CardContent>
@@ -128,7 +131,10 @@ export function OrderSummary({
       {shippingMethod === 'mondial-relay' && selectedPickupPoint && (
         <Card className="border-accent/50 bg-accent/5">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm">📍 Lieu de retrait</CardTitle>
+            <CardTitle className="text-sm flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-accent" />
+              Lieu de retrait sélectionné
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-1 text-sm">
             <p className="font-semibold">{selectedPickupPoint.name}</p>

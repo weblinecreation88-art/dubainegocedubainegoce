@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -17,6 +18,13 @@ type Message = {
 };
 
 export function FaqChatbot() {
+  const pathname = usePathname();
+
+  // Masquer le chatbot pendant tout le tunnel d'achat pour ne pas gêner sur mobile
+  if (pathname?.startsWith('/cart') || pathname?.startsWith('/checkout')) {
+    return null;
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
