@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { adminFetch } from '@/lib/admin-fetch';
 import {
   ShoppingCart,
   TrendingUp,
@@ -42,7 +43,7 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const response = await fetch('/api/admin/dashboard');
+        const response = await adminFetch('/api/admin/dashboard');
         if (!response.ok) throw new Error('Failed to fetch metrics');
         const data = await response.json();
         setMetrics({ ...data, loading: false });

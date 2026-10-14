@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/email';
 import { renderWelcomeEmail } from '@/lib/email-templates/welcome-new-user';
 import { getProducts } from '@/lib/data';
 
@@ -17,24 +17,26 @@ import { getProducts } from '@/lib/data';
 
 export const dynamic = 'force-dynamic';
 
-function getResendClient() {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    throw new Error('RESEND_API_KEY not configured');
-  }
-  return new Resend(apiKey);
-}
+
 
 /**
  * Sélectionner les 3 meilleurs produits du moment
  * Critères: Best-sellers + nouveautés + nota haute
  */
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
+
+/** Les e-mails exigent des URLs absolues pour les images. */
+function absoluteImage(src?: string): string {
+  if (!src) return `${APP_URL}/dubainegoce.png`;
+  return src.startsWith('http') ? src : `${APP_URL}${src.startsWith('/') ? '' : '/'}${src}`;
+}
+
 function getFeaturedProducts() {
   const allProducts = getProducts();
 
   // Trier par: bestsellers d'abord, puis notés, puis nouveautés
   const featured = allProducts
-    .filter(p => p.price === 35) // Tous les parfums à 35€
+    .filter(p => p.price === 35 && p.stock > 0) // Parfums à 35€ disponibles
     .sort((a, b) => {
       // 1. Best-sellers en premier
       if (a.isBestseller !== b.isBestseller) {
@@ -54,41 +56,13 @@ function getFeaturedProducts() {
     .map(p => ({
       name: p.name,
       brand: p.brand.name,
-      image: p.images[0] || 'https://picsum.photos/seed/parfum/400/400',
+      image: absoluteImage(p.images[0]),
       price: p.price,
       slug: p.slug,
       shortDescription: p.shortDescription
     }));
 
-  return featured.length > 0
-    ? featured
-    : // Fallback si pas assez de produits
-      [
-        {
-          name: 'Woody Oud 80ml',
-          brand: 'Maison Alhambra',
-          image: 'https://picsum.photos/seed/woody-oud/400/400',
-          price: 35,
-          slug: 'woody-oud-80-ml-maison-alhambra',
-          shortDescription: 'Essence boisée captivante'
-        },
-        {
-          name: 'Lattafa Premium',
-          brand: 'Lattafa',
-          image: 'https://picsum.photos/seed/lattafa/400/400',
-          price: 35,
-          slug: 'asad-lattafa',
-          shortDescription: 'Prestige oriental'
-        },
-        {
-          name: 'Fragrance World',
-          brand: 'Fragrance World',
-          image: 'https://picsum.photos/seed/fragrance/400/400',
-          price: 35,
-          slug: 'fragrance-world-classic',
-          shortDescription: 'Charme intemporel'
-        }
-      ];
+  return featured;
 }
 
 export async function POST(request: NextRequest) {
@@ -104,14 +78,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Vérifier que c'est une demande interne (optionnel, pour la sécurité)
-    const authHeader = request.headers.get('authorization');
-    const isValidRequest =
-      authHeader?.startsWith('Bearer ') ||
-      request.headers.get('x-internal-request') === 'true';
-
-    // Vous pouvez ajouter une vérification supplémentaire si vous le souhaitez
-    // Pour l'instant, on laisse ouvert pour l'inscription
+    // Seul l'utilisateur qui vient de s'inscrire peut declencher son e-mail :
+    // sans cela, n'importe qui pourrait faire envoyer des e-mails par le site.
+    const authHeader = request.headers.get('authorization') || '';
+    const idToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    if (!idToken) {
+      return NextResponse.json({ error: 'Authentification requise.' }, { status: 401 });
+    }
+    try {
+      const { auth } = await import('@/firebase/server');
+      const decoded = await auth.verifyIdToken(idToken);
+      if ((decoded.email || '').toLowerCase() !== String(email).toLowerCase()) {
+        return NextResponse.json({ error: 'Adresse e-mail non autorisée.' }, { status: 403 });
+      }
+    } catch {
+      return NextResponse.json({ error: 'Session invalide.' }, { status: 401 });
+    }
 
     // Récupérer les produits à présenter
     const featuredProducts = getFeaturedProducts();
@@ -119,26 +101,23 @@ export async function POST(request: NextRequest) {
     // Créer l'email
     const emailHtml = renderWelcomeEmail(name, email, featuredProducts);
 
-    // Envoyer via Resend
-    const resend = getResendClient();
-    const fromEmail = process.env.FROM_EMAIL || 'bienvenue@dubainegoce.fr';
-
-    const result = await resend.emails.send({
-      from: `DubaiNegoce 🌹 <${fromEmail}>`,
-      to: [email],
+    // Envoyer via Brevo
+    const result = await sendEmail({
+      to: email,
       subject: `🎉 Bienvenue ${name}, dans la communauté DubaiNegoce!`,
       html: emailHtml,
-      replyTo: 'contact@dubainegoce.fr'
+      fromName: 'DubaiNegoce 🌹',
+      replyTo: 'contact@dubainegoce.fr',
     });
 
-    if (!(result as any).id) {
-      throw new Error('Failed to send email');
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to send email');
     }
 
     return NextResponse.json({
       success: true,
       message: `Email de bienvenue envoyé à ${email}`,
-      emailId: (result as any).id,
+      emailId: result.messageId,
       user: {
         name,
         email,

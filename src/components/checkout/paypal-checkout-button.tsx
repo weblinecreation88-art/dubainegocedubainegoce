@@ -3,22 +3,32 @@
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
+import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 
-interface CartItem {
+interface CartLine {
   id: string;
-  name: string;
-  price: number;
   quantity: number;
 }
 
+export interface PayPalCustomerInfo {
+  email: string;
+  phone?: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  postalCode?: string;
+  city: string;
+  country: string;
+}
+
 interface PayPalCheckoutButtonProps {
-  items: CartItem[];
+  items: CartLine[];
   total: number;
-  shippingCost: number;
-  customerInfo?: any;
-  shippingMethod?: string;
-  pickupPoint?: any;
-  userId?: string;
+  customerInfo: PayPalCustomerInfo | null;
+  shippingMethod: 'colissimo' | 'mondial-relay';
+  pickupPoint?: MondialRelayPickupPoint | null;
+  /** Renvoie le jeton Firebase si le client est connecte (sinon commande invitee). */
+  getIdToken?: () => Promise<string | null>;
   onSuccess: (orderId: string) => void;
   disabled?: boolean;
 }
@@ -26,19 +36,21 @@ interface PayPalCheckoutButtonProps {
 export function PayPalCheckoutButton({
   items,
   total,
-  shippingCost,
   customerInfo,
-  shippingMethod = 'colissimo',
+  shippingMethod,
   pickupPoint,
-  userId = 'guest',
+  getIdToken,
   onSuccess,
   disabled = false,
 }: PayPalCheckoutButtonProps) {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
-  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!;
-  const subtotal = total - shippingCost;
+  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
+  if (!clientId) return null;
+
+  const country = customerInfo?.country || 'FR';
+  const cartLines = items.map((i) => ({ id: i.id, quantity: i.quantity }));
 
   return (
     <div className="w-full">
@@ -56,69 +68,59 @@ export function PayPalCheckoutButton({
       )}
 
       {status !== 'success' && !disabled && (
-        <PayPalScriptProvider
-          options={{
-            clientId,
-            currency: 'EUR',
-            locale: 'fr_FR',
-            intent: 'capture',
-          }}
-        >
+        <PayPalScriptProvider options={{ clientId, currency: 'EUR', locale: 'fr_FR', intent: 'capture' }}>
           <PayPalButtons
-            style={{
-              layout: 'horizontal',
-              color: 'gold',
-              shape: 'rect',
-              label: 'paypal',
-              height: 50,
-              tagline: false,
-            }}
+            style={{ layout: 'horizontal', color: 'gold', shape: 'rect', label: 'paypal', height: 50, tagline: false }}
+            forceReRender={[total, shippingMethod, country, pickupPoint?.id]}
             createOrder={async () => {
+              setStatus('idle');
               const res = await fetch('/api/paypal/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  amount: subtotal.toFixed(2),
-                  shippingAmount: shippingCost.toFixed(2),
-                  productName: `Commande Dubai Négoce (${items.length} article${items.length > 1 ? 's' : ''})`,
-                  quantity: 1,
-                  items: items.map((item) => ({
-                    name: item.name,
-                    quantity: String(item.quantity),
-                    unit_amount: {
-                      currency_code: 'EUR',
-                      value: item.price.toFixed(2),
-                    },
-                  })),
-                  total: total.toFixed(2),
-                }),
+                body: JSON.stringify({ items: cartLines, shippingMethod, country }),
               });
               const data = await res.json();
-              if (!res.ok) throw new Error(data.error || 'Erreur création commande');
+              if (!res.ok) {
+                setStatus('error');
+                setMessage(data.error || 'Impossible de créer la commande PayPal.');
+                throw new Error(data.error || 'Erreur création commande');
+              }
               return data.id;
             }}
             onApprove={async (data) => {
+              const token = getIdToken ? await getIdToken() : null;
               const res = await fetch('/api/paypal/capture-order', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                  'Content-Type': 'application/json',
+                  ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                },
                 body: JSON.stringify({
                   orderID: data.orderID,
-                  items,
-                  total: total.toFixed(2),
-                  customerInfo,
+                  items: cartLines,
                   shippingMethod,
-                  pickupPoint,
-                  userId,
+                  country,
+                  customer: customerInfo,
+                  pickupPoint: pickupPoint
+                    ? {
+                        id: pickupPoint.id,
+                        name: pickupPoint.name,
+                        address: pickupPoint.address,
+                        postalCode: pickupPoint.postalCode,
+                        city: pickupPoint.city,
+                      }
+                    : null,
                 }),
               });
               const capture = await res.json();
               if (!res.ok) {
                 setStatus('error');
-                setMessage('Le paiement n\'a pas pu être confirmé. Réessayez.');
+                setMessage(capture.error || "Le paiement n'a pas pu être confirmé. Réessayez.");
                 return;
               }
+              const paid = Number(capture.total) || total;
               setStatus('success');
-              setMessage(`Paiement de ${total.toFixed(2)} € confirmé ! Merci pour votre commande.`);
+              setMessage(`Paiement de ${paid.toFixed(2)} € confirmé ! Merci pour votre commande.`);
               onSuccess(data.orderID);
             }}
             onError={() => {

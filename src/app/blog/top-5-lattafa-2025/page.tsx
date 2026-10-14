@@ -50,7 +50,7 @@ export default function BlogPostPage() {
                     Doux, crémeux et terriblement addictif, Yara est le best-seller féminin de la marque. Ses notes d'héliotrope, d'orchidée et de fruits tropicaux se fondent dans une base vanillée et musquée. C'est un parfum-cocon, poudré et gourmand, qui attire les compliments comme un aimant.
                 </p>
 
-                <h2>5. <Link href="/parfum/qaed-al-fursan">Qaed Al Fursan</Link></h2>
+                <h2>5. Qaed Al Fursan</h2>
                 <p>
                     Original et surprenant, Qaed Al Fursan est célèbre pour sa note d'ananas juteux et réaliste. Cette touche fruitée est équilibrée par un fond boisé et ambré qui lui donne de la structure et de l'élégance. C'est un parfum parfait pour l'été, qui sort des sentiers battus.
                 </p>

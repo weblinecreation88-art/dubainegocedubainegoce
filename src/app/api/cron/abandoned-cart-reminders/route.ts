@@ -1,20 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { firestore } from '@/firebase/server';
-import { Resend } from 'resend';
+import { sendEmail, isEmailConfigured } from '@/lib/email';
 import { renderAbandonedCartDay1Email, renderAbandonedCartDay3Email, renderAbandonedCartDay7Email } from '@/lib/email-templates/abandoned-cart';
 
-const fromEmail = process.env.FROM_EMAIL || 'contact@dubainegoce.fr';
 const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const PROMO_CODE = 'COMEBACK5';
 
-// Create Resend instance dynamically to avoid build-time initialization
-function getResendClient() {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    throw new Error('RESEND_API_KEY is not configured');
-  }
-  return new Resend(apiKey);
-}
 
 export const dynamic = 'force-dynamic';
 
@@ -46,12 +37,9 @@ async function sendAbandonedCartReminders() {
     return { success: false, message: 'Firestore not configured' };
   }
 
-  let resend;
-  try {
-    resend = getResendClient();
-  } catch (error) {
-    console.error('Resend not configured:', error);
-    return { success: false, message: 'Resend not configured' };
+  if (!isEmailConfigured()) {
+    console.error('BREVO_API_KEY manquante : relances non envoyees.');
+    return { success: false, message: 'Email provider not configured' };
   }
 
   try {
@@ -92,12 +80,10 @@ async function sendAbandonedCartReminders() {
               cartLink
             );
 
-            const resendClient = getResendClient();
-            await resendClient.emails.send({
-              from: `Dubainegoce <${fromEmail}>`,
-              to: [cart.email],
+            await sendEmail({
+              to: cart.email,
               subject: `${customerName}, vos parfums vous attendent 🛒`,
-              html: emailHtml
+              html: emailHtml,
             });
 
             await doc.ref.update({ 'emailsSent.day1': true });
@@ -130,12 +116,10 @@ async function sendAbandonedCartReminders() {
               cartLink
             );
 
-            const resendClient = getResendClient();
-            await resendClient.emails.send({
-              from: `DubaiNegoce <${fromEmail}>`,
-              to: [cart.email],
+            await sendEmail({
+              to: cart.email,
               subject: '⏰ Vous avez oublié vos parfums! 5% de réduction valable 7 jours',
-              html: emailHtml
+              html: emailHtml,
             });
 
             // Mark as sent
@@ -170,12 +154,10 @@ async function sendAbandonedCartReminders() {
               5
             );
 
-            const resendClient = getResendClient();
-            await resendClient.emails.send({
-              from: `DubaiNegoce <${fromEmail}>`,
-              to: [cart.email],
+            await sendEmail({
+              to: cart.email,
               subject: '⏰ DERNIER RAPPEL: Votre réduction de 5% expire demain!',
-              html: emailHtml
+              html: emailHtml,
             });
 
             // Mark as sent and expire cart

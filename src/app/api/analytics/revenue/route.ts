@@ -1,17 +1,14 @@
+import { adminGuard } from '@/lib/admin-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { firestore } from '@/firebase/server';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
-    // Verify API key
-    const apiKey = request.nextUrl.searchParams.get('apiKey');
-
-    if (!apiKey || apiKey !== process.env.ADMIN_API_KEY) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const days = parseInt(request.nextUrl.searchParams.get('days') || '30');
 
     // Calculate date range

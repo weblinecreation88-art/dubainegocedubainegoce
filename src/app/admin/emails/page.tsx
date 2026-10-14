@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface EmailLog {
   id: string;
@@ -21,7 +22,7 @@ export default function AdminEmailsPage() {
   useEffect(() => {
     const fetchEmails = async () => {
       try {
-        const response = await fetch('/api/admin/emails');
+        const response = await adminFetch('/api/admin/emails');
         if (!response.ok) throw new Error('Failed to fetch emails');
         const data = await response.json();
         setEmails(data);

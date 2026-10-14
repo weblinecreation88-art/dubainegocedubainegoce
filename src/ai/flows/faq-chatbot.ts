@@ -10,7 +10,7 @@ import { z } from 'genkit';
 
 const faqContext = `
     "Vos parfums sont-ils authentiques ?" : "Oui, absolument. Nous nous approvisionnons directement auprès des distributeurs officiels à Dubaï pour garantir que chaque parfum que nous vendons est 100% authentique. La confiance et la transparence sont nos priorités."
-    "Qu'est-ce qu'un 'dupe' ?" : "Un 'dupe' est un parfum inspiré d'une fragrance de luxe très connue. Les maisons de parfum de Dubaï sont expertes dans la création de dupes de haute qualité qui capturent l'essence de l'original à une fraction du prix, souvent avec une performance (tenue et sillage) excellente."
+    "Pourquoi les parfums de Dubaï ont-ils une excellente tenue ?" : "Les parfums de Dubaï sont formulés sous forme d'Eaux de Parfum (EDP) avec une forte concentration en essences nobles (oud, ambre, musc, vanille). Ces matières premières de qualité offrent une tenue de 8 à 12 heures sur la peau."
     "Pourquoi vos prix sont-ils fixés à 35€ ?" : "Nous croyons que le luxe doit être accessible. En important en grande quantité et en optimisant nos coûts, nous sommes en mesure de proposer un prix juste et fixe sur une large sélection de nos parfums. Cela vous permet de découvrir de nouvelles fragrances sans vous ruiner."
     "Quels sont les délais de livraison ?" : "Nous expédions nos commandes en 48h. Nous proposons deux options : Mondial Relay (3-5 jours ouvrés, gratuit) et Colissimo (2-3 jours ouvrés, 5,90€)."
     "Proposez-vous des retours ?" : "Oui, vous disposez d'un délai de 14 jours après réception pour nous retourner un produit, à condition qu'il soit encore sous blister et n'ait pas été utilisé. Les frais de retour sont à votre charge."

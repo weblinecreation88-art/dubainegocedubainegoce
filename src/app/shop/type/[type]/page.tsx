@@ -3,43 +3,51 @@ import { getProducts, getFragranceFamilies, getGenderCategories } from '@/lib/da
 import ShopPageContent from '@/components/shop/shop-page-content';
 import { Suspense } from 'react';
 import ShopAllLoading from '../../all/loading';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { notFound, redirect } from 'next/navigation';
+import { JsonLd } from '@/components/seo/json-ld';
 
 type Props = { params: { type: string } };
 
-// Mapping pour les types de produits
+// Mapping pour les types de produits autorisés
 const TYPE_MAP: Record<string, {
   label: string;
   description: string;
   longDescription: string;
   keywords: string[];
   hero: string;
+  filterType?: string;
 }> = {
-  'equivalent': {
-    label: 'Équivalents & Dupes Parfums',
-    description: 'Découvrez 104 équivalents parfum à prix réduit — des alternatives luxe YSL, Dior, Creed, Paco Rabanne. Livraison 48h, 100% authentique.',
-    longDescription: 'Trouvez votre alternative parfum avec notre collection de 104 dupes et équivalents de qualité. Des parfums similaires aux grands classiques (YSL, Dior, Creed, Paco Rabanne) à des prix accessibles. Composition rivale, prix réduit, authenticité garantie.',
-    keywords: ['dupe parfum', 'équivalent parfum', 'parfum pas cher', 'alternative dior', 'alternative ysl', 'parfum clone qualité', 'équivalent creed', 'alternative paco rabanne'],
-    hero: 'Le Luxe à la Portée de Tous — Découvrez nos 104 Équivalents & Dupes'
+  'oriental': {
+    label: 'Parfums Orientaux de Dubaï',
+    description: 'Découvrez notre collection d\'eaux de parfum orientales authentiques de Dubaï. Sillage intense, tenue longue durée, livraison 48h.',
+    longDescription: 'Explorez notre sélection de parfums orientaux élaborés par les plus prestigieuses maisons de Dubaï (Lattafa, Maison Alhambra, French Avenue). Des sillages riches en oud, ambre, vanille et épices nobles.',
+    keywords: ['parfum oriental', 'parfum dubai', 'eau de parfum oriental', 'parfum lattafa', 'parfum maison alhambra', 'parfum oud', 'parfum longue tenue'],
+    hero: 'Haute Parfumerie Orientale — Eaux de Parfum de Dubaï',
+    filterType: 'oriental'
   },
-  'dupe': {
-    label: 'Dupes Parfums',
-    description: 'Les meilleurs dupes parfum à petit prix — alternatives de qualité aux grands classiques du luxe. Livraison 48h France.',
-    longDescription: 'Accédez aux parfums de luxe sans exploser votre budget avec nos dupes de qualité. Compositions similaires, sillage comparable, prix réduits.',
-    keywords: ['dupe parfum', 'parfum dupe qualité', 'faux parfum qualité', 'parfum similaire'],
-    hero: 'Alternatives de Luxe à Prix Réduit'
+  'original': {
+    label: 'Créations Originales',
+    description: 'Découvrez les créations parfumées originales des grandes maisons de Dubaï. Fragrances uniques et authentiques.',
+    longDescription: 'Une gamme de créations olfactives exclusives alliant savoir-faire ancestral oriental et modernité internationale.',
+    keywords: ['créations parfum', 'parfum original dubai', 'lattafa original', 'parfum de niche dubai'],
+    hero: 'Créations Olfactives Originales & Exclusives',
+    filterType: 'original'
   }
 };
 
 export async function generateStaticParams() {
   return [
-    { type: 'equivalent' },
-    { type: 'dupe' }
+    { type: 'oriental' },
+    { type: 'original' }
   ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // Redirection automatique des anciens slugs
+  if (params.type === 'equivalent' || params.type === 'dupe') {
+    return { title: 'Parfums Orientaux de Dubaï | Dubainegoce' };
+  }
+
   const typeInfo = TYPE_MAP[params.type];
   if (!typeInfo) return { title: 'Non trouvé' };
 
@@ -47,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `${siteUrl}/shop/type/${params.type}`;
 
   return {
-    title: typeInfo.label,
+    title: `${typeInfo.label} | Dubainegoce`,
     description: typeInfo.description,
     keywords: typeInfo.keywords.join(', '),
     alternates: {
@@ -70,17 +78,67 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function TypeShopPage({ params }: Props) {
+  // Redirection 301 immédiate pour les anciens chemins
+  if (params.type === 'equivalent' || params.type === 'dupe') {
+    redirect('/shop/type/oriental');
+  }
+
   const typeInfo = TYPE_MAP[params.type];
   if (!typeInfo) notFound();
 
   const allProducts = getProducts();
-  // Filtrer tous les produits de type 'dupe'
-  const products = allProducts.filter(p => p.type === 'dupe');
+  const filter = typeInfo.filterType || 'oriental';
+  const products = allProducts.filter(p => p.type === filter || (filter === 'oriental' && p.type !== 'original'));
   const families = getFragranceFamilies();
   const genders = getGenderCategories();
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Accueil',
+        item: 'https://dubainegoce.fr',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Boutique',
+        item: 'https://dubainegoce.fr/shop/all',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: typeInfo.label,
+        item: `https://dubainegoce.fr/shop/type/${params.type}`,
+      },
+    ],
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: typeInfo.label,
+    description: typeInfo.description,
+    url: `https://dubainegoce.fr/shop/type/${params.type}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: products.length,
+      itemListElement: products.slice(0, 10).map((p, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        url: `https://dubainegoce.fr/parfum/${p.slug}`,
+        name: p.name,
+      })),
+    },
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={collectionJsonLd} />
       {/* SEO Hero Section */}
       <section className="py-12 md:py-16 bg-gradient-to-r from-accent/5 to-accent/10 border-b border-gray-200 dark:border-gray-800">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,13 +151,13 @@ export default function TypeShopPage({ params }: Props) {
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white dark:bg-black/40 border border-gray-200 dark:border-gray-700">
-                ✓ 104 Parfums Sélectionnés
+                ✓ Eaux de Parfum 100% Authentiques
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white dark:bg-black/40 border border-gray-200 dark:border-gray-700">
-                ✓ Livraison 48h
+                ✓ Livraison 48h France
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white dark:bg-black/40 border border-gray-200 dark:border-gray-700">
-                ✓ 100% Authentique
+                ✓ Flacons Scellés d'Origine
               </span>
             </div>
           </div>
@@ -122,25 +180,18 @@ export default function TypeShopPage({ params }: Props) {
       <section className="py-12 md:py-16 bg-gray-50 dark:bg-muted/10 border-t border-gray-200 dark:border-gray-800">
         <div className="container max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-headline font-bold text-gray-900 dark:text-white mb-4">
-            Qu'est-ce qu'un Équivalent Parfum?
+            L'Excellence de la Parfumerie Orientale
           </h2>
           <div className="prose prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-4">
             <p>
-              Un équivalent parfum est une fragrance de qualité comparable aux grandes marques de luxe, mais à prix réduit. Nos sélections rivalisent en composition, sillage et tenue avec les originaux, sans compromettre la qualité.
-            </p>
-            <p>
-              <strong>Pourquoi choisir un équivalent?</strong>
+              Les parfums de Dubaï sont mondialement réputés pour leur sillage envoûtant, leur haute concentration en extraits et leur tenue incomparable.
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>💰 <strong>Prix Accessibles</strong> — Jusqu'à 80-90% moins cher que les marques de luxe</li>
-              <li>🎯 <strong>Composition Rivale</strong> — Sillage, tenue et notes olfactives similaires</li>
-              <li>✨ <strong>100% Authentiques</strong> — Tous nos produits sont certifiés authentiques</li>
-              <li>⚡ <strong>Livraison Rapide</strong> — Expédition en 48h partout en France</li>
-              <li>🔄 <strong>Garantie Satisfaction</strong> — Retour gratuit sous 14 jours</li>
+              <li>✨ <strong>100% Authentiques</strong> — Produits neufs sous emballage scellé du fabricant officiel</li>
+              <li>🌿 <strong>Matières Premières Nobles</strong> — Oud, ambre gris, vanille de Madagascar, rose de Damas</li>
+              <li>⚡ <strong>Tenue Exceptionnelle</strong> — Formules Eau de Parfum conçues pour durer toute la journée</li>
+              <li>📦 <strong>Expédition Soignée</strong> — Livraison rapide en 48h depuis notre stock en France</li>
             </ul>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-6">
-              <em>Nous ne sommes pas affiliés aux grandes marques de luxe mentionnées. Nos équivalents sont des alternatives légales de qualité, sélectionnées pour rivaliser avec les compositions originales.</em>
-            </p>
           </div>
         </div>
       </section>

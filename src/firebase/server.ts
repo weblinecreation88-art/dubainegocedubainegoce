@@ -1,6 +1,7 @@
 
 import { initializeApp, getApps, getApp, App, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
+import { getAuth } from 'firebase-admin/auth';
 
 // This function ensures that we initialize the app only once.
 function getAdminApp(): App {
@@ -31,3 +32,4 @@ function getAdminApp(): App {
 const app = getAdminApp();
 
 export const firestore = getFirestore(app);
+export const auth = getAuth(app);

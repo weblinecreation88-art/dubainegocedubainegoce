@@ -155,7 +155,7 @@ export function PickupPointSelector({
                   Entrez le code d'un autre point relais
                 </Label>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Trouvez un code sur <a href={`https://www.mondialrelay.fr/ww2/public/mr_pointrelais.aspx?s_cp=${postalCode}`} target="_blank" rel="noopener noreferrer" className="text-accent underline">le site Mondial Relay</a>
+                  Trouvez un code sur <a href={postalCode ? `https://www.mondialrelay.fr/ww2/public/mr_pointrelais.aspx?s_cp=${postalCode}` : `https://www.mondialrelay.fr/trouver-le-point-relais-le-plus-proche-de-chez-moi/`} target="_blank" rel="noopener noreferrer" className="text-accent underline">le site Mondial Relay</a>
                 </p>
               </div>
               <div className="flex gap-2">

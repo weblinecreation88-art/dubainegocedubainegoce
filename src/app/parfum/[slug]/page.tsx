@@ -2,7 +2,7 @@
 
 import { getProductBySlug, getProducts, getRelatedProducts } from '@/lib/data';
 import { getSmartRelatedProducts, getFrequentlyBoughtTogether, getRecommendationContextText } from '@/lib/product-recommendations';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
 import { Truck, ShieldCheck } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
@@ -118,6 +118,12 @@ export default function ProductPage({ params }: Props) {
     notFound();
   }
 
+  // Ancien lien ou slug approchant : redirection 301 vers l'URL officielle
+  // (evite le contenu duplique pour Google).
+  if (product.slug !== decodeURIComponent(params.slug)) {
+    permanentRedirect(`/parfum/${product.slug}`);
+  }
+
   // Utiliser la logique smart de recommandations
   const relatedProducts = getSmartRelatedProducts(product, 4);
   const recommendationContextText = getRecommendationContextText(product);
@@ -132,15 +138,20 @@ export default function ProductPage({ params }: Props) {
   const hasOlfactoryPyramid = topNotes.length > 0 || heartNotes.length > 0 || baseNotes.length > 0;
 
   const reviewCount = Math.floor(product.rating * 50) + 20; // Simulé de façon réaliste
-  const stockLevel = product.stock > 100 ? 'HighStock' : product.stock > 20 ? 'InStock' : product.stock > 0 ? 'LimitedAvailability' : 'OutOfStock';
+  // Un article disponible est annonce InStock des la premiere unite : Google
+  // exclut LimitedAvailability et OutOfStock des resultats enrichis, et nos
+  // niveaux de stock reels (1 a 15 unites) ne justifient pas cette exclusion.
+  const stockLevel = product.stock > 0 ? 'InStock' : 'OutOfStock';
 
-  const jsonLd = {
+  const plainDescription = (product.metaDescription || product.shortDescription || product.name).replace(/<[^>]*>?/gm, '').trim();
+
+  const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     '@id': `https://dubainegoce.fr/parfum/${product.slug}`,
     name: product.name,
     image: product.images,
-    description: product.longDescription || product.metaDescription || product.shortDescription,
+    description: plainDescription,
     brand: {
       '@type': 'Brand',
       name: product.brand.name,
@@ -148,19 +159,26 @@ export default function ProductPage({ params }: Props) {
     },
     sku: product.id,
     mpn: product.id,
-    gtin: product.id,
     productType: 'Fragrance',
     category: product.family,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: product.rating.toFixed(1),
+      reviewCount: reviewCount.toString(),
+      bestRating: '5',
+      worstRating: '1',
+    },
     // Offre avec détails étendus
     offers: {
       '@type': 'Offer',
       '@id': `https://dubainegoce.fr/parfum/${product.slug}#offer`,
       url: `https://dubainegoce.fr/parfum/${product.slug}`,
       priceCurrency: 'EUR',
-      price: product.price.toString(),
+      price: product.price.toFixed(2),
       priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
       availability: `https://schema.org/${stockLevel}`,
       availabilityStarts: new Date().toISOString().split('T')[0],
+      validFrom: new Date().toISOString().split('T')[0],
       itemCondition: 'https://schema.org/NewCondition',
       seller: {
         '@type': 'Organization',
@@ -168,66 +186,44 @@ export default function ProductPage({ params }: Props) {
         url: 'https://dubainegoce.fr',
         sameAs: [
           'https://www.instagram.com/dubainegoce',
-          'https://www.facebook.com/dubainegoce',
+          'https://www.tiktok.com/@dubai_negoce',
         ],
       },
       shippingDetails: {
         '@type': 'OfferShippingDetails',
         shippingRate: {
-          '@type': 'PriceSpecification',
-          priceCurrency: 'EUR',
-          price: '4.10',
+          '@type': 'MonetaryAmount',
+          value: '4.10',
+          currency: 'EUR',
         },
         shippingDestination: {
-          '@type': 'DeliveryTimeSettings',
-          areaServed: 'FR',
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            businessDays: '2',
-            cutoffTime: '17:00',
+          '@type': 'DefinedRegion',
+          addressCountry: 'FR',
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 0,
+            maxValue: 2,
+            unitCode: 'DAY',
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 2,
+            maxValue: 5,
+            unitCode: 'DAY',
           },
         },
       },
-    },
-    // Rating agrégé
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      '@id': `https://dubainegoce.fr/parfum/${product.slug}#rating`,
-      ratingValue: product.rating.toFixed(1),
-      reviewCount: reviewCount,
-      bestRating: '5',
-      worstRating: '1',
-      ratingExplanation: 'Note moyenne basée sur les avis clients vérifiés',
-    },
-    // Breadcrumb schema
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Accueil',
-          item: 'https://dubainegoce.fr',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Boutique',
-          item: 'https://dubainegoce.fr/shop/all',
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: product.family,
-          item: `https://dubainegoce.fr/shop/famille/${product.family.toLowerCase().replace(/\s+/g, '-')}`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          name: product.name,
-          item: `https://dubainegoce.fr/parfum/${product.slug}`,
-        },
-      ],
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'FR',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/ReturnShippingFees',
+      },
     },
     // Propriétés additionnelles
     manufacturer: {
@@ -247,9 +243,41 @@ export default function ProductPage({ params }: Props) {
     },
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Accueil',
+        item: 'https://dubainegoce.fr',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Boutique',
+        item: 'https://dubainegoce.fr/shop/all',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: product.family,
+        item: `https://dubainegoce.fr/shop/famille/${product.family.toLowerCase().replace(/\s+/g, '-')}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: product.name,
+        item: `https://dubainegoce.fr/parfum/${product.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd data={productJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="container mx-auto max-w-6xl px-4 pt-6 pb-2">
         <nav aria-label="Fil d'Ariane" className="flex items-center gap-2 text-xs text-muted-foreground flex-wrap">
           <Link href="/" className="hover:text-foreground transition-colors">Accueil</Link>
@@ -278,22 +306,43 @@ export default function ProductPage({ params }: Props) {
             {/* Marque + Titre + Prix */}
             <div>
               <p className="text-sm text-muted-foreground uppercase tracking-wide">{product.brand.name}</p>
-              <h1 className="text-3xl md:text-4xl font-headline font-bold mt-1">
+              <h1 className="text-3xl md:text-4xl font-headline font-bold mt-1 mb-2">
                 {product.name} — Eau de Parfum {product.volumeMl} ml
               </h1>
-              {product.inspiredBy && (
-                <p className="mt-2 text-sm text-muted-foreground">
-                  ✨ Inspiré de{' '}
-                  <span className="font-semibold text-foreground">{product.inspiredBy}</span>
-                </p>
-              )}
+
               <div className="flex items-baseline gap-3 mt-3">
                 <span className="text-4xl font-bold text-primary">{product.price.toFixed(2)} €</span>
                 <span className="text-sm text-muted-foreground">TTC</span>
               </div>
             </div>
 
-            {/* Popularity badge - avec données RÉELLES */}
+            {/* Propriétés Olfactives rapides */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-4 border-y">
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1 font-semibold">Pour qui ?</p>
+                <p className="font-bold text-sm capitalize">{product.gender}</p>
+              </div>
+              {product.intensity && (
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1 font-semibold">Intensité</p>
+                  <p className="font-bold text-sm">{product.intensity}</p>
+                </div>
+              )}
+              {product.longevity && (
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1 font-semibold">Tenue</p>
+                  <p className="font-bold text-sm">{product.longevity}</p>
+                </div>
+              )}
+              {product.occasion && product.occasion.length > 0 && (
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest mb-1 font-semibold">Idéal pour</p>
+                  <p className="font-bold text-sm">{product.occasion[0]}</p>
+                </div>
+              )}
+            </div>
+
+            {/* Popularity badge */}
             <PopularityBadge
               productId={product.id}
               isNew={product.isNew}
@@ -316,26 +365,9 @@ export default function ProductPage({ params }: Props) {
             <ProductPageClient product={product} />
 
             {/* Quantité + Ajouter au panier */}
-            <ProductActions product={product} paypalClientId={process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID} />
+            <ProductActions product={product} />
 
-            {/* Estimation transparente des frais de port et Offre Duo */}
-            <div className="bg-muted/40 border rounded-lg p-3.5 space-y-2 text-xs">
-              <div className="flex items-center justify-between font-medium">
-                <span className="flex items-center gap-1.5 text-foreground">
-                  🛒 Point Relais (Mondial Relay)
-                </span>
-                <span className="font-semibold text-accent">Dès 4,10 € • <strong className="text-green-600 dark:text-green-400">OFFERTE dès 2 parfums</strong></span>
-              </div>
-              <div className="flex items-center justify-between text-muted-foreground">
-                <span className="flex items-center gap-1.5">
-                  📦 Colissimo Domicile (48h)
-                </span>
-                <span className="font-medium text-foreground">9,29 €</span>
-              </div>
-              <div className="text-[11px] text-green-600 dark:text-green-400 font-semibold pt-1.5 border-t border-border flex items-center gap-1">
-                <span>✨ <strong>Astuce Économie :</strong> Dès 2 parfums commandés, la livraison Mondial Relay est 100% GRATUITE !</span>
-              </div>
-            </div>
+
 
             {/* Notes olfactives */}
             {hasOlfactoryPyramid && (

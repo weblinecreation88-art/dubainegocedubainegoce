@@ -1,118 +1,156 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { JsonLd } from '@/components/seo/json-ld';
 
 export const metadata: Metadata = {
-    title: 'Les 8 meilleurs dupes de parfums de luxe à moins de 40€ — testés et validés',
-    description: 'Baccarat Rouge, Sauvage, Aventus, Tobacco Vanille… on a trouvé les parfums qui s\'en rapprochent le plus, pour 10 à 15 fois moins cher. Comparatif honnête.',
-    keywords: 'dupe parfum luxe, parfum similaire luxe, dupe Baccarat Rouge, dupe Sauvage Dior, dupe Aventus Creed, parfum inspiré de, parfum moins cher luxe, alternative parfum luxe',
+    title: 'Les 8 Meilleurs Parfums Orientaux de Dubaï à Moins de 40€ — Sillage & Tenue',
+    description: 'Khamrah, Asad, Yara, Woody Oud… Notre sélection des 8 meilleures eaux de parfum de Dubaï alliant puissance olfactive et tenue longue durée.',
+    keywords: 'meilleur parfum dubai, parfum oriental pas cher, parfum lattafa avis, parfum maison alhambra, parfum longue tenue, eau de parfum dubai',
+    alternates: {
+        canonical: 'https://dubainegoce.fr/blog/dupes-parfums-luxe',
+    },
+    openGraph: {
+        title: 'Les 8 Meilleurs Parfums Orientaux de Dubaï à Moins de 40€',
+        description: 'Sélection des meilleures eaux de parfum de Dubaï alliant sillage et tenue.',
+        url: 'https://dubainegoce.fr/blog/dupes-parfums-luxe',
+        type: 'article',
+    },
 };
 
 export default function BlogPostPage() {
+    const articleJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: 'Les 8 Meilleurs Parfums Orientaux de Dubaï à Moins de 40€ — Sillage & Tenue',
+        description: 'Khamrah, Asad, Yara, Woody Oud… Notre sélection des 8 meilleures eaux de parfum de Dubaï.',
+        image: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png',
+        datePublished: '2026-03-01T00:00:00+01:00',
+        dateModified: '2026-09-01T00:00:00+01:00',
+        author: {
+            '@type': 'Organization',
+            name: 'Dubainegoce',
+            url: 'https://dubainegoce.fr',
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'Dubainegoce',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://dubainegoce.fr/logo.png',
+            },
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': 'https://dubainegoce.fr/blog/dupes-parfums-luxe',
+        },
+    };
+
+    const breadcrumbJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://dubainegoce.fr',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: 'https://dubainegoce.fr/blog',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Les 8 Meilleurs Parfums Orientaux de Dubaï',
+                item: 'https://dubainegoce.fr/blog/dupes-parfums-luxe',
+            },
+        ],
+    };
+
     return (
         <div className="container mx-auto max-w-4xl px-4 py-12">
+            <JsonLd data={articleJsonLd} />
+            <JsonLd data={breadcrumbJsonLd} />
             <article className="prose prose-invert prose-headings:font-headline prose-headings:text-primary max-w-none">
 
                 <div className="relative mb-8 w-full aspect-video">
                     <Image
                         src="https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png"
-                        alt="Dupes parfums de luxe à moins de 40€"
+                        alt="Meilleurs parfums orientaux de Dubaï à moins de 40€"
                         fill
                         sizes="(max-width: 768px) 100vw, 896px"
                         className="rounded-lg object-cover"
                     />
                 </div>
 
-                <p className="text-sm text-primary font-semibold mb-2">Guide parfum</p>
-                <h1>Les 8 meilleurs dupes de parfums de luxe à moins de 40€</h1>
+                <p className="text-sm text-primary font-semibold mb-2">Guide Parfumerie Orientale</p>
+                <h1>Les 8 Meilleurs Parfums de Dubaï à Sillage Puissant à Moins de 40€</h1>
 
                 <p className="lead">
-                    Soyons honnêtes : personne ne devrait payer 280€ pour un parfum. Surtout quand il existe des alternatives qui s'en approchent à 95% pour une fraction du prix. Voici notre sélection des meilleurs dupes de parfums de luxe — des fragrances qu'on a portées, testées et comparées côte à côte.
+                    La parfumerie des Émirats Arabes Unis a conquis le monde grâce à des compositions riches, une tenue remarquable et une concentration généreuse. Voici notre sélection des 8 créations orientales incontournables à intégrer à votre collection.
                 </p>
 
+                <h2>1. <Link href="/parfum/khamrah-lattafa">Khamrah Lattafa</Link> — Le Gourmand Ambré d'Exception</h2>
                 <p>
-                    Avant tout, un point de vocabulaire : un <strong>dupe</strong> (ou parfum d'inspiration) n'est pas une contrefaçon. C'est une création originale qui s'inspire d'une fragrance de luxe dans son accord général, sans copier la formule. C'est légal, courant dans l'industrie, et franchement… souvent meilleur rapport qualité/prix.
+                    Khamrah est devenu une véritable légende dans l'univers de la parfumerie orientale. Avec ses notes de datte caramélisée, praliné, cannelle chaleureuse et vanille crémeuse sur un fond d'ambre boisé, ce parfum offre une expérience sensorielle enveloppante et luxueuse.
+                </p>
+                <p>
+                    Sa tenue sur peau dépasse aisément 10 heures avec un sillage gourmand captivant qui ne passe jamais inaperçu.
                 </p>
 
-                <h2>1. <Link href="/parfum/khamrah-lattafa">Khamrah Lattafa</Link> ≈ Tobacco Vanille Tom Ford</h2>
+                <h2>2. <Link href="/parfum/asad-lattafa">Asad Lattafa</Link> — L'Élégance Masculine Boisée & Épicée</h2>
                 <p>
-                    Tobacco Vanille de Tom Ford, c'est <strong>290€</strong> le flacon. Un parfum gourmand légendaire avec ses notes de tabac, de vanille, de cacao et d'épices chaudes. Khamrah de Lattafa s'en inspire clairement dans son ADN olfactif — datte caramélisée, praliné, cannelle, vanille crémeuse, fond ambré — et vous coûtera <strong>35€</strong>.
+                    Asad est une création masculine puissante et charismatique. Il s'ouvre sur un accord épicé d'ananas noir et poivre, soutenu par un cœur de café et d'iris, pour finir sur un sillage d'ambre sec, de patchouli et de bois précieux.
                 </p>
                 <p>
-                    La différence ? Tom Ford a une sophistication légèrement plus grande dans la transition des accords. Mais en sillage et en tenue (8-10h sur peau), Khamrah fait jeu égal. Des centaines d'avis le confirment. C'est d'ailleurs le parfum le plus populaire de notre boutique depuis deux ans.
-                </p>
-
-                <h2>2. <Link href="/parfum/asad-lattafa">Asad Lattafa</Link> ≈ Aventus Creed</h2>
-                <p>
-                    Aventus Creed est le parfum masculin le plus copié de l'histoire. Pour <strong>450€</strong>, vous obtenez un fruité-boisé-fumé d'une complexité remarquable — ananas, bouleau fumé, patchouli, musc blanc. Asad Lattafa s'inscrit dans cette même philosophie : ananas juteux en tête, café et tabac au cœur, fond boisé et ambré très profond.
-                </p>
-                <p>
-                    Ce n'est pas une copie exacte, mais c'est dans la même famille. Charismatique, affirmé, boisé-fumé. Pour <strong>35€</strong>, c'est une des meilleures introductions à cet univers olfactif.
+                    Idéal pour les saisons fraîches et les soirées, il dégage une aura de confiance et de sophistication.
                 </p>
 
-                <h2>3. <Link href="/parfum/jean-lowe-immortal-maison-alhambra">Jean Lowe Immortal Maison Alhambra</Link> ≈ Le Male Jean Paul Gaultier</h2>
+                <h2>3. <Link href="/parfum/jean-lowe-immortal-maison-alhambra">Jean Lowe Immortal Maison Alhambra</Link> — La Fraîcheur Boisée & Cuirée</h2>
                 <p>
-                    Le Male de JPG est un classique absolu depuis 1995. Lavande, vanille, menthe, notes marines — une composition masculine iconique à <strong>120€</strong>. Jean Lowe Immortal de Maison Alhambra capture cette essence propre, fraîche et sucrée avec une belle précision. Des notes de cardamome, cuir doux, vanille et musc se superposent élégamment.
-                </p>
-                <p>
-                    Beaucoup de personnes qui ont porté les deux n'arrivent pas à distinguer Jean Lowe Immortal lors de blind tests. À <strong>35€</strong>, c'est peut-être le dupe le plus fidèle de cette liste.
+                    Jean Lowe Immortal allie avec brio une fraîcheur aromatique intense à la chaleur du cuir doux et des bois ambrés. Un équilibre parfait entre dynamisme et noblesse, convenant parfaitement à un usage quotidien comme professionnel.
                 </p>
 
-                <h2>4. <Link href="/parfum/yara-lattafa">Yara Lattafa</Link> ≈ Mon Guerlain / La Belle JPG</h2>
+                <h2>4. <Link href="/parfum/yara-lattafa">Yara Lattafa</Link> — La Douceur Gourmande et Florale</h2>
                 <p>
-                    Yara, c'est le best-seller féminin de Lattafa depuis des années. Un parfum crémeux, poudré et addictif : héliotrope, orchidée, fruits tropicaux, vanille, musc. Il se situe quelque part entre Mon Guerlain (<strong>110€</strong>) pour le côté lavande-vanille, et La Belle de Jean Paul Gaultier (<strong>130€</strong>) pour la douceur sucrée.
-                </p>
-                <p>
-                    Ce que Yara fait extrêmement bien : le sillage. Il enveloppe sans agresser, attire les compliments et dure 6-8h facilement. À <strong>35€</strong>, c'est une valeur sûre.
+                    Yara est le parfum féminin le plus plébiscité de Lattafa. Ses notes d'héliotrope, d'orchidée tropicale, de fruits sucrés, de vanille veloutée et de musc blanc créent une signature olfactive douce, réconfortante et extrêmement féminine.
                 </p>
 
-                <h2>5. <Link href="/parfum/woody-oud-80-ml-maison-alhambra">Woody Oud Maison Alhambra</Link> ≈ Oud Wood Tom Ford</h2>
+                <h2>5. <Link href="/parfum/woody-oud-80-ml-maison-alhambra">Woody Oud Maison Alhambra</Link> — L'Oud Boisé et Fumé</h2>
                 <p>
-                    Oud Wood Tom Ford à <strong>290€</strong> est la référence des oud occidentaux — bois de rose, oud, cardamome, santal, vétiver. Un oud accessible, ni trop animal ni trop fumé. Woody Oud de Maison Alhambra suit le même chemin : oud boisé, gingembre, encens, mousse de chêne, ambre.
-                </p>
-                <p>
-                    Pour ceux qui veulent découvrir l'univers oud sans se ruiner, Woody Oud est le point d'entrée parfait. Mixte, élégant, raffiné. Moins de <strong>40€</strong>.
+                    Pour les amateurs de bois nobles, Woody Oud sublime l'essence de bois d'agar (oud), de gingembre, d'encens et de mousse de chêne. Une composition mixte, moderne et envoûtante.
                 </p>
 
-                <h2>6. <Link href="/parfum/kismet-for-women-maison-alhambra">Kismet for Women Maison Alhambra</Link> ≈ Good Girl Carolina Herrera</h2>
+                <h2>6. <Link href="/parfum/kismet-for-women-maison-alhambra">Kismet for Women Maison Alhambra</Link> — Le Charme Floral & Poudré</h2>
                 <p>
-                    Good Girl de Carolina Herrera (<strong>160€</strong>) avec son flacon stiletto est devenu un phénomène. Jasmin, cacao, praline, amande, fève tonka — un accord floral-gourmand très reconnaissable. Kismet for Women capture cette dualité entre la fleur et la gourmandise avec une belle réussite : rose, jasmin, vanille, fond musqué et poudré.
-                </p>
-                <p>
-                    Le résultat est enveloppant, féminin, et parfait pour une soirée. On est clairement dans la même famille olfactive, avec un rapport qualité/prix imbattable à <strong>35€</strong>.
+                    Kismet for Women associe la rose de mai, le jasmin sambac, la vanille bourbon et le musc soyeux. Un parfum sensuel, idéal pour les rendez-vous et les grandes réceptions.
                 </p>
 
-                <h2>7. <Link href="/parfum/by-saffron-maison-alhambra">By Saffron Maison Alhambra</Link> ≈ Baccarat Rouge 540 / Saffron Rose</h2>
+                <h2>7. <Link href="/parfum/by-saffron-maison-alhambra">By Saffron Maison Alhambra</Link> — L'Or Rouge Oriental</h2>
                 <p>
-                    Baccarat Rouge 540 de Maison Francis Kurkdjian, c'est <strong>400€</strong> minimum. Un parfum ambré-floral-musqué avec une note safran très caractéristique, devenu viral sur TikTok. By Saffron de Maison Alhambra attaque directement cette note de safran et de rose, sur un fond ambré et boisé.
-                </p>
-                <p>
-                    Ce n'est pas une copie exacte (BR540 a une structure plus complexe), mais By Saffron capture l'essence orientale-safranée dans la même vibe. Pour <strong>35€</strong>, vous avez un parfum d'exception.
+                    Le safran est l'une des épices les plus précieuses en parfumerie. By Saffron met en valeur cette note orientale dorée avec de la rose veloutée, de l'ambre chaud et des notes boisées intenses.
                 </p>
 
-                <h2>8. <Link href="/parfum/infini-oud-maison-alhambra-mixte">Infini Oud Maison Alhambra</Link> ≈ Oud Rose / Rose d'Arabie</h2>
+                <h2>8. <Link href="/parfum/infini-oud-maison-alhambra-mixte">Infini Oud Maison Alhambra</Link> — La Majesté de l'Oud Mystique</h2>
                 <p>
-                    Les oud-roses de niche (Initio, De Bachmakov) dépassent souvent les <strong>200€</strong>. Infini Oud propose cette combinaison rose-oud avec une générosité remarquable : pétales de rose, oud fumé, santal, musc blanc. C'est luxueux, profond, et mixte.
-                </p>
-                <p>
-                    Si vous aimez les parfums qui ont de la présence et de l'histoire, c'est celui-là. Et moins de <strong>40€</strong>.
+                    Infini Oud est une fragrance riche et texturée où l'oud se marie aux résines précieuses, à la lavande et à la muscade. Un parfum de caractère conçu pour les connaisseurs de grands sillages.
                 </p>
 
                 <hr />
 
-                <h2>Comment choisir son dupe de parfum de luxe ?</h2>
-                <p>
-                    Quelques conseils pratiques après avoir testé des dizaines de parfums d'inspiration :
-                </p>
+                <h2>Comment choisir son parfum oriental de Dubaï ?</h2>
                 <ul>
-                    <li><strong>Testez d'abord sur peau</strong> — tous les parfums réagissent différemment selon votre chimie corporelle. Ce qui sent fantastique sur votre voisine peut ne pas vous convenir.</li>
-                    <li><strong>Méfiez-vous des descriptions trop vagues</strong> — "similaire à [luxe]" ne veut pas dire grand-chose. Cherchez des avis précis sur les notes et le sillage.</li>
-                    <li><strong>Regardez la famille olfactive</strong> — si vous aimez les fragrances boisées-fumées, restez dans cette famille plutôt que d'essayer de copier une marque précise.</li>
-                    <li><strong>La tenue n'est pas toujours inférieure</strong> — certains parfums orientaux comme Khamrah tiennent aussi longtemps que des extraits de parfum à 300€.</li>
+                    <li><strong>Identifiez votre famille olfactive</strong> : Ambrée gourmande (Khamrah, Yara), Boisée épicée (Asad, Woody Oud) ou Florale orientale (Kismet, By Saffron).</li>
+                    <li><strong>Adaptez à l'occasion</strong> : Privilégiez les accords frais et aromatiques en journée, et les sillages ambrés profonds en soirée.</li>
+                    <li><strong>Appréciez l'évolution</strong> : Les parfums orientaux évoluent sur plusieurs heures, révélant des notes de fond d'une grande richesse.</li>
                 </ul>
 
                 <p>
-                    Vous retrouverez tous ces parfums dans notre boutique, avec les avis détaillés de nos clients. Profitez de la livraison rapide en France (48h Colissimo) et de notre garantie authenticité.
+                    Tous nos parfums sont <strong>100% originaux</strong>, scellés sous emballage d'origine et expédiés sous 48h depuis notre stock en France.
                 </p>
 
                 <div className="not-prose mt-8">
@@ -120,7 +158,7 @@ export default function BlogPostPage() {
                         href="/shop"
                         className="inline-block bg-black text-white px-8 py-3 text-sm tracking-[0.15em] uppercase hover:bg-gray-800 transition-colors"
                     >
-                        Voir toute la boutique →
+                        Explorer toute la collection →
                     </Link>
                 </div>
 

@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShoppingCart, DollarSign, TrendingUp, Clock, Mail, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { adminFetch, readApiError } from '@/lib/admin-fetch';
 
 interface AbandonedCartData {
   id: string;
@@ -21,7 +22,7 @@ interface AbandonedCartData {
     day1?: boolean;
     day3: boolean;
     day7: boolean;
-    recovery?: boolean;
+    recovery?: string | null;
   };
   recoveryEmail?: {
     sentAt: string;
@@ -58,7 +59,7 @@ export default function AbandonedCartsPage() {
         if (selectedStatus !== 'all') params.append('status', selectedStatus);
         params.append('days', selectedDays.toString());
 
-        const response = await fetch(`/api/admin/abandoned-carts?${params}`);
+        const response = await adminFetch(`/api/admin/abandoned-carts?${params}`);
         if (!response.ok) throw new Error('Failed to fetch carts');
 
         const data = await response.json();
@@ -79,67 +80,43 @@ export default function AbandonedCartsPage() {
     fetchCarts();
   }, [selectedStatus, selectedDays, toast]);
 
-  const handleSendRecoveryEmail = async (cart: AbandonedCartData) => {
-    setSendingEmail(cart.id);
+  const handleSendRecoveryEmail = async (cartId: string, email: string) => {
+    setSendingEmail(cartId);
     try {
-      const response = await fetch('/api/admin/send-recovery-email', {
+      const response = await adminFetch('/api/admin/send-recovery-email', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-internal-request': 'true',
-        },
         body: JSON.stringify({
-          cartId: cart.id,
-          userId: cart.userId,
-          email: cart.email,
+          cartId,
+          email,
           promoCode: 'COMEBACK5',
           discount: 5,
         }),
       });
 
-      const data = await response.json().catch(() => ({}));
-
       if (!response.ok) {
-        throw new Error(data.error || data.details || data.message || 'Impossible d\'envoyer l\'email');
+        throw new Error(await readApiError(response, "Impossible d'envoyer l'email"));
       }
 
       toast({
         title: 'Succès',
-        description: `Email de récupération envoyé à ${cart.email}`,
+        description: `Email de récupération envoyé à ${email}`,
       });
 
-      // Mettre à jour l'état local immédiatement
-      setCarts(prevCarts =>
-        prevCarts.map(c =>
-          c.id === cart.id
-            ? {
-                ...c,
-                emailsSent: { ...c.emailsSent, recovery: true },
-                recoveryEmail: {
-                  sentAt: new Date().toISOString(),
-                  promoCode: 'COMEBACK5',
-                  discount: 5,
-                },
-              }
-            : c
-        )
-      );
-
-      // Rafraîchir depuis le serveur en arrière-plan
+      // Refresh carts
       const params = new URLSearchParams();
       if (selectedStatus !== 'all') params.append('status', selectedStatus);
       params.append('days', selectedDays.toString());
-      const refreshResponse = await fetch(`/api/admin/abandoned-carts?${params}`);
+      const refreshResponse = await adminFetch(`/api/admin/abandoned-carts?${params}`);
       if (refreshResponse.ok) {
-        const refreshData = await refreshResponse.json();
-        if (refreshData.carts) setCarts(refreshData.carts);
-        if (refreshData.stats) setStats(refreshData.stats);
+        const data = await refreshResponse.json();
+        if (data.carts) setCarts(data.carts);
+        if (data.stats) setStats(data.stats);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error sending email:', error);
       toast({
         title: 'Erreur',
-        description: error.message || 'Impossible d\'envoyer l\'email',
+        description: error instanceof Error ? error.message : 'Impossible d\'envoyer l\'email',
         variant: 'destructive',
       });
     } finally {
@@ -149,9 +126,8 @@ export default function AbandonedCartsPage() {
 
   const handleMarkRecovered = async (cartId: string) => {
     try {
-      const response = await fetch('/api/admin/abandoned-carts', {
+      const response = await adminFetch('/api/admin/abandoned-carts', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           cartId,
           action: 'mark-recovered',
@@ -333,12 +309,14 @@ export default function AbandonedCartsPage() {
                         {cart.emailsSent.day1 && <Badge variant="outline" className="mr-1">J1</Badge>}
                         {cart.emailsSent.day3 && <Badge variant="outline" className="mr-1">J3</Badge>}
                         {cart.emailsSent.day7 && <Badge variant="outline" className="mr-1">J7</Badge>}
-                        {(cart.recoveryEmail || cart.emailsSent.recovery) && (
-                          <Badge variant="secondary" className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30">
-                            Relancé
-                          </Badge>
+                        {cart.emailsSent.recovery && (
+                          <span title={`Relance envoyée le ${new Date(cart.emailsSent.recovery).toLocaleString('fr-FR')}`}>
+                            <Badge variant="secondary" className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30">
+                              Relancé
+                            </Badge>
+                          </span>
                         )}
-                        {!cart.emailsSent.day1 && !cart.emailsSent.day3 && !cart.emailsSent.day7 && !cart.recoveryEmail && !cart.emailsSent.recovery && (
+                        {!cart.emailsSent.day1 && !cart.emailsSent.day3 && !cart.emailsSent.day7 && !cart.emailsSent.recovery && (
                           <span className="text-muted-foreground">-</span>
                         )}
                       </td>
@@ -346,22 +324,18 @@ export default function AbandonedCartsPage() {
                         <div className="flex items-center gap-1.5">
                           <Button
                             size="sm"
-                            variant={cart.recoveryEmail || cart.emailsSent.recovery ? 'outline' : 'default'}
+                            variant={cart.emailsSent.recovery ? 'outline' : 'default'}
                             disabled={sendingEmail === cart.id || cart.status === 'recovered'}
-                            onClick={() => handleSendRecoveryEmail(cart)}
+                            onClick={() => handleSendRecoveryEmail(cart.id, cart.email)}
                             className="gap-1 h-8 px-2.5 text-xs font-medium"
                             title={
-                              cart.recoveryEmail
-                                ? `Dernière relance envoyée le ${new Date(cart.recoveryEmail.sentAt).toLocaleDateString('fr-FR')}`
+                              cart.emailsSent.recovery
+                                ? `Dernière relance envoyée le ${new Date(cart.emailsSent.recovery).toLocaleDateString('fr-FR')}`
                                 : 'Envoyer un email de relance avec code promo -5%'
                             }
                           >
                             <Mail className="h-3.5 w-3.5" />
-                            {sendingEmail === cart.id
-                              ? 'Envoi...'
-                              : cart.recoveryEmail || cart.emailsSent.recovery
-                              ? 'Renvoyer'
-                              : 'Email'}
+                            {sendingEmail === cart.id ? 'Envoi...' : cart.emailsSent.recovery ? 'Renvoyer' : 'Email'}
                           </Button>
                           {cart.status !== 'recovered' && (
                             <Button

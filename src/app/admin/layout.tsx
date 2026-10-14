@@ -6,7 +6,7 @@ import { useAuth, useUser } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import { BarChart3, LogOut, Menu, X } from 'lucide-react';
 
-const ADMIN_EMAIL = 'weblinecreation88@gmail.com';
+import { isAdminEmail } from '@/lib/admin-emails';
 
 export default function AdminLayout({
   children,
@@ -23,7 +23,7 @@ export default function AdminLayout({
     if (isUserLoading) return;
 
     // If no user or not admin email, redirect to login
-    if (!user || user.email !== ADMIN_EMAIL) {
+    if (!user || !isAdminEmail(user.email)) {
       router.push('/admin/login');
     }
   }, [user, isUserLoading, router]);
@@ -52,7 +52,7 @@ export default function AdminLayout({
   }
 
   // If not authorized, don't show content
-  if (!user || user.email !== ADMIN_EMAIL) {
+  if (!user || !isAdminEmail(user.email)) {
     return null;
   }
 

@@ -42,61 +42,58 @@ export function HeroBanner({ images }: HeroBannerProps) {
               transition={{ delay: 0.05 }}
               className="text-[11px] tracking-[0.35em] uppercase text-[#c9a96e] font-medium mb-4"
             >
-              Import direct de Dubaï
+              IMPORTÉ DIRECTEMENT DE DUBAÏ
             </motion.span>
 
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-serif text-white leading-tight mb-4"
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-headline font-bold text-white leading-tight mb-4"
             >
-              Parfums de Dubaï<br />
-              <span className="text-[#c9a96e]">Inspirés du Luxe</span>
+              Votre parfum oriental<br />
+              <span className="text-[#c9a96e]">authentique à 35 €</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25 }}
-              className="text-white/70 text-base lg:text-lg mb-2 leading-relaxed max-w-md"
+              className="text-white/70 text-base lg:text-lg mb-8 leading-relaxed max-w-md"
             >
-              Des équivalents des grandes maisons à prix accessible.
+              Lattafa · Maison Alhambra · Fragrance World · French Avenue
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex items-center gap-2 mb-8"
-            >
-              <span className="text-3xl font-bold text-white">35€</span>
-              <span className="text-white/50 text-sm">le flacon · prix unique</span>
-            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3 mb-8"
+              className="flex flex-col gap-4 mb-8"
             >
-              <Button asChild size="lg" className="bg-[#c9a96e] text-[#0f1726] hover:bg-[#b8944e] font-semibold px-8 rounded-none tracking-wide">
-                <Link href="/shop/all?sort=bestsellers">Voir les Best-Sellers</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-none tracking-wide">
-                <Link href="/shop">Toute la Collection</Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button asChild size="lg" className="bg-[#c9a96e] text-[#0f1726] hover:bg-[#b8944e] font-bold px-10 py-7 text-sm sm:text-base rounded-none tracking-widest uppercase shadow-xl shadow-[#c9a96e]/20 w-full sm:w-auto">
+                  <Link href="/trouver-mon-parfum">Trouver mon parfum</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white rounded-none tracking-wide py-7 w-full sm:w-auto">
+                  <Link href="/shop/all">Découvrir la collection</Link>
+                </Button>
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-4 text-xs text-white/50"
+              className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs sm:text-sm font-medium text-white bg-white/5 p-4 rounded border border-white/10"
             >
-              <span className="flex items-center gap-1.5"><Truck className="h-3.5 w-3.5 text-[#c9a96e]" /> Livraison dès 4,73€</span>
-              <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-[#c9a96e]" /> Paiement sécurisé</span>
-              <span className="flex items-center gap-1.5"><Star className="h-3.5 w-3.5 text-[#c9a96e]" /> Retour 14 jours</span>
+              <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[#c9a96e]" /> Paiement 100% Sécurisé</span>
+              <span className="flex items-center gap-2"><Star className="h-4 w-4 text-[#c9a96e]" /> Parfums Authentiques</span>
+              <span className="flex items-center gap-2">
+                <span className="flex text-[#00b67a]">
+                  <Star className="h-4 w-4 fill-current" />
+                </span>
+                Excellent Trustpilot
+              </span>
             </motion.div>
           </div>
 
@@ -123,7 +120,8 @@ export function HeroBanner({ images }: HeroBannerProps) {
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                {/* Overlay subtil */}
+                {/* Aucune transition - séparation nette */}
+                {/* Overlay léger */}
                 <div className="absolute inset-0 bg-[#0f1726]/10" />
               </motion.div>
             </AnimatePresence>

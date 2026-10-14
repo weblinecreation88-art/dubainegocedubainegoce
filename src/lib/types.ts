@@ -33,9 +33,12 @@ export interface Product {
   name: string;
   slug: string;
   brand: Brand;
-  type: 'simple' | 'variable' | 'dupe' | 'original';
+  type: 'simple' | 'variable' | 'original' | 'oriental' | 'prestige';
   gender: 'homme' | 'femme' | 'mixte';
   family: string;
+  intensity?: 'Légère' | 'Moyenne' | 'Forte' | string;
+  longevity?: 'Courte' | 'Moyenne' | 'Longue durée' | string;
+  occasion?: string[];
   topNotes?: string[];
   heartNotes?: string[];
   baseNotes?: string[];
@@ -95,10 +98,35 @@ export interface Order {
     userId: string;
     orderDate: string;
     totalAmount: number;
-    status: 'pending' | 'processing' | 'completed' | 'cancelled';
+    // 'completed' est conserve pour les commandes deja enregistrees : il vaut
+    // 'paid' (paiement encaisse, colis non encore expedie).
+    status: 'pending' | 'processing' | 'completed' | 'cancelled' | 'shipped' | 'delivered';
     orderItems: OrderItem[];
     stripeSessionId?: string;
     shippingMethod?: ShippingMethod['id'];
+    customerEmail?: string;
+    customerName?: string;
+    customerPhone?: string;
+    shippingCost?: number;
+    shippingAddress?: {
+        line1?: string;
+        line2?: string;
+        postalCode?: string;
+        city?: string;
+        country?: string;
+    };
+    // Suivi d'expedition
+    trackingNumber?: string;
+    carrier?: 'colissimo' | 'mondial-relay';
+    shippedAt?: string;
+    deliveredAt?: string;
+    pickupPoint?: {
+        id: string;
+        name: string;
+        address?: string;
+        postalCode?: string;
+        city?: string;
+    };
 }
 
 export type ShippingMethod = {

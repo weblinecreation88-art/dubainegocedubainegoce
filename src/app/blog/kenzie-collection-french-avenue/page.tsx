@@ -99,11 +99,6 @@ export default function BlogPostPage() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/parfum/kenzie-pistachio-100ml" className="text-foreground hover:text-primary transition-colors font-medium">
-                                → Kenzie Pistachio — pistache, crémeux
-                            </Link>
-                        </li>
-                        <li>
                             <Link href="/shop/marque/french-avenue" className="text-foreground hover:text-primary transition-colors">
                                 → Toute la collection French Avenue
                             </Link>

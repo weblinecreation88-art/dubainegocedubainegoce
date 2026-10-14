@@ -1,7 +1,11 @@
+import { adminGuard } from '@/lib/admin-auth';
 import { firestore } from '@/firebase/server';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
     const emailsSnapshot = await firestore.collection('emailLogs').get();
     const emails: any[] = [];

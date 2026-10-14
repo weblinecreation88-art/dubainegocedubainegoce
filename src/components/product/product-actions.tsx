@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { AddToCartButton } from './add-to-cart-button';
-import { PayPalButton } from './paypal-button';
+
 import type { Product } from '@/lib/types';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export function ProductActions({ product, paypalClientId }: { product: Product; paypalClientId?: string }) {
+export function ProductActions({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -48,15 +48,7 @@ export function ProductActions({ product, paypalClientId }: { product: Product; 
         Ajouter au panier
       </AddToCartButton>
 
-      {/* Bouton PayPal (clientId injecté depuis le serveur) */}
-      {paypalClientId && (
-        <PayPalButton
-          price={product.price}
-          productName={product.name}
-          quantity={quantity}
-          clientId={paypalClientId}
-        />
-      )}
+
     </div>
   );
 }

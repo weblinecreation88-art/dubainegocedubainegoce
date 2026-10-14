@@ -6,48 +6,84 @@ runConfig:
   # more instances in response to increased traffic.
   maxInstances: 1
 
-# Variables d'environnement publiques (disponibles au build ET au runtime)
-# Le clientId PayPal est public (exposé côté client de toute façon)
-environmentVariables:
+# IMPORTANT : App Hosting attend un unique bloc `env`.
+# Les anciennes cles `environmentVariables` / `secretEnvironmentVariables`
+# sont ignorees silencieusement par le build : aucune variable n'etait montee
+# dans le conteneur, d'ou les erreurs 500 sur /api/stripe/checkout.
+#
+# `availability` precise ou la variable est disponible :
+#   BUILD   -> pendant la compilation (necessaire pour les NEXT_PUBLIC_*)
+#   RUNTIME -> a l'execution du serveur (necessaire pour les routes API)
+env:
+  # --- Valeurs publiques ---
   - variable: NEXT_PUBLIC_PAYPAL_CLIENT_ID
     value: AZSVA1R4EqfYKQEnx2djfVOuVbDe9XZBL2DDnLkBiOWJ6a9ucmjbyAyszvjmu0908BwMvH2srgp1Wewg
+    availability:
+      - BUILD
+      - RUNTIME
+
   - variable: PAYPAL_BASE_URL
     value: https://api-m.paypal.com
+    availability:
+      - RUNTIME
 
-# This section specifies the secrets that should be exposed to the backend as
-# environment variables.
-# IMPORTANT: You must create these secrets in Google Cloud Secret Manager.
-# Ces secrets doivent correspondre aux clés LIVE de vos services.
-secretEnvironmentVariables:
-  # --- Secrets PayPal (LIVE) ---
+  # Expediteur des e-mails transactionnels (Brevo).
+  # Doit correspondre a un expediteur verifie dans Brevo, sinon l'API refuse
+  # l'envoi. A remplacer par contact@dubainegoce.fr une fois le domaine
+  # authentifie dans Brevo (meilleure delivrabilite).
+  - variable: FROM_EMAIL
+    value: abderelmalki@gmail.com
+    availability:
+      - RUNTIME
+
+  - variable: FROM_NAME
+    value: DubaiNegoce
+    availability:
+      - RUNTIME
+
+  # Comptes autorises a acceder a /admin et aux routes /api/admin/*
+  # (plusieurs adresses : separer par des virgules).
+  - variable: NEXT_PUBLIC_ADMIN_EMAILS
+    value: weblinecreation88@gmail.com
+    availability:
+      - BUILD
+      - RUNTIME
+
+  # --- Secrets (Google Cloud Secret Manager) ---
   - variable: PAYPAL_CLIENT_ID
     secret: PAYPAL_CLIENT_ID
+    availability:
+      - RUNTIME
+
   - variable: PAYPAL_SECRET
     secret: PAYPAL_SECRET
-  # --- Secrets Stripe (LIVE) ---
+    availability:
+      - RUNTIME
+
+  # Cle secrete LIVE de Stripe (sk_live_...)
   - variable: STRIPE_SECRET_KEY
-    # La clé secrète LIVE de Stripe (commence par sk_live_...)
     secret: STRIPE_SECRET_KEY
+    availability:
+      - RUNTIME
+
+  # Signature du webhook LIVE de Stripe (whsec_...)
   - variable: STRIPE_WEBHOOK_SECRET
-    # La clé de signature du webhook LIVE de Stripe (commence par whsec_...)
-    # Attention: Ne pas confondre avec le webhook Resend.
     secret: STRIPE_WEBHOOK_SECRET
-  # --- Secrets Resend (LIVE) ---
-  - variable: RESEND_API_KEY
-    # Votre clé API Resend (commence par re_...)
-    secret: RESEND_API_KEY
-  - variable: RESEND_AUDIENCE_ID
-    # L'ID de votre audience de newsletter Resend
-    secret: RESEND_AUDIENCE_ID
-  - variable: RESEND_WEBHOOK_SECRET
-    # La clé de signature du webhook Resend (commence par whsec_...)
-    # Attention: Similaire au format de Stripe, mais provient de Resend.
-    secret: RESEND_WEBHOOK_SECRET
-  # --- Secret Cron (Google Cloud Scheduler) ---
+    availability:
+      - RUNTIME
+
+  # Cle API Brevo pour les e-mails transactionnels (xkeysib-...)
+  - variable: BREVO_API_KEY
+    secret: BREVO_API_KEY
+    availability:
+      - RUNTIME
+
+  # Token protegeant l'appel cron depuis Cloud Scheduler
   - variable: CRON_SECRET
-    # Token secret pour sécuriser l'appel cron depuis Cloud Scheduler
-    # Générez un token aléatoire fort : openssl rand -hex 32
     secret: CRON_SECRET
+    availability:
+      - RUNTIME
+
 headers:
   - # Set a Cache-Control header for all static assets.
     source: /_next/static/**

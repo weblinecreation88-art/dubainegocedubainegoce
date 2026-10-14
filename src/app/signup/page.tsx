@@ -78,7 +78,10 @@ export default function SignupPage() {
       try {
         const welcomeResponse = await fetch('/api/auth/send-welcome-email', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${await user.getIdToken()}`,
+          },
           body: JSON.stringify({
             email: values.email,
             name: values.name,

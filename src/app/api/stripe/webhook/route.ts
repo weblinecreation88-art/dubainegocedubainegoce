@@ -36,12 +36,14 @@ export async function POST(req: NextRequest) {
       try {
         const result = await processSuccessfulOrder(session.id);
         if (!result.success) {
+          // On accuse réception malgré l'échec : un rejeu Stripe échouerait à l'identique
+          // (données de session manquantes). La page /checkout/success rejoue le traitement.
           console.error(`[Webhook Stripe] Échec du traitement de la commande pour la session ${session.id}: ${result.message}`);
-          return NextResponse.json({ error: `Échec du traitement de la commande: ${result.message}` }, { status: 500 });
         } else {
           console.log(`[Webhook Stripe] Commande pour la session ${session.id} traitée avec succès.`);
         }
       } catch (error: any) {
+        // Erreur transitoire (Firestore/Stripe indisponible) : on renvoie 500 pour que Stripe rejoue.
         console.error(`[Webhook Stripe] ERREUR CRITIQUE lors du traitement de la commande pour la session ${session.id}:`, error);
         return NextResponse.json({ error: 'Erreur interne lors du traitement de la commande.' }, { status: 500 });
       }
@@ -58,7 +60,6 @@ export async function POST(req: NextRequest) {
           const result = await processSuccessfulOrder(sessionId);
           if (!result.success) {
             console.error(`[Webhook Stripe] Échec du traitement de la commande (via facture) pour la session ${sessionId}: ${result.message}`);
-            return NextResponse.json({ error: `Échec du traitement de la commande: ${result.message}` }, { status: 500 });
           } else {
             console.log(`[Webhook Stripe] Commande (via facture) pour la session ${sessionId} traitée avec succès.`);
           }

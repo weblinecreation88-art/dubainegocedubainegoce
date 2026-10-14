@@ -1,3 +1,4 @@
+import { adminGuard } from '@/lib/admin-auth';
 import { NextRequest, NextResponse } from 'next/server';
 import { firestore } from '@/firebase/server';
 
@@ -37,12 +38,10 @@ interface UserAnalysis {
 }
 
 export async function GET(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
-    // Authentification
-    const apiKey = request.nextUrl.searchParams.get('apiKey');
-    if (!apiKey || apiKey !== process.env.ADMIN_API_KEY) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     const userId = request.nextUrl.searchParams.get('userId');
     if (!userId) {
@@ -217,13 +216,11 @@ function generateRecommendations(analysis: UserAnalysis): void {
 }
 
 export async function POST(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   // Optionnel: Endpoint pour déclencher manuellement une action
   try {
-    const apiKey = request.headers.get('authorization')?.split(' ')[1];
-    if (!apiKey || apiKey !== process.env.ADMIN_API_KEY) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const body = await request.json();
     const { userId, action, email } = body;
 

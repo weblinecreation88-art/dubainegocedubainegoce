@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { TrendingUp, Eye, ShoppingCart } from 'lucide-react';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface ProductStats {
   id: string;
@@ -24,7 +25,7 @@ export default function AdminProductsPage() {
   useEffect(() => {
     const fetchProductStats = async () => {
       try {
-        const response = await fetch('/api/admin/products');
+        const response = await adminFetch('/api/admin/products');
         if (!response.ok) throw new Error('Failed to fetch products');
         const data = await response.json();
 

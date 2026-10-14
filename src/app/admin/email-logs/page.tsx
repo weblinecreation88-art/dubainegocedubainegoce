@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface EmailLog {
   id: string;
@@ -12,7 +13,7 @@ interface EmailLog {
   type: string;
   subject: string;
   status: string;
-  method: 'resend' | 'gmail';
+  method?: 'brevo' | 'resend' | 'gmail' | string;
   sentAt: any;
   opened: boolean;
   clicked: boolean;
@@ -30,7 +31,7 @@ export default function EmailLogsPage() {
   async function fetchLogs() {
     try {
       setLoading(true);
-      const response = await fetch('/api/admin/email-logs');
+      const response = await adminFetch('/api/admin/email-logs');
       if (response.ok) {
         const data = await response.json();
         setLogs(data.logs || []);
@@ -43,13 +44,13 @@ export default function EmailLogsPage() {
   }
 
   const filteredLogs = logs.filter(log =>
-    log.email.toLowerCase().includes(searchEmail.toLowerCase())
+    (log.email || '').toLowerCase().includes(searchEmail.toLowerCase())
   );
 
   const stats = {
     total: logs.length,
-    resend: logs.filter(l => l.method === 'resend').length,
-    gmail: logs.filter(l => l.method === 'gmail').length,
+    brevo: logs.filter(l => (l.method || 'brevo') === 'brevo').length,
+    failed: logs.filter(l => l.status === 'failed').length,
     opened: logs.filter(l => l.opened).length,
     clicked: logs.filter(l => l.clicked).length
   };
@@ -74,19 +75,19 @@ export default function EmailLogsPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Via Resend</CardTitle>
+            <CardTitle className="text-sm font-medium">Via Brevo</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{stats.resend}</div>
+            <div className="text-2xl font-bold text-blue-600">{stats.brevo}</div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Via Gmail</CardTitle>
+            <CardTitle className="text-sm font-medium">Échecs</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-600">{stats.gmail}</div>
+            <div className="text-2xl font-bold text-orange-600">{stats.failed}</div>
           </CardContent>
         </Card>
 
@@ -166,13 +167,13 @@ export default function EmailLogsPage() {
                       </td>
                       <td className="py-2 px-4">
                         <Badge
-                          variant={log.method === 'resend' ? 'default' : 'secondary'}
+                          variant={(log.method || 'brevo') === 'brevo' ? 'default' : 'secondary'}
                         >
-                          {log.method === 'resend' ? '📨 Resend' : '📧 Gmail'}
+                          {log.method ? log.method.charAt(0).toUpperCase() + log.method.slice(1) : 'Brevo'}
                         </Badge>
                       </td>
                       <td className="py-2 px-4">
-                        <Badge variant="outline" className="bg-green-50">
+                        <Badge variant="outline" className={log.status === 'failed' ? 'bg-red-50 text-red-700' : 'bg-green-50'}>
                           {log.status}
                         </Badge>
                       </td>

@@ -1,0 +1,32 @@
+# Dubainegoce — Base Complète de Connaissances & Catalogue (Standard GEO)
+
+## Description de l'Entreprise
+Dubainegoce est une référence française de la vente en ligne de parfums orientaux de haute qualité, importés directement des manufactures officielles des Émirats Arabes Unis (Dubaï). La boutique s'adresse aux passionnés de sillages orientaux intenses, d'eaux de parfum à haute concentration et de fragrances nobles (Oud, Ambre, Safran, Musc, Vanille bourbon).
+
+## Engagements Qualité & Authenticité
+- **Origine Certifiée** : 100% des flacons sont authentiques et issus des distributeurs agréés de Dubaï.
+- **État Neuf** : Tous les produits sont livrés neufs, sous leur cellophane et scellé d'origine.
+- **Eaux de Parfum (EDP)** : Tenue longue durée garantie de 8 à 12 heures sur peau.
+- **Tarifs Justes** : Distribution optimisée sans intermédiaires superflus.
+
+## Familles Olfactives Proposées
+1. **Boisé & Oud** : Richesse de l'oud précieux, bois de santal, cèdre de l'Atlas, patchouli et vétiver.
+2. **Ambré & Oriental** : Chaleur de l'ambre doré, résines précieuses, benjoin et encens.
+3. **Gourmand & Vanillé** : Datte caramélisée, praliné, vanille de Madagascar, fève tonka et caramel au lait.
+4. **Floral & Fruité** : Rose de Damas, jasmin sambac, héliotrope, fruits exotiques et bergamote.
+5. **Aromatique & Épicé** : Cardamome, poivre noir, gingembre, sauge sclarée et menthe fraîche.
+6. **Chypré & Cuiré** : Mousse de chêne, cuir souple, labdanum et accords fumés.
+
+## Marques Partenaires
+- **Lattafa Perfumes Industries LLC** : Le leader mondial de la parfumerie orientale moderne.
+- **Maison Alhambra** : Créateur de fragrances orientales raffinées au flaconnage luxueux.
+- **French Avenue** : L'alliance de l'élégance parisienne et de la puissance olfactive de Dubaï.
+- **Fragrance World** : Maison historique aux compositions complexes et équilibrées.
+- **Ard Al Zaafaran** : Tradition orientale ancestrale et sillages d'encens et d'oud.
+
+## Modalités de Service & Expédition
+- **Préparation** : Expédition sous 24 à 48 heures ouvrées.
+- **Transporteurs** : Colissimo Domicile (2-3 jours) & Mondial Relay en Point Relais (3-5 jours).
+- **Service Client** : Support réactif par téléphone (+33 7 58 99 97 26) et email (contact@dubainegoce.fr).
+- **Paiements Sécurisés** : Carte bancaire via Stripe avec protocole 3D-Secure.
+- **Délai de Rétractation** : 14 jours légaux à compter de la réception.

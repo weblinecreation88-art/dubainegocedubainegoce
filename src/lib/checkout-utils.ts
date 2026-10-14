@@ -27,20 +27,24 @@ export function calculateOrderTotal(
   shipping: number;
   total: number;
 } {
-  const cleanSubtotal = Math.round(subtotal * 100) / 100;
-  const cleanShipping = Math.round(shippingCost * 100) / 100;
-  const total = Math.round((cleanSubtotal + cleanShipping) * 100) / 100;
+  // Subtotal is already TTC, calculate VAT included
+  const vatIncluded = calculateVATIncluded(subtotal);
+  const subtotalHT = Math.round((subtotal - vatIncluded) * 100) / 100;
 
-  // Calcul indicatif de la TVA comprise dans le total (taux 20%)
-  const totalVAT = Math.round((total - (total / (1 + VAT_RATE))) * 100) / 100;
-  const totalHT = Math.round((total - totalVAT) * 100) / 100;
+  // Les frais de port sont factures TTC tels quels (meme montant que Stripe/PayPal) :
+  // on n'ajoute pas de TVA, on affiche seulement la part de TVA incluse.
+  const shippingTTC = shippingCost;
+  const shippingVAT = Math.round((shippingCost / 1.2) * VAT_RATE * 100) / 100;
+  const totalVAT = vatIncluded + shippingVAT;
+
+  const total = subtotal + shippingTTC;
 
   return {
-    subtotalHT: totalHT,
-    vat: totalVAT,
-    subtotalTTC: cleanSubtotal,
-    shipping: cleanShipping,
-    total: total,
+    subtotalHT: subtotalHT,
+    vat: Math.round(totalVAT * 100) / 100,
+    subtotalTTC: Math.round(subtotal * 100) / 100,
+    shipping: Math.round(shippingTTC * 100) / 100,
+    total: Math.round(total * 100) / 100,
   };
 }
 

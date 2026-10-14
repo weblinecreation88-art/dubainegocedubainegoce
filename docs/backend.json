@@ -41,7 +41,7 @@
         "name": { "type": "string" },
         "slug": { "type": "string" },
         "brandId": { "type": "string" },
-        "type": { "type": "string", "enum": ["simple", "variable", "dupe", "original"] },
+        "type": { "type": "string", "enum": ["simple", "variable", "création", "original"] },
         "gender": { "type": "string", "enum": ["homme", "femme", "mixte"] },
         "family": { "type": "string" },
         "topNotes": { "type": "array", "items": { "type": "string" } },

@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback, useRef } from 'react';
 import { trackAbandonedCart } from '@/app/actions';
+import { trackEcommerce } from '@/lib/analytics';
 
 export interface CartItem {
     id: string;
@@ -115,18 +116,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     // ── Actions panier ─────────────────────────────────────────────────────
     const addToCart = useCallback((item: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
-        // GTM tracking
-        if (typeof window !== 'undefined' && (window as any).dataLayer) {
-            const qty = item.quantity || 1;
-            (window as any).dataLayer.push({
-                event: 'add_to_cart',
-                ecommerce: {
-                    value: item.price * qty,
-                    currency: 'EUR',
-                    items: [{ item_id: item.id, item_name: item.name, price: item.price, quantity: qty }]
-                }
-            });
-        }
+        const qty = item.quantity || 1;
+        trackEcommerce('add_to_cart', {
+            value: item.price * qty,
+            items: [{ item_id: item.id, item_name: item.name, price: item.price, quantity: qty }]
+        });
 
         setCart(prev => {
             const existing = prev.find(i => i.id === item.id);
@@ -138,6 +132,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }, []);
 
     const removeFromCart = useCallback((itemId: string) => {
+        const removed = cartRef.current.find(i => i.id === itemId);
+        if (removed) {
+            trackEcommerce('remove_from_cart', {
+                value: removed.price * removed.quantity,
+                items: [{ item_id: removed.id, item_name: removed.name, price: removed.price, quantity: removed.quantity }]
+            });
+        }
         setCart(prev => prev.filter(i => i.id !== itemId));
     }, []);
 

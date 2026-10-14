@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2, ShoppingBag, Loader2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { useUser, useFirestore } from '@/firebase';
+import { useUser } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -16,16 +16,13 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
 import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
-import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
 const PERFUME_WEIGHT_G = 750;
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
   const { user, isUserLoading } = useUser();
-  const firestore = useFirestore();
   const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
@@ -59,62 +56,11 @@ export default function CartPage() {
   const totalAmount = subtotal + (selectedShipping?.cost || 0);
 
   
-  const handleCheckout = async () => {
-    if (isUserLoading) return;
-    if (!user || !firestore) {
-      router.push('/login?redirect=/cart');
-      return;
-    }
-
-    setIsCheckingOut(true);
-
-    try {
-        const checkoutSessionRef = await addDoc(collection(firestore, 'customers', user.uid, 'checkout_sessions'), {
-            mode: 'payment',
-            line_items: cart.map(item => ({
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: item.name,
-                        images: [item.image],
-                        metadata: {
-                           productId: item.id, // Ajout du productId pour la réconciliation
-                        }
-                    },
-                    unit_amount: Math.round(item.price * 100),
-                },
-                quantity: item.quantity,
-            })),
-            shipping_options: selectedShipping.id === 'colissimo' && process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID ? [{ shipping_rate: process.env.NEXT_PUBLIC_STRIPE_SHIPPING_RATE_ID }] : [],
-             shipping_address_collection: {
-                allowed_countries: ['FR', 'BE', 'LU', 'CH'],
-            },
-            invoice_creation: {
-                enabled: true,
-            },
-            success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${appUrl}/cart`,
-            metadata: {
-              userId: user.uid,
-              shippingMethod: selectedShipping.id,
-            }
-        });
-
-        const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
-            const { error, url } = snap.data() as { error?: { message: string }, url?: string };
-            if (error) {
-                console.error(`An error occurred with the Stripe session: ${error.message}`);
-                setIsCheckingOut(false);
-                unsubscribe();
-            }
-            if (url) {
-                window.location.assign(url);
-            }
-        });
-    } catch(error) {
-        console.error("Error creating checkout session document:", error);
-        setIsCheckingOut(false);
-    }
+  // Cette page ne collecte ni téléphone ni point relais : elle ne peut pas produire une
+  // session Stripe complète. On renvoie vers le tunnel /cart, seul chemin de paiement
+  // qui alimente correctement les métadonnées de commande.
+  const handleCheckout = () => {
+    router.push('/cart');
   };
 
 

@@ -4,16 +4,16 @@
     <title>DubaïNégoce - Parfums Orientaux de Dubaï</title>
     <link>https://dubainegoce.fr</link>
     <description>Boutique en ligne de parfums orientaux de luxe – Lattafa, Maison Alhambra, Fragrance World</description>
-    <lastBuildDate>Sun, 01 Mar 2026 20:22:47 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 06:36:16 GMT</lastBuildDate>
 
     <item>
       <g:id>1794</g:id>
       <g:title>Woody Oud 80 Ml Maison Alhambra 80ml</g:title>
       <g:description>Découvrez Woody Oud Maison Alhambra, une fragrance boisé aux notes de gingembre et encens. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/woody-oud-80-ml-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799294/parfums/woody-oud-80-ml-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -51,7 +51,7 @@
       <g:title>The Tux Maison Alhambra Mixte 90ml</g:title>
       <g:description>Découvrez The Tux Maison Alhambra, une fragrance chypré aux notes de cassis et clou de girofle. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/the-tux-maison-alhambra-mixte</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/the-tux-maison-alhambra-mixte.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799295/parfums/the-tux-maison-alhambra-mixte.jpg</g:image_link>
       <g:price>40.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -133,7 +133,7 @@
       <g:link>https://dubainegoce.fr/parfum/ramz-gold-lattafa-mixte</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/ramz-gold-lattafa-mixte.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -173,7 +173,7 @@
       <g:link>https://dubainegoce.fr/parfum/raghba-lattafa-mixte</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/raghba-lattafa-mixte.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -213,7 +213,7 @@
       <g:link>https://dubainegoce.fr/parfum/qaaed-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/qaaed-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -333,7 +333,7 @@
       <g:link>https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/fakhar-rose-gold-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>female</g:gender>
@@ -373,7 +373,7 @@
       <g:link>https://dubainegoce.fr/parfum/ejaazi-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/ejaazi-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -411,7 +411,7 @@
       <g:title>Yeah Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Yeah Maison Alhambra, une fragrance aromatique aux notes de gingembre et rose. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/yeah-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/yeah-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799295/parfums/yeah-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -453,7 +453,7 @@
       <g:link>https://dubainegoce.fr/parfum/maahir-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/maahir-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -573,7 +573,7 @@
       <g:link>https://dubainegoce.fr/parfum/fakhar-wasam-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/fakhar-wasam-lattafa.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -611,9 +611,9 @@
       <g:title>Glacier Pour Homme Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Glacier Pour Homme Maison Alhambra, une fragrance aromatique aux notes de bergamote et oud. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/glacier-pour-homme-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/glacier-pour-homme-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799296/parfums/glacier-pour-homme-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>male</g:gender>
@@ -653,7 +653,7 @@
       <g:link>https://dubainegoce.fr/parfum/grise-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/grise-maison-alhambra.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -693,7 +693,7 @@
       <g:link>https://dubainegoce.fr/parfum/safwaan-lautre-musk-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/safwaan-lautre-musk-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -813,7 +813,7 @@
       <g:link>https://dubainegoce.fr/parfum/velvet-oud-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/velvet-oud-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -893,7 +893,7 @@
       <g:link>https://dubainegoce.fr/parfum/safwaan-lautre-oud-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/safwaan-lautre-oud-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -927,51 +927,11 @@
       </g:shipping>
     </item>
     <item>
-      <g:id>1820</g:id>
-      <g:title>My Rose Sublime Lattafa 100ml</g:title>
-      <g:description>Découvrez My Rose Sublime Lattafa, une fragrance floral aux notes de poire et ylang-ylang. Laissez-vous séduire par ce parfum inoubliable.</g:description>
-      <g:link>https://dubainegoce.fr/parfum/my-rose-sublime-lattafa</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/my-rose-sublime-lattafa.webp</g:image_link>
-      <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Lattafa</g:brand>
-      <g:gender>female</g:gender>
-      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
-      <g:google_product_category>2915</g:google_product_category>
-      <g:identifier_exists>false</g:identifier_exists>
-      <g:product_detail>
-        <g:section_name>Caractéristiques</g:section_name>
-        <g:attribute_name>Volume</g:attribute_name>
-        <g:attribute_value>100 ml</g:attribute_value>
-      </g:product_detail>
-      <g:product_detail>
-        <g:section_name>Caractéristiques</g:section_name>
-        <g:attribute_name>Famille olfactive</g:attribute_name>
-        <g:attribute_value>Floral</g:attribute_value>
-      </g:product_detail>
-      <g:custom_label_0>Floral</g:custom_label_0>
-      <g:custom_label_1>femme</g:custom_label_1>
-      <g:custom_label_2>standard</g:custom_label_2>
-      <g:custom_label_3>25-40</g:custom_label_3>
-      <g:custom_label_4>Lattafa</g:custom_label_4>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Colissimo Domicile</g:service>
-        <g:price>7.35 EUR</g:price>
-      </g:shipping>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Mondial Relay Point Relais</g:service>
-        <g:price>4.10 EUR</g:price>
-      </g:shipping>
-    </item>
-    <item>
       <g:id>1821</g:id>
       <g:title>Toscano Leather Maison Alhambra 80ml</g:title>
       <g:description>Découvrez Toscano Leather Maison Alhambra, une fragrance cuir aux notes de bergamote et iris. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/toscano-leather-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/toscano-leather-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799297/parfums/toscano-leather-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1011,7 +971,7 @@
       <g:title>Jean Lowe Matiere Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Jean Lowe Matière Maison Alhambra, une fragrance floral aux notes de bergamote et pivoine. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/jean-lowe-matiere-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/jean-lowe-matiere-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799299/parfums/jean-lowe-matiere-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1051,9 +1011,9 @@
       <g:title>Glacier Le Noir Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Glacier Le Noir Maison Alhambra, une fragrance oriental aux notes de poivre rose et ambre. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/glacier-le-noir-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/glacier-le-noir-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799301/parfums/glacier-le-noir-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>male</g:gender>
@@ -1091,9 +1051,9 @@
       <g:title>Infini Oud Maison Alhambra Mixte 100ml</g:title>
       <g:description>Découvrez Infini Oud Maison Alhambra, une fragrance oriental aux notes de gingembre et oud. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/infini-oud-maison-alhambra-mixte</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/infini-oud-maison-alhambra-mixte.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799302/parfums/infini-oud-maison-alhambra-mixte.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -1131,7 +1091,7 @@
       <g:title>La Vita Bella Maison Alhambra 100ml</g:title>
       <g:description>Découvrez La Vita Bella Maison Alhambra, une fragrance gourmand aux notes de bergamote et praline. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/la-vita-bella-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/la-vita-bella-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799303/parfums/la-vita-bella-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1171,7 +1131,7 @@
       <g:title>Minerva 100ml</g:title>
       <g:description>Découvrez Minerva Maison Alhambra, une fragrance cuir aux notes de bergamote et cuir. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/minerva-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/minerva-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799304/parfums/minerva-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1211,7 +1171,7 @@
       <g:title>Kismet For Women Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Kismet for Women Maison Alhambra, une fragrance oriental aux notes de gingembre et ambre. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/kismet-for-women-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/kismet-for-women-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799305/parfums/kismet-for-women-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1251,7 +1211,7 @@
       <g:title>Perseus Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Perseus Maison Alhambra, une fragrance oriental aux notes de safran et encens. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/perseus-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/perseus-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799307/parfums/perseus-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1293,7 +1253,7 @@
       <g:link>https://dubainegoce.fr/parfum/al-noble-safeer-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/al-noble-safeer-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -1331,9 +1291,9 @@
       <g:title>Versencia Crystal Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Versencia Crystal Maison Alhambra, une fragrance floral aux notes de feuille de violette et jasmin. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/versencia-crystal-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/versencia-crystal-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799308/parfums/versencia-crystal-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>female</g:gender>
@@ -1411,7 +1371,7 @@
       <g:title>Najdia Lattafa 100ml</g:title>
       <g:description>Découvrez Najdia Lattafa, une fragrance aquatique aux notes de safran et encens. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/najdia-lattafa</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/najdia-lattafa.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799309/parfums/najdia-lattafa.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1491,7 +1451,7 @@
       <g:title>Salvo Intense Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Salvo Intense Maison Alhambra, une fragrance aromatique aux notes de safran et rose. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/salvo-intense-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/salvo-intense-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799310/parfums/salvo-intense-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1533,7 +1493,7 @@
       <g:link>https://dubainegoce.fr/parfum/maahir-black-edition-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/maahir-black-edition-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -1573,7 +1533,7 @@
       <g:link>https://dubainegoce.fr/parfum/tabac-maison-alhambra</g:link>
       <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260216/Tabac_Maison_Alhambra_x5bmpp.webp</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -1611,9 +1571,9 @@
       <g:title>Kismet Moscow Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Kismet Moscow Maison Alhambra, une fragrance oriental aux notes de cardamome et encens. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/kismet-moscow-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/kismet-moscow-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799311/parfums/kismet-moscow-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -1653,7 +1613,7 @@
       <g:link>https://dubainegoce.fr/parfum/niche-royal-rouge-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/niche-royal-rouge-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>female</g:gender>
@@ -1693,7 +1653,7 @@
       <g:link>https://dubainegoce.fr/parfum/al-noble-wazeer-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/al-noble-wazeer-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -1771,7 +1731,7 @@
       <g:title>Avant Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Avant Maison Alhambra, une fragrance chypré aux notes de citron et ylang-ylang. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/avant-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/avant-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799313/parfums/avant-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -1813,7 +1773,7 @@
       <g:link>https://dubainegoce.fr/parfum/opera-noir-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/opera-noir-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>female</g:gender>
@@ -1893,7 +1853,7 @@
       <g:link>https://dubainegoce.fr/parfum/olivia-blossom-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/olivia-blossom-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>female</g:gender>
@@ -1933,7 +1893,7 @@
       <g:link>https://dubainegoce.fr/parfum/majd-al-sultan-asdaaf</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/majd-al-sultan-asdaaf.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Asdaaf</g:brand>
       <g:gender>unisex</g:gender>
@@ -1973,7 +1933,7 @@
       <g:link>https://dubainegoce.fr/parfum/maahir-legacy-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/maahir-legacy-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -2013,7 +1973,7 @@
       <g:link>https://dubainegoce.fr/parfum/pure-oudi-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/pure-oudi-lattafa.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -2211,9 +2171,9 @@
       <g:title>Andaleeb Asdaaf 100ml</g:title>
       <g:description>Découvrez Andaleeb Asdaaf, une fragrance floral aux notes de cassis et pivoine. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/andaleeb-asdaaf</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/andaleeb-asdaaf.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799313/parfums/andaleeb-asdaaf.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Asdaaf</g:brand>
       <g:gender>female</g:gender>
@@ -2251,7 +2211,7 @@
       <g:title>So Candid Maison Alhambra 100ml</g:title>
       <g:description>Découvrez So Candid Maison Alhambra, une fragrance chypré aux notes de aldéhydes et rose. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/so-candid-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/so-candid-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799314/parfums/so-candid-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -2293,7 +2253,7 @@
       <g:link>https://dubainegoce.fr/parfum/come-moiselle-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/come-moiselle-maison-alhambra.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>female</g:gender>
@@ -2371,9 +2331,9 @@
       <g:title>Jean Lowe Ombre Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Jean Lowe Ombre Maison Alhambra, une fragrance oriental aux notes de safran et encens. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/jean-lowe-ombre-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/jean-lowe-ombre-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799315/parfums/jean-lowe-ombre-maison-alhambra.jpg</g:image_link>
       <g:price>50.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -2411,7 +2371,7 @@
       <g:title>Kismet Angel Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Kismet Angel Maison Alhambra, une fragrance gourmand aux notes de orange et vanille. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/kismet-angel-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/kismet-angel-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799316/parfums/kismet-angel-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -2453,7 +2413,7 @@
       <g:link>https://dubainegoce.fr/parfum/tharwah-gold-lattafa-pride</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/tharwah-gold-lattafa-pride.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -2493,7 +2453,7 @@
       <g:link>https://dubainegoce.fr/parfum/a-king-fragrance-world</g:link>
       <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260193/A_Fragrance_World_nfbo0d.webp</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>male</g:gender>
@@ -2573,7 +2533,7 @@
       <g:link>https://dubainegoce.fr/parfum/j-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/j-fragrance-world.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>male</g:gender>
@@ -2731,7 +2691,7 @@
       <g:title>Jorge Di Profumo Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Jorge Di Profumo Maison Alhambra, une fragrance aquatique aux notes de cardamome et cuir. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/jorge-di-profumo-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/jorge-di-profumo-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799374/parfums/jorge-di-profumo-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -2771,7 +2731,7 @@
       <g:title>Porto Neroli Maison Alhambra 80ml</g:title>
       <g:description>Découvrez Porto Neroli Maison Alhambra, une fragrance hespéridé aux notes de safran et rose. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/porto-neroli-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/porto-neroli-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799377/parfums/porto-neroli-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -2891,7 +2851,7 @@
       <g:title>Karat Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Karat Maison Alhambra, une fragrance fruité aux notes de pomme et muguet. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/karat-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/karat-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799380/parfums/karat-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -2933,7 +2893,7 @@
       <g:link>https://dubainegoce.fr/parfum/eternal-oud-lattafa-pride</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/eternal-oud-lattafa-pride.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -3011,7 +2971,7 @@
       <g:title>Infini Rose Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Infini Rose Maison Alhambra, une fragrance ambré aux notes de cardamome et encens. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/infini-rose-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/infini-rose-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799381/parfums/infini-rose-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -3093,7 +3053,7 @@
       <g:link>https://dubainegoce.fr/parfum/lovely-cherie-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/lovely-cherie-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -3131,7 +3091,7 @@
       <g:title>Rose Petals Maison Alhambra 80ml</g:title>
       <g:description>Découvrez Rose Petals Maison Alhambra, une fragrance floral aux notes de bergamote et rose. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/rose-petals-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/rose-petals-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799382/parfums/rose-petals-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -3171,9 +3131,9 @@
       <g:title>Fresh As Citrus Fragrance World 100ml</g:title>
       <g:description>Découvrez Fresh as Citrus Fragrance World, une fragrance aromatique aux notes de safran et encens. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/fresh-as-citrus-fragrance-world</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/fresh-as-citrus-fragrance-world.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799384/parfums/fresh-as-citrus-fragrance-world.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3251,7 +3211,7 @@
       <g:title>Baroque Rouge Extrait Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Baroque Rouge Extrait Maison Alhambra, une fragrance ambré aux notes de bergamote et jasmin. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/baroque-rouge-extrait-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/baroque-rouge-extrait-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799388/parfums/baroque-rouge-extrait-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -3331,7 +3291,7 @@
       <g:title>Jean Lowe Immortal Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Jean Lowe Immortal Maison Alhambra, une fragrance ambré aux notes de bergamote et ambre. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/jean-lowe-immortal-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/jean-lowe-immortal-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799389/parfums/jean-lowe-immortal-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -3373,7 +3333,7 @@
       <g:link>https://dubainegoce.fr/parfum/black-afgano-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/black-afgano-fragrance-world.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3413,7 +3373,7 @@
       <g:link>https://dubainegoce.fr/parfum/optimystic-blanc-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/optimystic-blanc-fragrance-world.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3453,7 +3413,7 @@
       <g:link>https://dubainegoce.fr/parfum/optimystic-noir-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/optimystic-noir-fragrance-world.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3533,7 +3493,7 @@
       <g:link>https://dubainegoce.fr/parfum/tour-de-havana-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/tour-de-havana-fragrance-world.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>male</g:gender>
@@ -3573,7 +3533,7 @@
       <g:link>https://dubainegoce.fr/parfum/extreme-aoud-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/extreme-aoud-fragrance-world.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3613,7 +3573,7 @@
       <g:link>https://dubainegoce.fr/parfum/absolute-oud-magnificent-7-fragrance-world</g:link>
       <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260194/ABSOLUTE_OUD_cvv56p.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3647,51 +3607,11 @@
       </g:shipping>
     </item>
     <item>
-      <g:id>1923</g:id>
-      <g:title>Intro Aftermath 80ml</g:title>
-      <g:description>Découvrez Intro Aftermath Fragrance World, une fragrance ambré aux notes de bergamote et ambre. Laissez-vous séduire par ce parfum envoûtant.</g:description>
-      <g:link>https://dubainegoce.fr/parfum/intro-aftermath-fragrance-world</g:link>
-      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260200/Intro_Aftermath_ndzfq0.jpg</g:image_link>
-      <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Fragrance World</g:brand>
-      <g:gender>unisex</g:gender>
-      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
-      <g:google_product_category>2915</g:google_product_category>
-      <g:identifier_exists>false</g:identifier_exists>
-      <g:product_detail>
-        <g:section_name>Caractéristiques</g:section_name>
-        <g:attribute_name>Volume</g:attribute_name>
-        <g:attribute_value>80 ml</g:attribute_value>
-      </g:product_detail>
-      <g:product_detail>
-        <g:section_name>Caractéristiques</g:section_name>
-        <g:attribute_name>Famille olfactive</g:attribute_name>
-        <g:attribute_value>Ambré</g:attribute_value>
-      </g:product_detail>
-      <g:custom_label_0>Ambré</g:custom_label_0>
-      <g:custom_label_1>mixte</g:custom_label_1>
-      <g:custom_label_2>bestseller</g:custom_label_2>
-      <g:custom_label_3>25-40</g:custom_label_3>
-      <g:custom_label_4>Fragrance World</g:custom_label_4>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Colissimo Domicile</g:service>
-        <g:price>7.35 EUR</g:price>
-      </g:shipping>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Mondial Relay Point Relais</g:service>
-        <g:price>4.10 EUR</g:price>
-      </g:shipping>
-    </item>
-    <item>
       <g:id>1924</g:id>
       <g:title>Pure Passion Fragrance World 100ml</g:title>
       <g:description>Découvrez Pure Passion Fragrance World, une fragrance fruité aux notes de citron et rose. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/pure-passion-fragrance-world</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/pure-passion-fragrance-world.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799391/parfums/pure-passion-fragrance-world.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -3733,7 +3653,7 @@
       <g:link>https://dubainegoce.fr/parfum/cuir-leather-fragrance-world</g:link>
       <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1765796063/cuir-unknown_svr3tn.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -3835,46 +3755,6 @@
       <g:custom_label_2>nouveaute</g:custom_label_2>
       <g:custom_label_3>25-40</g:custom_label_3>
       <g:custom_label_4>Paris Corner</g:custom_label_4>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Colissimo Domicile</g:service>
-        <g:price>7.35 EUR</g:price>
-      </g:shipping>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Mondial Relay Point Relais</g:service>
-        <g:price>4.10 EUR</g:price>
-      </g:shipping>
-    </item>
-    <item>
-      <g:id>1928</g:id>
-      <g:title>Oud Highness 100ml</g:title>
-      <g:description>Découvrez Oud Highness PriveZarah, une fragrance oriental aux notes de cannelle et jasmin. Laissez-vous séduire par ce parfum envoûtant.</g:description>
-      <g:link>https://dubainegoce.fr/parfum/oud-highness-paris-corner-privezarah</g:link>
-      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260212/Oud_Highness_acp8jh.webp</g:image_link>
-      <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>PriveZarah</g:brand>
-      <g:gender>unisex</g:gender>
-      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
-      <g:google_product_category>2915</g:google_product_category>
-      <g:identifier_exists>false</g:identifier_exists>
-      <g:product_detail>
-        <g:section_name>Caractéristiques</g:section_name>
-        <g:attribute_name>Volume</g:attribute_name>
-        <g:attribute_value>100 ml</g:attribute_value>
-      </g:product_detail>
-      <g:product_detail>
-        <g:section_name>Caractéristiques</g:section_name>
-        <g:attribute_name>Famille olfactive</g:attribute_name>
-        <g:attribute_value>Oriental</g:attribute_value>
-      </g:product_detail>
-      <g:custom_label_0>Oriental</g:custom_label_0>
-      <g:custom_label_1>mixte</g:custom_label_1>
-      <g:custom_label_2>nouveaute</g:custom_label_2>
-      <g:custom_label_3>25-40</g:custom_label_3>
-      <g:custom_label_4>PriveZarah</g:custom_label_4>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Colissimo Domicile</g:service>
@@ -4011,7 +3891,7 @@
       <g:title>Spectre Ghost Fragrance World 100ml</g:title>
       <g:description>Découvrez Spectre Ghost Fragrance World, une fragrance ambré aux notes de safran et ambre. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/spectre-ghost-fragrance-world</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/spectre-ghost-fragrance-world.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799393/parfums/spectre-ghost-fragrance-world.jpg</g:image_link>
       <g:price>45.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -4053,7 +3933,7 @@
       <g:link>https://dubainegoce.fr/parfum/zaffiro-regale-maison-alhambra-unisex</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/zaffiro-regale-maison-alhambra-unisex.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -4093,7 +3973,7 @@
       <g:link>https://dubainegoce.fr/parfum/zaffiro-collection-crafted-oud-maison-alhambra</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/zaffiro-collection-crafted-oud-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -4131,7 +4011,7 @@
       <g:title>Suits Fragrance World 100ml</g:title>
       <g:description>Découvrez Suits Fragrance World, une fragrance chypré aux notes de galbanum et jasmin. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/suits-fragrance-world</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/suits-fragrance-world.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799395/parfums/suits-fragrance-world.jpg</g:image_link>
       <g:price>37.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -4171,9 +4051,9 @@
       <g:title>Jean Lowe Noir Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Jean Lowe Noir Maison Alhambra, une fragrance ambré aux notes de safran et encens. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/jean-lowe-noir-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/jean-lowe-noir-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799396/parfums/jean-lowe-noir-maison-alhambra.jpg</g:image_link>
       <g:price>40.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Maison Alhambra</g:brand>
       <g:gender>unisex</g:gender>
@@ -4213,7 +4093,7 @@
       <g:link>https://dubainegoce.fr/parfum/yara-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/yara-lattafa.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>female</g:gender>
@@ -4253,7 +4133,7 @@
       <g:link>https://dubainegoce.fr/parfum/amber-neroli-fragrance-world</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/amber-neroli-fragrance-world.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Fragrance World</g:brand>
       <g:gender>unisex</g:gender>
@@ -4291,7 +4171,7 @@
       <g:title>Tobacco Touch Maison Alhambra 80ml</g:title>
       <g:description>Découvrez Tobacco Touch Maison Alhambra, une fragrance oriental aux notes de cannelle et encens. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/tobacco-touch-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799396/parfums/tobacco-touch-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -4413,7 +4293,7 @@
       <g:link>https://dubainegoce.fr/parfum/irida-extrait-french-avenue</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/irida-extrait-french-avenue.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>French Avenue</g:brand>
       <g:gender>unisex</g:gender>
@@ -4451,9 +4331,9 @@
       <g:title>Aether Extrait French Avenue 100ml</g:title>
       <g:description>Découvrez Aether Extrait French Avenue, une fragrance ambré aux notes de cannelle et labdanum. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/aether-extrait-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/aether-extrait-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799399/parfums/aether-extrait-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>French Avenue</g:brand>
       <g:gender>unisex</g:gender>
@@ -4531,9 +4411,9 @@
       <g:title>Lumiere Elle French Avenue 100ml</g:title>
       <g:description>Découvrez Lumière Elle French Avenue, une fragrance chypré aux notes de bergamote et ylang-ylang. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/lumiere-elle-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/lumiere-elle-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799402/parfums/lumiere-elle-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>French Avenue</g:brand>
       <g:gender>female</g:gender>
@@ -4571,7 +4451,7 @@
       <g:title>Sweet Paradise French Avenue 100ml</g:title>
       <g:description>Découvrez Sweet Paradise French Avenue, une fragrance floral aux notes de litchi et muguet. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/sweet-paradise-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/sweet-paradise-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799403/parfums/sweet-paradise-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -4611,7 +4491,7 @@
       <g:title>Royal Blend Nero French Avenue 100ml</g:title>
       <g:description>Découvrez Royal Blend Nero French Avenue, une fragrance ambré aux notes de cardamome et ambre. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/royal-blend-nero-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/royal-blend-nero-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799405/parfums/royal-blend-nero-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -4691,9 +4571,9 @@
       <g:title>After Effect French Avenue 100ml</g:title>
       <g:description>Découvrez After Effect French Avenue, une fragrance ambré aux notes de cardamome et rose. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/after-effect-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/after-effect-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799408/parfums/after-effect-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>French Avenue</g:brand>
       <g:gender>unisex</g:gender>
@@ -4731,9 +4611,9 @@
       <g:title>Glorious Oud French Avenue 100ml</g:title>
       <g:description>Découvrez Glorious Oud French Avenue, une fragrance oriental aux notes de safran et cuir. Laissez-vous séduire par ce parfum inoubliable.</g:description>
       <g:link>https://dubainegoce.fr/parfum/glorious-oud-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/glorious-oud-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799411/parfums/glorious-oud-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>French Avenue</g:brand>
       <g:gender>unisex</g:gender>
@@ -4811,7 +4691,7 @@
       <g:title>Kenzie Candid Vanilla 100ml</g:title>
       <g:description>Découvrez Kenzie Candid Vanilla French Avenue, une fragrance gourmand aux notes de café et cacao. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/kenzie-candid-vanilla-french-avenue</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/kenzie-candid-vanilla-french-avenue.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799412/parfums/kenzie-candid-vanilla-french-avenue.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -4853,7 +4733,7 @@
       <g:link>https://dubainegoce.fr/parfum/eclaire-lattafa</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/eclaire-lattafa.png</g:image_link>
       <g:price>42.90 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
@@ -4893,7 +4773,7 @@
       <g:link>https://dubainegoce.fr/parfum/pistachio-ard-al-zaafaran</g:link>
       <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260215/Pistachio_Ard_Al_Zaafaran_wmpecb.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Ard Al Zaafaran</g:brand>
       <g:gender>unisex</g:gender>
@@ -5133,7 +5013,7 @@
       <g:link>https://dubainegoce.fr/parfum/fleur-de-coton-sublime</g:link>
       <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1772260195/FLEUR_DE_COTON_i1dgxx.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Sublime</g:brand>
       <g:gender>unisex</g:gender>
@@ -5171,7 +5051,7 @@
       <g:title>Bint Hooran Rose Passion Ard Al Zaafaran 100ml</g:title>
       <g:description>Découvrez Bint Hooran Rose Passion Ard Al Zaafaran, une fragrance floral aux notes de bergamote et muguet. Laissez-vous séduire par ce parfum envoûtant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/bint-hooran-rose-passion-ard-al-zaafaran</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/bint-hooran-rose-passion-ard-al-zaafaran.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799414/parfums/bint-hooran-rose-passion-ard-al-zaafaran.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -5371,7 +5251,7 @@
       <g:title>Leonie Maison Alhambra 100ml</g:title>
       <g:description>Découvrez Léonie Maison Alhambra, une fragrance ambré aux notes de cannelle et rose. Laissez-vous séduire par ce parfum captivant.</g:description>
       <g:link>https://dubainegoce.fr/parfum/leonie-maison-alhambra</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/leonie-maison-alhambra.webp</g:image_link>
+      <g:image_link>https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799417/parfums/leonie-maison-alhambra.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -5413,7 +5293,7 @@
       <g:link>https://dubainegoce.fr/parfum/qandeel-ard-al-zaafaran</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/qandeel-ard-al-zaafaran.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Ard Al Zaafaran</g:brand>
       <g:gender>unisex</g:gender>
@@ -5493,7 +5373,7 @@
       <g:link>https://dubainegoce.fr/parfum/fondue-tropical-hamidi</g:link>
       <g:image_link>https://dubainegoce.fr/images-parfums/fondue-tropical-hamidi.png</g:image_link>
       <g:price>35.00 EUR</g:price>
-      <g:availability>in_stock</g:availability>
+      <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Hamidi</g:brand>
       <g:gender>unisex</g:gender>
@@ -5527,11 +5407,51 @@
       </g:shipping>
     </item>
     <item>
-      <g:id>5006</g:id>
-      <g:title>Eclair Lattafa 100ml 100ml</g:title>
-      <g:description>Eclair de Lattafa, une explosion de caramel et de lait chaud. Le dupe parfait de Bianco Latte.</g:description>
-      <g:link>https://dubainegoce.fr/parfum/eclair-lattafa-100ml</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/eclair-lattafa-100ml.png</g:image_link>
+      <g:id>1799</g:id>
+      <g:title>Khamrah Lattafa 100ml</g:title>
+      <g:description>Découvrez Khamrah Lattafa, une fragrance oriental aux notes de cannelle et dattes. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/khamrah-lattafa</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2024/01/Khamrah.jpeg</g:image_link>
+      <g:price>39.80 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lattafa</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Oriental</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Oriental</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>bestseller</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Lattafa</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>1836</g:id>
+      <g:title>Now Rave Lattafa 100ml</g:title>
+      <g:description>Découvrez Now Rave Lattafa, une fragrance fruité aux notes de agrumes et gingembre. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/now-rave-lattafa</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2023/12/1000029823-jpg.webp</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -5548,16 +5468,9 @@
       <g:product_detail>
         <g:section_name>Caractéristiques</g:section_name>
         <g:attribute_name>Famille olfactive</g:attribute_name>
-        <g:attribute_value>Gourmand</g:attribute_value>
+        <g:attribute_value>Fruité</g:attribute_value>
       </g:product_detail>
-      <g:product_highlight>Caramel</g:product_highlight>
-      <g:product_highlight>Lait</g:product_highlight>
-      <g:product_highlight>Miel</g:product_highlight>
-      <g:product_highlight>Fleurs Blanches</g:product_highlight>
-      <g:product_highlight>Vanille</g:product_highlight>
-      <g:product_highlight>Musc Blanc</g:product_highlight>
-      <g:product_highlight>Praline</g:product_highlight>
-      <g:custom_label_0>Gourmand</g:custom_label_0>
+      <g:custom_label_0>Fruité</g:custom_label_0>
       <g:custom_label_1>mixte</g:custom_label_1>
       <g:custom_label_2>nouveaute</g:custom_label_2>
       <g:custom_label_3>25-40</g:custom_label_3>
@@ -5574,15 +5487,15 @@
       </g:shipping>
     </item>
     <item>
-      <g:id>5001</g:id>
-      <g:title>Liquid Brun 100ml 100ml</g:title>
-      <g:description>Liquid Brun, l&apos;élégance ambrée et épicée. Un équilibre parfait de vanille bourbon, cardamome et praline pour une signature inoubliable.</g:description>
-      <g:link>https://dubainegoce.fr/parfum/liquid-brun-100ml</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/liquid-brun-100ml.webp</g:image_link>
+      <g:id>1860</g:id>
+      <g:title>Al Khas Winners Trophy Lattafa Pride 100ml</g:title>
+      <g:description>Découvrez Al Khas Winners Trophy Lattafa Pride, une fragrance oriental aux notes de safran et oud. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/al-khas-winners-trophy-lattafa-pride</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2023/11/winners-gold.png</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
-      <g:brand>French Avenue</g:brand>
+      <g:brand>Lattafa</g:brand>
       <g:gender>unisex</g:gender>
       <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
       <g:google_product_category>2915</g:google_product_category>
@@ -5595,22 +5508,252 @@
       <g:product_detail>
         <g:section_name>Caractéristiques</g:section_name>
         <g:attribute_name>Famille olfactive</g:attribute_name>
-        <g:attribute_value>Gourmand Épicé</g:attribute_value>
+        <g:attribute_value>Oriental</g:attribute_value>
       </g:product_detail>
-      <g:product_highlight>Cannelle</g:product_highlight>
-      <g:product_highlight>Cardamome</g:product_highlight>
-      <g:product_highlight>Bergamote</g:product_highlight>
-      <g:product_highlight>Fleur d&apos;Oranger</g:product_highlight>
-      <g:product_highlight>Vanille Bourbon</g:product_highlight>
-      <g:product_highlight>Élémi</g:product_highlight>
-      <g:product_highlight>Praline</g:product_highlight>
-      <g:product_highlight>Musc</g:product_highlight>
-      <g:product_highlight>Ambroxan</g:product_highlight>
-      <g:product_highlight>Bois de Gaïac</g:product_highlight>
-      <g:custom_label_0>Gourmand Épicé</g:custom_label_0>
+      <g:custom_label_0>Oriental</g:custom_label_0>
       <g:custom_label_1>mixte</g:custom_label_1>
       <g:custom_label_2>nouveaute</g:custom_label_2>
       <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Lattafa</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>1869</g:id>
+      <g:title>L&apos;Intrude Maison Alhambra 100ml</g:title>
+      <g:description>Découvrez L&apos;Intrude Maison Alhambra, une fragrance floral aux notes de poivre rose et fleur d&apos;oranger. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/l-intrude-maison-alhambra</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2023/11/lintrude.jpeg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Maison Alhambra</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Floral</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Floral</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>standard</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Maison Alhambra</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>2800</g:id>
+      <g:title>The Artist No.1 Maison Alhambra 100ml</g:title>
+      <g:description>Découvrez The Artist No.1 Maison Alhambra, une fragrance boisé aux notes de framboise et bois de santal. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/the-artist-no-1-maison-alhambra</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-29-220550.png</g:image_link>
+      <g:price>40.00 EUR</g:price>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Maison Alhambra</g:brand>
+      <g:gender>male</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Boisé</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Boisé</g:custom_label_0>
+      <g:custom_label_1>homme</g:custom_label_1>
+      <g:custom_label_2>standard</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Maison Alhambra</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>2817</g:id>
+      <g:title>Amber Grand Pendora Paris Corner 100ml</g:title>
+      <g:description>Découvrez Amber Grand Pendora Paris Corner, une fragrance ambré aux notes de orange et fève de tonka. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/amber-grand-pendora-paris-corner</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-31-091509.png</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Ambré</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Ambré</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>standard</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>2822</g:id>
+      <g:title>Lueur d&apos;Espoir Ambre Paris Corner 100ml</g:title>
+      <g:description>Découvrez Lueur d&apos;Espoir Ambre Paris Corner, une fragrance ambré aux notes de vanille et ambre gris. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/lueur-d-espoir-ambre-paris-corner</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-31-093541.png</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Ambré</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Ambré</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>nouveaute</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>2837</g:id>
+      <g:title>Oud Highness Paris Corner 100ml</g:title>
+      <g:description>Découvrez Oud Highness Paris Corner, une fragrance oud aux notes de safran et oud. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/oud-highness-paris-corner</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2024/03/Capture-decran-2024-03-31-110835.png</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Oud</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Oud</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>bestseller</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>3918</g:id>
+      <g:title>Liquide Brun French Avenue 100ml</g:title>
+      <g:description>Découvrez Liquide Brun French Avenue, une fragrance oriental aux notes de cannelle et vanille bourbon. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/liquide-brun-french-avenue</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/Liquide-Brun.jpeg</g:image_link>
+      <g:price>44.99 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>French Avenue</g:brand>
+      <g:gender>male</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Oriental</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Oriental</g:custom_label_0>
+      <g:custom_label_1>homme</g:custom_label_1>
+      <g:custom_label_2>bestseller</g:custom_label_2>
+      <g:custom_label_3>40-60</g:custom_label_3>
       <g:custom_label_4>French Avenue</g:custom_label_4>
       <g:shipping>
         <g:country>FR</g:country>
@@ -5624,15 +5767,95 @@
       </g:shipping>
     </item>
     <item>
-      <g:id>5007</g:id>
-      <g:title>Kenzie Pistachio 100ml</g:title>
-      <g:description>Une gourmandise irrésistible à la pistache. Kenzie Pistachio est un délice crémeux et sucré.</g:description>
-      <g:link>https://dubainegoce.fr/parfum/kenzie-pistachio-100ml</g:link>
-      <g:image_link>https://dubainegoce.fr/images-parfums/kenzie-pistachio-100ml.jpg</g:image_link>
+      <g:id>4188</g:id>
+      <g:title>Yara Orange Lattafa 100ml</g:title>
+      <g:description>Découvrez Yara Orange Lattafa, une fragrance fruité aux notes de fruit de la passion et fleur de tiaré. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/yara-orange-lattafa</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0037.jpg</g:image_link>
       <g:price>35.00 EUR</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
-      <g:brand>French Avenue</g:brand>
+      <g:brand>Lattafa</g:brand>
+      <g:gender>female</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Fruité</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Fruité</g:custom_label_0>
+      <g:custom_label_1>femme</g:custom_label_1>
+      <g:custom_label_2>bestseller</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Lattafa</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>4189</g:id>
+      <g:title>Khair Fusion Paris Corner 100ml</g:title>
+      <g:description>Découvrez Khair Fusion Paris Corner, une fragrance oriental aux notes de cardamome et bois de cèdre. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/khair-fusion-paris-corner</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0036.jpg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Oriental</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Oriental</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>nouveaute</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>4191</g:id>
+      <g:title>Khair Confection Paris Corner 100ml</g:title>
+      <g:description>Découvrez Khair Confection Paris Corner, une fragrance gourmand aux notes de fruits rouges et bois précieux. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/khair-confection-paris-corner</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0032.jpg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
       <g:gender>unisex</g:gender>
       <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
       <g:google_product_category>2915</g:google_product_category>
@@ -5647,21 +5870,171 @@
         <g:attribute_name>Famille olfactive</g:attribute_name>
         <g:attribute_value>Gourmand</g:attribute_value>
       </g:product_detail>
-      <g:product_highlight>Pistache</g:product_highlight>
-      <g:product_highlight>Bergamote</g:product_highlight>
-      <g:product_highlight>Rhum</g:product_highlight>
-      <g:product_highlight>Cardamome</g:product_highlight>
-      <g:product_highlight>Pivoine</g:product_highlight>
-      <g:product_highlight>Muguet</g:product_highlight>
-      <g:product_highlight>Jasmin</g:product_highlight>
-      <g:product_highlight>Framboise</g:product_highlight>
-      <g:product_highlight>Pêche</g:product_highlight>
-      <g:product_highlight>Poire</g:product_highlight>
       <g:custom_label_0>Gourmand</g:custom_label_0>
       <g:custom_label_1>mixte</g:custom_label_1>
       <g:custom_label_2>nouveaute</g:custom_label_2>
       <g:custom_label_3>25-40</g:custom_label_3>
-      <g:custom_label_4>French Avenue</g:custom_label_4>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>4192</g:id>
+      <g:title>Khair Felicity Paris Corner 100ml</g:title>
+      <g:description>Découvrez Khair Felicity Paris Corner, une fragrance floral aux notes de fleurs blanches et jasmin sambac. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/khair-felicity-paris-corner</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0033.jpg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
+      <g:gender>female</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Floral</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Floral</g:custom_label_0>
+      <g:custom_label_1>femme</g:custom_label_1>
+      <g:custom_label_2>nouveaute</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>4193</g:id>
+      <g:title>Coton Blanc Inspiré Paris 100ml</g:title>
+      <g:description>Découvrez Coton Blanc Inspiré Paris, une fragrance floral aux notes de aldéhydes frais et fleur de coton. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/coton-blanc-inspire-paris</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0063.jpg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Paris Corner</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Floral</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Floral</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>standard</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Paris Corner</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>7.35 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>4196</g:id>
+      <g:title>Ana Abiyedh Poudrée Lattafa 60ml</g:title>
+      <g:description>Découvrez Ana Abiyedh Poudrée Lattafa, une fragrance floral aux notes de muscs blancs et iris poudré. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/ana-abiyedh-poudree-lattafa</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0030.jpg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Lattafa</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>60 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Floral</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Floral</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>nouveaute</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Lattafa</g:custom_label_4>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Colissimo Domicile</g:service>
+        <g:price>5.25 EUR</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Mondial Relay Point Relais</g:service>
+        <g:price>4.10 EUR</g:price>
+      </g:shipping>
+    </item>
+    <item>
+      <g:id>4211</g:id>
+      <g:title>L&apos;Impresio Maison Alhambra 100ml</g:title>
+      <g:description>Découvrez L&apos;Impresio Maison Alhambra, une fragrance boisé aux notes de bergamote et feuilles de violette. Laissez-vous séduire par ce parfum captivant.</g:description>
+      <g:link>https://dubainegoce.fr/parfum/l-impresio-maison-alhambra</g:link>
+      <g:image_link>https://frenchavenue.fr/wp-content/uploads/2025/05/IMG-20250527-WA0048.jpg</g:image_link>
+      <g:price>35.00 EUR</g:price>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Maison Alhambra</g:brand>
+      <g:gender>unisex</g:gender>
+      <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
+      <g:google_product_category>2915</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Volume</g:attribute_name>
+        <g:attribute_value>100 ml</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Caractéristiques</g:section_name>
+        <g:attribute_name>Famille olfactive</g:attribute_name>
+        <g:attribute_value>Boisé</g:attribute_value>
+      </g:product_detail>
+      <g:custom_label_0>Boisé</g:custom_label_0>
+      <g:custom_label_1>mixte</g:custom_label_1>
+      <g:custom_label_2>standard</g:custom_label_2>
+      <g:custom_label_3>25-40</g:custom_label_3>
+      <g:custom_label_4>Maison Alhambra</g:custom_label_4>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Colissimo Domicile</g:service>

@@ -1,16 +1,80 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { JsonLd } from '@/components/seo/json-ld';
 
 export const metadata: Metadata = {
-    title: 'Liquid Brun French Avenue : le gourmand épicé qui fait parler de lui en 2026',
-    description: 'Liquid Brun de French Avenue cartonne en 2026 — vanille bourbon, cardamome, praline. Une alternative crédible à Althair à moins de 40€. Notre avis honnête.',
-    keywords: 'Liquid Brun French Avenue, Liquid Brun avis, althair dupe, dupe Althair Orto Parisi, parfum gourmand épicé, parfum vanille cardamome, French Avenue parfum',
+    title: 'Liquid Brun French Avenue : Avis & Test du Gourmand Épicé Tendance',
+    description: 'Liquid Brun de French Avenue cartonne en 2026 — vanille bourbon, cardamome, praline. Notre avis complet sur cette création olfactive des Émirats.',
+    keywords: 'Liquid Brun French Avenue, Liquid Brun avis, parfum gourmand épicé, parfum vanille cardamome, French Avenue parfum, parfum oriental dubai',
+    alternates: {
+        canonical: 'https://dubainegoce.fr/blog/liquid-brun-french-avenue',
+    },
+    openGraph: {
+        title: 'Liquid Brun French Avenue : Avis & Test du Gourmand Épicé Tendance',
+        description: 'Notre avis complet sur cette création olfactive des Émirats.',
+        url: 'https://dubainegoce.fr/blog/liquid-brun-french-avenue',
+        type: 'article',
+    },
 };
 
 export default function BlogPostPage() {
+    const articleJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: 'Liquid Brun French Avenue : Avis & Test du Gourmand Épicé Tendance',
+        description: 'Liquid Brun de French Avenue cartonne en 2026 — vanille bourbon, cardamome, praline.',
+        image: 'https://res.cloudinary.com/dhjwimevi/image/upload/v1765957474/ChatGPT_Image_17_d%C3%A9c._2025_08_44_19_neymoa.png',
+        datePublished: '2026-03-01T00:00:00+01:00',
+        dateModified: '2026-09-01T00:00:00+01:00',
+        author: {
+            '@type': 'Organization',
+            name: 'Dubainegoce',
+            url: 'https://dubainegoce.fr',
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'Dubainegoce',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://dubainegoce.fr/logo.png',
+            },
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': 'https://dubainegoce.fr/blog/liquid-brun-french-avenue',
+        },
+    };
+
+    const breadcrumbJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://dubainegoce.fr',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: 'https://dubainegoce.fr/blog',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Liquid Brun French Avenue Avis',
+                item: 'https://dubainegoce.fr/blog/liquid-brun-french-avenue',
+            },
+        ],
+    };
+
     return (
         <div className="container mx-auto max-w-4xl px-4 py-12">
+            <JsonLd data={articleJsonLd} />
+            <JsonLd data={breadcrumbJsonLd} />
             <article className="prose prose-invert prose-headings:font-headline prose-headings:text-primary max-w-none">
 
                 <div className="relative mb-8 w-full aspect-video">
@@ -27,71 +91,57 @@ export default function BlogPostPage() {
                 <h1>Liquid Brun : le parfum épicé-vanillé qui fait parler de lui en 2026</h1>
 
                 <p className="lead">
-                    Il y a des parfums qui arrivent discrètement et s'imposent progressivement dans les discussions. Liquid Brun de French Avenue est de ceux-là. Depuis quelques mois, il revient régulièrement dans les listes "top gourmands à moins de 40€" et dans les comparatifs avec Althair de Orto Parisi. Alors on l'a testé sérieusement pour voir si la réputation est méritée.
+                    Il y a des parfums qui arrivent discrètement et s'imposent progressivement dans les discussions. Liquid Brun de French Avenue est de ceux-là. Depuis quelques mois, il revient régulièrement dans les listes des meilleurs gourmands à moins de 40€. On l'a testé en détail pour vous.
                 </p>
 
-                <h2>French Avenue, c'est qui exactement ?</h2>
+                <h2>French Avenue, l'excellence des Émirats</h2>
                 <p>
-                    French Avenue est une maison de parfumerie des Émirats qui mise sur un positionnement un peu particulier : des fragrances aux noms évocateurs, souvent inspirées de tendances olfactives occidentales, mais formulées avec l'expertise orientale du Golfe. Résultat : des jus concentrés, tenues solides, prix accessibles.
+                    French Avenue est une maison de parfumerie de Dubaï qui mise sur un savoir-faire d'exception : des fragrances sophistiquées formulées avec des essences rares et l'expertise orientale du Golfe. Résultat : des jus concentrés en Eau de Parfum, tenues solides et prix accessibles.
                 </p>
                 <p>
-                    La marque est moins connue que Lattafa ou Maison Alhambra, mais elle commence à se faire un nom chez les amateurs qui cherchent des alternatives originales hors des sentiers battus.
-                </p>
-
-                <h2>Le profil olfactif : vanille, cardamome, praline</h2>
-                <p>
-                    Liquid Brun joue dans la catégorie des <strong>gourmands épicés</strong> — un territoire très populaire ces dernières années, porté par le succès de parfums comme Tobacco Vanille de Tom Ford ou Baccarat Rouge 540.
-                </p>
-                <p>
-                    À l'ouverture, c'est la <strong>cardamome</strong> qui s'exprime en premier — vive, légèrement poivrée, presque électrisante. Elle s'intègre rapidement dans un accord plus doux où dominent la <strong>vanille bourbon</strong> et la <strong>praline</strong>. Le résultat est gourmand sans être écœurant. C'est chaud, chaleureux, un peu réconfortant.
-                </p>
-                <p>
-                    En fond, des notes boisées discrètes viennent ancrer le jus et lui donner une certaine profondeur. C'est là où Liquid Brun évite le piège du "bonbon générique" : il y a du caractère, une vraie signature.
+                    La marque se fait un nom auprès des connaisseurs recherchant des créations originales aux sillages profonds et chaleureux.
                 </p>
 
-                <h2>La comparaison avec Althair d'Orto Parisi</h2>
+                <h2>Le profil olfactif : vanille bourbon, cardamome, praline</h2>
                 <p>
-                    Althair est une création de Orto Parisi, maison niche fondée par Alessandro Gualtieri (le nose derrière Nasomatto). C'est un parfum puissant, animal, toasté — avec cette capacité à envelopper sans étouffer. Prix : autour de 200€ pour 50ml.
+                    Liquid Brun s'inscrit dans la catégorie prestigieuse des <strong>gourmands épicés</strong>, très recherchée pour sa signature enveloppante et réconfortante.
                 </p>
                 <p>
-                    Liquid Brun ne copie pas Althair note à note (aucun "dupe" ne le fait vraiment), mais il s'inscrit dans le <strong>même registre olfactif</strong> : épicé-gourmand, tenu, avec une présence affirmée. Si vous êtes sensible à Althair mais pas à son prix, Liquid Brun mérite votre attention.
+                    À l'ouverture, c'est la <strong>cardamome</strong> qui s'exprime en premier — vive, légèrement poivrée et texturée. Elle s'intègre rapidement dans un accord plus doux où dominent la <strong>vanille bourbon</strong> et la <strong>praline</strong> fondante. Le résultat est gourmand, noble et parfaitement équilibré.
                 </p>
                 <p>
-                    La différence principale : Althair a davantage de ce côté animal et fumé qui fait la signature Orto Parisi. Liquid Brun est plus "propre", plus accessible, mais il reste complexe.
+                    En fond, des notes de bois ambrés et de musc viennent ancrer le jus et lui conférer une remarquable profondeur.
                 </p>
 
-                <h2>Tenue et sillage : la force orientale</h2>
+                <h2>Tenue et sillage : la signature orientale</h2>
                 <p>
-                    C'est ici que les parfums du Golfe montrent leur supériorité. Liquid Brun tient <strong>8 à 10 heures sur peau</strong>, davantage sur tissu. Le sillage est généreux sans être agressif — vous allez sentir quelques heures après le spray, et les gens autour de vous aussi.
+                    Comme beaucoup de grandes créations émiraties, Liquid Brun assure une tenue de <strong>8 à 10 heures sur peau</strong> et davantage sur vêtements. Le sillage est généreux sans être entêtant.
                 </p>
                 <p>
-                    Une pulvérisation sur le poignet et une dans le creux du cou, c'est tout ce qu'il faut.
+                    Une ou deux pulvérisations suffisent amplement pour vous accompagner toute la journée.
                 </p>
 
                 <h2>Pour qui, quelle saison ?</h2>
                 <p>
-                    Liquid Brun est clairement un parfum de <strong>saison froide</strong>. La vanille et la praline ont besoin de la chaleur corporelle (et du contraste avec le froid ambiant) pour vraiment s'exprimer. En été, ça risque d'être lourd.
+                    Liquid Brun est particulièrement sublime lors des <strong>saisons fraîches</strong> (automne et hiver) où les notes chaudes de vanille et de praline trouvent toute leur ampleur.
                 </p>
                 <p>
-                    Question genre : c'est un parfum <strong>mixte</strong>, porté avec autant de succès par des femmes que par des hommes. La cardamome lui donne un côté masculin mais la praline-vanille l'équilibre parfaitement.
-                </p>
-                <p>
-                    Idéal pour : les soirées d'automne, les journées froides d'hiver, les occasions où vous voulez marquer les esprits sans être dans le classique boisé ou le floral.
+                    C'est un parfum <strong>mixte</strong>, apprécié aussi bien par les hommes que par les femmes grâce à l'équilibre subtil entre le piquant de la cardamome et la gourmandise de la vanille.
                 </p>
 
                 <h2>Le verdict</h2>
                 <p>
-                    Liquid Brun est une <strong>belle surprise</strong>. C'est le type de parfum qu'on découvre et dont on commence à parler autour de soi. Il n'a pas la notoriété de Khamrah ou Yara, mais dans sa catégorie (gourmand épicé mixte), il est difficile de trouver mieux sous les 40€.
+                    Liquid Brun est une <strong>magnifique réussite</strong>. C'est une fragrance chaleureuse, addictive et raffinée qui mérite amplement sa popularité actuelle.
                 </p>
                 <p>
-                    <strong>Note : 8,5/10</strong> — À condition d'aimer les gourmands épicés, c'est un incontournable de l'hiver 2026.
+                    <strong>Note : 9/10</strong> — Un incontournable pour les amateurs de parfums gourmands et épicés.
                 </p>
 
                 <div className="not-prose mt-8 p-6 bg-card border border-border rounded-lg">
                     <p className="text-sm font-semibold text-primary mb-2">À découvrir</p>
                     <ul className="space-y-2">
                         <li>
-                            <Link href="/parfum/liquid-brun-100ml" className="text-foreground hover:text-primary transition-colors font-medium">
+                            <Link href="/parfum/liquide-brun-french-avenue" className="text-foreground hover:text-primary transition-colors font-medium">
                                 → Liquid Brun 100ml — French Avenue
                             </Link>
                         </li>
@@ -102,7 +152,7 @@ export default function BlogPostPage() {
                         </li>
                         <li>
                             <Link href="/blog/dupes-parfums-luxe" className="text-foreground hover:text-primary transition-colors">
-                                → Les 8 meilleurs dupes de parfums de luxe à moins de 40€
+                                → Les 8 meilleurs parfums de Dubaï à sillage puissant
                             </Link>
                         </li>
                     </ul>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, PieChart } from 'lucide-react';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface AnalyticsData {
   dailyRevenue: { date: string; revenue: number }[];
@@ -26,7 +27,7 @@ export default function AnalyticsPage() {
     const fetchAnalytics = async () => {
       try {
         // Fetch from API instead of direct Firestore
-        const response = await fetch('/api/admin/dashboard');
+        const response = await adminFetch('/api/admin/dashboard');
         if (!response.ok) throw new Error('Failed to fetch data');
         
         const dashboardData = await response.json();

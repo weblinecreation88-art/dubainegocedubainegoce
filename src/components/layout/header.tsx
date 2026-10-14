@@ -23,6 +23,7 @@ import { SearchDialog } from '../search-dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ScrollArea } from '../ui/scroll-area';
 import { ThemeToggle } from '../theme-toggle';
+import { isAdminEmail } from '@/lib/admin-emails';
 
 export default function Header() {
   const { getCartCount, clearCart } = useCart();
@@ -61,14 +62,8 @@ export default function Header() {
 
   return (
     <div className="w-full bg-white text-black border-b border-gray-200 flex flex-col">
-      {/* Top Announcement Bar */}
-      <div className="bg-black text-white text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
-        <span>✨ <strong>OFFRE DUO</strong> : Livraison Point Relais <strong>OFFERTE</strong> dès 2 parfums (60€) !</span>
-        <span className="hidden sm:inline text-gray-400">• Expédition express 24/48h</span>
-      </div>
-
       {/* Main Row */}
-      <div className="container relative flex h-16 items-center">
+      <div className="container relative flex h-14 items-center">
 
         {/* LEFT: Menu burger + Search (mobile) | Logo (desktop) */}
         <div className="flex items-center gap-1 lg:gap-4 z-10">
@@ -111,11 +106,12 @@ export default function Header() {
                           </div>
                         </AccordionContent>
                       </AccordionItem>
-                      <AccordionItem value="equivalents">
-                        <AccordionTrigger>Nos Équivalents & Dupes</AccordionTrigger>
+                      <AccordionItem value="collections">
+                        <AccordionTrigger>Nos Collections</AccordionTrigger>
                         <AccordionContent>
                           <div className="flex flex-col gap-3 pl-4 pt-2">
-                            <Link href="/shop/type/equivalent" onClick={handleLinkClick} className="text-sm">Tous les Équivalents (104)</Link>
+                            <Link href="/shop/type/oriental" onClick={handleLinkClick} className="text-sm">Parfums Orientaux</Link>
+                            <Link href="/shop/type/original" onClick={handleLinkClick} className="text-sm">Créations Originales</Link>
                           </div>
                         </AccordionContent>
                       </AccordionItem>
@@ -160,22 +156,16 @@ export default function Header() {
               </span>
             </Link>
 
-            {/* Navigation desktop - sans Fragrance World */}
-            <div className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium tracking-wide">
-              <Link href="/shop/marque/lattafa" className="hover:text-accent transition-colors uppercase">
-                Lattafa
+            {/* Navigation desktop simplifiée et orientée conversion */}
+            <div className="hidden lg:flex items-center justify-center gap-10 text-sm font-bold tracking-widest uppercase">
+              <Link href="/shop" className="hover:text-[#c9a96e] transition-colors">
+                Boutique
               </Link>
-              <Link href="/shop/marque/french-avenue" className="hover:text-accent transition-colors uppercase">
-                French Avenue
+              <Link href="/shop/all?sort=bestsellers" className="hover:text-[#c9a96e] transition-colors">
+                Bestsellers
               </Link>
-              <Link href="/shop/marque/maison-alhambra" className="hover:text-accent transition-colors uppercase">
-                Maison Alhambra
-              </Link>
-              <Link href="/shop/type/equivalent" className="hover:text-accent transition-colors uppercase text-accent font-semibold">
-                Équivalents
-              </Link>
-              <Link href="/shop" className="hover:text-accent transition-colors opacity-70">
-                Tout voir
+              <Link href="/shop/type/oriental" className="text-[#c9a96e] hover:text-[#b8944e] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#c9a96e]">
+                Parfums Orientaux
               </Link>
             </div>
           </div>
@@ -209,7 +199,7 @@ export default function Header() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild><Link href="/account">Profil</Link></DropdownMenuItem>
                   <DropdownMenuItem asChild><Link href="/account/orders">Mes commandes</Link></DropdownMenuItem>
-                  {user?.email === 'weblinecreation88@gmail.com' && (
+                  {isAdminEmail(user?.email) && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild><Link href="/admin">📊 Tableau de Bord Admin</Link></DropdownMenuItem>

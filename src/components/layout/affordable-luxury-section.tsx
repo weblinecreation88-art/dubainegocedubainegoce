@@ -2,59 +2,54 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Heart, DollarSign, Sparkles, TrendingUp } from 'lucide-react';
+import { Heart, Sparkles, TrendingUp, Award } from 'lucide-react';
 
-interface DupeComparison {
+interface FragranceHighlight {
   name: string;
   tagline: string;
-  inspiration: string;
-  alhambraPrice: number;
-  inspiredPrice: number;
-  alhambraSlug: string;
+  family: string;
+  price: number;
+  slug: string;
   description: string;
   forWho: string;
 }
 
-const comparisons: DupeComparison[] = [
+const highlights: FragranceHighlight[] = [
   {
     name: 'YEAH Maison Alhambra',
-    tagline: 'L\'Alternative YSL',
-    inspiration: 'Inspiré de Yves Saint Laurent',
-    alhambraPrice: 35,
-    inspiredPrice: 300,
-    alhambraSlug: 'yeah-maison-alhambra',
-    description: 'Élégance sensuelle sans la facture de luxe.',
-    forWho: 'Pour celles qui aiment les grands classiques',
+    tagline: 'Fraîcheur & Élégance',
+    family: 'Fougère Aromatique & Boisé',
+    price: 35,
+    slug: 'yeah-maison-alhambra',
+    description: 'Une ouverture lumineuse de pomme et gingembre sur un fond de bois nobles et fève tonka.',
+    forWho: 'Pour l\'homme moderne en quête d\'un sillage dynamique',
   },
   {
     name: 'Glacier Pour Homme',
-    tagline: 'L\'Alternative Dior',
-    inspiration: 'Inspiré de Dior Sauvage',
-    alhambraPrice: 30,
-    inspiredPrice: 110,
-    alhambraSlug: 'glacier-pour-homme-maison-alhambra',
-    description: 'Fraîcheur masculine épurée à petit prix.',
-    forWho: 'Pour les hommes qui cherchent la qualité',
+    tagline: 'Sillage Rafraîchissant',
+    family: 'Aromatique Frais & Épicé',
+    price: 30,
+    slug: 'glacier-pour-homme-maison-alhambra',
+    description: 'Un accord vivifiant d\'agrumes et de poivre relevé par un fond boisé ambré d\'une grande fraîcheur.',
+    forWho: 'Idéal pour le quotidien et les journées actives',
   },
   {
     name: 'The Tux',
-    tagline: 'L\'Alternative Creed',
-    inspiration: 'Inspiré de Creed Royal Oud',
-    alhambraPrice: 40,
-    inspiredPrice: 280,
-    alhambraSlug: 'the-tux-maison-alhambra-mixte',
-    description: 'Sophistication orientale de luxe à prix démocratique.',
-    forWho: 'Pour les amateurs de fragrances premium',
+    tagline: 'Prestige & Raffinement',
+    family: 'Chypré Boisé & Épicé',
+    price: 40,
+    slug: 'the-tux-maison-alhambra-mixte',
+    description: 'Une sophistication orientale intense mêlant patchouli noble, épices douces et accord ambré.',
+    forWho: 'Pour les soirées formelles et les grandes occasions',
   },
   {
     name: 'Grise Maison Alhambra',
-    tagline: 'L\'Alternative Issey Miyake',
-    inspiration: 'Inspiré de L\'Eau d\'Issey',
-    alhambraPrice: 32,
-    inspiredPrice: 95,
-    alhambraSlug: 'grise-maison-alhambra',
-    description: 'Minimalisme floral et aquatique raffiné.',
-    forWho: 'Pour les minimalistes qui aiment les fragrances propres',
+    tagline: 'Harmonie Florale',
+    family: 'Chypré Floral & Boisé',
+    price: 32,
+    slug: 'grise-maison-alhambra',
+    description: 'Un équilibre subtil entre rose de mai, mousse de chêne et notes boisées raffinées.',
+    forWho: 'Pour les amateurs de sillages épurés et intemporels',
   },
 ];
 
@@ -66,27 +61,27 @@ export function AffordableLuxurySection() {
         <div className="text-center mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full mb-6">
             <Sparkles className="h-4 w-4 text-accent" />
-            <span className="text-sm font-semibold text-accent uppercase tracking-widest">Luxe Abordable</span>
+            <span className="text-sm font-semibold text-accent uppercase tracking-widest">Haute Parfumerie Orientale</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold text-gray-900 dark:text-white mb-6">
-            Vous aimez le Luxe ?<br />
-            <span className="text-accent">Pas 300€</span>
+            L'Excellence des Parfums de Dubaï<br />
+            <span className="text-accent">À Prix Accessible</span>
           </h2>
 
           <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-light mb-8">
-            Découvrez les créations de <strong>Maison Alhambra</strong> : des parfums d'exception qui rivalisent avec les plus grandes maisons de luxe,
-            à une fraction du prix. Parce que la beauté ne devrait pas être réservée aux comptes en banque gonflés.
+            Découvrez les créations de <strong>Maison Alhambra</strong> : des eaux de parfum intenses, 
+            élaborées avec des essences rares et une tenue exceptionnelle, accessibles à tous.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             <div className="text-center">
-              <DollarSign className="h-6 w-6 text-accent mx-auto mb-2" />
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">Jusqu'à 90% moins cher</p>
+              <Award className="h-6 w-6 text-accent mx-auto mb-2" />
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">Formules Concentrées</p>
             </div>
             <div className="text-center">
               <TrendingUp className="h-6 w-6 text-accent mx-auto mb-2" />
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">Même qualité</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">Tenue 8h à 12h</p>
             </div>
             <div className="text-center">
               <Heart className="h-6 w-6 text-accent mx-auto mb-2" />
@@ -94,14 +89,14 @@ export function AffordableLuxurySection() {
             </div>
             <div className="text-center">
               <Sparkles className="h-6 w-6 text-accent mx-auto mb-2" />
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">Prestigieux</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">Flacons d'Exception</p>
             </div>
           </div>
         </div>
 
-        {/* Comparisons Grid */}
+        {/* Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12">
-          {comparisons.map((comp, idx) => (
+          {highlights.map((item, idx) => (
             <div
               key={idx}
               className="group relative bg-white dark:bg-black/40 border border-gray-200 dark:border-gray-800 rounded-lg p-6 md:p-8 hover:shadow-xl hover:border-accent/50 transition-all duration-300"
@@ -109,53 +104,45 @@ export function AffordableLuxurySection() {
               {/* Badge */}
               <div className="absolute top-4 right-4">
                 <span className="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                  {comp.tagline}
+                  {item.tagline}
                 </span>
               </div>
 
               {/* Content */}
               <div className="space-y-4 pt-8">
-                {/* Name & Inspiration */}
+                {/* Name & Family */}
                 <div>
                   <h3 className="text-2xl md:text-3xl font-headline font-bold text-gray-900 dark:text-white mb-2">
-                    {comp.name}
+                    {item.name}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 italic">
-                    {comp.inspiration}
+                  <p className="text-sm text-accent font-medium">
+                    {item.family}
                   </p>
                 </div>
 
                 {/* Description */}
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {comp.description}
+                  {item.description}
                 </p>
 
                 {/* For Who */}
                 <div className="bg-gray-50 dark:bg-white/5 rounded p-3 border border-gray-200 dark:border-gray-700">
                   <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-1">
-                    Pour qui ?
+                    Profil olfactif
                   </p>
                   <p className="text-sm text-gray-900 dark:text-white font-medium">
-                    {comp.forWho}
+                    {item.forWho}
                   </p>
                 </div>
 
-                {/* Price Comparison */}
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <div className="text-center">
-                    <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-1">
-                      Alhambra
+                {/* Price Display */}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest">
+                      Eau de Parfum 100% Originale
                     </p>
-                    <p className="text-3xl font-bold text-accent">
-                      {comp.alhambraPrice}€
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-1">
-                      Marque Prestige
-                    </p>
-                    <p className="text-3xl font-bold text-gray-400 line-through">
-                      {comp.inspiredPrice}€
+                    <p className="text-2xl font-bold text-accent">
+                      {item.price}€
                     </p>
                   </div>
                 </div>
@@ -167,8 +154,8 @@ export function AffordableLuxurySection() {
                   size="lg"
                   className="w-full mt-6 rounded-none py-6 text-sm tracking-[0.1em] uppercase"
                 >
-                  <Link href={`/parfum/${comp.alhambraSlug}`}>
-                    Découvrir le Prix
+                  <Link href={`/parfum/${item.slug}`}>
+                    Découvrir la Fragrance
                   </Link>
                 </Button>
               </div>
@@ -179,11 +166,10 @@ export function AffordableLuxurySection() {
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-accent to-accent/80 rounded-lg p-8 md:p-12 text-center text-white">
           <h3 className="text-2xl md:text-3xl font-headline font-bold mb-4">
-            Le Luxe à la Portée de Tous
+            L'Art de la Parfumerie Orientale
           </h3>
           <p className="max-w-2xl mx-auto mb-8 text-white/90 text-lg">
-            Explorez notre collection complète de créations Maison Alhambra. Des dupes incontournables
-            aux compositions originales : tout ce qu'il faut pour affirmer votre style.
+            Explorez notre catalogue complet de créations Maison Alhambra, Lattafa et grands parfumeurs des Émirats.
           </p>
           <Button
             asChild
@@ -191,7 +177,7 @@ export function AffordableLuxurySection() {
             className="bg-white text-accent hover:bg-gray-100 rounded-none px-12 py-6 text-sm tracking-[0.1em] uppercase"
           >
             <Link href="/shop/marque/maison-alhambra">
-              Explorer Maison Alhambra
+              Explorer la Collection
             </Link>
           </Button>
         </div>

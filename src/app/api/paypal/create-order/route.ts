@@ -1,134 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { PAYPAL_BASE, getPayPalAccessToken } from '@/lib/paypal';
+import { priceOrder } from '@/lib/order-pricing';
 
-// Hardcodé sur LIVE — ne pas dépendre de PAYPAL_BASE_URL (non injecté au runtime par Firebase App Hosting)
-const PAYPAL_BASE = 'https://api-m.paypal.com';
-const GCP_PROJECT = 'dubainegoce-227c3';
-
-// Cache en mémoire pour éviter des appels répétés à Secret Manager
-let cachedPaypalSecret: string | null = null;
+export const dynamic = 'force-dynamic';
 
 /**
- * Récupère PAYPAL_SECRET depuis l'env ou depuis Google Cloud Secret Manager.
- * Firebase App Hosting n'injecte pas les secrets via apphosting.yaml au runtime,
- * donc on fetch directement depuis Secret Manager en utilisant le service account Cloud Run.
+ * Cree une commande PayPal pour le panier.
+ *
+ * POST { items: [{ id, quantity }], shippingMethod, country }
+ * Le montant est recalcule ici depuis le catalogue (prix, stock, frais de port) :
+ * le navigateur ne fixe jamais le prix.
  */
-async function getPaypalSecret(): Promise<string> {
-  // 1. Priorité : variable d'environnement (si jamais injectée)
-  if (process.env.PAYPAL_SECRET) {
-    return process.env.PAYPAL_SECRET.trim();
-  }
-
-  // 2. Cache mémoire
-  if (cachedPaypalSecret) {
-    return cachedPaypalSecret;
-  }
-
-  // 3. Fetch depuis Secret Manager via le metadata server de Cloud Run
-  try {
-    // Obtenir le token OAuth2 du service account via le metadata server
-    const tokenRes = await fetch(
-      'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token',
-      { headers: { 'Metadata-Flavor': 'Google' } }
-    );
-
-    if (!tokenRes.ok) {
-      throw new Error(`Metadata server error: ${tokenRes.status}`);
-    }
-
-    const { access_token } = await tokenRes.json();
-
-    // Accéder au secret dans Secret Manager
-    const secretRes = await fetch(
-      `https://secretmanager.googleapis.com/v1/projects/${GCP_PROJECT}/secrets/PAYPAL_SECRET/versions/latest:access`,
-      { headers: { Authorization: `Bearer ${access_token}` } }
-    );
-
-    if (!secretRes.ok) {
-      const errBody = await secretRes.text();
-      throw new Error(`Secret Manager error: ${secretRes.status} — ${errBody}`);
-    }
-
-    const secretData = await secretRes.json();
-    const secret = Buffer.from(secretData.payload.data, 'base64').toString('utf8').trim();
-
-    cachedPaypalSecret = secret;
-    console.log('[PayPal] PAYPAL_SECRET chargé depuis Secret Manager ✓');
-    return secret;
-  } catch (err) {
-    console.error('[PayPal] Impossible de charger PAYPAL_SECRET:', err);
-    throw new Error('PAYPAL_SECRET introuvable');
-  }
-}
-
-async function getAccessToken(): Promise<string> {
-  // Préférer PAYPAL_CLIENT_ID (secret GCP) ; fallback sur NEXT_PUBLIC_ (baked au build)
-  const clientId = (process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!).trim();
-  const secret = await getPaypalSecret();
-
-  console.log('[PayPal] getAccessToken — base:', PAYPAL_BASE, '| clientId set:', !!clientId, '| secret set:', !!secret);
-
-  const credentials = Buffer.from(`${clientId}:${secret}`).toString('base64');
-
-  const res = await fetch(`${PAYPAL_BASE}/v1/oauth2/token`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${credentials}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: 'grant_type=client_credentials',
-  });
-
-  if (!res.ok) {
-    const errBody = await res.text();
-    console.error('[PayPal] OAuth error', res.status, errBody);
-    throw new Error(`Impossible d'obtenir le token PayPal (${res.status}): ${errBody}`);
-  }
-  const data = await res.json();
-  return data.access_token;
-}
-
 export async function POST(req: NextRequest) {
+  let body: any;
   try {
-    const { amount, productName, quantity, items, total, shippingAmount } = await req.json();
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Requête invalide.' }, { status: 400 });
+  }
 
-    if (!amount && !total) {
-      return NextResponse.json({ error: 'Paramètres manquants' }, { status: 400 });
-    }
+  const priced = priceOrder(body?.items, body?.shippingMethod, body?.country);
+  if (!priced.ok) {
+    return NextResponse.json({ error: priced.error }, { status: priced.status });
+  }
 
-    // Support multi-items (checkout) or single item (product page)
-    const isMultiItem = items && items.length > 0;
-    const orderTotal = total
-      ? parseFloat(total).toFixed(2)
-      : (parseFloat(amount) * (quantity || 1)).toFixed(2);
-    const shippingValue = shippingAmount ? parseFloat(shippingAmount).toFixed(2) : '0.00';
-    const itemsTotal = (parseFloat(orderTotal) - parseFloat(shippingValue)).toFixed(2);
-
-    const accessToken = await getAccessToken();
-
-    const paypalItems = isMultiItem
-      ? items.map((item: { name: string; quantity: string; unit_amount: { currency_code: string; value: string } }) => ({
-          name: item.name,
-          quantity: item.quantity,
-          unit_amount: item.unit_amount,
-          category: 'PHYSICAL_GOODS',
-        }))
-      : [
-          {
-            name: productName,
-            quantity: String(quantity || 1),
-            unit_amount: {
-              currency_code: 'EUR',
-              value: parseFloat(amount).toFixed(2),
-            },
-            category: 'PHYSICAL_GOODS',
-          },
-        ];
+  try {
+    const accessToken = await getPayPalAccessToken();
 
     const breakdown: Record<string, { currency_code: string; value: string }> = {
-      item_total: { currency_code: 'EUR', value: itemsTotal },
+      item_total: { currency_code: 'EUR', value: priced.subtotal.toFixed(2) },
     };
-    if (parseFloat(shippingValue) > 0) {
-      breakdown.shipping = { currency_code: 'EUR', value: shippingValue };
+    if (priced.shippingCost > 0) {
+      breakdown.shipping = { currency_code: 'EUR', value: priced.shippingCost.toFixed(2) };
     }
 
     const res = await fetch(`${PAYPAL_BASE}/v2/checkout/orders`, {
@@ -141,18 +44,25 @@ export async function POST(req: NextRequest) {
         intent: 'CAPTURE',
         purchase_units: [
           {
-            description: `${productName} — Dubai Négoce`,
+            description: `Commande Dubai Négoce (${priced.totalQuantity} article${priced.totalQuantity > 1 ? 's' : ''})`,
             amount: {
               currency_code: 'EUR',
-              value: orderTotal,
+              value: priced.total.toFixed(2),
               breakdown,
             },
-            items: paypalItems,
+            items: priced.lines.map(({ product, quantity }) => ({
+              name: product.name.slice(0, 127),
+              sku: product.id,
+              quantity: String(quantity),
+              unit_amount: { currency_code: 'EUR', value: product.price.toFixed(2) },
+              category: 'PHYSICAL_GOODS',
+            })),
           },
         ],
         application_context: {
           brand_name: 'Dubai Négoce',
           locale: 'fr-FR',
+          // L'adresse de livraison est saisie sur le site (formulaire de commande).
           shipping_preference: 'NO_SHIPPING',
           user_action: 'PAY_NOW',
         },
@@ -160,15 +70,15 @@ export async function POST(req: NextRequest) {
     });
 
     if (!res.ok) {
-      const err = await res.json();
-      console.error('PayPal create-order error:', err);
-      return NextResponse.json({ error: 'Erreur création commande PayPal' }, { status: 500 });
+      const err = await res.json().catch(() => ({}));
+      console.error('[PayPal create-order] Erreur :', err);
+      return NextResponse.json({ error: 'Erreur lors de la création de la commande PayPal.' }, { status: 502 });
     }
 
     const order = await res.json();
-    return NextResponse.json({ id: order.id });
-  } catch (err) {
-    console.error('PayPal create-order exception:', err);
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
+    return NextResponse.json({ id: order.id, total: priced.total });
+  } catch (err: any) {
+    console.error('[PayPal create-order] Exception :', err);
+    return NextResponse.json({ error: err?.message || 'Erreur serveur PayPal.' }, { status: 500 });
   }
 }

@@ -1,14 +1,8 @@
-
 'use client';
 
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useEffect, useRef, useState } from 'react';
-import { subscribeToNewsletter } from '@/app/actions';
-import { useToast } from '@/hooks/use-toast';
-import { Loader2, Mail, MapPin, Phone, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Mail, MapPin, Phone, Instagram, Facebook, Youtube } from 'lucide-react';
 import Image from 'next/image';
 
 const TiktokIcon = () => (
@@ -24,163 +18,86 @@ const SnapchatIcon = () => (
 );
 
 export default function Footer() {
-  const [pending, setPending] = useState(false);
-  const { toast } = useToast();
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const handleSubmit = async (formData: FormData) => {
-    setPending(true);
-    try {
-      const result = await subscribeToNewsletter({ message: '' }, formData);
-      toast({
-        title: result.error ? 'Erreur' : 'Succès !',
-        description: result.message,
-        variant: result.error ? 'destructive' : 'default',
-      });
-      if (!result.error) {
-        formRef.current?.reset();
-      }
-    } catch (error) {
-      toast({
-        title: 'Erreur',
-        description: 'Une erreur est survenue',
-        variant: 'destructive',
-      });
-    } finally {
-      setPending(false);
-    }
-  };
-
   return (
-    <footer className="bg-secondary text-secondary-foreground border-t">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Collections</h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/shop/all" className="hover:text-primary transition-colors">Tous les parfums</Link></li>
-              <li><Link href="/shop/all?sort=newest" className="hover:text-primary transition-colors">Nouveautés</Link></li>
-              <li><Link href="/shop/all?sort=bestsellers" className="hover:text-primary transition-colors">Best Sellers</Link></li>
-              <li className="pt-1 text-xs text-gray-700 dark:text-gray-300 font-semibold uppercase tracking-wider">Marques</li>
-              <li><Link href="/shop/all?brands=Lattafa" className="hover:text-primary transition-colors">Lattafa</Link></li>
-              <li><Link href="/shop/all?brands=Maison+Alhambra" className="hover:text-primary transition-colors">Maison Alhambra</Link></li>
-              <li><Link href="/shop/all?brands=Fragrance+World" className="hover:text-primary transition-colors">Fragrance World</Link></li>
-              <li><Link href="/shop/all?brands=French+Avenue" className="hover:text-primary transition-colors">French Avenue</Link></li>
-              <li className="pt-1 text-xs text-gray-700 dark:text-gray-300 font-semibold uppercase tracking-wider">Familles</li>
-              <li><Link href="/shop/all?families=Oriental" className="hover:text-primary transition-colors">Oriental</Link></li>
-              <li><Link href="/shop/all?families=Boisé" className="hover:text-primary transition-colors">Boisé</Link></li>
-              <li><Link href="/shop/all?families=Floral" className="hover:text-primary transition-colors">Floral</Link></li>
-              <li><Link href="/shop/all?families=Gourmand" className="hover:text-primary transition-colors">Gourmand</Link></li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Support</h3>
-            <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-primary transition-colors">À Propos</Link></li>
-              <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-              <li><Link href="/suivi-commande" className="hover:text-primary transition-colors">Suivi de commande</Link></li>
-              <li><Link href="/livraison-et-paiement" className="hover:text-primary transition-colors">Livraison et Paiement</Link></li>
-              <li><Link href="/shipping" className="hover:text-primary transition-colors">Politique de retour</Link></li>
-              <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-              <li className="pt-2">
-                <div className="flex items-start gap-2 text-xs text-muted-foreground group">
-                  <Phone className="h-4 w-4 text-primary shrink-0" />
-                  <div className="space-y-1">
-                    <p className="font-semibold text-secondary-foreground">Retours & Support Technique</p>
-                    <a href="tel:+33758999726" className="hover:text-primary transition-colors break-all">+33 7 58 99 97 26</a>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                  <Mail className="h-4 w-4 text-primary shrink-0" />
-                  <a href="mailto:contact@dubainegoce.fr" className="hover:text-primary transition-colors break-all">contact@dubainegoce.fr</a>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                  <MapPin className="h-4 w-4 text-primary shrink-0" />
-                  <span>54 Rue Alphonse Durand<br />78200 Mantes-la-Jolie, Paris</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Légal</h3>
-            <ul className="space-y-2">
-              <li><Link href="/terms" className="hover:text-primary transition-colors">Conditions Générales</Link></li>
-              <li><Link href="/privacy" className="hover:text-primary transition-colors">Politique de Confidentialité</Link></li>
-              <li><Link href="/mentions-legales" className="hover:text-primary transition-colors">Mentions Légales</Link></li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Newsletter</h3>
-            <p className="text-sm leading-relaxed">Rejoins +1000 passionnés. Nouvelles collections et offres exclusives en avant-première.</p>
-            <p className="text-xs text-primary font-semibold">🎁 Guide offert : "Top 10 parfums orientaux à 35€"</p>
-            <form
-              ref={formRef}
-              onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                handleSubmit(formData);
-              }}
-              className="flex gap-2"
-            >
-              <Input
-                type="email"
-                name="email"
-                placeholder="Votre email"
-                className="bg-background"
-                required
-              />
-              <Button type="submit" disabled={pending}>
-                {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : "S'inscrire"}
-              </Button>
-            </form>
-            <p className="text-xs text-gray-700 dark:text-gray-300">Sans spam. Désabonnement en 1 clic.</p>
-            <div className="pt-2 space-y-3">
-              <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Suivez-nous</p>
-              <div className="grid grid-cols-2 gap-2">
-                <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                  <Instagram className="h-4 w-4 shrink-0" />
-                  <span>Instagram</span>
-                </a>
-                <a href="https://www.tiktok.com/@dubainegoce" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                  <TiktokIcon />
-                  <span>TikTok</span>
-                </a>
-                <a href="https://web.facebook.com/people/Babou-Father/100007559055739/" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                  <Facebook className="h-4 w-4 shrink-0" />
-                  <span>Facebook</span>
-                </a>
-                <a href="https://www.snapchat.com/add/dubainegoce" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                  <SnapchatIcon />
-                  <span>Snapchat</span>
-                </a>
-                <a href="https://www.youtube.com/@dubainegoce78" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                  <Youtube className="h-4 w-4 shrink-0" />
-                  <span>YouTube</span>
-                </a>
-              </div>
+    <footer className="bg-[#0f1726] text-white">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+          
+          {/* Logo & À Propos */}
+          <div className="space-y-6">
+            <Link href="/" className="inline-block">
+              <span className="font-bold text-2xl font-headline tracking-widest uppercase text-[#c9a96e]">Dubaï Négoce</span>
+            </Link>
+            <p className="text-sm text-white/70 leading-relaxed max-w-sm">
+              Votre parfumerie orientale premium. L'authenticité des plus grandes maisons de Dubaï, accessible à tous.
+            </p>
+            <div className="flex gap-4">
+              <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer" aria-label="DubaiNegoce sur Instagram" className="text-white/60 hover:text-[#c9a96e] transition-colors"><Instagram className="h-5 w-5" /></a>
+              <a href="https://www.tiktok.com/@dubainegoce" target="_blank" rel="noopener noreferrer" aria-label="DubaiNegoce sur TikTok" className="text-white/60 hover:text-[#c9a96e] transition-colors"><TiktokIcon /></a>
+              <a href="https://www.snapchat.com/add/dubainegoce" target="_blank" rel="noopener noreferrer" aria-label="DubaiNegoce sur Snapchat" className="text-white/60 hover:text-[#c9a96e] transition-colors"><SnapchatIcon /></a>
+              <a href="https://www.youtube.com/@dubainegoce78" target="_blank" rel="noopener noreferrer" aria-label="DubaiNegoce sur YouTube" className="text-white/60 hover:text-[#c9a96e] transition-colors"><Youtube className="h-5 w-5" /></a>
             </div>
           </div>
-        </div>
-        <Separator className="my-8" />
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex flex-wrap items-center gap-4">
-            <Link href="/">
-              <span className="font-bold text-lg font-headline">DubaiNegoce</span>
-            </Link>
-            <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer">
-              <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ height: 'auto' }} />
-            </a>
+
+          {/* Navigation */}
+          <div className="grid grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <h3 className="text-xs font-bold text-white uppercase tracking-[0.15em]">Boutique</h3>
+              <ul className="space-y-3 text-sm text-white/70">
+                <li><Link href="/shop/all" className="hover:text-[#c9a96e] transition-colors">Tous les parfums</Link></li>
+                <li><Link href="/shop/all?sort=newest" className="hover:text-[#c9a96e] transition-colors">Nouveautés</Link></li>
+                <li><Link href="/shop/all?sort=bestsellers" className="hover:text-[#c9a96e] transition-colors">Bestsellers</Link></li>
+                <li><Link href="/shop/type/oriental" className="hover:text-[#c9a96e] transition-colors">Parfums Orientaux</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h3 className="text-xs font-bold text-white uppercase tracking-[0.15em]">Informations</h3>
+              <ul className="space-y-3 text-sm text-white/70">
+                <li><Link href="/suivi-commande" className="hover:text-[#c9a96e] transition-colors">Suivi de commande</Link></li>
+                <li><Link href="/shipping" className="hover:text-[#c9a96e] transition-colors">Livraison & Retours</Link></li>
+                <li><Link href="/terms" className="hover:text-[#c9a96e] transition-colors">CGV</Link></li>
+                <li><Link href="/privacy" className="hover:text-[#c9a96e] transition-colors">Confidentialité</Link></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300">&copy; {new Date().getFullYear()} DubaiNegoce. Tous droits réservés.</p>
+
+          {/* Contact */}
+          <div className="space-y-4">
+            <h3 className="text-xs font-bold text-white uppercase tracking-[0.15em]">Service Client</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="tel:+33758999726" className="flex items-center gap-3 text-sm text-white/70 hover:text-[#c9a96e] transition-colors group">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#c9a96e]/10 transition-colors">
+                    <Phone className="h-3.5 w-3.5" />
+                  </div>
+                  +33 7 58 99 97 26
+                </a>
+              </li>
+              <li>
+                <a href="mailto:contact@dubainegoce.fr" className="flex items-center gap-3 text-sm text-white/70 hover:text-[#c9a96e] transition-colors group">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#c9a96e]/10 transition-colors">
+                    <Mail className="h-3.5 w-3.5" />
+                  </div>
+                  contact@dubainegoce.fr
+                </a>
+              </li>
+            </ul>
+            <div className="pt-4">
+              <a href="https://fr.trustpilot.com/review/dubainegoce.fr" target="_blank" rel="noopener noreferrer" className="inline-block opacity-80 hover:opacity-100 transition-opacity">
+                <Image src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg" alt="Trustpilot" width={100} height={25} style={{ height: 'auto' }} />
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <Separator className="my-10 bg-white/10" />
+        
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
+          <p>&copy; {new Date().getFullYear()} Dubaï Négoce. Tous droits réservés.</p>
+          <div className="flex gap-4">
+            <Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</Link>
+          </div>
         </div>
       </div>
     </footer>

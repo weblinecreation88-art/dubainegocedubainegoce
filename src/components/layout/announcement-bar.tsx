@@ -1,25 +1,26 @@
 import Link from 'next/link';
-import { Phone, Truck } from 'lucide-react';
+import { Truck, ShieldCheck, Flame } from 'lucide-react';
 
 export function AnnouncementBar() {
   return (
-    <div className="bg-primary text-primary-foreground">
+    <div className="bg-black text-white">
       <div className="container mx-auto px-4">
-        <div className="h-10 flex items-center justify-between text-xs font-medium">
-          {/* Gauche : Téléphone */}
-          <a href="tel:+33758999726" className="hidden md:flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-            <Phone className="h-3.5 w-3.5 shrink-0" />
-            <span>+33 7 58 99 97 26</span>
-          </a>
-          {/* Centre : Message prix */}
-          <span className="flex-1 text-center tracking-wide">
-            Prix unique : tous nos parfums sont à 35€ ! L&apos;excellence de Dubaï à portée de main.
+        <div className="h-8 flex items-center justify-between text-[10px] sm:text-xs font-semibold tracking-wide">
+          {/* Gauche : Urgence */}
+          <div className="hidden lg:flex items-center gap-1.5 text-[#c9a96e]">
+            <Flame className="h-4 w-4 shrink-0" />
+            <span>Stock limité sur les Bestsellers</span>
+          </div>
+          {/* Centre : Message Livraison */}
+          <span className="flex-1 text-center flex items-center justify-center gap-2">
+            <Truck className="h-4 w-4 text-[#c9a96e]" />
+            Livraison Express 48h
           </span>
-          {/* Droite : Livraison */}
-          <Link href="/livraison-et-paiement" className="hidden md:flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-            <Truck className="h-3.5 w-3.5 shrink-0" />
-            <span>Livraison &amp; Paiement</span>
-          </Link>
+          {/* Droite : Rassurance */}
+          <div className="hidden lg:flex items-center gap-1.5 text-[#c9a96e]">
+            <ShieldCheck className="h-4 w-4 shrink-0" />
+            <span className="text-white">Retour facile sous 14 jours</span>
+          </div>
         </div>
       </div>
     </div>

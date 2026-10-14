@@ -8,28 +8,30 @@ import Image from 'next/image';
 import type { Product } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
 
+/** Barre d'ajout au panier fixee en bas de l'ecran sur mobile (fiche produit). */
 export function StickyMobileAddToCart({ product }: { product: Product }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const isOutOfStock = product.stock <= 0;
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Afficher la barre dès qu'on a scrollé plus de 350px
-      if (window.scrollY > 350) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
+    const handleScroll = () => setIsVisible(window.scrollY > 350);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleAdd = () => {
-    addToCart(product, 1);
+    if (isOutOfStock) return;
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      slug: product.slug,
+      image: product.images?.[0] || '/dubainegoce.png',
+      quantity: 1,
+    });
     setIsAdded(true);
     toast({
       title: 'Ajouté au panier !',
@@ -46,7 +48,7 @@ export function StickyMobileAddToCart({ product }: { product: Product }) {
         <div className="flex items-center gap-2 min-w-0 flex-1">
           {product.images?.[0] && (
             <div className="relative w-10 h-10 rounded bg-muted overflow-hidden flex-shrink-0">
-              <Image src={product.images[0]} alt={product.name} fill className="object-cover" />
+              <Image src={product.images[0]} alt={product.name} fill sizes="40px" className="object-cover" />
             </div>
           )}
           <div className="min-w-0">
@@ -58,9 +60,12 @@ export function StickyMobileAddToCart({ product }: { product: Product }) {
         <Button
           onClick={handleAdd}
           size="sm"
+          disabled={isOutOfStock}
           className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-4 py-2 flex items-center gap-1.5 shrink-0"
         >
-          {isAdded ? (
+          {isOutOfStock ? (
+            'Rupture'
+          ) : isAdded ? (
             <>
               <Check className="h-4 w-4" />
               Ajouté !

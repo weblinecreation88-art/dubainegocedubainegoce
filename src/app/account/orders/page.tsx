@@ -13,6 +13,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
+import { getTrackingUrl } from '@/lib/email-templates/order-shipped';
+
+const STATUS_LABELS: Record<string, string> = {
+  completed: 'Confirmée',
+  processing: 'En préparation',
+  shipped: 'Expédiée',
+  delivered: 'Livrée',
+  pending: 'En attente',
+  cancelled: 'Annulée',
+};
 
 // Helper pour ajouter des jours ouvrés
 function addBusinessDays(startDate: Date, days: number): Date {
@@ -123,13 +133,33 @@ export default function OrdersPage() {
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <p className="font-semibold text-lg">{order.totalAmount.toFixed(2)} €</p>
-                                        <Badge variant={order.status === 'completed' ? 'default' : 'secondary'} className="capitalize">{order.status === 'completed' ? 'Confirmée' : order.status}</Badge>
+                                        <Badge variant={order.status === 'shipped' || order.status === 'delivered' ? 'default' : 'secondary'} className="capitalize">{STATUS_LABELS[order.status] || order.status}</Badge>
                                     </div>
                                 </div>
                             </AccordionTrigger>
                             <AccordionContent className="p-4 pt-0">
                                 <Separator className="mb-4" />
-                                {deliveryEstimate && (
+                                {order.trackingNumber && (
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-sm bg-primary/5 border border-primary/20 p-4 rounded-md mb-4">
+                                        <Truck className="h-5 w-5 text-primary flex-shrink-0" />
+                                        <div className="flex-1">
+                                            <p className="font-semibold">Colis expédié</p>
+                                            <p className="text-muted-foreground">
+                                                Suivi : <span className="font-mono">{order.trackingNumber}</span>
+                                            </p>
+                                        </div>
+                                        <a
+                                            href={getTrackingUrl(order.carrier || order.shippingMethod, order.trackingNumber)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+                                        >
+                                            Suivre mon colis
+                                            <ChevronRight className="h-4 w-4" />
+                                        </a>
+                                    </div>
+                                )}
+                                {!order.trackingNumber && deliveryEstimate && (
                                     <div className="flex items-center gap-3 text-sm bg-secondary/50 p-3 rounded-md mb-4">
                                         <Truck className="h-5 w-5 text-primary" />
                                         <div>

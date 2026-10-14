@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { GoogleAdsConversionTracker } from '@/components/google-ads-conversion-tracker';
 import { useSearchParams } from 'next/navigation';
+import { reconcileOrderFromSession } from '@/app/actions';
+import { trackEcommerce } from '@/lib/analytics';
 
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 const GOOGLE_ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL || 'lQwHCPTt3I4cEPeJ2aED';
@@ -17,47 +19,40 @@ const GOOGLE_ADS_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSIO
 function SuccessContent() {
     const { cart, clearCart } = useCart();
     const searchParams = useSearchParams();
-    const transactionId = searchParams.get('session_id');
+    const stripeSessionId = searchParams.get('session_id');
+    // Paiement PayPal : la commande est déjà enregistrée par /api/paypal/capture-order.
+    const transactionId = stripeSessionId || searchParams.get('paypal_order');
     const totalAmount = searchParams.get('total');
 
+    // Filet de sécurité : si le webhook Stripe n'a pas abouti, on enregistre la commande
+    // et on déclenche l'e-mail de confirmation ici. L'action serveur est idempotente.
     useEffect(() => {
-        // GTM Tracking: purchase (GA4 ecommerce event)
-        if (typeof window !== 'undefined' && (window as any).dataLayer && cart.length > 0) {
-            const totalValue = totalAmount ? parseFloat(totalAmount) : 0;
-
-            (window as any).dataLayer.push({
-                event: 'purchase',
-                ecommerce: {
-                    transaction_id: transactionId,
-                    value: totalValue,
-                    currency: 'EUR',
-                    items: cart.map(item => ({
-                        item_id: item.id,
-                        item_name: item.name,
-                        price: item.price,
-                        quantity: item.quantity
-                    }))
+        if (!stripeSessionId) return;
+        reconcileOrderFromSession(stripeSessionId)
+            .then((result) => {
+                if (!result.success) {
+                    console.error('[checkout/success] Réconciliation de la commande échouée:', result.message);
                 }
+            })
+            .catch((error) => {
+                console.error('[checkout/success] Erreur lors de la réconciliation:', error);
             });
+    }, [stripeSessionId]);
 
-            // Enhanced ecommerce_purchase event for better GA4 tracking
-            (window as any).dataLayer.push({
-                event: 'ecommerce_purchase',
-                ecommerce: {
-                    transaction_id: transactionId,
-                    value: totalValue,
-                    currency: 'EUR',
-                    affiliation: 'DubaiNegoce',
-                    tax: 0,
-                    shipping: 0,
-                    items: cart.map(item => ({
-                        item_id: item.id,
-                        item_name: item.name,
-                        item_category: 'Parfum',
-                        price: item.price,
-                        quantity: item.quantity
-                    }))
-                }
+    useEffect(() => {
+        // GA4 purchase (le panier est encore présent : il n'est vidé qu'ensuite)
+        if (cart.length > 0) {
+            trackEcommerce('purchase', {
+                transaction_id: transactionId,
+                value: totalAmount ? parseFloat(totalAmount) : 0,
+                affiliation: 'DubaiNegoce',
+                items: cart.map(item => ({
+                    item_id: item.id,
+                    item_name: item.name,
+                    item_category: 'Parfum',
+                    price: item.price,
+                    quantity: item.quantity
+                }))
             });
         }
         clearCart();

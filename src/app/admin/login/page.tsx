@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { AlertCircle } from 'lucide-react';
+import { isAdminEmail } from '@/lib/admin-emails';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -18,7 +19,6 @@ export default function AdminLoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const ADMIN_EMAIL = 'weblinecreation88@gmail.com';
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export default function AdminLoginPage() {
 
     try {
       // Vérifier que c'est le bon email
-      if (email !== ADMIN_EMAIL) {
+      if (!isAdminEmail(email)) {
         setError('Accès refusé. Email administrateur non reconnu.');
         setLoading(false);
         return;
@@ -41,7 +41,7 @@ export default function AdminLoginPage() {
 
       const result = await signInWithEmailAndPassword(auth, email, password);
 
-      if (result.user.email === ADMIN_EMAIL) {
+      if (isAdminEmail(result.user.email)) {
         router.push('/admin');
       } else {
         setError('Accès refusé. Seul l\'administrateur peut accéder à ce panneau.');
@@ -79,10 +79,10 @@ export default function AdminLoginPage() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
 
-      if (result.user.email === ADMIN_EMAIL) {
+      if (isAdminEmail(result.user.email)) {
         router.push('/admin');
       } else {
-        setError('Accès refusé. Seul weblinecreation88@gmail.com peut accéder.');
+        setError('Accès refusé : ce compte n\'est pas administrateur.');
         await signInWithEmailAndPassword(auth, email, password);
       }
     } catch (err: any) {
@@ -123,7 +123,7 @@ export default function AdminLoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={ADMIN_EMAIL}
+                placeholder="email administrateur"
                 disabled={loading}
                 className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground placeholder-muted-foreground disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-accent"
                 required

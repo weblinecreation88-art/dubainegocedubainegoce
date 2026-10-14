@@ -1,7 +1,6 @@
+import { adminGuard } from '@/lib/admin-auth';
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
-import nodemailer from 'nodemailer';
-import { getAuth } from 'firebase-admin/auth';
+import { sendEmail } from '@/lib/email';
 import { firestore } from '@/firebase/server';
 import { renderMakeoverCampaignEmail } from '@/lib/email-templates/makeover-campaign';
 import { getProducts } from '@/lib/data';
@@ -24,33 +23,7 @@ import { getProducts } from '@/lib/data';
 
 export const dynamic = 'force-dynamic';
 
-function getResendClient() {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    throw new Error('RESEND_API_KEY not configured');
-  }
-  return new Resend(apiKey);
-}
 
-/**
- * Créer transporter Gmail pour fallback
- */
-function getGmailTransporter() {
-  const appPassword = process.env.GMAIL_APP_PASSWORD;
-  const gmailUser = process.env.GMAIL_USER || 'abderelmalki@gmail.com';
-
-  if (!appPassword) {
-    throw new Error('GMAIL_APP_PASSWORD not configured for fallback');
-  }
-
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: gmailUser,
-      pass: appPassword
-    }
-  });
-}
 
 /**
  * Sélectionner les 3 parfums tendance
@@ -72,7 +45,7 @@ function getTrendyProducts() {
     .slice(0, 3)
     .map(p => {
       // Convertir l'image en URL absolue pour les emails
-      let imageUrl = p.images[0] || `https://picsum.photos/seed/${p.slug}/400/400`;
+      let imageUrl = p.images[0] || '/dubainegoce.png';
       if (imageUrl && !imageUrl.startsWith('http')) {
         imageUrl = `https://dubainegoce.fr${imageUrl}`;
       }
@@ -86,35 +59,7 @@ function getTrendyProducts() {
       };
     });
 
-  return trendyProducts.length > 0
-    ? trendyProducts
-    : // Fallback si pas assez de produits
-      [
-        {
-          name: 'Creed Aventus',
-          brand: 'Creed',
-          image: 'https://picsum.photos/seed/creed-aventus/400/400',
-          price: 35,
-          slug: 'creed-aventus',
-          shortDescription: 'Essence de luxe'
-        },
-        {
-          name: 'Black Opium',
-          brand: 'Yves Saint Laurent',
-          image: 'https://picsum.photos/seed/black-opium/400/400',
-          price: 35,
-          slug: 'black-opium-ysl',
-          shortDescription: 'Mystérieux et séducteur'
-        },
-        {
-          name: 'Sauvage',
-          brand: 'Dior',
-          image: 'https://picsum.photos/seed/sauvage/400/400',
-          price: 35,
-          slug: 'sauvage-dior',
-          shortDescription: 'Intemporel et élégan'
-        }
-      ];
+  return trendyProducts;
 }
 
 /**
@@ -144,58 +89,12 @@ async function getAllUsers() {
   } catch (error) {
     console.error('Error fetching users from Firestore:', error);
 
-    // Fallback: Pour le développement/test, utiliser des emails d'exemple
-    console.warn('Falling back to test emails for campaign');
-    return [
-      {
-        email: 'abderelmalki@gmail.com',
-        displayName: 'Abder',
-        userId: 'admin-1'
-      },
-      // Ajoute d'autres emails ici si besoin
-    ];
+    throw error;
   }
 }
 
 /**
- * Envoyer email via Gmail (fallback)
- */
-async function sendViaGmail(
-  to: string,
-  subject: string,
-  html: string,
-  fromEmail: string
-) {
-  try {
-    console.log(`[Gmail] Attempting to send email to ${to}`);
-    const transporter = getGmailTransporter();
-
-    const result = await transporter.sendMail({
-      from: `Dubai Négoce 🌹 <${fromEmail}>`,
-      to,
-      subject,
-      html,
-      replyTo: 'contact@dubainegoce.fr'
-    });
-
-    console.log(`[Gmail] Email sent successfully to ${to}, messageId: ${result.messageId}`);
-    return {
-      success: true,
-      id: result.messageId,
-      method: 'gmail'
-    };
-  } catch (error) {
-    console.error(`[Gmail] Failed to send email to ${to}:`, error);
-    return {
-      success: false,
-      error: String(error),
-      method: 'gmail'
-    };
-  }
-}
-
-/**
- * Essayer Resend en premier, fallback sur Gmail
+ * Envoi via Brevo (seul service e-mail du site).
  */
 async function sendEmailWithFallback(
   to: string,
@@ -203,31 +102,18 @@ async function sendEmailWithFallback(
   html: string,
   fromEmail: string
 ) {
-  // Essayer Resend d'abord
-  try {
-    const resend = getResendClient();
-    const result = await resend.emails.send({
-      from: `Dubai Négoce 🌹 <${fromEmail}>`,
-      to: [to],
-      subject,
-      html,
-      replyTo: 'contact@dubainegoce.fr'
-    });
+  const result = await sendEmail({
+    to,
+    subject,
+    html,
+    fromEmail,
+    fromName: 'Dubai Négoce',
+    replyTo: 'contact@dubainegoce.fr',
+  });
 
-    if ((result as any).id) {
-      return {
-        success: true,
-        id: (result as any).id,
-        method: 'resend'
-      };
-    }
-  } catch (error) {
-    console.warn(`Resend failed for ${to}, trying Gmail fallback:`, error);
-  }
-
-  // Fallback sur Gmail
-  console.log(`Falling back to Gmail for ${to}`);
-  return await sendViaGmail(to, subject, html, fromEmail);
+  return result.success
+    ? { success: true as const, id: result.messageId, method: 'brevo' }
+    : { success: false as const, error: result.error || 'Envoi refusé par Brevo', method: 'brevo' };
 }
 
 /**
@@ -239,7 +125,7 @@ async function logEmailSent(
   subject: string,
   messageId: string,
   promoCode: string,
-  method: string = 'resend'
+  method: string = 'brevo'
 ) {
   try {
     await firestore.collection('emailLogs').add({
@@ -262,22 +148,12 @@ async function logEmailSent(
 }
 
 export async function POST(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
     const body = await request.json().catch(() => ({}));
     const { promoCode = 'PNEUF5', dryRun = false } = body;
-
-    // Vérification basique d'autorisation (optionnel)
-    const authHeader = request.headers.get('authorization');
-    const isAdminRequest = authHeader?.startsWith('Bearer ') ||
-                          request.headers.get('x-internal-request') === 'true';
-
-    // Pour la sécurité, vous pouvez ajouter une vérification d'admin token
-    // if (!isAdminRequest) {
-    //   return NextResponse.json(
-    //     { error: 'Unauthorized' },
-    //     { status: 401 }
-    //   );
-    // }
 
     // Récupérer tous les utilisateurs
     const users = await getAllUsers();
@@ -309,9 +185,8 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Envoyer les emails
-    const resend = getResendClient();
-    const fromEmail = process.env.FROM_EMAIL || 'campagne@dubainegoce.fr';
+    // Envoyer les emails via Brevo
+    const fromEmail = process.env.FROM_EMAIL || 'abderelmalki@gmail.com';
 
     const results = {
       sent: 0,
@@ -344,7 +219,7 @@ export async function POST(request: NextRequest) {
             user.email,
             'makeover_campaign',
             'Dubai Négoce fait peau neuf',
-            result.id,
+            result.id || '',
             promoCode,
             result.method
           );
@@ -396,6 +271,9 @@ export async function POST(request: NextRequest) {
  * GET /api/admin/send-makeover-campaign?preview=true
  */
 export async function GET(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
     const preview = request.nextUrl.searchParams.get('preview');
     const testEmail = request.nextUrl.searchParams.get('testEmail');
@@ -405,7 +283,7 @@ export async function GET(request: NextRequest) {
 
       // Si testEmail fourni, envoyer un test
       if (testEmail) {
-        const fromEmail = process.env.FROM_EMAIL || 'campagne@dubainegoce.fr';
+        const fromEmail = process.env.FROM_EMAIL || 'abderelmalki@gmail.com';
 
         const emailHtml = renderMakeoverCampaignEmail(
           'Cher client',

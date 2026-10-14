@@ -5,11 +5,21 @@ import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { JsonLd } from '@/components/seo/json-ld';
 
 export const metadata: Metadata = {
-    title: 'Blog Parfums Orientaux — Guides, Avis et Dupes de Luxe | Dubainegoce',
-    description: 'Guides d\'achat, avis honnêtes, comparatifs dupes de luxe, décryptage de l\'oud — tout ce qu\'il faut savoir sur les parfums orientaux de Dubai (Lattafa, Maison Alhambra).',
-    keywords: 'guide parfum oriental, avis Khamrah, dupe parfum luxe, Maison Alhambra avis, parfum oud guide, parfum oriental femme, Lattafa meilleur parfum',
+    title: 'Blog Parfums Orientaux — Guides, Avis et Décryptages | Dubainegoce',
+    description: 'Guides d\'achat, avis détaillés, décryptage de l\'oud, sélections des meilleures créations de Dubaï (Lattafa, Maison Alhambra, French Avenue).',
+    keywords: 'guide parfum oriental, avis Khamrah, avis Maison Alhambra, parfum oud guide, parfum oriental femme, Lattafa meilleur parfum, parfums dubai',
+    alternates: {
+        canonical: 'https://dubainegoce.fr/blog',
+    },
+    openGraph: {
+        title: 'Blog Parfums Orientaux — Dubainegoce',
+        description: 'Guides, avis et sélections des meilleurs parfums de Dubaï.',
+        url: 'https://dubainegoce.fr/blog',
+        type: 'website',
+    },
 };
 
 const blogPosts = [
@@ -43,17 +53,17 @@ const blogPosts = [
     },
     {
         title: 'Liquid Brun French Avenue : le gourmand épicé qui fait parler de lui en 2026',
-        description: 'Vanille bourbon, cardamome, praline — Liquid Brun de French Avenue est l\'alternative crédible à Althair que personne n\'attendait. Notre avis après test.',
+        description: 'Vanille bourbon, cardamome, praline — Liquid Brun de French Avenue est une création olfactive remarquable. Notre avis après test.',
         link: '/blog/liquid-brun-french-avenue',
         imageUrl: '/images-parfums/liquid-brun-100ml.webp',
         imageHint: 'Liquid Brun French Avenue vanille épicé'
     },
     {
-        title: 'Les 8 meilleurs dupes de parfums de luxe à moins de 40€',
-        description: 'Baccarat Rouge, Sauvage, Aventus, Tobacco Vanille… les alternatives qui s\'en rapprochent le plus, pour 10 à 15 fois moins cher. Comparatif honnête.',
+        title: 'Les 8 meilleurs parfums de Dubaï à sillage puissant à moins de 40€',
+        description: 'Khamrah, Asad, Yara, Woody Oud… les créations orientales les plus performantes en tenue et en sillage. Comparatif complet.',
         link: '/blog/dupes-parfums-luxe',
         imageUrl: '/images-parfums/confidential-platinum-lattafa.jpg',
-        imageHint: 'dupe parfum luxe comparatif Lattafa'
+        imageHint: 'meilleurs parfums dubai orientaux Lattafa'
     },
     {
         title: 'Khamrah Lattafa : avis complet et honnête après 1 an d\'utilisation',
@@ -70,11 +80,11 @@ const blogPosts = [
         imageHint: 'parfums orientaux femme poignet'
     },
     {
-        title: 'Maison Alhambra : la marque Dubai qui remplace le luxe à 200€',
-        description: 'Qui est vraiment Maison Alhambra ? Histoire, qualité, meilleures fragrances, comparaisons — avis honnête sur la marque qui fait parler d\'elle.',
+        title: 'Maison Alhambra : les secrets de la marque de parfumerie de Dubaï',
+        description: 'Qui est vraiment Maison Alhambra ? Histoire, qualité, meilleures fragrances, pyramides olfactives — notre avis complet sur la maison émiratie.',
         link: '/blog/maison-alhambra-la-marque',
         imageUrl: '/images-parfums/kismet-for-women-maison-alhambra.webp',
-        imageHint: 'Maison Alhambra parfum Dubai luxe'
+        imageHint: 'Maison Alhambra parfum Dubai'
     },
     {
         title: 'Tout savoir sur le parfum oud avant d\'acheter — guide complet',
@@ -107,8 +117,47 @@ const blogPosts = [
 ];
 
 export default function BlogPage() {
+    const breadcrumbJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://dubainegoce.fr',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: 'https://dubainegoce.fr/blog',
+            },
+        ],
+    };
+
+    const collectionJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Blog Dubainegoce',
+        description: 'Guides d\'achat, avis détaillés et sélections des meilleurs parfums de Dubaï.',
+        url: 'https://dubainegoce.fr/blog',
+        mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: blogPosts.length,
+            itemListElement: blogPosts.map((p, idx) => ({
+                '@type': 'ListItem',
+                position: idx + 1,
+                url: `https://dubainegoce.fr${p.link}`,
+                name: p.title,
+            })),
+        },
+    };
+
     return (
         <div className="container mx-auto max-w-5xl px-4 py-12">
+            <JsonLd data={breadcrumbJsonLd} />
+            <JsonLd data={collectionJsonLd} />
             <div className="text-center mb-12">
                 <h1 className="text-4xl md:text-5xl font-headline font-bold">Le Blog DubaiNegoce</h1>
                 <p className="text-lg text-muted-foreground mt-2">

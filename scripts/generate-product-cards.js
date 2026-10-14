@@ -110,7 +110,7 @@ R: Absolument. Comme toutes nos fragrances de qualité EDP, elle fonctionne magn
 R: Appliquez 1-2 pulvérisations sur les points chauds (cou, intérieur des poignets, base du cou). Évitez le frottement ; laissez le parfum se développer naturellement sur votre peau.</p>
 <p><strong>Q: La durée annoncée est-elle réaliste ?</strong><br>
 R: Oui. ${longevityDesc} est la tenue moyenne observée sur une majorité de peaux. Chez les peaux sèches, la tenue peut être encore plus longue.</p>
-<p><strong>Q: Est-ce une création originale ou un dupe ?</strong><br>
+<p><strong>Q: Est-ce une création originale ou un création ?</strong><br>
 R: ${name} est une création originale ${brandName}, développée par des maîtres-parfumeurs. C'est une signature propriétaire unique.</p>
 <p><strong>Q: Projection et sillage réalistes ?</strong><br>
 R: Projection initiale forte à modérée. Sillage modéré qui persiste élégamment sans devenir envahissant.</p>

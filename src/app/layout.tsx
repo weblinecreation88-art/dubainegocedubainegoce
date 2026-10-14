@@ -32,6 +32,7 @@ const ExitIntentPopup = dynamic(() => import('@/components/exit-intent-popup').t
 const CartAbandonmentPopup = dynamic(() => import('@/components/cart-abandonment-popup').then(m => ({ default: m.CartAbandonmentPopup })), { ssr: false });
 const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then(m => ({ default: m.AuthCartBridge })), { ssr: false });
 import Script from 'next/script';
+import { GA4_MEASUREMENT_ID } from '@/lib/analytics';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 import { organizationSchema } from '@/components/seo/schemas';
@@ -101,11 +102,11 @@ export const metadata: Metadata = {
     default: 'Dubainegoce – Parfums de Dubaï authentiques à prix accessibles',
     template: '%s | Dubainegoce',
   },
-  description: 'Découvrez les meilleurs parfums de Dubaï. Lattafa, Maison Alhambra. Parfums authentiques, dupes de luxe et créations originales à 35€. Livraison rapide.',
-  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum arabe pas cher', 'parfum inspiration', 'parfums authentiques Émirats', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'Khamrah', 'Yara'],
+  description: 'Découvrez les meilleurs parfums de Dubaï. Lattafa, Maison Alhambra. Parfums 100% authentiques et créations originales d\'Orient à prix accessible. Livraison rapide.',
+  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum arabe', 'eaux de parfum', 'parfums authentiques Émirats', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'Khamrah', 'Yara'],
   openGraph: {
     title: 'Dubainegoce - L\'Excellence des Parfums de Dubaï Authentiques',
-    description: 'Explorez notre sélection de parfums authentiques de Dubaï. Fragrances rares, dupes de luxe et best-sellers à prix unique.',
+    description: 'Explorez notre sélection de parfums authentiques de Dubaï. Fragrances d\'exception, sillages orientaux et best-sellers à prix accessible.',
     url: siteUrl,
     siteName: 'Dubainegoce',
     images: [
@@ -153,20 +154,24 @@ export default function RootLayout({
         {/* DNS prefetch for Google Tag Manager */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        {/* Google Tag (gtag.js) - Google Ads */}
-        <Script
-          id="google-ads-tag"
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
-        />
-        <Script id="google-ads-init" strategy="afterInteractive">
+        {/* Google Tag (gtag.js) - Google Ads + GA4 (GA4 envoyé en direct, pas via GTM) */}
+        <Script id="google-tag-init" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GOOGLE_ADS_ID}');
+            var h = window.location.hostname;
+            if (!(h === 'localhost' || h === '127.0.0.1' || /^192\\.168\\./.test(h))) {
+              gtag('config', '${GA4_MEASUREMENT_ID}');
+            }
           `}
         </Script>
+        <Script
+          id="google-ads-tag"
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+        />
         <Script id="google-tag-manager" strategy="lazyOnload">
           {`
             (function() {

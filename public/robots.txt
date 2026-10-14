@@ -1,104 +1,93 @@
 # ============================================================
 # ROBOTS.TXT - dubainegoce.fr
-# Optimisé SEO 2026 - Budget crawl + Anti-bots malveillants
+# Optimisé SEO & GEO 2026 - Conforme Googlebot & Crawlers IA
 # ============================================================
 
-# ── CRAWLERS AUTORISÉS ──────────────────────────────────────
+# ── CRAWLERS GÉNERAUX ───────────────────────────────────────
 User-agent: *
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 
-# Pages privées / compte utilisateur
+# Pages privées et non indexables
 Disallow: /account/
 Disallow: /login/
 Disallow: /signup/
-
-# Panier et checkout (sessions utilisateur - contenu non indexable)
 Disallow: /cart/
-Disallow: /panier/
 Disallow: /checkout/
-
-# Admin
 Disallow: /admin/
+Disallow: /api/
 
-# Fichiers système WordPress (vestiges migration)
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-content/
-Disallow: /wp-json/
-Disallow: /wp-login.php
-Disallow: /feed/
-Disallow: /cgi-bin/
-
-# Paramètres query string → évite contenu dupliqué
+# Paramètres query string (prévention du contenu dupliqué)
 Disallow: /*?add-to-cart=
 Disallow: /*?remove_item=
-Disallow: /*?wc-ajax=
-Disallow: /*?_wpnonce=
-Disallow: /*?attachment_id=
-Disallow: /*?p=
-Disallow: /*?page_id=
+Disallow: /*?utm_
 Disallow: /*?fbclid=
 Disallow: /*?gclid=
-Disallow: /*?utm_
 Disallow: /*?ref=
 Disallow: /*?session=
 
-# Flux RSS sous-pages (ex: /produit/xxx/feed/)
-Disallow: /*/feed/
-Disallow: /*/feed
-
-# Fichiers techniques non-indexables
-Disallow: /manifest.webmanifest
-
-# ── GOOGLEBOT ───────────────────────────────────────────────
+# ── MOTEURS DE RECHERCHE PRINCIPAUX ─────────────────────────
 User-agent: Googlebot
 Allow: /
 Disallow: /admin/
-Crawl-delay: 1
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
 
-# ── BINGBOT ─────────────────────────────────────────────────
 User-agent: Bingbot
 Allow: /
 Disallow: /admin/
-Crawl-delay: 2
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
 
-# ── AUTRES MOTEURS RESPECTABLES ─────────────────────────────
-User-agent: DuckDuckBot
+# ── CRAWLERS D'IA / GEO (GOOGLE AI, OPENAI, PERPLEXITY, CLAUDE)
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /admin/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+
+User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Slurp
+User-agent: ClaudeBot
 Allow: /
-Crawl-delay: 2
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /admin/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
 
-User-agent: YandexBot
+User-agent: PerplexityBot
 Allow: /
-Crawl-delay: 2
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /admin/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
 
-User-agent: Baiduspider
+User-agent: Applebot-Extended
 Allow: /
-Crawl-delay: 3
 
-# ── CRAWLERS MALVEILLANTS / SCRAPERS ────────────────────────
-User-agent: AhrefsBot
-Disallow: /
+User-agent: Google-Extended
+Allow: /
 
-User-agent: SemrushBot
-Disallow: /
-
+# ── SCRAPERS AGRESSIFS / OUTILS DE SPAM ─────────────────────
 User-agent: DotBot
-Disallow: /
-
-User-agent: ZoominfoBot
 Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
 
-User-agent: DataForSeoBot
+User-agent: ZoominfoBot
 Disallow: /
 
-User-agent: PetalBot
-Disallow: /
-
-# ── SITEMAPS ────────────────────────────────────────────────
+# ── SITEMAP OFFICIEL ─────────────────────────────────────────
 Sitemap: https://dubainegoce.fr/sitemap.xml

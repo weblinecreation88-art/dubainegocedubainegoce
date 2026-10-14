@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AlertCircle, CheckCircle2, Send, Mail } from 'lucide-react';
+import { adminFetch } from '@/lib/admin-fetch';
 
 interface CampaignResult {
   success: boolean;
@@ -35,7 +36,7 @@ export default function CampaignsPage() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/admin/send-makeover-campaign', {
+      const response = await adminFetch('/api/admin/send-makeover-campaign', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ export default function CampaignsPage() {
   const handlePreview = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/admin/send-makeover-campaign?preview=true');
+      const response = await adminFetch('/api/admin/send-makeover-campaign?preview=true');
       const data = await response.json();
       setResult({
         success: true,
@@ -89,7 +90,7 @@ export default function CampaignsPage() {
 
     setLoading(true);
     try {
-      const response = await fetch(
+      const response = await adminFetch(
         `/api/admin/send-makeover-campaign?preview=true&testEmail=${encodeURIComponent(testEmail)}`
       );
       const data = await response.json();

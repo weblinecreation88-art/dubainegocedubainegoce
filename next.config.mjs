@@ -56,6 +56,14 @@ const config = {
       { source: '/genre/:path*', destination: '/shop', permanent: true },
 
       // ============================================================
+      // TYPES ANCIENS → SHOP TYPE ORIENTAL
+      // ============================================================
+      { source: '/shop/type/equivalent', destination: '/shop/type/oriental', permanent: true },
+      { source: '/shop/type/equivalent/', destination: '/shop/type/oriental', permanent: true },
+      { source: '/shop/type/dupe', destination: '/shop/type/oriental', permanent: true },
+      { source: '/shop/type/dupe/', destination: '/shop/type/oriental', permanent: true },
+
+      // ============================================================
       // ANCIENNES PAGES CUSTOM WORDPRESS / WOOCOMMERCE
       // ============================================================
       { source: '/a-propos', destination: '/about', permanent: true },
@@ -139,8 +147,6 @@ const config = {
       { source: '/parfum/yara-tous-lattafa/', destination: '/parfum/yara-lattafa', permanent: true },
       { source: '/parfum/moscow-kismet-maison-alhambra', destination: '/parfum/kismet-moscow-maison-alhambra', permanent: true },
       { source: '/parfum/moscow-kismet-maison-alhambra/', destination: '/parfum/kismet-moscow-maison-alhambra', permanent: true },
-      { source: '/parfum/liquide-brun-french-avenue', destination: '/parfum/liquid-brun-100ml', permanent: true },
-      { source: '/parfum/liquide-brun-french-avenue/', destination: '/parfum/liquid-brun-100ml', permanent: true },
       { source: '/parfum/zaffiro-crafted-oud-maison-alhambra', destination: '/parfum/zaffiro-collection-crafted-oud-maison-alhambra', permanent: true },
       { source: '/parfum/zaffiro-crafted-oud-maison-alhambra/', destination: '/parfum/zaffiro-collection-crafted-oud-maison-alhambra', permanent: true },
       { source: '/parfum/ombre-noir-jean-lowe-maison-alhambra', destination: '/parfum/jean-lowe-ombre-maison-alhambra', permanent: true },
@@ -151,8 +157,6 @@ const config = {
       { source: '/parfum/khamrah/', destination: '/blog/khamrah-lattafa-avis', permanent: true },
 
       // Produits supprimés → page marque correspondante
-      { source: '/parfum/khamrah-lattafa', destination: '/blog/khamrah-lattafa-avis', permanent: true },
-      { source: '/parfum/khamrah-lattafa/', destination: '/blog/khamrah-lattafa-avis', permanent: true },
       { source: '/parfum/lintrude-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
       { source: '/parfum/lintrude-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
       { source: '/parfum/versencia-oro-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
@@ -171,8 +175,8 @@ const config = {
       { source: '/parfum/kenzie-candid-vanilla-100ml/', destination: '/shop', permanent: true },
       { source: '/parfum/limmensite-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
       { source: '/parfum/limmensite-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
-      { source: '/parfum/liquide-brun-french-avenue-essentiel', destination: '/parfum/liquid-brun-100ml', permanent: true },
-      { source: '/parfum/liquide-brun-french-avenue-essentiel/', destination: '/parfum/liquid-brun-100ml', permanent: true },
+      { source: '/parfum/liquide-brun-french-avenue-essentiel', destination: '/parfum/liquide-brun-french-avenue', permanent: true },
+      { source: '/parfum/liquide-brun-french-avenue-essentiel/', destination: '/parfum/liquide-brun-french-avenue', permanent: true },
       { source: '/parfum/the-artist-no1-maison-alhambra', destination: '/shop/marque/maison-alhambra', permanent: true },
       { source: '/parfum/the-artist-no1-maison-alhambra/', destination: '/shop/marque/maison-alhambra', permanent: true },
 
@@ -212,6 +216,11 @@ const config = {
   },
 
   images: {
+    // L'optimiseur d'images integre n'est pas actif sur cet hebergement : les
+    // URLs distantes etaient servies brutes (PNG de 2 Mo pour un affichage en
+    // 665 px). Cloudinary transforme a la volee via src/lib/cloudinary-loader.
+    loader: 'custom',
+    loaderFile: './src/lib/cloudinary-loader.ts',
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 30,
     deviceSizes: [375, 640, 750, 828, 1080, 1200, 1920],
@@ -249,6 +258,12 @@ const config = {
       {
         protocol: 'https',
         hostname: 'www.frenchavenue.fr',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'frenchavenue.fr',
         port: '',
         pathname: '/**',
       },

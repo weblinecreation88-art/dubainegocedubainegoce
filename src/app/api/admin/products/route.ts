@@ -1,8 +1,12 @@
+import { adminGuard } from '@/lib/admin-auth';
 import { firestore } from '@/firebase/server';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { getProducts } from '@/lib/data';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
     const allProducts = getProducts();
     const ordersSnapshot = await firestore.collection('orders').get();

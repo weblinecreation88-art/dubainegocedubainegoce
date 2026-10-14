@@ -35,7 +35,19 @@ export function AddToCartButton({
     const { toast } = useToast();
     const [isAdded, setIsAdded] = useState(false);
 
+    // Un produit en rupture ne doit jamais pouvoir etre commande.
+    const isOutOfStock = product.stock <= 0;
+
     const handleAddToCart = async () => {
+        if (isOutOfStock) {
+            toast({
+                variant: 'destructive',
+                title: 'Produit indisponible',
+                description: `${product.name} est actuellement en rupture de stock.`,
+            });
+            return;
+        }
+
         addToCart({
             id: product.id,
             name: product.name,
@@ -55,7 +67,9 @@ export function AddToCartButton({
         });
     };
 
-    const buttonContent = children || <>
+    const buttonContent = isOutOfStock ? (
+        <>Rupture de stock</>
+    ) : children || <>
         {isAdded ? (
             <>
                 <Check className="mr-2 h-4 w-4" /> Ajouté!
@@ -71,11 +85,12 @@ export function AddToCartButton({
     return (
         <Button
             onClick={handleAddToCart}
+            disabled={isOutOfStock}
             size={size}
             variant={variant}
             className={cn(
                 className,
-                isStockCritical && 'animate-pulse',
+                isStockCritical && !isOutOfStock && 'animate-pulse',
                 isSticky && 'sticky bottom-4 left-4 right-4 z-40 shadow-lg',
                 isAdded && 'ring-2 ring-green-500'
             )}

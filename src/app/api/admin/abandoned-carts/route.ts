@@ -1,3 +1,4 @@
+import { adminGuard } from '@/lib/admin-auth';
 import { firestore } from '@/firebase/server';
 import { NextResponse, NextRequest } from 'next/server';
 
@@ -15,7 +16,7 @@ export interface AbandonedCartData {
     day1?: boolean;
     day3: boolean;
     day7: boolean;
-    recovery?: boolean;
+    recovery?: string | null;
   };
   recoveryEmail?: {
     sentAt: string;
@@ -35,6 +36,9 @@ export interface AbandonedCartsStats {
 }
 
 export async function GET(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
     const searchParams = request.nextUrl.searchParams;
     const status = searchParams.get('status') || 'all'; // all, active, expired, recovered
@@ -82,7 +86,7 @@ export async function GET(request: NextRequest) {
           day1: data.emailsSent?.day1 || false,
           day3: data.emailsSent?.day3 || false,
           day7: data.emailsSent?.day7 || false,
-          recovery: !!data.emailsSent?.recovery || !!data.recoveryEmail,
+          recovery: data.emailsSent?.recovery || data.recoveryEmail?.sentAt || null,
         },
         ...(data.recoveryEmail && {
           recoveryEmail: {
@@ -130,6 +134,9 @@ export async function GET(request: NextRequest) {
  * Mark a cart as recovered
  */
 export async function POST(request: NextRequest) {
+  const denied = await adminGuard(request);
+  if (denied) return denied;
+
   try {
     const body = await request.json();
     const { cartId, action } = body;

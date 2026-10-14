@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Clock } from 'lucide-react';
+import { trackEcommerce } from '@/lib/analytics';
 
 function getShippingMessage(): { text: string; urgent: boolean } {
   const now = new Date();
@@ -35,19 +36,16 @@ export function ProductPageClient({ product }: { product?: any }) {
 
   useEffect(() => {
     // Tracking view_item
-    if (typeof window !== 'undefined' && (window as any).dataLayer && product) {
-      (window as any).dataLayer.push({
-        event: 'view_item',
-        ecommerce: {
-          items: [{
-            item_id: product.id,
-            item_name: product.name,
-            price: product.price,
-            brand: product.brand?.name,
-            category: product.family,
-            item_category: product.family || 'Parfum'  // Added for GA4 compatibility
-          }]
-        }
+    if (product) {
+      trackEcommerce('view_item', {
+        value: product.price,
+        items: [{
+          item_id: product.id,
+          item_name: product.name,
+          price: product.price,
+          item_brand: product.brand?.name,
+          item_category: product.family || 'Parfum'
+        }]
       });
     }
 
