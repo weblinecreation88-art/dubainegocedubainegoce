@@ -99,30 +99,63 @@ export async function POST(req: NextRequest) {
       ? 'Colissimo — livraison à domicile'
       : `Mondial Relay — ${pickupPoint?.name || 'point relais'}`;
 
-  if (shippingCost > 0) {
-    lineItems.push({
-      quantity: 1,
-      price_data: {
-        currency: 'eur',
-        unit_amount: Math.round(shippingCost * 100),
-        product_data: {
-          name: shippingLabel,
-          metadata: { productId: 'shipping' },
-        },
-      },
-    });
-  }
-
   const stripe = new Stripe(stripeSecretKey);
+
+  // Pré-remplissage du client Stripe avec l'adresse déjà saisie sur Dubai Négoce
+  let customerId: string | undefined;
+  if (email) {
+    try {
+      const customerName = `${customer?.firstName || ''} ${customer?.lastName || ''}`.trim();
+      const stripeCustomer = await stripe.customers.create({
+        email,
+        name: customerName || undefined,
+        phone: phone || undefined,
+        shipping: customer?.address ? {
+          name: customerName,
+          phone: phone || undefined,
+          address: {
+            line1: customer.address,
+            postal_code: customer.postalCode || '',
+            city: customer.city || '',
+            country: customer.country || 'FR',
+          },
+        } : undefined,
+        address: customer?.address ? {
+          line1: customer.address,
+          postal_code: customer.postalCode || '',
+          city: customer.city || '',
+          country: customer.country || 'FR',
+        } : undefined,
+      });
+      customerId = stripeCustomer.id;
+    } catch (e) {
+      console.warn('[api/stripe/checkout] Erreur création client Stripe prefill :', e);
+    }
+  }
 
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: lineItems,
-      customer_email: email,
+      ...(customerId ? { customer: customerId } : { customer_email: email }),
       allow_promotion_codes: true,
-      // Le téléphone remonte désormais dans session.customer_details.phone
       phone_number_collection: { enabled: true },
+      shipping_address_collection: {
+        allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+      },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            display_name: shippingCost === 0 ? `${shippingLabel} — offerte` : shippingLabel,
+            fixed_amount: { amount: Math.round(shippingCost * 100), currency: 'eur' },
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: shippingMethod === 'colissimo' ? 2 : 3 },
+              maximum: { unit: 'business_day', value: shippingMethod === 'colissimo' ? 3 : 5 },
+            },
+          },
+        },
+      ],
       invoice_creation: { enabled: true },
       success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${orderTotal.toFixed(2)}`,
       cancel_url: `${appUrl}/cart`,

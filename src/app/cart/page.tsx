@@ -159,7 +159,7 @@ export default function CartPage() {
             postalCode: formData.postalCode,
             city: formData.city,
             country: formData.country,
-            shippingMethod: formData.shippingMethod,
+            shippingMethod: formData.shippingMethod || formShippingMethod,
           },
           pickupPoint: pickupPoint
             ? {

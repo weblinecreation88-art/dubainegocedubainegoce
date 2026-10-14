@@ -94,7 +94,7 @@ export const computeShippingCost = (
     subtotal: number
 ): number => {
     const country = (countryCode || 'FR').toUpperCase();
-    if (country === 'FR' && subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
+    if (method === 'mondial-relay' && country === 'FR' && subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
     const weight = totalQuantity * PERFUME_WEIGHT_G;
     return method === 'colissimo'
         ? getColissimoCost(weight)

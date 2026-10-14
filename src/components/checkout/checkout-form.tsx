@@ -339,31 +339,51 @@ export function CheckoutForm({
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                             className="space-y-3"
                           >
                             {/* Colissimo - France only */}
                             {selectedCountry === 'FR' && (
-                              <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
-                                <RadioGroupItem value="colissimo" id="colissimo" />
-                                <Label htmlFor="colissimo" className="flex-1 cursor-pointer">
-                                  <div className="font-semibold">📦 Colissimo</div>
-                                  <div className="text-sm text-muted-foreground">
-                                    Livraison à domicile - 48h en France métropolitaine
-                                  </div>
-                                </Label>
+                              <div
+                                onClick={() => field.onChange('colissimo')}
+                                className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-all ${
+                                  field.value === 'colissimo'
+                                    ? 'border-accent bg-accent/5 ring-1 ring-accent'
+                                    : 'hover:bg-muted/50 border-border'
+                                }`}
+                              >
+                                <div className="flex items-center space-x-3">
+                                  <RadioGroupItem value="colissimo" id="colissimo" />
+                                  <Label htmlFor="colissimo" className="cursor-pointer">
+                                    <div className="font-semibold text-sm">📦 Colissimo Domicile (48h)</div>
+                                    <div className="text-xs text-muted-foreground">
+                                      Livraison directe en boîte aux lettres
+                                    </div>
+                                  </Label>
+                                </div>
+                                <span className="font-bold text-sm">9,29 €</span>
                               </div>
                             )}
 
                             {/* Mondial Relay - All countries */}
-                            <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-muted/50 cursor-pointer transition-colors">
-                              <RadioGroupItem value="mondial-relay" id="mondial-relay" />
-                              <Label htmlFor="mondial-relay" className="flex-1 cursor-pointer">
-                                <div className="font-semibold">🛒 Mondial Relay</div>
-                                <div className="text-sm text-muted-foreground">
-                                  Retrait en point relais - Confirmation par SMS
-                                </div>
-                              </Label>
+                            <div
+                              onClick={() => field.onChange('mondial-relay')}
+                              className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-all ${
+                                field.value === 'mondial-relay'
+                                  ? 'border-accent bg-accent/5 ring-1 ring-accent'
+                                  : 'hover:bg-muted/50 border-border'
+                              }`}
+                            >
+                              <div className="flex items-center space-x-3">
+                                <RadioGroupItem value="mondial-relay" id="mondial-relay" />
+                                <Label htmlFor="mondial-relay" className="cursor-pointer">
+                                  <div className="font-semibold text-sm">🛒 Mondial Relay (Point Relais)</div>
+                                  <div className="text-xs text-muted-foreground">
+                                    Retrait en commerce de proximité (3-5j)
+                                  </div>
+                                </Label>
+                              </div>
+                              <span className="font-bold text-sm">4,10 € (ou Offert dès 60 €)</span>
                             </div>
                           </RadioGroup>
                         </FormControl>
