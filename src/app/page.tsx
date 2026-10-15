@@ -53,7 +53,9 @@ export default function Home() {
     allProducts.find(p => p.slug === 'porto-neroli-maison-alhambra')?.images[0],
     allProducts.find(p => p.slug === 'khamrah-lattafa')?.images[0],
     allProducts.find(p => p.slug === 'lovely-cherie-maison-alhambra')?.images[0],
-  ].filter(Boolean) as string[];
+  ]
+    .filter(Boolean)
+    .map(url => (url && url.includes('cloudinary.com') && !url.includes('f_auto') ? url.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_800/') : url)) as string[];
 
   return (
     <div className="flex flex-col">
@@ -68,7 +70,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <Link href="/shop/all?genders=femme" className="group relative overflow-hidden rounded-xl aspect-[4/5] block">
               <Image
-                src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1773725244/femme-parfum-poignet_sixg1u.png"
+                src="https://res.cloudinary.com/dzntnjtkc/image/upload/f_auto,q_auto,w_600/v1773725244/femme-parfum-poignet_sixg1u.png"
                 alt="Parfums pour Femme - Dubai Negoce"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -86,7 +88,7 @@ export default function Home() {
 
             <Link href="/shop/all?genders=homme" className="group relative overflow-hidden rounded-xl aspect-[4/5] block">
               <Image
-                src="https://res.cloudinary.com/dzntnjtkc/image/upload/v1773725815/ChatGPT_Image_17_mars_2026_05_36_32_clwqv6.png"
+                src="https://res.cloudinary.com/dzntnjtkc/image/upload/f_auto,q_auto,w_600/v1773725815/ChatGPT_Image_17_mars_2026_05_36_32_clwqv6.png"
                 alt="Parfums pour Homme - Dubai Negoce"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -104,7 +106,7 @@ export default function Home() {
 
             <Link href="/shop/all?genders=mixte" className="group relative overflow-hidden rounded-xl aspect-[4/5] block">
               <Image
-                src="https://res.cloudinary.com/db2ljqpdt/image/upload/v1766907448/LOVELY-Photoroom_z0r2jf.jpg"
+                src="https://res.cloudinary.com/db2ljqpdt/image/upload/f_auto,q_auto,w_600/v1766907448/LOVELY-Photoroom_z0r2jf.jpg"
                 alt="Parfums Mixtes - Dubai Negoce"
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"

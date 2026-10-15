@@ -155,8 +155,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://apis.google.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        {/* Google Tag (gtag.js) - Google Ads + GA4 sans bloquer le rendu FCP */}
-        <Script id="google-tag-init" strategy="afterInteractive">
+        {/* Google Tag (gtag.js) - Google Ads + GA4 en lazyOnload pour éliminer le TBT au chargement initial */}
+        <Script id="google-tag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -170,7 +170,7 @@ export default function RootLayout({
         </Script>
         <Script
           id="google-ads-tag"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
         />
         <Script id="google-tag-manager" strategy="lazyOnload">
