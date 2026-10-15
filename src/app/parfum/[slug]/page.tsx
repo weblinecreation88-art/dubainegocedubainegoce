@@ -435,7 +435,7 @@ export default function ProductPage({ params }: Props) {
             </TabsContent>
             <TabsContent value="additional-info" className="py-6">
               <div className="space-y-2">
-                <p><strong>Poids :</strong> environ 750g (colis compris)</p>
+                <p><strong>Poids :</strong> environ 450g (colis compris)</p>
                 <p><strong>Dimensions :</strong> non spécifiées</p>
               </div>
             </TabsContent>

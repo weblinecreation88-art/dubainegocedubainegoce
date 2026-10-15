@@ -103,14 +103,14 @@ export function getDeliveryTimeframe(method: string, country: string): string {
 
 /**
  * Format shipping details with weight breakdown
- * Note: Each perfume bottle = 750g
+ * Note: Each perfume bottle = 450g
  */
 export function formatShippingDetail(method: string, weight: number, cost: number, country?: string): string {
   const weightKg = (weight / 1000).toFixed(2);
-  const numBottles = Math.round(weight / 750);
+  const numBottles = Math.max(1, Math.round(weight / 450));
 
   if (method === 'colissimo') {
-    return `Colissimo (${numBottles} flacon${numBottles > 1 ? 's' : ''}, ${weightKg}kg)`;
+    return `Colissimo Domicile (${numBottles} flacon${numBottles > 1 ? 's' : ''}, ${weightKg}kg)`;
   }
 
   if (method === 'mondial-relay') {

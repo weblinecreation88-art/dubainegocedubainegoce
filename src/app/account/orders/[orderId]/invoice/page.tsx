@@ -15,17 +15,14 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import type { ShippingMethod } from '@/lib/types';
-import { shippingMethods, getColissimoCost, getMondialRelayCost } from '@/lib/data';
-
-
-const PERFUME_WEIGHT_G = 750;
+import { shippingMethods, getColissimoCost, getMondialRelayCost, PERFUME_WEIGHT_G } from '@/lib/data';
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
   const { user, isUserLoading } = useUser();
   const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('mondial-relay');
+  const [selectedShippingId, setSelectedShippingId] = useState<ShippingMethod['id']>('colissimo');
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

@@ -39,7 +39,8 @@ export function priceOrder(
     return { ok: false, status: 400, error: 'Votre panier est vide.' };
   }
 
-  const shippingMethod = shippingMethodInput === 'colissimo' ? 'colissimo' : 'mondial-relay';
+  // Mondial Relay étant temporairement masqué, Colissimo est appliqué
+  const shippingMethod: 'colissimo' | 'mondial-relay' = 'colissimo';
   const country = String(countryInput || 'FR').toUpperCase();
   if (!(ALLOWED_COUNTRIES as readonly string[]).includes(country)) {
     return { ok: false, status: 400, error: 'Pays de livraison non desservi.' };

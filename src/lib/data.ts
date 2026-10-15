@@ -77,8 +77,8 @@ export const getMondialRelayInternationalCost = (countryCode: string, weightInGr
     return countryRates[10000]; // Fallback
 };
 
-/** Poids retenu par flacon pour le calcul des frais de port. */
-export const PERFUME_WEIGHT_G = 750;
+/** Poids retenu par flacon pour le calcul des frais de port (flacon 100ml + étui + emballage). */
+export const PERFUME_WEIGHT_G = 450;
 
 /** Livraison offerte en France des ce montant de panier (TTC). */
 export const FREE_SHIPPING_THRESHOLD = 60;
@@ -86,6 +86,7 @@ export const FREE_SHIPPING_THRESHOLD = 60;
 /**
  * Frais de port TTC factures au client. Source unique utilisee par le panier,
  * Stripe et PayPal : le montant affiche est toujours le montant encaisse.
+ * Mondial Relay est temporairement désactivé, Colissimo est appliqué par défaut.
  */
 export const computeShippingCost = (
     method: 'colissimo' | 'mondial-relay',
@@ -94,16 +95,13 @@ export const computeShippingCost = (
     subtotal: number
 ): number => {
     const country = (countryCode || 'FR').toUpperCase();
-    if (method === 'mondial-relay' && country === 'FR' && subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
+    if (country === 'FR' && subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
     const weight = totalQuantity * PERFUME_WEIGHT_G;
-    return method === 'colissimo'
-        ? getColissimoCost(weight)
-        : getMondialRelayInternationalCost(country, weight);
+    return getColissimoCost(weight);
 };
 
 
 export const shippingMethods: Omit<ShippingMethod, 'cost'>[] = [
-    { id: 'mondial-relay', name: 'Mondial Relay', description: 'Livraison en point relais (3-5 jours)', icon: Globe },
     { id: 'colissimo', name: 'Colissimo', description: 'Livraison à domicile (48h)', icon: Truck },
 ];
 

@@ -23,10 +23,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
-import { PickupPointSelector } from './pickup-point-selector';
 
 // Form Schema - Complet avec code postal pour Colissimo & Mondial Relay
 const checkoutSchema = z.object({
@@ -323,7 +321,7 @@ export function CheckoutForm({
             </div>
           )}
 
-          {/* Step 2: Shipping Method (no pickup point selection) */}
+          {/* Step 2: Shipping Method */}
           {currentStep === 2 && (
             <div className="space-y-4">
               <Card>
@@ -331,77 +329,27 @@ export function CheckoutForm({
                   <CardTitle>🚚 Mode de livraison</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="shippingMethod"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <RadioGroup
-                            onValueChange={field.onChange}
-                            value={field.value}
-                            className="space-y-3"
-                          >
-                            {/* Colissimo - France only */}
-                            {selectedCountry === 'FR' && (
-                              <div
-                                onClick={() => field.onChange('colissimo')}
-                                className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-all ${
-                                  field.value === 'colissimo'
-                                    ? 'border-accent bg-accent/5 ring-1 ring-accent'
-                                    : 'hover:bg-muted/50 border-border'
-                                }`}
-                              >
-                                <div className="flex items-center space-x-3">
-                                  <RadioGroupItem value="colissimo" id="colissimo" />
-                                  <Label htmlFor="colissimo" className="cursor-pointer">
-                                    <div className="font-semibold text-sm">📦 Colissimo Domicile (48h)</div>
-                                    <div className="text-xs text-muted-foreground">
-                                      Livraison directe en boîte aux lettres
-                                    </div>
-                                  </Label>
-                                </div>
-                                <span className="font-bold text-sm">9,29 €</span>
-                              </div>
-                            )}
-
-                            {/* Mondial Relay - All countries */}
-                            <div
-                              onClick={() => field.onChange('mondial-relay')}
-                              className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-all ${
-                                field.value === 'mondial-relay'
-                                  ? 'border-accent bg-accent/5 ring-1 ring-accent'
-                                  : 'hover:bg-muted/50 border-border'
-                              }`}
-                            >
-                              <div className="flex items-center space-x-3">
-                                <RadioGroupItem value="mondial-relay" id="mondial-relay" />
-                                <Label htmlFor="mondial-relay" className="cursor-pointer">
-                                  <div className="font-semibold text-sm">🛒 Mondial Relay (Point Relais)</div>
-                                  <div className="text-xs text-muted-foreground">
-                                    Retrait en commerce de proximité (3-5j)
-                                  </div>
-                                </Label>
-                              </div>
-                              <span className="font-bold text-sm">4,10 € (ou Offert dès 60 €)</span>
-                            </div>
-                          </RadioGroup>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <div className="p-4 border border-accent bg-accent/5 ring-1 ring-accent rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-xl">📦</span>
+                        <div>
+                          <div className="font-semibold text-sm">Colissimo Domicile (48h)</div>
+                          <div className="text-xs text-muted-foreground">
+                            Livraison rapide et sécurisée directement en boîte aux lettres
+                          </div>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center text-xs font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded">
+                        Sélectionné
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Expédition sous 24h avec numéro de suivi envoyé par email et SMS.
+                  </p>
                 </CardContent>
               </Card>
-
-              {/* Sélecteur Mondial Relay */}
-              {selectedMethod === 'mondial-relay' && (
-                <PickupPointSelector
-                  country={selectedCountry}
-                  onSelectPoint={setSelectedPickupPoint}
-                  selectedPointId={selectedPickupPoint?.id}
-                />
-              )}
             </div>
           )}
 
@@ -433,7 +381,7 @@ export function CheckoutForm({
             {currentStep === 2 && (
               <Button
                 type="submit"
-                disabled={isLoading || (selectedMethod === 'mondial-relay' && !selectedPickupPoint)}
+                disabled={isLoading}
                 className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 Procéder au paiement

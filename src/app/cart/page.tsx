@@ -9,7 +9,7 @@ import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight,
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { computeShippingCost, FREE_SHIPPING_THRESHOLD, getColissimoCost, getMondialRelayInternationalCost } from '@/lib/data';
+import { computeShippingCost, FREE_SHIPPING_THRESHOLD, getColissimoCost, PERFUME_WEIGHT_G } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { CheckoutForm, type CheckoutFormData } from '@/components/checkout/checkout-form';
@@ -19,8 +19,6 @@ import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { PayPalCheckoutButton } from '@/components/checkout/paypal-checkout-button';
 import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce } from '@/lib/analytics';
-
-const PERFUME_WEIGHT_G = 750;
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
@@ -32,7 +30,7 @@ export default function CartPage() {
   const { toast } = useToast();
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
   const [formCountry, setFormCountry] = useState('FR');
-  const [formShippingMethod, setFormShippingMethod] = useState<'colissimo' | 'mondial-relay'>('mondial-relay');
+  const [formShippingMethod, setFormShippingMethod] = useState<'colissimo' | 'mondial-relay'>('colissimo');
   const [mainStep, setMainStep] = useState<'review-cart' | 'checkout-form' | 'review-payment'>('review-cart');
   const [lastFormData, setLastFormData] = useState<CheckoutFormData | null>(null);
   const [savedUserAddress, setSavedUserAddress] = useState<Partial<CheckoutFormData> | null>(null);
@@ -77,9 +75,9 @@ export default function CartPage() {
   const freeShippingProgress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
 
   // Tarifs transparents calculés dès le panier et synchronisés avec le paiement
-  const mondialRelayCost = isFreeShippingQualified ? 0 : getMondialRelayInternationalCost(formCountry, totalWeight);
-  const colissimoCost = getColissimoCost(totalWeight);
-  const shippingCost = formShippingMethod === 'colissimo' ? colissimoCost : mondialRelayCost;
+  // Mondial Relay temporairement masqué : Colissimo domicile appliqué par défaut
+  const colissimoCost = isFreeShippingQualified && formCountry === 'FR' ? 0 : getColissimoCost(totalWeight);
+  const shippingCost = colissimoCost;
   const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
 
   // Étape 2 validée : on mémorise les infos puis on passe au paiement
@@ -299,75 +297,34 @@ export default function CartPage() {
             <div className="mt-6 pt-5 border-t space-y-4">
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-semibold text-foreground">Mode de livraison estimé</span>
+                  <span className="text-sm font-semibold text-foreground">Mode de livraison</span>
                   <span className="text-xs text-muted-foreground font-normal">Expédition rapide 24/48h</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {/* Mondial Relay */}
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setFormShippingMethod('mondial-relay')}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFormShippingMethod('mondial-relay'); }}
-                    className={`cursor-pointer border rounded-lg p-3.5 transition-all flex flex-col justify-between ${
-                      formShippingMethod === 'mondial-relay'
-                        ? 'border-accent bg-accent/5 ring-1 ring-accent'
-                        : 'border-border hover:border-muted-foreground/40 bg-card'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <Store className="h-4 w-4 text-accent flex-shrink-0" />
-                        <div>
-                          <p className="font-semibold text-sm">Mondial Relay</p>
-                          <p className="text-xs text-muted-foreground">En Point Relais (3-5j)</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        {mondialRelayCost === 0 ? (
-                          <span className="inline-flex items-center text-xs font-bold text-green-600 bg-green-500/10 px-2 py-0.5 rounded">
-                            OFFERT
-                          </span>
-                        ) : (
-                          <span className="font-bold text-sm">{mondialRelayCost.toFixed(2)} €</span>
-                        )}
+                {/* Colissimo Domicile */}
+                <div className="border border-accent bg-accent/5 ring-1 ring-accent rounded-lg p-3.5 transition-all flex flex-col justify-between">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <Truck className="h-5 w-5 text-accent flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-sm">Colissimo Domicile (48h)</p>
+                        <p className="text-xs text-muted-foreground">Livraison rapide en boîte aux lettres sans contact</p>
                       </div>
                     </div>
-                    {mondialRelayCost > 0 && remainingForFreeShipping > 0 && (
-                      <p className="text-[11px] text-accent mt-2">
-                        Offert dès {FREE_SHIPPING_THRESHOLD} € (encore {remainingForFreeShipping.toFixed(2)} €)
-                      </p>
-                    )}
+                    <div className="text-right">
+                      {shippingCost === 0 ? (
+                        <span className="inline-flex items-center text-xs font-bold text-green-600 bg-green-500/10 px-2 py-0.5 rounded">
+                          OFFERT
+                        </span>
+                      ) : (
+                        <span className="font-bold text-sm">{shippingCost.toFixed(2)} €</span>
+                      )}
+                    </div>
                   </div>
-
-                  {/* Colissimo */}
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setFormShippingMethod('colissimo')}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFormShippingMethod('colissimo'); }}
-                    className={`cursor-pointer border rounded-lg p-3.5 transition-all flex flex-col justify-between ${
-                      formShippingMethod === 'colissimo'
-                        ? 'border-accent bg-accent/5 ring-1 ring-accent'
-                        : 'border-border hover:border-muted-foreground/40 bg-card'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <Truck className="h-4 w-4 text-accent flex-shrink-0" />
-                        <div>
-                          <p className="font-semibold text-sm">Colissimo Domicile</p>
-                          <p className="text-xs text-muted-foreground">À domicile 48h</p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-bold text-sm">{colissimoCost.toFixed(2)} €</span>
-                      </div>
-                    </div>
-                    <p className="text-[11px] text-muted-foreground mt-2">
-                      Remis en boîte aux lettres sans contact
+                  {shippingCost > 0 && remainingForFreeShipping > 0 && (
+                    <p className="text-[11px] text-accent mt-2">
+                      Livraison offerte dès {FREE_SHIPPING_THRESHOLD} € (encore {remainingForFreeShipping.toFixed(2)} €)
                     </p>
-                  </div>
+                  )}
                 </div>
               </div>
 
@@ -378,9 +335,7 @@ export default function CartPage() {
                   <span className="font-medium text-foreground">{subtotal.toFixed(2)} €</span>
                 </div>
                 <div className="flex justify-between items-center text-muted-foreground">
-                  <span>
-                    Livraison ({formShippingMethod === 'colissimo' ? 'Colissimo domicile' : 'Mondial Relay'})
-                  </span>
+                  <span>Livraison (Colissimo domicile 48h)</span>
                   <span className="font-medium text-foreground">
                     {shippingCost === 0 ? (
                       <span className="text-green-600 font-semibold">OFFERTE</span>
