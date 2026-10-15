@@ -139,7 +139,16 @@ export async function POST(req: NextRequest) {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: lineItems,
-      ...(customerId ? { customer: customerId } : { customer_email: email }),
+      ...(customerId
+        ? {
+            customer: customerId,
+            customer_update: {
+              shipping: 'auto',
+              address: 'auto',
+              name: 'auto',
+            },
+          }
+        : { customer_email: email }),
       allow_promotion_codes: true,
       phone_number_collection: { enabled: true },
       shipping_address_collection: {
