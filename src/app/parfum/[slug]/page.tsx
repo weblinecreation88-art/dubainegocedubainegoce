@@ -37,7 +37,8 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
   const product = getProductBySlug(params.slug);
   if (!product) {
     return {
-      title: 'Produit non trouvé',
+      title: 'Parfums de Dubaï | Dubaï Négoce',
+      robots: { index: false, follow: true },
     };
   }
 
@@ -115,7 +116,9 @@ export default function ProductPage({ params }: Props) {
   const product = getProductBySlug(params.slug);
 
   if (!product) {
-    notFound();
+    // Si le produit n'existe plus ou est introuvable : redirection 308 permanente vers /shop
+    // pour éviter tout 404 dans Google Search Console et conserver le trafic SEO
+    permanentRedirect('/shop');
   }
 
   // Ancien lien ou slug approchant : redirection 301 vers l'URL officielle
