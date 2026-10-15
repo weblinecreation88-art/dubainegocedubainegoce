@@ -5,16 +5,9 @@ import { Globe, Truck } from 'lucide-react';
 
 export const getColissimoCost = (weightInGrams: number): number => {
     if (weightInGrams <= 0) return 0;
-    if (weightInGrams <= 250) return 5.25;
-    if (weightInGrams <= 500) return 7.35;
-    if (weightInGrams <= 750) return 9.29;
-    if (weightInGrams <= 1000) return 9.59;
-    if (weightInGrams <= 2000) return 11.19;
-    if (weightInGrams <= 5000) return 17.39;
-    if (weightInGrams <= 10000) return 25.29;
-    if (weightInGrams <= 15000) return 31.99;
-    if (weightInGrams <= 30000) return 39.59;
-    return 39.59; // Fallback for weights over 30kg
+    if (weightInGrams <= 500) return 7.10;   // 1 flacon (450g)
+    if (weightInGrams <= 1000) return 9.59;  // 2 flacons (900g)
+    return 0;                                // Dès 3 flacons (>= 1350g) : GRATUIT
 };
 
 export const getMondialRelayCost = (weightInGrams: number): number => {
@@ -80,13 +73,19 @@ export const getMondialRelayInternationalCost = (countryCode: string, weightInGr
 /** Poids retenu par flacon pour le calcul des frais de port (flacon 100ml + étui + emballage). */
 export const PERFUME_WEIGHT_G = 450;
 
-/** Livraison offerte en France des ce montant de panier (TTC). */
-export const FREE_SHIPPING_THRESHOLD = 60;
+/** Nombre d'articles pour déclencher la livraison gratuite */
+export const FREE_SHIPPING_MIN_ITEMS = 3;
+
+/** Livraison offerte en France dès 3 parfums ou dès ce montant de panier (TTC). */
+export const FREE_SHIPPING_THRESHOLD = 100;
 
 /**
- * Frais de port TTC factures au client. Source unique utilisee par le panier,
- * Stripe et PayPal : le montant affiche est toujours le montant encaisse.
- * Mondial Relay est temporairement désactivé, Colissimo est appliqué par défaut.
+ * Frais de port TTC facturés au client. Source unique utilisée par le panier,
+ * Stripe et PayPal : le montant affiché est toujours le montant encaissé.
+ * Règle commerciale :
+ * - 1 parfum : 7,10 €
+ * - 2 parfums : 9,59 €
+ * - 3 parfums ou plus : GRATUIT (0,00 €)
  */
 export const computeShippingCost = (
     method: 'colissimo' | 'mondial-relay',
@@ -94,8 +93,13 @@ export const computeShippingCost = (
     totalQuantity: number,
     subtotal: number
 ): number => {
+    if (totalQuantity <= 0) return 0;
     const country = (countryCode || 'FR').toUpperCase();
-    if (country === 'FR' && subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
+    if (country === 'FR' && (totalQuantity >= FREE_SHIPPING_MIN_ITEMS || subtotal >= FREE_SHIPPING_THRESHOLD)) {
+        return 0;
+    }
+    if (totalQuantity === 1) return 7.10;
+    if (totalQuantity === 2) return 9.59;
     const weight = totalQuantity * PERFUME_WEIGHT_G;
     return getColissimoCost(weight);
 };

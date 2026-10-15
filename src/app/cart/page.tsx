@@ -69,15 +69,14 @@ export default function CartPage() {
   const totalWeight = totalItems * PERFUME_WEIGHT_G;
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  // Jauge de livraison offerte (France)
-  const isFreeShippingQualified = subtotal >= FREE_SHIPPING_THRESHOLD;
+  // Jauge de livraison offerte (Gratuit dès 3 parfums en France)
+  const isFreeShippingQualified = totalItems >= 3 || subtotal >= FREE_SHIPPING_THRESHOLD;
+  const remainingItemsForFreeShipping = Math.max(0, 3 - totalItems);
   const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
-  const freeShippingProgress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
+  const freeShippingProgress = Math.min(100, Math.round((totalItems / 3) * 100));
 
   // Tarifs transparents calculés dès le panier et synchronisés avec le paiement
-  // Mondial Relay temporairement masqué : Colissimo domicile appliqué par défaut
-  const colissimoCost = isFreeShippingQualified && formCountry === 'FR' ? 0 : getColissimoCost(totalWeight);
-  const shippingCost = colissimoCost;
+  const shippingCost = computeShippingCost(formShippingMethod, formCountry, totalItems, subtotal);
   const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
 
   // Étape 2 validée : on mémorise les infos puis on passe au paiement
@@ -227,20 +226,28 @@ export default function CartPage() {
 
           {/* Jauge de livraison offerte */}
           <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-6">
-            <div className="flex justify-between text-xs md:text-sm font-medium mb-2">
-              {remainingForFreeShipping > 0 ? (
+            <div className="flex justify-between items-center text-xs md:text-sm font-medium mb-2">
+              {remainingItemsForFreeShipping > 0 ? (
                 <span>
-                  Plus que <strong className="text-accent">{remainingForFreeShipping.toFixed(2)} €</strong> pour la{' '}
-                  <strong>livraison offerte</strong> en France !
+                  Plus que{' '}
+                  <strong className="text-accent font-bold">
+                    {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''}
+                  </strong>{' '}
+                  pour la <strong>livraison 100% OFFERTE</strong> !
+                  {totalItems === 2 && (
+                    <span className="block sm:inline sm:ml-1 text-xs text-accent font-semibold">
+                      (Économisez 9,59 € de frais de port)
+                    </span>
+                  )}
                 </span>
               ) : (
-                <span className="text-green-600 dark:text-green-400 font-semibold">
-                  🎉 Livraison offerte en France pour cette commande !
+                <span className="text-green-600 dark:text-green-400 font-semibold flex items-center gap-1.5">
+                  🎉 Félicitations : Livraison Colissimo 100% OFFERTE sur votre commande !
                 </span>
               )}
-              <span>{freeShippingProgress}%</span>
+              <span className="font-bold text-xs">{freeShippingProgress}%</span>
             </div>
-            <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+            <div className="w-full bg-muted rounded-full h-2.5 overflow-hidden">
               <div
                 className="bg-accent h-full transition-all duration-300 rounded-full"
                 style={{ width: `${freeShippingProgress}%` }}
@@ -320,9 +327,9 @@ export default function CartPage() {
                       )}
                     </div>
                   </div>
-                  {shippingCost > 0 && remainingForFreeShipping > 0 && (
-                    <p className="text-[11px] text-accent mt-2">
-                      Livraison offerte dès {FREE_SHIPPING_THRESHOLD} € (encore {remainingForFreeShipping.toFixed(2)} €)
+                  {shippingCost > 0 && remainingItemsForFreeShipping > 0 && (
+                    <p className="text-[11px] text-accent mt-2 font-medium">
+                      💡 Plus que {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''} pour débloquer la livraison GRATUITE (3 parfums = 0 € de livraison) !
                     </p>
                   )}
                 </div>

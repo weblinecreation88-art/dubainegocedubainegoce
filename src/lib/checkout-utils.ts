@@ -110,6 +110,9 @@ export function formatShippingDetail(method: string, weight: number, cost: numbe
   const numBottles = Math.max(1, Math.round(weight / 450));
 
   if (method === 'colissimo') {
+    if (cost === 0) {
+      return `Colissimo Domicile (${numBottles} flacon${numBottles > 1 ? 's' : ''} • Livraison offerte)`;
+    }
     return `Colissimo Domicile (${numBottles} flacon${numBottles > 1 ? 's' : ''}, ${weightKg}kg)`;
   }
 
