@@ -26,11 +26,9 @@ import { WishlistProvider } from '@/context/wishlist-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import dynamic from 'next/dynamic';
-const FaqChatbot = dynamic(() => import('@/components/faq-chatbot').then(m => ({ default: m.FaqChatbot })), { ssr: false });
 const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(m => ({ default: m.CookieConsent })), { ssr: false });
-const ExitIntentPopup = dynamic(() => import('@/components/exit-intent-popup').then(m => ({ default: m.ExitIntentPopup })), { ssr: false });
-const CartAbandonmentPopup = dynamic(() => import('@/components/cart-abandonment-popup').then(m => ({ default: m.CartAbandonmentPopup })), { ssr: false });
 const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then(m => ({ default: m.AuthCartBridge })), { ssr: false });
+import { DeferredWidgets } from '@/components/deferred-widgets';
 import Script from 'next/script';
 import { GA4_MEASUREMENT_ID } from '@/lib/analytics';
 import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
@@ -149,13 +147,16 @@ export default function RootLayout({
       <head>
         {/* TikTok Shop domain verification */}
         <meta name="tiktok-domain-verification" content="FRFRLCPCQWAL" />
-        {/* Preconnect Cloudinary */}
+        {/* Preconnects essentiels pour LCP et Auth */}
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
-        {/* DNS prefetch for Google Tag Manager */}
+        <link rel="preconnect" href="https://dubainegoce-227c3.firebaseapp.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://apis.google.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://dubainegoce-227c3.firebaseapp.com" />
+        <link rel="dns-prefetch" href="https://apis.google.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        {/* Google Tag (gtag.js) - Google Ads + GA4 (GA4 envoyé en direct, pas via GTM) */}
-        <Script id="google-tag-init" strategy="beforeInteractive">
+        {/* Google Tag (gtag.js) - Google Ads + GA4 sans bloquer le rendu FCP */}
+        <Script id="google-tag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -252,11 +253,9 @@ export default function RootLayout({
                 <ReassuranceSection />
                 <Footer />
                 <Toaster />
-                <FaqChatbot />
                 <CookieConsent />
-                <ExitIntentPopup />
-                <CartAbandonmentPopup />
                 <AuthCartBridge />
+                <DeferredWidgets />
               </WishlistProvider>
             </CartProvider>
           </FirebaseClientProvider>

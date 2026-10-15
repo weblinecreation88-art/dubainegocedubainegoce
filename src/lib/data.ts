@@ -3262,7 +3262,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["khamrah", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cannelle", "muscade", "bergamote", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["https://frenchavenue.fr/wp-content/uploads/2024/01/Khamrah.jpeg"],
+        "images": ["/khamrah-lattafa.png"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"

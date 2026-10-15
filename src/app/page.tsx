@@ -213,8 +213,8 @@ export default function Home() {
               <p className="text-muted-foreground text-sm">Des fragrances orientales sélectionnées avec soin directement auprès des grandes maisons.</p>
             </div>
             <div className="text-center p-6 bg-white dark:bg-card rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800">
-              <div className="w-16 h-16 mx-auto bg-[#c9a96e]/10 flex items-center justify-center rounded-full mb-4">
-                <span className="text-2xl font-bold text-[#c9a96e]">35€</span>
+              <div className="w-16 h-16 mx-auto bg-[#c9a96e]/15 flex items-center justify-center rounded-full mb-4">
+                <span className="text-2xl font-bold text-[#8f621a] dark:text-[#c9a96e]">35€</span>
               </div>
               <h3 className="text-xl font-bold mb-2">Prix Unique</h3>
               <p className="text-muted-foreground text-sm">Une parfumerie orientale de haute qualité accessible pour tous.</p>

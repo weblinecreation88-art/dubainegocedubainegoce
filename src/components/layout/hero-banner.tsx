@@ -130,31 +130,35 @@ export function HeroBanner({ images }: HeroBannerProps) {
             <button
               onClick={prev}
               aria-label="Image précédente"
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/30 hover:bg-black/60 text-white/70 hover:text-white transition-all rounded-full"
+              className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/80 hover:text-white transition-colors rounded-full"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={next}
               aria-label="Image suivante"
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/30 hover:bg-black/60 text-white/70 hover:text-white transition-all rounded-full"
+              className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/80 hover:text-white transition-colors rounded-full"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
 
             {/* Dots */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex items-center">
               {images.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
                   aria-label={`Image ${i + 1}`}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === currentIndex
-                      ? "bg-[#c9a96e] w-5 h-1.5"
-                      : "bg-white/40 hover:bg-white/60 w-1.5 h-1.5"
-                  }`}
-                />
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 focus:outline-none"
+                >
+                  <span
+                    className={`rounded-full transition-colors duration-300 ${
+                      i === currentIndex
+                        ? "bg-[#c9a96e] w-5 h-2"
+                        : "bg-white/50 hover:bg-white/80 w-2 h-2"
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>

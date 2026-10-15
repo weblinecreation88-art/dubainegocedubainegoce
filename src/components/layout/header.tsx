@@ -65,13 +65,13 @@ export default function Header() {
       {/* Main Row */}
       <div className="container relative flex h-14 items-center">
 
-        {/* LEFT: Menu burger + Search (mobile) | Logo (desktop) */}
+        {/* LEFT: Menu burger (mobile) | Logo (desktop) */}
         <div className="flex items-center gap-1 lg:gap-4 z-10">
           {/* Mobile Menu Trigger */}
           <div className="lg:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
+                <Button variant="ghost" size="icon" className="h-10 w-10 text-black hover:text-gray-600 hover:bg-gray-100" aria-label="Ouvrir le menu">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Ouvrir le menu</span>
                 </Button>
@@ -128,18 +128,8 @@ export default function Header() {
             </Sheet>
           </div>
 
-          {/* Search - mobile only (affiché à gauche pour symétrie) */}
-          <div className="lg:hidden">
-            <SearchDialog>
-              <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
-                <Search className="h-5 w-5" />
-                <span className="sr-only">Rechercher</span>
-              </Button>
-            </SearchDialog>
-          </div>
-
           {/* Logo - desktop only */}
-          <Link href="/" className="hidden lg:flex items-center">
+          <Link href="/" className="hidden lg:flex items-center" aria-label="Accueil Dubaï Négoce">
             <span className="font-headline font-bold text-xl md:text-2xl tracking-widest uppercase">
               Dubaï Négoce
             </span>
@@ -150,8 +140,8 @@ export default function Header() {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="pointer-events-auto">
             {/* Logo centré - mobile only */}
-            <Link href="/" className="lg:hidden flex items-center">
-              <span className="font-headline font-bold text-xl tracking-widest uppercase">
+            <Link href="/" className="lg:hidden flex items-center" aria-label="Accueil Dubaï Négoce">
+              <span className="font-headline font-bold text-lg sm:text-xl tracking-wider uppercase whitespace-nowrap">
                 Dubaï Négoce
               </span>
             </Link>
@@ -171,57 +161,55 @@ export default function Header() {
           </div>
         </div>
 
-        {/* RIGHT: Icons */}
-        <div className="ml-auto flex items-center gap-1 lg:gap-3 z-10">
-          {/* Search - desktop only */}
-          <div className="hidden lg:flex">
-            <SearchDialog>
-              <Button variant="ghost" size="icon" className="text-black hover:text-gray-600 hover:bg-gray-100">
-                <Search className="h-5 w-5" />
-                <span className="sr-only">Rechercher</span>
-              </Button>
-            </SearchDialog>
-          </div>
+        {/* RIGHT: Search + User + Wishlist + Cart + Theme */}
+        <div className="ml-auto flex items-center gap-1 sm:gap-2 lg:gap-3 z-10">
+          {/* Search - visible sur tous les écrans à droite */}
+          <SearchDialog>
+            <Button variant="ghost" size="icon" className="h-9 w-9 text-black hover:text-gray-600 hover:bg-gray-100" aria-label="Rechercher">
+              <Search className="h-5 w-5" />
+              <span className="sr-only">Rechercher</span>
+            </Button>
+          </SearchDialog>
 
-          {/* User - toujours visible */}
-          {!isUserLoading && (
-            user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-100 p-0">
-                    <Avatar className="h-8 w-8 border border-gray-300">
-                      <AvatarFallback className="bg-gray-100 text-black text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="text-foreground bg-background">
-                  <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild><Link href="/account">Profil</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/account/orders">Mes commandes</Link></DropdownMenuItem>
-                  {isAdminEmail(user?.email) && (
-                    <>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild><Link href="/admin">📊 Tableau de Bord Admin</Link></DropdownMenuItem>
-                    </>
-                  )}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout}>Déconnexion</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button variant="ghost" size="icon" asChild className="text-black hover:text-gray-600 hover:bg-gray-100">
-                <Link href="/login">
-                  <User className="h-5 w-5" />
-                  <span className="sr-only">Compte</span>
-                </Link>
-              </Button>
-            )
+          {/* User - toujours visible avec placeholder anti-CLS */}
+          {isUserLoading ? (
+            <div className="h-9 w-9 rounded-full bg-transparent" aria-hidden="true" />
+          ) : user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full hover:bg-gray-100 p-0" aria-label="Menu compte">
+                  <Avatar className="h-8 w-8 border border-gray-300">
+                    <AvatarFallback className="bg-gray-100 text-black text-xs">{getInitials(user.displayName || user.email)}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="text-foreground bg-background">
+                <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild><Link href="/account">Profil</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/account/orders">Mes commandes</Link></DropdownMenuItem>
+                {isAdminEmail(user?.email) && (
+                  <>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild><Link href="/admin">📊 Tableau de Bord Admin</Link></DropdownMenuItem>
+                  </>
+                )}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleLogout}>Déconnexion</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button variant="ghost" size="icon" asChild className="h-9 w-9 text-black hover:text-gray-600 hover:bg-gray-100">
+              <Link href="/login" aria-label="Mon Compte">
+                <User className="h-5 w-5" />
+                <span className="sr-only">Compte</span>
+              </Link>
+            </Button>
           )}
 
-          {/* Heart / Favoris - caché sur mobile */}
-          <Button variant="ghost" size="icon" asChild className="hidden sm:flex text-black hover:text-gray-600 hover:bg-gray-100 relative" title="Mes Favoris">
-            <Link href="/wishlist">
+          {/* Heart / Favoris - visible dès sm */}
+          <Button variant="ghost" size="icon" asChild className="hidden sm:flex h-9 w-9 text-black hover:text-gray-600 hover:bg-gray-100 relative" title="Mes Favoris">
+            <Link href="/wishlist" aria-label="Mes Favoris">
               <Heart className="h-5 w-5" />
               {isMounted && wishlist.length > 0 && (
                 <Badge className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-accent text-accent-foreground">
@@ -233,8 +221,8 @@ export default function Header() {
           </Button>
 
           {/* Panier - toujours visible */}
-          <Button variant="ghost" size="icon" asChild className="text-black hover:text-gray-600 hover:bg-gray-100 relative">
-            <Link href="/cart">
+          <Button variant="ghost" size="icon" asChild className="h-9 w-9 text-black hover:text-gray-600 hover:bg-gray-100 relative">
+            <Link href="/cart" aria-label="Panier">
               <ShoppingCart className="h-5 w-5" />
               {isMounted && cartCount > 0 && (
                 <Badge variant="destructive" className="absolute top-0 right-0 h-4 w-4 flex items-center justify-center rounded-full p-0 text-[10px] transform translate-x-1/4 -translate-y-1/4 border-none bg-accent text-accent-foreground">

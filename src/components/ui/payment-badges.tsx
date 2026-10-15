@@ -5,6 +5,7 @@ import React from 'react';
 export function CbBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
+      role="img"
       className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
       title="Carte Bancaire (CB)"
       aria-label="Carte Bancaire"
@@ -27,6 +28,7 @@ export function CbBadge({ className = 'h-6' }: { className?: string }) {
 export function VisaBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
+      role="img"
       className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
       title="Visa"
       aria-label="Visa"
@@ -45,6 +47,7 @@ export function VisaBadge({ className = 'h-6' }: { className?: string }) {
 export function MastercardBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
+      role="img"
       className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
       title="Mastercard"
       aria-label="Mastercard"
@@ -64,6 +67,7 @@ export function MastercardBadge({ className = 'h-6' }: { className?: string }) {
 export function ApplePayBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
+      role="img"
       className={`inline-flex items-center justify-center bg-black text-white border border-black/80 rounded px-2 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
       title="Apple Pay (iOS)"
       aria-label="Apple Pay"
@@ -81,6 +85,7 @@ export function ApplePayBadge({ className = 'h-6' }: { className?: string }) {
 export function GooglePayBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
+      role="img"
       className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-2 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
       title="Google Pay"
       aria-label="Google Pay"
