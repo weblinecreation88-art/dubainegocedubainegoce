@@ -26,47 +26,33 @@ export default function Home() {
   const fragranceFamilies = getFragranceFamilies();
   const newArrivals = getNewArrivals();
 
-  const bestsellersSlugs = [
+  const popularSlugs = [
+    'tobacco-touch-maison-alhambra',
+    'grise-maison-alhambra',
     'woody-oud-80-ml-maison-alhambra',
-    'the-tux-maison-alhambra-mixte',
+    'porto-neroli-maison-alhambra',
+    'lovely-cherie-maison-alhambra',
     'toscano-leather-maison-alhambra',
-    'jean-lowe-matiere-maison-alhambra',
-    'glacier-pour-homme-maison-alhambra',
-    'kismet-for-women-maison-alhambra',
-    'infini-oud-maison-alhambra-mixte',
-    'yeah-maison-alhambra'
-  ];
-  const bestsellers = bestsellersSlugs
-    .map(slug => getProducts().find(p => p.slug === slug))
-    .filter((p): p is Product => p !== undefined);
-
-  const lattafaSlugs = [
     'khamrah-lattafa',
-    'asad-lattafa',
-    'yara-lattafa',
-    'ana-abiyedh-60ml-lattafa',
-    'come-moiselle-maison-alhambra',
-    'leonie-maison-alhambra',
-    'badee-parfum-lattafa',
-    'fakhar-black-lattafa',
-    'ameer-al-oudh-intense-oud-lattafa',
-    'qaed-al-fursan',
-    'mayar-lattafa',
-    'sakeena-lattafa',
-    'maahir-lattafa',
-    'oud-mood-lattafa',
-    'ramz-silver-lattafa',
+    'fleur-de-coton-sublime',
+    'zaffiro-collection-crafted-oud-maison-alhambra',
+    'pose-as-rose-fragrance-world',
+    'liquide-brun-french-avenue',
+    'good-girl-by-killer-loui-martin'
   ];
-  const lattafaProducts = lattafaSlugs
-    .map(slug => getProducts().find(p => p.slug === slug))
-    .filter((p): p is Product => p !== undefined);
-
   const allProducts = getProducts();
+  const popularProducts = popularSlugs
+    .map(slug => allProducts.find(p => p.slug === slug))
+    .filter((p): p is Product => p !== undefined)
+    .map(p => ({ ...p, isBestseller: true }));
+
   const heroImages = [
-    allProducts.find(p => p.slug === 'khamrah-lattafa')?.images[0] || "/hero-1.jpeg", // Gourmand
-    allProducts.find(p => p.slug === 'woody-oud-80-ml-maison-alhambra')?.images[0] || "/hero-2.jpeg", // Boisé / Oud
-    allProducts.find(p => p.slug === 'yara-lattafa')?.images[0] || "/hero-3.jpeg", // Floral
-    allProducts.find(p => p.slug === 'asad-lattafa')?.images[0] || "/hero-4.jpeg", // Ambré / Oriental
+    allProducts.find(p => p.slug === 'tobacco-touch-maison-alhambra')?.images[0],
+    allProducts.find(p => p.slug === 'woody-oud-80-ml-maison-alhambra')?.images[0],
+    allProducts.find(p => p.slug === 'grise-maison-alhambra')?.images[0],
+    allProducts.find(p => p.slug === 'porto-neroli-maison-alhambra')?.images[0],
+    allProducts.find(p => p.slug === 'khamrah-lattafa')?.images[0],
+    allProducts.find(p => p.slug === 'lovely-cherie-maison-alhambra')?.images[0],
   ].filter(Boolean) as string[];
 
   return (
@@ -137,23 +123,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Best Sellers Section - Limité à 6 */}
-      {bestsellers.length > 0 && (
+      {/* Parfums les Plus Populaires / Best Sellers Section */}
+      {popularProducts.length > 0 && (
         <section className="py-16 md:py-24 bg-gray-50 dark:bg-muted/10">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10 md:mb-14 text-center">
-              <h2 className="text-3xl md:text-4xl font-headline font-bold text-gray-900 dark:text-gray-100">Les parfums que vous aimez le plus</h2>
+              <span className="text-xs uppercase tracking-[0.25em] text-[#c9a96e] font-bold block mb-2">Les Incontournables</span>
+              <h2 className="text-3xl md:text-4xl font-headline font-bold text-gray-900 dark:text-gray-100">Les Parfums les Plus Populaires</h2>
               <div className="flex justify-center gap-1 my-3">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-5 h-5 text-[#c9a96e] fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                 ))}
               </div>
-              <p className="text-muted-foreground mt-2 font-medium tracking-wide">Les incontournables de Dubaï Négoce</p>
+              <p className="text-muted-foreground mt-2 font-medium tracking-wide">Les fragrances les plus recherchées et plébiscitées de notre boutique</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
-              {bestsellers.slice(0, 6).map((product, index) => (
-                <div key={index} className="transition-transform duration-300 hover:-translate-y-1">
-                  <ProductCard product={product} />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
+              {popularProducts.map((product, index) => (
+                <div key={product.id || index} className="transition-transform duration-300 hover:-translate-y-1">
+                  <ProductCard product={product} priority={index < 4} />
                 </div>
               ))}
             </div>
