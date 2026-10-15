@@ -78,6 +78,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
             className="relative order-1 lg:order-2 h-[300px] sm:h-[380px] lg:h-full lg:min-h-[580px] overflow-hidden border-b lg:border-b-0 lg:border-l border-[#c9a96e]/60"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
+          >
             <div className="relative w-full h-full">
               {images[currentIndex] && (
                 <div className="absolute inset-0 w-full h-full">
