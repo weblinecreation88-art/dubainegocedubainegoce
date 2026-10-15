@@ -525,7 +525,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["grise", "maison alhambra", "parfum chypré", "parfum mixte", "eau de parfum maison alhambra", "citron", "bergamote", "musc", "mousse de chêne", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/grise-maison-alhambra.png"],
+        "images": ["/images-parfums/grise-maison-alhambra.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"
@@ -1652,7 +1652,7 @@ const products: Product[] = [
         "isBestseller": false,
         "isNew": true,
         "tags": ["pose as rose", "fragrance world", "parfum floral", "parfum femme", "eau de parfum fragrance world", "bergamote", "poire", "vanille", "ambre", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/images-parfums/pose-as-rose-fragrance-world.png"],
+        "images": ["/images-parfums/pose-as-rose-fragrance-world.webp"],
         "reviews": [],
         "rating": 4.8,
         "productType": "perfume"

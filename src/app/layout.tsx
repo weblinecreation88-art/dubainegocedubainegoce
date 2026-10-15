@@ -147,10 +147,8 @@ export default function RootLayout({
       <head>
         {/* TikTok Shop domain verification */}
         <meta name="tiktok-domain-verification" content="FRFRLCPCQWAL" />
-        {/* Preconnects essentiels pour LCP et Auth */}
-        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://dubainegoce-227c3.firebaseapp.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://apis.google.com" crossOrigin="anonymous" />
+        {/* Preconnect direct pour l'image LCP Cloudinary (sans crossOrigin pour matcher la balise img) */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://dubainegoce-227c3.firebaseapp.com" />
         <link rel="dns-prefetch" href="https://apis.google.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />

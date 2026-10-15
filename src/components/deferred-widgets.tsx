@@ -11,16 +11,28 @@ export function DeferredWidgets() {
   const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    // Différer le montage des popups marketing et du chatbot pour libérer le thread principal
-    if (typeof window !== 'undefined') {
-      if ('requestIdleCallback' in window) {
-        const handle = (window as any).requestIdleCallback(() => setShouldRender(true), { timeout: 2500 });
-        return () => (window as any).cancelIdleCallback(handle);
-      } else {
-        const timer = setTimeout(() => setShouldRender(true), 2000);
-        return () => clearTimeout(timer);
-      }
-    }
+    if (typeof window === 'undefined') return;
+
+    const enableWidgets = () => {
+      setShouldRender(true);
+      cleanup();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener('scroll', enableWidgets);
+      window.removeEventListener('touchstart', enableWidgets);
+      window.removeEventListener('click', enableWidgets);
+      clearTimeout(timer);
+    };
+
+    window.addEventListener('scroll', enableWidgets, { passive: true, once: true });
+    window.addEventListener('touchstart', enableWidgets, { passive: true, once: true });
+    window.addEventListener('click', enableWidgets, { passive: true, once: true });
+
+    // Fallback après 8s si aucune interaction utilisateur
+    const timer = setTimeout(enableWidgets, 8000);
+
+    return cleanup;
   }, []);
 
   if (!shouldRender) return null;

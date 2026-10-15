@@ -26,8 +26,17 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
   useEffect(() => {
     if (images.length <= 1 || isPaused) return;
-    const interval = setInterval(next, 4000);
-    return () => clearInterval(interval);
+
+    let intervalId: NodeJS.Timeout | null = null;
+    const initialTimer = setTimeout(() => {
+      next();
+      intervalId = setInterval(next, 7000);
+    }, 10000);
+
+    return () => {
+      clearTimeout(initialTimer);
+      if (intervalId) clearInterval(intervalId);
+    };
   }, [images.length, isPaused, next]);
 
   return (

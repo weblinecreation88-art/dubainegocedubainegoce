@@ -53,9 +53,7 @@ export default function Home() {
     allProducts.find(p => p.slug === 'porto-neroli-maison-alhambra')?.images[0],
     allProducts.find(p => p.slug === 'khamrah-lattafa')?.images[0],
     allProducts.find(p => p.slug === 'lovely-cherie-maison-alhambra')?.images[0],
-  ]
-    .filter(Boolean)
-    .map(url => (url && url.includes('cloudinary.com') && !url.includes('f_auto') ? url.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_800/') : url)) as string[];
+  ].filter(Boolean) as string[];
 
   return (
     <div className="flex flex-col">
@@ -142,7 +140,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6">
               {popularProducts.map((product, index) => (
                 <div key={product.id || index} className="transition-transform duration-300 hover:-translate-y-1">
-                  <ProductCard product={product} priority={index < 4} />
+                  <ProductCard product={product} />
                 </div>
               ))}
             </div>
