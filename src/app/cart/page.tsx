@@ -19,6 +19,7 @@ import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { PayPalCheckoutButton } from '@/components/checkout/paypal-checkout-button';
 import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce } from '@/lib/analytics';
+import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
@@ -392,6 +393,11 @@ export default function CartPage() {
                   Déjà un compte ? Se connecter
                 </Link>
               )}
+            </div>
+
+            {/* Badges moyens de paiement acceptés */}
+            <div className="pt-4 pb-2 border-t text-center">
+              <PaymentBadges title="Paiements 100% sécurisés acceptés :" badgeClassName="h-7" />
             </div>
           </div>
 

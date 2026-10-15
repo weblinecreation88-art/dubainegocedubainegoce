@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { Mail, MapPin, Phone, Instagram, Facebook, Youtube } from 'lucide-react';
 import Image from 'next/image';
+import { PaymentBadges } from '@/components/ui/payment-badges';
 
 const TiktokIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -95,6 +96,10 @@ export default function Footer() {
         
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/50">
           <p>&copy; {new Date().getFullYear()} Dubaï Négoce. Tous droits réservés.</p>
+          <div className="flex flex-col sm:flex-row items-center gap-2">
+            <span className="text-[11px] text-white/60">Paiement 100% sécurisé :</span>
+            <PaymentBadges showTitle={false} badgeClassName="h-6" />
+          </div>
           <div className="flex gap-4">
             <Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</Link>
           </div>

@@ -6,6 +6,7 @@ import { AddToCartButton } from './add-to-cart-button';
 import type { Product } from '@/lib/types';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export function ProductActions({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
@@ -48,7 +49,10 @@ export function ProductActions({ product }: { product: Product }) {
         Ajouter au panier
       </AddToCartButton>
 
-
+      {/* Badges de paiement sécurisé */}
+      <div className="pt-2 text-center">
+        <PaymentBadges title="Paiement 100% sécurisé :" badgeClassName="h-6" />
+      </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { ShoppingCart, Lock } from 'lucide-react';
 import { formatCurrency, getShippingMethodLabel, formatShippingDetail } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import Image from 'next/image';
+import { PaymentBadges } from '@/components/ui/payment-badges';
 
 interface CartItem {
   id: string;
@@ -164,10 +165,11 @@ export function OrderSummary({
         </Button>
       )}
 
-      {/* Security Info */}
-      <div className="text-center text-xs text-muted-foreground space-y-1">
-        <p>🔒 Paiement sécurisé par Stripe</p>
-        <p>✅ 100% Authentique | 💚 Retour 14 jours</p>
+      {/* Security Info & Payment Badges */}
+      <div className="text-center text-xs text-muted-foreground space-y-2.5 pt-2">
+        <PaymentBadges title="Paiement 100% sécurisé via Stripe :" badgeClassName="h-6" />
+        <p className="text-[11px]">CB • Visa • Mastercard • Apple Pay • Google Pay</p>
+        <p className="text-[11px] text-muted-foreground/80">✅ 100% Authentique | 💚 Expédition 24/48h | 🔒 Cryptage SSL</p>
       </div>
     </div>
   );
