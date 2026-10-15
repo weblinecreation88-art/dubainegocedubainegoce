@@ -3262,7 +3262,7 @@ const products: Product[] = [
         "isBestseller": true,
         "isNew": false,
         "tags": ["khamrah", "lattafa", "parfum oriental", "parfum mixte", "eau de parfum lattafa", "cannelle", "muscade", "bergamote", "vanille", "parfum oriental", "parfum dubai", "parfum pas cher"],
-        "images": ["/khamrah-lattafa.png"],
+        "images": ["/khamrah-lattafa.webp"],
         "reviews": [],
         "rating": 4.9,
         "productType": "perfume"

@@ -78,27 +78,21 @@ export function HeroBanner({ images }: HeroBannerProps) {
             className="relative order-1 lg:order-2 h-[300px] sm:h-[380px] lg:h-full lg:min-h-[580px] overflow-hidden border-b lg:border-b-0 lg:border-l border-[#c9a96e]/60"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-          >
             <div className="relative w-full h-full">
-              {images.map((img, i) => (
-                <div
-                  key={img || i}
-                  className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
-                    i === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                  }`}
-                >
+              {images[currentIndex] && (
+                <div className="absolute inset-0 w-full h-full">
                   <Image
-                    src={img}
-                    alt={`Parfum oriental ${i + 1} - Dubai Negoce`}
+                    key={images[currentIndex]}
+                    src={images[currentIndex]}
+                    alt={`Parfum oriental ${currentIndex + 1} - Dubai Negoce`}
                     fill
-                    priority={i === 0}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                    className="object-cover object-center"
+                    priority={currentIndex === 0}
+                    className="object-cover object-center transition-opacity duration-500"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-[#0f1726]/10" />
                 </div>
-              ))}
+              )}
             </div>
 
             {/* Flèches */}
