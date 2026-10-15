@@ -85,10 +85,12 @@ export async function POST(req: NextRequest) {
       price_data: {
         currency: 'eur',
         unit_amount: Math.round(product.price * 100),
+        tax_behavior: 'inclusive',
         product_data: {
           name: product.name,
           images: image ? [image] : [],
           metadata: { productId: product.id },
+          tax_code: 'txcd_99999999', // Biens physiques standards (parfumerie)
         },
       },
     };
@@ -149,13 +151,17 @@ export async function POST(req: NextRequest) {
             type: 'fixed_amount',
             display_name: shippingCost === 0 ? `${shippingLabel} — offerte` : shippingLabel,
             fixed_amount: { amount: Math.round(shippingCost * 100), currency: 'eur' },
+            tax_behavior: 'inclusive',
             delivery_estimate: {
-              minimum: { unit: 'business_day', value: shippingMethod === 'colissimo' ? 2 : 3 },
-              maximum: { unit: 'business_day', value: shippingMethod === 'colissimo' ? 3 : 5 },
+              minimum: { unit: 'business_day', value: 2 },
+              maximum: { unit: 'business_day', value: 3 },
             },
           },
         },
       ],
+      automatic_tax: {
+        enabled: true,
+      },
       invoice_creation: { enabled: true },
       success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${orderTotal.toFixed(2)}`,
       cancel_url: `${appUrl}/cart`,
