@@ -154,12 +154,12 @@ export function OrderSummary({
           {isLoading ? (
             <>
               <span className="animate-spin inline-block mr-2">⏳</span>
-              Traitement en cours...
+              Redirection sécurisée...
             </>
           ) : (
             <>
               <Lock className="h-4 w-4 mr-2" />
-              Procéder au paiement sécurisé
+              Payer par Carte Bancaire (CB, Visa, Mastercard)
             </>
           )}
         </Button>
