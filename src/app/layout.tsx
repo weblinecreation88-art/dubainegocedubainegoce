@@ -161,8 +161,16 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GOOGLE_ADS_ID}');
-            var h = window.location.hostname;
-            if (!(h === 'localhost' || h === '127.0.0.1' || /^192\\.168\\./.test(h))) {
+            // GA4 désactivé en local et pour les robots (navigateurs automatisés,
+            // fermes de serveurs à Singapour / en Chine qui gonflent les visiteurs à ~0 s d'engagement).
+            var h = window.location.hostname, tz = '';
+            try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+            var internal = h === 'localhost' || h === '127.0.0.1' || /^192\\.168\\./.test(h);
+            var bot = navigator.webdriver === true
+              || /HeadlessChrome|PhantomJS|Lighthouse/i.test(navigator.userAgent)
+              || /^Asia\\/(Singapore|Shanghai|Chongqing|Chungking|Harbin|Urumqi)$/.test(tz);
+            window.__ga4Off = internal || bot;
+            if (!window.__ga4Off) {
               gtag('config', '${GA4_MEASUREMENT_ID}');
             }
           `}
