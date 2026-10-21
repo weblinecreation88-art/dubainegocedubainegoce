@@ -1,130 +1,115 @@
 import { Metadata } from 'next';
-import { Truck, CreditCard, ShieldCheck, MapPin, Package, Smartphone } from 'lucide-react';
+import Link from 'next/link';
+import { Truck, CreditCard, ShieldCheck, Package } from 'lucide-react';
+import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export const metadata: Metadata = {
-    title: 'Livraison et Paiement | Dubaï Négoce',
-    description: 'Découvrez nos options de livraison rapides et nos moyens de paiement 100% sécurisés. Colissimo, Mondial Relay, Apple Pay, Google Pay et plus.',
+  title: 'Livraison et Paiement | Dubaï Négoce',
+  description:
+    'Consultez nos tarifs de livraison Colissimo (offerte dès 3 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, PayPal, Apple Pay, Google Pay).',
 };
 
 export default function DeliveryAndPaymentPage() {
-    return (
-        <div className="min-h-screen bg-background">
-            {/* Header court */}
-            <section className="bg-black text-white py-16 md:py-24 text-center">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-headline font-bold mb-4">Livraison & Paiement</h1>
-                    <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                        Rapide, fiable et sécurisé. Voici tout ce que vous devez savoir sur vos commandes chez Dubaï Négoce.
-                    </p>
-                </div>
-            </section>
+  return (
+    <div className="container mx-auto max-w-5xl px-4 py-10">
+      <nav aria-label="Fil d'Ariane" className="mb-6 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2">
+        <Link href="/" className="hover:text-[#d4a017]">Accueil</Link>
+        <span className="mx-2">&gt;</span>
+        <span className="font-bold text-[#111827]">Livraison &amp; Paiement</span>
+      </nav>
 
-            <div className="container mx-auto px-4 py-16 max-w-5xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-
-                    {/* Section Livraison */}
-                    <div>
-                        <div className="flex items-center gap-3 mb-8 pb-4 border-b border-gray-200 dark:border-gray-800">
-                            <Truck className="w-8 h-8 text-black dark:text-white" />
-                            <h2 className="text-3xl font-headline">Modes de Livraison</h2>
-                        </div>
-
-                        <div className="space-y-8">
-                            <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-100 dark:border-gray-800 transition-all hover:shadow-md">
-                                <div className="flex items-start gap-4">
-                                    <div className="bg-black shrink-0 text-white w-12 h-12 flex items-center justify-center rounded-full">
-                                        <MapPin className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold mb-2">Mondial Relay (Point Relais)</h3>
-                                        <p className="text-muted-foreground mb-4">
-                                            Faites-vous livrer dans le point relais de votre choix, près de chez vous ou de votre lieu de travail.
-                                        </p>
-                                        <ul className="space-y-2 text-sm">
-                                            <li className="flex justify-between items-center bg-white dark:bg-black p-3 rounded shadow-sm">
-                                                <span className="font-medium">Délai estimé</span>
-                                                <span>3 à 5 jours ouvrés</span>
-                                            </li>
-                                            <li className="flex justify-between items-center bg-white dark:bg-black p-3 rounded shadow-sm">
-                                                <span className="font-medium">Tarif</span>
-                                                <span>À partir de <strong className="text-black dark:text-white text-base">4,49 €</strong> (selon poids)</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-100 dark:border-gray-800 transition-all hover:shadow-md">
-                                <div className="flex items-start gap-4">
-                                    <div className="bg-black shrink-0 text-white w-12 h-12 flex items-center justify-center rounded-full">
-                                        <Package className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold mb-2">Colissimo (À domicile)</h3>
-                                        <p className="text-muted-foreground mb-4">
-                                            La livraison classique et rapide directement dans votre boîte aux lettres par La Poste.
-                                        </p>
-                                        <ul className="space-y-2 text-sm">
-                                            <li className="flex justify-between items-center bg-white dark:bg-black p-3 rounded shadow-sm">
-                                                <span className="font-medium">Délai estimé</span>
-                                                <span>48 heures (2 jours ouvrés)</span>
-                                            </li>
-                                            <li className="flex justify-between items-center bg-white dark:bg-black p-3 rounded shadow-sm">
-                                                <span className="font-medium">Tarif</span>
-                                                <span>Calculé à l'étape du paiement</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p className="text-sm text-muted-foreground italic mt-4 text-center">
-                                *Toutes nos commandes sont préparées et expédiées sous 24h ouvrées (hors week-end et jours fériés).
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Section Paiement */}
-                    <div>
-                        <div className="flex items-center gap-3 mb-8 pb-4 border-b border-gray-200 dark:border-gray-800">
-                            <CreditCard className="w-8 h-8 text-black dark:text-white" />
-                            <h2 className="text-3xl font-headline">Moyens de Paiement</h2>
-                        </div>
-
-                        <div className="space-y-6">
-                            <p className="text-muted-foreground mb-6">
-                                Pour garantir une sécurité maximale lors de vos achats, toutes nos transactions sont cryptées et traitées par des partenaires de confiance.
-                            </p>
-
-                            <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg text-center flex flex-col items-center">
-                                <ShieldCheck className="w-10 h-10 mb-4 text-emerald-600 dark:text-emerald-500" />
-                                <h3 className="font-bold text-lg mb-2">Paiement 100% Sécurisé (Stripe)</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    Nous utilisons Stripe pour traiter vos paiements. Vos données bancaires ne sont jamais stockées sur nos serveurs.
-                                </p>
-                                <div className="flex justify-center gap-3 mt-4">
-                                    <span className="px-3 flex items-center justify-center py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded border border-gray-200 dark:border-gray-700">Visa</span>
-                                    <span className="px-3 flex items-center justify-center py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded border border-gray-200 dark:border-gray-700">Mastercard</span>
-                                    <span className="px-3 flex items-center justify-center py-1 bg-gray-100 dark:bg-gray-800 text-xs font-semibold rounded border border-gray-200 dark:border-gray-700">Amex</span>
-                                </div>
-                            </div>
-
-                            <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-800 p-6 rounded-lg text-center flex flex-col items-center">
-                                <Smartphone className="w-10 h-10 mb-4 text-black dark:text-white" />
-                                <h3 className="font-bold text-lg mb-2">Paiement Mobile Rapide</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    Réglez vos achats en un clic grâce à vos portefeuilles électroniques directement depuis votre smartphone ou navigateur compatible.
-                                </p>
-                                <div className="flex justify-center gap-4 mt-4">
-                                    <span className="px-4 flex items-center justify-center py-2 bg-black text-white text-sm font-semibold rounded-full w-full max-w-[140px]">Apple Pay</span>
-                                    <span className="px-4 flex items-center justify-center py-2 bg-white text-gray-800 border border-gray-300 text-sm font-semibold rounded-full w-full max-w-[140px] shadow-sm">Google Pay</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+      <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 text-[#111827]">
+        <div className="border-b border-[#e4dac9] pb-5 mb-8">
+          <h1 className="text-2xl sm:text-3xl font-headline font-bold mb-2">
+            Livraison &amp; Paiement Sécurisé
+          </h1>
+          <p className="text-sm text-gray-600">
+            Les tarifs affichés ci-dessous sont exactement ceux appliqués dans votre panier et lors du règlement.
+          </p>
         </div>
-    );
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Colonne Livraison */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2.5 pb-2 border-b border-[#e4dac9]">
+              <Truck className="w-5 h-5 text-[#d4a017]" />
+              <h2 className="text-lg font-headline font-bold">Livraison Colissimo Domicile</h2>
+            </div>
+
+            <div className="bg-[#fdfaf4] p-5 rounded border border-[#e4dac9] space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="bg-[#111827] text-[#d4a017] w-10 h-10 flex items-center justify-center rounded shrink-0">
+                  <Package className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base">Colissimo Domicile avec suivi</h3>
+                  <p className="text-xs text-gray-600 mt-1">
+                    Livraison à l&apos;adresse indiquée avec numéro de suivi envoyé par e-mail.
+                  </p>
+                </div>
+              </div>
+
+              <ul className="space-y-2 text-xs sm:text-sm">
+                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e4dac9]">
+                  <span>1 parfum (flacon 100 ml)</span>
+                  <strong className="text-[#111827]">7,10 € TTC</strong>
+                </li>
+                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e4dac9]">
+                  <span>2 parfums</span>
+                  <strong className="text-[#111827]">9,59 € TTC</strong>
+                </li>
+                <li className="flex justify-between items-center bg-[#f7f0e6] p-2.5 rounded border border-[#d4a017]">
+                  <span className="font-bold">Dès 3 parfums (ou 100 € d&apos;achat)</span>
+                  <strong className="text-[#46a74e]">OFFERT (0,00 €)</strong>
+                </li>
+              </ul>
+
+              <p className="text-xs text-gray-600">
+                Consultez également notre{' '}
+                <Link href="/shipping" className="text-[#d4a017] font-semibold underline">
+                  politique de retour sous 14 jours
+                </Link>.
+              </p>
+            </div>
+          </div>
+
+          {/* Colonne Paiement */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2.5 pb-2 border-b border-[#e4dac9]">
+              <CreditCard className="w-5 h-5 text-[#d4a017]" />
+              <h2 className="text-lg font-headline font-bold">Moyens de Paiement Acceptés</h2>
+            </div>
+
+            <div className="bg-[#fdfaf4] p-5 rounded border border-[#e4dac9] space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="bg-[#46a74e] text-white w-10 h-10 flex items-center justify-center rounded shrink-0">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base">Transactions chiffrées SSL / 3D Secure</h3>
+                  <p className="text-xs text-gray-600 mt-1">
+                    Vos règlements sont traités de bout en bout par <strong>Stripe</strong> ou <strong>PayPal</strong>. Aucune coordonnée bancaire n&apos;est conservée par notre boutique.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded border border-[#e4dac9]">
+                <PaymentBadges
+                  title="Moyens disponibles à l'étape du paiement :"
+                  badgeClassName="h-7"
+                  align="left"
+                />
+              </div>
+
+              <ul className="space-y-1.5 text-xs text-gray-700 list-disc pl-4">
+                <li><strong>Carte Bancaire (CB, Visa, Mastercard)</strong> via Stripe sécurisé</li>
+                <li><strong>PayPal</strong> (paiement via votre compte PayPal)</li>
+                <li><strong>Apple Pay &amp; Google Pay</strong> sur les appareils et navigateurs compatibles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

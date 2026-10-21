@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -17,6 +16,7 @@ const ptSans = PT_Sans({
   variable: '--font-body',
   display: 'swap',
 });
+
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
@@ -26,14 +26,19 @@ import { WishlistProvider } from '@/context/wishlist-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import dynamic from 'next/dynamic';
-const CookieConsent = dynamic(() => import('@/components/cookie-consent').then(m => ({ default: m.CookieConsent })), { ssr: false });
-const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then(m => ({ default: m.AuthCartBridge })), { ssr: false });
+
+const CookieConsent = dynamic(() => import('@/components/cookie-consent').then((m) => ({ default: m.CookieConsent })), { ssr: false });
+const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then((m) => ({ default: m.AuthCartBridge })), { ssr: false });
+const PrestashopLayerCart = dynamic(
+  () => import('@/components/product/prestashop-layer-cart').then((m) => ({ default: m.PrestashopLayerCart })),
+  { ssr: false }
+);
+
 import { DeferredWidgets } from '@/components/deferred-widgets';
 import Script from 'next/script';
 import { GA4_MEASUREMENT_ID } from '@/lib/analytics';
-import { ShieldCheck, Rocket, Lock, Phone } from 'lucide-react';
+import { ShieldCheck, Truck, Lock, Phone } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
-import { organizationSchema } from '@/components/seo/schemas';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TJZMGFQ2';
@@ -41,70 +46,70 @@ const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 
 const reassurances = [
   {
-    icon: <ShieldCheck className="w-6 h-6 mr-3 text-primary" />,
-    title: "100% Authentique",
-    description: "Importé directement de Dubaï"
+    icon: <ShieldCheck className="w-6 h-6 text-[#d4a017]" />,
+    title: 'Parfums Authentiques',
+    description: 'Flacons neufs scellés sous blister',
   },
   {
-    icon: <Lock className="w-6 h-6 mr-3 text-primary" />,
-    title: "Prix Juste et Fixe",
-    description: "Le luxe accessible à 35€"
+    icon: <Lock className="w-6 h-6 text-[#d4a017]" />,
+    title: 'Prix Fixe 35,00 € TTC',
+    description: 'Paiement sécurisé CB, PayPal, Apple Pay',
   },
   {
-    icon: <Rocket className="w-6 h-6 mr-3 text-primary" />,
-    title: "Livraison Rapide",
-    description: "Colissimo 48h ou Mondial Relay"
+    icon: <Truck className="w-6 h-6 text-[#d4a017]" />,
+    title: 'Livraison Colissimo Suivie',
+    description: 'Offerte dès 3 parfums (ou 100 €)',
   },
   {
-    icon: <Phone className="w-6 h-6 mr-3 text-primary" />,
-    title: "Support Français",
-    description: "Notre équipe vous répond 24h/7j"
+    icon: <Phone className="w-6 h-6 text-[#d4a017]" />,
+    title: 'Service Client en Français',
+    description: 'Joignable par téléphone et e-mail',
   },
 ];
 
 const ReassuranceSection = () => {
-  const reassuranceContent = (
-    <div className="flex items-center">
-      {reassurances.map((item, index) => (
-        <div key={index} className="flex items-center mx-6">
-          {item.icon}
-          <div className="text-left">
-            <h3 className="font-headline text-base sm:text-lg font-semibold whitespace-nowrap">{item.title}</h3>
-            <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">{item.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
   return (
-    <section className="py-6 bg-black text-white border-y border-gray-900 overflow-hidden">
+    <section className="py-6 bg-[#f7f0e6] text-[#111827] border-y border-[#e4dac9]">
       <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         {reassurances.map((item, index) => (
-          <div key={index} className="flex items-center gap-2.5">
-            <span className="text-white shrink-0">{item.icon}</span>
+          <div key={index} className="flex items-center gap-3">
+            <span className="shrink-0 bg-white p-2.5 rounded border border-[#e4dac9]">{item.icon}</span>
             <div className="text-left">
-              <h3 className="font-headline text-xs sm:text-sm font-semibold text-white leading-tight">{item.title}</h3>
-              <p className="text-[10px] sm:text-xs opacity-70 leading-tight">{item.description}</p>
+              <h3 className="font-headline text-xs sm:text-sm font-bold text-[#111827] leading-tight">
+                {item.title}
+              </h3>
+              <p className="text-[11px] sm:text-xs text-gray-600 leading-tight mt-0.5">{item.description}</p>
             </div>
           </div>
         ))}
       </div>
     </section>
   );
-}
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Dubainegoce – Parfums de Dubaï authentiques à prix accessibles',
+    default: 'Dubainegoce – Parfums de Dubaï authentiques à 35,00 € TTC',
     template: '%s | Dubainegoce',
   },
-  description: 'Découvrez les meilleurs parfums de Dubaï. Lattafa, Maison Alhambra. Parfums 100% authentiques et créations originales d\'Orient à prix accessible. Livraison rapide.',
-  keywords: ['parfums de Dubaï', 'parfums orientaux', 'parfum arabe', 'eaux de parfum', 'parfums authentiques Émirats', 'Lattafa', 'Maison Alhambra', 'Fragrance World', 'Khamrah', 'Yara'],
+  description:
+    'Découvrez les parfums de Dubaï authentiques : Lattafa, Maison Alhambra, French Avenue, Fragrance World. Prix unique 35,00 € TTC, livraison Colissimo offerte dès 3 parfums.',
+  keywords: [
+    'parfums de Dubaï',
+    'parfums orientaux',
+    'parfum arabe',
+    'eaux de parfum',
+    'Lattafa',
+    'Maison Alhambra',
+    'Fragrance World',
+    'Khamrah',
+    'Yara',
+  ],
   openGraph: {
-    title: 'Dubainegoce - L\'Excellence des Parfums de Dubaï Authentiques',
-    description: 'Explorez notre sélection de parfums authentiques de Dubaï. Fragrances d\'exception, sillages orientaux et best-sellers à prix accessible.',
+    title: "Dubainegoce - Parfums de Dubaï Authentiques",
+    description:
+      'Explorez notre sélection de parfums authentiques de Dubaï. Lattafa, Maison Alhambra, French Avenue à 35,00 € TTC.',
     url: siteUrl,
     siteName: 'Dubainegoce',
     images: [
@@ -121,7 +126,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Dubainegoce - Parfums de Dubaï Authentiques',
-    description: 'Les plus grandes marques de parfums de Dubaï (Lattafa, Alhambra) à prix accessible. Trouvez votre sillage unique.',
+    description: 'Les grandes maisons de parfums de Dubaï (Lattafa, Maison Alhambra) à 35,00 € TTC.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -130,9 +135,6 @@ export const metadata: Metadata = {
     'max-snippet': -1,
     'max-image-preview': 'large',
     'max-video-preview': -1,
-  },
-  verification: {
-    // google: 'XXXXX', // A ajouter une fois que vous avez le code de la Search Console
   },
   manifest: '/manifest.webmanifest',
 };
@@ -145,15 +147,12 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        {/* TikTok Shop domain verification */}
         <meta name="tiktok-domain-verification" content="FRFRLCPCQWAL" />
-        {/* Preconnect direct pour l'image LCP Cloudinary (sans crossOrigin pour matcher la balise img) */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://dubainegoce-227c3.firebaseapp.com" />
         <link rel="dns-prefetch" href="https://apis.google.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        {/* Google Tag (gtag.js) - Google Ads + GA4 en lazyOnload pour éliminer le TBT au chargement initial */}
         <Script id="google-tag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -176,7 +175,6 @@ export default function RootLayout({
             (function() {
               var h = window.location.hostname;
               var ref = document.referrer || '';
-              // Exclure trafic interne : localhost, IP locale, console Firebase
               if (h === 'localhost' || h === '127.0.0.1' || h.match(/^192\\.168\\./) || ref.indexOf('console.firebase.google.com') !== -1) return;
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -196,12 +194,7 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           ></iframe>
         </noscript>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" disableTransitionOnChange>
           <JsonLd
             data={{
               '@context': 'https://schema.org',
@@ -212,7 +205,9 @@ export default function RootLayout({
               contactPoint: {
                 '@type': 'ContactPoint',
                 telephone: '+33 7 58 99 97 26',
+                email: 'contact@dubainegoce.fr',
                 contactType: 'customer service',
+                availableLanguage: ['French'],
               },
               sameAs: [
                 'https://www.instagram.com/dubai_negoce/',
@@ -230,7 +225,7 @@ export default function RootLayout({
                 '@type': 'SearchAction',
                 target: {
                   '@type': 'EntryPoint',
-                  urlTemplate: `${siteUrl}/shop?q={search_term_string}`,
+                  urlTemplate: `${siteUrl}/shop/all?q={search_term_string}`,
                 },
                 'query-input': 'required name=search_term_string',
               },
@@ -239,17 +234,14 @@ export default function RootLayout({
           <FirebaseClientProvider>
             <CartProvider>
               <WishlistProvider>
-                <div
-                  className="sticky top-0 z-[9999] w-full bg-black"
-                >
+                <div className="sticky top-0 z-[9990] w-full">
                   <AnnouncementBar />
                   <Header />
                 </div>
-                <main className="flex-1">
-                  {children}
-                </main>
+                <main className="flex-1">{children}</main>
                 <ReassuranceSection />
                 <Footer />
+                <PrestashopLayerCart />
                 <Toaster />
                 <CookieConsent />
                 <AuthCartBridge />

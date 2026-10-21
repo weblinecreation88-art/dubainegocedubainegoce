@@ -6,7 +6,7 @@ export function CbBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
       role="img"
-      className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
+      className={`inline-flex items-center justify-center bg-white border border-slate-200 rounded px-1.5 py-0.5 shadow-sm ${className}`}
       title="Carte Bancaire (CB)"
       aria-label="Carte Bancaire"
     >
@@ -29,7 +29,7 @@ export function VisaBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
       role="img"
-      className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
+      className={`inline-flex items-center justify-center bg-white border border-slate-200 rounded px-1.5 py-0.5 shadow-sm ${className}`}
       title="Visa"
       aria-label="Visa"
     >
@@ -48,7 +48,7 @@ export function MastercardBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
       role="img"
-      className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-1.5 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
+      className={`inline-flex items-center justify-center bg-white border border-slate-200 rounded px-1.5 py-0.5 shadow-sm ${className}`}
       title="Mastercard"
       aria-label="Mastercard"
     >
@@ -64,18 +64,32 @@ export function MastercardBadge({ className = 'h-6' }: { className?: string }) {
   );
 }
 
+export function PayPalBadge({ className = 'h-6' }: { className?: string }) {
+  return (
+    <div
+      role="img"
+      className={`inline-flex items-center justify-center bg-white border border-slate-200 rounded px-2 py-0.5 shadow-sm ${className}`}
+      title="PayPal"
+      aria-label="PayPal"
+    >
+      <span className="text-[11px] font-extrabold tracking-tight leading-none">
+        <span className="text-[#003087]">Pay</span>
+        <span className="text-[#0079C1]">Pal</span>
+      </span>
+    </div>
+  );
+}
+
 export function ApplePayBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
       role="img"
-      className={`inline-flex items-center justify-center bg-black text-white border border-black/80 rounded px-2 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
+      className={`inline-flex items-center justify-center bg-black text-white border border-black/80 rounded px-2 py-0.5 shadow-sm ${className}`}
       title="Apple Pay (iOS)"
       aria-label="Apple Pay"
     >
       <svg viewBox="0 0 52 22" className="h-3.5 w-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        {/* Apple icon */}
         <path d="M10.2 6.8C9.6 7.5 8.7 8 7.8 7.9C7.7 7 8.1 6.1 8.6 5.5C9.2 4.8 10.2 4.4 11 4.4C11.1 5.4 10.7 6.2 10.2 6.8ZM11 8.2C9.7 8.1 8.6 9 8 9C7.3 9 6.4 8.2 5.3 8.2C3.9 8.2 2.6 9 1.9 10.3C.5 12.8 1.5 16.5 2.9 18.4C3.6 19.3 4.3 20.4 5.4 20.3C6.4 20.3 6.8 19.7 8 19.7C9.2 19.7 9.5 20.3 10.6 20.3C11.7 20.3 12.4 19.3 13.1 18.3C13.9 17.2 14.2 16 14.2 15.9C14.1 15.8 12 15 12 12.7C12 10.7 13.6 9.8 13.7 9.7C12.8 8.4 11.4 8.2 11 8.2Z" />
-        {/* Pay text */}
         <path d="M19.5 6.2H23.5C25.9 6.2 27.5 7.6 27.5 9.8C27.5 12 25.9 13.4 23.5 13.4H21.5V17.5H19.5V6.2ZM21.5 11.8H23.4C24.7 11.8 25.5 11.1 25.5 9.8C25.5 8.5 24.7 7.8 23.4 7.8H21.5V11.8ZM30.7 17.5H28.9L32.1 7.8H34.1L37.3 17.5H35.4L34.7 15.1H31.4L30.7 17.5ZM31.9 13.5H34.2L33.1 9.8L31.9 13.5ZM43 12.8L40.7 7.8H42.6L44 11.3L45.4 7.8H47.2L44.1 15.1C43.5 16.5 42.6 17.2 41.2 17.2C40.8 17.2 40.3 17.1 40 17V15.5C40.3 15.6 40.7 15.7 41 15.7C41.9 15.7 42.5 15.1 43 13.8L43 12.8Z" />
       </svg>
     </div>
@@ -86,17 +100,15 @@ export function GooglePayBadge({ className = 'h-6' }: { className?: string }) {
   return (
     <div
       role="img"
-      className={`inline-flex items-center justify-center bg-white border border-slate-200 dark:border-slate-700 rounded px-2 py-0.5 shadow-sm hover:shadow transition-shadow ${className}`}
+      className={`inline-flex items-center justify-center bg-white border border-slate-200 rounded px-2 py-0.5 shadow-sm ${className}`}
       title="Google Pay"
       aria-label="Google Pay"
     >
       <svg viewBox="0 0 54 22" className="h-3.5 w-auto" xmlns="http://www.w3.org/2000/svg">
-        {/* Google G logo */}
         <path
           d="M9.2 9.2V11.5H13.1C12.9 12.7 11.9 14.1 9.2 14.1C6.8 14.1 4.8 12.1 4.8 9.7C4.8 7.3 6.8 5.3 9.2 5.3C10.6 5.3 11.5 5.9 12 6.4L13.8 4.7C12.6 3.6 11.1 3 9.2 3C5.5 3 2.5 6 2.5 9.7C2.5 13.4 5.5 16.4 9.2 16.4C13.1 16.4 15.6 13.7 15.6 9.9C15.6 9.4 15.5 9 15.4 8.7H9.2V9.2Z"
           fill="#4285F4"
         />
-        {/* Pay text */}
         <path
           d="M22.5 6.2H25.6C27.5 6.2 28.7 7.3 28.7 8.9C28.7 10.5 27.5 11.6 25.6 11.6H24V15H22.5V6.2ZM24 10.3H25.4C26.5 10.3 27.2 9.8 27.2 8.9C27.2 8 26.5 7.5 25.4 7.5H24V10.3Z"
           fill="#3C4043"
@@ -126,7 +138,7 @@ export function PaymentBadges({
   className = '',
   badgeClassName = 'h-7',
   showTitle = true,
-  title = 'Paiements 100% sécurisés :',
+  title = 'Paiements sécurisés acceptés :',
   align = 'center',
 }: PaymentBadgesProps) {
   const alignmentClass =
@@ -143,6 +155,7 @@ export function PaymentBadges({
         <CbBadge className={badgeClassName} />
         <VisaBadge className={badgeClassName} />
         <MastercardBadge className={badgeClassName} />
+        <PayPalBadge className={badgeClassName} />
         <ApplePayBadge className={badgeClassName} />
         <GooglePayBadge className={badgeClassName} />
       </div>

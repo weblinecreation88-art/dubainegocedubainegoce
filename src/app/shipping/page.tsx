@@ -1,59 +1,129 @@
-
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { Truck, RotateCcw, ShieldCheck, Mail, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Expédition et Retours',
-    description: 'Informations sur notre politique d\'expédition et de retour. Livraison rapide en 48h et retours sous 14 jours.',
+  title: 'Expédition et Retours | Dubaï Négoce',
+  description:
+    'Consultez nos tarifs de livraison Colissimo avec suivi (offerte dès 3 parfums) et notre politique de retour sous 14 jours.',
 };
 
 export default function ShippingPolicyPage() {
-    return (
-        <div className="container mx-auto max-w-4xl px-4 py-12">
-            <div className="prose prose-invert prose-headings:font-headline prose-headings:text-primary max-w-none">
-                <h1>Politique d'Expédition et de Retour</h1>
-                
-                <h2>Expédition</h2>
-                <p>
-                    Chez DubaiNegoce, nous nous efforçons de traiter et d'expédier votre commande dans les plus brefs délais.
-                </p>
-                <ul>
-                    <li>
-                        <strong>Préparation :</strong> Votre commande est préparée et expédiée sous 48 heures (jours ouvrés).
-                    </li>
-                    <li>
-                        <strong>Transporteurs :</strong> Nous proposons deux options de livraison :
-                        <ul>
-                            <li><strong>Mondial Relay :</strong> Livraison en point relais (3-5 jours ouvrés). Cette option est gratuite.</li>
-                            <li><strong>Colissimo :</strong> Livraison à domicile (2-3 jours ouvrés). Cette option est facturée 5,90€.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>Suivi :</strong> Un numéro de suivi vous est envoyé par e-mail dès l'expédition de votre colis, vous permettant de suivre son parcours en temps réel.
-                    </li>
-                </ul>
+  return (
+    <div className="container mx-auto max-w-4xl px-4 py-10">
+      <nav aria-label="Fil d'Ariane" className="mb-6 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2">
+        <Link href="/" className="hover:text-[#d4a017]">Accueil</Link>
+        <span className="mx-2">&gt;</span>
+        <span className="font-bold text-[#111827]">Livraison &amp; Retours</span>
+      </nav>
 
-                <h2>Politique de Retour</h2>
-                <p>
-                    Votre satisfaction est notre priorité. Si un produit ne vous convient pas, vous pouvez nous le retourner.
-                </p>
-                <ul>
-                    <li>
-                        <strong>Délai de rétractation :</strong> Vous disposez d'un délai de 14 jours calendaires à compter de la réception de votre commande pour exercer votre droit de rétractation.
-                    </li>
-                    <li>
-                        <strong>Conditions de retour :</strong> Pour être accepté, le produit retourné doit être dans son état d'origine, neuf, non utilisé et encore sous son emballage plastique (blister). Tout produit ouvert, endommagé ou dont l'emballage d'origine serait détérioré ne sera ni remboursé ni échangé.
-                    </li>
-                    <li>
-                        <strong>Procédure de retour :</strong> Pour initier un retour, veuillez nous contacter via notre <a href="/contact">page de contact</a> en précisant votre numéro de commande et le produit concerné. Nous vous fournirons alors les instructions pour le retour.
-                    </li>
-                    <li>
-                        <strong>Frais de retour :</strong> Les frais de port liés au retour du produit sont à votre charge.
-                    </li>
-                    <li>
-                        <strong>Remboursement :</strong> Une fois le retour reçu et inspecté, nous vous enverrons un e-mail pour vous informer de l'approbation ou du rejet de votre remboursement. S'il est approuvé, votre remboursement sera traité et un crédit sera automatiquement appliqué à votre méthode de paiement originale dans un délai de quelques jours.
-                    </li>
-                </ul>
-            </div>
+      <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 space-y-8 text-[#111827]">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-headline font-bold mb-2">
+            Politique d&apos;Expédition et de Retour
+          </h1>
+          <p className="text-sm text-gray-600">
+            Informations transparentes sur la préparation, les frais de livraison appliqués à votre panier et les modalités de retour.
+          </p>
         </div>
-    );
+
+        {/* Section Expédition */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2">
+            <Truck className="h-5 w-5 text-[#d4a017]" />
+            <h2 className="text-lg font-headline font-bold">1. Livraison Colissimo avec Suivi</h2>
+          </div>
+
+          <p className="text-sm text-gray-700 leading-relaxed">
+            Toutes les commandes sont expédiées via <strong>Colissimo Domicile avec numéro de suivi</strong> communiqué par e-mail dès la prise en charge du colis.
+          </p>
+
+          {/* Grille tarifaire identique à computeShippingCost */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse border border-[#e4dac9]">
+              <thead>
+                <tr className="bg-[#f7f0e6] text-left">
+                  <th className="border border-[#e4dac9] p-3 font-bold">Quantité dans le panier</th>
+                  <th className="border border-[#e4dac9] p-3 font-bold">Mode d&apos;envoi</th>
+                  <th className="border border-[#e4dac9] p-3 font-bold">Tarif TTC (France)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-[#e4dac9] p-3">1 parfum</td>
+                  <td className="border border-[#e4dac9] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e4dac9] p-3 font-bold">7,10 €</td>
+                </tr>
+                <tr className="bg-[#fdfaf4]">
+                  <td className="border border-[#e4dac9] p-3">2 parfums</td>
+                  <td className="border border-[#e4dac9] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e4dac9] p-3 font-bold">9,59 €</td>
+                </tr>
+                <tr>
+                  <td className="border border-[#e4dac9] p-3 font-bold">3 parfums ou plus (ou dès 100 €)</td>
+                  <td className="border border-[#e4dac9] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e4dac9] p-3 font-extrabold text-[#46a74e]">OFFERT (0,00 €)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul className="list-disc pl-5 space-y-1.5 text-sm text-gray-700">
+            <li>
+              <strong>Préparation :</strong> Les commandes sont préparées les jours ouvrés (du lundi au vendredi, hors jours fériés).
+            </li>
+            <li>
+              <strong>Suivi de colis :</strong> Dès l&apos;expédition, vous recevez votre lien de suivi par e-mail et pouvez également consulter la page{' '}
+              <Link href="/suivi-commande" className="text-[#d4a017] font-semibold underline">
+                Suivi de commande
+              </Link>.
+            </li>
+          </ul>
+        </section>
+
+        {/* Section Retours */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2">
+            <RotateCcw className="h-5 w-5 text-[#d4a017]" />
+            <h2 className="text-lg font-headline font-bold">2. Droit de Rétractation &amp; Retours (14 jours)</h2>
+          </div>
+
+          <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700 leading-relaxed">
+            <li>
+              <strong>Délai :</strong> Vous disposez d&apos;un délai de <strong>14 jours calendaires</strong> à compter de la réception de votre commande pour exercer votre droit de rétractation.
+            </li>
+            <li>
+              <strong>Conditions d&apos;acceptation :</strong> Pour des raisons d&apos;hygiène et de protection des fragrances, le flacon retourné doit être <strong>dans son état d&apos;origine, neuf, non ouvert et scellé sous son film plastique d&apos;origine (blister intact)</strong>.
+            </li>
+            <li>
+              <strong>Procédure :</strong> Contactez notre service client via la{' '}
+              <Link href="/contact" className="text-[#d4a017] font-semibold underline">
+                page Contact
+              </Link>{' '}
+              ou par e-mail à <a href="mailto:contact@dubainegoce.fr" className="font-semibold underline">contact@dubainegoce.fr</a> en indiquant votre numéro de commande.
+            </li>
+            <li>
+              <strong>Frais de retour &amp; Remboursement :</strong> Les frais de retour sont à la charge de l&apos;acheteur. Le remboursement est effectué sur le moyen de paiement initial après réception et vérification de l&apos;état du produit.
+            </li>
+          </ul>
+        </section>
+
+        {/* Contact direct */}
+        <div className="bg-[#f7f0e6] border border-[#e4dac9] rounded p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs sm:text-sm">
+          <div className="flex items-center gap-2.5">
+            <ShieldCheck className="h-5 w-5 text-[#d4a017] shrink-0" />
+            <span>Une question sur votre livraison ? Notre équipe vous accompagne en français :</span>
+          </div>
+          <div className="flex flex-wrap gap-4 font-bold">
+            <a href="tel:+33758999726" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
+              <Phone className="h-4 w-4 text-[#d4a017]" /> +33 7 58 99 97 26
+            </a>
+            <a href="mailto:contact@dubainegoce.fr" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
+              <Mail className="h-4 w-4 text-[#d4a017]" /> contact@dubainegoce.fr
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

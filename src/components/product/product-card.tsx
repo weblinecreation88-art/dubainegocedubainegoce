@@ -4,10 +4,9 @@ import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { Badge } from '../ui/badge';
 import { ProductImage } from './product-image';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart, Check } from 'lucide-react';
 import { useWishlist } from '@/context/wishlist-context';
 import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
 import { AddToCartButton } from './add-to-cart-button';
 
 interface ProductCardProps {
@@ -15,17 +14,18 @@ interface ProductCardProps {
     priority?: boolean;
 }
 
-function getStockBadge(stock: number): { label: string; className: string } | null {
-    // Teintes -700 : red-500 et orange-500 sur blanc n'atteignent pas le
-    // contraste 4.5:1 exige pour du texte de petite taille (WCAG AA).
-    if (stock <= 0) return { label: 'Rupture de stock', className: 'bg-red-700 text-white' };
-    if (stock <= 3) return { label: `Plus que ${stock} en stock`, className: 'bg-red-700 text-white' };
-    if (stock <= 7) return { label: 'Stock limité', className: 'bg-orange-700 text-white' };
-    return null;
+function getStockStatus(stock: number): { label: string; className: string; inStock: boolean } {
+    if (stock <= 0) {
+        return { label: 'Rupture de stock', className: 'bg-red-700 text-white', inStock: false };
+    }
+    if (stock <= 3) {
+        return { label: `Plus que ${stock} en stock`, className: 'bg-amber-700 text-white', inStock: true };
+    }
+    return { label: 'En stock', className: 'bg-[#46a74e] text-white', inStock: true };
 }
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
-    const stockBadge = getStockBadge(product.stock);
+    const stockStatus = getStockStatus(product.stock);
     const { isInWishlist, toggleWishlist } = useWishlist();
     const isFavorite = isInWishlist(product.id);
 
@@ -35,64 +35,107 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         toggleWishlist(product.id);
     };
 
+    const mainNotes = [
+        ...(product.topNotes || []),
+        ...(product.heartNotes || []),
+        ...(product.baseNotes || []),
+    ].slice(0, 3);
+
     return (
-        <div className="flex flex-col h-full bg-white dark:bg-card rounded-md overflow-hidden border border-gray-100 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-200 dark:hover:border-gray-700 group text-center">
+        <div className="product-container flex flex-col h-full bg-white rounded border border-[#e4dac9] transition-all duration-200 hover:shadow-md hover:border-[#d4a017] group">
             <Link href={`/parfum/${product.slug}`} className="flex flex-col flex-grow">
-                <div className="relative aspect-square w-full overflow-hidden bg-gray-50 dark:bg-black/20">
+                {/* Image nette sur fond clair */}
+                <div className="relative aspect-square w-full overflow-hidden bg-[#fdfaf4] border-b border-[#e4dac9]/60">
                     <ProductImage
-                        alt={`Parfum ${product.brand.name} ${product.name} - Dubai Negoce`}
+                        alt={`Parfum ${product.brand.name} ${product.name} - ${product.volumeMl}ml`}
                         images={product.images}
-                        sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 20vw"
-                        className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
+                        className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                         priority={priority}
                     />
-                    <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
-                        {product.isBestseller && <Badge className="bg-black text-white hover:bg-black/80 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">TOP</Badge>}
-                        {product.isNew && <Badge variant="secondary" className="bg-emerald-700 text-white hover:bg-emerald-800 rounded-sm px-1.5 py-0 text-[10px] font-medium tracking-wide">NOUV</Badge>}
+
+                    {/* Badges Bestseller / Nouveau */}
+                    <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+                        {product.isBestseller && (
+                            <Badge className="bg-[#111827] text-[#d4a017] hover:bg-[#111827] rounded-[2px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-[#d4a017]/40">
+                                Sélection
+                            </Badge>
+                        )}
+                        {product.isNew && (
+                            <Badge className="bg-[#d4a017] text-white hover:bg-[#b88911] rounded-[2px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                                Nouveau
+                            </Badge>
+                        )}
                     </div>
+
+                    {/* Bouton Favoris */}
                     <button
+                        type="button"
                         onClick={handleWishlistClick}
-                        className="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 dark:bg-black/50 hover:bg-white dark:hover:bg-black transition-colors z-20 group/heart"
-                        aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+                        className="absolute top-2 right-2 p-1.5 rounded-full bg-white/90 border border-[#e4dac9] hover:border-[#d4a017] transition-colors z-20 group/heart"
+                        aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
                     >
-                        <Heart className={cn("h-4 w-4 transition-colors", isFavorite ? "fill-red-500 text-red-500" : "text-gray-400 group-hover/heart:text-red-500")} />
+                        <Heart
+                            className={cn(
+                                'h-4 w-4 transition-colors',
+                                isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-500 group-hover/heart:text-red-500'
+                            )}
+                        />
                     </button>
-                    {stockBadge && (
-                        <div className="absolute bottom-2 left-0 right-0 flex justify-center z-10">
-                            <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full shadow-sm ${stockBadge.className}`}>
-                                {stockBadge.label}
-                            </span>
-                        </div>
-                    )}
                 </div>
-                <div className="p-4 flex-grow flex flex-col items-center justify-center text-center">
-                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-1.5 truncate w-full">{product.brand.name}</p>
-                    <h3 className="text-sm font-headline font-bold text-gray-900 dark:text-gray-100 leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-[#c9a96e] transition-colors">
-                        {product.name}
-                    </h3>
-                </div>
-                <div className="px-4 pb-3 mt-auto">
-                    <p className="text-lg font-bold text-gray-900 dark:text-white">{product.price.toFixed(2)} €</p>
+
+                {/* Informations homogènes : Marque, Nom, Contenance exacte, Notes */}
+                <div className="p-3.5 flex-grow flex flex-col justify-between text-center">
+                    <div>
+                        <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1 truncate">
+                            {product.brand.name}
+                        </p>
+                        <h3 className="text-sm font-headline font-bold text-[#111827] leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-[#d4a017] transition-colors">
+                            {product.name}
+                        </h3>
+                        <p className="text-[11px] text-gray-600 mt-1 font-medium">
+                            Eau de Parfum • {product.volumeMl || 100} ml
+                        </p>
+                        {mainNotes.length > 0 ? (
+                            <p className="text-[11px] text-gray-500 mt-1 line-clamp-1">
+                                Notes : {mainNotes.join(', ')}
+                            </p>
+                        ) : (
+                            <p className="text-[11px] text-gray-500 mt-1 capitalize">
+                                Famille : {product.family} ({product.gender})
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Disponibilité & Prix TTC */}
+                    <div className="pt-3 mt-2 border-t border-gray-100 flex items-center justify-between gap-2">
+                        <span className={cn('text-[10px] font-bold px-2 py-0.5 rounded-[2px] inline-flex items-center gap-1', stockStatus.className)}>
+                            {stockStatus.inStock && <Check className="h-3 w-3 stroke-[3]" />}
+                            {stockStatus.label}
+                        </span>
+                        <p className="text-base sm:text-lg font-extrabold text-[#111827]">
+                            {product.price.toFixed(2)} €
+                        </p>
+                    </div>
                 </div>
             </Link>
-            {/* Quick add — outside Link to avoid nested navigation */}
-            {product.stock > 0 ? (
-                <div className="px-3 pb-3">
+
+            {/* Bouton d'achat visible */}
+            <div className="px-3 pb-3">
+                {product.stock > 0 ? (
                     <AddToCartButton
                         product={product}
-                        className="w-full rounded text-xs font-bold tracking-wider uppercase py-2.5 sm:py-3 gap-2 bg-black text-white hover:bg-black/90 transition-colors shadow-sm"
+                        className="w-full rounded-[2px] text-xs font-bold tracking-wider uppercase py-2.5 gap-2 bg-[#111827] text-white hover:bg-[#d4a017] hover:text-[#111827] transition-colors shadow-sm"
                     >
-                        <ShoppingCart className="h-4 w-4" />
-                        Ajouter
+                        <ShoppingCart className="h-3.5 w-3.5" />
+                        Ajouter au panier
                     </AddToCartButton>
-                </div>
-            ) : (
-                <div className="px-3 pb-3">
-                    <div className="w-full py-2 text-center text-[11px] tracking-wider uppercase text-muted-foreground border border-gray-200 rounded-sm">
-                        Rupture de stock
+                ) : (
+                    <div className="w-full py-2 text-center text-[11px] font-semibold tracking-wider uppercase text-gray-500 bg-gray-50 border border-gray-200 rounded-[2px]">
+                        Indisponible
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

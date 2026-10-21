@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback, useRef } from 'react';
 import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce } from '@/lib/analytics';
+import type { Product } from '@/lib/types';
 
 export interface CartItem {
     id: string;
@@ -20,8 +21,17 @@ interface CartContextType {
     updateQuantity: (itemId: string, quantity: number) => void;
     clearCart: () => void;
     getCartCount: () => number;
+    getCartSubtotal: () => number;
     /** Appeler après login/signup pour activer le tracking panier abandonné */
     setAbandonmentEmail: (email: string) => void;
+    /** État Modale PrestaShop #layer_cart */
+    lastAddedItem: (CartItem & { addedQty: number }) | null;
+    isLayerCartOpen: boolean;
+    closeLayerCart: () => void;
+    /** État Modale Aperçu Rapide (Quick View PrestaShop) */
+    quickViewProduct: Product | null;
+    openQuickView: (product: Product) => void;
+    closeQuickView: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -48,6 +58,10 @@ const getStoredEmail = (): string => {
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<CartItem[]>(getInitialCart);
     const [abandonmentEmail, setAbandonmentEmailState] = useState<string>(getStoredEmail);
+    const [lastAddedItem, setLastAddedItem] = useState<(CartItem & { addedQty: number }) | null>(null);
+    const [isLayerCartOpen, setIsLayerCartOpen] = useState(false);
+    const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+
     const abandonTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     // Utiliser des refs pour éviter les stale closures dans les event listeners
     const cartRef = useRef(cart);
@@ -125,10 +139,30 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         setCart(prev => {
             const existing = prev.find(i => i.id === item.id);
             if (existing) {
-                return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + (item.quantity || 1) } : i);
+                return prev.map(i => i.id === item.id ? { ...i, quantity: i.quantity + qty } : i);
             }
-            return [...prev, { ...item, quantity: item.quantity || 1 }];
+            return [...prev, { ...item, quantity: qty }];
         });
+
+        setLastAddedItem({
+            ...item,
+            quantity: qty,
+            addedQty: qty,
+        });
+        setQuickViewProduct(null);
+        setIsLayerCartOpen(true);
+    }, []);
+
+    const closeLayerCart = useCallback(() => {
+        setIsLayerCartOpen(false);
+    }, []);
+
+    const openQuickView = useCallback((product: Product) => {
+        setQuickViewProduct(product);
+    }, []);
+
+    const closeQuickView = useCallback(() => {
+        setQuickViewProduct(null);
     }, []);
 
     const removeFromCart = useCallback((itemId: string) => {
@@ -158,6 +192,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         return cart.reduce((total, item) => total + item.quantity, 0);
     }, [cart]);
 
+    const getCartSubtotal = useCallback(() => {
+        return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    }, [cart]);
+
     return (
         <CartContext.Provider value={{
             cart,
@@ -166,7 +204,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             updateQuantity,
             clearCart,
             getCartCount,
+            getCartSubtotal,
             setAbandonmentEmail,
+            lastAddedItem,
+            isLayerCartOpen,
+            closeLayerCart,
+            quickViewProduct,
+            openQuickView,
+            closeQuickView,
         }}>
             {children}
         </CartContext.Provider>

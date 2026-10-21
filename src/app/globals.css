@@ -10,42 +10,49 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%; /* Noir profond */
+    --primary: 220 35% 11%; /* Anthracite PrestaShop #121824 */
     --primary-foreground: 210 40% 98%; /* Blanc */
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 330 85% 54%; /* Rose vif - accent principal */
-    --accent-foreground: 210 40% 98%; /* Blanc sur rose */
+    --secondary: 37 42% 94%; /* Beige sable OrientalDiscount #f7f0e6 */
+    --secondary-foreground: 220 35% 11%;
+    --muted: 37 33% 96%; /* Crème léger #faf7f2 */
+    --muted-foreground: 215.4 16.3% 40%;
+    --accent: 41 79% 46%; /* Or Ambré PrestaShop #d4a017 */
+    --accent-foreground: 0 0% 100%; /* Blanc sur or ambré */
     --destructive: 0 84.2% 60.2%; /* Rouge standard pour erreur */
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 330 85% 54%; /* Rose vif pour focus ring */
-    --radius: 0.5rem;
+    --border: 36 24% 86%; /* Bordure chaude PrestaShop #e4dac9 */
+    --input: 214.3 31.8% 85%;
+    --ring: 41 79% 46%; /* Or Ambré pour focus ring */
+    --radius: 0.25rem;
+    --ps-gold: #d4a017;
+    --ps-gold-hover: #b88911;
+    --ps-beige: #f7f0e6;
+    --ps-cream: #fdfaf4;
+    --ps-border: #e4dac9;
+    --ps-green: #46a74e;
+    --ps-dark: #111827;
   }
- 
+
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%; /* Blanc pour le contenu primaire en dark mode */
-    --primary-foreground: 222.2 47.4% 11.2%; /* Noir */
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 330 85% 60%; /* Rose vif - accent principal (plus clair en dark) */
-    --accent-foreground: 222.2 47.4% 11.2%; /* Noir sur rose */
-    --destructive: 0 62.8% 30.6%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 220 35% 11%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 37 42% 94%;
+    --secondary-foreground: 220 35% 11%;
+    --muted: 37 33% 96%;
+    --muted-foreground: 215.4 16.3% 40%;
+    --accent: 41 79% 46%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 330 85% 60%; /* Rose vif pour focus ring */
+    --border: 36 24% 86%;
+    --input: 214.3 31.8% 85%;
+    --ring: 41 79% 46%;
   }
 }
 
@@ -54,36 +61,59 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#f8f8f8] text-foreground;
   }
-  
+
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-100%); }
   }
 
   .animate-marquee {
-      display: inline-block;
-      animation: marquee 30s linear infinite;
-      white-space: nowrap;
-      padding-right: 100%; /* Ensures a smooth loop */
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+    padding-right: 100%;
   }
 
-  /* Rose Vif Accent Utilities */
+  /* Utilitaires PrestaShop Or Ambré */
   .accent-pink {
-    @apply bg-accent text-accent-foreground;
+    background-color: #d4a017;
+    color: #ffffff;
   }
 
   .accent-pink-hover {
-    @apply hover:bg-accent hover:text-accent-foreground transition-colors;
+    @apply hover:bg-[#b88911] hover:text-white transition-colors;
   }
 
   .accent-pink-border {
-    @apply border-accent;
+    border-color: #d4a017;
   }
 
   .accent-pink-text {
-    @apply text-accent;
+    color: #d4a017;
+  }
+
+  .ps-badge-instock {
+    background-color: #46a74e;
+    color: #ffffff;
+    border: 1px solid #36943e;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 8px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .ps-block-title {
+    background: #111827;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 11px 15px;
+    border-bottom: 3px solid #d4a017;
   }
 }
 
@@ -91,16 +121,18 @@
 .product-description h2,
 .product-description h3 {
   font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.03em;
-  margin-top: 2rem;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  margin-top: 1.75rem;
   margin-bottom: 0.5rem;
   padding-top: 0.5rem;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid #e5e7eb;
+  color: #111827;
   display: block;
 }
 
 .product-description p {
   margin-bottom: 0.75rem;
   line-height: 1.75;
+  color: #374151;
 }

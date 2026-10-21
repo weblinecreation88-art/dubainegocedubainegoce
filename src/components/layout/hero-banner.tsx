@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-import { ChevronLeft, ChevronRight, Star, ShieldCheck } from "lucide-react";
+import React, { useState, useEffect, useCallback } from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight, ShieldCheck, Truck, Sparkles } from 'lucide-react';
 
 interface HeroBannerProps {
   images: string[];
@@ -26,128 +26,107 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
   useEffect(() => {
     if (images.length <= 1 || isPaused) return;
-
-    let intervalId: NodeJS.Timeout | null = null;
-    const initialTimer = setTimeout(() => {
-      next();
-      intervalId = setInterval(next, 7000);
-    }, 10000);
-
-    return () => {
-      clearTimeout(initialTimer);
-      if (intervalId) clearInterval(intervalId);
-    };
+    const intervalId = setInterval(next, 6500);
+    return () => clearInterval(intervalId);
   }, [images.length, isPaused, next]);
 
   return (
-    <section className="w-full bg-[#0f1726] overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[520px] lg:min-h-[580px] items-stretch">
-
-          {/* COLONNE GAUCHE — Texte (Rendu immédiat sans animation bloquante pour FCP optimal) */}
-          <div className="flex flex-col justify-center py-12 lg:py-16 pr-0 lg:pr-12 order-2 lg:order-1">
-            <span className="text-[11px] tracking-[0.35em] uppercase text-[#c9a96e] font-medium mb-4 block">
-              IMPORTÉ DIRECTEMENT DE DUBAÏ
+    <section className="w-full bg-[#111827] border-b-2 border-[#d4a017]">
+      <div className="container mx-auto px-4 py-6 lg:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#182135] border border-[#d4a017]/40 rounded overflow-hidden">
+          {/* Texte concis et vérifiable (7/12) */}
+          <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 text-white">
+            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#111827] bg-[#d4a017] font-extrabold px-2.5 py-1 rounded-[2px] mb-3">
+              Parfumerie Orientale de Dubaï
             </span>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-headline font-bold text-white leading-tight mb-4">
-              Votre parfum oriental<br />
-              <span className="text-[#c9a96e]">authentique à 35 €</span>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-bold text-white leading-tight mb-3">
+              Eaux de Parfum Authentiques •{' '}
+              <span className="text-[#d4a017]">Prix Unique 35,00 € TTC</span>
             </h1>
 
-            <p className="text-white/70 text-base lg:text-lg mb-8 leading-relaxed max-w-md">
-              Lattafa · Maison Alhambra · Fragrance World · French Avenue
+            <p className="text-white/80 text-sm sm:text-base mb-5 leading-relaxed max-w-xl">
+              Retrouvez les fragrances phares des maisons <strong>Lattafa</strong>,{' '}
+              <strong>Maison Alhambra</strong>, <strong>French Avenue</strong>,{' '}
+              <strong>Fragrance World</strong> et <strong>Paris Corner</strong> en flacons neufs scellés sous blister.
             </p>
 
-            <div className="flex flex-col gap-4 mb-8">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button asChild size="lg" className="bg-[#c9a96e] text-[#0f1726] hover:bg-[#b8944e] font-bold px-10 py-7 text-sm sm:text-base rounded-none tracking-widest uppercase shadow-xl shadow-[#c9a96e]/20 w-full sm:w-auto">
-                  <Link href="/trouver-mon-parfum">Trouver mon parfum</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white rounded-none tracking-wide py-7 w-full sm:w-auto">
-                  <Link href="/shop/all">Découvrir la collection</Link>
-                </Button>
-              </div>
+            <div className="flex flex-wrap gap-3 mb-6">
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#d4a017] text-[#111827] hover:bg-[#b88911] hover:text-white font-extrabold px-6 h-11 text-xs sm:text-sm rounded-[2px] tracking-wider uppercase"
+              >
+                <Link href="/shop/all">Parcourir les parfums</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white rounded-[2px] tracking-wider uppercase px-6 h-11 text-xs sm:text-sm"
+              >
+                <Link href="/trouver-mon-parfum" className="flex items-center gap-1.5">
+                  <Sparkles className="h-4 w-4 text-[#d4a017]" />
+                  <span>Trouver mon parfum</span>
+                </Link>
+              </Button>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-xs sm:text-sm font-medium text-white bg-white/5 p-4 rounded border border-white/10">
-              <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[#c9a96e]" /> Paiement 100% Sécurisé</span>
-              <span className="flex items-center gap-2"><Star className="h-4 w-4 text-[#c9a96e]" /> Parfums Authentiques</span>
-              <span className="flex items-center gap-2">
-                <span className="flex text-[#00b67a]">
-                  <Star className="h-4 w-4 fill-current" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-white/90 pt-4 border-t border-white/10">
+              <div className="flex items-center gap-2">
+                <Truck className="h-4 w-4 text-[#d4a017] shrink-0" />
+                <span>
+                  <strong>Livraison Colissimo offerte</strong> dès 3 parfums (ou 100 €)
                 </span>
-                Excellent Trustpilot
-              </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-[#d4a017] shrink-0" />
+                <span>
+                  <strong>Paiement sécurisé</strong> par Carte Bancaire, PayPal ou Apple Pay
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* COLONNE DROITE — Slider optimisé CSS pur (sans framer-motion, image LCP visible au premier octet) */}
+          {/* Visuel produit net et compact (5/12) */}
           <div
-            className="relative order-1 lg:order-2 h-[300px] sm:h-[380px] lg:h-full lg:min-h-[580px] overflow-hidden border-b lg:border-b-0 lg:border-l border-[#c9a96e]/60"
+            className="lg:col-span-5 relative h-[240px] sm:h-[290px] lg:h-[320px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="relative w-full h-full">
-              {images[currentIndex] && (
-                <div className="absolute inset-0 w-full h-full">
-                  <Image
-                    key={images[currentIndex]}
-                    src={images[currentIndex]}
-                    alt={`Parfum oriental ${currentIndex + 1} - Dubai Negoce`}
-                    fill
-                    priority={currentIndex === 0}
-                    className="object-cover object-center transition-opacity duration-500"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-[#0f1726]/10" />
-                </div>
-              )}
-            </div>
+            {images[currentIndex] && (
+              <Image
+                key={images[currentIndex]}
+                src={images[currentIndex]}
+                alt={`Sélection de parfums de Dubaï ${currentIndex + 1}`}
+                fill
+                priority={currentIndex === 0}
+                className="object-contain p-4 transition-opacity duration-300"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            )}
 
-            {/* Flèches */}
             {images.length > 1 && (
               <>
                 <button
+                  type="button"
                   onClick={prev}
                   aria-label="Image précédente"
-                  className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/80 hover:text-white transition-colors rounded-full"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 h-9 w-9 flex items-center justify-center bg-[#111827]/70 hover:bg-[#111827] text-white rounded-full transition-colors"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
+                  type="button"
                   onClick={next}
                   aria-label="Image suivante"
-                  className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/80 hover:text-white transition-colors rounded-full"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 h-9 w-9 flex items-center justify-center bg-[#111827]/70 hover:bg-[#111827] text-white rounded-full transition-colors"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </>
             )}
-
-            {/* Dots */}
-            {images.length > 1 && (
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex items-center">
-                {images.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i)}
-                    aria-label={`Image ${i + 1}`}
-                    className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 focus:outline-none"
-                  >
-                    <span
-                      className={`rounded-full transition-colors duration-300 ${
-                        i === currentIndex
-                          ? "bg-[#c9a96e] w-5 h-2"
-                          : "bg-white/50 hover:bg-white/80 w-2 h-2"
-                      }`}
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
-
         </div>
       </div>
     </section>
