@@ -22,9 +22,6 @@ export type EcommerceParams = {
   items: AnalyticsItem[];
 };
 
-const isInternalHost = (hostname: string) =>
-  hostname === 'localhost' || hostname === '127.0.0.1' || /^192\.168\./.test(hostname);
-
 export function trackEcommerce(event: string, ecommerce: EcommerceParams) {
   if (typeof window === 'undefined') return;
   const w = window as any;
@@ -34,7 +31,8 @@ export function trackEcommerce(event: string, ecommerce: EcommerceParams) {
   w.dataLayer.push({ ecommerce: null });
   w.dataLayer.push({ event, ecommerce });
 
-  if (isInternalHost(window.location.hostname)) return;
+  // Décidé une seule fois dans layout.tsx (trafic local ou robot) : pas d'envoi GA4.
+  if (w.__ga4Off !== false) return;
   // Même mécanisme que gtag() : la commande est mise en file si gtag.js n'est pas encore chargé.
   const gtag = typeof w.gtag === 'function' ? w.gtag : function () { w.dataLayer.push(arguments); };
   gtag('event', event, { currency: 'EUR', ...ecommerce, send_to: GA4_MEASUREMENT_ID });
