@@ -155,7 +155,7 @@ export function PaymentBadges({
         <CbBadge className={badgeClassName} />
         <VisaBadge className={badgeClassName} />
         <MastercardBadge className={badgeClassName} />
-        <PayPalBadge className={badgeClassName} />
+
         <ApplePayBadge className={badgeClassName} />
         <GooglePayBadge className={badgeClassName} />
       </div>

@@ -43,12 +43,7 @@ export const productSchema = (product: any) => ({
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
     url: `https://dubainegoce.fr/parfum/${product.slug}`
-  },
-  aggregateRating: product.rating ? {
-    '@type': 'AggregateRating',
-    ratingValue: product.rating.value,
-    ratingCount: product.rating.count
-  } : undefined
+  }
 });
 
 export const breadcrumbSchema = (items: Array<{name: string; url: string}>) => ({

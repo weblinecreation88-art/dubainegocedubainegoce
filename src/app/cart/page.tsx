@@ -16,7 +16,6 @@ import { CheckoutForm, type CheckoutFormData } from '@/components/checkout/check
 import { OrderSummary } from '@/components/checkout/order-summary';
 import { calculateOrderTotal } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
-import { PayPalCheckoutButton } from '@/components/checkout/paypal-checkout-button';
 import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce } from '@/lib/analytics';
 import { PaymentBadges } from '@/components/ui/payment-badges';
@@ -480,27 +479,7 @@ export default function CartPage() {
               isFormValid={!!lastFormData}
             />
 
-            <div className="flex items-center gap-3">
-              <div className="flex-1 border-t border-border" />
-              <span className="text-xs uppercase tracking-wider text-muted-foreground font-medium">ou payer avec</span>
-              <div className="flex-1 border-t border-border" />
-            </div>
-
-            <PayPalCheckoutButton
-              items={cart}
-              total={total}
-              customerInfo={lastFormData}
-              shippingMethod={formShippingMethod}
-              pickupPoint={selectedPickupPoint}
-              getIdToken={async () => (user ? user.getIdToken() : null)}
-              disabled={!lastFormData}
-              onSuccess={(orderId) => {
-                // Le panier est vidé par la page de confirmation, après le suivi d'achat.
-                router.push(`/checkout/success?paypal_order=${encodeURIComponent(orderId)}&total=${total.toFixed(2)}`);
-              }}
-            />
-
-            <Button
+<Button
               variant="ghost"
               size="sm"
               onClick={() => setMainStep('checkout-form')}

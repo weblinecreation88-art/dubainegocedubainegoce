@@ -6,7 +6,7 @@ import { PaymentBadges } from '@/components/ui/payment-badges';
 export const metadata: Metadata = {
   title: 'Livraison et Paiement | Dubaï Négoce',
   description:
-    'Consultez nos tarifs de livraison Colissimo (offerte dès 3 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, PayPal, Apple Pay, Google Pay).',
+    'Consultez nos tarifs de livraison Colissimo (offerte dès 3 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
 };
 
 export default function DeliveryAndPaymentPage() {
@@ -88,7 +88,7 @@ export default function DeliveryAndPaymentPage() {
                 <div>
                   <h3 className="font-bold text-base">Transactions chiffrées SSL / 3D Secure</h3>
                   <p className="text-xs text-gray-600 mt-1">
-                    Vos règlements sont traités de bout en bout par <strong>Stripe</strong> ou <strong>PayPal</strong>. Aucune coordonnée bancaire n&apos;est conservée par notre boutique.
+                    Vos règlements sont traités de bout en bout par <strong>Stripe</strong>. Aucune coordonnée bancaire n&apos;est conservée par notre boutique.
                   </p>
                 </div>
               </div>
@@ -103,7 +103,6 @@ export default function DeliveryAndPaymentPage() {
 
               <ul className="space-y-1.5 text-xs text-gray-700 list-disc pl-4">
                 <li><strong>Carte Bancaire (CB, Visa, Mastercard)</strong> via Stripe sécurisé</li>
-                <li><strong>PayPal</strong> (paiement via votre compte PayPal)</li>
                 <li><strong>Apple Pay &amp; Google Pay</strong> sur les appareils et navigateurs compatibles</li>
               </ul>
             </div>

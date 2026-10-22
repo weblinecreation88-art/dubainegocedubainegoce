@@ -21,7 +21,7 @@ export function CookieConsent() {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border shadow-lg">
+    <div className="storefront-cookie fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border shadow-lg">
       <div className="container mx-auto px-4 py-3 flex items-center gap-3 flex-wrap sm:flex-nowrap">
         <Cookie className="h-4 w-4 text-primary shrink-0" />
         <p className="text-xs text-muted-foreground flex-1">

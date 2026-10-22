@@ -156,7 +156,7 @@ export function PrestashopLayerCart() {
               </div>
               <p className="text-[11px] text-center text-gray-500 flex items-center justify-center gap-1.5 pt-1">
                 <ShieldCheck className="h-3.5 w-3.5 text-[#46a74e]" />
-                <span>Paiement 100% sécurisé par CB, Visa, Mastercard ou PayPal</span>
+                <span>Paiement 100% sécurisé par CB, Visa, Mastercard, Apple Pay ou Google Pay</span>
               </p>
             </div>
           </div>

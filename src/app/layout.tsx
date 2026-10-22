@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './storefront-polish.css';
 import { cn } from '@/lib/utils';
 import { Playfair_Display, PT_Sans } from 'next/font/google';
 
@@ -53,7 +54,7 @@ const reassurances = [
   {
     icon: <Lock className="w-6 h-6 text-[#d4a017]" />,
     title: 'Prix Fixe 35,00 € TTC',
-    description: 'Paiement sécurisé CB, PayPal, Apple Pay',
+    description: 'Paiement sécurisé CB, Apple Pay, Google Pay',
   },
   {
     icon: <Truck className="w-6 h-6 text-[#d4a017]" />,
@@ -69,7 +70,7 @@ const reassurances = [
 
 const ReassuranceSection = () => {
   return (
-    <section className="py-6 bg-[#f7f0e6] text-[#111827] border-y border-[#e4dac9]">
+    <section className="storefront-reassurance py-6 bg-[#f7f0e6] text-[#111827] border-y border-[#e4dac9]">
       <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         {reassurances.map((item, index) => (
           <div key={index} className="flex items-center gap-3">
@@ -242,7 +243,7 @@ export default function RootLayout({
           <FirebaseClientProvider>
             <CartProvider>
               <WishlistProvider>
-                <div className="sticky top-0 z-[9990] w-full">
+                <div className="relative lg:sticky top-0 z-40 w-full">
                   <AnnouncementBar />
                   <Header />
                 </div>

@@ -42,10 +42,10 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
     ].slice(0, 3);
 
     return (
-        <div className="product-container flex flex-col h-full bg-white rounded border border-[#e4dac9] transition-all duration-200 hover:shadow-md hover:border-[#d4a017] group">
+        <div className="storefront-product product-container flex flex-col h-full bg-white rounded border border-[#e4dac9] transition-all duration-200 hover:shadow-md hover:border-[#d4a017] group">
             <Link href={`/parfum/${product.slug}`} className="flex flex-col flex-grow">
                 {/* Image nette sur fond clair */}
-                <div className="relative aspect-square w-full overflow-hidden bg-[#fdfaf4] border-b border-[#e4dac9]/60">
+                <div className="storefront-product-photo relative aspect-square w-full overflow-hidden bg-[#fdfaf4] border-b border-[#e4dac9]/60">
                     <ProductImage
                         alt={`Parfum ${product.brand.name} ${product.name} - ${product.volumeMl}ml`}
                         images={product.images}
@@ -55,7 +55,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                     />
 
                     {/* Badges Bestseller / Nouveau */}
-                    <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+                    <div className="storefront-product-badges absolute top-2 left-2 flex flex-col gap-1 z-10">
                         {product.isBestseller && (
                             <Badge className="bg-[#111827] text-[#d4a017] hover:bg-[#111827] rounded-[2px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-[#d4a017]/40">
                                 Sélection
@@ -85,7 +85,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                 </div>
 
                 {/* Informations homogènes : Marque, Nom, Contenance exacte, Notes */}
-                <div className="p-3.5 flex-grow flex flex-col justify-between text-center">
+                <div className="storefront-product-info p-3.5 flex-grow flex flex-col justify-between text-center">
                     <div>
                         <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1 truncate">
                             {product.brand.name}
@@ -108,7 +108,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
                     </div>
 
                     {/* Disponibilité & Prix TTC */}
-                    <div className="pt-3 mt-2 border-t border-gray-100 flex items-center justify-between gap-2">
+                    <div className="storefront-product-price pt-3 mt-2 border-t border-gray-100 flex items-center justify-between gap-2">
                         <span className={cn('text-[10px] font-bold px-2 py-0.5 rounded-[2px] inline-flex items-center gap-1', stockStatus.className)}>
                             {stockStatus.inStock && <Check className="h-3 w-3 stroke-[3]" />}
                             {stockStatus.label}
@@ -121,7 +121,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             </Link>
 
             {/* Bouton d'achat visible */}
-            <div className="px-3 pb-3">
+            <div className="storefront-product-buy px-3 pb-3">
                 {product.stock > 0 ? (
                     <AddToCartButton
                         product={product}

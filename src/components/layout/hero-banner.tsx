@@ -31,7 +31,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
   }, [images.length, isPaused, next]);
 
   return (
-    <section className="w-full bg-[#111827] border-b-2 border-[#d4a017]">
+    <section className="storefront-hero w-full bg-[#111827] border-b-2 border-[#d4a017]">
       <div className="container mx-auto px-4 py-6 lg:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#182135] border border-[#d4a017]/40 rounded overflow-hidden">
           {/* Texte concis et vérifiable (7/12) */}
@@ -82,7 +82,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-[#d4a017] shrink-0" />
                 <span>
-                  <strong>Paiement sécurisé</strong> par Carte Bancaire, PayPal ou Apple Pay
+                  <strong>Paiement sécurisé</strong> par Carte Bancaire, Apple Pay ou Google Pay
                 </span>
               </div>
             </div>

@@ -19,7 +19,7 @@ const SnapchatIcon = () => (
 
 export default function Footer() {
   return (
-    <footer id="footer" className="bg-[#111827] text-white border-t-4 border-[#d4a017]">
+    <footer id="footer" className="storefront-footer bg-[#111827] text-white border-t-4 border-[#d4a017]">
       <div className="container mx-auto px-4 py-12">
         {/* DESKTOP : 4 Colonnes structurées style PrestaShop */}
         <div className="hidden md:grid md:grid-cols-4 gap-8 lg:gap-12">

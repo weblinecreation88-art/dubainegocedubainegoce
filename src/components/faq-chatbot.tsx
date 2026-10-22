@@ -240,7 +240,7 @@ export function FaqChatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="fixed bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm"
+            className="storefront-advisor-panel fixed bottom-24 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm"
           >
             <Card className="flex h-[70vh] max-h-[620px] flex-col shadow-2xl border-primary/20">
               <CardHeader className="flex-row items-center justify-between border-b bg-muted/30 py-3">
@@ -379,7 +379,7 @@ export function FaqChatbot() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed bottom-20 right-4 z-50 flex max-w-[260px] items-start gap-2 rounded-2xl rounded-br-none border border-primary/20 bg-background p-3 shadow-xl"
+            className="storefront-advisor-teaser fixed bottom-20 right-4 z-50 flex max-w-[260px] items-start gap-2 rounded-2xl rounded-br-none border border-primary/20 bg-background p-3 shadow-xl"
           >
             <button type="button" onClick={() => openChat(true)} className="text-left text-sm font-medium leading-snug">
               Vous ne savez pas quel parfum choisir ? 👋
@@ -394,7 +394,7 @@ export function FaqChatbot() {
 
       <Button
         size="icon"
-        className="fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-105"
+        className="storefront-advisor-launcher fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-105"
         onClick={() => (isOpen ? setIsOpen(false) : openChat())}
         aria-label={isOpen ? 'Fermer le chat' : 'Ouvrir le conseiller parfum'}
       >

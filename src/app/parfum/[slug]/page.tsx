@@ -261,7 +261,7 @@ export default function ProductPage({ params }: Props) {
 
         {/* BLOC PRINCIPAL PRESTASHOP 3 COLONNES (se réorganise naturellement sur mobile) */}
         <div className="bg-white border border-[#e4dac9] rounded p-4 sm:p-6 lg:p-8 shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="storefront-detail-grid grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* COLONNE 1 (Gauche - 5/12) : Galerie Produit */}
             <div className="lg:col-span-5">
               <ProductGallery
@@ -367,12 +367,12 @@ export default function ProductPage({ params }: Props) {
 
             {/* COLONNE 3 (Droite - 3/12) : Boîte d'achat PrestaShop & Frais de port réels */}
             <div className="lg:col-span-3 space-y-4">
-              <div className="bg-[#f7f0e6] border-2 border-[#e4dac9] rounded p-4 sm:p-5 space-y-4">
+              <div className="storefront-buybox bg-[#f7f0e6] border-2 border-[#e4dac9] rounded p-4 sm:p-5 space-y-4">
                 {/* Prix TTC & Disponibilité */}
                 <div className="border-b border-[#e4dac9] pb-3">
-                  <div className="flex items-baseline justify-between">
+                  <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
-                      <span className="text-3xl font-extrabold text-[#111827]">
+                      <span className="whitespace-nowrap text-2xl xl:text-3xl font-extrabold text-[#111827]">
                         {product.price.toFixed(2)} €
                       </span>
                       <span className="text-xs text-gray-600 ml-1.5 font-semibold">TTC</span>

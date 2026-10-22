@@ -48,12 +48,12 @@ export default function Home() {
   ].filter(Boolean) as string[];
 
   return (
-    <div className="flex flex-col space-y-10 pb-12">
+    <div className="storefront-home flex flex-col space-y-10 pb-12">
       {/* 1. BANNIÈRE COURTE PRÉSENTANT LES PARFUMS ET L'OFFRE RÉELLE */}
       <HeroBanner images={heroImages} />
 
       {/* 2. SÉLECTION DE PRODUITS DISPONIBLES IMMÉDIATEMENT ACCESSIBLE */}
-      <section className="container mx-auto px-4">
+      <section className="storefront-selection container mx-auto px-4">
         <div className="bg-white border border-[#e4dac9] rounded p-4 sm:p-6 shadow-sm">
           <Tabs defaultValue="popular" className="w-full">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-[#d4a017] pb-3 mb-6">
@@ -113,7 +113,7 @@ export default function Home() {
       </section>
 
       {/* 3. ENTRÉES PAR GENRE, MARQUE ET FAMILLE OLFACTIVE */}
-      <section className="container mx-auto px-4 space-y-8">
+      <section className="storefront-discovery container mx-auto px-4 space-y-8">
         {/* 3a. Par Genre (Femme / Homme / Mixte) */}
         <div className="bg-white border border-[#e4dac9] rounded p-4 sm:p-6 shadow-sm">
           <div className="border-b-2 border-[#d4a017] pb-2.5 mb-5 flex items-center justify-between">
@@ -260,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* 4. LIVRAISON, PAIEMENT, AVIS TRUSTPILOT & PRÉSENTATION DU VENDEUR */}
-      <section className="container mx-auto px-4">
+      <section className="storefront-confidence container mx-auto px-4">
         <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 shadow-sm space-y-8">
           {/* Grille claire des conditions commerciales réelles */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -295,7 +295,7 @@ export default function Home() {
                   <h3 className="font-headline font-bold text-base">Paiement Sécurisé</h3>
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                  Règlement sécurisé par carte bancaire via <strong>Stripe</strong> (CB, Visa, Mastercard, Apple Pay, Google Pay) ou via votre compte <strong>PayPal</strong>.
+                  Règlement sécurisé par carte bancaire via <strong>Stripe</strong> (CB, Visa, Mastercard, Apple Pay, Google Pay).
                 </p>
               </div>
               <PaymentBadges showTitle={false} badgeClassName="h-6" align="left" />

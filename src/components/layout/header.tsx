@@ -124,7 +124,7 @@ export default function Header() {
   };
 
   return (
-    <header id="header" className="w-full bg-white text-[#111827] shadow-sm">
+    <header id="header" className="storefront-header w-full bg-white text-[#111827] shadow-sm">
       {/* LIGNE PRINCIPALE PRESTASHOP (ndkcp-1) */}
       <div id="ndkcp-1" className="border-b border-[#e4dac9] bg-white">
         <div className="container mx-auto px-3 sm:px-4 py-2.5 lg:py-3.5">
