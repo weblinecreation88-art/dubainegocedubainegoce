@@ -1,5 +1,7 @@
 'use client';
 
+import { getBrandPath } from '@/lib/catalog-urls';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -28,14 +30,14 @@ import type { Product } from '@/lib/types';
 import { computeShippingCost } from '@/lib/data';
 
 const BRAND_LINKS = [
-  { name: 'Lattafa', href: '/shop/all?brands=Lattafa', desc: 'Khamrah, Yara, Asad, Fakhar...' },
-  { name: 'Maison Alhambra', href: '/shop/all?brands=Maison+Alhambra', desc: 'Tobacco Touch, Woody Oud, Grise...' },
-  { name: 'French Avenue', href: '/shop/all?brands=French+Avenue', desc: 'Liquid Brun, Spectre, Azzure...' },
-  { name: 'Fragrance World', href: '/shop/all?brands=Fragrance+World', desc: 'Barakkat, Cocktail Intense...' },
-  { name: 'Paris Corner', href: '/shop/all?brands=Paris+Corner', desc: 'Emir, Pendora Scents, Khair...' },
-  { name: 'Ard Al Zaafaran', href: '/shop/all?brands=Ard+Al+Zaafaran', desc: 'Oud 24 Hours, Dirham, Mousuf...' },
-  { name: 'Asdaaf', href: '/shop/all?brands=Asdaaf', desc: 'Ameerat Al Arab, Andaleeb...' },
-  { name: 'Armaf', href: '/shop/all?brands=Armaf', desc: 'Club de Nuit, Tag Him...' },
+  { name: 'Lattafa', href: getBrandPath("Lattafa"), desc: 'Khamrah, Yara, Asad, Fakhar...' },
+  { name: 'Maison Alhambra', href: getBrandPath("Maison Alhambra"), desc: 'Tobacco Touch, Woody Oud, Grise...' },
+  { name: 'French Avenue', href: getBrandPath("French Avenue"), desc: 'Liquid Brun, Spectre, Azzure...' },
+  { name: 'Fragrance World', href: getBrandPath("Fragrance World"), desc: 'Barakkat, Cocktail Intense...' },
+  { name: 'Paris Corner', href: getBrandPath("Paris Corner"), desc: 'Emir, Pendora Scents, Khair...' },
+  { name: 'Ard Al Zaafaran', href: getBrandPath("Ard Al Zaafaran"), desc: 'Oud 24 Hours, Dirham, Mousuf...' },
+  { name: 'Asdaaf', href: getBrandPath("Asdaaf"), desc: 'Ameerat Al Arab, Andaleeb...' },
+  { name: 'Armaf', href: getBrandPath("Armaf"), desc: 'Club de Nuit, Tag Him...' },
 ];
 
 const FAMILY_LINKS = [
@@ -43,8 +45,8 @@ const FAMILY_LINKS = [
   { name: 'Oriental & Ambré', href: '/shop/all?families=Oriental', desc: 'Notes chaudes d’ambre, épices et résines' },
   { name: 'Gourmand & Vanille', href: '/shop/all?families=Gourmand', desc: 'Vanille, praline, caramel, datte et cannelle' },
   { name: 'Floral & Poudré', href: '/shop/all?families=Floral', desc: 'Rose de Damas, jasmin, fleur d’oranger' },
-  { name: 'Frais & Agrumes', href: '/shop/all?families=Frais', desc: 'Bergamote, néroli, notes marines et hespéridées' },
-  { name: 'Musc Blanc & Doux', href: '/shop/all?families=Musc', desc: 'Muscs purs, coton frais et sillage seconde peau' },
+  { name: 'Frais & Agrumes', href: '/shop/all?families=Hespéridé', desc: 'Bergamote, néroli, notes marines et hespéridées' },
+  { name: 'Musc Blanc & Doux', href: '/shop/all?families=Musqué', desc: 'Muscs purs, coton frais et sillage seconde peau' },
 ];
 
 export default function Header() {
@@ -146,13 +148,13 @@ export default function Header() {
                         Dubaï Négoce
                       </SheetTitle>
                       <SheetDescription className="text-left text-xs text-white/75">
-                        Parfums Authentiques de Dubaï • Prix unique 35,00 € TTC
+                        Parfums authentiques de Dubaï
                       </SheetDescription>
                     </SheetHeader>
                     <ScrollArea className="flex-1">
                       <div className="flex flex-col p-4 space-y-2 text-sm">
                         <Link href="/shop/all" onClick={handleLinkClick} className="font-bold py-2 border-b border-gray-100 text-[#111827] hover:text-[#d4a017]">
-                          🛍️ Tous les Parfums (35,00 €)
+                          🛍️ Tous les Parfums
                         </Link>
                         <Link href="/shop/all?sort=bestsellers" onClick={handleLinkClick} className="font-bold py-2 border-b border-gray-100 text-[#d4a017]">
                           ⭐ Meilleures Ventes &amp; Viraux
@@ -230,10 +232,10 @@ export default function Header() {
               {/* Repère tarifaire clair et vérifiable */}
               <div className="hidden xl:flex items-center gap-2.5 bg-[#fdfaf4] border border-[#e4dac9] rounded px-3 py-1.5 ml-1">
                 <span className="text-xs font-extrabold text-white bg-[#111827] px-2 py-0.5 rounded-[2px]">
-                  35 €
+                  EDP
                 </span>
                 <div className="leading-tight">
-                  <p className="text-[11px] font-bold text-[#111827]">Prix unique TTC</p>
+                  <p className="text-[11px] font-bold text-[#111827]">Eaux de parfum</p>
                   <p className="text-[10px] text-gray-600">Port offert dès 3 parfums</p>
                 </div>
               </div>
@@ -527,7 +529,7 @@ export default function Header() {
                       <li><Link href="/shop/all?genders=femme&families=Gourmand" className="hover:text-[#d4a017] block">Gourmand, Vanille &amp; Fruits</Link></li>
                       <li><Link href="/shop/all?genders=femme&families=Floral" className="hover:text-[#d4a017] block">Floral, Rose &amp; Jasmin</Link></li>
                       <li><Link href="/shop/all?genders=femme&families=Oriental" className="hover:text-[#d4a017] block">Oriental &amp; Ambré Sensuel</Link></li>
-                      <li><Link href="/shop/all?genders=femme&families=Musc" className="hover:text-[#d4a017] block">Musc Blanc &amp; Poudré</Link></li>
+                      <li><Link href="/shop/all?genders=femme&families=Musqué" className="hover:text-[#d4a017] block">Musc Blanc &amp; Poudré</Link></li>
                       <li><Link href="/shop/all?genders=femme" className="font-bold text-[#111827] hover:text-[#d4a017] block pt-1">→ Tous les parfums Femme</Link></li>
                     </ul>
                   </div>
@@ -563,7 +565,7 @@ export default function Header() {
                     <ul className="space-y-2 text-xs font-medium">
                       <li><Link href="/shop/all?genders=homme&families=Boisé" className="hover:text-[#d4a017] block">Boisé, Cèdre &amp; Oud Intense</Link></li>
                       <li><Link href="/shop/all?genders=homme&families=Oriental" className="hover:text-[#d4a017] block">Épicé, Cuir &amp; Tabac</Link></li>
-                      <li><Link href="/shop/all?genders=homme&families=Frais" className="hover:text-[#d4a017] block">Frais, Aromatique &amp; Agrumes</Link></li>
+                      <li><Link href="/shop/all?genders=homme&families=Hespéridé" className="hover:text-[#d4a017] block">Frais, Aromatique &amp; Agrumes</Link></li>
                       <li><Link href="/shop/all?genders=homme" className="font-bold text-[#111827] hover:text-[#d4a017] block pt-1">→ Tous les parfums Homme</Link></li>
                     </ul>
                   </div>

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-22T11:35:33.916Z",
+  "productsPreserved": 151,
+  "fields": [
+    "id",
+    "slug",
+    "price",
+    "stock",
+    "images",
+    "volumeMl",
+    "brand"
+  ],
+  "httpAssertions": "passed",
+  "shippingRules": "unchanged",
+  "feedProductsChecked": 151,
+  "productSchemasChecked": 151,
+  "sitemapDirect200Checked": 195,
+  "compiledServer": true
+}

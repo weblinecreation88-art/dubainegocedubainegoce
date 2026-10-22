@@ -1,4 +1,5 @@
-import { getProductBySlug, getProducts } from '@/lib/data';
+import { getBrandPath } from '@/lib/catalog-urls';
+import { getProductBySlug, getProducts, computeShippingCost } from '@/lib/data';
 import { getSmartRelatedProducts } from '@/lib/product-recommendations';
 import { permanentRedirect } from 'next/navigation';
 import { Metadata, ResolvingMetadata } from 'next';
@@ -136,7 +137,7 @@ export default function ProductPage({ params }: Props) {
     '@type': 'Product',
     '@id': `https://dubainegoce.fr/parfum/${product.slug}`,
     name: product.name,
-    image: product.images,
+    image: product.images.map(image => new URL(image, SITE_URL).href),
     description: plainDescription,
     brand: {
       '@type': 'Brand',
@@ -144,7 +145,6 @@ export default function ProductPage({ params }: Props) {
       url: 'https://dubainegoce.fr',
     },
     sku: product.id,
-    mpn: referenceCode,
     productType: 'Fragrance',
     category: product.family,
     offers: {
@@ -153,7 +153,6 @@ export default function ProductPage({ params }: Props) {
       url: `https://dubainegoce.fr/parfum/${product.slug}`,
       priceCurrency: 'EUR',
       price: product.price.toFixed(2),
-      priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
       availability: `https://schema.org/${stockLevel}`,
       itemCondition: 'https://schema.org/NewCondition',
       seller: {
@@ -165,7 +164,7 @@ export default function ProductPage({ params }: Props) {
         '@type': 'OfferShippingDetails',
         shippingRate: {
           '@type': 'MonetaryAmount',
-          value: '7.10',
+          value: computeShippingCost('colissimo', 'FR', 1, product.price).toFixed(2),
           currency: 'EUR',
         },
         shippingDestination: {
@@ -185,11 +184,6 @@ export default function ProductPage({ params }: Props) {
     manufacturer: {
       '@type': 'Organization',
       name: product.brand.name,
-    },
-    weight: {
-      '@type': 'QuantitativeValue',
-      value: '0.45',
-      unitCode: 'KGM',
     },
     dimensions: {
       '@type': 'QuantitativeValue',
@@ -219,7 +213,7 @@ export default function ProductPage({ params }: Props) {
         '@type': 'ListItem',
         position: 3,
         name: product.brand.name,
-        item: `https://dubainegoce.fr/shop/all?brands=${encodeURIComponent(product.brand.name)}`,
+        item: `https://dubainegoce.fr${getBrandPath(product.brand.name)}`,
       },
       {
         '@type': 'ListItem',
@@ -250,7 +244,7 @@ export default function ProductPage({ params }: Props) {
           </Link>
           <span className="text-gray-400">&gt;</span>
           <Link
-            href={`/shop/all?brands=${encodeURIComponent(product.brand.name)}`}
+            href={getBrandPath(product.brand.name)}
             className="hover:text-[#d4a017] font-medium transition-colors"
           >
             {product.brand.name}
@@ -275,7 +269,7 @@ export default function ProductPage({ params }: Props) {
             <div className="lg:col-span-4 space-y-4">
               <div>
                 <Link
-                  href={`/shop/all?brands=${encodeURIComponent(product.brand.name)}`}
+                  href={getBrandPath(product.brand.name)}
                   className="text-xs uppercase tracking-widest font-extrabold text-[#d4a017] hover:underline"
                 >
                   {product.brand.name}

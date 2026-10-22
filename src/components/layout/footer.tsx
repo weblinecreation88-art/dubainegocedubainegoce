@@ -29,7 +29,7 @@ export default function Footer() {
               Dubaï Négoce
             </h3>
             <p className="text-xs text-white/75 leading-relaxed">
-              Boutique spécialisée dans les eaux de parfum authentiques de Dubaï (Lattafa, Maison Alhambra, French Avenue, Fragrance World, Paris Corner) au tarif fixe de 35,00 € TTC.
+              Boutique spécialisée dans les eaux de parfum authentiques de Dubaï (Lattafa, Maison Alhambra, French Avenue, Fragrance World, Paris Corner).
             </p>
             <ul className="space-y-2 text-xs text-white/80">
               <li><Link href="/about" className="hover:text-[#d4a017] transition-colors">Qui sommes-nous ?</Link></li>
@@ -45,7 +45,7 @@ export default function Footer() {
               Nos Rayons Parfums
             </h3>
             <ul className="space-y-2 text-xs text-white/80">
-              <li><Link href="/shop/all" className="hover:text-[#d4a017] transition-colors">Tous les parfums (35,00 €)</Link></li>
+              <li><Link href="/shop/all" className="hover:text-[#d4a017] transition-colors">Tous les parfums</Link></li>
               <li><Link href="/shop/all?genders=femme" className="hover:text-[#d4a017] transition-colors">Parfums Femme</Link></li>
               <li><Link href="/shop/all?genders=homme" className="hover:text-[#d4a017] transition-colors">Parfums Homme</Link></li>
               <li><Link href="/shop/all?genders=mixte" className="hover:text-[#d4a017] transition-colors">Parfums Mixtes</Link></li>
@@ -176,7 +176,7 @@ export default function Footer() {
           <details className="border-b border-white/15 pb-3">
             <summary className="font-bold text-[#d4a017] cursor-pointer py-1">Nos rayons parfums</summary>
             <ul className="space-y-2 pt-2 pl-3 text-xs text-white/80">
-              <li><Link href="/shop/all">Tous les parfums (35,00 €)</Link></li>
+              <li><Link href="/shop/all">Tous les parfums</Link></li>
               <li><Link href="/shop/all?genders=femme">Parfums Femme</Link></li>
               <li><Link href="/shop/all?genders=homme">Parfums Homme</Link></li>
               <li><Link href="/shop/all?genders=mixte">Parfums Mixtes</Link></li>

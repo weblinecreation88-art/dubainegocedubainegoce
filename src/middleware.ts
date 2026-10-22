@@ -160,7 +160,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(pathname === '/' ? '/shop' : pathname, request.url), { status: 301 });
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  if (/^\/(account|admin|cart|checkout|login|signup|wishlist)(\/|$)/.test(pathname) || url.searchParams.has('q')) {
+    response.headers.set('X-Robots-Tag', 'noindex, follow');
+  }
+  return response;
 }
 
 export const config = {

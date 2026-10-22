@@ -1,3 +1,5 @@
+import { getBrandPath } from '@/lib/catalog-urls';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -8,6 +10,10 @@ import { ProductCard } from '@/components/product/product-card';
 import { HeroBanner } from '@/components/layout/hero-banner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PaymentBadges } from '@/components/ui/payment-badges';
+
+export const metadata: Metadata = {
+  alternates: { canonical: 'https://dubainegoce.fr/' },
+};
 
 export default function Home() {
   const fragranceFamilies = getFragranceFamilies();
@@ -59,7 +65,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-[#d4a017] pb-3 mb-6">
               <div>
                 <h2 className="text-xl sm:text-2xl font-headline font-bold text-[#111827]">
-                  Parfums Disponibles en Stock (35,00 € TTC)
+                  Parfums disponibles en stock
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-600">
                   Flacons neufs scellés • Livraison Colissimo offerte dès 3 parfums
@@ -204,7 +210,7 @@ export default function Home() {
               {brands.map((brand) => (
                 <Link
                   key={brand.id}
-                  href={`/shop/all?brands=${encodeURIComponent(brand.name)}`}
+                  href={getBrandPath(brand.name)}
                   className="flex flex-col items-center justify-center p-3 rounded border border-[#e4dac9] bg-[#fdfaf4] hover:border-[#d4a017] hover:bg-[#f7f0e6] transition-colors text-center group"
                 >
                   <div className="relative h-12 w-20 mb-2 bg-white rounded border border-gray-100 overflow-hidden">
@@ -329,7 +335,7 @@ export default function Home() {
                 À propos de Dubaï Négoce &amp; Avis Clients
               </h2>
               <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                <strong>Dubaï Négoce</strong> sélectionne les eaux de parfum authentiques des maisons émiraties (Lattafa, Maison Alhambra, Fragrance World, French Avenue, Paris Corner, Ard Al Zaafaran) au tarif unique de <strong>35,00 € TTC</strong>. Consultez nos mentions légales, nos conditions de livraison et les retours d&apos;expérience publiés sur notre profil public Trustpilot.
+                <strong>Dubaï Négoce</strong> sélectionne les eaux de parfum authentiques des maisons émiraties (Lattafa, Maison Alhambra, Fragrance World, French Avenue, Paris Corner, Ard Al Zaafaran). Consultez nos mentions légales, nos conditions de livraison et les retours d&apos;expérience publiés sur notre profil public Trustpilot.
               </p>
               <div className="flex flex-wrap gap-4 pt-1 text-xs font-bold">
                 <Link href="/about" className="text-[#111827] hover:text-[#d4a017] underline">

@@ -8,7 +8,7 @@ import {
 import { JsonLd } from '@/components/seo/json-ld';
 
 export const metadata: Metadata = {
-    title: 'Foire Aux Questions (FAQ) — Parfums de Dubaï | Dubainegoce',
+    title: 'Foire Aux Questions (FAQ) — Parfums de Dubaï',
     description: 'Trouvez les réponses à vos questions les plus fréquentes sur l\'authenticité, la livraison, la tenue de nos parfums et nos services.',
     alternates: {
         canonical: 'https://dubainegoce.fr/faq',

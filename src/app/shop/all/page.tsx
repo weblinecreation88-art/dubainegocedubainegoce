@@ -5,20 +5,27 @@ import { Suspense } from 'react';
 import ShopAllLoading from './loading';
 import { JsonLd } from '@/components/seo/json-ld';
 
-export const metadata: Metadata = {
-  title: 'Boutique — Parfums Authentiques de Dubaï | Lattafa, Maison Alhambra | Dubainegoce',
-  description: 'Explorez notre collection exclusive de parfums authentiques de Dubaï. Lattafa, Maison Alhambra, French Avenue, Fragrance World. Filtrez par marque, famille olfactive, genre. Livraison rapide 48h.',
+const catalogueMetadata: Metadata = {
+  title: 'Boutique — Parfums Authentiques de Dubaï | Lattafa, Maison Alhambra',
+  description: 'Découvrez les parfums de Lattafa, Maison Alhambra, French Avenue et Fragrance World. Comparez les prix et filtrez par marque, famille olfactive ou genre.',
   keywords: 'parfums dubaï, lattafa, maison alhambra, french avenue, fragrance world, parfums orientaux, parfums authentiques',
   alternates: {
     canonical: 'https://dubainegoce.fr/shop/all',
   },
   openGraph: {
-    title: 'Boutique — Parfums Authentiques de Dubaï | Dubainegoce',
+    title: 'Boutique — Parfums Authentiques de Dubaï',
     description: 'Catalogue complet d\'eaux de parfum orientales de Dubaï.',
     url: 'https://dubainegoce.fr/shop/all',
     type: 'website',
   },
 };
+
+export function generateMetadata({ searchParams }: { searchParams: Record<string, string | string[] | undefined> }): Metadata {
+  return {
+    ...catalogueMetadata,
+    ...(searchParams.q ? { robots: { index: false, follow: true } } : {}),
+  };
+}
 
 export default function ShopAllPage() {
   const products = getProducts();
@@ -67,8 +74,6 @@ export default function ShopAllPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={collectionJsonLd} />
-      {/* SEO H1 */}
-      <h1 className="sr-only">Boutique — Découvrez nos Parfums Authentiques de Dubaï</h1>
 
       <Suspense fallback={<ShopAllLoading />}>
         <ShopPageContent

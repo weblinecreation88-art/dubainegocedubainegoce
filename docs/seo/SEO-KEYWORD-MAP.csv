@@ -1,0 +1,11 @@
+intention,requete_candidate,url_existante,priorite,volume_mesure,risque_cannibalisation,statut
+achat,parfum de Dubai,https://dubainegoce.fr/shop/all,P1,non mesure,accueil et catalogue,allocation provisoire sans recherche SERP
+navigation,Dubainegoce,https://dubainegoce.fr/,P1,non mesure,faible,marque boutique
+achat marque,parfum Lattafa,https://dubainegoce.fr/shop/marque/lattafa,P1,non mesure,articles Lattafa,renforcer page existante
+achat marque,Maison Alhambra,https://dubainegoce.fr/shop/marque/maison-alhambra,P1,non mesure,articles marque,renforcer page existante
+achat marque,French Avenue,https://dubainegoce.fr/shop/marque/french-avenue,P1,non mesure,articles marque,renforcer page existante
+achat marque,Fragrance World,https://dubainegoce.fr/shop/marque/fragrance-world,P1,non mesure,article marque,renforcer page existante
+achat marque,Paris Corner,https://dubainegoce.fr/shop/marque/paris-corner,P1,non mesure,a verifier GSC,renforcer page existante
+achat produit,Liquid Brun French Avenue,https://dubainegoce.fr/parfum/liquide-brun-french-avenue,P1,non mesure,article Liquid Brun,intention transactionnelle a distinguer du guide
+achat produit,Tobacco Touch Maison Alhambra,https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra,P1,non mesure,a verifier GSC,page existante
+decouverte,parfum boise,https://dubainegoce.fr/shop/famille/boise,P2,non mesure,filtres catalogue,a verifier SERP

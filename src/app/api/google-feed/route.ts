@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getProducts, getColissimoCost, getMondialRelayCost } from '@/lib/data';
+import { getProducts, computeShippingCost, shippingMethods } from '@/lib/data';
 
 const SITE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
@@ -30,13 +30,6 @@ function mapGender(gender: string): string {
     }
 }
 
-/**
- * Estimates the total weight (bottle + packaging) in grams.
- * A 100 ml perfume bottle ≈ 250–350 g — we use a simple formula.
- */
-function estimateWeightGrams(volumeMl: number): number {
-    return Math.round(volumeMl * 2.5 + 100);
-}
 
 function formatPrice(price: number): string {
     return `${price.toFixed(2)} EUR`;
@@ -62,7 +55,6 @@ export async function GET() {
             const mainImage   = escapeXml(toAbsoluteUrl(product.images[0]));
             const brandName   = escapeXml(product.brand?.name ?? 'DubaïNégoce');
             const gender      = mapGender(product.gender ?? 'mixte');
-            const weightGrams = estimateWeightGrams(product.volumeMl ?? 100);
 
             // ── Title: "Nom du produit – Marque | Xml EDP"
             const title = escapeXml(
@@ -74,9 +66,12 @@ export async function GET() {
                 (product.shortDescription ?? product.name).replace(/<[^>]*>/g, '')
             );
 
-            // ── Shipping costs computed from real weight
-            const colissimoPrice   = formatPrice(getColissimoCost(weightGrams));
-            const mondialRelayPrice = formatPrice(getMondialRelayCost(weightGrams));
+            // ── Shipping costs use the same one-item rule as checkout
+            const shipping = shippingMethods.map(method => `      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>${escapeXml(method.name)}</g:service>
+        <g:price>${formatPrice(computeShippingCost(method.id, 'FR', 1, product.price))}</g:price>
+      </g:shipping>`).join('\n');
 
             // ── Additional images (up to 9 extra allowed by Google)
             const additionalImages = (product.images.slice(1, 10) ?? [])
@@ -133,22 +128,13 @@ ${additionalImages ? additionalImages + '\n' : ''}      <g:price>${formatPrice(p
       <g:gender>${gender}</g:gender>
       <g:product_type>Parfums &amp; Cosmétiques &gt; Parfums &gt; Eaux de parfum</g:product_type>
       <g:google_product_category>2915</g:google_product_category>
-      <g:identifier_exists>false</g:identifier_exists>
+
 ${details ? details + '\n' : ''}${highlights ? highlights + '\n' : ''}      <g:custom_label_0>${escapeXml(product.family ?? '')}</g:custom_label_0>
       <g:custom_label_1>${escapeXml(product.gender ?? 'mixte')}</g:custom_label_1>
       <g:custom_label_2>${statusLabel}</g:custom_label_2>
       <g:custom_label_3>${priceRange}</g:custom_label_3>
       <g:custom_label_4>${brandName}</g:custom_label_4>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Colissimo Domicile</g:service>
-        <g:price>${colissimoPrice}</g:price>
-      </g:shipping>
-      <g:shipping>
-        <g:country>FR</g:country>
-        <g:service>Mondial Relay Point Relais</g:service>
-        <g:price>${mondialRelayPrice}</g:price>
-      </g:shipping>
+${shipping}
     </item>`;
         })
         .join('');

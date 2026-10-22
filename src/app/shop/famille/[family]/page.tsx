@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const url = `https://dubainegoce.fr/shop/famille/${params.family}`;
 
     return {
-        title: `Parfums ${familyName} - Eaux de Parfum Dubaï | Dubainegoce`,
+        title: `Parfums ${familyName} - Eaux de Parfum Dubaï`,
         description: `Découvrez notre collection de parfums de la famille ${familyName} (Lattafa, Maison Alhambra, French Avenue). Eaux de parfum 100% authentiques, livraison 48h.`,
         alternates: {
             canonical: url,

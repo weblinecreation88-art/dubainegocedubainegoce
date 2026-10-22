@@ -10,7 +10,7 @@ export function AnnouncementBar() {
           <div className="hidden md:flex items-center gap-2 text-white/90">
             <ShieldCheck className="h-3.5 w-3.5 text-[#d4a017] shrink-0" />
             <span>
-              Parfums authentiques de Dubaï • <strong className="text-[#d4a017]">Prix fixe 35,00 € TTC</strong>
+              Parfums authentiques de Dubaï • <strong className="text-[#d4a017]">Découvrez notre sélection</strong>
             </span>
           </div>
 

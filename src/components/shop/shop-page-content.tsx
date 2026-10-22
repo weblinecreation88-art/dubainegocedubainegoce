@@ -27,7 +27,7 @@ export default function ShopPageContent({
     families,
     genders,
     title = 'Catalogue des Parfums',
-    description = 'Parfums authentiques de Dubaï en flacons neufs scellés • Prix unique 35,00 € TTC.',
+    description = 'Explorez les parfums des maisons de Dubaï et filtrez selon vos envies.',
 }: ShopPageContentProps) {
     const searchParams = useSearchParams();
     const [sort, setSort] = useState(searchParams.get('sort') || 'newest');

@@ -8,7 +8,7 @@ import { ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/json-ld';
 
 export const metadata: Metadata = {
-    title: 'Blog Parfums Orientaux — Guides, Avis et Décryptages | Dubainegoce',
+    title: 'Blog Parfums Orientaux — Guides, Avis et Décryptages',
     description: 'Guides d\'achat, avis détaillés, décryptage de l\'oud, sélections des meilleures créations de Dubaï (Lattafa, Maison Alhambra, French Avenue).',
     keywords: 'guide parfum oriental, avis Khamrah, avis Maison Alhambra, parfum oud guide, parfum oriental femme, Lattafa meilleur parfum, parfums dubai',
     alternates: {

@@ -43,23 +43,27 @@ export async function generateStaticParams() {
 // SEO enrichi par marque pour cibler les mots-clés à fort volume
 const BRAND_SEO: Record<string, { title: string; description: string }> = {
     'lattafa': {
-        title: 'Parfums Lattafa — Khamrah, Yara, Asad, Ameer Al Oudh | Dubainegoce',
-        description: 'Toute la collection Lattafa authentique : Khamrah, Yara, Asad, Ameer Al Oudh, Qaed Al Fursan et plus. Parfums orientaux Dubai à partir de 35€. Livraison 48h France.',
+        title: 'Parfums Lattafa — Khamrah, Yara, Asad, Ameer Al Oudh',
+        description: "Explorez les parfums Lattafa, dont Khamrah, Yara et Asad. Comparez contenances et prix, et consultez les références disponibles.",
     },
     'maison-alhambra': {
-        title: 'Parfums Maison Alhambra — Woody Oud, Jean Lowe, Kismet | Dubainegoce',
-        description: 'Collection Maison Alhambra : Woody Oud, Jean Lowe Immortal, Kismet for Women, Toscano Leather… Créations orientales prestigieuses à moins de 40€. Livraison rapide France.',
+        title: 'Parfums Maison Alhambra — Woody Oud, Jean Lowe, Kismet',
+        description: "Retrouvez les parfums Maison Alhambra : Tobacco Touch, Toscano Leather et les autres références du catalogue. Consultez prix et disponibilités.",
     },
     'fragrance-world': {
-        title: 'Parfums Fragrance World — Collection Dubai authentique | Dubainegoce',
-        description: 'Découvrez la collection Fragrance World chez Dubainegoce — parfums orientaux authentiques des Émirats. Prix accessibles, qualité premium, livraison 48h France.',
+        title: 'Parfums Fragrance World — Collection Dubai authentique',
+        description: "Parcourez les parfums Fragrance World et affinez votre choix par genre ou famille olfactive. Les prix et stocks sont indiqués pour chaque référence.",
     },
     'french-avenue': {
-        title: 'Parfums French Avenue — Liquid Brun, Kenzie | Dubainegoce',
-        description: 'Découvrez les eaux de parfum French Avenue : Liquid Brun, collection Kenzie. Parfums orientaux d\'exception livrés en 48h.',
+        title: 'Parfums French Avenue — Liquid Brun, Kenzie',
+        description: "Découvrez les parfums French Avenue, dont Liquid Brun et la collection Kenzie. Comparez les références, leurs contenances et leur disponibilité.",
+    },
+    'paris-corner': {
+        title: 'Parfums Paris Corner — Khair et sélection disponible',
+        description: 'Découvrez les parfums Paris Corner du catalogue. Consultez les contenances, les prix et les stocks, puis filtrez selon vos envies.',
     },
     'armaf': {
-        title: 'Parfums Armaf — Club de Nuit et collection Dubai | Dubainegoce',
+        title: 'Parfums Armaf — Club de Nuit et collection Dubai',
         description: 'Collection Armaf authentique chez Dubainegoce. Club de Nuit et autres fragrances de la marque Dubai premium. Livraison rapide en France.',
     },
 };
@@ -69,13 +73,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!brandName) return { title: 'Non trouvé' };
     const url = `https://dubainegoce.fr/shop/marque/${params.brand}`;
     const seo = BRAND_SEO[params.brand] || {
-        title: `Parfums ${brandName} authentiques — Dubai | Dubainegoce`,
-        description: `Toute la collection ${brandName} chez Dubainegoce — parfums authentiques des Émirats livrés en France en 48h. Qualité orientale, prix accessibles.`,
+        title: `Parfums ${brandName} authentiques — Dubai`,
+        description: `Toute la collection ${brandName} chez Dubainegoce — comparez les références, leurs contenances et leur disponibilité.`,
     };
 
     return {
         title: seo.title,
         description: seo.description,
+        robots: { index: getProducts().some(p => p.brand.name === brandName), follow: true },
         alternates: {
             canonical: url,
         },
@@ -150,8 +155,8 @@ export default function BrandShopPage({ params }: Props) {
                     brands={[]}
                     families={families}
                     genders={genders}
-                    title={brandName}
-                    description={`Toute la collection ${brandName} — triez par prix, meilleures ventes ou nouveautés.`}
+                    title={`Parfums ${brandName}`}
+                    description={`Découvrez les parfums ${brandName}. Comparez les contenances, les prix et les disponibilités, puis filtrez par genre ou famille olfactive.`}
                 />
             </Suspense>
         </>

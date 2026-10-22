@@ -1,0 +1,2778 @@
+{
+  "recordedAt": "2026-10-22T11:35:33.325Z",
+  "base": "http://localhost:3001",
+  "method": "HTTP GET sans JavaScript, sans authentification",
+  "results": [
+    {
+      "requested": "http://localhost:3001/",
+      "url": "http://localhost:3001/",
+      "status": 200,
+      "redirects": [],
+      "bytes": 304904,
+      "titles": [
+        "Dubainegoce – Parfums orientaux et parfums de Dubaï"
+      ],
+      "h1": [
+        "Eaux de Parfum Authentiques • Les maisons de Dubaï"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Découvrez les parfums de Dubaï authentiques : Lattafa, Maison Alhambra, French Avenue, Fragrance World. Découvrez les prix et disponibilités de chaque référence.",
+      "productLinks": [
+        "/parfum/tobacco-touch-maison-alhambra",
+        "/parfum/porto-neroli-maison-alhambra",
+        "/parfum/toscano-leather-maison-alhambra",
+        "/parfum/khamrah-lattafa",
+        "/parfum/pose-as-rose-fragrance-world",
+        "/parfum/liquide-brun-french-avenue",
+        "/parfum/good-girl-by-killer-loui-martin"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/all",
+      "url": "http://localhost:3001/shop/all",
+      "status": 200,
+      "redirects": [],
+      "bytes": 1402867,
+      "titles": [
+        "Boutique — Parfums Authentiques de Dubaï | Lattafa, Maison Alhambra | Dubainegoce"
+      ],
+      "h1": [
+        "Catalogue des Parfums"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/all"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Découvrez les parfums de Lattafa, Maison Alhambra, French Avenue et Fragrance World. Comparez les prix et filtrez par marque, famille olfactive ou genre.",
+      "productLinks": [
+        "/parfum/fondue-tropical-hamidi",
+        "/parfum/mirada-perla-mirada",
+        "/parfum/qandeel-ard-al-zaafaran",
+        "/parfum/leonie-maison-alhambra",
+        "/parfum/verato-white-musk-mirada",
+        "/parfum/good-girl-by-killer-loui-martin",
+        "/parfum/killer-loui-martin",
+        "/parfum/omniyat-surrati",
+        "/parfum/l-impresio-maison-alhambra",
+        "/parfum/bint-hooran-rose-passion-ard-al-zaafaran",
+        "/parfum/ana-abiyedh-poudree-lattafa",
+        "/parfum/fleur-de-coton-sublime",
+        "/parfum/coton-blanc-inspire-paris",
+        "/parfum/khair-felicity-paris-corner",
+        "/parfum/khair-confection-paris-corner",
+        "/parfum/khair-fusion-paris-corner",
+        "/parfum/yara-orange-lattafa",
+        "/parfum/yara-moi-lattafa",
+        "/parfum/yara-candy-lattafa",
+        "/parfum/vanilla-latte-gulf-orchid",
+        "/parfum/ithra-cotton-candy-ard-al-zaafaran",
+        "/parfum/ithra-mango-ard-al-zaafaran",
+        "/parfum/pistachio-ard-al-zaafaran",
+        "/parfum/eclaire-lattafa",
+        "/parfum/kenzie-candid-vanilla-french-avenue",
+        "/parfum/kenzie-marshmallow-french-avenue",
+        "/parfum/glorious-oud-french-avenue",
+        "/parfum/after-effect-french-avenue",
+        "/parfum/liquide-brun-french-avenue",
+        "/parfum/azzure-aoud-french-avenue",
+        "/parfum/royal-blend-nero-french-avenue",
+        "/parfum/sweet-paradise-french-avenue",
+        "/parfum/lumiere-elle-french-avenue",
+        "/parfum/lumiere-garcon-french-avenue",
+        "/parfum/aether-extrait-french-avenue",
+        "/parfum/irida-extrait-french-avenue",
+        "/parfum/francique-63-55-french-avenue",
+        "/parfum/francique-107-9-french-avenue",
+        "/parfum/tobacco-touch-maison-alhambra",
+        "/parfum/amber-neroli-fragrance-world",
+        "/parfum/yara-lattafa",
+        "/parfum/jean-lowe-noir-maison-alhambra",
+        "/parfum/suits-fragrance-world",
+        "/parfum/oud-highness-paris-corner",
+        "/parfum/zaffiro-collection-crafted-oud-maison-alhambra",
+        "/parfum/zaffiro-regale-maison-alhambra-unisex",
+        "/parfum/lueur-d-espoir-ambre-paris-corner",
+        "/parfum/amber-grand-pendora-paris-corner",
+        "/parfum/spectre-ghost-fragrance-world",
+        "/parfum/the-artist-no-1-maison-alhambra",
+        "/parfum/tempete-jacques-yves",
+        "/parfum/teriaq-lattafa-mixte",
+        "/parfum/cocktail-intense-fragrance-world",
+        "/parfum/tudor-paris-corner",
+        "/parfum/invicto-fragrance-world",
+        "/parfum/cuir-leather-fragrance-world",
+        "/parfum/pure-passion-fragrance-world",
+        "/parfum/absolute-oud-magnificent-7-fragrance-world",
+        "/parfum/extreme-aoud-fragrance-world",
+        "/parfum/tour-de-havana-fragrance-world",
+        "/parfum/mocha-wood-fragrance-world",
+        "/parfum/optimystic-noir-fragrance-world",
+        "/parfum/optimystic-blanc-fragrance-world",
+        "/parfum/black-afgano-fragrance-world",
+        "/parfum/jean-lowe-immortal-maison-alhambra",
+        "/parfum/musk-vanille-maison-alhambra",
+        "/parfum/baroque-rouge-extrait-maison-alhambra",
+        "/parfum/victorioso-victory-maison-alhambra",
+        "/parfum/fresh-as-citrus-fragrance-world",
+        "/parfum/rose-petals-maison-alhambra",
+        "/parfum/lovely-cherie-maison-alhambra",
+        "/parfum/by-saffron-maison-alhambra",
+        "/parfum/infini-rose-maison-alhambra",
+        "/parfum/francique-63-55-fragrance-world",
+        "/parfum/eternal-oud-lattafa-pride",
+        "/parfum/karat-maison-alhambra",
+        "/parfum/francique-107-9-fragrance-world",
+        "/parfum/confidential-private-gold-lattafa",
+        "/parfum/l-intrude-maison-alhambra",
+        "/parfum/porto-neroli-maison-alhambra",
+        "/parfum/jorge-di-profumo-maison-alhambra",
+        "/parfum/dark-as-wood-fragrance-world",
+        "/parfum/pose-as-rose-fragrance-world",
+        "/parfum/queen-q-fragrance-world",
+        "/parfum/j-fragrance-world",
+        "/parfum/k-king-fragrance-world",
+        "/parfum/a-king-fragrance-world",
+        "/parfum/al-khas-winners-trophy-lattafa-pride",
+        "/parfum/tharwah-gold-lattafa-pride",
+        "/parfum/kismet-angel-maison-alhambra",
+        "/parfum/jean-lowe-ombre-maison-alhambra",
+        "/parfum/jean-lowe-nouveau-maison-alhambra",
+        "/parfum/come-moiselle-maison-alhambra",
+        "/parfum/so-candid-maison-alhambra",
+        "/parfum/andaleeb-asdaaf",
+        "/parfum/mayar-lattafa",
+        "/parfum/sakeena-lattafa",
+        "/parfum/musk-mood-lattafa-mixte",
+        "/parfum/oud-mood-reminiscence-lattafa",
+        "/parfum/pure-oudi-lattafa",
+        "/parfum/maahir-legacy-lattafa",
+        "/parfum/majd-al-sultan-asdaaf",
+        "/parfum/olivia-blossom-maison-alhambra",
+        "/parfum/hercules-maison-alhambra",
+        "/parfum/opera-noir-maison-alhambra",
+        "/parfum/avant-maison-alhambra",
+        "/parfum/galatea-maison-alhambra",
+        "/parfum/al-noble-wazeer-lattafa",
+        "/parfum/niche-royal-rouge-maison-alhambra",
+        "/parfum/kismet-moscow-maison-alhambra",
+        "/parfum/tabac-maison-alhambra",
+        "/parfum/now-rave-lattafa",
+        "/parfum/maahir-black-edition-lattafa",
+        "/parfum/salvo-intense-maison-alhambra",
+        "/parfum/ajwad-lattafa",
+        "/parfum/najdia-lattafa",
+        "/parfum/ameer-al-oudh-intense-oud-lattafa",
+        "/parfum/versencia-crystal-maison-alhambra",
+        "/parfum/al-noble-safeer-lattafa",
+        "/parfum/perseus-maison-alhambra",
+        "/parfum/kismet-for-women-maison-alhambra",
+        "/parfum/minerva-maison-alhambra",
+        "/parfum/la-vita-bella-maison-alhambra",
+        "/parfum/infini-oud-maison-alhambra-mixte",
+        "/parfum/glacier-le-noir-maison-alhambra",
+        "/parfum/jean-lowe-matiere-maison-alhambra",
+        "/parfum/toscano-leather-maison-alhambra",
+        "/parfum/safwaan-lautre-oud-lattafa",
+        "/parfum/ana-abiyedh-60ml-lattafa",
+        "/parfum/velvet-oud-lattafa",
+        "/parfum/oud-mood-lattafa",
+        "/parfum/badee-al-oud-oud-for-glory-lattafa",
+        "/parfum/safwaan-lautre-musk-lattafa",
+        "/parfum/grise-maison-alhambra",
+        "/parfum/glacier-pour-homme-maison-alhambra",
+        "/parfum/fakhar-wasam-lattafa",
+        "/parfum/asad-lattafa",
+        "/parfum/confidential-platinum-lattafa",
+        "/parfum/maahir-lattafa",
+        "/parfum/yeah-maison-alhambra",
+        "/parfum/ejaazi-lattafa",
+        "/parfum/fakhar-rose-gold-lattafa",
+        "/parfum/fakhar-black-lattafa",
+        "/parfum/ana-abiyedh-rouge-60ml-lattafa",
+        "/parfum/qaaed-lattafa",
+        "/parfum/khamrah-lattafa",
+        "/parfum/raghba-lattafa-mixte",
+        "/parfum/ramz-gold-lattafa-mixte",
+        "/parfum/ramz-silver-lattafa",
+        "/parfum/the-tux-maison-alhambra-mixte",
+        "/parfum/woody-oud-80-ml-maison-alhambra"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Boutique Dubainegoce",
+          "description": "Catalogue complet des parfums orientaux de Dubaï.",
+          "url": "https://dubainegoce.fr/shop/all",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 151,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra",
+                "name": "Woody Oud 80 Ml Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/the-tux-maison-alhambra-mixte",
+                "name": "The Tux Maison Alhambra Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/ramz-silver-lattafa",
+                "name": "Ramz Silver Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/ramz-gold-lattafa-mixte",
+                "name": "Ramz Gold Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/raghba-lattafa-mixte",
+                "name": "Raghba Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/qaaed-lattafa",
+                "name": "Qaaed Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/ana-abiyedh-rouge-60ml-lattafa",
+                "name": "Ana Abiyedh Rouge 60ml Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/fakhar-black-lattafa",
+                "name": "Fakhar Black"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa",
+                "name": "Fakhar Rose Gold"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/ejaazi-lattafa",
+                "name": "Ejaazi Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 11,
+                "url": "https://dubainegoce.fr/parfum/yeah-maison-alhambra",
+                "name": "Yeah Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 12,
+                "url": "https://dubainegoce.fr/parfum/maahir-lattafa",
+                "name": "Maahir Lattafa"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/all?brands=Lattafa",
+      "url": "http://localhost:3001/shop/all?brands=Lattafa",
+      "status": 200,
+      "redirects": [],
+      "bytes": 889256,
+      "titles": [
+        "Boutique — Parfums Authentiques de Dubaï | Lattafa, Maison Alhambra | Dubainegoce"
+      ],
+      "h1": [
+        "Catalogue des Parfums"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/all"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Découvrez les parfums de Lattafa, Maison Alhambra, French Avenue et Fragrance World. Comparez les prix et filtrez par marque, famille olfactive ou genre.",
+      "productLinks": [
+        "/parfum/ana-abiyedh-poudree-lattafa",
+        "/parfum/yara-orange-lattafa",
+        "/parfum/yara-moi-lattafa",
+        "/parfum/yara-candy-lattafa",
+        "/parfum/eclaire-lattafa",
+        "/parfum/yara-lattafa",
+        "/parfum/teriaq-lattafa-mixte",
+        "/parfum/eternal-oud-lattafa-pride",
+        "/parfum/confidential-private-gold-lattafa",
+        "/parfum/al-khas-winners-trophy-lattafa-pride",
+        "/parfum/tharwah-gold-lattafa-pride",
+        "/parfum/mayar-lattafa",
+        "/parfum/sakeena-lattafa",
+        "/parfum/musk-mood-lattafa-mixte",
+        "/parfum/oud-mood-reminiscence-lattafa",
+        "/parfum/pure-oudi-lattafa",
+        "/parfum/maahir-legacy-lattafa",
+        "/parfum/al-noble-wazeer-lattafa",
+        "/parfum/now-rave-lattafa",
+        "/parfum/maahir-black-edition-lattafa",
+        "/parfum/ajwad-lattafa",
+        "/parfum/najdia-lattafa",
+        "/parfum/ameer-al-oudh-intense-oud-lattafa",
+        "/parfum/al-noble-safeer-lattafa",
+        "/parfum/safwaan-lautre-oud-lattafa",
+        "/parfum/ana-abiyedh-60ml-lattafa",
+        "/parfum/velvet-oud-lattafa",
+        "/parfum/oud-mood-lattafa",
+        "/parfum/badee-al-oud-oud-for-glory-lattafa",
+        "/parfum/safwaan-lautre-musk-lattafa",
+        "/parfum/fakhar-wasam-lattafa",
+        "/parfum/asad-lattafa",
+        "/parfum/confidential-platinum-lattafa",
+        "/parfum/maahir-lattafa",
+        "/parfum/ejaazi-lattafa",
+        "/parfum/fakhar-rose-gold-lattafa",
+        "/parfum/fakhar-black-lattafa",
+        "/parfum/ana-abiyedh-rouge-60ml-lattafa",
+        "/parfum/qaaed-lattafa",
+        "/parfum/khamrah-lattafa",
+        "/parfum/raghba-lattafa-mixte",
+        "/parfum/ramz-gold-lattafa-mixte",
+        "/parfum/ramz-silver-lattafa"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Boutique Dubainegoce",
+          "description": "Catalogue complet des parfums orientaux de Dubaï.",
+          "url": "https://dubainegoce.fr/shop/all",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 151,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra",
+                "name": "Woody Oud 80 Ml Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/the-tux-maison-alhambra-mixte",
+                "name": "The Tux Maison Alhambra Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/ramz-silver-lattafa",
+                "name": "Ramz Silver Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/ramz-gold-lattafa-mixte",
+                "name": "Ramz Gold Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/raghba-lattafa-mixte",
+                "name": "Raghba Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/qaaed-lattafa",
+                "name": "Qaaed Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/ana-abiyedh-rouge-60ml-lattafa",
+                "name": "Ana Abiyedh Rouge 60ml Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/fakhar-black-lattafa",
+                "name": "Fakhar Black"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa",
+                "name": "Fakhar Rose Gold"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/ejaazi-lattafa",
+                "name": "Ejaazi Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 11,
+                "url": "https://dubainegoce.fr/parfum/yeah-maison-alhambra",
+                "name": "Yeah Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 12,
+                "url": "https://dubainegoce.fr/parfum/maahir-lattafa",
+                "name": "Maahir Lattafa"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/all?q=khamrah",
+      "url": "http://localhost:3001/shop/all?q=khamrah",
+      "status": 200,
+      "redirects": [],
+      "bytes": 715659,
+      "titles": [
+        "Boutique — Parfums Authentiques de Dubaï | Lattafa, Maison Alhambra | Dubainegoce"
+      ],
+      "h1": [
+        "Catalogue des Parfums"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/all"
+      ],
+      "robots": [
+        "noindex, follow"
+      ],
+      "xRobots": "noindex, follow",
+      "description": "Découvrez les parfums de Lattafa, Maison Alhambra, French Avenue et Fragrance World. Comparez les prix et filtrez par marque, famille olfactive ou genre.",
+      "productLinks": [
+        "/parfum/khamrah-lattafa"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Boutique Dubainegoce",
+          "description": "Catalogue complet des parfums orientaux de Dubaï.",
+          "url": "https://dubainegoce.fr/shop/all",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 151,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra",
+                "name": "Woody Oud 80 Ml Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/the-tux-maison-alhambra-mixte",
+                "name": "The Tux Maison Alhambra Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/ramz-silver-lattafa",
+                "name": "Ramz Silver Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/ramz-gold-lattafa-mixte",
+                "name": "Ramz Gold Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/raghba-lattafa-mixte",
+                "name": "Raghba Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/qaaed-lattafa",
+                "name": "Qaaed Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/ana-abiyedh-rouge-60ml-lattafa",
+                "name": "Ana Abiyedh Rouge 60ml Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/fakhar-black-lattafa",
+                "name": "Fakhar Black"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa",
+                "name": "Fakhar Rose Gold"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/ejaazi-lattafa",
+                "name": "Ejaazi Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 11,
+                "url": "https://dubainegoce.fr/parfum/yeah-maison-alhambra",
+                "name": "Yeah Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 12,
+                "url": "https://dubainegoce.fr/parfum/maahir-lattafa",
+                "name": "Maahir Lattafa"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/marque/lattafa",
+      "url": "http://localhost:3001/shop/marque/lattafa",
+      "status": 200,
+      "redirects": [],
+      "bytes": 461332,
+      "titles": [
+        "Parfums Lattafa — Khamrah, Yara, Asad, Ameer Al Oudh | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums Lattafa"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/marque/lattafa"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Explorez les parfums Lattafa, dont Khamrah, Yara et Asad. Comparez contenances et prix, et consultez les références disponibles.",
+      "productLinks": [
+        "/parfum/ana-abiyedh-poudree-lattafa",
+        "/parfum/yara-orange-lattafa",
+        "/parfum/yara-moi-lattafa",
+        "/parfum/yara-candy-lattafa",
+        "/parfum/eclaire-lattafa",
+        "/parfum/yara-lattafa",
+        "/parfum/teriaq-lattafa-mixte",
+        "/parfum/eternal-oud-lattafa-pride",
+        "/parfum/confidential-private-gold-lattafa",
+        "/parfum/al-khas-winners-trophy-lattafa-pride",
+        "/parfum/tharwah-gold-lattafa-pride",
+        "/parfum/mayar-lattafa",
+        "/parfum/sakeena-lattafa",
+        "/parfum/musk-mood-lattafa-mixte",
+        "/parfum/oud-mood-reminiscence-lattafa",
+        "/parfum/pure-oudi-lattafa",
+        "/parfum/maahir-legacy-lattafa",
+        "/parfum/al-noble-wazeer-lattafa",
+        "/parfum/now-rave-lattafa",
+        "/parfum/maahir-black-edition-lattafa",
+        "/parfum/ajwad-lattafa",
+        "/parfum/najdia-lattafa",
+        "/parfum/ameer-al-oudh-intense-oud-lattafa",
+        "/parfum/al-noble-safeer-lattafa",
+        "/parfum/safwaan-lautre-oud-lattafa",
+        "/parfum/ana-abiyedh-60ml-lattafa",
+        "/parfum/velvet-oud-lattafa",
+        "/parfum/oud-mood-lattafa",
+        "/parfum/badee-al-oud-oud-for-glory-lattafa",
+        "/parfum/safwaan-lautre-musk-lattafa",
+        "/parfum/fakhar-wasam-lattafa",
+        "/parfum/asad-lattafa",
+        "/parfum/confidential-platinum-lattafa",
+        "/parfum/maahir-lattafa",
+        "/parfum/ejaazi-lattafa",
+        "/parfum/fakhar-rose-gold-lattafa",
+        "/parfum/fakhar-black-lattafa",
+        "/parfum/ana-abiyedh-rouge-60ml-lattafa",
+        "/parfum/qaaed-lattafa",
+        "/parfum/khamrah-lattafa",
+        "/parfum/raghba-lattafa-mixte",
+        "/parfum/ramz-gold-lattafa-mixte",
+        "/parfum/ramz-silver-lattafa"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Lattafa",
+              "item": "https://dubainegoce.fr/shop/marque/lattafa"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums Lattafa",
+          "description": "Toute la collection Lattafa — parfums 100% authentiques des Émirats Arabes Unis.",
+          "url": "https://dubainegoce.fr/shop/marque/lattafa",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 43,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/ramz-silver-lattafa",
+                "name": "Ramz Silver Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/ramz-gold-lattafa-mixte",
+                "name": "Ramz Gold Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/raghba-lattafa-mixte",
+                "name": "Raghba Lattafa Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/qaaed-lattafa",
+                "name": "Qaaed Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/ana-abiyedh-rouge-60ml-lattafa",
+                "name": "Ana Abiyedh Rouge 60ml Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/fakhar-black-lattafa",
+                "name": "Fakhar Black"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa",
+                "name": "Fakhar Rose Gold"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/ejaazi-lattafa",
+                "name": "Ejaazi Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/maahir-lattafa",
+                "name": "Maahir Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/confidential-platinum-lattafa",
+                "name": "Confidential Platinum"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/marque/maison-alhambra",
+      "url": "http://localhost:3001/shop/marque/maison-alhambra",
+      "status": 200,
+      "redirects": [],
+      "bytes": 534815,
+      "titles": [
+        "Parfums Maison Alhambra — Woody Oud, Jean Lowe, Kismet | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums Maison Alhambra"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/marque/maison-alhambra"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Retrouvez les parfums Maison Alhambra : Tobacco Touch, Toscano Leather et les autres références du catalogue. Consultez prix et disponibilités.",
+      "productLinks": [
+        "/parfum/leonie-maison-alhambra",
+        "/parfum/l-impresio-maison-alhambra",
+        "/parfum/tobacco-touch-maison-alhambra",
+        "/parfum/jean-lowe-noir-maison-alhambra",
+        "/parfum/zaffiro-collection-crafted-oud-maison-alhambra",
+        "/parfum/zaffiro-regale-maison-alhambra-unisex",
+        "/parfum/the-artist-no-1-maison-alhambra",
+        "/parfum/jean-lowe-immortal-maison-alhambra",
+        "/parfum/musk-vanille-maison-alhambra",
+        "/parfum/baroque-rouge-extrait-maison-alhambra",
+        "/parfum/victorioso-victory-maison-alhambra",
+        "/parfum/rose-petals-maison-alhambra",
+        "/parfum/lovely-cherie-maison-alhambra",
+        "/parfum/by-saffron-maison-alhambra",
+        "/parfum/infini-rose-maison-alhambra",
+        "/parfum/karat-maison-alhambra",
+        "/parfum/l-intrude-maison-alhambra",
+        "/parfum/porto-neroli-maison-alhambra",
+        "/parfum/jorge-di-profumo-maison-alhambra",
+        "/parfum/kismet-angel-maison-alhambra",
+        "/parfum/jean-lowe-ombre-maison-alhambra",
+        "/parfum/jean-lowe-nouveau-maison-alhambra",
+        "/parfum/come-moiselle-maison-alhambra",
+        "/parfum/so-candid-maison-alhambra",
+        "/parfum/olivia-blossom-maison-alhambra",
+        "/parfum/hercules-maison-alhambra",
+        "/parfum/opera-noir-maison-alhambra",
+        "/parfum/avant-maison-alhambra",
+        "/parfum/galatea-maison-alhambra",
+        "/parfum/niche-royal-rouge-maison-alhambra",
+        "/parfum/kismet-moscow-maison-alhambra",
+        "/parfum/tabac-maison-alhambra",
+        "/parfum/salvo-intense-maison-alhambra",
+        "/parfum/versencia-crystal-maison-alhambra",
+        "/parfum/perseus-maison-alhambra",
+        "/parfum/kismet-for-women-maison-alhambra",
+        "/parfum/minerva-maison-alhambra",
+        "/parfum/la-vita-bella-maison-alhambra",
+        "/parfum/infini-oud-maison-alhambra-mixte",
+        "/parfum/glacier-le-noir-maison-alhambra",
+        "/parfum/jean-lowe-matiere-maison-alhambra",
+        "/parfum/toscano-leather-maison-alhambra",
+        "/parfum/grise-maison-alhambra",
+        "/parfum/glacier-pour-homme-maison-alhambra",
+        "/parfum/yeah-maison-alhambra",
+        "/parfum/the-tux-maison-alhambra-mixte",
+        "/parfum/woody-oud-80-ml-maison-alhambra"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Maison Alhambra",
+              "item": "https://dubainegoce.fr/shop/marque/maison-alhambra"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums Maison Alhambra",
+          "description": "Toute la collection Maison Alhambra — parfums 100% authentiques des Émirats Arabes Unis.",
+          "url": "https://dubainegoce.fr/shop/marque/maison-alhambra",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 47,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra",
+                "name": "Woody Oud 80 Ml Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/the-tux-maison-alhambra-mixte",
+                "name": "The Tux Maison Alhambra Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/yeah-maison-alhambra",
+                "name": "Yeah Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/glacier-pour-homme-maison-alhambra",
+                "name": "Glacier Pour Homme Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/grise-maison-alhambra",
+                "name": "Grise Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/toscano-leather-maison-alhambra",
+                "name": "Toscano Leather Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/jean-lowe-matiere-maison-alhambra",
+                "name": "Jean Lowe Matiere Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/glacier-le-noir-maison-alhambra",
+                "name": "Glacier Le Noir Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/infini-oud-maison-alhambra-mixte",
+                "name": "Infini Oud Maison Alhambra Mixte"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/la-vita-bella-maison-alhambra",
+                "name": "La Vita Bella Maison Alhambra"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/marque/french-avenue",
+      "url": "http://localhost:3001/shop/marque/french-avenue",
+      "status": 200,
+      "redirects": [],
+      "bytes": 250421,
+      "titles": [
+        "Parfums French Avenue — Liquid Brun, Kenzie | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums French Avenue"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/marque/french-avenue"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Découvrez les parfums French Avenue, dont Liquid Brun et la collection Kenzie. Comparez les références, leurs contenances et leur disponibilité.",
+      "productLinks": [
+        "/parfum/kenzie-candid-vanilla-french-avenue",
+        "/parfum/kenzie-marshmallow-french-avenue",
+        "/parfum/glorious-oud-french-avenue",
+        "/parfum/after-effect-french-avenue",
+        "/parfum/liquide-brun-french-avenue",
+        "/parfum/azzure-aoud-french-avenue",
+        "/parfum/royal-blend-nero-french-avenue",
+        "/parfum/sweet-paradise-french-avenue",
+        "/parfum/lumiere-elle-french-avenue",
+        "/parfum/lumiere-garcon-french-avenue",
+        "/parfum/aether-extrait-french-avenue",
+        "/parfum/irida-extrait-french-avenue",
+        "/parfum/francique-63-55-french-avenue",
+        "/parfum/francique-107-9-french-avenue"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "French Avenue",
+              "item": "https://dubainegoce.fr/shop/marque/french-avenue"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums French Avenue",
+          "description": "Toute la collection French Avenue — parfums 100% authentiques des Émirats Arabes Unis.",
+          "url": "https://dubainegoce.fr/shop/marque/french-avenue",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 14,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/francique-107-9-french-avenue",
+                "name": "Francique 107.9"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/francique-63-55-french-avenue",
+                "name": "Francique 63.55"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/irida-extrait-french-avenue",
+                "name": "Irida Extrait"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/aether-extrait-french-avenue",
+                "name": "Aether Extrait French Avenue"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/lumiere-garcon-french-avenue",
+                "name": "Lumière Garçon"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/lumiere-elle-french-avenue",
+                "name": "Lumiere Elle French Avenue"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/sweet-paradise-french-avenue",
+                "name": "Sweet Paradise French Avenue"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/royal-blend-nero-french-avenue",
+                "name": "Royal Blend Nero French Avenue"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/azzure-aoud-french-avenue",
+                "name": "Azzure Aoud"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/after-effect-french-avenue",
+                "name": "After Effect French Avenue"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/marque/fragrance-world",
+      "url": "http://localhost:3001/shop/marque/fragrance-world",
+      "status": 200,
+      "redirects": [],
+      "bytes": 321839,
+      "titles": [
+        "Parfums Fragrance World — Collection Dubai authentique | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums Fragrance World"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/marque/fragrance-world"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Parcourez les parfums Fragrance World et affinez votre choix par genre ou famille olfactive. Les prix et stocks sont indiqués pour chaque référence.",
+      "productLinks": [
+        "/parfum/amber-neroli-fragrance-world",
+        "/parfum/suits-fragrance-world",
+        "/parfum/spectre-ghost-fragrance-world",
+        "/parfum/cocktail-intense-fragrance-world",
+        "/parfum/invicto-fragrance-world",
+        "/parfum/cuir-leather-fragrance-world",
+        "/parfum/pure-passion-fragrance-world",
+        "/parfum/absolute-oud-magnificent-7-fragrance-world",
+        "/parfum/extreme-aoud-fragrance-world",
+        "/parfum/tour-de-havana-fragrance-world",
+        "/parfum/mocha-wood-fragrance-world",
+        "/parfum/optimystic-noir-fragrance-world",
+        "/parfum/optimystic-blanc-fragrance-world",
+        "/parfum/black-afgano-fragrance-world",
+        "/parfum/fresh-as-citrus-fragrance-world",
+        "/parfum/francique-63-55-fragrance-world",
+        "/parfum/francique-107-9-fragrance-world",
+        "/parfum/dark-as-wood-fragrance-world",
+        "/parfum/pose-as-rose-fragrance-world",
+        "/parfum/queen-q-fragrance-world",
+        "/parfum/j-fragrance-world",
+        "/parfum/k-king-fragrance-world",
+        "/parfum/a-king-fragrance-world"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Fragrance World",
+              "item": "https://dubainegoce.fr/shop/marque/fragrance-world"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums Fragrance World",
+          "description": "Toute la collection Fragrance World — parfums 100% authentiques des Émirats Arabes Unis.",
+          "url": "https://dubainegoce.fr/shop/marque/fragrance-world",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 23,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/a-king-fragrance-world",
+                "name": "A King Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/k-king-fragrance-world",
+                "name": "K King Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/j-fragrance-world",
+                "name": "J Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/queen-q-fragrance-world",
+                "name": "Queen Q Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/pose-as-rose-fragrance-world",
+                "name": "Pose As Rose Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/dark-as-wood-fragrance-world",
+                "name": "Dark As Wood Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/francique-107-9-fragrance-world",
+                "name": "Francique 107.9"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/francique-63-55-fragrance-world",
+                "name": "Francique 63.55"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/fresh-as-citrus-fragrance-world",
+                "name": "Fresh As Citrus Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/black-afgano-fragrance-world",
+                "name": "Black Afgano"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/marque/paris-corner",
+      "url": "http://localhost:3001/shop/marque/paris-corner",
+      "status": 200,
+      "redirects": [],
+      "bytes": 196155,
+      "titles": [
+        "Parfums Paris Corner — Khair et sélection disponible | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums Paris Corner"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/marque/paris-corner"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Découvrez les parfums Paris Corner du catalogue. Consultez les contenances, les prix et les stocks, puis filtrez selon vos envies.",
+      "productLinks": [
+        "/parfum/coton-blanc-inspire-paris",
+        "/parfum/khair-felicity-paris-corner",
+        "/parfum/khair-confection-paris-corner",
+        "/parfum/khair-fusion-paris-corner",
+        "/parfum/oud-highness-paris-corner",
+        "/parfum/lueur-d-espoir-ambre-paris-corner",
+        "/parfum/amber-grand-pendora-paris-corner",
+        "/parfum/tudor-paris-corner"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Paris Corner",
+              "item": "https://dubainegoce.fr/shop/marque/paris-corner"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums Paris Corner",
+          "description": "Toute la collection Paris Corner — parfums 100% authentiques des Émirats Arabes Unis.",
+          "url": "https://dubainegoce.fr/shop/marque/paris-corner",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 8,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/tudor-paris-corner",
+                "name": "Tudor"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/amber-grand-pendora-paris-corner",
+                "name": "Amber Grand Pendora Paris Corner"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/lueur-d-espoir-ambre-paris-corner",
+                "name": "Lueur d'Espoir Ambre Paris Corner"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/oud-highness-paris-corner",
+                "name": "Oud Highness Paris Corner"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/khair-fusion-paris-corner",
+                "name": "Khair Fusion Paris Corner"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/khair-confection-paris-corner",
+                "name": "Khair Confection Paris Corner"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/khair-felicity-paris-corner",
+                "name": "Khair Felicity Paris Corner"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/coton-blanc-inspire-paris",
+                "name": "Coton Blanc Inspiré Paris"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/famille/boise",
+      "url": "http://localhost:3001/shop/famille/boise",
+      "status": 200,
+      "redirects": [],
+      "bytes": 216364,
+      "titles": [
+        "Parfums Boisé - Eaux de Parfum Dubaï | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums Boisé"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/famille/boise"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Découvrez notre collection de parfums de la famille Boisé (Lattafa, Maison Alhambra, French Avenue). Eaux de parfum 100% authentiques, livraison 48h.",
+      "productLinks": [
+        "/parfum/l-impresio-maison-alhambra",
+        "/parfum/azzure-aoud-french-avenue",
+        "/parfum/lumiere-garcon-french-avenue",
+        "/parfum/zaffiro-collection-crafted-oud-maison-alhambra",
+        "/parfum/the-artist-no-1-maison-alhambra",
+        "/parfum/tempete-jacques-yves",
+        "/parfum/extreme-aoud-fragrance-world",
+        "/parfum/dark-as-wood-fragrance-world",
+        "/parfum/woody-oud-80-ml-maison-alhambra"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Parfums Boisé",
+              "item": "https://dubainegoce.fr/shop/famille/boise"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums Boisé",
+          "description": "Notre sélection de parfums Boisé — filtrez par marque, genre et prix.",
+          "url": "https://dubainegoce.fr/shop/famille/boise",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 9,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra",
+                "name": "Woody Oud 80 Ml Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/dark-as-wood-fragrance-world",
+                "name": "Dark As Wood Fragrance World"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/extreme-aoud-fragrance-world",
+                "name": "Extreme Aoud"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/tempete-jacques-yves",
+                "name": "Tempête"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/zaffiro-collection-crafted-oud-maison-alhambra",
+                "name": "Zaffiro Collection Crafted Oud"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/lumiere-garcon-french-avenue",
+                "name": "Lumière Garçon"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/azzure-aoud-french-avenue",
+                "name": "Azzure Aoud"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/the-artist-no-1-maison-alhambra",
+                "name": "The Artist No.1 Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/l-impresio-maison-alhambra",
+                "name": "L'Impresio Maison Alhambra"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/shop/genre/femme",
+      "url": "http://localhost:3001/shop/genre/femme",
+      "status": 200,
+      "redirects": [],
+      "bytes": 421790,
+      "titles": [
+        "Parfums Femme Orientaux — Yara, Kismet, Ana Abiyedh | Dubainegoce"
+      ],
+      "h1": [
+        "Parfums Femme"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/shop/genre/femme"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Explorez notre sélection de parfums de Dubaï. Comparez les maisons, les familles olfactives, les prix et les disponibilités.",
+      "productLinks": [
+        "/parfum/mirada-perla-mirada",
+        "/parfum/leonie-maison-alhambra",
+        "/parfum/good-girl-by-killer-loui-martin",
+        "/parfum/bint-hooran-rose-passion-ard-al-zaafaran",
+        "/parfum/khair-felicity-paris-corner",
+        "/parfum/yara-orange-lattafa",
+        "/parfum/yara-moi-lattafa",
+        "/parfum/yara-candy-lattafa",
+        "/parfum/kenzie-marshmallow-french-avenue",
+        "/parfum/sweet-paradise-french-avenue",
+        "/parfum/lumiere-elle-french-avenue",
+        "/parfum/francique-63-55-french-avenue",
+        "/parfum/francique-107-9-french-avenue",
+        "/parfum/yara-lattafa",
+        "/parfum/musk-vanille-maison-alhambra",
+        "/parfum/francique-63-55-fragrance-world",
+        "/parfum/francique-107-9-fragrance-world",
+        "/parfum/pose-as-rose-fragrance-world",
+        "/parfum/queen-q-fragrance-world",
+        "/parfum/come-moiselle-maison-alhambra",
+        "/parfum/so-candid-maison-alhambra",
+        "/parfum/andaleeb-asdaaf",
+        "/parfum/mayar-lattafa",
+        "/parfum/sakeena-lattafa",
+        "/parfum/olivia-blossom-maison-alhambra",
+        "/parfum/opera-noir-maison-alhambra",
+        "/parfum/niche-royal-rouge-maison-alhambra",
+        "/parfum/versencia-crystal-maison-alhambra",
+        "/parfum/kismet-for-women-maison-alhambra",
+        "/parfum/la-vita-bella-maison-alhambra",
+        "/parfum/jean-lowe-matiere-maison-alhambra",
+        "/parfum/fakhar-rose-gold-lattafa",
+        "/parfum/ana-abiyedh-rouge-60ml-lattafa"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Parfums Femme",
+              "item": "https://dubainegoce.fr/shop/genre/femme"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Parfums Femme",
+          "description": "Notre sélection de parfums femme — filtrez par marque, famille olfactive et prix.",
+          "url": "https://dubainegoce.fr/shop/genre/femme",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 33,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/parfum/ana-abiyedh-rouge-60ml-lattafa",
+                "name": "Ana Abiyedh Rouge 60ml Lattafa"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa",
+                "name": "Fakhar Rose Gold"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/parfum/jean-lowe-matiere-maison-alhambra",
+                "name": "Jean Lowe Matiere Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/parfum/la-vita-bella-maison-alhambra",
+                "name": "La Vita Bella Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/parfum/kismet-for-women-maison-alhambra",
+                "name": "Kismet For Women Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/parfum/versencia-crystal-maison-alhambra",
+                "name": "Versencia Crystal Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/parfum/niche-royal-rouge-maison-alhambra",
+                "name": "Niche Royal Rouge"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/parfum/opera-noir-maison-alhambra",
+                "name": "Opera Noir Maison Alhambra"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/parfum/olivia-blossom-maison-alhambra",
+                "name": "Olivia Blossom"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/parfum/sakeena-lattafa",
+                "name": "Sakeena Lattafa"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/parfum/tobacco-touch-maison-alhambra",
+      "url": "http://localhost:3001/parfum/tobacco-touch-maison-alhambra",
+      "status": 200,
+      "redirects": [],
+      "bytes": 189586,
+      "titles": [
+        "Tobacco Touch Maison Alhambra | Parfum Oriental Unisexe | Dubainegoce"
+      ],
+      "h1": [
+        "Tobacco Touch Maison Alhambra"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Découvrez Tobacco Touch Maison Alhambra, une fragrance oriental aux notes de cannelle et encens. Laissez-vous séduire par ce parfum captivant. | Eau de Parfum 80ml | 35.00 € TTC | Livraison Colissimo offerte dès 3 parfums.",
+      "productLinks": [
+        "/parfum/khamrah-lattafa",
+        "/parfum/badee-al-oud-oud-for-glory-lattafa",
+        "/parfum/ameer-al-oudh-intense-oud-lattafa",
+        "/parfum/by-saffron-maison-alhambra"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "@id": "https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra",
+          "name": "Tobacco Touch Maison Alhambra",
+          "image": [
+            "https://res.cloudinary.com/dzntnjtkc/image/upload/v1774799396/parfums/tobacco-touch-maison-alhambra.jpg"
+          ],
+          "description": "Découvrez Tobacco Touch Maison Alhambra, une fragrance oriental aux notes de cannelle et encens. Laissez-vous séduire par ce parfum captivant.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Maison Alhambra",
+            "url": "https://dubainegoce.fr"
+          },
+          "sku": "3421",
+          "productType": "Fragrance",
+          "category": "Oriental",
+          "offers": {
+            "@type": "Offer",
+            "@id": "https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra#offer",
+            "url": "https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra",
+            "priceCurrency": "EUR",
+            "price": "35.00",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "seller": {
+              "@type": "Organization",
+              "name": "Dubai Negoce",
+              "url": "https://dubainegoce.fr"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "7.10",
+                "currency": "EUR"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "FR"
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "FR",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/ReturnShippingFees"
+            }
+          },
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "Maison Alhambra"
+          },
+          "dimensions": {
+            "@type": "QuantitativeValue",
+            "name": "Volume",
+            "value": 80,
+            "unitCode": "MLT"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Maison Alhambra",
+              "item": "https://dubainegoce.fr/shop/marque/maison-alhambra"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Tobacco Touch Maison Alhambra",
+              "item": "https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra"
+            }
+          ]
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/parfum/liquide-brun-french-avenue",
+      "url": "http://localhost:3001/parfum/liquide-brun-french-avenue",
+      "status": 200,
+      "redirects": [],
+      "bytes": 188644,
+      "titles": [
+        "Liquid Brun | Parfum Oriental Homme | Dubainegoce"
+      ],
+      "h1": [
+        "Liquid Brun French Avenue"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/parfum/liquide-brun-french-avenue"
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "xRobots": null,
+      "description": "Découvrez Liquid Brun French Avenue, une fragrance oriental aux notes de cannelle et vanille bourbon. Laissez-vous séduire par ce parfum captivant. | Eau de Parfum 100ml | 44.99 € TTC | Livraison Colissimo offerte dès 3 parfums.",
+      "productLinks": [
+        "/parfum/asad-lattafa",
+        "/parfum/khamrah-lattafa",
+        "/parfum/badee-al-oud-oud-for-glory-lattafa",
+        "/parfum/tobacco-touch-maison-alhambra"
+      ],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "@id": "https://dubainegoce.fr/parfum/liquide-brun-french-avenue",
+          "name": "Liquid Brun French Avenue",
+          "image": [
+            "https://frenchavenue.fr/wp-content/uploads/2025/05/Liquide-Brun.jpeg"
+          ],
+          "description": "Découvrez Liquid Brun French Avenue, une fragrance oriental aux notes de cannelle et vanille bourbon. Laissez-vous séduire par ce parfum captivant.",
+          "brand": {
+            "@type": "Brand",
+            "name": "French Avenue",
+            "url": "https://dubainegoce.fr"
+          },
+          "sku": "3918",
+          "productType": "Fragrance",
+          "category": "Oriental",
+          "offers": {
+            "@type": "Offer",
+            "@id": "https://dubainegoce.fr/parfum/liquide-brun-french-avenue#offer",
+            "url": "https://dubainegoce.fr/parfum/liquide-brun-french-avenue",
+            "priceCurrency": "EUR",
+            "price": "44.99",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "seller": {
+              "@type": "Organization",
+              "name": "Dubai Negoce",
+              "url": "https://dubainegoce.fr"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "7.10",
+                "currency": "EUR"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "FR"
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "FR",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/ReturnShippingFees"
+            }
+          },
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "French Avenue"
+          },
+          "dimensions": {
+            "@type": "QuantitativeValue",
+            "name": "Volume",
+            "value": 100,
+            "unitCode": "MLT"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Boutique",
+              "item": "https://dubainegoce.fr/shop/all"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "French Avenue",
+              "item": "https://dubainegoce.fr/shop/marque/french-avenue"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Liquid Brun French Avenue",
+              "item": "https://dubainegoce.fr/parfum/liquide-brun-french-avenue"
+            }
+          ]
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/blog",
+      "url": "http://localhost:3001/blog",
+      "status": 200,
+      "redirects": [],
+      "bytes": 167669,
+      "titles": [
+        "Blog Parfums Orientaux — Guides, Avis et Décryptages | Dubainegoce"
+      ],
+      "h1": [
+        "Le Blog DubaiNegoce"
+      ],
+      "canonical": [
+        "https://dubainegoce.fr/blog"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Guides d&#x27;achat, avis détaillés, décryptage de l&#x27;oud, sélections des meilleures créations de Dubaï (Lattafa, Maison Alhambra, French Avenue).",
+      "productLinks": [],
+      "jsonld": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "logo": "https://dubainegoce.fr/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 7 58 99 97 26",
+            "email": "contact@dubainegoce.fr",
+            "contactType": "customer service",
+            "availableLanguage": [
+              "French"
+            ]
+          },
+          "sameAs": [
+            "https://www.instagram.com/dubai_negoce/",
+            "https://www.tiktok.com/@dubai_negoce"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Dubainegoce",
+          "url": "https://dubainegoce.fr",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://dubainegoce.fr/shop/all?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": "https://dubainegoce.fr"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://dubainegoce.fr/blog"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Blog Dubainegoce",
+          "description": "Guides d'achat, avis détaillés et sélections des meilleurs parfums de Dubaï.",
+          "url": "https://dubainegoce.fr/blog",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 13,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "url": "https://dubainegoce.fr/blog/fakhar-black-lattafa-homme",
+                "name": "Fakhar Black Lattafa : le masculin sombre qui s'installe dans les tops"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "url": "https://dubainegoce.fr/blog/badee-al-oud-for-glory-avis",
+                "name": "Badee Al Oud Oud For Glory : l'oriental iconique de 2025"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "url": "https://dubainegoce.fr/blog/fragrance-world-marque",
+                "name": "Fragrance World : la marque Dubai qui avance discrètement et s'impose"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "url": "https://dubainegoce.fr/blog/kenzie-collection-french-avenue",
+                "name": "La collection Kenzie French Avenue : les gourmands qui cartonnent sur TikTok"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "url": "https://dubainegoce.fr/blog/liquid-brun-french-avenue",
+                "name": "Liquid Brun French Avenue : le gourmand épicé qui fait parler de lui en 2026"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "url": "https://dubainegoce.fr/blog/dupes-parfums-luxe",
+                "name": "Les 8 meilleurs parfums de Dubaï à sillage puissant à moins de 40€"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "url": "https://dubainegoce.fr/blog/khamrah-lattafa-avis",
+                "name": "Khamrah Lattafa : avis complet et honnête après 1 an d'utilisation"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "url": "https://dubainegoce.fr/blog/parfums-orientaux-femme-2026",
+                "name": "7 parfums orientaux pour femme qu'on adore en 2026"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "url": "https://dubainegoce.fr/blog/maison-alhambra-la-marque",
+                "name": "Maison Alhambra : les secrets de la marque de parfumerie de Dubaï"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "url": "https://dubainegoce.fr/blog/guide-parfum-oud",
+                "name": "Tout savoir sur le parfum oud avant d'acheter — guide complet"
+              },
+              {
+                "@type": "ListItem",
+                "position": 11,
+                "url": "https://dubainegoce.fr/blog/alhambra-ete-2025",
+                "name": "À découvrir cet été 2025 : la marque Alhambra continue de captiver"
+              },
+              {
+                "@type": "ListItem",
+                "position": 12,
+                "url": "https://dubainegoce.fr/blog/tendances-parfums-orientaux-2025",
+                "name": "Parfumerie 2025 : comment la tendance orientale redéfinit le marché"
+              },
+              {
+                "@type": "ListItem",
+                "position": 13,
+                "url": "https://dubainegoce.fr/blog/top-5-lattafa-2025",
+                "name": "Top 5 des parfums Lattafa à absolument tester en 2025"
+              }
+            ]
+          }
+        }
+      ],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    },
+    {
+      "requested": "http://localhost:3001/robots.txt",
+      "url": "http://localhost:3001/robots.txt",
+      "status": 200,
+      "redirects": [],
+      "bytes": 668,
+      "titles": [],
+      "h1": [],
+      "canonical": [],
+      "robots": [],
+      "xRobots": null,
+      "productLinks": [],
+      "jsonld": [],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": [],
+      "body": "# DubaiNegoce — search and public crawlers use the same private-path rules.\n# Public utility pages carry noindex headers, so crawlers may read that directive.\nUser-agent: *\nUser-agent: Googlebot\nUser-agent: Bingbot\nUser-agent: GPTBot\nUser-agent: OAI-SearchBot\nUser-agent: ChatGPT-User\nUser-agent: ClaudeBot\nUser-agent: Claude-SearchBot\nUser-agent: PerplexityBot\nUser-agent: Applebot-Extended\nUser-agent: Google-Extended\nAllow: /\nDisallow: /admin$\nDisallow: /admin/\nDisallow: /account$\nDisallow: /account/\nDisallow: /api/\n\nUser-agent: DotBot\nDisallow: /\nUser-agent: MJ12bot\nDisallow: /\nUser-agent: ZoominfoBot\nDisallow: /\n\nSitemap: https://dubainegoce.fr/sitemap.xml\n"
+    },
+    {
+      "requested": "http://localhost:3001/sitemap.xml",
+      "url": "http://localhost:3001/sitemap.xml",
+      "status": 200,
+      "redirects": [],
+      "bytes": 26118,
+      "titles": [],
+      "h1": [],
+      "canonical": [],
+      "robots": [],
+      "xRobots": null,
+      "productLinks": [],
+      "jsonld": [],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": [
+        "https://dubainegoce.fr",
+        "https://dubainegoce.fr/shop/all",
+        "https://dubainegoce.fr/shop/marque/lattafa",
+        "https://dubainegoce.fr/shop/marque/maison-alhambra",
+        "https://dubainegoce.fr/shop/marque/fragrance-world",
+        "https://dubainegoce.fr/shop/genre/femme",
+        "https://dubainegoce.fr/shop/genre/homme",
+        "https://dubainegoce.fr/shop/genre/mixte",
+        "https://dubainegoce.fr/shop/type/oriental",
+        "https://dubainegoce.fr/shop/famille/boise",
+        "https://dubainegoce.fr/shop/famille/oriental",
+        "https://dubainegoce.fr/shop/famille/gourmand",
+        "https://dubainegoce.fr/shop/famille/oud",
+        "https://dubainegoce.fr/shop/famille/floral",
+        "https://dubainegoce.fr/shop/famille/epice",
+        "https://dubainegoce.fr/shop/famille/fruite",
+        "https://dubainegoce.fr/shop/famille/musque",
+        "https://dubainegoce.fr/shop/famille/aquatique",
+        "https://dubainegoce.fr/shop/famille/chypre",
+        "https://dubainegoce.fr/shop/marque/french-avenue",
+        "https://dubainegoce.fr/shop/marque/hamidi",
+        "https://dubainegoce.fr/shop/marque/ard-al-zaafaran",
+        "https://dubainegoce.fr/blog",
+        "https://dubainegoce.fr/blog/top-5-lattafa-2025",
+        "https://dubainegoce.fr/blog/tendances-parfums-orientaux-2025",
+        "https://dubainegoce.fr/blog/alhambra-ete-2025",
+        "https://dubainegoce.fr/blog/dupes-parfums-luxe",
+        "https://dubainegoce.fr/blog/khamrah-lattafa-avis",
+        "https://dubainegoce.fr/blog/parfums-orientaux-femme-2026",
+        "https://dubainegoce.fr/blog/maison-alhambra-la-marque",
+        "https://dubainegoce.fr/blog/guide-parfum-oud",
+        "https://dubainegoce.fr/blog/liquid-brun-french-avenue",
+        "https://dubainegoce.fr/blog/kenzie-collection-french-avenue",
+        "https://dubainegoce.fr/blog/fragrance-world-marque",
+        "https://dubainegoce.fr/blog/badee-al-oud-for-glory-avis",
+        "https://dubainegoce.fr/blog/fakhar-black-lattafa-homme",
+        "https://dubainegoce.fr/about",
+        "https://dubainegoce.fr/contact",
+        "https://dubainegoce.fr/faq",
+        "https://dubainegoce.fr/privacy",
+        "https://dubainegoce.fr/terms",
+        "https://dubainegoce.fr/shipping",
+        "https://dubainegoce.fr/suivi-commande",
+        "https://dubainegoce.fr/shop/marque/paris-corner",
+        "https://dubainegoce.fr/parfum/woody-oud-80-ml-maison-alhambra",
+        "https://dubainegoce.fr/parfum/the-tux-maison-alhambra-mixte",
+        "https://dubainegoce.fr/parfum/ramz-silver-lattafa",
+        "https://dubainegoce.fr/parfum/ramz-gold-lattafa-mixte",
+        "https://dubainegoce.fr/parfum/raghba-lattafa-mixte",
+        "https://dubainegoce.fr/parfum/qaaed-lattafa",
+        "https://dubainegoce.fr/parfum/ana-abiyedh-rouge-60ml-lattafa",
+        "https://dubainegoce.fr/parfum/fakhar-black-lattafa",
+        "https://dubainegoce.fr/parfum/fakhar-rose-gold-lattafa",
+        "https://dubainegoce.fr/parfum/ejaazi-lattafa",
+        "https://dubainegoce.fr/parfum/yeah-maison-alhambra",
+        "https://dubainegoce.fr/parfum/maahir-lattafa",
+        "https://dubainegoce.fr/parfum/confidential-platinum-lattafa",
+        "https://dubainegoce.fr/parfum/asad-lattafa",
+        "https://dubainegoce.fr/parfum/fakhar-wasam-lattafa",
+        "https://dubainegoce.fr/parfum/glacier-pour-homme-maison-alhambra",
+        "https://dubainegoce.fr/parfum/grise-maison-alhambra",
+        "https://dubainegoce.fr/parfum/safwaan-lautre-musk-lattafa",
+        "https://dubainegoce.fr/parfum/badee-al-oud-oud-for-glory-lattafa",
+        "https://dubainegoce.fr/parfum/oud-mood-lattafa",
+        "https://dubainegoce.fr/parfum/velvet-oud-lattafa",
+        "https://dubainegoce.fr/parfum/ana-abiyedh-60ml-lattafa",
+        "https://dubainegoce.fr/parfum/safwaan-lautre-oud-lattafa",
+        "https://dubainegoce.fr/parfum/toscano-leather-maison-alhambra",
+        "https://dubainegoce.fr/parfum/jean-lowe-matiere-maison-alhambra",
+        "https://dubainegoce.fr/parfum/glacier-le-noir-maison-alhambra",
+        "https://dubainegoce.fr/parfum/infini-oud-maison-alhambra-mixte",
+        "https://dubainegoce.fr/parfum/la-vita-bella-maison-alhambra",
+        "https://dubainegoce.fr/parfum/minerva-maison-alhambra",
+        "https://dubainegoce.fr/parfum/kismet-for-women-maison-alhambra",
+        "https://dubainegoce.fr/parfum/perseus-maison-alhambra",
+        "https://dubainegoce.fr/parfum/al-noble-safeer-lattafa",
+        "https://dubainegoce.fr/parfum/versencia-crystal-maison-alhambra",
+        "https://dubainegoce.fr/parfum/ameer-al-oudh-intense-oud-lattafa",
+        "https://dubainegoce.fr/parfum/najdia-lattafa",
+        "https://dubainegoce.fr/parfum/ajwad-lattafa",
+        "https://dubainegoce.fr/parfum/salvo-intense-maison-alhambra",
+        "https://dubainegoce.fr/parfum/maahir-black-edition-lattafa",
+        "https://dubainegoce.fr/parfum/tabac-maison-alhambra",
+        "https://dubainegoce.fr/parfum/kismet-moscow-maison-alhambra",
+        "https://dubainegoce.fr/parfum/niche-royal-rouge-maison-alhambra",
+        "https://dubainegoce.fr/parfum/al-noble-wazeer-lattafa",
+        "https://dubainegoce.fr/parfum/galatea-maison-alhambra",
+        "https://dubainegoce.fr/parfum/avant-maison-alhambra",
+        "https://dubainegoce.fr/parfum/opera-noir-maison-alhambra",
+        "https://dubainegoce.fr/parfum/hercules-maison-alhambra",
+        "https://dubainegoce.fr/parfum/olivia-blossom-maison-alhambra",
+        "https://dubainegoce.fr/parfum/majd-al-sultan-asdaaf",
+        "https://dubainegoce.fr/parfum/maahir-legacy-lattafa",
+        "https://dubainegoce.fr/parfum/pure-oudi-lattafa",
+        "https://dubainegoce.fr/parfum/oud-mood-reminiscence-lattafa",
+        "https://dubainegoce.fr/parfum/musk-mood-lattafa-mixte",
+        "https://dubainegoce.fr/parfum/sakeena-lattafa",
+        "https://dubainegoce.fr/parfum/mayar-lattafa",
+        "https://dubainegoce.fr/parfum/andaleeb-asdaaf",
+        "https://dubainegoce.fr/parfum/so-candid-maison-alhambra",
+        "https://dubainegoce.fr/parfum/come-moiselle-maison-alhambra",
+        "https://dubainegoce.fr/parfum/jean-lowe-nouveau-maison-alhambra",
+        "https://dubainegoce.fr/parfum/jean-lowe-ombre-maison-alhambra",
+        "https://dubainegoce.fr/parfum/kismet-angel-maison-alhambra",
+        "https://dubainegoce.fr/parfum/tharwah-gold-lattafa-pride",
+        "https://dubainegoce.fr/parfum/a-king-fragrance-world",
+        "https://dubainegoce.fr/parfum/k-king-fragrance-world",
+        "https://dubainegoce.fr/parfum/j-fragrance-world",
+        "https://dubainegoce.fr/parfum/queen-q-fragrance-world",
+        "https://dubainegoce.fr/parfum/pose-as-rose-fragrance-world",
+        "https://dubainegoce.fr/parfum/dark-as-wood-fragrance-world",
+        "https://dubainegoce.fr/parfum/jorge-di-profumo-maison-alhambra",
+        "https://dubainegoce.fr/parfum/porto-neroli-maison-alhambra",
+        "https://dubainegoce.fr/parfum/confidential-private-gold-lattafa",
+        "https://dubainegoce.fr/parfum/francique-107-9-fragrance-world",
+        "https://dubainegoce.fr/parfum/karat-maison-alhambra",
+        "https://dubainegoce.fr/parfum/eternal-oud-lattafa-pride",
+        "https://dubainegoce.fr/parfum/francique-63-55-fragrance-world",
+        "https://dubainegoce.fr/parfum/infini-rose-maison-alhambra",
+        "https://dubainegoce.fr/parfum/by-saffron-maison-alhambra",
+        "https://dubainegoce.fr/parfum/lovely-cherie-maison-alhambra",
+        "https://dubainegoce.fr/parfum/rose-petals-maison-alhambra",
+        "https://dubainegoce.fr/parfum/fresh-as-citrus-fragrance-world",
+        "https://dubainegoce.fr/parfum/victorioso-victory-maison-alhambra",
+        "https://dubainegoce.fr/parfum/baroque-rouge-extrait-maison-alhambra",
+        "https://dubainegoce.fr/parfum/musk-vanille-maison-alhambra",
+        "https://dubainegoce.fr/parfum/jean-lowe-immortal-maison-alhambra",
+        "https://dubainegoce.fr/parfum/black-afgano-fragrance-world",
+        "https://dubainegoce.fr/parfum/optimystic-blanc-fragrance-world",
+        "https://dubainegoce.fr/parfum/optimystic-noir-fragrance-world",
+        "https://dubainegoce.fr/parfum/mocha-wood-fragrance-world",
+        "https://dubainegoce.fr/parfum/tour-de-havana-fragrance-world",
+        "https://dubainegoce.fr/parfum/extreme-aoud-fragrance-world",
+        "https://dubainegoce.fr/parfum/absolute-oud-magnificent-7-fragrance-world",
+        "https://dubainegoce.fr/parfum/pure-passion-fragrance-world",
+        "https://dubainegoce.fr/parfum/cuir-leather-fragrance-world",
+        "https://dubainegoce.fr/parfum/invicto-fragrance-world",
+        "https://dubainegoce.fr/parfum/tudor-paris-corner",
+        "https://dubainegoce.fr/parfum/cocktail-intense-fragrance-world",
+        "https://dubainegoce.fr/parfum/teriaq-lattafa-mixte",
+        "https://dubainegoce.fr/parfum/tempete-jacques-yves",
+        "https://dubainegoce.fr/parfum/spectre-ghost-fragrance-world",
+        "https://dubainegoce.fr/parfum/zaffiro-regale-maison-alhambra-unisex",
+        "https://dubainegoce.fr/parfum/zaffiro-collection-crafted-oud-maison-alhambra",
+        "https://dubainegoce.fr/parfum/suits-fragrance-world",
+        "https://dubainegoce.fr/parfum/jean-lowe-noir-maison-alhambra",
+        "https://dubainegoce.fr/parfum/yara-lattafa",
+        "https://dubainegoce.fr/parfum/amber-neroli-fragrance-world",
+        "https://dubainegoce.fr/parfum/tobacco-touch-maison-alhambra",
+        "https://dubainegoce.fr/parfum/francique-107-9-french-avenue",
+        "https://dubainegoce.fr/parfum/francique-63-55-french-avenue",
+        "https://dubainegoce.fr/parfum/irida-extrait-french-avenue",
+        "https://dubainegoce.fr/parfum/aether-extrait-french-avenue",
+        "https://dubainegoce.fr/parfum/lumiere-garcon-french-avenue",
+        "https://dubainegoce.fr/parfum/lumiere-elle-french-avenue",
+        "https://dubainegoce.fr/parfum/sweet-paradise-french-avenue",
+        "https://dubainegoce.fr/parfum/royal-blend-nero-french-avenue",
+        "https://dubainegoce.fr/parfum/azzure-aoud-french-avenue",
+        "https://dubainegoce.fr/parfum/after-effect-french-avenue",
+        "https://dubainegoce.fr/parfum/glorious-oud-french-avenue",
+        "https://dubainegoce.fr/parfum/kenzie-marshmallow-french-avenue",
+        "https://dubainegoce.fr/parfum/kenzie-candid-vanilla-french-avenue",
+        "https://dubainegoce.fr/parfum/eclaire-lattafa",
+        "https://dubainegoce.fr/parfum/pistachio-ard-al-zaafaran",
+        "https://dubainegoce.fr/parfum/ithra-mango-ard-al-zaafaran",
+        "https://dubainegoce.fr/parfum/ithra-cotton-candy-ard-al-zaafaran",
+        "https://dubainegoce.fr/parfum/vanilla-latte-gulf-orchid",
+        "https://dubainegoce.fr/parfum/yara-candy-lattafa",
+        "https://dubainegoce.fr/parfum/yara-moi-lattafa",
+        "https://dubainegoce.fr/parfum/fleur-de-coton-sublime",
+        "https://dubainegoce.fr/parfum/bint-hooran-rose-passion-ard-al-zaafaran",
+        "https://dubainegoce.fr/parfum/omniyat-surrati",
+        "https://dubainegoce.fr/parfum/killer-loui-martin",
+        "https://dubainegoce.fr/parfum/good-girl-by-killer-loui-martin",
+        "https://dubainegoce.fr/parfum/verato-white-musk-mirada",
+        "https://dubainegoce.fr/parfum/leonie-maison-alhambra",
+        "https://dubainegoce.fr/parfum/qandeel-ard-al-zaafaran",
+        "https://dubainegoce.fr/parfum/mirada-perla-mirada",
+        "https://dubainegoce.fr/parfum/fondue-tropical-hamidi",
+        "https://dubainegoce.fr/parfum/khamrah-lattafa",
+        "https://dubainegoce.fr/parfum/now-rave-lattafa",
+        "https://dubainegoce.fr/parfum/al-khas-winners-trophy-lattafa-pride",
+        "https://dubainegoce.fr/parfum/l-intrude-maison-alhambra",
+        "https://dubainegoce.fr/parfum/the-artist-no-1-maison-alhambra",
+        "https://dubainegoce.fr/parfum/amber-grand-pendora-paris-corner",
+        "https://dubainegoce.fr/parfum/lueur-d-espoir-ambre-paris-corner",
+        "https://dubainegoce.fr/parfum/oud-highness-paris-corner",
+        "https://dubainegoce.fr/parfum/liquide-brun-french-avenue",
+        "https://dubainegoce.fr/parfum/yara-orange-lattafa",
+        "https://dubainegoce.fr/parfum/khair-fusion-paris-corner",
+        "https://dubainegoce.fr/parfum/khair-confection-paris-corner",
+        "https://dubainegoce.fr/parfum/khair-felicity-paris-corner",
+        "https://dubainegoce.fr/parfum/coton-blanc-inspire-paris",
+        "https://dubainegoce.fr/parfum/ana-abiyedh-poudree-lattafa",
+        "https://dubainegoce.fr/parfum/l-impresio-maison-alhambra"
+      ]
+    },
+    {
+      "requested": "http://localhost:3001/seo-route-inexistante-20261022",
+      "url": "http://localhost:3001/seo-route-inexistante-20261022",
+      "status": 404,
+      "redirects": [],
+      "bytes": 47951,
+      "titles": [
+        "Dubainegoce – Parfums orientaux et parfums de Dubaï"
+      ],
+      "h1": [],
+      "canonical": [],
+      "robots": [
+        "noindex",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "xRobots": null,
+      "description": "Découvrez les parfums de Dubaï authentiques : Lattafa, Maison Alhambra, French Avenue, Fragrance World. Découvrez les prix et disponibilités de chaque référence.",
+      "productLinks": [],
+      "jsonld": [],
+      "pricePromise": [],
+      "lastmod": [],
+      "sitemapUrls": []
+    }
+  ]
+}

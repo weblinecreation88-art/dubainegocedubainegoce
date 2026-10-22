@@ -53,7 +53,7 @@ const reassurances = [
   },
   {
     icon: <Lock className="w-6 h-6 text-[#d4a017]" />,
-    title: 'Prix Fixe 35,00 € TTC',
+    title: 'Paiement sécurisé',
     description: 'Paiement sécurisé CB, Apple Pay, Google Pay',
   },
   {
@@ -91,11 +91,11 @@ const ReassuranceSection = () => {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Dubainegoce – Parfums de Dubaï authentiques à 35,00 € TTC',
+    default: 'Dubainegoce – Parfums orientaux et parfums de Dubaï',
     template: '%s | Dubainegoce',
   },
   description:
-    'Découvrez les parfums de Dubaï authentiques : Lattafa, Maison Alhambra, French Avenue, Fragrance World. Prix unique 35,00 € TTC, livraison Colissimo offerte dès 3 parfums.',
+    'Découvrez les parfums de Dubaï authentiques : Lattafa, Maison Alhambra, French Avenue, Fragrance World. Découvrez les prix et disponibilités de chaque référence.',
   keywords: [
     'parfums de Dubaï',
     'parfums orientaux',
@@ -110,7 +110,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dubainegoce - Parfums de Dubaï Authentiques",
     description:
-      'Explorez notre sélection de parfums authentiques de Dubaï. Lattafa, Maison Alhambra, French Avenue à 35,00 € TTC.',
+      'Explorez notre sélection de parfums authentiques de Dubaï. Lattafa, Maison Alhambra, French Avenue : explorez la sélection.',
     url: siteUrl,
     siteName: 'Dubainegoce',
     images: [
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Dubainegoce - Parfums de Dubaï Authentiques',
-    description: 'Les grandes maisons de parfums de Dubaï (Lattafa, Maison Alhambra) à 35,00 € TTC.',
+    description: 'Les grandes maisons de parfums de Dubaï (Lattafa, Maison Alhambra) : découvrez la sélection.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {

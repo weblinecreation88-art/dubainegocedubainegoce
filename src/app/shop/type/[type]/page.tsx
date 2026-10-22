@@ -45,7 +45,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Redirection automatique des anciens slugs
   if (params.type === 'equivalent' || params.type === 'dupe') {
-    return { title: 'Parfums Orientaux de Dubaï | Dubainegoce' };
+    return { title: 'Parfums Orientaux de Dubaï' };
   }
 
   const typeInfo = TYPE_MAP[params.type];
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `${siteUrl}/shop/type/${params.type}`;
 
   return {
-    title: `${typeInfo.label} | Dubainegoce`,
+    title: `${typeInfo.label}`,
     description: typeInfo.description,
     keywords: typeInfo.keywords.join(', '),
     alternates: {

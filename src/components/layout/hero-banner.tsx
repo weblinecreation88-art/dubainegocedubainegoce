@@ -42,7 +42,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-bold text-white leading-tight mb-3">
               Eaux de Parfum Authentiques •{' '}
-              <span className="text-[#d4a017]">Prix Unique 35,00 € TTC</span>
+              <span className="text-[#d4a017]">Les maisons de Dubaï</span>
             </h1>
 
             <p className="text-white/80 text-sm sm:text-base mb-5 leading-relaxed max-w-xl">
