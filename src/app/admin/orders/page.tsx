@@ -20,7 +20,8 @@ interface Order {
   totalAmount: number;
   orderItems?: OrderItem[];
   status: string;
-  orderDate: string;
+  orderDate?: string;
+  createdAt?: string;
   shippingMethod?: string;
   trackingNumber?: string;
   carrier?: string;
@@ -57,6 +58,26 @@ function statusClass(status: string) {
     default:
       return 'bg-muted text-muted-foreground border-border';
   }
+}
+
+function OrderDate({ order }: { order: Order }) {
+  const value = order.orderDate || order.createdAt;
+  const date = value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) {
+    return <span className="text-sm text-muted-foreground">Date indisponible</span>;
+  }
+
+  return (
+    <time dateTime={date.toISOString()} className="block text-sm tabular-nums whitespace-nowrap">
+      <span className="block font-semibold">
+        {date.toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' })}
+      </span>
+      <span className="block text-xs text-muted-foreground">
+        {date.toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit' })}
+        {' · Paris'}
+      </span>
+    </time>
+  );
 }
 
 export default function AdminOrdersPage() {
@@ -192,6 +213,10 @@ export default function AdminOrdersPage() {
                   onClick={() => setExpanded(isOpen ? null : order.id)}
                   className="w-full flex flex-wrap items-center gap-3 p-4 text-left hover:bg-muted/40 transition-colors"
                 >
+                  <span className="min-w-[105px] border-r pr-3">
+                    <span className="block text-xs text-muted-foreground mb-1">Commandée le</span>
+                    <OrderDate order={order} />
+                  </span>
                   <span className="font-mono text-xs text-muted-foreground">
                     #{order.id.slice(0, 12)}
                   </span>
@@ -250,12 +275,6 @@ export default function AdminOrdersPage() {
                             </span>
                           </div>
                         ))}
-                        <div className="text-xs text-muted-foreground mt-2">
-                          Commandé le{' '}
-                          {order.orderDate
-                            ? new Date(order.orderDate).toLocaleString('fr-FR')
-                            : '—'}
-                        </div>
                       </div>
                     </div>
 
