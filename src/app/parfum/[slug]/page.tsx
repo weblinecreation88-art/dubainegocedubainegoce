@@ -255,9 +255,9 @@ export default function ProductPage({ params }: Props) {
 
         {/* BLOC PRINCIPAL PRESTASHOP 3 COLONNES (se réorganise naturellement sur mobile) */}
         <div className="bg-white border border-[#e4dac9] rounded p-4 sm:p-6 lg:p-8 shadow-sm">
-          <div className="storefront-detail-grid grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="storefront-detail-grid grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
             {/* COLONNE 1 (Gauche - 5/12) : Galerie Produit */}
-            <div className="lg:col-span-5">
+            <div className="order-1 lg:col-span-5">
               <ProductGallery
                 alt={`Parfum ${product.brand.name} ${product.name} - ${product.volumeMl} ml`}
                 images={product.images}
@@ -265,9 +265,18 @@ export default function ProductPage({ params }: Props) {
               />
             </div>
 
+            {/* Résumé mobile avant la boîte d'achat : prix et bouton suivent directement l'image. */}
+            <div className="order-2 lg:hidden">
+              <Link href={getBrandPath(product.brand.name)} className="text-xs uppercase tracking-widest font-extrabold text-[#d4a017]">
+                {product.brand.name}
+              </Link>
+              <h1 className="text-2xl font-headline font-bold text-[#111827] leading-tight">{product.name}</h1>
+              <p className="text-xs text-gray-600">Eau de Parfum • {product.volumeMl || 100} ml</p>
+            </div>
+
             {/* COLONNE 2 (Centre - 4/12) : Informations Produit, Contenance, Notes & Disponibilité */}
-            <div className="lg:col-span-4 space-y-4">
-              <div>
+            <div className="order-4 lg:order-2 lg:col-span-4 space-y-4">
+              <div className="hidden lg:block">
                 <Link
                   href={getBrandPath(product.brand.name)}
                   className="text-xs uppercase tracking-widest font-extrabold text-[#d4a017] hover:underline"
@@ -360,7 +369,7 @@ export default function ProductPage({ params }: Props) {
             </div>
 
             {/* COLONNE 3 (Droite - 3/12) : Boîte d'achat PrestaShop & Frais de port réels */}
-            <div className="lg:col-span-3 space-y-4">
+            <div className="order-3 lg:order-3 lg:col-span-3 space-y-4">
               <div className="storefront-buybox bg-[#f7f0e6] border-2 border-[#e4dac9] rounded p-4 sm:p-5 space-y-4">
                 {/* Prix TTC & Disponibilité */}
                 <div className="border-b border-[#e4dac9] pb-3">

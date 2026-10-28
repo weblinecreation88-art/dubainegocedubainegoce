@@ -173,7 +173,7 @@ export function ProductGallery({ images, alt, productName }: ProductGalleryProps
     <div className="w-full space-y-4">
       {/* Main Image Container */}
       <div
-        className="relative w-full aspect-square bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden group cursor-zoom-in"
+        className="relative w-full h-[260px] sm:h-auto sm:aspect-square bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden group cursor-zoom-in"
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -204,7 +204,7 @@ export function ProductGallery({ images, alt, productName }: ProductGalleryProps
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className={cn(
-              'object-cover transition-opacity duration-300',
+              'object-contain sm:object-cover transition-opacity duration-300',
               isImageLoaded ? 'opacity-100' : 'opacity-0'
             )}
             priority={currentImageIndex === 0}

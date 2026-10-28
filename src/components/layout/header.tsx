@@ -266,6 +266,7 @@ export default function Header() {
                 </div>
                 <button
                   type="submit"
+                  aria-label="Rechercher"
                   className="h-10 px-4 sm:px-5 bg-[#d4a017] hover:bg-[#b88911] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded-r flex items-center gap-1.5 transition-colors shrink-0"
                 >
                   <Search className="h-4 w-4" />

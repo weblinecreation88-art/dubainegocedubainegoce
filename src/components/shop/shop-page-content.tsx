@@ -87,6 +87,8 @@ export default function ShopPageContent({
 
     const sortedProducts = useMemo(() => {
         return [...filteredProducts].sort((a, b) => {
+            // Garder les ruptures consultables, mais afficher les produits achetables d'abord.
+            if ((a.stock > 0) !== (b.stock > 0)) return a.stock > 0 ? -1 : 1;
             switch (sort) {
                 case 'price-asc':
                     return a.price - b.price;

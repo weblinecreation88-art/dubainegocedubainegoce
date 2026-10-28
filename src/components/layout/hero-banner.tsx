@@ -32,30 +32,30 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
   return (
     <section className="storefront-hero w-full bg-[#111827] border-b-2 border-[#d4a017]">
-      <div className="container mx-auto px-4 py-6 lg:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#182135] border border-[#d4a017]/40 rounded overflow-hidden">
+      <div className="container mx-auto px-4 py-4 sm:py-6 lg:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-6 items-center bg-[#182135] border border-[#d4a017]/40 rounded overflow-hidden">
           {/* Texte concis et vérifiable (7/12) */}
-          <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 text-white">
-            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#111827] bg-[#d4a017] font-extrabold px-2.5 py-1 rounded-[2px] mb-3">
+          <div className="lg:col-span-7 p-4 sm:p-8 lg:p-10 text-white">
+            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#111827] bg-[#d4a017] font-extrabold px-2.5 py-1 rounded-[2px] mb-2 sm:mb-3">
               Parfumerie Orientale de Dubaï
             </span>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-bold text-white leading-tight mb-3">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-bold text-white leading-tight mb-2 sm:mb-3">
               Eaux de Parfum Authentiques •{' '}
               <span className="text-[#d4a017]">Les maisons de Dubaï</span>
             </h1>
 
-            <p className="text-white/80 text-sm sm:text-base mb-5 leading-relaxed max-w-xl">
+            <p className="text-white/80 text-sm sm:text-base mb-3 sm:mb-5 leading-relaxed max-w-xl">
               Retrouvez les fragrances phares des maisons <strong>Lattafa</strong>,{' '}
               <strong>Maison Alhambra</strong>, <strong>French Avenue</strong>,{' '}
               <strong>Fragrance World</strong> et <strong>Paris Corner</strong> en flacons neufs scellés sous blister.
             </p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
+            <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-6">
               <Button
                 asChild
                 size="lg"
-                className="bg-[#d4a017] text-[#111827] hover:bg-[#b88911] hover:text-white font-extrabold px-6 h-11 text-xs sm:text-sm rounded-[2px] tracking-wider uppercase"
+                className="bg-[#d4a017] text-[#111827] hover:bg-[#b88911] hover:text-white font-extrabold px-4 sm:px-6 h-10 sm:h-11 text-xs sm:text-sm rounded-[2px] tracking-wider uppercase"
               >
                 <Link href="/shop/all">Parcourir les parfums</Link>
               </Button>
@@ -63,7 +63,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                 asChild
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white rounded-[2px] tracking-wider uppercase px-6 h-11 text-xs sm:text-sm"
+                className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white rounded-[2px] tracking-wider uppercase px-4 sm:px-6 h-10 sm:h-11 text-xs sm:text-sm"
               >
                 <Link href="/trouver-mon-parfum" className="flex items-center gap-1.5">
                   <Sparkles className="h-4 w-4 text-[#d4a017]" />
@@ -72,7 +72,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-white/90 pt-4 border-t border-white/10">
+            <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-white/90 pt-4 border-t border-white/10">
               <div className="flex items-center gap-2">
                 <Truck className="h-4 w-4 text-[#d4a017] shrink-0" />
                 <span>
@@ -90,7 +90,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
           {/* Visuel produit net et compact (5/12) */}
           <div
-            className="lg:col-span-5 relative h-[240px] sm:h-[290px] lg:h-[320px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40"
+            className="lg:col-span-5 relative h-[180px] sm:h-[290px] lg:h-[320px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -102,7 +102,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
                 fill
                 priority={currentIndex === 0}
                 className="object-contain p-4 transition-opacity duration-300"
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 70vw, 40vw"
               />
             )}
 

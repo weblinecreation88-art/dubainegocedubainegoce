@@ -89,8 +89,8 @@ export default function Home() {
 
             <TabsContent value="popular" className="m-0">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3.5 sm:gap-5">
-                {popularProducts.map((product, index) => (
-                  <ProductCard key={product.id} product={product} priority={index < 4} />
+                {popularProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             </TabsContent>
