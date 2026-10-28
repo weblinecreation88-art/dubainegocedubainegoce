@@ -19,8 +19,12 @@ export type EcommerceParams = {
   tax?: number;
   shipping?: number;
   affiliation?: string;
+  shipping_tier?: string;
+  payment_type?: string;
   items: AnalyticsItem[];
 };
+
+type AnalyticsParams = Record<string, string | number | boolean | undefined>;
 
 export function trackEcommerce(event: string, ecommerce: EcommerceParams) {
   if (typeof window === 'undefined') return;
@@ -36,4 +40,15 @@ export function trackEcommerce(event: string, ecommerce: EcommerceParams) {
   // Même mécanisme que gtag() : la commande est mise en file si gtag.js n'est pas encore chargé.
   const gtag = typeof w.gtag === 'function' ? w.gtag : function () { w.dataLayer.push(arguments); };
   gtag('event', event, { currency: 'EUR', ...ecommerce, send_to: GA4_MEASUREMENT_ID });
+}
+
+export function trackEvent(event: string, params: AnalyticsParams = {}) {
+  if (typeof window === 'undefined') return;
+  const w = window as any;
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({ event, ...params });
+
+  if (w.__ga4Off !== false) return;
+  const gtag = typeof w.gtag === 'function' ? w.gtag : function () { w.dataLayer.push(arguments); };
+  gtag('event', event, { ...params, send_to: GA4_MEASUREMENT_ID });
 }

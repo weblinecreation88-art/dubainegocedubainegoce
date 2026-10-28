@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight, Store, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { computeShippingCost, FREE_SHIPPING_THRESHOLD, getColissimoCost, PERFUME_WEIGHT_G } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -17,7 +17,7 @@ import { OrderSummary } from '@/components/checkout/order-summary';
 import { calculateOrderTotal } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { trackAbandonedCart } from '@/app/actions';
-import { trackEcommerce } from '@/lib/analytics';
+import { trackEcommerce, trackEvent } from '@/lib/analytics';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export default function CartPage() {
@@ -34,6 +34,7 @@ export default function CartPage() {
   const [mainStep, setMainStep] = useState<'review-cart' | 'checkout-form' | 'review-payment'>('review-cart');
   const [lastFormData, setLastFormData] = useState<CheckoutFormData | null>(null);
   const [savedUserAddress, setSavedUserAddress] = useState<Partial<CheckoutFormData> | null>(null);
+  const lastTrackedCartSignature = useRef<string | null>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -79,12 +80,55 @@ export default function CartPage() {
   const shippingCost = computeShippingCost(formShippingMethod, formCountry, totalItems, subtotal);
   const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
 
+  useEffect(() => {
+    if (!isClient || cart.length === 0) return;
+    const cartSignature = cart.map((item) => `${item.id}:${item.quantity}`).join('|');
+    if (lastTrackedCartSignature.current === cartSignature) return;
+    lastTrackedCartSignature.current = cartSignature;
+
+    trackEcommerce('view_cart', {
+      value: subtotal,
+      items: cart.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    });
+  }, [cart, isClient, subtotal]);
+
+  const startCheckout = () => {
+    trackEcommerce('begin_checkout', {
+      value: total,
+      items: cart.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    });
+    setMainStep('checkout-form');
+  };
+
   // Étape 2 validée : on mémorise les infos puis on passe au paiement
   const handleCheckoutFormSubmit = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
     setLastFormData(formData);
     setSelectedPickupPoint(pickupPoint);
     setFormCountry(formData.country);
     setFormShippingMethod(formData.shippingMethod);
+
+    const selectedShippingCost = computeShippingCost(formData.shippingMethod, formData.country, totalItems, subtotal);
+    const { total: totalWithShipping } = calculateOrderTotal(subtotal, selectedShippingCost);
+    trackEcommerce('add_shipping_info', {
+      value: totalWithShipping,
+      shipping_tier: formData.shippingMethod,
+      items: cart.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    });
 
     // Suivi panier abandonné, y compris pour les invités (non bloquant)
     if (formData.email && cart.length > 0) {
@@ -129,8 +173,9 @@ export default function CartPage() {
       const shippingCost = computeShippingCost(formData.shippingMethod, formData.country, totalItems, subtotal);
       const { total } = calculateOrderTotal(subtotal, shippingCost);
 
-      trackEcommerce('begin_checkout', {
+      trackEcommerce('add_payment_info', {
         value: total,
+        payment_type: 'card',
         items: cart.map((item) => ({
           item_id: item.id,
           item_name: item.name,
@@ -178,6 +223,7 @@ export default function CartPage() {
       window.location.assign(result.url);
     } catch (error: any) {
       console.error('Checkout error:', error);
+      trackEvent('checkout_error', { checkout_step: 'payment_session' });
       toast({
         variant: 'destructive',
         title: 'Erreur de paiement',
@@ -374,7 +420,7 @@ export default function CartPage() {
 
           <div className="space-y-3">
             <Button
-              onClick={() => setMainStep('checkout-form')}
+              onClick={startCheckout}
               size="lg"
               className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold shadow-md flex items-center justify-center gap-2"
             >

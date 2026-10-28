@@ -399,6 +399,20 @@ export default function ProductPage({ params }: Props) {
 
                 {/* Sélecteur de quantité + Bouton d'ajout + Favoris + Badges paiement */}
                 <ProductActions product={product} />
+
+                {product.stock <= 0 && (
+                  <div className="border-t border-[#e4dac9] pt-4">
+                    <p className="text-xs text-gray-700 mb-3">
+                      Ce parfum est momentanément indisponible. Découvrez des alternatives disponibles de la même famille olfactive.
+                    </p>
+                    <Link
+                      href={`/shop/all?families=${encodeURIComponent(product.family)}`}
+                      className="inline-flex w-full items-center justify-center rounded-[2px] border border-[#111827] bg-white px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#111827] transition-colors hover:bg-[#111827] hover:text-white"
+                    >
+                      Voir les alternatives disponibles
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Encadré de livraison et garanties strictement conforme au panier */}
