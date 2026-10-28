@@ -2545,7 +2545,7 @@ const products: Product[] = [
         "metaDescription": "Découvrez Tobacco Touch Maison Alhambra, une fragrance oriental aux notes de cannelle et encens. Laissez-vous séduire par ce parfum captivant.",
         "price": 35,
         "volumeMl": 80,
-        "stock": 6,
+        "stock": 0,
         "isBestseller": true,
         "isNew": false,
         "tags": ["tobacco touch", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cannelle", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],

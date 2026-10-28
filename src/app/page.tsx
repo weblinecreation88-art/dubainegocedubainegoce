@@ -39,11 +39,12 @@ export default function Home() {
   const popularProducts = popularSlugs
     .map((slug) => allProducts.find((p) => p.slug === slug))
     .filter((p): p is Product => p !== undefined && p.stock > 0)
-    .map((p) => ({ ...p, isBestseller: true }));
+    .map((p) => ({ ...p, isBestseller: true }))
+    .slice(0, 5);
 
   const newArrivals = getNewArrivals()
     .filter((p) => p.stock > 0)
-    .slice(0, 12);
+    .slice(0, 5);
 
   const heroImages = [
     allProducts.find((p) => p.slug === 'khamrah-lattafa')?.images[0],
@@ -88,7 +89,7 @@ export default function Home() {
             </div>
 
             <TabsContent value="popular" className="m-0">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3.5 sm:gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5">
                 {popularProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -96,7 +97,7 @@ export default function Home() {
             </TabsContent>
 
             <TabsContent value="new" className="m-0">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3.5 sm:gap-5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5">
                 {newArrivals.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
