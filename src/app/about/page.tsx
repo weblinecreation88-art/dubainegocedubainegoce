@@ -1,125 +1,256 @@
-
 import { Metadata } from 'next';
-import { Award, Gem, Rocket, ShieldCheck, Heart, Phone, Star } from 'lucide-react';
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  ShieldCheck,
+  Truck,
+  Sparkles,
+  Tag,
+  Phone,
+  Mail,
+  ArrowRight,
+  CheckCircle2,
+  Package,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
-    title: 'À propos de DubaïNégoce | Votre Escale Olfactive à Dubaï',
-    description: 'DubaïNégoce : parfums orientaux 100% authentiques importés directement de Dubaï. Prix unique 35 €, livraison 48h Colissimo ou Mondial Relay.',
+  title: 'Qui sommes-nous ? | Dubaï Négoce — Parfums Authentiques de Dubaï',
+  description:
+    'Découvrez Dubaï Négoce, boutique française spécialisée dans les eaux de parfum authentiques de Dubaï (Lattafa, Maison Alhambra, French Avenue, Fragrance World, Paris Corner) au tarif unique de 35,00 € TTC.',
+  alternates: { canonical: 'https://dubainegoce.fr/about' },
 };
 
-export default function AboutPage() {
-    return (
-        <div className="container mx-auto max-w-5xl px-4 py-12 md:py-20 space-y-20">
+const MAISONS = [
+  {
+    name: 'Lattafa Perfumes',
+    description: 'Référence mondiale de la parfumerie émiratie (Khamrah, Yara, Asad, Badee Al Oud).',
+    href: '/shop/marque/lattafa',
+  },
+  {
+    name: 'Maison Alhambra',
+    description: 'Créations contemporaines à forte concentration et tenue longue durée.',
+    href: '/shop/marque/maison-alhambra',
+  },
+  {
+    name: 'French Avenue',
+    description: 'Sillages sophistiqués alliant savoir-faire français et richesse orientale.',
+    href: '/shop/marque/french-avenue',
+  },
+  {
+    name: 'Fragrance World',
+    description: 'Compositions audacieuses aux accords boisés, ambrés, floraux et gourmands.',
+    href: '/shop/marque/fragrance-world',
+  },
+  {
+    name: 'Paris Corner',
+    description: 'Collections orientales et gourmandes prisées des amateurs de parfums de niche.',
+    href: '/shop/marque/paris-corner',
+  },
+  {
+    name: 'Ard Al Zaafaran',
+    description: 'Tradition orientale authentique autour du oud, du musc, de la rose et du safran.',
+    href: '/shop/marque/ard-al-zaafaran',
+  },
+];
 
-            {/* ── Hero ─────────────────────────────────────────────────── */}
-            <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div className="prose prose-invert prose-headings:font-headline prose-headings:text-primary max-w-none">
-                    <h1 className="text-4xl md:text-5xl leading-tight">
-                        Votre Escale&nbsp;Olfactive à&nbsp;Dubaï
-                    </h1>
-                    <p className="text-lg text-muted-foreground">
-                        Bienvenue chez <strong className="text-foreground">DubaïNégoce</strong>, votre destination privilégiée pour explorer l'univers envoûtant des parfums de Dubaï. Notre mission est simple : vous offrir le luxe et le raffinement de la parfumerie orientale à un <strong className="text-primary">prix fixe et imbattable de 35 €</strong> pour l'ensemble de notre sélection.
-                    </p>
+export default function AboutPage() {
+  return (
+    <div className="container mx-auto max-w-5xl px-4 py-10">
+      {/* Fil d'Ariane */}
+      <nav
+        aria-label="Fil d'Ariane"
+        className="mb-6 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2"
+      >
+        <Link href="/" className="hover:text-[#d4a017]">
+          Accueil
+        </Link>
+        <span className="mx-2">&gt;</span>
+        <span className="font-bold text-[#111827]">Qui sommes-nous ?</span>
+      </nav>
+
+      <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 space-y-10 text-[#111827] shadow-sm">
+        {/* En-tête de la page */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#111827] text-white rounded border border-[#d4a017]/40 overflow-hidden">
+          <div className="lg:col-span-7 p-6 sm:p-8 space-y-3">
+            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#111827] bg-[#d4a017] font-extrabold px-2.5 py-1 rounded-[2px]">
+              Notre Boutique
+            </span>
+            <h1 className="text-2xl sm:text-3xl font-headline font-bold leading-tight">
+              Dubaï Négoce •{' '}
+              <span className="text-[#d4a017]">Votre Escale Olfactive à Dubaï</span>
+            </h1>
+            <p className="text-sm text-white/85 leading-relaxed">
+              Bienvenue chez <strong>Dubaï Négoce</strong>, boutique spécialisée dans la sélection d&apos;eaux de parfum authentiques importées des grandes maisons de parfumerie de Dubaï. Notre engagement est clair : rendre l&apos;excellence de la parfumerie orientale accessible au{' '}
+              <strong className="text-[#d4a017]">prix unique et transparent de 35,00 € TTC</strong>.
+            </p>
+          </div>
+
+          <div className="lg:col-span-5 relative h-[220px] sm:h-[260px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40">
+            <Image
+              src="/images/hero/hero-khamrah.jpg"
+              alt="Sélection d'eaux de parfum authentiques chez Dubaï Négoce"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover object-center"
+            />
+          </div>
+        </div>
+
+        {/* 1. Notre Histoire & L'Authenticité */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 sm:p-6 space-y-3">
+            <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2.5">
+              <Sparkles className="h-5 w-5 text-[#d4a017] shrink-0" />
+              <h2 className="text-lg font-headline font-bold">Notre Passion pour les Parfums de Dubaï</h2>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong>Dubaï Négoce</strong> est née d&apos;une véritable passion pour les créations olfactives du Moyen-Orient : des sillages généreux, des matières premières nobles (oud, ambre, vanille, safran, rose de Damas, bois précieux) et une tenue remarquable sur la peau.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Nous sélectionnons chaque référence pour son caractère, son équilibre et la qualité de sa concentration en eau de parfum, afin de vous proposer un catalogue lisible et exigeant.
+            </p>
+          </div>
+
+          <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 sm:p-6 space-y-3">
+            <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2.5">
+              <ShieldCheck className="h-5 w-5 text-[#d4a017] shrink-0" />
+              <h2 className="text-lg font-headline font-bold">L&apos;Authenticité Garantie</h2>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Tous les parfums vendus sur <strong>dubainegoce.fr</strong> sont{' '}
+              <strong>100 % authentiques</strong> et proviennent des circuits de distribution officiels des maisons émiraties.
+            </p>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-gray-700 pt-1">
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-[#46a74e] shrink-0" />
+                <span>Flacons d&apos;origine neufs, scellés sous film plastique (blister intact)</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-[#46a74e] shrink-0" />
+                <span>Boîtes officielles avec hologramme de sécurité des marques</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-[#46a74e] shrink-0" />
+                <span>Stock réel expédié depuis la France avec suivi Colissimo</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 2. Nos 3 Engagements Clairs */}
+        <section className="space-y-4">
+          <div className="border-b border-[#e4dac9] pb-2.5">
+            <h2 className="text-xl font-headline font-bold">Nos Engagements Client</h2>
+            <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
+              Des conditions commerciales simples, transparentes et identiques sur tout le site.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 space-y-2.5">
+              <div className="flex items-center gap-2.5">
+                <div className="bg-[#111827] text-[#d4a017] w-9 h-9 rounded flex items-center justify-center shrink-0">
+                  <Tag className="h-4 w-4" />
                 </div>
-                <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl shadow-primary/20">
-                    <video
-                        src="https://res.cloudinary.com/dzntnjtkc/video/upload/v1766756778/grok-video-cb2fca02-2ae9-4b89-a5b2-12da1496b756_1_wadkqm.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+                <h3 className="font-headline font-bold text-base">Prix Unique 35,00 € TTC</h3>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                L&apos;ensemble de notre catalogue de parfums est proposé au tarif fixe de{' '}
+                <strong>35,00 € TTC</strong> le flacon, sans faux prix barrés ni frais cachés.
+              </p>
             </div>
 
-            {/* ── Notre Histoire ───────────────────────────────────────── */}
-            <section className="grid md:grid-cols-2 gap-10 items-start">
+            <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 space-y-2.5">
+              <div className="flex items-center gap-2.5">
+                <div className="bg-[#111827] text-[#d4a017] w-9 h-9 rounded flex items-center justify-center shrink-0">
+                  <Truck className="h-4 w-4" />
+                </div>
+                <h3 className="font-headline font-bold text-base">Expédition Colissimo Suivie</h3>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                Livraison à domicile en <strong>Colissimo 48h avec suivi</strong> (7,10 € pour 1 parfum, 9,59 € pour 2 parfums, et{' '}
+                <strong className="text-[#46a74e]">100 % OFFERTE dès 3 parfums</strong>).
+              </p>
+            </div>
+
+            <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 space-y-2.5">
+              <div className="flex items-center gap-2.5">
+                <div className="bg-[#111827] text-[#d4a017] w-9 h-9 rounded flex items-center justify-center shrink-0">
+                  <Package className="h-4 w-4" />
+                </div>
+                <h3 className="font-headline font-bold text-base">Retours sous 14 Jours</h3>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                Vous bénéficiez d&apos;un droit de rétractation de <strong>14 jours</strong> à réception pour tout flacon neuf non ouvert dans son blister d&apos;origine.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Les Maisons distribuées */}
+        <section className="space-y-4">
+          <div className="border-b border-[#e4dac9] pb-2.5">
+            <h2 className="text-xl font-headline font-bold">Les Grandes Maisons de Dubaï Sélectionnées</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {MAISONS.map((maison) => (
+              <Link
+                key={maison.name}
+                href={maison.href}
+                className="group bg-white border border-[#e4dac9] hover:border-[#d4a017] rounded p-4 transition-colors flex flex-col justify-between gap-2"
+              >
                 <div>
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-primary/10 rounded-full">
-                            <Heart className="h-6 w-6 text-primary" />
-                        </div>
-                        <h2 className="font-headline text-2xl md:text-3xl text-primary">Notre Histoire et Notre Passion</h2>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                        DubaïNégoce est née d'une passion pour les fragrances uniques et captivantes du Moyen-Orient. Nous avons été séduits par la richesse des ingrédients, la complexité des compositions et l'élégance des flacons qui caractérisent la parfumerie de Dubaï.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                        C'est pourquoi nous avons décidé de créer une plateforme où vous pouvez découvrir ces trésors olfactifs, sans compromis sur la qualité ni sur votre budget.
-                    </p>
+                  <h3 className="font-headline font-bold text-sm text-[#111827] group-hover:text-[#d4a017]">
+                    {maison.name}
+                  </h3>
+                  <p className="text-xs text-gray-600 mt-1 leading-relaxed">{maison.description}</p>
                 </div>
-                <div>
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-primary/10 rounded-full">
-                            <ShieldCheck className="h-6 w-6 text-primary" />
-                        </div>
-                        <h2 className="font-headline text-2xl md:text-3xl text-primary">L'Authenticité avant Tout</h2>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                        Nous comprenons l'importance de l'authenticité lorsqu'il s'agit de parfum. C'est pourquoi nous nous engageons à vous proposer uniquement des produits <strong className="text-foreground">100% authentiques, importés directement de Dubaï</strong>.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mt-4">
-                        Notre équipe sélectionne avec soin chaque fragrance pour garantir sa qualité. Vous trouverez chez nous des marques de renom telles que <strong className="text-foreground">Maison Alhambra, Lattafa, Fragrance World</strong> et bien d'autres, connues pour leur savoir-faire et leur créativité.
-                    </p>
-                </div>
-            </section>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#d4a017] inline-flex items-center gap-1">
+                  Voir les parfums <ArrowRight className="h-3 w-3" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-            {/* ── Nos engagements (3 blocs) ────────────────────────────── */}
-            <section>
-                <h2 className="font-headline text-3xl text-center text-primary mb-10">Nos Engagements</h2>
-                <div className="grid sm:grid-cols-3 gap-6">
-                    <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4">
-                        <div className="p-3 bg-primary/10 rounded-full w-fit">
-                            <Gem className="h-7 w-7 text-primary" />
-                        </div>
-                        <h3 className="font-headline text-lg text-foreground">Le Luxe Accessible</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                            Tous nos parfums sont proposés à <strong className="text-primary">35 €</strong>. Pas de surprises, pas de coûts cachés. Juste le plaisir de découvrir des fragrances luxueuses à un prix juste et transparent.
-                        </p>
-                    </div>
-                    <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4">
-                        <div className="p-3 bg-primary/10 rounded-full w-fit">
-                            <Rocket className="h-7 w-7 text-primary" />
-                        </div>
-                        <h3 className="font-headline text-lg text-foreground">Rapidité et Fiabilité</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                            Livraison en <strong className="text-foreground">48h</strong> via <strong className="text-foreground">Colissimo</strong> à domicile ou <strong className="text-foreground">Mondial Relay</strong> en point relais. Chaque commande est préparée avec soin pour vous parvenir en parfait état.
-                        </p>
-                    </div>
-                    <div className="bg-card border border-border rounded-xl p-6 flex flex-col gap-4">
-                        <div className="p-3 bg-primary/10 rounded-full w-fit">
-                            <Star className="h-7 w-7 text-primary" />
-                        </div>
-                        <h3 className="font-headline text-lg text-foreground">Conseils d'Experts</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                            Que vous soyez amateur ou collectionneur, notre équipe vous guide avec passion. Boisé, floral, épicé, sucré… vous trouverez forcément votre bonheur chez DubaïNégoce.
-                        </p>
-                    </div>
-                </div>
-            </section>
+        {/* 4. Bandeau Contact & Découverte */}
+        <div className="bg-[#f7f0e6] border border-[#e4dac9] rounded p-5 sm:p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+          <div className="space-y-1.5">
+            <h2 className="text-lg font-headline font-bold text-[#111827]">
+              Besoin d&apos;un conseil pour choisir votre parfum ?
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-700">
+              Notre service client vous répond en français par téléphone et par e-mail :
+            </p>
+            <div className="flex flex-wrap gap-4 pt-1 text-xs sm:text-sm font-bold">
+              <a href="tel:+33758999726" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
+                <Phone className="h-4 w-4 text-[#d4a017]" /> +33 7 58 99 97 26
+              </a>
+              <a href="mailto:contact@dubainegoce.fr" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
+                <Mail className="h-4 w-4 text-[#d4a017]" /> contact@dubainegoce.fr
+              </a>
+            </div>
+          </div>
 
-            {/* ── Contact & CTA ────────────────────────────────────────── */}
-            <section className="bg-card border border-primary/20 rounded-2xl p-8 md:p-12 text-center space-y-6">
-                <div className="flex justify-center">
-                    <div className="p-3 bg-primary/10 rounded-full">
-                        <Phone className="h-7 w-7 text-primary" />
-                    </div>
-                </div>
-                <h2 className="font-headline text-2xl md:text-3xl text-primary">Rejoignez l'Aventure DubaïNégoce</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                    Explorez notre collection et laissez-vous transporter par les senteurs magiques de Dubaï. Si vous avez la moindre question, notre équipe est à votre disposition par téléphone.
-                </p>
-                <a
-                    href="tel:+33758999726"
-                    className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
-                >
-                    <Phone className="h-4 w-4" />
-                    +33 7 58 99 97 26
-                </a>
-                <p className="text-sm text-muted-foreground">Merci de votre confiance et bonne découverte !</p>
-            </section>
-
+          <div className="flex flex-wrap gap-3 shrink-0">
+            <Button
+              asChild
+              className="bg-[#111827] text-white hover:bg-[#d4a017] hover:text-[#111827] rounded-[2px] px-5 h-10 text-xs font-bold uppercase tracking-wider transition-colors"
+            >
+              <Link href="/shop/all">Explorer le catalogue (35 €)</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="border-[#111827] text-[#111827] hover:bg-[#111827] hover:text-white rounded-[2px] px-5 h-10 text-xs font-bold uppercase tracking-wider transition-colors"
+            >
+              <Link href="/trouver-mon-parfum">Diagnostic parfum</Link>
+            </Button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

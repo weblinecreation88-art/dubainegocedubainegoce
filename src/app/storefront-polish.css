@@ -59,9 +59,6 @@
 .storefront-hero h1 { line-height: 1.2; }
 .storefront-hero p { line-height: 1.8; }
 .storefront-confidence > div { background: #fff; border: 0; padding: 0; }
-.storefront-confidence > div > .grid:first-child { gap: 0; border-block: 1px solid #e4dac9; padding-block: 1.5rem; }
-.storefront-confidence > div > .grid:first-child > div { border: 0; border-radius: 0; background: transparent; padding: .5rem 1.5rem; gap: .75rem; }
-.storefront-confidence > div > .grid:first-child > div + div { border-left: 1px solid #e4dac9; }
 .storefront-confidence p { font-size: 13px; line-height: 1.8; }
 .storefront-confidence li { gap: .75rem; }
 .storefront-confidence > div > .grid:last-child { border: 0; background: #f7f0e6; padding: 1.75rem; gap: 1.5rem; }
@@ -115,10 +112,7 @@ body:has(.storefront-cookie) .storefront-advisor-panel { bottom: calc(var(--cook
   .storefront-product-buy { padding: 0 .625rem .625rem; }
   .storefront-product-buy > button { font-size: 9px; letter-spacing: 0; }
   .storefront-product-buy svg { display: none; }
-  .storefront-confidence > div > .grid:first-child { display: block; padding: 0; }
-  .storefront-confidence > div > .grid:first-child > div { padding: 1.375rem .25rem; }
-  .storefront-confidence > div > .grid:first-child > div + div { border-left: 0; border-top: 1px solid #e4dac9; }
-  .storefront-confidence > div > .grid:last-child { padding: 1.25rem; margin-top: 1.5rem; }
+  .storefront-confidence > div > .grid:last-child { padding: 1.25rem; }
   .storefront-confidence h3 { font-size: 17px; }
   .storefront-confidence p { font-size: 12px; }
   .storefront-reassurance > div { gap: 1.25rem 1rem; }

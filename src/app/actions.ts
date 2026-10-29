@@ -1,4 +1,3 @@
-
 'use server';
 
 import { generateProductDescriptions } from '@/ai/flows/generate-product-descriptions';
@@ -207,6 +206,33 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
 
     await orderRef.set(orderData);
     console.log(`[processSuccessfulOrder] Commande ${session.id} enregistrée dans Firestore pour l'utilisateur ${userId}.`);
+
+    // Mémoriser automatiquement l'adresse sur le profil du client connecté pour ses prochains achats en 1 clic
+    if (userId !== 'guest' && orderData.shippingAddress?.line1) {
+      try {
+        const nameParts = (orderData.customerName || '').trim().split(/\s+/);
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+        await firestore.collection('users').doc(userId).set(
+          {
+            shippingAddress: {
+              email: orderData.customerEmail,
+              phone: orderData.customerPhone || '',
+              firstName,
+              lastName,
+              address: orderData.shippingAddress.line1,
+              address1: orderData.shippingAddress.line1,
+              postalCode: orderData.shippingAddress.postalCode,
+              city: orderData.shippingAddress.city,
+              country: orderData.shippingAddress.country || 'FR',
+            },
+          },
+          { merge: true }
+        );
+      } catch (e) {
+        console.warn('[processSuccessfulOrder] Sauvegarde automatique adresse profil impossible :', e);
+      }
+    }
 
     await markAbandonedCartConverted(firestore, orderData.customerEmail);
 

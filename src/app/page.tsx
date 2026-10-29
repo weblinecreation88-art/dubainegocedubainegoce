@@ -3,13 +3,12 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Truck, ShieldCheck, RotateCcw, Phone, Mail, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { getFragranceFamilies, getNewArrivals, getProducts, getBrands } from '@/lib/data';
 import { Product } from '@/lib/types';
 import { ProductCard } from '@/components/product/product-card';
 import { HeroBanner } from '@/components/layout/hero-banner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://dubainegoce.fr/' },
@@ -47,12 +46,12 @@ export default function Home() {
     .slice(0, 5);
 
   const heroImages = [
-    allProducts.find((p) => p.slug === 'khamrah-lattafa')?.images[0],
-    allProducts.find((p) => p.slug === 'tobacco-touch-maison-alhambra')?.images[0],
-    allProducts.find((p) => p.slug === 'woody-oud-80-ml-maison-alhambra')?.images[0],
-    allProducts.find((p) => p.slug === 'grise-maison-alhambra')?.images[0],
-    allProducts.find((p) => p.slug === 'lovely-cherie-maison-alhambra')?.images[0],
-  ].filter(Boolean) as string[];
+    '/images/hero/hero-khamrah.jpg',
+    '/images/hero/hero-yara-moi.jpg',
+    '/images/hero/hero-tudor.jpg',
+    '/images/hero/hero-kenzie.jpg',
+    '/images/hero/hero-yara.jpg',
+  ];
 
   return (
     <div className="storefront-home flex flex-col space-y-10 pb-12">
@@ -266,69 +265,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. LIVRAISON, PAIEMENT, AVIS TRUSTPILOT & PRÉSENTATION DU VENDEUR */}
+      {/* 4. AVIS TRUSTPILOT & PRÉSENTATION DU VENDEUR */}
       <section className="storefront-confidence container mx-auto px-4">
-        <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 shadow-sm space-y-8">
-          {/* Grille claire des conditions commerciales réelles */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-5 rounded bg-[#fdfaf4] border border-[#e4dac9]">
-              <div className="flex items-center gap-2.5 mb-2 text-[#111827]">
-                <Truck className="h-5 w-5 text-[#d4a017]" />
-                <h3 className="font-headline font-bold text-base">Tarifs de Livraison Transparents</h3>
-              </div>
-              <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                Envoi en <strong>Colissimo Domicile avec suivi</strong> communiqué par e-mail :
-              </p>
-              <ul className="text-xs space-y-1 text-[#111827]">
-                <li className="flex justify-between border-b border-dashed border-[#e4dac9] py-1">
-                  <span>1 parfum :</span>
-                  <strong>7,10 € TTC</strong>
-                </li>
-                <li className="flex justify-between border-b border-dashed border-[#e4dac9] py-1">
-                  <span>2 parfums :</span>
-                  <strong>9,59 € TTC</strong>
-                </li>
-                <li className="flex justify-between py-1 text-[#46a74e] font-bold">
-                  <span>Dès 3 parfums (ou 100 €) :</span>
-                  <span>OFFERT (0,00 €)</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="p-5 rounded bg-[#fdfaf4] border border-[#e4dac9] flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2.5 mb-2 text-[#111827]">
-                  <ShieldCheck className="h-5 w-5 text-[#d4a017]" />
-                  <h3 className="font-headline font-bold text-base">Paiement Sécurisé</h3>
-                </div>
-                <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                  Règlement sécurisé par carte bancaire via <strong>Stripe</strong> (CB, Visa, Mastercard, Apple Pay, Google Pay).
-                </p>
-              </div>
-              <PaymentBadges showTitle={false} badgeClassName="h-6" align="left" />
-            </div>
-
-            <div className="p-5 rounded bg-[#fdfaf4] border border-[#e4dac9] flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2.5 mb-2 text-[#111827]">
-                  <RotateCcw className="h-5 w-5 text-[#d4a017]" />
-                  <h3 className="font-headline font-bold text-base">Retours &amp; Service Client</h3>
-                </div>
-                <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                  Droit de rétractation de <strong>14 jours</strong> à réception (flacon neuf non ouvert sous son film plastique d&apos;origine).
-                </p>
-              </div>
-              <div className="text-xs space-y-1 pt-2 border-t border-[#e4dac9]">
-                <a href="tel:+33758999726" className="flex items-center gap-2 font-bold text-[#111827] hover:text-[#d4a017]">
-                  <Phone className="h-3.5 w-3.5 text-[#d4a017]" /> +33 7 58 99 97 26
-                </a>
-                <a href="mailto:contact@dubainegoce.fr" className="flex items-center gap-2 font-bold text-[#111827] hover:text-[#d4a017]">
-                  <Mail className="h-3.5 w-3.5 text-[#d4a017]" /> contact@dubainegoce.fr
-                </a>
-              </div>
-            </div>
-          </div>
-
+        <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 shadow-sm">
           {/* Avis Trustpilot & Présentation Vendeur */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#f7f0e6] border border-[#e4dac9] rounded p-5 sm:p-6">
             <div className="lg:col-span-8 space-y-2">
@@ -336,7 +275,7 @@ export default function Home() {
                 À propos de Dubaï Négoce &amp; Avis Clients
               </h2>
               <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                <strong>Dubaï Négoce</strong> sélectionne les eaux de parfum authentiques des maisons émiraties (Lattafa, Maison Alhambra, Fragrance World, French Avenue, Paris Corner, Ard Al Zaafaran). Consultez nos mentions légales, nos conditions de livraison et les retours d&apos;expérience publiés sur notre profil public Trustpilot.
+                <strong>Dubaï Négoce</strong> sélectionne les eaux de parfum authentiques des maisons émiraties (Lattafa, Maison Alhambra, Fragrance World, French Avenue, Paris Corner, Ard Al Zaafaran). Consultez nos conditions de livraison et les retours d&apos;expérience publiés sur notre profil public Trustpilot.
               </p>
               <div className="flex flex-wrap gap-4 pt-1 text-xs font-bold">
                 <Link href="/about" className="text-[#111827] hover:text-[#d4a017] underline">
@@ -344,9 +283,6 @@ export default function Home() {
                 </Link>
                 <Link href="/shipping" className="text-[#111827] hover:text-[#d4a017] underline">
                   Conditions de livraison &amp; retours
-                </Link>
-                <Link href="/mentions-legales" className="text-[#111827] hover:text-[#d4a017] underline">
-                  Informations sur le vendeur
                 </Link>
               </div>
             </div>

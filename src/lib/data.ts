@@ -3615,7 +3615,7 @@ const products: Product[] = [
 ];
 
 export const getProducts = (): Product[] => {
-    return products.filter(p => p.type !== 'variable' && p.productType === 'perfume').map(p => {
+    return products.filter(p => p.type !== 'variable' && p.productType === 'perfume' && p.price === 35).map(p => {
         const familyLower = p.family.toLowerCase();
         const intensity = p.intensity || (['oriental', 'oud', 'ambré', 'boisé', 'cuir'].some(f => familyLower.includes(f)) ? 'Forte' : 'Moyenne');
         const longevity = p.longevity || (intensity === 'Forte' ? 'Longue durée' : 'Moyenne');

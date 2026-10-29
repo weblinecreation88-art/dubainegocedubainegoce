@@ -30,6 +30,9 @@ export function HeroBanner({ images }: HeroBannerProps) {
     return () => clearInterval(intervalId);
   }, [images.length, isPaused, next]);
 
+  const currentImage = images[currentIndex];
+  const isSquareImage = currentImage?.includes('hero-yara.jpg');
+
   return (
     <section className="storefront-hero w-full bg-[#111827] border-b-2 border-[#d4a017]">
       <div className="container mx-auto px-4 py-4 sm:py-6 lg:py-8">
@@ -48,7 +51,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
             <p className="text-white/80 text-sm sm:text-base mb-3 sm:mb-5 leading-relaxed max-w-xl">
               Retrouvez les fragrances phares des maisons <strong>Lattafa</strong>,{' '}
               <strong>Maison Alhambra</strong>, <strong>French Avenue</strong>,{' '}
-              <strong>Fragrance World</strong> et <strong>Paris Corner</strong> en flacons neufs scellés sous blister.
+              <strong>Fragrance World</strong> et <strong>Paris Corner</strong> au prix unique de <strong>35 €</strong>.
             </p>
 
             <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-6">
@@ -90,19 +93,23 @@ export function HeroBanner({ images }: HeroBannerProps) {
 
           {/* Visuel produit net et compact (5/12) */}
           <div
-            className="lg:col-span-5 relative h-[180px] sm:h-[290px] lg:h-[320px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40"
+            className="lg:col-span-5 relative h-[210px] sm:h-[290px] lg:h-[320px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40 overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {images[currentIndex] && (
+            {currentImage && (
               <Image
-                key={images[currentIndex]}
-                src={images[currentIndex]}
+                key={currentImage}
+                src={currentImage}
                 alt={`Sélection de parfums de Dubaï ${currentIndex + 1}`}
                 fill
                 priority={currentIndex === 0}
-                className="object-contain p-4 transition-opacity duration-300"
-                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 70vw, 40vw"
+                className={
+                  isSquareImage
+                    ? 'object-contain transition-opacity duration-300'
+                    : 'object-cover object-center transition-opacity duration-300'
+                }
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 45vw"
               />
             )}
 

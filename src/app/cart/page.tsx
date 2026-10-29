@@ -5,60 +5,163 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, ShoppingBag, ChevronLeft, ShieldCheck, Truck, Lock, ArrowRight, Store, Sparkles, CheckCircle2 } from 'lucide-react';
+import {
+  Trash2,
+  ShoppingBag,
+  ChevronLeft,
+  ShieldCheck,
+  Truck,
+  Lock,
+  ArrowRight,
+  MapPin,
+  Pencil,
+  CheckCircle2,
+} from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
-import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
-import { computeShippingCost, FREE_SHIPPING_THRESHOLD, getColissimoCost, PERFUME_WEIGHT_G } from '@/lib/data';
+import { computeShippingCost, FREE_SHIPPING_THRESHOLD } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, limit, orderBy, query, setDoc } from 'firebase/firestore';
 import { CheckoutForm, type CheckoutFormData } from '@/components/checkout/checkout-form';
-import { OrderSummary } from '@/components/checkout/order-summary';
 import { calculateOrderTotal } from '@/lib/checkout-utils';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce, trackEvent } from '@/lib/analytics';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 
+const SAVED_ADDRESS_STORAGE_KEY = 'dubainegoce_checkout_address';
+
+function normalizeCountryCode(raw?: string): string {
+  if (!raw) return 'FR';
+  const upper = raw.trim().toUpperCase();
+  if (['FR', 'BE', 'LU', 'NL', 'DE', 'CH'].includes(upper)) return upper;
+  const lower = raw.trim().toLowerCase();
+  if (lower.includes('france')) return 'FR';
+  if (lower.includes('belg')) return 'BE';
+  if (lower.includes('lux')) return 'LU';
+  if (lower.includes('pays-bas') || lower.includes('nederland')) return 'NL';
+  if (lower.includes('allemagne') || lower.includes('deutsch')) return 'DE';
+  if (lower.includes('suisse') || lower.includes('schweiz')) return 'CH';
+  return 'FR';
+}
+
+function isAddressComplete(addr?: Partial<CheckoutFormData> | null): addr is CheckoutFormData {
+  if (!addr) return false;
+  return Boolean(
+    addr.email?.trim() &&
+      addr.phone?.trim() &&
+      addr.firstName?.trim() &&
+      addr.lastName?.trim() &&
+      addr.address?.trim() &&
+      addr.postalCode?.trim() &&
+      addr.city?.trim() &&
+      addr.country?.trim()
+  );
+}
+
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, getCartCount, clearCart } = useCart();
   const { user } = useUser();
   const firestore = useFirestore();
-  const router = useRouter();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const { toast } = useToast();
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
   const [formCountry, setFormCountry] = useState('FR');
   const [formShippingMethod, setFormShippingMethod] = useState<'colissimo' | 'mondial-relay'>('colissimo');
-  const [mainStep, setMainStep] = useState<'review-cart' | 'checkout-form' | 'review-payment'>('review-cart');
-  const [lastFormData, setLastFormData] = useState<CheckoutFormData | null>(null);
+  const [mainStep, setMainStep] = useState<'review-cart' | 'checkout-form'>('review-cart');
   const [savedUserAddress, setSavedUserAddress] = useState<Partial<CheckoutFormData> | null>(null);
   const lastTrackedCartSignature = useRef<string | null>(null);
 
   useEffect(() => {
     setIsClient(true);
+    try {
+      const raw = localStorage.getItem(SAVED_ADDRESS_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw) as Partial<CheckoutFormData>;
+        if (parsed && typeof parsed === 'object') {
+          const normalizedCountry = normalizeCountryCode(parsed.country);
+          setSavedUserAddress({
+            ...parsed,
+            country: normalizedCountry,
+            shippingMethod: 'colissimo',
+          });
+          setFormCountry(normalizedCountry);
+        }
+      }
+    } catch {
+      // Ignore storage errors
+    }
   }, []);
 
-  // Pré-remplir avec l'adresse enregistrée si le client est connecté
+  // Charger automatiquement l'adresse enregistrée du client connecté (profil ou dernière commande)
   useEffect(() => {
     async function loadSavedAddress() {
       if (!user || !firestore) return;
       try {
+        const displayParts = (user.displayName || '').trim().split(/\s+/);
+        const fallbackFirstName = displayParts[0] || '';
+        const fallbackLastName = displayParts.slice(1).join(' ') || '';
+
         const userDoc = await getDoc(doc(firestore, 'users', user.uid));
-        const saved = userDoc.exists() ? userDoc.data()?.shippingAddress : null;
-        if (saved) {
-          setSavedUserAddress({
-            email: user.email || saved.email || '',
-            phone: saved.phone || '',
-            firstName: saved.firstName || '',
-            lastName: saved.lastName || '',
-            address: saved.address || '',
-            postalCode: saved.postalCode || '',
-            city: saved.city || '',
-            country: saved.country || 'FR',
-          });
+        const userData = userDoc.exists() ? userDoc.data() : null;
+        const saved = userData?.shippingAddress || userData?.billingAddress || null;
+
+        let candidate: Partial<CheckoutFormData> = {
+          email: user.email || saved?.email || '',
+          phone: saved?.phone || userData?.phone || '',
+          firstName: saved?.firstName || userData?.firstName || fallbackFirstName,
+          lastName: saved?.lastName || userData?.lastName || fallbackLastName,
+          address: saved?.address || saved?.address1 || saved?.line1 || '',
+          postalCode: saved?.postalCode || '',
+          city: saved?.city || '',
+          country: normalizeCountryCode(saved?.country),
+          shippingMethod: 'colissimo',
+        };
+
+        // Si le profil n'a pas encore d'adresse complète, récupérer celle de la dernière commande du client
+        if (!isAddressComplete(candidate)) {
+          const ordersSnap = await getDocs(
+            query(collection(firestore, 'users', user.uid, 'orders'), orderBy('orderDate', 'desc'), limit(1))
+          );
+          if (!ordersSnap.empty) {
+            const lastOrder = ordersSnap.docs[0].data();
+            const orderAddr = lastOrder?.shippingAddress;
+            const orderNameParts = (lastOrder?.customerName || '').trim().split(/\s+/);
+            candidate = {
+              email: candidate.email || lastOrder?.customerEmail || '',
+              phone: candidate.phone || lastOrder?.customerPhone || '',
+              firstName: candidate.firstName || orderNameParts[0] || '',
+              lastName: candidate.lastName || orderNameParts.slice(1).join(' ') || '',
+              address: candidate.address || orderAddr?.line1 || '',
+              postalCode: candidate.postalCode || orderAddr?.postalCode || '',
+              city: candidate.city || orderAddr?.city || '',
+              country: normalizeCountryCode(orderAddr?.country || candidate.country),
+              shippingMethod: 'colissimo',
+            };
+          }
         }
+
+        setSavedUserAddress((prev) => {
+          const merged: Partial<CheckoutFormData> = {
+            email: candidate.email || prev?.email || '',
+            phone: candidate.phone || prev?.phone || '',
+            firstName: candidate.firstName || prev?.firstName || '',
+            lastName: candidate.lastName || prev?.lastName || '',
+            address: candidate.address || prev?.address || '',
+            postalCode: candidate.postalCode || prev?.postalCode || '',
+            city: candidate.city || prev?.city || '',
+            country: normalizeCountryCode(candidate.country || prev?.country),
+            shippingMethod: 'colissimo',
+          };
+          if (merged.country) setFormCountry(merged.country);
+          try {
+            localStorage.setItem(SAVED_ADDRESS_STORAGE_KEY, JSON.stringify(merged));
+          } catch {
+            // Ignore storage errors
+          }
+          return merged;
+        });
       } catch (e) {
         console.warn('Adresse enregistrée illisible :', e);
       }
@@ -67,18 +170,17 @@ export default function CartPage() {
   }, [user, firestore]);
 
   const totalItems = getCartCount();
-  const totalWeight = totalItems * PERFUME_WEIGHT_G;
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   // Jauge de livraison offerte (Gratuit dès 3 parfums en France)
-  const isFreeShippingQualified = totalItems >= 3 || subtotal >= FREE_SHIPPING_THRESHOLD;
   const remainingItemsForFreeShipping = Math.max(0, 3 - totalItems);
-  const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
   const freeShippingProgress = Math.min(100, Math.round((totalItems / 3) * 100));
 
   // Tarifs transparents calculés dès le panier et synchronisés avec le paiement
   const shippingCost = computeShippingCost(formShippingMethod, formCountry, totalItems, subtotal);
-  const { vat, total, shipping } = calculateOrderTotal(subtotal, shippingCost);
+  const { total } = calculateOrderTotal(subtotal, shippingCost);
+
+  const hasReadyAddress = isAddressComplete(savedUserAddress);
 
   useEffect(() => {
     if (!isClient || cart.length === 0) return;
@@ -97,84 +199,25 @@ export default function CartPage() {
     });
   }, [cart, isClient, subtotal]);
 
-  const startCheckout = () => {
-    trackEcommerce('begin_checkout', {
-      value: total,
-      items: cart.map((item) => ({
-        item_id: item.id,
-        item_name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      })),
-    });
-    setMainStep('checkout-form');
-  };
-
-  // Étape 2 validée : on mémorise les infos puis on passe au paiement
-  const handleCheckoutFormSubmit = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
-    setLastFormData(formData);
-    setSelectedPickupPoint(pickupPoint);
-    setFormCountry(formData.country);
-    setFormShippingMethod(formData.shippingMethod);
-
-    const selectedShippingCost = computeShippingCost(formData.shippingMethod, formData.country, totalItems, subtotal);
-    const { total: totalWithShipping } = calculateOrderTotal(subtotal, selectedShippingCost);
-    trackEcommerce('add_shipping_info', {
-      value: totalWithShipping,
-      shipping_tier: formData.shippingMethod,
-      items: cart.map((item) => ({
-        item_id: item.id,
-        item_name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      })),
-    });
-
-    // Suivi panier abandonné, y compris pour les invités (non bloquant)
-    if (formData.email && cart.length > 0) {
-      trackAbandonedCart(cart, formData.email, user?.uid).catch((err) =>
-        console.warn('Suivi panier abandonné impossible :', err)
-      );
-    }
-
-    // Mémoriser l'adresse dans le profil si le client est connecté
-    if (user && firestore) {
-      try {
-        await setDoc(
-          doc(firestore, 'users', user.uid),
-          {
-            shippingAddress: {
-              email: formData.email,
-              phone: formData.phone || '',
-              firstName: formData.firstName,
-              lastName: formData.lastName,
-              address: formData.address,
-              postalCode: formData.postalCode,
-              city: formData.city,
-              country: formData.country,
-            },
-          },
-          { merge: true }
-        );
-      } catch (error) {
-        console.warn("Enregistrement de l'adresse impossible :", error);
-      }
-    }
-
-    setMainStep('review-payment');
-  };
-
   // Paiement par carte : la session Stripe est créée côté serveur, qui recalcule
-  // prix, stock et frais de port. Fonctionne avec ou sans compte.
-  const handleConfirmStripePayment = async (formData: CheckoutFormData, pickupPoint: MondialRelayPickupPoint | null) => {
+  // prix, stock et frais de port, et pré-remplit le client Stripe pour éviter toute double saisie.
+  const handleConfirmStripePayment = async (
+    formData: CheckoutFormData,
+    pickupPoint: MondialRelayPickupPoint | null
+  ) => {
     setIsCheckingOut(true);
 
     try {
-      const shippingCost = computeShippingCost(formData.shippingMethod, formData.country, totalItems, subtotal);
-      const { total } = calculateOrderTotal(subtotal, shippingCost);
+      const currentShippingCost = computeShippingCost(
+        formData.shippingMethod,
+        formData.country,
+        totalItems,
+        subtotal
+      );
+      const { total: orderTotal } = calculateOrderTotal(subtotal, currentShippingCost);
 
       trackEcommerce('add_payment_info', {
-        value: total,
+        value: orderTotal,
         payment_type: 'card',
         items: cart.map((item) => ({
           item_id: item.id,
@@ -233,6 +276,113 @@ export default function CartPage() {
     }
   };
 
+  // Clic sur le bouton principal du panier :
+  // - Si le client a déjà ses coordonnées enregistrées -> redirection 1-Clic directe vers Stripe (comme Amazon) !
+  // - Sinon -> affichage du formulaire unique de coordonnées.
+  const handlePrimaryCheckoutClick = async () => {
+    trackEcommerce('begin_checkout', {
+      value: total,
+      items: cart.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    });
+
+    if (hasReadyAddress && savedUserAddress) {
+      await handleConfirmStripePayment(
+        {
+          ...savedUserAddress,
+          shippingMethod: savedUserAddress.shippingMethod || 'colissimo',
+        },
+        selectedPickupPoint
+      );
+      return;
+    }
+
+    setMainStep('checkout-form');
+  };
+
+  // Soumission du formulaire de coordonnées : sauvegarde automatique + redirection directe vers Stripe
+  const handleCheckoutFormSubmit = async (
+    formData: CheckoutFormData,
+    pickupPoint: MondialRelayPickupPoint | null
+  ) => {
+    const normalizedData: CheckoutFormData = {
+      ...formData,
+      country: normalizeCountryCode(formData.country),
+      shippingMethod: formData.shippingMethod || 'colissimo',
+    };
+
+    setSavedUserAddress(normalizedData);
+    setSelectedPickupPoint(pickupPoint);
+    setFormCountry(normalizedData.country);
+    setFormShippingMethod(normalizedData.shippingMethod);
+
+    try {
+      localStorage.setItem(SAVED_ADDRESS_STORAGE_KEY, JSON.stringify(normalizedData));
+    } catch {
+      // Ignore storage errors
+    }
+
+    const selectedShippingCost = computeShippingCost(
+      normalizedData.shippingMethod,
+      normalizedData.country,
+      totalItems,
+      subtotal
+    );
+    const { total: totalWithShipping } = calculateOrderTotal(subtotal, selectedShippingCost);
+    trackEcommerce('add_shipping_info', {
+      value: totalWithShipping,
+      shipping_tier: normalizedData.shippingMethod,
+      items: cart.map((item) => ({
+        item_id: item.id,
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    });
+
+    // Suivi panier abandonné (non bloquant)
+    if (normalizedData.email && cart.length > 0) {
+      trackAbandonedCart(cart, normalizedData.email, user?.uid).catch((err) =>
+        console.warn('Suivi panier abandonné impossible :', err)
+      );
+    }
+
+    // Mémoriser l'adresse dans le profil Firestore si le client est connecté
+    if (user && firestore) {
+      try {
+        await setDoc(
+          doc(firestore, 'users', user.uid),
+          {
+            firstName: normalizedData.firstName,
+            lastName: normalizedData.lastName,
+            phone: normalizedData.phone || '',
+            shippingAddress: {
+              email: normalizedData.email,
+              phone: normalizedData.phone || '',
+              firstName: normalizedData.firstName,
+              lastName: normalizedData.lastName,
+              address: normalizedData.address,
+              address1: normalizedData.address,
+              postalCode: normalizedData.postalCode,
+              city: normalizedData.city,
+              country: normalizedData.country,
+            },
+          },
+          { merge: true }
+        );
+      } catch (error) {
+        console.warn("Enregistrement de l'adresse impossible :", error);
+      }
+    }
+
+    // Redirection directe vers Stripe sans étape intermédiaire redondante
+    await handleConfirmStripePayment(normalizedData, pickupPoint);
+  };
+
   if (!isClient) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
@@ -248,7 +398,7 @@ export default function CartPage() {
           <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
           <h2 className="text-2xl font-headline font-bold">Votre panier est vide</h2>
           <p className="text-muted-foreground mt-2 max-w-md mb-6 text-sm">
-            Découvrez nos parfums de Dubaï et laissez-vous tenter par nos créations d'exception.
+            Découvrez nos parfums de Dubaï et laissez-vous tenter par nos créations d&apos;exception.
           </p>
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/shop/all">Explorer la boutique</Link>
@@ -260,7 +410,7 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
-      {/* ÉTAPE 1 : Panier */}
+      {/* ÉTAPE 1 : Panier + Commande 1-Clic si adresse connue */}
       {mainStep === 'review-cart' && (
         <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
           <div className="mb-6">
@@ -301,6 +451,44 @@ export default function CartPage() {
             </div>
           </div>
 
+          {/* Bloc Adresse Enregistrée (Style Amazon 1-Click) */}
+          {hasReadyAddress && savedUserAddress && (
+            <Card className="p-4 mb-6 border-accent/40 bg-[#fdfaf4] shadow-sm">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                  <div className="text-xs sm:text-sm space-y-0.5">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-foreground">
+                        Livrer à : {savedUserAddress.firstName} {savedUserAddress.lastName}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700 bg-green-500/10 px-2 py-0.5 rounded">
+                        <CheckCircle2 className="h-3 w-3" /> Achat 1-Clic prêt
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground">
+                      {savedUserAddress.address}, {savedUserAddress.postalCode} {savedUserAddress.city} (
+                      {savedUserAddress.country})
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {savedUserAddress.phone} • {savedUserAddress.email}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setMainStep('checkout-form')}
+                  className="shrink-0 text-xs h-8 px-2.5"
+                >
+                  <Pencil className="h-3.5 w-3.5 mr-1" />
+                  Modifier
+                </Button>
+              </div>
+            </Card>
+          )}
+
           <Card className="p-6 mb-6 shadow-sm">
             <div className="space-y-4">
               {cart.map((item) => (
@@ -309,10 +497,13 @@ export default function CartPage() {
                     <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <Link href={`/parfum/${item.slug}`} className="font-semibold text-sm hover:text-accent truncate block">
+                    <Link
+                      href={`/parfum/${item.slug}`}
+                      className="font-semibold text-sm hover:text-accent truncate block"
+                    >
                       {item.name}
                     </Link>
-                    <p className="text-xs text-muted-foreground mt-0.5">{item.price.toFixed(2)} € TTC l'unité</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{item.price.toFixed(2)} € TTC l&apos;unité</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
@@ -346,21 +537,22 @@ export default function CartPage() {
               ))}
             </div>
 
-            {/* Choix du mode de livraison et affichage transparent dès le panier */}
+            {/* Mode de livraison et récapitulatif transparent dès le panier */}
             <div className="mt-6 pt-5 border-t space-y-4">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-semibold text-foreground">Mode de livraison</span>
                   <span className="text-xs text-muted-foreground font-normal">Expédition rapide 24/48h</span>
                 </div>
-                {/* Colissimo Domicile */}
                 <div className="border border-accent bg-accent/5 ring-1 ring-accent rounded-lg p-3.5 transition-all flex flex-col justify-between">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-2.5">
                       <Truck className="h-5 w-5 text-accent flex-shrink-0" />
                       <div>
                         <p className="font-semibold text-sm">Colissimo Domicile (48h)</p>
-                        <p className="text-xs text-muted-foreground">Livraison rapide en boîte aux lettres sans contact</p>
+                        <p className="text-xs text-muted-foreground">
+                          Livraison rapide en boîte aux lettres avec suivi par e-mail
+                        </p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -375,7 +567,8 @@ export default function CartPage() {
                   </div>
                   {shippingCost > 0 && remainingItemsForFreeShipping > 0 && (
                     <p className="text-[11px] text-accent mt-2 font-medium">
-                      💡 Plus que {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''} pour débloquer la livraison GRATUITE (3 parfums = 0 € de livraison) !
+                      💡 Plus que {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''}{' '}
+                      pour débloquer la livraison GRATUITE (3 parfums = 0 € de livraison) !
                     </p>
                   )}
                 </div>
@@ -420,12 +613,28 @@ export default function CartPage() {
 
           <div className="space-y-3">
             <Button
-              onClick={startCheckout}
+              onClick={handlePrimaryCheckoutClick}
+              disabled={isCheckingOut}
               size="lg"
               className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold shadow-md flex items-center justify-center gap-2"
             >
-              Commander maintenant • Total : {total.toFixed(2)} €
-              <ArrowRight className="h-5 w-5" />
+              {isCheckingOut ? (
+                <>
+                  <span className="animate-spin inline-block mr-2">⏳</span>
+                  Redirection vers le paiement sécurisé...
+                </>
+              ) : hasReadyAddress ? (
+                <>
+                  <Lock className="h-5 w-5" />
+                  Commander et payer maintenant • {total.toFixed(2)} €
+                  <ArrowRight className="h-5 w-5" />
+                </>
+              ) : (
+                <>
+                  Commander maintenant • Total : {total.toFixed(2)} €
+                  <ArrowRight className="h-5 w-5" />
+                </>
+              )}
             </Button>
 
             <div className="flex items-center justify-between text-xs text-muted-foreground px-2">
@@ -434,8 +643,8 @@ export default function CartPage() {
                 Continuer mes achats
               </Link>
               {!user && (
-                <Link href="/login?redirect=/cart" className="hover:underline text-accent">
-                  Déjà un compte ? Se connecter
+                <Link href="/login?redirect=/cart" className="hover:underline text-accent font-medium">
+                  Déjà client ? Se connecter pour commander en 1 clic
                 </Link>
               )}
             </div>
@@ -464,18 +673,23 @@ export default function CartPage() {
         </div>
       )}
 
-      {/* ÉTAPE 2 : Livraison (invité ou connecté) */}
+      {/* ÉTAPE 2 (Uniquement pour un 1er achat ou si le client clique sur "Modifier l'adresse") */}
       {mainStep === 'checkout-form' && (
         <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
           <div className="mb-6">
-            <Button variant="ghost" size="sm" onClick={() => setMainStep('review-cart')} className="mb-2 -ml-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setMainStep('review-cart')}
+              disabled={isCheckingOut}
+              className="mb-2 -ml-2"
+            >
               <ChevronLeft className="h-4 w-4 mr-1" />
               Retour au panier
             </Button>
-            <h1 className="text-3xl md:text-4xl font-headline font-bold">Informations de livraison</h1>
+            <h1 className="text-3xl md:text-4xl font-headline font-bold">Adresse de livraison</h1>
             <p className="text-muted-foreground mt-1 text-sm">
-              Saisissez vos coordonnées pour l'expédition de votre commande
-              {!user && ' — aucun compte nécessaire'}
+              Renseignez votre adresse une seule fois : elle sera mémorisée pour vos prochaines commandes.
             </p>
           </div>
 
@@ -483,7 +697,6 @@ export default function CartPage() {
             onSubmit={handleCheckoutFormSubmit}
             initialData={{
               ...(savedUserAddress || {}),
-              ...(lastFormData || {}),
               shippingMethod: formShippingMethod,
               country: formCountry,
             }}
@@ -491,50 +704,8 @@ export default function CartPage() {
             onCountryChange={setFormCountry}
             onShippingMethodChange={setFormShippingMethod}
             onPickupPointChange={setSelectedPickupPoint}
+            submitLabel={`Continuer vers le paiement sécurisé (${total.toFixed(2)} €)`}
           />
-        </div>
-      )}
-
-      {/* ÉTAPE 3 : Récapitulatif et paiement */}
-      {mainStep === 'review-payment' && (
-        <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
-          <div className="mb-6">
-            <Button variant="ghost" size="sm" onClick={() => setMainStep('checkout-form')} className="mb-2 -ml-2">
-              <ChevronLeft className="h-4 w-4 mr-1" />
-              Modifier mes informations
-            </Button>
-            <h1 className="text-3xl md:text-4xl font-headline font-bold">Paiement sécurisé</h1>
-            <p className="text-muted-foreground mt-1 text-sm">Choisissez votre moyen de paiement pour finaliser</p>
-          </div>
-
-          <div className="grid gap-6">
-            <OrderSummary
-              items={cart}
-              subtotal={subtotal}
-              vat={vat}
-              shipping={shipping}
-              total={total}
-              shippingMethod={formShippingMethod}
-              shippingCostHT={shippingCost}
-              weightG={totalWeight}
-              selectedPickupPoint={selectedPickupPoint}
-              onSubmit={() => {
-                if (lastFormData) handleConfirmStripePayment(lastFormData, selectedPickupPoint);
-              }}
-              isLoading={isCheckingOut}
-              isFormValid={!!lastFormData}
-            />
-
-<Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setMainStep('checkout-form')}
-              disabled={isCheckingOut}
-              className="w-full text-muted-foreground"
-            >
-              ← Modifier l'adresse ou le mode de livraison
-            </Button>
-          </div>
         </div>
       )}
     </div>
