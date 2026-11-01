@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 export default function ShippingPolicyPage() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-10">
-      <nav aria-label="Fil d'Ariane" className="mb-6 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2">
-        <Link href="/" className="hover:text-[#d4a017]">Accueil</Link>
+      <nav aria-label="Fil d'Ariane" className="mb-6 text-xs text-gray-600 bg-white border border-[#e6ded1] rounded px-3.5 py-2">
+        <Link href="/" className="hover:text-[#a8834f]">Accueil</Link>
         <span className="mx-2">&gt;</span>
-        <span className="font-bold text-[#111827]">Livraison &amp; Retours</span>
+        <span className="font-bold text-[#1d1a16]">Livraison &amp; Retours</span>
       </nav>
 
-      <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 space-y-8 text-[#111827]">
+      <div className="bg-white border border-[#e6ded1] rounded p-6 sm:p-8 space-y-8 text-[#1d1a16]">
         <div>
           <h1 className="text-2xl sm:text-3xl font-headline font-bold mb-2">
             Politique d&apos;Expédition et de Retour
@@ -29,8 +29,8 @@ export default function ShippingPolicyPage() {
 
         {/* Section Expédition */}
         <section className="space-y-4">
-          <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2">
-            <Truck className="h-5 w-5 text-[#d4a017]" />
+          <div className="flex items-center gap-2.5 border-b border-[#e6ded1] pb-2">
+            <Truck className="h-5 w-5 text-[#a8834f]" />
             <h2 className="text-lg font-headline font-bold">1. Livraison Colissimo avec Suivi</h2>
           </div>
 
@@ -40,29 +40,29 @@ export default function ShippingPolicyPage() {
 
           {/* Grille tarifaire identique à computeShippingCost */}
           <div className="overflow-x-auto">
-            <table className="w-full text-sm border-collapse border border-[#e4dac9]">
+            <table className="w-full text-sm border-collapse border border-[#e6ded1]">
               <thead>
-                <tr className="bg-[#f7f0e6] text-left">
-                  <th className="border border-[#e4dac9] p-3 font-bold">Quantité dans le panier</th>
-                  <th className="border border-[#e4dac9] p-3 font-bold">Mode d&apos;envoi</th>
-                  <th className="border border-[#e4dac9] p-3 font-bold">Tarif TTC (France)</th>
+                <tr className="bg-[#f3ede3] text-left">
+                  <th className="border border-[#e6ded1] p-3 font-bold">Quantité dans le panier</th>
+                  <th className="border border-[#e6ded1] p-3 font-bold">Mode d&apos;envoi</th>
+                  <th className="border border-[#e6ded1] p-3 font-bold">Tarif TTC (France)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-[#e4dac9] p-3">1 parfum</td>
-                  <td className="border border-[#e4dac9] p-3">Colissimo Domicile suivi</td>
-                  <td className="border border-[#e4dac9] p-3 font-bold">7,10 €</td>
+                  <td className="border border-[#e6ded1] p-3">1 parfum</td>
+                  <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e6ded1] p-3 font-bold">7,10 €</td>
                 </tr>
-                <tr className="bg-[#fdfaf4]">
-                  <td className="border border-[#e4dac9] p-3">2 parfums</td>
-                  <td className="border border-[#e4dac9] p-3">Colissimo Domicile suivi</td>
-                  <td className="border border-[#e4dac9] p-3 font-bold">9,59 €</td>
+                <tr className="bg-[#faf7f2]">
+                  <td className="border border-[#e6ded1] p-3">2 parfums</td>
+                  <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e6ded1] p-3 font-bold">9,59 €</td>
                 </tr>
                 <tr>
-                  <td className="border border-[#e4dac9] p-3 font-bold">3 parfums ou plus (ou dès 100 €)</td>
-                  <td className="border border-[#e4dac9] p-3">Colissimo Domicile suivi</td>
-                  <td className="border border-[#e4dac9] p-3 font-extrabold text-[#46a74e]">OFFERT (0,00 €)</td>
+                  <td className="border border-[#e6ded1] p-3 font-bold">3 parfums ou plus (ou dès 100 €)</td>
+                  <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e6ded1] p-3 font-extrabold text-[#46a74e]">OFFERT (0,00 €)</td>
                 </tr>
               </tbody>
             </table>
@@ -74,7 +74,7 @@ export default function ShippingPolicyPage() {
             </li>
             <li>
               <strong>Suivi de colis :</strong> Dès l&apos;expédition, vous recevez votre lien de suivi par e-mail et pouvez également consulter la page{' '}
-              <Link href="/suivi-commande" className="text-[#d4a017] font-semibold underline">
+              <Link href="/suivi-commande" className="text-[#a8834f] font-semibold underline">
                 Suivi de commande
               </Link>.
             </li>
@@ -83,8 +83,8 @@ export default function ShippingPolicyPage() {
 
         {/* Section Retours */}
         <section className="space-y-4">
-          <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2">
-            <RotateCcw className="h-5 w-5 text-[#d4a017]" />
+          <div className="flex items-center gap-2.5 border-b border-[#e6ded1] pb-2">
+            <RotateCcw className="h-5 w-5 text-[#a8834f]" />
             <h2 className="text-lg font-headline font-bold">2. Droit de Rétractation &amp; Retours (14 jours)</h2>
           </div>
 
@@ -97,7 +97,7 @@ export default function ShippingPolicyPage() {
             </li>
             <li>
               <strong>Procédure :</strong> Contactez notre service client via la{' '}
-              <Link href="/contact" className="text-[#d4a017] font-semibold underline">
+              <Link href="/contact" className="text-[#a8834f] font-semibold underline">
                 page Contact
               </Link>{' '}
               ou par e-mail à <a href="mailto:contact@dubainegoce.fr" className="font-semibold underline">contact@dubainegoce.fr</a> en indiquant votre numéro de commande.
@@ -109,17 +109,17 @@ export default function ShippingPolicyPage() {
         </section>
 
         {/* Contact direct */}
-        <div className="bg-[#f7f0e6] border border-[#e4dac9] rounded p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs sm:text-sm">
+        <div className="bg-[#f3ede3] border border-[#e6ded1] rounded p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs sm:text-sm">
           <div className="flex items-center gap-2.5">
-            <ShieldCheck className="h-5 w-5 text-[#d4a017] shrink-0" />
+            <ShieldCheck className="h-5 w-5 text-[#a8834f] shrink-0" />
             <span>Une question sur votre livraison ? Notre équipe vous accompagne en français :</span>
           </div>
           <div className="flex flex-wrap gap-4 font-bold">
-            <a href="tel:+33758999726" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
-              <Phone className="h-4 w-4 text-[#d4a017]" /> +33 7 58 99 97 26
+            <a href="tel:+33758999726" className="inline-flex items-center gap-1.5 hover:text-[#a8834f]">
+              <Phone className="h-4 w-4 text-[#a8834f]" /> +33 7 58 99 97 26
             </a>
-            <a href="mailto:contact@dubainegoce.fr" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
-              <Mail className="h-4 w-4 text-[#d4a017]" /> contact@dubainegoce.fr
+            <a href="mailto:contact@dubainegoce.fr" className="inline-flex items-center gap-1.5 hover:text-[#a8834f]">
+              <Mail className="h-4 w-4 text-[#a8834f]" /> contact@dubainegoce.fr
             </a>
           </div>
         </div>

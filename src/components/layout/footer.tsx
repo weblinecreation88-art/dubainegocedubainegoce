@@ -17,190 +17,121 @@ const SnapchatIcon = () => (
   </svg>
 );
 
+const FOOTER_COLUMNS = [
+  {
+    title: 'Les parfums',
+    links: [
+      { href: '/shop/all', label: 'Toute la boutique' },
+      { href: '/shop/all?genders=femme', label: 'Pour elle' },
+      { href: '/shop/all?genders=homme', label: 'Pour lui' },
+      { href: '/shop/all?genders=mixte', label: 'Parfums mixtes' },
+      { href: '/trouver-mon-parfum', label: 'Trouver mon parfum' },
+    ],
+  },
+  {
+    title: 'Besoin d’aide ?',
+    links: [
+      { href: '/livraison-et-paiement', label: 'Livraison et paiement' },
+      { href: '/shipping', label: 'Retours sous 14 jours' },
+      { href: '/suivi-commande', label: 'Suivre ma commande' },
+      { href: '/faq', label: 'Questions fréquentes' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    title: 'Notre maison',
+    links: [
+      { href: '/about', label: 'À propos de Dubaï Négoce' },
+      { href: '/blog', label: 'Le journal' },
+      { href: '/mentions-legales', label: 'Mentions légales' },
+      { href: '/terms', label: 'CGV' },
+      { href: '/privacy', label: 'Confidentialité' },
+    ],
+  },
+];
+
+const socialLinkClass =
+  'h-9 w-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:border-[#b8955f] hover:text-[#b8955f] transition-colors';
+
 export default function Footer() {
   return (
-    <footer id="footer" className="storefront-footer bg-[#111827] text-white border-t-4 border-[#d4a017]">
-      <div className="container mx-auto px-4 py-12">
-        {/* DESKTOP : 4 Colonnes structurées style PrestaShop */}
-        <div className="hidden md:grid md:grid-cols-4 gap-8 lg:gap-12">
-          {/* Colonne 1 : Dubaï Négoce & Vendeur */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-headline font-bold uppercase tracking-wider text-[#d4a017] border-b border-white/15 pb-2">
-              Dubaï Négoce
-            </h3>
-            <p className="text-xs text-white/75 leading-relaxed">
-              Boutique spécialisée dans les eaux de parfum authentiques de Dubaï (Lattafa, Maison Alhambra, French Avenue, Fragrance World, Paris Corner).
+    <footer id="footer" className="storefront-footer bg-[#1d1a16] text-white">
+      <div className="container mx-auto px-5 sm:px-6 pt-14 pb-8 sm:pt-20">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-10">
+          {/* Présentation & contact */}
+          <div className="col-span-2 lg:col-span-4 lg:pr-10">
+            <p className="font-headline text-[34px] leading-none mb-5">Dubaï Négoce</p>
+            <p className="text-[13px] text-white/65 leading-relaxed mb-6 max-w-sm">
+              Eaux de parfum authentiques des maisons de Dubaï, en flacons neufs scellés, expédiées depuis la France.
             </p>
-            <ul className="space-y-2 text-xs text-white/80">
-              <li><Link href="/about" className="hover:text-[#d4a017] transition-colors">Qui sommes-nous ?</Link></li>
-              <li><Link href="/mentions-legales" className="hover:text-[#d4a017] transition-colors">Mentions légales &amp; Vendeur</Link></li>
-              <li><Link href="/terms" className="hover:text-[#d4a017] transition-colors">Conditions Générales de Vente (CGV)</Link></li>
-              <li><Link href="/privacy" className="hover:text-[#d4a017] transition-colors">Politique de confidentialité</Link></li>
-            </ul>
-          </div>
-
-          {/* Colonne 2 : Catalogue & Parfums */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-headline font-bold uppercase tracking-wider text-[#d4a017] border-b border-white/15 pb-2">
-              Nos Rayons Parfums
-            </h3>
-            <ul className="space-y-2 text-xs text-white/80">
-              <li><Link href="/shop/all" className="hover:text-[#d4a017] transition-colors">Tous les parfums</Link></li>
-              <li><Link href="/shop/all?genders=femme" className="hover:text-[#d4a017] transition-colors">Parfums Femme</Link></li>
-              <li><Link href="/shop/all?genders=homme" className="hover:text-[#d4a017] transition-colors">Parfums Homme</Link></li>
-              <li><Link href="/shop/all?genders=mixte" className="hover:text-[#d4a017] transition-colors">Parfums Mixtes</Link></li>
-              <li><Link href="/trouver-mon-parfum" className="hover:text-[#d4a017] transition-colors">Diagnostic Parfum (Quiz)</Link></li>
-              <li><Link href="/blog" className="hover:text-[#d4a017] transition-colors">Le Blog Parfumerie</Link></li>
-            </ul>
-          </div>
-
-          {/* Colonne 3 : Livraison, Retours & Commandes */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-headline font-bold uppercase tracking-wider text-[#d4a017] border-b border-white/15 pb-2">
-              Livraison &amp; Commandes
-            </h3>
-            <ul className="space-y-2 text-xs text-white/80">
-              <li><Link href="/livraison-et-paiement" className="hover:text-[#d4a017] transition-colors">Tarifs de livraison &amp; Paiement</Link></li>
-              <li><Link href="/shipping" className="hover:text-[#d4a017] transition-colors">Conditions de retour (14 jours)</Link></li>
-              <li><Link href="/suivi-commande" className="hover:text-[#d4a017] transition-colors">Suivre ma commande</Link></li>
-              <li><Link href="/faq" className="hover:text-[#d4a017] transition-colors">Foire Aux Questions (FAQ)</Link></li>
-              <li><Link href="/account" className="hover:text-[#d4a017] transition-colors">Mon compte client</Link></li>
-            </ul>
-          </div>
-
-          {/* Colonne 4 : Contact & Avis */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-headline font-bold uppercase tracking-wider text-[#d4a017] border-b border-white/15 pb-2">
-              Contact &amp; Service Client
-            </h3>
-            <ul className="space-y-3 text-xs text-white/85">
-              <li>
-                <a href="tel:+33758999726" className="flex items-center gap-2.5 hover:text-[#d4a017] transition-colors">
-                  <Phone className="h-4 w-4 text-[#d4a017] shrink-0" />
-                  <span>+33 7 58 99 97 26</span>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:contact@dubainegoce.fr" className="flex items-center gap-2.5 hover:text-[#d4a017] transition-colors">
-                  <Mail className="h-4 w-4 text-[#d4a017] shrink-0" />
-                  <span>contact@dubainegoce.fr</span>
-                </a>
-              </li>
-              <li>
-                <Link href="/contact" className="inline-block text-[#d4a017] font-bold hover:underline">
-                  → Formulaire de contact
-                </Link>
-              </li>
-            </ul>
-
-            <div className="pt-2">
-              <a
-                href="https://fr.trustpilot.com/review/dubainegoce.fr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block opacity-90 hover:opacity-100 transition-opacity"
-              >
-                <Image
-                  src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg"
-                  alt="Avis Dubainegoce sur Trustpilot"
-                  width={110}
-                  height={28}
-                  style={{ height: 'auto' }}
-                />
+            <div className="space-y-2 text-[13px] text-white/85 mb-6">
+              <a href="tel:+33758999726" className="flex items-center gap-2.5 hover:text-[#b8955f] transition-colors">
+                <Phone className="h-4 w-4 text-[#b8955f]" strokeWidth={1.5} /> 07 58 99 97 26
+              </a>
+              <a href="mailto:contact@dubainegoce.fr" className="flex items-center gap-2.5 hover:text-[#b8955f] transition-colors">
+                <Mail className="h-4 w-4 text-[#b8955f]" strokeWidth={1.5} /> contact@dubainegoce.fr
               </a>
             </div>
+            <Link
+              href="/contact"
+              className="inline-block border border-white/70 px-5 py-2.5 text-[11px] uppercase tracking-[0.16em] hover:bg-white hover:text-[#1d1a16] transition-colors"
+            >
+              Nous écrire
+            </Link>
+          </div>
 
-            <div className="flex gap-3 pt-1">
-              <a
-                href="https://www.instagram.com/dubai_negoce/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-[#d4a017] hover:text-[#111827] transition-colors"
-              >
-                <Instagram className="h-4 w-4" />
+          {FOOTER_COLUMNS.map((column) => (
+            <div key={column.title} className="lg:col-span-2">
+              <h3 className="text-[11px] uppercase tracking-[0.2em] text-white/50 mb-4">{column.title}</h3>
+              <ul className="space-y-2.5 text-[13px] text-white/85">
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="hover:text-[#b8955f] transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Avis & réseaux */}
+          <div className="col-span-2 lg:col-span-2">
+            <h3 className="text-[11px] uppercase tracking-[0.2em] text-white/50 mb-4">Nous suivre</h3>
+            <div className="flex gap-2.5 mb-6">
+              <a href="https://www.instagram.com/dubai_negoce/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={socialLinkClass}>
+                <Instagram className="h-4 w-4" strokeWidth={1.5} />
               </a>
-              <a
-                href="https://www.tiktok.com/@dubainegoce"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok"
-                className="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-[#d4a017] hover:text-[#111827] transition-colors"
-              >
+              <a href="https://www.tiktok.com/@dubainegoce" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className={socialLinkClass}>
                 <TiktokIcon />
               </a>
-              <a
-                href="https://www.snapchat.com/add/dubainegoce"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Snapchat"
-                className="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-[#d4a017] hover:text-[#111827] transition-colors"
-              >
+              <a href="https://www.snapchat.com/add/dubainegoce" target="_blank" rel="noopener noreferrer" aria-label="Snapchat" className={socialLinkClass}>
                 <SnapchatIcon />
               </a>
-              <a
-                href="https://www.youtube.com/@dubainegoce78"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-[#d4a017] hover:text-[#111827] transition-colors"
-              >
-                <Youtube className="h-4 w-4" />
+              <a href="https://www.youtube.com/@dubainegoce78" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className={socialLinkClass}>
+                <Youtube className="h-4 w-4" strokeWidth={1.5} />
               </a>
             </div>
+            <a
+              href="https://fr.trustpilot.com/review/dubainegoce.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+            >
+              <Image
+                src="https://res.cloudinary.com/dhjwimevi/image/upload/v1766250269/logo-white_x4wl9x.svg"
+                alt="Avis Dubainegoce sur Trustpilot"
+                width={104}
+                height={26}
+                style={{ height: 'auto' }}
+              />
+            </a>
           </div>
         </div>
 
-        {/* MOBILE : Accordéons <details> style PrestaShop */}
-        <div className="md:hidden space-y-3 text-sm">
-          <details className="border-b border-white/15 pb-3">
-            <summary className="font-bold text-[#d4a017] cursor-pointer py-1">Notre boutique &amp; le vendeur</summary>
-            <ul className="space-y-2 pt-2 pl-3 text-xs text-white/80">
-              <li><Link href="/about">Qui sommes-nous ?</Link></li>
-              <li><Link href="/mentions-legales">Mentions légales &amp; Vendeur</Link></li>
-              <li><Link href="/terms">Conditions Générales de Vente (CGV)</Link></li>
-              <li><Link href="/privacy">Politique de confidentialité</Link></li>
-            </ul>
-          </details>
-
-          <details className="border-b border-white/15 pb-3">
-            <summary className="font-bold text-[#d4a017] cursor-pointer py-1">Livraison, retours &amp; suivi</summary>
-            <ul className="space-y-2 pt-2 pl-3 text-xs text-white/80">
-              <li><Link href="/livraison-et-paiement">Tarifs Colissimo &amp; Paiement</Link></li>
-              <li><Link href="/shipping">Retour &amp; rétractation (14 jours)</Link></li>
-              <li><Link href="/suivi-commande">Suivre ma commande</Link></li>
-              <li><Link href="/faq">Foire Aux Questions (FAQ)</Link></li>
-            </ul>
-          </details>
-
-          <details className="border-b border-white/15 pb-3">
-            <summary className="font-bold text-[#d4a017] cursor-pointer py-1">Nos rayons parfums</summary>
-            <ul className="space-y-2 pt-2 pl-3 text-xs text-white/80">
-              <li><Link href="/shop/all">Tous les parfums</Link></li>
-              <li><Link href="/shop/all?genders=femme">Parfums Femme</Link></li>
-              <li><Link href="/shop/all?genders=homme">Parfums Homme</Link></li>
-              <li><Link href="/shop/all?genders=mixte">Parfums Mixtes</Link></li>
-              <li><Link href="/blog">Le Blog Parfumerie</Link></li>
-            </ul>
-          </details>
-
-          <div className="pt-2 space-y-2 text-xs text-white/85">
-            <p className="font-bold text-[#d4a017]">Service client :</p>
-            <p><a href="tel:+33758999726">+33 7 58 99 97 26</a> • <a href="mailto:contact@dubainegoce.fr">contact@dubainegoce.fr</a></p>
-          </div>
-        </div>
-
-        {/* Bas de Footer : Paiements & Copyright */}
-        <div className="mt-10 pt-6 border-t border-white/15 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/60">
-          <p>&copy; {new Date().getFullYear()} Dubaï Négoce — Tous droits réservés.</p>
-          <div className="flex flex-col sm:flex-row items-center gap-2">
-            <span className="text-[11px] text-white/75">Moyens de paiement acceptés :</span>
-            <PaymentBadges showTitle={false} badgeClassName="h-6" />
-          </div>
-          <div className="flex gap-4">
-            <Link href="/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">CGV</Link>
-          </div>
+        <div className="mt-14 pt-7 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-5 text-[11px] text-white/50">
+          <p>&copy; {new Date().getFullYear()} Dubaï Négoce · Mentions légales · CGV · Confidentialité</p>
+          <PaymentBadges showTitle={false} badgeClassName="h-6" />
         </div>
       </div>
     </footer>

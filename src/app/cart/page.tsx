@@ -453,7 +453,7 @@ export default function CartPage() {
 
           {/* Bloc Adresse Enregistrée (Style Amazon 1-Click) */}
           {hasReadyAddress && savedUserAddress && (
-            <Card className="p-4 mb-6 border-accent/40 bg-[#fdfaf4] shadow-sm">
+            <Card className="p-4 mb-6 border-accent/40 bg-[#faf7f2] shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />

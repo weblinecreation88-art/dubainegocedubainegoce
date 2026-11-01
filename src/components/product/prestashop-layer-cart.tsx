@@ -36,21 +36,21 @@ export function PrestashopLayerCart() {
         role="dialog"
         aria-modal="true"
         aria-label="Produit ajouté au panier"
-        className="relative w-full max-w-3xl bg-white text-[#111827] rounded border-2 border-[#111827] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-3xl bg-white text-[#1d1a16] rounded border-2 border-[#1d1a16] shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Bouton fermer (croix PrestaShop) */}
         <button
           type="button"
           onClick={closeLayerCart}
-          className="absolute top-3 right-3 h-7 w-7 rounded-full bg-gray-200 hover:bg-[#111827] hover:text-white flex items-center justify-center transition-colors z-10"
+          className="absolute top-3 right-3 h-7 w-7 rounded-full bg-gray-200 hover:bg-[#1d1a16] hover:text-white flex items-center justify-center transition-colors z-10"
           title="Fermer la fenêtre"
           aria-label="Fermer la fenêtre"
         >
           <X className="h-4 w-4" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#e4dac9]">
+        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#e6ded1]">
           {/* COLONNE GAUCHE : Produit ajouté (.layer_cart_product) */}
           <div className="p-5 sm:p-6 bg-white">
             <div className="flex items-center gap-2 text-[#46a74e] font-bold text-sm sm:text-base border-b border-gray-200 pb-3 mb-4 pr-6">
@@ -61,7 +61,7 @@ export function PrestashopLayerCart() {
             </div>
 
             <div className="flex gap-4 items-center">
-              <div className="relative h-24 w-24 sm:h-28 sm:w-28 rounded border border-[#e4dac9] bg-[#fdfaf4] shrink-0 overflow-hidden">
+              <div className="relative h-24 w-24 sm:h-28 sm:w-28 rounded border border-[#e6ded1] bg-[#faf7f2] shrink-0 overflow-hidden">
                 <Image
                   src={lastAddedItem.image}
                   alt={lastAddedItem.name}
@@ -71,7 +71,7 @@ export function PrestashopLayerCart() {
                 />
               </div>
               <div className="space-y-1.5 text-xs sm:text-sm min-w-0">
-                <p id="layer_cart_product_title" className="font-bold text-sm sm:text-base text-[#111827] leading-snug">
+                <p id="layer_cart_product_title" className="font-bold text-sm sm:text-base text-[#1d1a16] leading-snug">
                   {lastAddedItem.name}
                 </p>
                 <p className="text-xs text-gray-500">Eau de Parfum Authentique — Dubaï</p>
@@ -82,7 +82,7 @@ export function PrestashopLayerCart() {
                   </div>
                   <div>
                     <strong className="text-gray-700">Total article : </strong>
-                    <span className="font-extrabold text-[#d4a017] text-sm">
+                    <span className="font-extrabold text-[#a8834f] text-sm">
                       {(lastAddedItem.price * lastAddedItem.addedQty).toFixed(2)} € TTC
                     </span>
                   </div>
@@ -91,12 +91,12 @@ export function PrestashopLayerCart() {
             </div>
 
             {/* Jauge livraison gratuite */}
-            <div className="mt-5 p-3 rounded bg-[#f7f0e6] border border-[#e4dac9] text-xs">
+            <div className="mt-5 p-3 rounded bg-[#f3ede3] border border-[#e6ded1] text-xs">
               {remainingForFree > 0 ? (
-                <p className="text-[#111827] flex items-center gap-2">
-                  <Truck className="h-4 w-4 text-[#d4a017] shrink-0" />
+                <p className="text-[#1d1a16] flex items-center gap-2">
+                  <Truck className="h-4 w-4 text-[#a8834f] shrink-0" />
                   <span>
-                    Ajoutez encore <strong className="text-[#d4a017]">{remainingForFree} parfum{remainingForFree > 1 ? 's' : ''}</strong> pour bénéficier de la <strong>Livraison 100% GRATUITE</strong> !
+                    Ajoutez encore <strong className="text-[#a8834f]">{remainingForFree} parfum{remainingForFree > 1 ? 's' : ''}</strong> pour bénéficier de la <strong>Livraison 100% GRATUITE</strong> !
                   </span>
                 </p>
               ) : (
@@ -109,27 +109,27 @@ export function PrestashopLayerCart() {
           </div>
 
           {/* COLONNE DROITE : État du panier (.layer_cart_cart) */}
-          <div className="p-5 sm:p-6 bg-[#fdfaf4] flex flex-col justify-between">
+          <div className="p-5 sm:p-6 bg-[#faf7f2] flex flex-col justify-between">
             <div>
-              <div className="font-bold text-sm sm:text-base text-[#111827] border-b border-[#e4dac9] pb-3 mb-4">
-                Il y a <span className="text-[#d4a017] font-extrabold">{totalItems}</span>{' '}
+              <div className="font-bold text-sm sm:text-base text-[#1d1a16] border-b border-[#e6ded1] pb-3 mb-4">
+                Il y a <span className="text-[#a8834f] font-extrabold">{totalItems}</span>{' '}
                 {totalItems > 1 ? 'produits' : 'produit'} dans votre panier.
               </div>
 
               <div className="space-y-2.5 text-xs sm:text-sm">
-                <div className="flex justify-between py-1 border-b border-dashed border-[#e4dac9]">
+                <div className="flex justify-between py-1 border-b border-dashed border-[#e6ded1]">
                   <strong className="text-gray-700">Total produits TTC</strong>
-                  <span className="font-bold text-[#111827]">{subtotal.toFixed(2)} €</span>
+                  <span className="font-bold text-[#1d1a16]">{subtotal.toFixed(2)} €</span>
                 </div>
-                <div className="flex justify-between py-1 border-b border-dashed border-[#e4dac9]">
+                <div className="flex justify-between py-1 border-b border-dashed border-[#e6ded1]">
                   <strong className="text-gray-700">Frais de port (Colissimo 48h)</strong>
                   <span className="font-bold text-[#46a74e]">
                     {shippingCost === 0 ? 'Livraison gratuite !' : `${shippingCost.toFixed(2)} €`}
                   </span>
                 </div>
-                <div className="flex justify-between py-2 text-base font-extrabold text-[#111827] bg-[#f7f0e6] px-3 rounded border border-[#e4dac9]">
+                <div className="flex justify-between py-2 text-base font-extrabold text-[#1d1a16] bg-[#f3ede3] px-3 rounded border border-[#e6ded1]">
                   <span>Total TTC</span>
-                  <span className="text-[#d4a017]">{totalTtc.toFixed(2)} €</span>
+                  <span className="text-[#a8834f]">{totalTtc.toFixed(2)} €</span>
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@ export function PrestashopLayerCart() {
                 <button
                   type="button"
                   onClick={closeLayerCart}
-                  className="w-full py-2.5 px-3 bg-white hover:bg-gray-100 text-[#111827] border border-[#111827] rounded-[2px] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
+                  className="w-full py-2.5 px-3 bg-white hover:bg-gray-100 text-[#1d1a16] border border-[#1d1a16] rounded-[2px] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   <span>Continuer mes achats</span>
@@ -148,7 +148,7 @@ export function PrestashopLayerCart() {
                 <Link
                   href="/cart"
                   onClick={closeLayerCart}
-                  className="w-full py-2.5 px-3 bg-[#d4a017] hover:bg-[#b88911] text-white rounded-[2px] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow transition-colors"
+                  className="w-full py-2.5 px-3 bg-[#a8834f] hover:bg-[#8c6c3f] text-white rounded-[2px] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow transition-colors"
                 >
                   <span>Commander</span>
                   <ChevronRight className="h-4 w-4" />

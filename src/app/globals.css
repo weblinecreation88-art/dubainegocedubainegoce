@@ -12,25 +12,25 @@
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 220 35% 11%; /* Anthracite PrestaShop #121824 */
     --primary-foreground: 210 40% 98%; /* Blanc */
-    --secondary: 37 42% 94%; /* Beige sable OrientalDiscount #f7f0e6 */
+    --secondary: 37 42% 94%; /* Beige sable OrientalDiscount #f3ede3 */
     --secondary-foreground: 220 35% 11%;
     --muted: 37 33% 96%; /* Crème léger #faf7f2 */
     --muted-foreground: 215.4 16.3% 40%;
-    --accent: 41 79% 46%; /* Or Ambré PrestaShop #d4a017 */
+    --accent: 41 79% 46%; /* Or Ambré PrestaShop #a8834f */
     --accent-foreground: 0 0% 100%; /* Blanc sur or ambré */
     --destructive: 0 84.2% 60.2%; /* Rouge standard pour erreur */
     --destructive-foreground: 210 40% 98%;
-    --border: 36 24% 86%; /* Bordure chaude PrestaShop #e4dac9 */
+    --border: 36 24% 86%; /* Bordure chaude PrestaShop #e6ded1 */
     --input: 214.3 31.8% 85%;
     --ring: 41 79% 46%; /* Or Ambré pour focus ring */
-    --radius: 0.25rem;
-    --ps-gold: #d4a017;
-    --ps-gold-hover: #b88911;
-    --ps-beige: #f7f0e6;
-    --ps-cream: #fdfaf4;
-    --ps-border: #e4dac9;
+    --radius: 0.125rem;
+    --ps-gold: #a8834f;
+    --ps-gold-hover: #8c6c3f;
+    --ps-beige: #f3ede3;
+    --ps-cream: #faf7f2;
+    --ps-border: #e6ded1;
     --ps-green: #46a74e;
-    --ps-dark: #111827;
+    --ps-dark: #1d1a16;
   }
 
   .dark {
@@ -61,7 +61,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#f8f8f8] text-foreground;
+    @apply bg-white text-foreground;
   }
 
   @keyframes marquee {
@@ -78,20 +78,20 @@
 
   /* Utilitaires PrestaShop Or Ambré */
   .accent-pink {
-    background-color: #d4a017;
+    background-color: #a8834f;
     color: #ffffff;
   }
 
   .accent-pink-hover {
-    @apply hover:bg-[#b88911] hover:text-white transition-colors;
+    @apply hover:bg-[#8c6c3f] hover:text-white transition-colors;
   }
 
   .accent-pink-border {
-    border-color: #d4a017;
+    border-color: #a8834f;
   }
 
   .accent-pink-text {
-    color: #d4a017;
+    color: #a8834f;
   }
 
   .ps-badge-instock {
@@ -106,14 +106,14 @@
   }
 
   .ps-block-title {
-    background: #111827;
+    background: #1d1a16;
     color: #ffffff;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 0.05em;
     padding: 11px 15px;
-    border-bottom: 3px solid #d4a017;
+    border-bottom: 3px solid #a8834f;
   }
 }
 
@@ -127,7 +127,7 @@
   margin-bottom: 0.5rem;
   padding-top: 0.5rem;
   border-top: 1px solid #e5e7eb;
-  color: #111827;
+  color: #1d1a16;
   display: block;
 }
 

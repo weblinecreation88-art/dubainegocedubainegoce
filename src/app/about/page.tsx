@@ -60,33 +60,33 @@ export default function AboutPage() {
       {/* Fil d'Ariane */}
       <nav
         aria-label="Fil d'Ariane"
-        className="mb-6 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2"
+        className="mb-6 text-xs text-gray-600 bg-white border border-[#e6ded1] rounded px-3.5 py-2"
       >
-        <Link href="/" className="hover:text-[#d4a017]">
+        <Link href="/" className="hover:text-[#a8834f]">
           Accueil
         </Link>
         <span className="mx-2">&gt;</span>
-        <span className="font-bold text-[#111827]">Qui sommes-nous ?</span>
+        <span className="font-bold text-[#1d1a16]">Qui sommes-nous ?</span>
       </nav>
 
-      <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 space-y-10 text-[#111827] shadow-sm">
+      <div className="bg-white border border-[#e6ded1] rounded p-6 sm:p-8 space-y-10 text-[#1d1a16] shadow-sm">
         {/* En-tête de la page */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#111827] text-white rounded border border-[#d4a017]/40 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#1d1a16] text-white rounded border border-[#a8834f]/40 overflow-hidden">
           <div className="lg:col-span-7 p-6 sm:p-8 space-y-3">
-            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#111827] bg-[#d4a017] font-extrabold px-2.5 py-1 rounded-[2px]">
+            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#1d1a16] bg-[#a8834f] font-extrabold px-2.5 py-1 rounded-[2px]">
               Notre Boutique
             </span>
             <h1 className="text-2xl sm:text-3xl font-headline font-bold leading-tight">
               Dubaï Négoce •{' '}
-              <span className="text-[#d4a017]">Votre Escale Olfactive à Dubaï</span>
+              <span className="text-[#a8834f]">Votre Escale Olfactive à Dubaï</span>
             </h1>
             <p className="text-sm text-white/85 leading-relaxed">
               Bienvenue chez <strong>Dubaï Négoce</strong>, boutique spécialisée dans la sélection d&apos;eaux de parfum authentiques importées des grandes maisons de parfumerie de Dubaï. Notre engagement est clair : rendre l&apos;excellence de la parfumerie orientale accessible au{' '}
-              <strong className="text-[#d4a017]">prix unique et transparent de 35,00 € TTC</strong>.
+              <strong className="text-[#a8834f]">prix unique et transparent de 35,00 € TTC</strong>.
             </p>
           </div>
 
-          <div className="lg:col-span-5 relative h-[220px] sm:h-[260px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40">
+          <div className="lg:col-span-5 relative h-[220px] sm:h-[260px] bg-[#faf7f2] border-t lg:border-t-0 lg:border-l border-[#a8834f]/40">
             <Image
               src="/images/hero/hero-khamrah.jpg"
               alt="Sélection d'eaux de parfum authentiques chez Dubaï Négoce"
@@ -99,9 +99,9 @@ export default function AboutPage() {
 
         {/* 1. Notre Histoire & L'Authenticité */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 sm:p-6 space-y-3">
-            <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2.5">
-              <Sparkles className="h-5 w-5 text-[#d4a017] shrink-0" />
+          <div className="bg-[#faf7f2] border border-[#e6ded1] rounded p-5 sm:p-6 space-y-3">
+            <div className="flex items-center gap-2.5 border-b border-[#e6ded1] pb-2.5">
+              <Sparkles className="h-5 w-5 text-[#a8834f] shrink-0" />
               <h2 className="text-lg font-headline font-bold">Notre Passion pour les Parfums de Dubaï</h2>
             </div>
             <p className="text-sm text-gray-700 leading-relaxed">
@@ -112,9 +112,9 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 sm:p-6 space-y-3">
-            <div className="flex items-center gap-2.5 border-b border-[#e4dac9] pb-2.5">
-              <ShieldCheck className="h-5 w-5 text-[#d4a017] shrink-0" />
+          <div className="bg-[#faf7f2] border border-[#e6ded1] rounded p-5 sm:p-6 space-y-3">
+            <div className="flex items-center gap-2.5 border-b border-[#e6ded1] pb-2.5">
+              <ShieldCheck className="h-5 w-5 text-[#a8834f] shrink-0" />
               <h2 className="text-lg font-headline font-bold">L&apos;Authenticité Garantie</h2>
             </div>
             <p className="text-sm text-gray-700 leading-relaxed">
@@ -140,7 +140,7 @@ export default function AboutPage() {
 
         {/* 2. Nos 3 Engagements Clairs */}
         <section className="space-y-4">
-          <div className="border-b border-[#e4dac9] pb-2.5">
+          <div className="border-b border-[#e6ded1] pb-2.5">
             <h2 className="text-xl font-headline font-bold">Nos Engagements Client</h2>
             <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
               Des conditions commerciales simples, transparentes et identiques sur tout le site.
@@ -148,9 +148,9 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 space-y-2.5">
+            <div className="bg-[#faf7f2] border border-[#e6ded1] rounded p-5 space-y-2.5">
               <div className="flex items-center gap-2.5">
-                <div className="bg-[#111827] text-[#d4a017] w-9 h-9 rounded flex items-center justify-center shrink-0">
+                <div className="bg-[#1d1a16] text-[#a8834f] w-9 h-9 rounded flex items-center justify-center shrink-0">
                   <Tag className="h-4 w-4" />
                 </div>
                 <h3 className="font-headline font-bold text-base">Prix Unique 35,00 € TTC</h3>
@@ -161,9 +161,9 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 space-y-2.5">
+            <div className="bg-[#faf7f2] border border-[#e6ded1] rounded p-5 space-y-2.5">
               <div className="flex items-center gap-2.5">
-                <div className="bg-[#111827] text-[#d4a017] w-9 h-9 rounded flex items-center justify-center shrink-0">
+                <div className="bg-[#1d1a16] text-[#a8834f] w-9 h-9 rounded flex items-center justify-center shrink-0">
                   <Truck className="h-4 w-4" />
                 </div>
                 <h3 className="font-headline font-bold text-base">Expédition Colissimo Suivie</h3>
@@ -174,9 +174,9 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded p-5 space-y-2.5">
+            <div className="bg-[#faf7f2] border border-[#e6ded1] rounded p-5 space-y-2.5">
               <div className="flex items-center gap-2.5">
-                <div className="bg-[#111827] text-[#d4a017] w-9 h-9 rounded flex items-center justify-center shrink-0">
+                <div className="bg-[#1d1a16] text-[#a8834f] w-9 h-9 rounded flex items-center justify-center shrink-0">
                   <Package className="h-4 w-4" />
                 </div>
                 <h3 className="font-headline font-bold text-base">Retours sous 14 Jours</h3>
@@ -190,7 +190,7 @@ export default function AboutPage() {
 
         {/* 3. Les Maisons distribuées */}
         <section className="space-y-4">
-          <div className="border-b border-[#e4dac9] pb-2.5">
+          <div className="border-b border-[#e6ded1] pb-2.5">
             <h2 className="text-xl font-headline font-bold">Les Grandes Maisons de Dubaï Sélectionnées</h2>
           </div>
 
@@ -199,15 +199,15 @@ export default function AboutPage() {
               <Link
                 key={maison.name}
                 href={maison.href}
-                className="group bg-white border border-[#e4dac9] hover:border-[#d4a017] rounded p-4 transition-colors flex flex-col justify-between gap-2"
+                className="group bg-white border border-[#e6ded1] hover:border-[#a8834f] rounded p-4 transition-colors flex flex-col justify-between gap-2"
               >
                 <div>
-                  <h3 className="font-headline font-bold text-sm text-[#111827] group-hover:text-[#d4a017]">
+                  <h3 className="font-headline font-bold text-sm text-[#1d1a16] group-hover:text-[#a8834f]">
                     {maison.name}
                   </h3>
                   <p className="text-xs text-gray-600 mt-1 leading-relaxed">{maison.description}</p>
                 </div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#d4a017] inline-flex items-center gap-1">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#a8834f] inline-flex items-center gap-1">
                   Voir les parfums <ArrowRight className="h-3 w-3" />
                 </span>
               </Link>
@@ -216,20 +216,20 @@ export default function AboutPage() {
         </section>
 
         {/* 4. Bandeau Contact & Découverte */}
-        <div className="bg-[#f7f0e6] border border-[#e4dac9] rounded p-5 sm:p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+        <div className="bg-[#f3ede3] border border-[#e6ded1] rounded p-5 sm:p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
           <div className="space-y-1.5">
-            <h2 className="text-lg font-headline font-bold text-[#111827]">
+            <h2 className="text-lg font-headline font-bold text-[#1d1a16]">
               Besoin d&apos;un conseil pour choisir votre parfum ?
             </h2>
             <p className="text-xs sm:text-sm text-gray-700">
               Notre service client vous répond en français par téléphone et par e-mail :
             </p>
             <div className="flex flex-wrap gap-4 pt-1 text-xs sm:text-sm font-bold">
-              <a href="tel:+33758999726" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
-                <Phone className="h-4 w-4 text-[#d4a017]" /> +33 7 58 99 97 26
+              <a href="tel:+33758999726" className="inline-flex items-center gap-1.5 hover:text-[#a8834f]">
+                <Phone className="h-4 w-4 text-[#a8834f]" /> +33 7 58 99 97 26
               </a>
-              <a href="mailto:contact@dubainegoce.fr" className="inline-flex items-center gap-1.5 hover:text-[#d4a017]">
-                <Mail className="h-4 w-4 text-[#d4a017]" /> contact@dubainegoce.fr
+              <a href="mailto:contact@dubainegoce.fr" className="inline-flex items-center gap-1.5 hover:text-[#a8834f]">
+                <Mail className="h-4 w-4 text-[#a8834f]" /> contact@dubainegoce.fr
               </a>
             </div>
           </div>
@@ -237,14 +237,14 @@ export default function AboutPage() {
           <div className="flex flex-wrap gap-3 shrink-0">
             <Button
               asChild
-              className="bg-[#111827] text-white hover:bg-[#d4a017] hover:text-[#111827] rounded-[2px] px-5 h-10 text-xs font-bold uppercase tracking-wider transition-colors"
+              className="bg-[#1d1a16] text-white hover:bg-[#a8834f] hover:text-[#1d1a16] rounded-[2px] px-5 h-10 text-xs font-bold uppercase tracking-wider transition-colors"
             >
               <Link href="/shop/all">Explorer le catalogue (35 €)</Link>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="border-[#111827] text-[#111827] hover:bg-[#111827] hover:text-white rounded-[2px] px-5 h-10 text-xs font-bold uppercase tracking-wider transition-colors"
+              className="border-[#1d1a16] text-[#1d1a16] hover:bg-[#1d1a16] hover:text-white rounded-[2px] px-5 h-10 text-xs font-bold uppercase tracking-wider transition-colors"
             >
               <Link href="/trouver-mon-parfum">Diagnostic parfum</Link>
             </Button>

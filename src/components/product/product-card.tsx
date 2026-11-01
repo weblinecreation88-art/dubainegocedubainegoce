@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
-import { Badge } from '../ui/badge';
 import { ProductImage } from './product-image';
-import { Heart, ShoppingCart, Check } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { useWishlist } from '@/context/wishlist-context';
 import { cn } from '@/lib/utils';
 import { AddToCartButton } from './add-to-cart-button';
@@ -14,18 +13,16 @@ interface ProductCardProps {
     priority?: boolean;
 }
 
-function getStockStatus(stock: number): { label: string; className: string; inStock: boolean } {
-    if (stock <= 0) {
-        return { label: 'Rupture de stock', className: 'bg-red-700 text-white', inStock: false };
-    }
-    if (stock <= 3) {
-        return { label: `Plus que ${stock} en stock`, className: 'bg-amber-700 text-white', inStock: true };
-    }
-    return { label: 'En stock', className: 'bg-[#46a74e] text-white', inStock: true };
+// Seules les informations utiles à la décision restent visibles : le stock n'apparaît
+// que lorsqu'il devient limité.
+function getStockNote(stock: number): { label: string; className: string } | null {
+    if (stock <= 0) return { label: 'Rupture de stock', className: 'text-[#a33333]' };
+    if (stock <= 3) return { label: `Plus que ${stock} en stock`, className: 'text-[#8a5a1c]' };
+    return null;
 }
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
-    const stockStatus = getStockStatus(product.stock);
+    const stockNote = getStockNote(product.stock);
     const { isInWishlist, toggleWishlist } = useWishlist();
     const isFavorite = isInWishlist(product.id);
 
@@ -35,105 +32,59 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         toggleWishlist(product.id);
     };
 
-    const mainNotes = [
-        ...(product.topNotes || []),
-        ...(product.heartNotes || []),
-        ...(product.baseNotes || []),
-    ].slice(0, 3);
-
     return (
-        <div className="storefront-product product-container flex flex-col h-full bg-white rounded border border-[#e4dac9] transition-all duration-200 hover:shadow-md hover:border-[#d4a017] group">
+        <div className="storefront-product product-container group flex flex-col h-full min-w-0">
             <Link href={`/parfum/${product.slug}`} className="flex flex-col flex-grow">
-                {/* Image nette sur fond clair */}
-                <div className="storefront-product-photo relative aspect-square w-full overflow-hidden bg-[#fdfaf4] border-b border-[#e4dac9]/60">
+                <div className="storefront-product-photo relative aspect-[4/5] w-full overflow-hidden bg-[#f3ede3]">
                     <ProductImage
                         alt={`Parfum ${product.brand.name} ${product.name} - ${product.volumeMl}ml`}
                         images={product.images}
-                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 22vw"
-                        className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 48vw, 24vw"
+                        className="object-contain p-6 sm:p-8 mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.04]"
                         priority={priority}
                     />
 
-                    {/* Badges Bestseller / Nouveau */}
-                    <div className="storefront-product-badges absolute top-2 left-2 flex flex-col gap-1 z-10">
-                        {product.isBestseller && (
-                            <Badge className="bg-[#111827] text-[#d4a017] hover:bg-[#111827] rounded-[2px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-[#d4a017]/40">
-                                Sélection
-                            </Badge>
-                        )}
-                        {product.isNew && (
-                            <Badge className="bg-[#d4a017] text-white hover:bg-[#b88911] rounded-[2px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-                                Nouveau
-                            </Badge>
-                        )}
-                    </div>
+                    {product.isNew && (
+                        <span className="absolute top-3 left-3 z-10 text-[9px] uppercase tracking-[0.18em] text-[#1d1a16] bg-white/85 px-2 py-1">
+                            Nouveau
+                        </span>
+                    )}
 
-                    {/* Bouton Favoris */}
                     <button
                         type="button"
                         onClick={handleWishlistClick}
-                        className="absolute top-2 right-2 p-1.5 rounded-full bg-white/90 border border-[#e4dac9] hover:border-[#d4a017] transition-colors z-20 group/heart"
+                        className="absolute top-2.5 right-2.5 z-20 p-2 text-[#1d1a16]/60 hover:text-[#1d1a16] transition-colors"
                         aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
                     >
-                        <Heart
-                            className={cn(
-                                'h-4 w-4 transition-colors',
-                                isFavorite ? 'fill-red-500 text-red-500' : 'text-gray-500 group-hover/heart:text-red-500'
-                            )}
-                        />
+                        <Heart className={cn('h-4 w-4', isFavorite && 'fill-[#a8834f] text-[#a8834f]')} />
                     </button>
                 </div>
 
-                {/* Informations homogènes : Marque, Nom, Contenance exacte, Notes */}
-                <div className="storefront-product-info p-3.5 flex-grow flex flex-col justify-between text-center">
-                    <div>
-                        <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1 truncate">
-                            {product.brand.name}
-                        </p>
-                        <h3 className="text-sm font-headline font-bold text-[#111827] leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-[#d4a017] transition-colors">
-                            {product.name}
-                        </h3>
-                        <p className="text-[11px] text-gray-600 mt-1 font-medium">
-                            Eau de Parfum • {product.volumeMl || 100} ml
-                        </p>
-                        {mainNotes.length > 0 ? (
-                            <p className="text-[11px] text-gray-500 mt-1 line-clamp-1">
-                                Notes : {mainNotes.join(', ')}
-                            </p>
-                        ) : (
-                            <p className="text-[11px] text-gray-500 mt-1 capitalize">
-                                Famille : {product.family} ({product.gender})
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Disponibilité & Prix TTC */}
-                    <div className="storefront-product-price pt-3 mt-2 border-t border-gray-100 flex items-center justify-between gap-2">
-                        <span className={cn('text-[10px] font-bold px-2 py-0.5 rounded-[2px] inline-flex items-center gap-1', stockStatus.className)}>
-                            {stockStatus.inStock && <Check className="h-3 w-3 stroke-[3]" />}
-                            {stockStatus.label}
-                        </span>
-                        <p className="text-base sm:text-lg font-extrabold text-[#111827]">
-                            {product.price.toFixed(2)} €
-                        </p>
-                    </div>
+                <div className="storefront-product-info flex flex-col flex-grow pt-4">
+                    <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6559] mb-1.5 truncate">
+                        {product.brand.name} · {product.volumeMl || 100} ml
+                    </p>
+                    <h3 className="font-headline font-normal text-[19px] sm:text-[22px] leading-[1.15] text-[#1d1a16] line-clamp-2">
+                        {product.name}
+                    </h3>
+                    <p className="mt-2.5 text-sm font-medium text-[#1d1a16] tabular-nums">
+                        {product.price.toFixed(2).replace('.', ',')} €
+                    </p>
+                    {stockNote && <p className={cn('mt-1 text-[11px]', stockNote.className)}>{stockNote.label}</p>}
                 </div>
             </Link>
 
-            {/* Bouton d'achat visible */}
-            <div className="storefront-product-buy px-3 pb-3">
+            <div className="storefront-product-buy mt-3">
                 {product.stock > 0 ? (
                     <AddToCartButton
                         product={product}
-                        className="w-full rounded-[2px] text-xs font-bold tracking-wider uppercase py-2.5 gap-2 bg-[#111827] text-white hover:bg-[#d4a017] hover:text-[#111827] transition-colors shadow-sm"
+                        variant="ghost"
+                        className="h-auto w-full justify-start rounded-none border-b border-[#1d1a16]/25 px-0 pb-2 pt-0 text-xs font-medium text-[#1d1a16] hover:bg-transparent hover:border-[#1d1a16] hover:text-[#1d1a16]"
                     >
-                        <ShoppingCart className="h-3.5 w-3.5" />
                         Ajouter au panier
                     </AddToCartButton>
                 ) : (
-                    <div className="w-full py-2 text-center text-[11px] font-semibold tracking-wider uppercase text-gray-500 bg-gray-50 border border-gray-200 rounded-[2px]">
-                        Indisponible
-                    </div>
+                    <p className="border-b border-[#1d1a16]/10 pb-2 text-xs text-[#6f6559]">Indisponible</p>
                 )}
             </div>
         </div>
