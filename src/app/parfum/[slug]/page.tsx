@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props, _parent: ResolvingMeta
 
   const imageUrl = product.images.length > 0 ? product.images[0] : `${SITE_URL}/og-image.png`;
   const fullUrl = `${SITE_URL}/parfum/${product.slug}`;
-  const enrichedDescription = `${product.metaDescription} | Eau de Parfum ${product.volumeMl}ml | ${product.price.toFixed(2)} € TTC | Livraison Colissimo offerte dès 3 parfums.`;
+  const enrichedDescription = `${product.metaDescription} | Eau de Parfum ${product.volumeMl}ml | ${product.price.toFixed(2)} € TTC | Livraison Colissimo offerte dès 2 parfums.`;
 
   const keywords = [
     product.name,
@@ -129,7 +129,6 @@ export default function ProductPage({ params }: Props) {
     .replace(/<[^>]*>?/gm, '')
     .trim();
 
-  const referenceCode = `DN-${product.brand.name.substring(0, 3).toUpperCase()}-${product.id.padStart(3, '0')}`;
 
   // JSON-LD strictement basé sur les données réelles du produit (sans faux avis générés)
   const productJsonLd = {
@@ -294,14 +293,6 @@ export default function ProductPage({ params }: Props) {
               {/* Réf & État style PrestaShop */}
               <div className="text-xs text-[#5d564c] space-y-1.5 border-y border-[#e6ded1] py-4">
                 <div className="flex justify-between">
-                  <span className="font-semibold">Référence :</span>
-                  <span className="font-mono font-bold text-[#1d1a16]">{referenceCode}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-semibold">État :</span>
-                  <span className="font-bold text-[#1d1a16]">Neuf sous blister d&apos;origine</span>
-                </div>
-                <div className="flex justify-between">
                   <span className="font-semibold">Contenance :</span>
                   <span className="font-bold text-[#1d1a16]">{product.volumeMl || 100} ml</span>
                 </div>
@@ -428,8 +419,8 @@ export default function ProductPage({ params }: Props) {
                     <div>
                       <strong className="text-[#1d1a16]">Colissimo Domicile suivi :</strong>
                       <div className="text-[11px] text-gray-600 mt-0.5">
-                        1 parfum : 7,10 € • 2 parfums : 9,59 € •{' '}
-                        <strong className="text-[#46a74e]">Offert dès 3 parfums</strong>
+                        1 parfum : 7,10 € •{' '}
+                        <strong className="text-[#46a74e]">Offert dès 2 parfums</strong>
                       </div>
                     </div>
                   </li>

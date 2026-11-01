@@ -6,7 +6,7 @@ import { PaymentBadges } from '@/components/ui/payment-badges';
 export const metadata: Metadata = {
   title: 'Livraison et Paiement | Dubaï Négoce',
   description:
-    'Consultez nos tarifs de livraison Colissimo (offerte dès 3 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
+    'Consultez nos tarifs de livraison Colissimo (offerte dès 2 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
 };
 
 export default function DeliveryAndPaymentPage() {
@@ -54,12 +54,8 @@ export default function DeliveryAndPaymentPage() {
                   <span>1 parfum (flacon 100 ml)</span>
                   <strong className="text-[#1d1a16]">7,10 € TTC</strong>
                 </li>
-                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e6ded1]">
-                  <span>2 parfums</span>
-                  <strong className="text-[#1d1a16]">9,59 € TTC</strong>
-                </li>
                 <li className="flex justify-between items-center bg-[#f3ede3] p-2.5 rounded border border-[#a8834f]">
-                  <span className="font-bold">Dès 3 parfums (ou 100 € d&apos;achat)</span>
+                  <span className="font-bold">Dès 2 parfums</span>
                   <strong className="text-[#46a74e]">OFFERT (0,00 €)</strong>
                 </li>
               </ul>

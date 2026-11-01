@@ -18,8 +18,17 @@ export function HeroBanner({ images }: HeroBannerProps) {
   const goTo = useCallback((index: number) => setCurrentIndex(index), []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setPreloadRest(true), 1500);
-    return () => clearTimeout(timer);
+    // Attendre la fin du chargement de la page pour ne pas ralentir le premier visuel.
+    let timer: ReturnType<typeof setTimeout>;
+    const schedule = () => {
+      timer = setTimeout(() => setPreloadRest(true), 2500);
+    };
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('load', schedule);
+    };
   }, []);
 
   useEffect(() => {
@@ -64,7 +73,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
           </div>
 
           <p className="hidden sm:block mt-10 lg:mt-14 text-[11px] tracking-[0.18em] uppercase text-[#6f6559]">
-            Livraison offerte dès 3 parfums · Paiement sécurisé
+            Livraison offerte dès 2 parfums · Paiement sécurisé
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { priceOrder, resolveBuyer, ALLOWED_COUNTRIES } from '@/lib/order-pricing';
+import { computePromoDiscount, resolvePromoCode, type ResolvedPromo } from '@/lib/promo-codes';
 
 /**
  * Crée la session Stripe Checkout côté serveur.
@@ -34,8 +35,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Requête invalide.' }, { status: 400 });
   }
 
-  const { items, customer, pickupPoint } = body as {
+  const { items, customer, pickupPoint, promoCode } = body as {
     items?: Array<{ id: string; quantity: number }>;
+    promoCode?: string;
     customer?: {
       email?: string;
       phone?: string;
@@ -105,6 +107,22 @@ export async function POST(req: NextRequest) {
       : `Mondial Relay — ${pickupPoint?.name || 'point relais'}`;
 
   const stripe = new Stripe(stripeSecretKey);
+
+  // Code promo saisi dans le panier : revérifié ici avant d'être appliqué par Stripe.
+  let promo: ResolvedPromo | null = null;
+  if (typeof promoCode === 'string' && promoCode.trim()) {
+    try {
+      const promoResult = await resolvePromoCode(stripe, promoCode, priced.subtotal);
+      if (!promoResult.ok) {
+        return NextResponse.json({ error: promoResult.error }, { status: 400 });
+      }
+      promo = promoResult.promo;
+    } catch (e) {
+      console.error('[api/stripe/checkout] Vérification du code promo impossible :', e);
+      return NextResponse.json({ error: 'Impossible de vérifier le code promo pour le moment.' }, { status: 500 });
+    }
+  }
+  const promoDiscount = promo ? computePromoDiscount(promo, priced.subtotal) : 0;
 
   const hasCompleteAddress = Boolean(
     customer?.address?.trim() &&
@@ -185,7 +203,8 @@ export async function POST(req: NextRequest) {
             },
           }
         : {}),
-      allow_promotion_codes: true,
+      // Stripe n'accepte pas les deux options ensemble : code du panier, sinon saisie sur Stripe.
+      ...(promo ? { discounts: [{ promotion_code: promo.promotionCodeId }] } : { allow_promotion_codes: true }),
       shipping_options: [
         {
           shipping_rate_data: {
@@ -204,7 +223,7 @@ export async function POST(req: NextRequest) {
         enabled: true,
       },
       invoice_creation: { enabled: true },
-      success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${orderTotal.toFixed(2)}`,
+      success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${(orderTotal - promoDiscount).toFixed(2)}`,
       cancel_url: `${appUrl}/cart`,
       metadata: {
         userId,
@@ -212,6 +231,7 @@ export async function POST(req: NextRequest) {
         phone: rawPhone,
         shippingMethod,
         shippingCost: shippingCost.toFixed(2),
+        promoCode: promo?.code || '',
         country,
         customerName: `${customer?.firstName || ''} ${customer?.lastName || ''}`.trim(),
         addressLine: customer?.address || '',

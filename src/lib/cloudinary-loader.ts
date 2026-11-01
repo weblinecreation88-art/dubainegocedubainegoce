@@ -24,7 +24,13 @@ type LoaderArgs = {
 const CLOUDINARY_MARKER = '/image/upload/';
 
 export function cloudinaryLoader({ src, width, quality }: LoaderArgs): string {
-  // Les images non-Cloudinary sont servies inchangees.
+  // Photos produits locales : chaque PNG/JPG de /images-parfums a une copie WebP
+  // en 1500 px environ 20 fois plus legere (406 Ko -> 19 Ko pour Yara Moi).
+  if (/^\/images-parfums\/[^?#]+\.(png|jpe?g)$/i.test(src)) {
+    return src.replace(/\.(png|jpe?g)$/i, '.webp');
+  }
+
+  // Les autres images non-Cloudinary sont servies inchangees.
   if (!src.includes('res.cloudinary.com') || !src.includes(CLOUDINARY_MARKER)) {
     return src;
   }

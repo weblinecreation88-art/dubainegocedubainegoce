@@ -5,7 +5,7 @@ import { Truck, RotateCcw, ShieldCheck, Mail, Phone } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Expédition et Retours | Dubaï Négoce',
   description:
-    'Consultez nos tarifs de livraison Colissimo avec suivi (offerte dès 3 parfums) et notre politique de retour sous 14 jours.',
+    'Consultez nos tarifs de livraison Colissimo avec suivi (offerte dès 2 parfums) et notre politique de retour sous 14 jours.',
 };
 
 export default function ShippingPolicyPage() {
@@ -54,13 +54,8 @@ export default function ShippingPolicyPage() {
                   <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
                   <td className="border border-[#e6ded1] p-3 font-bold">7,10 €</td>
                 </tr>
-                <tr className="bg-[#faf7f2]">
-                  <td className="border border-[#e6ded1] p-3">2 parfums</td>
-                  <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
-                  <td className="border border-[#e6ded1] p-3 font-bold">9,59 €</td>
-                </tr>
                 <tr>
-                  <td className="border border-[#e6ded1] p-3 font-bold">3 parfums ou plus (ou dès 100 €)</td>
+                  <td className="border border-[#e6ded1] p-3 font-bold">2 parfums ou plus</td>
                   <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
                   <td className="border border-[#e6ded1] p-3 font-extrabold text-[#46a74e]">OFFERT (0,00 €)</td>
                 </tr>

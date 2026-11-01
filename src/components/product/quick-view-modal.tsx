@@ -153,7 +153,7 @@ export function QuickViewModal() {
 
               <div className="flex items-center justify-between pt-2 border-t border-[#e6ded1] text-[11px] text-gray-600">
                 <span className="flex items-center gap-1">
-                  <Truck className="h-3.5 w-3.5 text-[#a8834f]" /> Gratuit dès 3 parfums
+                  <Truck className="h-3.5 w-3.5 text-[#a8834f]" /> Gratuit dès 2 parfums
                 </span>
                 <Link
                   href={`/parfum/${product.slug}`}

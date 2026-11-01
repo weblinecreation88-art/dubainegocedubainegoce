@@ -169,6 +169,7 @@ export async function processSuccessfulOrder(sessionId: string): Promise<{ succe
       customerName: details?.name || metadata.customerName || '',
       customerPhone: customerPhone,
       shippingCost: Number.isFinite(shippingCost as number) ? shippingCost : undefined,
+      ...(metadata.promoCode ? { promoCode: metadata.promoCode } : {}),
       shippingAddress: {
         line1: stripeAddress?.line1 || metadata.addressLine || '',
         line2: stripeAddress?.line2 || '',

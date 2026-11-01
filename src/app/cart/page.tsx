@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ChevronLeft, Lock, Loader2 } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useState, useEffect, useRef } from 'react';
-import { computeShippingCost, FREE_SHIPPING_THRESHOLD } from '@/lib/data';
+import { computeShippingCost, FREE_SHIPPING_MIN_ITEMS, FREE_SHIPPING_THRESHOLD } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
 import { collection, doc, getDoc, getDocs, limit, orderBy, query, setDoc } from 'firebase/firestore';
 import { CheckoutForm, type CheckoutFormData } from '@/components/checkout/checkout-form';
@@ -15,6 +15,7 @@ import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce, trackEvent } from '@/lib/analytics';
 import { PaymentBadges } from '@/components/ui/payment-badges';
+import { computePromoDiscount, type ResolvedPromo } from '@/lib/promo-codes';
 
 const SAVED_ADDRESS_STORAGE_KEY = 'dubainegoce_checkout_address';
 
@@ -51,6 +52,10 @@ export default function CartPage() {
   const { user } = useUser();
   const firestore = useFirestore();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [promoInput, setPromoInput] = useState('');
+  const [appliedPromo, setAppliedPromo] = useState<Omit<ResolvedPromo, 'promotionCodeId'> | null>(null);
+  const [promoError, setPromoError] = useState('');
+  const [isCheckingPromo, setIsCheckingPromo] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const { toast } = useToast();
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
@@ -159,13 +164,43 @@ export default function CartPage() {
   const totalItems = getCartCount();
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  // Jauge de livraison offerte (Gratuit dès 3 parfums en France)
-  const remainingItemsForFreeShipping = Math.max(0, 3 - totalItems);
-  const freeShippingProgress = Math.min(100, Math.round((totalItems / 3) * 100));
+  // Jauge de livraison offerte (gratuite dès FREE_SHIPPING_MIN_ITEMS parfums en France)
+  const remainingItemsForFreeShipping = Math.max(0, FREE_SHIPPING_MIN_ITEMS - totalItems);
+  const freeShippingProgress = Math.min(100, Math.round((totalItems / FREE_SHIPPING_MIN_ITEMS) * 100));
 
   // Tarifs transparents calculés dès le panier et synchronisés avec le paiement
   const shippingCost = computeShippingCost(formShippingMethod, formCountry, totalItems, subtotal);
-  const { total } = calculateOrderTotal(subtotal, shippingCost);
+  const { total: totalBeforeDiscount } = calculateOrderTotal(subtotal, shippingCost);
+  // Réduction indicative : Stripe recalcule et applique le code au moment du paiement.
+  const promoDiscount = appliedPromo ? computePromoDiscount(appliedPromo, subtotal) : 0;
+  const total = Math.round((totalBeforeDiscount - promoDiscount) * 100) / 100;
+
+  const handleApplyPromo = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!promoInput.trim()) return;
+    setIsCheckingPromo(true);
+    setPromoError('');
+    try {
+      const response = await fetch('/api/promo/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: promoInput,
+          items: cart.map((item) => ({ id: item.id, quantity: item.quantity })),
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Code promo invalide.');
+      setAppliedPromo(result);
+      setPromoInput('');
+      trackEvent('promo_code_applied', { promo_code: result.code });
+    } catch (error: any) {
+      setAppliedPromo(null);
+      setPromoError(error.message || 'Code promo invalide.');
+    } finally {
+      setIsCheckingPromo(false);
+    }
+  };
 
   const hasReadyAddress = isAddressComplete(savedUserAddress);
 
@@ -201,7 +236,8 @@ export default function CartPage() {
         totalItems,
         subtotal
       );
-      const { total: orderTotal } = calculateOrderTotal(subtotal, currentShippingCost);
+      const { total: orderTotalBeforeDiscount } = calculateOrderTotal(subtotal, currentShippingCost);
+      const orderTotal = Math.round((orderTotalBeforeDiscount - promoDiscount) * 100) / 100;
 
       trackEcommerce('add_payment_info', {
         value: orderTotal,
@@ -242,6 +278,7 @@ export default function CartPage() {
                 city: pickupPoint.city,
               }
             : null,
+          promoCode: appliedPromo?.code,
         }),
       });
 
@@ -428,6 +465,21 @@ export default function CartPage() {
           <span className="text-[#4a443c]">Sous-total</span>
           <span className="font-medium text-[#1d1a16]">{formatEuro(subtotal)}</span>
         </div>
+        {appliedPromo && (
+          <div className="flex justify-between gap-4">
+            <span className="text-[#4a443c]">
+              Code <span className="uppercase text-[#1d1a16]">{appliedPromo.code}</span> ({appliedPromo.label}){' '}
+              <button
+                type="button"
+                onClick={() => setAppliedPromo(null)}
+                className="ml-1 text-[11px] text-[#6f6559] underline underline-offset-2 hover:text-red-700"
+              >
+                Retirer
+              </button>
+            </span>
+            <span className="font-medium text-[#4f7a4a] whitespace-nowrap">−{formatEuro(promoDiscount)}</span>
+          </div>
+        )}
         <div className="flex justify-between gap-4">
           <span className="text-[#4a443c]">Livraison · {formShippingMethod === 'mondial-relay' ? 'Mondial Relay' : 'Colissimo domicile 48 h'}</span>
           <span className="font-medium text-[#1d1a16] whitespace-nowrap">
@@ -441,6 +493,36 @@ export default function CartPage() {
           <span className="text-xl font-medium text-[#1d1a16]">{formatEuro(total)}</span>
         </div>
       </div>
+
+      {!appliedPromo && (
+        <form onSubmit={handleApplyPromo} className="mt-6">
+          <label htmlFor="promo-code" className="block text-[10px] uppercase tracking-[0.16em] text-[#6f6559] mb-2">
+            Code promo
+          </label>
+          <div className="flex">
+            <input
+              id="promo-code"
+              type="text"
+              value={promoInput}
+              onChange={(e) => {
+                setPromoInput(e.target.value);
+                setPromoError('');
+              }}
+              placeholder="Saisissez votre code"
+              autoComplete="off"
+              className="flex-1 min-w-0 h-11 px-3 border border-[#d9cfbf] border-r-0 bg-white text-sm uppercase placeholder:normal-case placeholder:text-[#9a9186] focus:outline-none focus:border-[#1d1a16]"
+            />
+            <button
+              type="submit"
+              disabled={isCheckingPromo || !promoInput.trim()}
+              className="h-11 px-4 border border-[#1d1a16] text-[11px] uppercase tracking-[0.14em] text-[#1d1a16] hover:bg-[#1d1a16] hover:text-white disabled:opacity-50 transition-colors"
+            >
+              {isCheckingPromo ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Appliquer'}
+            </button>
+          </div>
+          {promoError && <p className="mt-2 text-xs text-red-700">{promoError}</p>}
+        </form>
+      )}
 
       {isCartStep && (
         <>

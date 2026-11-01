@@ -53,10 +53,10 @@ export default function Home() {
   ].slice(0, 8);
 
   const heroImages = [
-    { src: '/images/hero/hero-yara-moi.jpg', caption: 'Yara Moi · Lattafa' },
-    { src: '/images/hero/hero-tudor.jpg', caption: 'Tudor · Pendora Scents' },
-    { src: '/images/hero/hero-kenzie.jpg', caption: 'Kenzie · French Avenue' },
-    { src: '/images/hero/hero-yara.jpg', caption: 'Yara · Lattafa' },
+    { src: '/images/hero/hero-yara-moi.webp', caption: 'Yara Moi · Lattafa' },
+    { src: '/images/hero/hero-tudor.webp', caption: 'Tudor · Pendora Scents' },
+    { src: '/images/hero/hero-kenzie.webp', caption: 'Kenzie · French Avenue' },
+    { src: '/images/hero/hero-yara.webp', caption: 'Yara · Lattafa' },
   ];
 
   const universes = [
@@ -95,8 +95,8 @@ export default function Home() {
           intro="Les fragrances que nos clients recommandent le plus, toutes disponibles en stock."
         />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-7 sm:gap-y-14">
-          {popularProducts.map((product, index) => (
-            <ProductCard key={product.id} product={product} priority={index < 2} />
+          {popularProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
         <div className="mt-12 sm:mt-16 text-center">
@@ -191,7 +191,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative h-[300px] sm:h-[420px] lg:h-auto lg:min-h-[520px]">
             <Image
-              src="/images/hero/hero-tudor.jpg"
+              src="/images/hero/hero-tudor.webp"
               alt="Notes de bois, de roses et d'agrumes autour d'un flacon de parfum oriental"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

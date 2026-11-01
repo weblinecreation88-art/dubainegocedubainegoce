@@ -6,7 +6,7 @@ export function AnnouncementBar() {
       <div className="container mx-auto px-4">
         <div className="min-h-[32px] py-1.5 flex items-center justify-center gap-6 text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-center">
           <Link href="/livraison-et-paiement" className="hover:text-[#a8834f] transition-colors">
-            Livraison Colissimo offerte dès 3 parfums
+            Livraison Colissimo offerte dès 2 parfums
           </Link>
           <span className="hidden md:inline text-[#1d1a16]/30" aria-hidden="true">·</span>
           <span className="hidden md:inline">Paiement sécurisé</span>
