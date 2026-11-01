@@ -26,7 +26,7 @@ import { isAdminEmail } from '@/lib/admin-emails';
 import { useDebounce } from '@/hooks/use-debounce';
 import { searchProducts } from '@/app/actions';
 import type { Product } from '@/lib/types';
-import { computeShippingCost } from '@/lib/data';
+import { computeShippingCost, FREE_SHIPPING_MIN_ITEMS } from '@/lib/data';
 
 const BRAND_LINKS = [
   { name: 'Lattafa', href: getBrandPath("Lattafa"), desc: 'Khamrah, Yara, Asad, Fakhar...' },
@@ -336,7 +336,7 @@ export default function Header() {
                   <div className="px-5 py-4 flex justify-between items-baseline border-b border-[#e6ded1]">
                     <span className="font-headline text-xl">Votre panier</span>
                     <span className="text-[11px] text-[#6f6559]">
-                      {cartCount >= 3 ? 'Livraison offerte' : 'Livraison offerte dès 3 parfums'}
+                      {cartCount >= FREE_SHIPPING_MIN_ITEMS ? 'Livraison offerte' : 'Livraison offerte dès 2 parfums'}
                     </span>
                   </div>
 

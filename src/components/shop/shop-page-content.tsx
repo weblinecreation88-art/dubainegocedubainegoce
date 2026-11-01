@@ -155,9 +155,9 @@ export default function ShopPageContent({
                                 <Truck className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                                 <div>
                                     <strong className="text-[#1d1a16] block">Livraison Colissimo suivie</strong>
-                                    <span>1 parfum : 7,10 € • 2 parfums : 9,59 €</span>
+                                    <span>1 parfum : 7,10 €</span>
                                     <span className="block font-bold text-[#46a74e] mt-0.5">
-                                        Offerte dès 3 parfums (ou 100 €)
+                                        Offerte dès 2 parfums
                                     </span>
                                 </div>
                             </div>

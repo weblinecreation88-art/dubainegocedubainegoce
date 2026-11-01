@@ -74,9 +74,9 @@ export const getMondialRelayInternationalCost = (countryCode: string, weightInGr
 export const PERFUME_WEIGHT_G = 450;
 
 /** Nombre d'articles pour déclencher la livraison gratuite */
-export const FREE_SHIPPING_MIN_ITEMS = 3;
+export const FREE_SHIPPING_MIN_ITEMS = 2;
 
-/** Livraison offerte en France dès 3 parfums ou dès ce montant de panier (TTC). */
+/** Livraison offerte en France dès 2 parfums ou dès ce montant de panier (TTC). */
 export const FREE_SHIPPING_THRESHOLD = 100;
 
 /**
@@ -84,8 +84,8 @@ export const FREE_SHIPPING_THRESHOLD = 100;
  * Stripe et PayPal : le montant affiché est toujours le montant encaissé.
  * Règle commerciale :
  * - 1 parfum : 7,10 €
- * - 2 parfums : 9,59 €
- * - 3 parfums ou plus : GRATUIT (0,00 €)
+ * - 2 parfums ou plus : GRATUIT (0,00 €) en France
+ * Hors France, 2 parfums restent facturés 9,59 €.
  */
 export const computeShippingCost = (
     method: 'colissimo' | 'mondial-relay',

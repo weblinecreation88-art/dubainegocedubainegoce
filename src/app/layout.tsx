@@ -6,7 +6,7 @@ import { Cormorant_Garamond, Jost } from 'next/font/google';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
   style: ['normal', 'italic'],
   variable: '--font-headline',
   display: 'swap',
@@ -14,7 +14,7 @@ const cormorant = Cormorant_Garamond({
 
 const jost = Jost({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500'],
   variable: '--font-body',
   display: 'swap',
 });
@@ -49,7 +49,7 @@ const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 const reassurances = [
   {
     title: 'Livraison Colissimo suivie',
-    description: '7,10 € pour 1 parfum, offerte dès 3 parfums',
+    description: '7,10 € pour 1 parfum, offerte dès 2 parfums',
     href: '/livraison-et-paiement',
   },
   {

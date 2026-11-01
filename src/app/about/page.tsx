@@ -169,8 +169,8 @@ export default function AboutPage() {
                 <h3 className="font-headline font-bold text-base">Expédition Colissimo Suivie</h3>
               </div>
               <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                Livraison à domicile en <strong>Colissimo 48h avec suivi</strong> (7,10 € pour 1 parfum, 9,59 € pour 2 parfums, et{' '}
-                <strong className="text-[#46a74e]">100 % OFFERTE dès 3 parfums</strong>).
+                Livraison à domicile en <strong>Colissimo 48h avec suivi</strong> (7,10 € pour 1 parfum, et{' '}
+                <strong className="text-[#46a74e]">100 % OFFERTE dès 2 parfums</strong>).
               </p>
             </div>
 
