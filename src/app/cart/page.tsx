@@ -1,22 +1,9 @@
 'use client';
 
 import { useCart } from '@/context/cart-context';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Trash2,
-  ShoppingBag,
-  ChevronLeft,
-  ShieldCheck,
-  Truck,
-  Lock,
-  ArrowRight,
-  MapPin,
-  Pencil,
-  CheckCircle2,
-} from 'lucide-react';
+import { ChevronLeft, Lock, Loader2 } from 'lucide-react';
 import { useUser, useFirestore } from '@/firebase';
 import { useState, useEffect, useRef } from 'react';
 import { computeShippingCost, FREE_SHIPPING_THRESHOLD } from '@/lib/data';
@@ -383,331 +370,290 @@ export default function CartPage() {
     await handleConfirmStripePayment(normalizedData, pickupPoint);
   };
 
+  const formatEuro = (value: number) => `${value.toFixed(2).replace('.', ',')} €`;
+
   if (!isClient) {
     return (
-      <div className="container mx-auto px-4 py-12 text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent mx-auto" />
+      <div className="container mx-auto px-4 py-20 text-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-b border-[#1d1a16] mx-auto" />
       </div>
     );
   }
 
   if (cart.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col items-center justify-center text-center bg-card p-12 rounded-lg max-w-lg mx-auto border shadow-sm">
-          <ShoppingBag className="h-16 w-16 text-muted-foreground mb-4" />
-          <h2 className="text-2xl font-headline font-bold">Votre panier est vide</h2>
-          <p className="text-muted-foreground mt-2 max-w-md mb-6 text-sm">
-            Découvrez nos parfums de Dubaï et laissez-vous tenter par nos créations d&apos;exception.
+      <div className="bg-[#f3ede3]">
+        <div className="container mx-auto px-5 py-20 sm:py-28 text-center max-w-xl">
+          <p className="text-[11px] tracking-[0.22em] uppercase text-[#6f6559] mb-4">Dubaï Négoce</p>
+          <h1 className="font-headline font-normal text-[44px] sm:text-6xl leading-[1.05] text-[#1d1a16] mb-5">
+            Votre panier <em className="italic">est vide.</em>
+          </h1>
+          <p className="text-sm text-[#5d564c] leading-relaxed mb-9">
+            Découvrez les eaux de parfum des maisons de Dubaï, toutes au prix unique de 35 €.
           </p>
-          <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/shop/all">Explorer la boutique</Link>
-          </Button>
+          <Link
+            href="/shop/all"
+            className="inline-flex items-center justify-center bg-[#b8955f] hover:bg-[#a8834f] text-[#1d1a16] px-8 h-12 text-xs uppercase tracking-[0.14em] transition-colors"
+          >
+            Découvrir la collection
+          </Link>
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
-      {/* ÉTAPE 1 : Panier + Commande 1-Clic si adresse connue */}
-      {mainStep === 'review-cart' && (
-        <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
-          <div className="mb-6">
-            <h1 className="text-3xl md:text-4xl font-headline font-bold">Votre Panier</h1>
-            <p className="text-muted-foreground mt-1 text-sm">
-              {totalItems} article{totalItems > 1 ? 's' : ''} sélectionné{totalItems > 1 ? 's' : ''}
+  const isCartStep = mainStep === 'review-cart';
+
+  const orderSummary = (
+    <div className="bg-[#faf7f2] border border-[#e6ded1] p-6 sm:p-8">
+      <h2 className="font-headline font-normal text-[30px] leading-none text-[#1d1a16] mb-6">Votre commande</h2>
+
+      <div className="flex justify-between text-[10px] uppercase tracking-[0.16em] text-[#6f6559] pb-3 border-b border-[#1d1a16]/20">
+        <span>Produit</span>
+        <span>Sous-total</span>
+      </div>
+      <div className="divide-y divide-[#e6ded1]">
+        {cart.map((item) => (
+          <div key={item.id} className="flex justify-between gap-4 py-3.5 text-[13px]">
+            <span className="text-[#4a443c] min-w-0">
+              {item.name} <span className="text-[#1d1a16]">× {item.quantity}</span>
+            </span>
+            <span className="font-medium text-[#1d1a16] whitespace-nowrap">{formatEuro(item.price * item.quantity)}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="space-y-3 pt-4 border-t border-[#1d1a16]/20 text-[13px]">
+        <div className="flex justify-between">
+          <span className="text-[#4a443c]">Sous-total</span>
+          <span className="font-medium text-[#1d1a16]">{formatEuro(subtotal)}</span>
+        </div>
+        <div className="flex justify-between gap-4">
+          <span className="text-[#4a443c]">Livraison · {formShippingMethod === 'mondial-relay' ? 'Mondial Relay' : 'Colissimo domicile 48 h'}</span>
+          <span className="font-medium text-[#1d1a16] whitespace-nowrap">
+            {shippingCost === 0 ? 'Offerte' : formatEuro(shippingCost)}
+          </span>
+        </div>
+        <div className="flex justify-between items-baseline pt-4 border-t border-[#1d1a16]/20">
+          <span className="text-[#1d1a16]">
+            Total <span className="text-[11px] text-[#6f6559]">TVA incluse</span>
+          </span>
+          <span className="text-xl font-medium text-[#1d1a16]">{formatEuro(total)}</span>
+        </div>
+      </div>
+
+      {isCartStep && (
+        <>
+          <button
+            type="button"
+            onClick={handlePrimaryCheckoutClick}
+            disabled={isCheckingOut}
+            className="mt-7 w-full inline-flex items-center justify-center gap-2 bg-[#b8955f] hover:bg-[#a8834f] disabled:opacity-60 text-[#1d1a16] h-[52px] text-xs uppercase tracking-[0.14em] transition-colors"
+          >
+            {isCheckingOut ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Redirection vers le paiement…
+              </>
+            ) : hasReadyAddress ? (
+              <>
+                <Lock className="h-3.5 w-3.5" strokeWidth={1.5} />
+                Payer maintenant
+              </>
+            ) : (
+              'Commander'
+            )}
+          </button>
+          {!user && (
+            <p className="mt-4 text-center text-xs text-[#6f6559]">
+              Déjà client ?{' '}
+              <Link href="/login?redirect=/cart" className="text-[#1d1a16] underline underline-offset-4">
+                Se connecter pour commander en 1 clic
+              </Link>
             </p>
-          </div>
+          )}
+        </>
+      )}
 
-          {/* Jauge de livraison offerte */}
-          <div className="bg-accent/10 border border-accent/20 rounded-lg p-4 mb-6">
-            <div className="flex justify-between items-center text-xs md:text-sm font-medium mb-2">
-              {remainingItemsForFreeShipping > 0 ? (
-                <span>
-                  Plus que{' '}
-                  <strong className="text-accent font-bold">
-                    {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''}
-                  </strong>{' '}
-                  pour la <strong>livraison 100% OFFERTE</strong> !
-                  {totalItems === 2 && (
-                    <span className="block sm:inline sm:ml-1 text-xs text-accent font-semibold">
-                      (Économisez 9,59 € de frais de port)
-                    </span>
-                  )}
-                </span>
-              ) : (
-                <span className="text-green-600 dark:text-green-400 font-semibold flex items-center gap-1.5">
-                  🎉 Félicitations : Livraison Colissimo 100% OFFERTE sur votre commande !
-                </span>
-              )}
-              <span className="font-bold text-xs">{freeShippingProgress}%</span>
-            </div>
-            <div className="w-full bg-muted rounded-full h-2.5 overflow-hidden">
-              <div
-                className="bg-accent h-full transition-all duration-300 rounded-full"
-                style={{ width: `${freeShippingProgress}%` }}
-              />
-            </div>
-          </div>
+      <div className="mt-7 pt-6 border-t border-[#e6ded1]">
+        <PaymentBadges showTitle={false} badgeClassName="h-6" />
+        <p className="mt-4 text-[11px] text-[#6f6559] leading-relaxed">
+          Paiement sécurisé par Stripe. Flacons neufs scellés, retour possible sous 14 jours. Une question ? 07 58 99 97 26.
+        </p>
+      </div>
+    </div>
+  );
 
-          {/* Bloc Adresse Enregistrée (Style Amazon 1-Click) */}
-          {hasReadyAddress && savedUserAddress && (
-            <Card className="p-4 mb-6 border-accent/40 bg-[#fdfaf4] shadow-sm">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <div className="text-xs sm:text-sm space-y-0.5">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-foreground">
-                        Livrer à : {savedUserAddress.firstName} {savedUserAddress.lastName}
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700 bg-green-500/10 px-2 py-0.5 rounded">
-                        <CheckCircle2 className="h-3 w-3" /> Achat 1-Clic prêt
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground">
-                      {savedUserAddress.address}, {savedUserAddress.postalCode} {savedUserAddress.city} (
-                      {savedUserAddress.country})
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {savedUserAddress.phone} • {savedUserAddress.email}
-                    </p>
+  return (
+    <div className="bg-white">
+      {/* EN-TÊTE ÉDITORIAL + ÉTAPES */}
+      <div className="bg-[#f3ede3]">
+        <div className="container mx-auto px-5 sm:px-6 max-w-6xl pt-10 pb-8 sm:pt-14 sm:pb-10">
+          <p className="text-[11px] tracking-[0.22em] uppercase text-[#6f6559] mb-4">Dubaï Négoce</p>
+          <h1 className="font-headline font-normal text-[44px] sm:text-6xl leading-[1.02] text-[#1d1a16] mb-4">
+            {isCartStep ? 'Votre panier.' : 'Votre commande.'}
+          </h1>
+          <p className="text-sm text-[#5d564c] leading-relaxed max-w-lg mb-8">
+            {isCartStep
+              ? `${totalItems} parfum${totalItems > 1 ? 's' : ''} sélectionné${totalItems > 1 ? 's' : ''}. Vérifiez votre sélection avant de commander.`
+              : 'Renseignez vos coordonnées une seule fois : elles seront mémorisées pour vos prochaines commandes.'}
+          </p>
+          <ol className="flex gap-8 text-xs">
+            <li>
+              <button
+                type="button"
+                onClick={() => setMainStep('review-cart')}
+                disabled={isCheckingOut}
+                className={`pb-2 border-b ${isCartStep ? 'border-[#1d1a16] text-[#1d1a16]' : 'border-transparent text-[#6f6559] hover:text-[#1d1a16]'}`}
+              >
+                <span className="text-[#6f6559] mr-2">01</span>Panier
+              </button>
+            </li>
+            <li>
+              <span className={`inline-block pb-2 border-b ${!isCartStep ? 'border-[#1d1a16] text-[#1d1a16]' : 'border-transparent text-[#6f6559]'}`}>
+                <span className="text-[#6f6559] mr-2">02</span>Commande
+              </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-5 sm:px-6 max-w-6xl py-10 sm:py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="lg:col-span-7 min-w-0">
+            {isCartStep ? (
+              <>
+                {/* Jauge de livraison offerte */}
+                <div className="mb-8">
+                  <p className="text-[13px] text-[#4a443c] mb-3">
+                    {remainingItemsForFreeShipping > 0 ? (
+                      <>
+                        Plus que{' '}
+                        <span className="text-[#1d1a16] font-medium">
+                          {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''}
+                        </span>{' '}
+                        pour profiter de la livraison offerte.
+                      </>
+                    ) : (
+                      <span className="text-[#1d1a16]">La livraison Colissimo vous est offerte.</span>
+                    )}
+                  </p>
+                  <div className="w-full bg-[#ebe3d6] h-[3px] overflow-hidden">
+                    <div
+                      className="bg-[#a8834f] h-full transition-all duration-500"
+                      style={{ width: `${freeShippingProgress}%` }}
+                    />
                   </div>
                 </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setMainStep('checkout-form')}
-                  className="shrink-0 text-xs h-8 px-2.5"
-                >
-                  <Pencil className="h-3.5 w-3.5 mr-1" />
-                  Modifier
-                </Button>
-              </div>
-            </Card>
-          )}
 
-          <Card className="p-6 mb-6 shadow-sm">
-            <div className="space-y-4">
-              {cart.map((item) => (
-                <div key={item.id} className="flex gap-4 pb-4 border-b last:pb-0 last:border-0 items-center">
-                  <div className="relative w-20 h-20 flex-shrink-0 rounded bg-muted overflow-hidden">
-                    <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <Link
-                      href={`/parfum/${item.slug}`}
-                      className="font-semibold text-sm hover:text-accent truncate block"
-                    >
-                      {item.name}
-                    </Link>
-                    <p className="text-xs text-muted-foreground mt-0.5">{item.price.toFixed(2)} € TTC l&apos;unité</p>
-                    <div className="flex items-center gap-2 mt-2">
-                      <button
-                        onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                        className="w-7 h-7 rounded border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted"
-                        aria-label="Diminuer la quantité"
-                      >
-                        −
-                      </button>
-                      <span className="text-xs font-semibold w-5 text-center">{item.quantity}</span>
-                      <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-7 h-7 rounded border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted"
-                        aria-label="Augmenter la quantité"
-                      >
-                        +
-                      </button>
+                {/* Adresse enregistrée : commande en 1 clic */}
+                {hasReadyAddress && savedUserAddress && (
+                  <div className="mb-8 p-5 border border-[#e6ded1] flex items-start justify-between gap-4">
+                    <div className="text-[13px] space-y-1 min-w-0">
+                      <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6559] mb-2">Livraison à</p>
+                      <p className="text-[#1d1a16]">
+                        {savedUserAddress.firstName} {savedUserAddress.lastName}
+                      </p>
+                      <p className="text-[#5d564c]">
+                        {savedUserAddress.address}, {savedUserAddress.postalCode} {savedUserAddress.city} ({savedUserAddress.country})
+                      </p>
+                      <p className="text-[#6f6559] text-xs">
+                        {savedUserAddress.phone} · {savedUserAddress.email}
+                      </p>
                     </div>
-                  </div>
-                  <div className="flex flex-col items-end justify-between h-20">
-                    <p className="font-bold text-sm">{(item.price * item.quantity).toFixed(2)} €</p>
                     <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="p-1 text-muted-foreground hover:text-destructive transition-colors"
-                      title="Supprimer du panier"
-                      aria-label="Supprimer"
+                      type="button"
+                      onClick={() => setMainStep('checkout-form')}
+                      className="shrink-0 text-[11px] uppercase tracking-[0.14em] text-[#1d1a16] border-b border-[#1d1a16]/40 hover:border-[#1d1a16] pb-0.5"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      Modifier
                     </button>
                   </div>
-                </div>
-              ))}
-            </div>
+                )}
 
-            {/* Mode de livraison et récapitulatif transparent dès le panier */}
-            <div className="mt-6 pt-5 border-t space-y-4">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-semibold text-foreground">Mode de livraison</span>
-                  <span className="text-xs text-muted-foreground font-normal">Expédition rapide 24/48h</span>
-                </div>
-                <div className="border border-accent bg-accent/5 ring-1 ring-accent rounded-lg p-3.5 transition-all flex flex-col justify-between">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-2.5">
-                      <Truck className="h-5 w-5 text-accent flex-shrink-0" />
-                      <div>
-                        <p className="font-semibold text-sm">Colissimo Domicile (48h)</p>
-                        <p className="text-xs text-muted-foreground">
-                          Livraison rapide en boîte aux lettres avec suivi par e-mail
-                        </p>
+                {/* Articles */}
+                <div className="border-t border-[#1d1a16]/20">
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex gap-4 sm:gap-6 py-6 border-b border-[#e6ded1]">
+                      <Link href={`/parfum/${item.slug}`} className="relative w-20 h-24 sm:w-24 sm:h-28 shrink-0 bg-[#f3ede3] overflow-hidden">
+                        <Image src={item.image} alt={item.name} fill sizes="96px" className="object-contain p-2 mix-blend-multiply" />
+                      </Link>
+                      <div className="flex-1 min-w-0 flex flex-col">
+                        <div className="flex justify-between gap-4">
+                          <Link
+                            href={`/parfum/${item.slug}`}
+                            className="font-headline text-[22px] leading-tight text-[#1d1a16] hover:text-[#a8834f] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                          <p className="text-sm font-medium text-[#1d1a16] whitespace-nowrap">
+                            {formatEuro(item.price * item.quantity)}
+                          </p>
+                        </div>
+                        <p className="text-xs text-[#6f6559] mt-1">{formatEuro(item.price)} l&apos;unité</p>
+                        <div className="mt-auto pt-4 flex items-center justify-between">
+                          <div className="flex items-center border border-[#e6ded1]">
+                            <button
+                              onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                              className="w-9 h-9 flex items-center justify-center text-[#6f6559] hover:text-[#1d1a16]"
+                              aria-label="Diminuer la quantité"
+                            >
+                              −
+                            </button>
+                            <span className="text-sm w-8 text-center">{item.quantity}</span>
+                            <button
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className="w-9 h-9 flex items-center justify-center text-[#6f6559] hover:text-[#1d1a16]"
+                              aria-label="Augmenter la quantité"
+                            >
+                              +
+                            </button>
+                          </div>
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-xs text-[#6f6559] hover:text-red-700 underline underline-offset-4 transition-colors"
+                          >
+                            Retirer
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <div className="text-right">
-                      {shippingCost === 0 ? (
-                        <span className="inline-flex items-center text-xs font-bold text-green-600 bg-green-500/10 px-2 py-0.5 rounded">
-                          OFFERT
-                        </span>
-                      ) : (
-                        <span className="font-bold text-sm">{shippingCost.toFixed(2)} €</span>
-                      )}
-                    </div>
-                  </div>
-                  {shippingCost > 0 && remainingItemsForFreeShipping > 0 && (
-                    <p className="text-[11px] text-accent mt-2 font-medium">
-                      💡 Plus que {remainingItemsForFreeShipping} parfum{remainingItemsForFreeShipping > 1 ? 's' : ''}{' '}
-                      pour débloquer la livraison GRATUITE (3 parfums = 0 € de livraison) !
-                    </p>
-                  )}
+                  ))}
                 </div>
-              </div>
 
-              {/* Récapitulatif clair TTC */}
-              <div className="space-y-2 pt-3 border-t text-sm">
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Sous-total articles</span>
-                  <span className="font-medium text-foreground">{subtotal.toFixed(2)} €</span>
+                <div className="flex justify-between items-center pt-6 text-xs">
+                  <Link href="/shop/all" className="inline-flex items-center gap-1 text-[#1d1a16] hover:text-[#a8834f]">
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                    Continuer mes achats
+                  </Link>
+                  <button onClick={clearCart} className="text-[#6f6559] hover:text-red-700 underline underline-offset-4">
+                    Vider le panier
+                  </button>
                 </div>
-                <div className="flex justify-between items-center text-muted-foreground">
-                  <span>Livraison (Colissimo domicile 48h)</span>
-                  <span className="font-medium text-foreground">
-                    {shippingCost === 0 ? (
-                      <span className="text-green-600 font-semibold">OFFERTE</span>
-                    ) : (
-                      `${shippingCost.toFixed(2)} €`
-                    )}
-                  </span>
-                </div>
-                <div className="flex justify-between items-baseline pt-2 border-t">
-                  <div>
-                    <span className="font-bold text-base">Total à payer</span>
-                    <span className="text-xs text-muted-foreground ml-1.5">(TVA incluse)</span>
-                  </div>
-                  <span className="text-xl font-extrabold text-foreground">{total.toFixed(2)} €</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center pt-4 mt-4 border-t">
-              <button onClick={clearCart} className="text-xs text-muted-foreground hover:text-destructive underline">
-                Vider le panier
-              </button>
-              <span className="text-xs text-muted-foreground flex items-center gap-1">
-                <ShieldCheck className="h-3.5 w-3.5 text-accent" />
-                Paiement 100% sécurisé
-              </span>
-            </div>
-          </Card>
-
-          <div className="space-y-3">
-            <Button
-              onClick={handlePrimaryCheckoutClick}
-              disabled={isCheckingOut}
-              size="lg"
-              className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold shadow-md flex items-center justify-center gap-2"
-            >
-              {isCheckingOut ? (
-                <>
-                  <span className="animate-spin inline-block mr-2">⏳</span>
-                  Redirection vers le paiement sécurisé...
-                </>
-              ) : hasReadyAddress ? (
-                <>
-                  <Lock className="h-5 w-5" />
-                  Commander et payer maintenant • {total.toFixed(2)} €
-                  <ArrowRight className="h-5 w-5" />
-                </>
-              ) : (
-                <>
-                  Commander maintenant • Total : {total.toFixed(2)} €
-                  <ArrowRight className="h-5 w-5" />
-                </>
-              )}
-            </Button>
-
-            <div className="flex items-center justify-between text-xs text-muted-foreground px-2">
-              <Link href="/shop/all" className="hover:underline flex items-center gap-1">
-                <ChevronLeft className="h-3 w-3" />
-                Continuer mes achats
-              </Link>
-              {!user && (
-                <Link href="/login?redirect=/cart" className="hover:underline text-accent font-medium">
-                  Déjà client ? Se connecter pour commander en 1 clic
-                </Link>
-              )}
-            </div>
-
-            {/* Badges moyens de paiement acceptés */}
-            <div className="pt-4 pb-2 border-t text-center">
-              <PaymentBadges title="Paiements 100% sécurisés acceptés :" badgeClassName="h-7" />
-            </div>
+              </>
+            ) : (
+              <>
+                <h2 className="font-headline font-normal text-[32px] leading-none text-[#1d1a16] mb-7">Détails de livraison</h2>
+                <CheckoutForm
+                  onSubmit={handleCheckoutFormSubmit}
+                  initialData={{
+                    ...(savedUserAddress || {}),
+                    shippingMethod: formShippingMethod,
+                    country: formCountry,
+                  }}
+                  isLoading={isCheckingOut}
+                  onCountryChange={setFormCountry}
+                  onShippingMethodChange={setFormShippingMethod}
+                  onPickupPointChange={setSelectedPickupPoint}
+                  submitLabel={`Continuer vers le paiement sécurisé · ${formatEuro(total)}`}
+                />
+              </>
+            )}
           </div>
 
-          {/* Réassurance */}
-          <div className="grid grid-cols-3 gap-3 mt-8 pt-6 border-t text-center text-xs text-muted-foreground">
-            <div className="flex flex-col items-center gap-1">
-              <Truck className="h-5 w-5 text-accent" />
-              <span>Expédition 24/48h</span>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <ShieldCheck className="h-5 w-5 text-accent" />
-              <span>Produits authentiques</span>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <Lock className="h-5 w-5 text-accent" />
-              <span>Paiement SSL sécurisé</span>
-            </div>
-          </div>
+          <aside className="lg:col-span-5 lg:sticky lg:top-28">{orderSummary}</aside>
         </div>
-      )}
-
-      {/* ÉTAPE 2 (Uniquement pour un 1er achat ou si le client clique sur "Modifier l'adresse") */}
-      {mainStep === 'checkout-form' && (
-        <div className="max-w-2xl mx-auto min-h-[calc(100vh-200px)]">
-          <div className="mb-6">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setMainStep('review-cart')}
-              disabled={isCheckingOut}
-              className="mb-2 -ml-2"
-            >
-              <ChevronLeft className="h-4 w-4 mr-1" />
-              Retour au panier
-            </Button>
-            <h1 className="text-3xl md:text-4xl font-headline font-bold">Adresse de livraison</h1>
-            <p className="text-muted-foreground mt-1 text-sm">
-              Renseignez votre adresse une seule fois : elle sera mémorisée pour vos prochaines commandes.
-            </p>
-          </div>
-
-          <CheckoutForm
-            onSubmit={handleCheckoutFormSubmit}
-            initialData={{
-              ...(savedUserAddress || {}),
-              shippingMethod: formShippingMethod,
-              country: formCountry,
-            }}
-            isLoading={isCheckingOut}
-            onCountryChange={setFormCountry}
-            onShippingMethodChange={setFormShippingMethod}
-            onPickupPointChange={setSelectedPickupPoint}
-            submitLabel={`Continuer vers le paiement sécurisé (${total.toFixed(2)} €)`}
-          />
-        </div>
-      )}
+      </div>
     </div>
   );
 }

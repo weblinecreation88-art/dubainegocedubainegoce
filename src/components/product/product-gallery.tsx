@@ -173,7 +173,7 @@ export function ProductGallery({ images, alt, productName }: ProductGalleryProps
     <div className="w-full space-y-4">
       {/* Main Image Container */}
       <div
-        className="relative w-full h-[260px] sm:h-auto sm:aspect-square bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden group cursor-zoom-in"
+        className="relative w-full h-[340px] sm:h-auto sm:aspect-[4/5] bg-[#f3ede3] overflow-hidden group cursor-zoom-in"
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

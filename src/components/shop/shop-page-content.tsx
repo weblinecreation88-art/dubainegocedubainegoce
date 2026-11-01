@@ -122,17 +122,17 @@ export default function ShopPageContent({
             {/* Fil d'Ariane PrestaShop */}
             <nav
                 aria-label="Fil d'Ariane"
-                className="flex items-center gap-2 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2.5 mb-6"
+                className="flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-[#6f6559] mb-6 flex-wrap"
             >
-                <Link href="/" className="hover:text-[#d4a017] font-medium">
+                <Link href="/" className="hover:text-[#a8834f] font-medium">
                     Accueil
                 </Link>
                 <span className="text-gray-400">&gt;</span>
-                <span className="font-bold text-[#111827]">{title}</span>
+                <span className="text-[#1d1a16]">{title}</span>
                 {activeFilters.q && (
                     <>
                         <span className="text-gray-400">&gt;</span>
-                        <span className="text-[#d4a017] font-bold">Recherche : &laquo; {activeFilters.q} &raquo;</span>
+                        <span className="text-[#1d1a16]">Recherche : &laquo; {activeFilters.q} &raquo;</span>
                     </>
                 )}
             </nav>
@@ -140,37 +140,37 @@ export default function ShopPageContent({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 {/* Colonne Gauche PrestaShop sur ordinateur : Filtres + Infos pratiques */}
                 <aside className="hidden lg:block lg:col-span-3 space-y-6">
-                    <div className="bg-white border border-[#e4dac9] rounded overflow-hidden shadow-sm">
-                        <h2 className="ps-block-title">Filtrer par critères</h2>
-                        <div className="p-4">
+                    <div className="bg-white">
+                        <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#6f6559] pb-3 border-b border-[#1d1a16]/20">Filtrer</h2>
+                        <div className="pt-4">
                             {FilterComponent}
                         </div>
                     </div>
 
                     {/* Rappel sobre des conditions de livraison */}
-                    <div className="bg-[#fdfaf4] border border-[#e4dac9] rounded overflow-hidden shadow-sm">
-                        <h3 className="ps-block-title">Informations commande</h3>
+                    <div className="bg-[#faf7f2] overflow-hidden">
+                        <h3 className="px-4 pt-4 text-[10px] uppercase tracking-[0.2em] text-[#6f6559]">Informations commande</h3>
                         <div className="p-4 space-y-3 text-xs text-gray-700">
                             <div className="flex items-start gap-2.5">
-                                <Truck className="h-4 w-4 text-[#d4a017] shrink-0 mt-0.5" />
+                                <Truck className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                                 <div>
-                                    <strong className="text-[#111827] block">Livraison Colissimo suivie</strong>
+                                    <strong className="text-[#1d1a16] block">Livraison Colissimo suivie</strong>
                                     <span>1 parfum : 7,10 € • 2 parfums : 9,59 €</span>
                                     <span className="block font-bold text-[#46a74e] mt-0.5">
                                         Offerte dès 3 parfums (ou 100 €)
                                     </span>
                                 </div>
                             </div>
-                            <div className="flex items-start gap-2.5 pt-2 border-t border-[#e4dac9]">
-                                <ShieldCheck className="h-4 w-4 text-[#d4a017] shrink-0 mt-0.5" />
+                            <div className="flex items-start gap-2.5 pt-2 border-t border-[#e6ded1]">
+                                <ShieldCheck className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                                 <div>
-                                    <strong className="text-[#111827] block">Flacons neufs sous blister</strong>
+                                    <strong className="text-[#1d1a16] block">Flacons neufs sous blister</strong>
                                     <span>Retour accepté sous 14 jours (produit non ouvert).</span>
                                 </div>
                             </div>
-                            <div className="pt-2 border-t border-[#e4dac9]">
-                                <Link href="/faq" className="inline-flex items-center gap-1.5 font-bold text-[#111827] hover:text-[#d4a017]">
-                                    <HelpCircle className="h-3.5 w-3.5 text-[#d4a017]" />
+                            <div className="pt-2 border-t border-[#e6ded1]">
+                                <Link href="/faq" className="inline-flex items-center gap-1.5 font-bold text-[#1d1a16] hover:text-[#a8834f]">
+                                    <HelpCircle className="h-3.5 w-3.5 text-[#a8834f]" />
                                     <span>Consulter la FAQ</span>
                                 </Link>
                             </div>
@@ -181,15 +181,15 @@ export default function ShopPageContent({
                 {/* Colonne Principale Catalogue (9/12) */}
                 <main className="lg:col-span-9 space-y-5">
                     {/* En-tête de catégorie */}
-                    <div className="bg-white border border-[#e4dac9] rounded p-5 shadow-sm">
-                        <h1 className="text-2xl sm:text-3xl font-headline font-bold text-[#111827]">{title}</h1>
-                        <p className="text-xs sm:text-sm text-gray-600 mt-1">{description}</p>
+                    <div className="pb-2">
+                        <h1 className="text-[40px] sm:text-[52px] leading-[1.05] font-headline font-normal text-[#1d1a16]">{title}</h1>
+                        <p className="text-sm text-[#5d564c] mt-3 max-w-2xl leading-relaxed">{description}</p>
                     </div>
 
                     {/* Barre de tri et filtre mobile (.content_sortPagiBar) */}
-                    <div className="bg-[#f7f0e6] border border-[#e4dac9] rounded px-4 py-3 flex flex-wrap justify-between items-center gap-3">
-                        <p className="text-xs sm:text-sm font-bold text-[#111827]">
-                            Il y a <span className="text-[#d4a017]">{sortedProducts.length}</span> produit{sortedProducts.length !== 1 ? 's' : ''}
+                    <div className="border-y border-[#e6ded1] py-3 flex flex-wrap justify-between items-center gap-3">
+                        <p className="text-xs text-[#5d564c]">
+                            Il y a <span className="text-[#1d1a16]">{sortedProducts.length}</span> produit{sortedProducts.length !== 1 ? 's' : ''}
                         </p>
 
                         <div className="flex items-center gap-2.5">
@@ -197,14 +197,14 @@ export default function ShopPageContent({
                             <div className="lg:hidden">
                                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                                     <SheetTrigger asChild>
-                                        <Button variant="outline" size="sm" className="bg-white border-[#111827] text-[#111827] font-bold text-xs h-9">
-                                            <Filter className="mr-1.5 h-3.5 w-3.5 text-[#d4a017]" />
+                                        <Button variant="outline" size="sm" className="bg-white border-[#1d1a16]/40 rounded-none text-[#1d1a16] font-normal text-xs h-9">
+                                            <Filter className="mr-1.5 h-3.5 w-3.5 text-[#a8834f]" />
                                             Filtrer
                                         </Button>
                                     </SheetTrigger>
-                                    <SheetContent side="left" className="p-0 flex flex-col bg-white text-[#111827]">
-                                        <SheetHeader className="p-4 bg-[#111827] text-white border-b border-[#d4a017]">
-                                            <SheetTitle className="text-white text-left">Filtrer les parfums</SheetTitle>
+                                    <SheetContent side="left" className="p-0 flex flex-col bg-white text-[#1d1a16]">
+                                        <SheetHeader className="p-5 bg-[#f3ede3] border-b border-[#e6ded1]">
+                                            <SheetTitle className="font-headline font-normal text-2xl text-[#1d1a16] text-left">Filtrer les parfums</SheetTitle>
                                             <SheetDescription className="sr-only">
                                                 Appliquez des filtres par marque, genre ou famille olfactive
                                             </SheetDescription>
@@ -212,10 +212,10 @@ export default function ShopPageContent({
                                         <ScrollArea className="flex-1 p-4">
                                             {FilterComponent}
                                         </ScrollArea>
-                                        <SheetFooter className="p-4 border-t border-[#e4dac9] bg-[#fdfaf4]">
+                                        <SheetFooter className="p-4 border-t border-[#e6ded1] bg-[#faf7f2]">
                                             <Button
                                                 onClick={() => setIsSheetOpen(false)}
-                                                className="w-full bg-[#d4a017] hover:bg-[#b88911] text-white font-bold uppercase text-xs"
+                                                className="w-full bg-[#a8834f] hover:bg-[#8c6c3f] text-white font-bold uppercase text-xs"
                                             >
                                                 Afficher les {sortedProducts.length} parfums
                                             </Button>
