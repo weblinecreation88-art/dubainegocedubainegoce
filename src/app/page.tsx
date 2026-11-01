@@ -28,7 +28,6 @@ export default function Home() {
   const findProduct = (slug: string) => allProducts.find((p) => p.slug === slug);
 
   const popularSlugs = [
-    'khamrah-lattafa',
     'yara-moi-lattafa',
     'liquide-brun-french-avenue',
     'grise-maison-alhambra',
@@ -54,10 +53,10 @@ export default function Home() {
   ].slice(0, 8);
 
   const heroImages = [
-    { src: '/images/hero/hero-khamrah.jpg', caption: 'Khamrah · Lattafa' },
     { src: '/images/hero/hero-yara-moi.jpg', caption: 'Yara Moi · Lattafa' },
     { src: '/images/hero/hero-tudor.jpg', caption: 'Tudor · Pendora Scents' },
     { src: '/images/hero/hero-kenzie.jpg', caption: 'Kenzie · French Avenue' },
+    { src: '/images/hero/hero-yara.jpg', caption: 'Yara · Lattafa' },
   ];
 
   const universes = [

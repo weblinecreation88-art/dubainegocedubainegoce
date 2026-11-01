@@ -340,7 +340,7 @@ export default function Header() {
                     </span>
                   </div>
 
-                  {cart.length === 0 ? (
+                  {!isMounted || cart.length === 0 ? (
                     <p className="px-5 py-8 text-center text-sm text-[#6f6559]">Votre panier est vide.</p>
                   ) : (
                     <>

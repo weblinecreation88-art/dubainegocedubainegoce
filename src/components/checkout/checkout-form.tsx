@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -22,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Lock } from 'lucide-react';
+import { Lock, Loader2 } from 'lucide-react';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 
 const checkoutSchema = z.object({
@@ -129,14 +127,10 @@ export function CheckoutForm({
     <div className="space-y-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-5">
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base">🏠 Coordonnées de livraison</CardTitle>
-              <p className="text-xs text-muted-foreground">
-                Vos coordonnées seront mémorisées pour passer vos prochaines commandes en 1 clic.
-              </p>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <div className="space-y-5 [&_label]:text-xs [&_label]:font-normal [&_label]:text-[#1d1a16] [&_input]:h-12 [&_input]:rounded-none [&_input]:border-[#d9cfbf] [&_input]:bg-white [&_input]:text-[15px] [&_input:focus-visible]:ring-0 [&_input:focus-visible]:border-[#1d1a16] [&_button[role=combobox]]:h-12 [&_button[role=combobox]]:rounded-none [&_button[role=combobox]]:border-[#d9cfbf]">
+            <p className="text-xs text-[#6f6559] -mt-2">
+              Vos coordonnées seront mémorisées pour passer vos prochaines commandes en 1 clic.
+            </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -265,27 +259,25 @@ export function CheckoutForm({
                   )}
                 />
               </div>
-            </CardContent>
-          </Card>
+          </div>
 
-          <Button
+          <button
             type="submit"
             disabled={isLoading}
-            size="lg"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold shadow-md flex items-center justify-center gap-2"
+            className="w-full inline-flex items-center justify-center gap-2 bg-[#b8955f] hover:bg-[#a8834f] disabled:opacity-60 text-[#1d1a16] h-[52px] px-4 text-xs uppercase tracking-[0.14em] transition-colors"
           >
             {isLoading ? (
               <>
-                <span className="animate-spin inline-block mr-2">⏳</span>
-                Redirection sécurisée vers le paiement...
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Redirection sécurisée vers le paiement…
               </>
             ) : (
               <>
-                <Lock className="h-4 w-4" />
+                <Lock className="h-3.5 w-3.5" strokeWidth={1.5} />
                 {submitLabel || 'Enregistrer et passer au paiement sécurisé'}
               </>
             )}
-          </Button>
+          </button>
         </form>
       </Form>
     </div>
