@@ -60,11 +60,6 @@ export function AddToCartButton({
         // Show success animation
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 2000);
-
-        toast({
-            title: "Ajouté au panier !",
-            description: `${product.name} a bien été ajouté à votre panier.`,
-        });
     };
 
     const buttonContent = isOutOfStock ? (
