@@ -6,14 +6,12 @@ import { Button } from '@/components/ui/button';
 import { ShoppingBag, Check } from 'lucide-react';
 import Image from 'next/image';
 import type { Product } from '@/lib/types';
-import { useToast } from '@/hooks/use-toast';
 
 /** Barre d'ajout au panier fixee en bas de l'ecran sur mobile (fiche produit). */
 export function StickyMobileAddToCart({ product }: { product: Product }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
   const { addToCart } = useCart();
-  const { toast } = useToast();
   const isOutOfStock = product.stock <= 0;
 
   useEffect(() => {
@@ -33,10 +31,6 @@ export function StickyMobileAddToCart({ product }: { product: Product }) {
       quantity: 1,
     });
     setIsAdded(true);
-    toast({
-      title: 'Ajouté au panier !',
-      description: `${product.name} a été ajouté à votre panier.`,
-    });
     setTimeout(() => setIsAdded(false), 2000);
   };
 
