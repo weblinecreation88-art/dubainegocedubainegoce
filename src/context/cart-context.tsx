@@ -24,10 +24,11 @@ interface CartContextType {
     getCartSubtotal: () => number;
     /** Appeler après login/signup pour activer le tracking panier abandonné */
     setAbandonmentEmail: (email: string) => void;
-    /** État Modale PrestaShop #layer_cart */
+    /** Tiroir panier latéral */
     lastAddedItem: (CartItem & { addedQty: number }) | null;
-    isLayerCartOpen: boolean;
-    closeLayerCart: () => void;
+    isCartDrawerOpen: boolean;
+    openCartDrawer: () => void;
+    closeCartDrawer: () => void;
     /** État Modale Aperçu Rapide (Quick View PrestaShop) */
     quickViewProduct: Product | null;
     openQuickView: (product: Product) => void;
@@ -59,7 +60,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<CartItem[]>(getInitialCart);
     const [abandonmentEmail, setAbandonmentEmailState] = useState<string>(getStoredEmail);
     const [lastAddedItem, setLastAddedItem] = useState<(CartItem & { addedQty: number }) | null>(null);
-    const [isLayerCartOpen, setIsLayerCartOpen] = useState(false);
+    const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
     const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
     const abandonTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -150,10 +151,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             addedQty: qty,
         });
         setQuickViewProduct(null);
+        setIsCartDrawerOpen(true);
     }, []);
 
-    const closeLayerCart = useCallback(() => {
-        setIsLayerCartOpen(false);
+    const openCartDrawer = useCallback(() => {
+        setIsCartDrawerOpen(true);
+    }, []);
+
+    const closeCartDrawer = useCallback(() => {
+        setIsCartDrawerOpen(false);
     }, []);
 
     const openQuickView = useCallback((product: Product) => {
@@ -206,8 +212,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             getCartSubtotal,
             setAbandonmentEmail,
             lastAddedItem,
-            isLayerCartOpen,
-            closeLayerCart,
+            isCartDrawerOpen,
+            openCartDrawer,
+            closeCartDrawer,
             quickViewProduct,
             openQuickView,
             closeQuickView,
