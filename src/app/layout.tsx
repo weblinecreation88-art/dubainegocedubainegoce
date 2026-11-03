@@ -28,13 +28,10 @@ import { WishlistProvider } from '@/context/wishlist-context';
 import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { FirebaseClientProvider } from '@/firebase';
 import dynamic from 'next/dynamic';
+import { CartDrawer } from '@/components/cart/cart-drawer';
 
 const CookieConsent = dynamic(() => import('@/components/cookie-consent').then((m) => ({ default: m.CookieConsent })), { ssr: false });
 const AuthCartBridge = dynamic(() => import('@/components/auth-cart-bridge').then((m) => ({ default: m.AuthCartBridge })), { ssr: false });
-const PrestashopLayerCart = dynamic(
-  () => import('@/components/product/prestashop-layer-cart').then((m) => ({ default: m.PrestashopLayerCart })),
-  { ssr: false }
-);
 
 import { DeferredWidgets } from '@/components/deferred-widgets';
 import Script from 'next/script';
@@ -246,7 +243,7 @@ export default function RootLayout({
                 <main className="flex-1">{children}</main>
                 <ReassuranceSection />
                 <Footer />
-                <PrestashopLayerCart />
+                <CartDrawer />
                 <Toaster />
                 <CookieConsent />
                 <AuthCartBridge />

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingBag, User, Heart, ChevronDown, Trash2, Loader2, X } from 'lucide-react';
+import { Menu, Search, ShoppingBag, User, Heart, ChevronDown, Loader2, X } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { useCart } from '@/context/cart-context';
 import { useWishlist } from '@/context/wishlist-context';
@@ -26,7 +26,6 @@ import { isAdminEmail } from '@/lib/admin-emails';
 import { useDebounce } from '@/hooks/use-debounce';
 import { searchProducts } from '@/app/actions';
 import type { Product } from '@/lib/types';
-import { computeShippingCost, FREE_SHIPPING_MIN_ITEMS } from '@/lib/data';
 
 const BRAND_LINKS = [
   { name: 'Lattafa', href: getBrandPath("Lattafa"), desc: 'Khamrah, Yara, Asad, Fakhar...' },
@@ -49,7 +48,7 @@ const FAMILY_LINKS = [
 ];
 
 export default function Header() {
-  const { cart, getCartCount, getCartSubtotal, removeFromCart, clearCart } = useCart();
+  const { getCartCount, clearCart, openCartDrawer } = useCart();
   const { user } = useUser();
   const { wishlist } = useWishlist();
   const auth = useAuth();
@@ -111,9 +110,6 @@ export default function Header() {
   };
 
   const cartCount = isMounted ? getCartCount() : 0;
-  const cartSubtotal = isMounted ? getCartSubtotal() : 0;
-  const shippingCost = isMounted ? computeShippingCost('colissimo', 'FR', cartCount, cartSubtotal) : 0;
-  const cartTotal = cartSubtotal + shippingCost;
 
   const handleLogout = async () => {
     if (auth) {
@@ -321,78 +317,20 @@ export default function Header() {
               )}
             </Link>
 
-            <div className="relative group/cart">
-              <Link href="/cart" className={iconButtonClass} aria-label={`Voir mon panier (${cartCount})`} title="Voir mon panier">
-                <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
-                {cartCount > 0 && (
-                  <span className="absolute top-1 right-0.5 h-4 min-w-[16px] px-1 rounded-full bg-[#1d1a16] text-white text-[9px] flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-
-              <div className="hidden lg:group-hover/cart:block absolute right-0 top-full pt-3 w-80 z-50">
-                <div className="bg-white border border-[#e6ded1] shadow-[0_18px_40px_-20px_rgba(29,26,22,0.35)] text-[#1d1a16]">
-                  <div className="px-5 py-4 flex justify-between items-baseline border-b border-[#e6ded1]">
-                    <span className="font-headline text-xl">Votre panier</span>
-                    <span className="text-[11px] text-[#6f6559]">
-                      {cartCount >= FREE_SHIPPING_MIN_ITEMS ? 'Livraison offerte' : 'Livraison offerte dès 2 parfums'}
-                    </span>
-                  </div>
-
-                  {!isMounted || cart.length === 0 ? (
-                    <p className="px-5 py-8 text-center text-sm text-[#6f6559]">Votre panier est vide.</p>
-                  ) : (
-                    <>
-                      <div className="max-h-64 overflow-y-auto divide-y divide-[#e6ded1] px-5">
-                        {cart.map((item) => (
-                          <div key={item.id} className="flex items-center gap-3 py-3">
-                            <div className="relative h-14 w-12 bg-[#f3ede3] shrink-0 overflow-hidden">
-                              <Image src={item.image} alt={item.name} fill sizes="48px" className="object-contain p-1 mix-blend-multiply" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <Link href={`/parfum/${item.slug}`} className="text-sm hover:text-[#a8834f] truncate block">
-                                {item.name}
-                              </Link>
-                              <span className="text-[11px] text-[#6f6559]">
-                                {item.quantity} × {item.price.toFixed(2).replace('.', ',')} €
-                              </span>
-                            </div>
-                            <button
-                              onClick={(e) => {
-                                e.preventDefault();
-                                removeFromCart(item.id);
-                              }}
-                              className="text-[#6f6559] hover:text-red-700 p-1"
-                              title="Retirer du panier"
-                            >
-                              <Trash2 className="h-3.5 w-3.5" strokeWidth={1.5} />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="bg-[#faf7f2] px-5 py-4 border-t border-[#e6ded1] space-y-2 text-sm">
-                        <div className="flex justify-between text-[#5d564c]">
-                          <span>Livraison</span>
-                          <span>{shippingCost === 0 ? 'Offerte' : `${shippingCost.toFixed(2).replace('.', ',')} €`}</span>
-                        </div>
-                        <div className="flex justify-between font-medium pt-2 border-t border-[#e6ded1]">
-                          <span>Total TTC</span>
-                          <span>{cartTotal.toFixed(2).replace('.', ',')} €</span>
-                        </div>
-                        <Link
-                          href="/cart"
-                          className="mt-3 block text-center py-3 bg-[#b8955f] hover:bg-[#a8834f] text-[#1d1a16] text-xs uppercase tracking-[0.14em] transition-colors"
-                        >
-                          Commander
-                        </Link>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
+            <button
+              type="button"
+              onClick={openCartDrawer}
+              className={iconButtonClass}
+              aria-label={`Voir mon panier (${cartCount})`}
+              title="Voir mon panier"
+            >
+              <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+              {cartCount > 0 && (
+                <span className="absolute top-1 right-0.5 h-4 min-w-[16px] px-1 rounded-full bg-[#1d1a16] text-white text-[9px] flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </div>
