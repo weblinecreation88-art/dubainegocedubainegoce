@@ -104,6 +104,7 @@ export async function POST(req: NextRequest) {
   const stripe = new Stripe(stripeSecretKey);
 
   // Pré-remplissage du client Stripe avec l'adresse déjà saisie sur Dubai Négoce
+  // Cela évite de redemander une 2e fois l'adresse et le téléphone sur la page Stripe !
   let customerId: string | undefined;
   if (email) {
     try {
@@ -135,12 +136,22 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  const hasCustomerAddress = Boolean(customerId && customer?.address && customer?.postalCode && customer?.city);
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
       line_items: lineItems,
-      ...(customerId
+      ...(hasCustomerAddress
+        ? {
+            customer: customerId,
+            customer_update: {
+              address: 'auto',
+              name: 'auto',
+            },
+          }
+        : customerId
         ? {
             customer: customerId,
             customer_update: {
@@ -148,13 +159,19 @@ export async function POST(req: NextRequest) {
               address: 'auto',
               name: 'auto',
             },
+            phone_number_collection: { enabled: true },
+            shipping_address_collection: {
+              allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+            },
           }
-        : { customer_email: email }),
+        : {
+            customer_email: email,
+            phone_number_collection: { enabled: true },
+            shipping_address_collection: {
+              allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+            },
+          }),
       allow_promotion_codes: true,
-      phone_number_collection: { enabled: true },
-      shipping_address_collection: {
-        allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
-      },
       shipping_options: [
         {
           shipping_rate_data: {

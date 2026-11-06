@@ -15,9 +15,9 @@ interface AddToCartButtonProps {
     variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "accent",
     className?: string;
     children?: React.ReactNode;
-    isStockCritical?: boolean; // Add pulse animation if stock < 3
-    showPrice?: boolean; // Show price in button
-    isSticky?: boolean; // Make button sticky on mobile
+    isStockCritical?: boolean;
+    showPrice?: boolean;
+    isSticky?: boolean;
 }
 
 export function AddToCartButton({
@@ -35,7 +35,6 @@ export function AddToCartButton({
     const { toast } = useToast();
     const [isAdded, setIsAdded] = useState(false);
 
-    // Un produit en rupture ne doit jamais pouvoir etre commande.
     const isOutOfStock = product.stock <= 0;
 
     const handleAddToCart = async () => {
@@ -57,14 +56,8 @@ export function AddToCartButton({
             quantity: quantity,
         });
 
-        // Show success animation
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 2000);
-
-        toast({
-            title: "Ajouté au panier !",
-            description: `${product.name} a bien été ajouté à votre panier.`,
-        });
     };
 
     const buttonContent = isOutOfStock ? (

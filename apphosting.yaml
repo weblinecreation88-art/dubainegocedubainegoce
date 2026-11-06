@@ -44,7 +44,7 @@ env:
   # Comptes autorises a acceder a /admin et aux routes /api/admin/*
   # (plusieurs adresses : separer par des virgules).
   - variable: NEXT_PUBLIC_ADMIN_EMAILS
-    value: weblinecreation88@gmail.com
+    value: weblinecreation88@gmail.com,abderelmalki@gmail.com,maghzaz.nourddine@hotmail.fr,maghzaz.noureddine@outlook.fr
     availability:
       - BUILD
       - RUNTIME

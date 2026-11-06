@@ -98,6 +98,16 @@ export const computeShippingCost = (
     if (country === 'FR' && (totalQuantity >= FREE_SHIPPING_MIN_ITEMS || subtotal >= FREE_SHIPPING_THRESHOLD)) {
         return 0;
     }
+    if (method === 'mondial-relay') {
+        if (country === 'FR') {
+            if (totalQuantity === 1) return 4.10;
+            if (totalQuantity === 2) return 5.10;
+            const weight = totalQuantity * PERFUME_WEIGHT_G;
+            return getMondialRelayCost(weight);
+        }
+        const weight = totalQuantity * PERFUME_WEIGHT_G;
+        return getMondialRelayInternationalCost(country, weight);
+    }
     if (totalQuantity === 1) return 7.10;
     if (totalQuantity === 2) return 9.59;
     const weight = totalQuantity * PERFUME_WEIGHT_G;
@@ -106,6 +116,7 @@ export const computeShippingCost = (
 
 
 export const shippingMethods: Omit<ShippingMethod, 'cost'>[] = [
+    { id: 'mondial-relay', name: 'Mondial Relay', description: 'En point relais ou Locker (3-4j)', icon: Globe },
     { id: 'colissimo', name: 'Colissimo', description: 'Livraison à domicile (48h)', icon: Truck },
 ];
 

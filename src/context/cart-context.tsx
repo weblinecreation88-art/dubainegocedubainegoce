@@ -150,7 +150,6 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
             addedQty: qty,
         });
         setQuickViewProduct(null);
-        setIsLayerCartOpen(true);
     }, []);
 
     const closeLayerCart = useCallback(() => {
