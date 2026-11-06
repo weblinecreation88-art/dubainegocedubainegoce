@@ -2,23 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './storefront-polish.css';
 import { cn } from '@/lib/utils';
-import { Cormorant_Garamond, Jost } from 'next/font/google';
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-  variable: '--font-headline',
-  display: 'swap',
-});
-
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-body',
-  display: 'swap',
-});
-
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
@@ -186,8 +169,11 @@ export default function RootLayout({
             })();
           `}
         </Script>
+              <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
       </head>
-      <body className={cn(cormorant.variable, jost.variable, 'font-body antialiased min-h-screen flex flex-col')}>
+      <body className="font-body antialiased min-h-screen flex flex-col">
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
