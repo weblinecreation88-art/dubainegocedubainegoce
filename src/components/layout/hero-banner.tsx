@@ -1,130 +1,124 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, ShieldCheck, Truck, Sparkles } from 'lucide-react';
 
 interface HeroBannerProps {
-  images: string[];
+  images: { src: string; caption: string }[];
 }
 
 export function HeroBanner({ images }: HeroBannerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  // Les visuels suivants ne sont montés qu'après le premier rendu : le premier reste
+  // prioritaire pour le LCP, les autres sont déjà chargés quand le fondu les affiche.
+  const [preloadRest, setPreloadRest] = useState(false);
 
-  const next = useCallback(() => {
-    if (images.length === 0) return;
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  }, [images.length]);
-
-  const prev = useCallback(() => {
-    if (images.length === 0) return;
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+  const goTo = useCallback((index: number) => setCurrentIndex(index), []);
 
   useEffect(() => {
-    if (images.length <= 1 || isPaused) return;
-    const intervalId = setInterval(next, 6500);
+    // Attendre la fin du chargement de la page pour ne pas ralentir le premier visuel.
+    let timer: ReturnType<typeof setTimeout>;
+    const schedule = () => {
+      timer = setTimeout(() => setPreloadRest(true), 2500);
+    };
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('load', schedule);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!preloadRest || images.length <= 1 || isPaused) return;
+    const intervalId = setInterval(() => setCurrentIndex((prev) => (prev + 1) % images.length), 6500);
     return () => clearInterval(intervalId);
-  }, [images.length, isPaused, next]);
+  }, [images.length, isPaused, preloadRest]);
 
   return (
-    <section className="storefront-hero w-full bg-[#111827] border-b-2 border-[#d4a017]">
-      <div className="container mx-auto px-4 py-6 lg:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#182135] border border-[#d4a017]/40 rounded overflow-hidden">
-          {/* Texte concis et vérifiable (7/12) */}
-          <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 text-white">
-            <span className="inline-block text-[11px] tracking-[0.2em] uppercase text-[#111827] bg-[#d4a017] font-extrabold px-2.5 py-1 rounded-[2px] mb-3">
-              Parfumerie Orientale de Dubaï
-            </span>
+    <section className="storefront-hero w-full bg-[#f3ede3]">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Texte éditorial */}
+        <div className="order-1 flex flex-col justify-center px-5 sm:px-10 lg:px-16 xl:px-24 py-9 sm:py-14 lg:py-20">
+          <p className="text-[11px] tracking-[0.22em] uppercase text-[#6f6559] mb-4 sm:mb-6">
+            Parfumerie orientale de Dubaï
+          </p>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-headline font-bold text-white leading-tight mb-3">
-              Eaux de Parfum Authentiques •{' '}
-              <span className="text-[#d4a017]">Les maisons de Dubaï</span>
-            </h1>
+          <h1 className="font-headline font-normal text-[40px] leading-[1.05] sm:text-6xl lg:text-[64px] xl:text-7xl text-[#1d1a16] mb-5 sm:mb-7">
+            Les maisons de Dubaï,
+            <br />
+            <em className="italic">à prix juste.</em>
+          </h1>
 
-            <p className="text-white/80 text-sm sm:text-base mb-5 leading-relaxed max-w-xl">
-              Retrouvez les fragrances phares des maisons <strong>Lattafa</strong>,{' '}
-              <strong>Maison Alhambra</strong>, <strong>French Avenue</strong>,{' '}
-              <strong>Fragrance World</strong> et <strong>Paris Corner</strong> en flacons neufs scellés sous blister.
-            </p>
+          <p className="text-[#4a443c] text-sm sm:text-base leading-relaxed max-w-md mb-7 sm:mb-9">
+            Lattafa, Maison Alhambra, French Avenue, Fragrance World : des eaux de parfum authentiques,
+            en flacons neufs scellés, au prix unique de <strong className="font-medium text-[#1d1a16]">35 €</strong>.
+          </p>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-              <Button
-                asChild
-                size="lg"
-                className="bg-[#d4a017] text-[#111827] hover:bg-[#b88911] hover:text-white font-extrabold px-6 h-11 text-xs sm:text-sm rounded-[2px] tracking-wider uppercase"
-              >
-                <Link href="/shop/all">Parcourir les parfums</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white rounded-[2px] tracking-wider uppercase px-6 h-11 text-xs sm:text-sm"
-              >
-                <Link href="/trouver-mon-parfum" className="flex items-center gap-1.5">
-                  <Sparkles className="h-4 w-4 text-[#d4a017]" />
-                  <span>Trouver mon parfum</span>
-                </Link>
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-white/90 pt-4 border-t border-white/10">
-              <div className="flex items-center gap-2">
-                <Truck className="h-4 w-4 text-[#d4a017] shrink-0" />
-                <span>
-                  <strong>Livraison Colissimo offerte</strong> dès 3 parfums (ou 100 €)
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-[#d4a017] shrink-0" />
-                <span>
-                  <strong>Paiement sécurisé</strong> par Carte Bancaire, Apple Pay ou Google Pay
-                </span>
-              </div>
-            </div>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-4">
+            <Link
+              href="/shop/all"
+              className="inline-flex items-center justify-center bg-[#b8955f] hover:bg-[#a8834f] text-[#1d1a16] px-8 h-12 text-xs font-medium uppercase tracking-[0.14em] transition-colors"
+            >
+              Découvrir la collection
+            </Link>
+            <Link
+              href="/trouver-mon-parfum"
+              className="text-xs uppercase tracking-[0.14em] text-[#1d1a16] border-b border-[#1d1a16]/40 hover:border-[#1d1a16] pb-1 transition-colors"
+            >
+              Trouver mon parfum
+            </Link>
           </div>
 
-          {/* Visuel produit net et compact (5/12) */}
-          <div
-            className="lg:col-span-5 relative h-[240px] sm:h-[290px] lg:h-[320px] bg-[#fdfaf4] border-t lg:border-t-0 lg:border-l border-[#d4a017]/40"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {images[currentIndex] && (
-              <Image
-                key={images[currentIndex]}
-                src={images[currentIndex]}
-                alt={`Sélection de parfums de Dubaï ${currentIndex + 1}`}
-                fill
-                priority={currentIndex === 0}
-                className="object-contain p-4 transition-opacity duration-300"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-            )}
+          <p className="hidden sm:block mt-10 lg:mt-14 text-[11px] tracking-[0.18em] uppercase text-[#6f6559]">
+            Livraison offerte dès 2 parfums · Paiement sécurisé
+          </p>
+        </div>
 
+        {/* Visuel en fondu */}
+        <div
+          className="order-2 relative h-[300px] sm:h-[420px] lg:h-auto lg:min-h-[560px] overflow-hidden bg-[#ebe3d6]"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {images.map((image, index) =>
+            index === 0 || preloadRest ? (
+              <Image
+                key={image.src}
+                src={image.src}
+                alt={image.caption}
+                fill
+                priority={index === 0}
+                loading={index === 0 ? undefined : 'eager'}
+                className={`object-cover object-center transition-opacity duration-1000 ${
+                  index === currentIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            ) : null
+          )}
+
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 px-5 sm:px-8 pb-4 sm:pb-6 pt-16 bg-gradient-to-t from-black/35 to-transparent">
+            <p className="text-[10px] sm:text-[11px] tracking-[0.18em] uppercase text-white/90">
+              {images[currentIndex]?.caption}
+            </p>
             {images.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={prev}
-                  aria-label="Image précédente"
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 h-9 w-9 flex items-center justify-center bg-[#111827]/70 hover:bg-[#111827] text-white rounded-full transition-colors"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={next}
-                  aria-label="Image suivante"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 h-9 w-9 flex items-center justify-center bg-[#111827]/70 hover:bg-[#111827] text-white rounded-full transition-colors"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </>
+              <div className="flex gap-2">
+                {images.map((image, index) => (
+                  <button
+                    key={image.src}
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-label={`Afficher le visuel ${index + 1}`}
+                    aria-current={index === currentIndex}
+                    className={`h-[3px] transition-all ${
+                      index === currentIndex ? 'w-7 bg-white' : 'w-3.5 bg-white/50 hover:bg-white/80'
+                    }`}
+                  />
+                ))}
+              </div>
             )}
           </div>
         </div>

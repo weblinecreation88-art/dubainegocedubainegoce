@@ -19,8 +19,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        headline: ['Playfair Display', 'serif'],
-        body: ['PT Sans', 'sans-serif'],
+        headline: ['var(--font-headline)', 'Cormorant Garamond', 'serif'],
+        body: ['var(--font-body)', 'Jost', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

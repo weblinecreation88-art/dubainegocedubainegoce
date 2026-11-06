@@ -2,18 +2,19 @@ import type { Metadata } from 'next';
 import './globals.css';
 import './storefront-polish.css';
 import { cn } from '@/lib/utils';
-import { Playfair_Display, PT_Sans } from 'next/font/google';
+import { Cormorant_Garamond, Jost } from 'next/font/google';
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['700'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
   variable: '--font-headline',
   display: 'swap',
 });
 
-const ptSans = PT_Sans({
+const jost = Jost({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500'],
   variable: '--font-body',
   display: 'swap',
 });
@@ -38,7 +39,7 @@ const PrestashopLayerCart = dynamic(
 import { DeferredWidgets } from '@/components/deferred-widgets';
 import Script from 'next/script';
 import { GA4_MEASUREMENT_ID } from '@/lib/analytics';
-import { ShieldCheck, Truck, Lock, Phone } from 'lucide-react';
+import Link from 'next/link';
 import { JsonLd } from '@/components/seo/json-ld';
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
@@ -47,41 +48,36 @@ const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 
 const reassurances = [
   {
-    icon: <ShieldCheck className="w-6 h-6 text-[#d4a017]" />,
-    title: 'Parfums Authentiques',
-    description: 'Flacons neufs scellés sous blister',
+    title: 'Livraison Colissimo suivie',
+    description: '7,10 € pour 1 parfum, offerte dès 2 parfums',
+    href: '/livraison-et-paiement',
   },
   {
-    icon: <Lock className="w-6 h-6 text-[#d4a017]" />,
     title: 'Paiement sécurisé',
-    description: 'Paiement sécurisé CB, Apple Pay, Google Pay',
+    description: 'Carte bancaire, Apple Pay et Google Pay via Stripe',
+    href: '/livraison-et-paiement',
   },
   {
-    icon: <Truck className="w-6 h-6 text-[#d4a017]" />,
-    title: 'Livraison Colissimo Suivie',
-    description: 'Offerte dès 3 parfums (ou 100 €)',
+    title: 'Flacons neufs scellés',
+    description: 'Retour possible sous 14 jours',
+    href: '/shipping',
   },
   {
-    icon: <Phone className="w-6 h-6 text-[#d4a017]" />,
-    title: 'Service Client en Français',
-    description: 'Joignable par téléphone et e-mail',
+    title: 'À votre écoute',
+    description: '07 58 99 97 26 · contact@dubainegoce.fr',
+    href: '/contact',
   },
 ];
 
 const ReassuranceSection = () => {
   return (
-    <section className="storefront-reassurance py-6 bg-[#f7f0e6] text-[#111827] border-y border-[#e4dac9]">
-      <div className="container mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        {reassurances.map((item, index) => (
-          <div key={index} className="flex items-center gap-3">
-            <span className="shrink-0 bg-white p-2.5 rounded border border-[#e4dac9]">{item.icon}</span>
-            <div className="text-left">
-              <h3 className="font-headline text-xs sm:text-sm font-bold text-[#111827] leading-tight">
-                {item.title}
-              </h3>
-              <p className="text-[11px] sm:text-xs text-gray-600 leading-tight mt-0.5">{item.description}</p>
-            </div>
-          </div>
+    <section className="storefront-reassurance bg-white border-t border-[#e6ded1]">
+      <div className="container mx-auto px-5 sm:px-6 py-10 sm:py-12 grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+        {reassurances.map((item) => (
+          <Link key={item.title} href={item.href} className="group block">
+            <h3 className="text-[13px] text-[#1d1a16] group-hover:text-[#a8834f] transition-colors">{item.title}</h3>
+            <p className="text-[12px] text-[#6f6559] leading-relaxed mt-1">{item.description}</p>
+          </Link>
         ))}
       </div>
     </section>
@@ -194,7 +190,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={cn(playfair.variable, ptSans.variable, 'font-body antialiased min-h-screen flex flex-col')}>
+      <body className={cn(cormorant.variable, jost.variable, 'font-body antialiased min-h-screen flex flex-col')}>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}

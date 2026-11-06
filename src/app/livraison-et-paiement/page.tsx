@@ -6,20 +6,20 @@ import { PaymentBadges } from '@/components/ui/payment-badges';
 export const metadata: Metadata = {
   title: 'Livraison et Paiement | Dubaï Négoce',
   description:
-    'Consultez nos tarifs de livraison Colissimo (offerte dès 3 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
+    'Consultez nos tarifs de livraison Colissimo (offerte dès 2 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
 };
 
 export default function DeliveryAndPaymentPage() {
   return (
     <div className="container mx-auto max-w-5xl px-4 py-10">
-      <nav aria-label="Fil d'Ariane" className="mb-6 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2">
-        <Link href="/" className="hover:text-[#d4a017]">Accueil</Link>
+      <nav aria-label="Fil d'Ariane" className="mb-6 text-xs text-gray-600 bg-white border border-[#e6ded1] rounded px-3.5 py-2">
+        <Link href="/" className="hover:text-[#a8834f]">Accueil</Link>
         <span className="mx-2">&gt;</span>
-        <span className="font-bold text-[#111827]">Livraison &amp; Paiement</span>
+        <span className="font-bold text-[#1d1a16]">Livraison &amp; Paiement</span>
       </nav>
 
-      <div className="bg-white border border-[#e4dac9] rounded p-6 sm:p-8 text-[#111827]">
-        <div className="border-b border-[#e4dac9] pb-5 mb-8">
+      <div className="bg-white border border-[#e6ded1] rounded p-6 sm:p-8 text-[#1d1a16]">
+        <div className="border-b border-[#e6ded1] pb-5 mb-8">
           <h1 className="text-2xl sm:text-3xl font-headline font-bold mb-2">
             Livraison &amp; Paiement Sécurisé
           </h1>
@@ -31,14 +31,14 @@ export default function DeliveryAndPaymentPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Colonne Livraison */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2.5 pb-2 border-b border-[#e4dac9]">
-              <Truck className="w-5 h-5 text-[#d4a017]" />
+            <div className="flex items-center gap-2.5 pb-2 border-b border-[#e6ded1]">
+              <Truck className="w-5 h-5 text-[#a8834f]" />
               <h2 className="text-lg font-headline font-bold">Livraison Colissimo Domicile</h2>
             </div>
 
-            <div className="bg-[#fdfaf4] p-5 rounded border border-[#e4dac9] space-y-4">
+            <div className="bg-[#faf7f2] p-5 rounded border border-[#e6ded1] space-y-4">
               <div className="flex items-start gap-3">
-                <div className="bg-[#111827] text-[#d4a017] w-10 h-10 flex items-center justify-center rounded shrink-0">
+                <div className="bg-[#1d1a16] text-[#a8834f] w-10 h-10 flex items-center justify-center rounded shrink-0">
                   <Package className="w-5 h-5" />
                 </div>
                 <div>
@@ -50,23 +50,19 @@ export default function DeliveryAndPaymentPage() {
               </div>
 
               <ul className="space-y-2 text-xs sm:text-sm">
-                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e4dac9]">
+                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e6ded1]">
                   <span>1 parfum (flacon 100 ml)</span>
-                  <strong className="text-[#111827]">7,10 € TTC</strong>
+                  <strong className="text-[#1d1a16]">7,10 € TTC</strong>
                 </li>
-                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e4dac9]">
-                  <span>2 parfums</span>
-                  <strong className="text-[#111827]">9,59 € TTC</strong>
-                </li>
-                <li className="flex justify-between items-center bg-[#f7f0e6] p-2.5 rounded border border-[#d4a017]">
-                  <span className="font-bold">Dès 3 parfums (ou 100 € d&apos;achat)</span>
+                <li className="flex justify-between items-center bg-[#f3ede3] p-2.5 rounded border border-[#a8834f]">
+                  <span className="font-bold">Dès 2 parfums</span>
                   <strong className="text-[#46a74e]">OFFERT (0,00 €)</strong>
                 </li>
               </ul>
 
               <p className="text-xs text-gray-600">
                 Consultez également notre{' '}
-                <Link href="/shipping" className="text-[#d4a017] font-semibold underline">
+                <Link href="/shipping" className="text-[#a8834f] font-semibold underline">
                   politique de retour sous 14 jours
                 </Link>.
               </p>
@@ -75,12 +71,12 @@ export default function DeliveryAndPaymentPage() {
 
           {/* Colonne Paiement */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2.5 pb-2 border-b border-[#e4dac9]">
-              <CreditCard className="w-5 h-5 text-[#d4a017]" />
+            <div className="flex items-center gap-2.5 pb-2 border-b border-[#e6ded1]">
+              <CreditCard className="w-5 h-5 text-[#a8834f]" />
               <h2 className="text-lg font-headline font-bold">Moyens de Paiement Acceptés</h2>
             </div>
 
-            <div className="bg-[#fdfaf4] p-5 rounded border border-[#e4dac9] space-y-4">
+            <div className="bg-[#faf7f2] p-5 rounded border border-[#e6ded1] space-y-4">
               <div className="flex items-start gap-3">
                 <div className="bg-[#46a74e] text-white w-10 h-10 flex items-center justify-center rounded shrink-0">
                   <ShieldCheck className="w-5 h-5" />
@@ -93,7 +89,7 @@ export default function DeliveryAndPaymentPage() {
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded border border-[#e4dac9]">
+              <div className="bg-white p-4 rounded border border-[#e6ded1]">
                 <PaymentBadges
                   title="Moyens disponibles à l'étape du paiement :"
                   badgeClassName="h-7"

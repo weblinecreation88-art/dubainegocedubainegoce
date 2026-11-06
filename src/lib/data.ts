@@ -74,9 +74,9 @@ export const getMondialRelayInternationalCost = (countryCode: string, weightInGr
 export const PERFUME_WEIGHT_G = 450;
 
 /** Nombre d'articles pour déclencher la livraison gratuite */
-export const FREE_SHIPPING_MIN_ITEMS = 3;
+export const FREE_SHIPPING_MIN_ITEMS = 2;
 
-/** Livraison offerte en France dès 3 parfums ou dès ce montant de panier (TTC). */
+/** Livraison offerte en France dès 2 parfums ou dès ce montant de panier (TTC). */
 export const FREE_SHIPPING_THRESHOLD = 100;
 
 /**
@@ -84,8 +84,8 @@ export const FREE_SHIPPING_THRESHOLD = 100;
  * Stripe et PayPal : le montant affiché est toujours le montant encaissé.
  * Règle commerciale :
  * - 1 parfum : 7,10 €
- * - 2 parfums : 9,59 €
- * - 3 parfums ou plus : GRATUIT (0,00 €)
+ * - 2 parfums ou plus : GRATUIT (0,00 €) en France
+ * Hors France, 2 parfums restent facturés 9,59 €.
  */
 export const computeShippingCost = (
     method: 'colissimo' | 'mondial-relay',
@@ -2556,7 +2556,7 @@ const products: Product[] = [
         "metaDescription": "Découvrez Tobacco Touch Maison Alhambra, une fragrance oriental aux notes de cannelle et encens. Laissez-vous séduire par ce parfum captivant.",
         "price": 35,
         "volumeMl": 80,
-        "stock": 6,
+        "stock": 0,
         "isBestseller": true,
         "isNew": false,
         "tags": ["tobacco touch", "maison alhambra", "parfum oriental", "parfum mixte", "eau de parfum maison alhambra", "cannelle", "cardamome", "vanille", "musc", "parfum dubai", "parfum pas cher"],
@@ -3626,7 +3626,7 @@ const products: Product[] = [
 ];
 
 export const getProducts = (): Product[] => {
-    return products.filter(p => p.type !== 'variable' && p.productType === 'perfume').map(p => {
+    return products.filter(p => p.type !== 'variable' && p.productType === 'perfume' && p.price === 35).map(p => {
         const familyLower = p.family.toLowerCase();
         const intensity = p.intensity || (['oriental', 'oud', 'ambré', 'boisé', 'cuir'].some(f => familyLower.includes(f)) ? 'Forte' : 'Moyenne');
         const longevity = p.longevity || (intensity === 'Forte' ? 'Longue durée' : 'Moyenne');

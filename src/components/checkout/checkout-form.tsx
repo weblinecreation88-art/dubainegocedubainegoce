@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -22,14 +20,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Lock, Truck, Store, MapPin, AlertCircle } from 'lucide-react';
+import { Lock, Loader2, Store, Truck, MapPin, AlertCircle, CheckCircle2 } from 'lucide-react';
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { PickupPointSelector } from './pickup-point-selector';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 
 const checkoutSchema = z.object({
   email: z.string().email('Email invalide').min(1, 'Email requis'),
-  phone: z.string().regex(/^[\d\s\+\-\(\)]{8,}$/, 'Numéro de téléphone invalide (minimum 8 caractères)').min(1, 'Téléphone requis'),
+  phone: z
+    .string()
+    .regex(/^[\d\s\+\-\(\)\.]{8,}$/, 'Numéro de téléphone invalide (minimum 8 caractères)')
+    .min(1, 'Téléphone requis'),
   firstName: z.string().min(2, 'Prénom requis'),
   lastName: z.string().min(2, 'Nom requis'),
   address: z.string().min(5, 'Adresse requise'),
@@ -62,6 +63,7 @@ interface CheckoutFormProps {
   onCountryChange?: (country: string) => void;
   onShippingMethodChange?: (method: 'colissimo' | 'mondial-relay') => void;
   onPickupPointChange?: (point: MondialRelayPickupPoint | null) => void;
+  submitLabel?: string;
 }
 
 export function CheckoutForm({
@@ -70,12 +72,12 @@ export function CheckoutForm({
   initialData,
   isLoading = false,
   totalAmount,
-  shippingCost = 0,
   mondialRelayCost,
   colissimoCost,
   onCountryChange,
   onShippingMethodChange,
   onPickupPointChange,
+  submitLabel,
 }: CheckoutFormProps) {
   const [selectedPickupPoint, setSelectedPickupPoint] = useState<MondialRelayPickupPoint | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -96,6 +98,8 @@ export function CheckoutForm({
     mode: 'onChange',
   });
 
+  // L'adresse enregistrée peut arriver après l'affichage du formulaire :
+  // on complète seulement les champs encore vides.
   useEffect(() => {
     if (!initialData) return;
     (Object.keys(initialData) as Array<keyof CheckoutFormData>).forEach((key) => {
@@ -130,8 +134,8 @@ export function CheckoutForm({
 
   const handleSubmit = async (data: CheckoutFormData) => {
     if (data.shippingMethod === 'mondial-relay' && !selectedPickupPoint) {
-      setValidationError('Veuillez sélectionner un point relais ou un Locker sur la carte ci-dessous avant de procéder au paiement.');
-      const mapElem = document.getElementById('Zone_Widget');
+      setValidationError('Veuillez sélectionner votre point relais ou Locker Mondial Relay ci-dessous avant de procéder au paiement.');
+      const mapElem = document.getElementById('Zone_Widget') || document.getElementById('mondial-relay-section');
       if (mapElem) mapElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
@@ -140,271 +144,298 @@ export function CheckoutForm({
   };
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-5">
-          {/* 1. Vos coordonnées & Adresse de facturation/domicile */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">1. Vos coordonnées &amp; Adresse</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email (suivi de commande) *</FormLabel>
-                      <FormControl>
-                        <Input type="email" autoComplete="email" placeholder="votre.email@exemple.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+          {/* SECTION 1: Coordonnées & Adresse */}
+          <div className="space-y-4 rounded-none border border-[#d9cfbf] bg-white p-5 sm:p-6 [&_label]:text-xs [&_label]:font-normal [&_label]:text-[#1d1a16] [&_input]:h-12 [&_input]:rounded-none [&_input]:border-[#d9cfbf] [&_input]:bg-white [&_input]:text-[15px] [&_input:focus-visible]:ring-0 [&_input:focus-visible]:border-[#1d1a16] [&_button[role=combobox]]:h-12 [&_button[role=combobox]]:rounded-none [&_button[role=combobox]]:border-[#d9cfbf]">
+            <div className="border-b border-[#eee7dc] pb-3">
+              <h2 className="text-sm font-semibold tracking-wide uppercase text-[#1d1a16]">
+                1. Vos coordonnées &amp; adresse de facturation
+              </h2>
+              <p className="text-xs text-[#6f6559] mt-0.5">
+                Vos coordonnées seront mémorisées pour vos prochaines commandes en 1 clic.
+              </p>
+            </div>
 
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Téléphone mobile (SMS d&apos;arrivée du colis) *</FormLabel>
-                      <FormControl>
-                        <Input type="tel" autoComplete="tel" placeholder="06 12 34 56 78" {...field} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="firstName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Prénom *</FormLabel>
-                      <FormControl>
-                        <Input autoComplete="given-name" placeholder="Jean" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="lastName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nom *</FormLabel>
-                      <FormControl>
-                        <Input autoComplete="family-name" placeholder="Dupont" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="address"
+                name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Adresse complète (Numéro et rue) *</FormLabel>
+                    <FormLabel>Prénom *</FormLabel>
                     <FormControl>
-                      <Input autoComplete="street-address" placeholder="123 Rue de la Paix" {...field} />
+                      <Input placeholder="Jean" autoComplete="given-name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <FormField
-                  control={form.control}
-                  name="postalCode"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Code postal *</FormLabel>
-                      <FormControl>
-                        <Input placeholder="75001" autoComplete="postal-code" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nom *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Dupont" autoComplete="family-name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-                <FormField
-                  control={form.control}
-                  name="city"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Ville *</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Paris" autoComplete="address-level2" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email (suivi de commande) *</FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="votre.email@exemple.com" autoComplete="email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name="country"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Pays *</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {COUNTRIES.map((country) => (
-                            <SelectItem key={country.code} value={country.code}>
-                              {country.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </CardContent>
-          </Card>
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Téléphone mobile (SMS suivi / livraison) *</FormLabel>
+                    <FormControl>
+                      <Input type="tel" placeholder="+33 6 12 34 56 78" autoComplete="tel" {...field} required />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          {/* 2. Choix du mode de livraison : Mondial Relay vs Colissimo */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">2. Mode de livraison</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Option Mondial Relay (Moins cher, le préféré des clients) */}
-                <div
-                  onClick={() => form.setValue('shippingMethod', 'mondial-relay', { shouldValidate: true })}
-                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                    selectedMethod === 'mondial-relay'
-                      ? 'border-accent bg-accent/10 shadow-sm ring-1 ring-accent'
-                      : 'border-border hover:border-accent/40 bg-card'
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2 rounded-lg bg-accent/20 text-accent shrink-0">
-                        <Store className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-sm flex items-center gap-1.5">
-                          <span>Mondial Relay</span>
-                          <span className="text-[10px] bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300 font-bold px-1.5 py-0.5 rounded">
-                            Économique
-                          </span>
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Point Relais &amp; Lockers 24/7 (3-4j)</div>
-                      </div>
-                    </div>
-                    <span className="font-extrabold text-sm text-accent shrink-0">
-                      {mondialRelayCost === 0 ? (
-                        <span className="text-green-600 font-extrabold">OFFERTE</span>
-                      ) : (
-                        `${(mondialRelayCost ?? 4.10).toFixed(2)} €`
-                      )}
-                    </span>
-                  </div>
-                  <div className="mt-3 text-[11px] text-muted-foreground">
-                    ✓ Carte interactive disponible ci-dessous
-                  </div>
-                </div>
-
-                {/* Option Colissimo Domicile */}
-                <div
-                  onClick={() => form.setValue('shippingMethod', 'colissimo', { shouldValidate: true })}
-                  className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-                    selectedMethod === 'colissimo'
-                      ? 'border-accent bg-accent/10 shadow-sm ring-1 ring-accent'
-                      : 'border-border hover:border-accent/40 bg-card'
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2 rounded-lg bg-muted text-foreground shrink-0">
-                        <Truck className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <div className="font-bold text-sm">Colissimo Domicile</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Livraison boîte aux lettres (48h)</div>
-                      </div>
-                    </div>
-                    <span className="font-extrabold text-sm text-foreground shrink-0">
-                      {colissimoCost === 0 ? (
-                        <span className="text-green-600 font-extrabold">OFFERTE</span>
-                      ) : (
-                        `${(colissimoCost ?? 7.10).toFixed(2)} €`
-                      )}
-                    </span>
-                  </div>
-                  <div className="mt-3 text-[11px] text-muted-foreground">
-                    Livré directement chez vous par La Poste
-                  </div>
-                </div>
-              </div>
-
-              {/* Sélecteur de carte Mondial Relay */}
-              {selectedMethod === 'mondial-relay' && (
-                <div className="pt-3 border-t">
-                  <div className="mb-2 font-semibold text-sm flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4 text-accent" />
-                    <span>Sélectionnez votre Locker ou Point Relais :</span>
-                  </div>
-
-                  <PickupPointSelector
-                    country={selectedCountry}
-                    postalCode={watchedPostalCode}
-                    onSelectPoint={handleSelectPickupPoint}
-                    selectedPointId={selectedPickupPoint?.id}
-                  />
-
-                  {validationError && (
-                    <div className="mt-3 flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/40 border border-red-300 rounded-lg text-xs text-red-700 dark:text-red-300 font-medium">
-                      <AlertCircle className="h-4 w-4 shrink-0" />
-                      <span>{validationError}</span>
-                    </div>
-                  )}
-                </div>
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Adresse complète (Numéro et voie) *</FormLabel>
+                  <FormControl>
+                    <Input placeholder="123 Rue de la Paix" autoComplete="street-address" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </CardContent>
-          </Card>
+            />
 
-          {/* Bouton direct vers Stripe */}
-          <Button
-            type="submit"
-            disabled={isLoading}
-            size="lg"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90 py-6 text-base font-bold shadow-md"
-          >
-            {isLoading ? (
-              <>
-                <span className="animate-spin inline-block mr-2">⏳</span>
-                Ouverture du paiement sécurisé Stripe...
-              </>
-            ) : (
-              <>
-                <Lock className="h-4 w-4 mr-2" />
-                Payer ma commande{totalAmount !== undefined ? ` (${totalAmount.toFixed(2)} € TTC)` : ''} — CB / Apple Pay
-              </>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <FormField
+                control={form.control}
+                name="postalCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Code postal *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="75001" autoComplete="postal-code" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem className="col-span-1">
+                    <FormLabel>Ville *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Paris" autoComplete="address-level2" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem className="col-span-2 sm:col-span-1">
+                    <FormLabel>Pays *</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {COUNTRIES.map((country) => (
+                          <SelectItem key={country.code} value={country.code}>
+                            {country.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          {/* SECTION 2: Choix du mode de livraison */}
+          <div id="mondial-relay-section" className="space-y-4 rounded-none border border-[#d9cfbf] bg-white p-5 sm:p-6">
+            <div className="border-b border-[#eee7dc] pb-3">
+              <h2 className="text-sm font-semibold tracking-wide uppercase text-[#1d1a16]">
+                2. Choisissez votre mode de livraison
+              </h2>
+              <p className="text-xs text-[#6f6559] mt-0.5">
+                Sélectionnez le transporteur de votre choix.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {/* Option Mondial Relay */}
+              <button
+                type="button"
+                onClick={() => {
+                  form.setValue('shippingMethod', 'mondial-relay', { shouldValidate: true });
+                  setValidationError(null);
+                }}
+                className={`text-left p-4 rounded-none border transition-all relative ${
+                  selectedMethod === 'mondial-relay'
+                    ? 'border-[#1d1a16] bg-[#fbf9f5] ring-1 ring-[#1d1a16]'
+                    : 'border-[#d9cfbf] hover:border-[#1d1a16]/60 bg-white'
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded bg-[#eee7dc] text-[#1d1a16] shrink-0">
+                      <Store className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-[#1d1a16] flex items-center gap-1.5">
+                        <span>Mondial Relay</span>
+                        <span className="text-[10px] bg-[#e7f3ec] text-[#1b6b3e] font-semibold px-1.5 py-0.5 rounded">
+                          Économique
+                        </span>
+                      </div>
+                      <div className="text-xs text-[#6f6559] mt-0.5">Point Relais &amp; Lockers 24/7 (3-4 jours)</div>
+                    </div>
+                  </div>
+                  <span className="font-bold text-sm text-[#1d1a16] shrink-0">
+                    {mondialRelayCost === 0 ? (
+                      <span className="text-[#1b6b3e] font-bold">OFFERTE</span>
+                    ) : (
+                      `${(mondialRelayCost ?? 4.10).toFixed(2)} €`
+                    )}
+                  </span>
+                </div>
+                <div className="mt-3 text-[11px] text-[#6f6559] flex items-center gap-1">
+                  <span>✓ Carte interactive des relais ci-dessous</span>
+                </div>
+              </button>
+
+              {/* Option Colissimo */}
+              <button
+                type="button"
+                onClick={() => {
+                  form.setValue('shippingMethod', 'colissimo', { shouldValidate: true });
+                  setValidationError(null);
+                }}
+                className={`text-left p-4 rounded-none border transition-all relative ${
+                  selectedMethod === 'colissimo'
+                    ? 'border-[#1d1a16] bg-[#fbf9f5] ring-1 ring-[#1d1a16]'
+                    : 'border-[#d9cfbf] hover:border-[#1d1a16]/60 bg-white'
+                }`}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded bg-[#eee7dc] text-[#1d1a16] shrink-0">
+                      <Truck className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-[#1d1a16]">Colissimo Domicile</div>
+                      <div className="text-xs text-[#6f6559] mt-0.5">Boîte aux lettres (48h ouvrées)</div>
+                    </div>
+                  </div>
+                  <span className="font-bold text-sm text-[#1d1a16] shrink-0">
+                    {colissimoCost === 0 ? (
+                      <span className="text-[#1b6b3e] font-bold">OFFERTE</span>
+                    ) : (
+                      `${(colissimoCost ?? 7.10).toFixed(2)} €`
+                    )}
+                  </span>
+                </div>
+                <div className="mt-3 text-[11px] text-[#6f6559]">
+                  Livré chez vous par votre facteur La Poste
+                </div>
+              </button>
+            </div>
+
+            {/* Sélecteur de carte Mondial Relay */}
+            {selectedMethod === 'mondial-relay' && (
+              <div className="pt-4 border-t border-[#eee7dc] space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#1d1a16] flex items-center gap-1.5">
+                    <MapPin className="h-4 w-4 text-[#b8955f]" />
+                    <span>Sélectionnez votre Point Relais ou Locker :</span>
+                  </div>
+                  {selectedPickupPoint && (
+                    <span className="text-xs text-[#1b6b3e] font-medium flex items-center gap-1">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                      Point sélectionné
+                    </span>
+                  )}
+                </div>
+
+                <PickupPointSelector
+                  country={selectedCountry}
+                  postalCode={watchedPostalCode}
+                  onSelectPoint={handleSelectPickupPoint}
+                  selectedPointId={selectedPickupPoint?.id}
+                />
+
+                {validationError && (
+                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 text-xs text-red-700 font-medium">
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                    <span>{validationError}</span>
+                  </div>
+                )}
+              </div>
             )}
-          </Button>
+          </div>
 
-          <div className="text-center text-xs text-muted-foreground space-y-2 pt-1">
-            <PaymentBadges title="Paiement 100% sécurisé via Stripe :" badgeClassName="h-6" />
+          {/* Bouton de paiement sécurisé */}
+          <div className="space-y-3">
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full inline-flex items-center justify-center gap-2 bg-[#b8955f] hover:bg-[#a8834f] disabled:opacity-60 text-[#1d1a16] h-[52px] px-4 text-xs uppercase tracking-[0.14em] font-semibold transition-colors shadow-sm"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Redirection sécurisée vers le paiement…
+                </>
+              ) : (
+                <>
+                  <Lock className="h-3.5 w-3.5" strokeWidth={2} />
+                  {submitLabel || (totalAmount !== undefined
+                    ? `Payer ma commande (${totalAmount.toFixed(2)} €) — CB / Apple Pay`
+                    : 'Payer ma commande en toute sécurité')}
+                </>
+              )}
+            </button>
+
+            <div className="text-center text-xs text-[#6f6559] pt-1">
+              <PaymentBadges title="Paiement 100% sécurisé via Stripe :" badgeClassName="h-6" />
+            </div>
           </div>
         </form>
       </Form>

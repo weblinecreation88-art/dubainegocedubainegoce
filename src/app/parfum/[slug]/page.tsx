@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props, _parent: ResolvingMeta
 
   const imageUrl = product.images.length > 0 ? product.images[0] : `${SITE_URL}/og-image.png`;
   const fullUrl = `${SITE_URL}/parfum/${product.slug}`;
-  const enrichedDescription = `${product.metaDescription} | Eau de Parfum ${product.volumeMl}ml | ${product.price.toFixed(2)} € TTC | Livraison Colissimo offerte dès 3 parfums.`;
+  const enrichedDescription = `${product.metaDescription} | Eau de Parfum ${product.volumeMl}ml | ${product.price.toFixed(2)} € TTC | Livraison Colissimo offerte dès 2 parfums.`;
 
   const keywords = [
     product.name,
@@ -129,7 +129,6 @@ export default function ProductPage({ params }: Props) {
     .replace(/<[^>]*>?/gm, '')
     .trim();
 
-  const referenceCode = `DN-${product.brand.name.substring(0, 3).toUpperCase()}-${product.id.padStart(3, '0')}`;
 
   // JSON-LD strictement basé sur les données réelles du produit (sans faux avis générés)
   const productJsonLd = {
@@ -233,31 +232,31 @@ export default function ProductPage({ params }: Props) {
         {/* Fil d'Ariane encadré style PrestaShop */}
         <nav
           aria-label="Fil d'Ariane"
-          className="flex items-center gap-2 text-xs text-gray-600 bg-white border border-[#e4dac9] rounded px-3.5 py-2.5 mb-6 flex-wrap"
+          className="flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-[#6f6559] mb-6 flex-wrap"
         >
-          <Link href="/" className="hover:text-[#d4a017] font-medium transition-colors">
+          <Link href="/" className="hover:text-[#a8834f] font-medium transition-colors">
             Accueil
           </Link>
           <span className="text-gray-400">&gt;</span>
-          <Link href="/shop/all" className="hover:text-[#d4a017] font-medium transition-colors">
+          <Link href="/shop/all" className="hover:text-[#a8834f] font-medium transition-colors">
             Tous les parfums
           </Link>
           <span className="text-gray-400">&gt;</span>
           <Link
             href={getBrandPath(product.brand.name)}
-            className="hover:text-[#d4a017] font-medium transition-colors"
+            className="hover:text-[#a8834f] font-medium transition-colors"
           >
             {product.brand.name}
           </Link>
           <span className="text-gray-400">&gt;</span>
-          <span className="text-[#111827] font-bold truncate max-w-[260px]">{product.name}</span>
+          <span className="text-[#1d1a16] truncate max-w-[260px]">{product.name}</span>
         </nav>
 
         {/* BLOC PRINCIPAL PRESTASHOP 3 COLONNES (se réorganise naturellement sur mobile) */}
-        <div className="bg-white border border-[#e4dac9] rounded p-4 sm:p-6 lg:p-8 shadow-sm">
-          <div className="storefront-detail-grid grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="bg-white">
+          <div className="storefront-detail-grid grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
             {/* COLONNE 1 (Gauche - 5/12) : Galerie Produit */}
-            <div className="lg:col-span-5">
+            <div className="order-1 lg:col-span-5">
               <ProductGallery
                 alt={`Parfum ${product.brand.name} ${product.name} - ${product.volumeMl} ml`}
                 images={product.images}
@@ -265,16 +264,25 @@ export default function ProductPage({ params }: Props) {
               />
             </div>
 
+            {/* Résumé mobile avant la boîte d'achat : prix et bouton suivent directement l'image. */}
+            <div className="order-2 lg:hidden">
+              <Link href={getBrandPath(product.brand.name)} className="text-[11px] uppercase tracking-[0.18em] text-[#6f6559]">
+                {product.brand.name}
+              </Link>
+              <h1 className="text-[34px] font-headline font-normal text-[#1d1a16] leading-[1.08] mt-1">{product.name}</h1>
+              <p className="text-xs text-gray-600">Eau de Parfum • {product.volumeMl || 100} ml</p>
+            </div>
+
             {/* COLONNE 2 (Centre - 4/12) : Informations Produit, Contenance, Notes & Disponibilité */}
-            <div className="lg:col-span-4 space-y-4">
-              <div>
+            <div className="order-4 lg:order-2 lg:col-span-4 space-y-4">
+              <div className="hidden lg:block">
                 <Link
                   href={getBrandPath(product.brand.name)}
-                  className="text-xs uppercase tracking-widest font-extrabold text-[#d4a017] hover:underline"
+                  className="text-[11px] uppercase tracking-[0.18em] text-[#6f6559] hover:text-[#a8834f]"
                 >
                   {product.brand.name}
                 </Link>
-                <h1 className="text-2xl sm:text-3xl font-headline font-bold text-[#111827] mt-1 leading-tight">
+                <h1 className="text-[40px] xl:text-[46px] font-headline font-normal text-[#1d1a16] mt-2 leading-[1.05]">
                   {product.name}
                 </h1>
                 <p className="text-xs text-gray-600 mt-1 font-medium">
@@ -283,26 +291,18 @@ export default function ProductPage({ params }: Props) {
               </div>
 
               {/* Réf & État style PrestaShop */}
-              <div className="text-xs text-gray-600 space-y-1 bg-[#fdfaf4] p-3 rounded border border-[#e4dac9]">
-                <div className="flex justify-between">
-                  <span className="font-semibold">Référence :</span>
-                  <span className="font-mono font-bold text-[#111827]">{referenceCode}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-semibold">État :</span>
-                  <span className="font-bold text-[#111827]">Neuf sous blister d&apos;origine</span>
-                </div>
+              <div className="text-xs text-[#5d564c] space-y-1.5 border-y border-[#e6ded1] py-4">
                 <div className="flex justify-between">
                   <span className="font-semibold">Contenance :</span>
-                  <span className="font-bold text-[#111827]">{product.volumeMl || 100} ml</span>
+                  <span className="font-bold text-[#1d1a16]">{product.volumeMl || 100} ml</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Genre :</span>
-                  <span className="font-bold text-[#111827] capitalize">{product.gender}</span>
+                  <span className="font-bold text-[#1d1a16] capitalize">{product.gender}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-semibold">Famille olfactive :</span>
-                  <span className="font-bold text-[#111827]">{product.family}</span>
+                  <span className="font-bold text-[#1d1a16]">{product.family}</span>
                 </div>
               </div>
 
@@ -313,24 +313,24 @@ export default function ProductPage({ params }: Props) {
 
               {/* Pyramide Olfactive claire */}
               {hasOlfactoryPyramid && (
-                <div className="border-t border-[#e4dac9] pt-4 space-y-2.5">
-                  <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#111827]">
+                <div className="border-t border-[#e6ded1] pt-4 space-y-2.5">
+                  <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#1d1a16]">
                     Pyramide Olfactive
                   </h2>
                   <div className="space-y-1.5 text-xs sm:text-sm text-gray-700">
                     {topNotes.length > 0 && (
-                      <div className="p-2 rounded bg-[#fdfaf4] border border-[#e4dac9]/70">
-                        <strong className="text-[#111827]">Notes de tête :</strong> {topNotes.join(', ')}
+                      <div className="p-2 rounded bg-[#faf7f2] border border-[#e6ded1]/70">
+                        <strong className="text-[#1d1a16]">Notes de tête :</strong> {topNotes.join(', ')}
                       </div>
                     )}
                     {heartNotes.length > 0 && (
-                      <div className="p-2 rounded bg-[#fdfaf4] border border-[#e4dac9]/70">
-                        <strong className="text-[#111827]">Notes de cœur :</strong> {heartNotes.join(', ')}
+                      <div className="p-2 rounded bg-[#faf7f2] border border-[#e6ded1]/70">
+                        <strong className="text-[#1d1a16]">Notes de cœur :</strong> {heartNotes.join(', ')}
                       </div>
                     )}
                     {baseNotes.length > 0 && (
-                      <div className="p-2 rounded bg-[#fdfaf4] border border-[#e4dac9]/70">
-                        <strong className="text-[#111827]">Notes de fond :</strong> {baseNotes.join(', ')}
+                      <div className="p-2 rounded bg-[#faf7f2] border border-[#e6ded1]/70">
+                        <strong className="text-[#1d1a16]">Notes de fond :</strong> {baseNotes.join(', ')}
                       </div>
                     )}
                   </div>
@@ -338,20 +338,20 @@ export default function ProductPage({ params }: Props) {
               )}
 
               {/* Tags */}
-              <div className="border-t border-[#e4dac9] pt-3">
+              <div className="border-t border-[#e6ded1] pt-3">
                 <div className="flex flex-wrap gap-1.5">
                   <Link href={`/shop/all?families=${encodeURIComponent(product.family)}`}>
-                    <Badge variant="secondary" className="bg-[#f7f0e6] text-[#111827] border border-[#e4dac9] text-xs">
+                    <Badge variant="secondary" className="bg-[#f3ede3] text-[#1d1a16] border border-[#e6ded1] text-xs">
                       {product.family}
                     </Badge>
                   </Link>
                   <Link href={`/shop/all?genders=${encodeURIComponent(product.gender)}`}>
-                    <Badge variant="secondary" className="bg-[#f7f0e6] text-[#111827] border border-[#e4dac9] capitalize text-xs">
+                    <Badge variant="secondary" className="bg-[#f3ede3] text-[#1d1a16] border border-[#e6ded1] capitalize text-xs">
                       {product.gender}
                     </Badge>
                   </Link>
                   {product.tags.slice(0, 4).map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-xs border-[#e4dac9] text-gray-600">
+                    <Badge key={tag} variant="outline" className="text-xs border-[#e6ded1] text-gray-600">
                       {tag}
                     </Badge>
                   ))}
@@ -360,19 +360,19 @@ export default function ProductPage({ params }: Props) {
             </div>
 
             {/* COLONNE 3 (Droite - 3/12) : Boîte d'achat PrestaShop & Frais de port réels */}
-            <div className="lg:col-span-3 space-y-4">
-              <div className="storefront-buybox bg-[#f7f0e6] border-2 border-[#e4dac9] rounded p-4 sm:p-5 space-y-4">
+            <div className="order-3 lg:order-3 lg:col-span-3 space-y-4">
+              <div className="storefront-buybox bg-[#faf7f2] p-5 sm:p-6 space-y-4">
                 {/* Prix TTC & Disponibilité */}
-                <div className="border-b border-[#e4dac9] pb-3">
+                <div className="border-b border-[#e6ded1] pb-3">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
-                      <span className="whitespace-nowrap text-2xl xl:text-3xl font-extrabold text-[#111827]">
+                      <span className="whitespace-nowrap text-2xl xl:text-[28px] font-medium text-[#1d1a16]">
                         {product.price.toFixed(2)} €
                       </span>
                       <span className="text-xs text-gray-600 ml-1.5 font-semibold">TTC</span>
                     </div>
                     {product.stock > 0 ? (
-                      <span className="ps-badge-instock flex items-center gap-1">
+                      <span className="flex items-center gap-1 text-xs text-[#4f7a4a]">
                         <Check className="h-3 w-3 stroke-[3]" /> En stock
                       </span>
                     ) : (
@@ -390,39 +390,53 @@ export default function ProductPage({ params }: Props) {
 
                 {/* Sélecteur de quantité + Bouton d'ajout + Favoris + Badges paiement */}
                 <ProductActions product={product} />
+
+                {product.stock <= 0 && (
+                  <div className="border-t border-[#e6ded1] pt-4">
+                    <p className="text-xs text-gray-700 mb-3">
+                      Ce parfum est momentanément indisponible. Découvrez des alternatives disponibles de la même famille olfactive.
+                    </p>
+                    <Link
+                      href={`/shop/all?families=${encodeURIComponent(product.family)}`}
+                      className="inline-flex w-full items-center justify-center rounded-[2px] border border-[#1d1a16] bg-white px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#1d1a16] transition-colors hover:bg-[#1d1a16] hover:text-white"
+                    >
+                      Voir les alternatives disponibles
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Encadré de livraison et garanties strictement conforme au panier */}
-              <div className="bg-white border border-[#e4dac9] rounded p-4 space-y-3 text-xs text-gray-700">
-                <div className="font-bold text-[#111827] uppercase tracking-wider border-b border-[#e4dac9] pb-2 flex items-center gap-2">
-                  <Truck className="h-4 w-4 text-[#d4a017]" />
+              <div className="border-t border-[#e6ded1] pt-4 space-y-3 text-xs text-[#5d564c]">
+                <div className="font-bold text-[#1d1a16] uppercase tracking-wider border-b border-[#e6ded1] pb-2 flex items-center gap-2">
+                  <Truck className="h-4 w-4 text-[#a8834f]" />
                   <span>Livraison &amp; Retours</span>
                 </div>
 
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <Package className="h-4 w-4 text-[#d4a017] shrink-0 mt-0.5" />
+                    <Package className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-[#111827]">Colissimo Domicile suivi :</strong>
+                      <strong className="text-[#1d1a16]">Colissimo Domicile suivi :</strong>
                       <div className="text-[11px] text-gray-600 mt-0.5">
-                        1 parfum : 7,10 € • 2 parfums : 9,59 € •{' '}
-                        <strong className="text-[#46a74e]">Offert dès 3 parfums</strong>
+                        1 parfum : 7,10 € •{' '}
+                        <strong className="text-[#46a74e]">Offert dès 2 parfums</strong>
                       </div>
                     </div>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ShieldCheck className="h-4 w-4 text-[#d4a017] shrink-0 mt-0.5" />
+                    <ShieldCheck className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-[#111827]">Parfum 100 % authentique :</strong>
+                      <strong className="text-[#1d1a16]">Parfum 100 % authentique :</strong>
                       <div className="text-[11px] text-gray-600">
                         Flacon neuf scellé sous blister d&apos;origine {product.brand.name}.
                       </div>
                     </div>
                   </li>
                   <li className="flex items-start gap-2">
-                    <RotateCcw className="h-4 w-4 text-[#d4a017] shrink-0 mt-0.5" />
+                    <RotateCcw className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-[#111827]">Retour sous 14 jours :</strong>
+                      <strong className="text-[#1d1a16]">Retour sous 14 jours :</strong>
                       <div className="text-[11px] text-gray-600">
                         Sur produit neuf non ouvert sous son film plastique d&apos;origine.
                       </div>
@@ -435,18 +449,18 @@ export default function ProductPage({ params }: Props) {
         </div>
 
         {/* ONGLETS FICHE TECHNIQUE & DESCRIPTION DÉTAILLÉE */}
-        <div className="mt-8 bg-white border border-[#e4dac9] rounded overflow-hidden">
+        <div className="mt-12 sm:mt-16 bg-white">
           <Tabs defaultValue="description" className="w-full">
-            <TabsList className="w-full justify-start rounded-none bg-[#111827] text-white p-0 h-auto border-b-2 border-[#d4a017] flex-wrap">
+            <TabsList className="w-full justify-start gap-6 rounded-none bg-transparent p-0 h-auto border-b border-[#e6ded1] flex-wrap">
               <TabsTrigger
                 value="description"
-                className="rounded-none py-3 px-6 text-xs sm:text-sm font-bold uppercase tracking-wider data-[state=active]:bg-[#d4a017] data-[state=active]:text-[#111827] text-white"
+                className="rounded-none px-0 py-3 text-sm font-normal text-[#6f6559] border-b-2 border-transparent -mb-px data-[state=active]:border-[#1d1a16] data-[state=active]:bg-transparent data-[state=active]:text-[#1d1a16] data-[state=active]:shadow-none"
               >
                 Description détaillée
               </TabsTrigger>
               <TabsTrigger
                 value="specs"
-                className="rounded-none py-3 px-6 text-xs sm:text-sm font-bold uppercase tracking-wider data-[state=active]:bg-[#d4a017] data-[state=active]:text-[#111827] text-white"
+                className="rounded-none px-0 py-3 text-sm font-normal text-[#6f6559] border-b-2 border-transparent -mb-px data-[state=active]:border-[#1d1a16] data-[state=active]:bg-transparent data-[state=active]:text-[#1d1a16] data-[state=active]:shadow-none"
               >
                 Caractéristiques
               </TabsTrigger>
@@ -460,31 +474,31 @@ export default function ProductPage({ params }: Props) {
             </TabsContent>
 
             <TabsContent value="specs" className="p-6 sm:p-8 m-0">
-              <table className="w-full max-w-2xl text-sm border-collapse border border-[#e4dac9]">
+              <table className="w-full max-w-2xl text-sm border-collapse border border-[#e6ded1]">
                 <tbody>
-                  <tr className="bg-[#fdfaf4]">
-                    <th className="border border-[#e4dac9] p-3 text-left font-bold w-1/3">Marque</th>
-                    <td className="border border-[#e4dac9] p-3">{product.brand.name}</td>
+                  <tr className="bg-[#faf7f2]">
+                    <th className="border border-[#e6ded1] p-3 text-left font-bold w-1/3">Marque</th>
+                    <td className="border border-[#e6ded1] p-3">{product.brand.name}</td>
                   </tr>
                   <tr>
-                    <th className="border border-[#e4dac9] p-3 text-left font-bold">Contenance</th>
-                    <td className="border border-[#e4dac9] p-3">{product.volumeMl || 100} ml</td>
+                    <th className="border border-[#e6ded1] p-3 text-left font-bold">Contenance</th>
+                    <td className="border border-[#e6ded1] p-3">{product.volumeMl || 100} ml</td>
                   </tr>
-                  <tr className="bg-[#fdfaf4]">
-                    <th className="border border-[#e4dac9] p-3 text-left font-bold">Concentration</th>
-                    <td className="border border-[#e4dac9] p-3">Eau de Parfum (EDP)</td>
-                  </tr>
-                  <tr>
-                    <th className="border border-[#e4dac9] p-3 text-left font-bold">Genre</th>
-                    <td className="border border-[#e4dac9] p-3 capitalize">{product.gender}</td>
-                  </tr>
-                  <tr className="bg-[#fdfaf4]">
-                    <th className="border border-[#e4dac9] p-3 text-left font-bold">Famille olfactive</th>
-                    <td className="border border-[#e4dac9] p-3">{product.family}</td>
+                  <tr className="bg-[#faf7f2]">
+                    <th className="border border-[#e6ded1] p-3 text-left font-bold">Concentration</th>
+                    <td className="border border-[#e6ded1] p-3">Eau de Parfum (EDP)</td>
                   </tr>
                   <tr>
-                    <th className="border border-[#e4dac9] p-3 text-left font-bold">Conditionnement</th>
-                    <td className="border border-[#e4dac9] p-3">Flacon vaporisateur neuf sous blister</td>
+                    <th className="border border-[#e6ded1] p-3 text-left font-bold">Genre</th>
+                    <td className="border border-[#e6ded1] p-3 capitalize">{product.gender}</td>
+                  </tr>
+                  <tr className="bg-[#faf7f2]">
+                    <th className="border border-[#e6ded1] p-3 text-left font-bold">Famille olfactive</th>
+                    <td className="border border-[#e6ded1] p-3">{product.family}</td>
+                  </tr>
+                  <tr>
+                    <th className="border border-[#e6ded1] p-3 text-left font-bold">Conditionnement</th>
+                    <td className="border border-[#e6ded1] p-3">Flacon vaporisateur neuf sous blister</td>
                   </tr>
                 </tbody>
               </table>
@@ -495,11 +509,11 @@ export default function ProductPage({ params }: Props) {
         {/* SECTION : VOUS POURRIEZ AUSSI AIMER */}
         {relatedProducts.length > 0 && (
           <section className="mt-12">
-            <div className="flex items-center justify-between border-b-2 border-[#d4a017] pb-3 mb-6">
-              <h2 className="text-xl sm:text-2xl font-headline font-bold text-[#111827]">
+            <div className="flex items-end justify-between border-b border-[#e6ded1] pb-4 mb-8">
+              <h2 className="text-[30px] sm:text-[38px] font-headline font-normal leading-none text-[#1d1a16]">
                 Vous pourriez aussi aimer
               </h2>
-              <Link href="/shop/all" className="text-xs font-bold uppercase tracking-wider text-[#d4a017] hover:underline">
+              <Link href="/shop/all" className="text-xs font-bold uppercase tracking-wider text-[#a8834f] hover:underline">
                 Voir tout le catalogue →
               </Link>
             </div>

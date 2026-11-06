@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { priceOrder, resolveBuyer, ALLOWED_COUNTRIES } from '@/lib/order-pricing';
+import { computePromoDiscount, resolvePromoCode, type ResolvedPromo } from '@/lib/promo-codes';
 
 /**
  * Crée la session Stripe Checkout côté serveur.
  *
  * Les prix et les frais de port sont recalculés ici à partir du catalogue :
  * ce que le client envoie (un id + une quantité) ne peut pas influencer le montant.
+ * Les coordonnées de livraison déjà saisies ou enregistrées par le client sont
+ * directement attachées au Customer Stripe afin d'éviter toute double saisie sur Stripe.
  */
 export async function POST(req: NextRequest) {
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
@@ -17,8 +20,7 @@ export async function POST(req: NextRequest) {
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dubainegoce.fr';
 
-  // --- Acheteur : compte connecte (jeton Firebase verifie) ou invite ---
-  // On ne fait jamais confiance a un uid poste par le navigateur.
+  // --- Acheteur : compte connecté (jeton Firebase vérifié) ou invité ---
   const buyer = await resolveBuyer(req.headers.get('authorization'));
   if ('error' in buyer) {
     return NextResponse.json({ error: buyer.error }, { status: 401 });
@@ -33,8 +35,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Requête invalide.' }, { status: 400 });
   }
 
-  const { items, customer, pickupPoint } = body as {
+  const { items, customer, pickupPoint, promoCode } = body as {
     items?: Array<{ id: string; quantity: number }>;
+    promoCode?: string;
     customer?: {
       email?: string;
       phone?: string;
@@ -60,13 +63,15 @@ export async function POST(req: NextRequest) {
   }
 
   const email = (customer?.email || tokenEmail || '').trim();
-  const phone = (customer?.phone || '').trim();
+  const rawPhone = (customer?.phone || '').trim();
+  // Stripe limite le champ phone à 20 caractères maximum
+  const phone = rawPhone.slice(0, 20);
 
   if (!email) {
     return NextResponse.json({ error: 'Adresse e-mail manquante.' }, { status: 400 });
   }
 
-  // --- Prix, stock et frais de port recalcules depuis le catalogue serveur ---
+  // --- Prix, stock et frais de port recalculés depuis le catalogue serveur ---
   const priced = priceOrder(items, customer?.shippingMethod, customer?.country);
   if (!priced.ok) {
     return NextResponse.json({ error: priced.error }, { status: priced.status });
@@ -74,7 +79,7 @@ export async function POST(req: NextRequest) {
   const { shippingMethod, country, shippingCost, total: orderTotal } = priced;
 
   if (shippingMethod === 'mondial-relay' && !pickupPoint?.id) {
-    return NextResponse.json({ error: 'Veuillez sélectionner un point relais.' }, { status: 400 });
+    return NextResponse.json({ error: 'Veuillez sélectionner un point relais sur la carte.' }, { status: 400 });
   }
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = priced.lines.map(({ product, quantity }) => {
@@ -103,36 +108,73 @@ export async function POST(req: NextRequest) {
 
   const stripe = new Stripe(stripeSecretKey);
 
-  // Pré-remplissage du client Stripe avec l'adresse déjà saisie sur Dubai Négoce
-  // Cela évite de redemander une 2e fois l'adresse et le téléphone sur la page Stripe !
+  // Code promo saisi dans le panier : revérifié ici avant d'être appliqué par Stripe.
+  let promo: ResolvedPromo | null = null;
+  if (typeof promoCode === 'string' && promoCode.trim()) {
+    try {
+      const promoResult = await resolvePromoCode(stripe, promoCode, priced.subtotal);
+      if (!promoResult.ok) {
+        return NextResponse.json({ error: promoResult.error }, { status: 400 });
+      }
+      promo = promoResult.promo;
+    } catch (e) {
+      console.error('[api/stripe/checkout] Vérification du code promo impossible :', e);
+      return NextResponse.json({ error: 'Impossible de vérifier le code promo pour le moment.' }, { status: 500 });
+    }
+  }
+  const promoDiscount = promo ? computePromoDiscount(promo, priced.subtotal) : 0;
+
+  const hasCompleteAddress = Boolean(
+    customer?.address?.trim() &&
+    customer?.postalCode?.trim() &&
+    customer?.city?.trim()
+  );
+
+  // Réutilisation ou création du client Stripe avec ses coordonnées déjà enregistrées
+  // pour que Stripe Checkout ne redemande ni l'adresse, ni le téléphone.
   let customerId: string | undefined;
   if (email) {
     try {
       const customerName = `${customer?.firstName || ''} ${customer?.lastName || ''}`.trim();
-      const stripeCustomer = await stripe.customers.create({
-        email,
-        name: customerName || undefined,
-        phone: phone || undefined,
-        shipping: customer?.address ? {
-          name: customerName,
+      const addressPayload: Stripe.AddressParam | undefined = hasCompleteAddress
+        ? {
+            line1: customer!.address!.trim(),
+            postal_code: customer!.postalCode!.trim(),
+            city: customer!.city!.trim(),
+            country: country || 'FR',
+          }
+        : undefined;
+
+      const shippingPayload: Stripe.CustomerCreateParams.Shipping | undefined =
+        hasCompleteAddress && customerName
+          ? {
+              name: customerName,
+              phone: phone || undefined,
+              address: addressPayload!,
+            }
+          : undefined;
+
+      const existingCustomers = await stripe.customers.list({ email, limit: 1 });
+      if (existingCustomers.data.length > 0) {
+        const updated = await stripe.customers.update(existingCustomers.data[0].id, {
+          name: customerName || undefined,
           phone: phone || undefined,
-          address: {
-            line1: customer.address,
-            postal_code: customer.postalCode || '',
-            city: customer.city || '',
-            country: customer.country || 'FR',
-          },
-        } : undefined,
-        address: customer?.address ? {
-          line1: customer.address,
-          postal_code: customer.postalCode || '',
-          city: customer.city || '',
-          country: customer.country || 'FR',
-        } : undefined,
-      });
-      customerId = stripeCustomer.id;
+          ...(addressPayload ? { address: addressPayload } : {}),
+          ...(shippingPayload ? { shipping: shippingPayload } : {}),
+        });
+        customerId = updated.id;
+      } else {
+        const created = await stripe.customers.create({
+          email,
+          name: customerName || undefined,
+          phone: phone || undefined,
+          address: addressPayload,
+          shipping: shippingPayload,
+        });
+        customerId = created.id;
+      }
     } catch (e) {
-      console.warn('[api/stripe/checkout] Erreur création client Stripe prefill :', e);
+      console.warn('[api/stripe/checkout] Erreur synchronisation client Stripe :', e);
     }
   }
 
@@ -171,7 +213,19 @@ export async function POST(req: NextRequest) {
               allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
             },
           }),
-      allow_promotion_codes: true,
+      // On ne redemande l'adresse et le téléphone sur Stripe QUE s'ils n'ont pas déjà été fournis sur le site
+      ...(!hasCompleteAddress
+        ? {
+            phone_number_collection: { enabled: true },
+            shipping_address_collection: {
+              allowed_countries: [
+                ...ALLOWED_COUNTRIES,
+              ] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+            },
+          }
+        : {}),
+      // Stripe n'accepte pas les deux options ensemble : code du panier, sinon saisie sur Stripe.
+      ...(promo ? { discounts: [{ promotion_code: promo.promotionCodeId }] } : { allow_promotion_codes: true }),
       shipping_options: [
         {
           shipping_rate_data: {
@@ -190,14 +244,15 @@ export async function POST(req: NextRequest) {
         enabled: true,
       },
       invoice_creation: { enabled: true },
-      success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${orderTotal.toFixed(2)}`,
+      success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}&total=${(orderTotal - promoDiscount).toFixed(2)}`,
       cancel_url: `${appUrl}/cart`,
       metadata: {
         userId,
         email,
-        phone,
+        phone: rawPhone,
         shippingMethod,
         shippingCost: shippingCost.toFixed(2),
+        promoCode: promo?.code || '',
         country,
         customerName: `${customer?.firstName || ''} ${customer?.lastName || ''}`.trim(),
         addressLine: customer?.address || '',
@@ -212,10 +267,14 @@ export async function POST(req: NextRequest) {
     });
 
     if (!session.url) {
-      throw new Error('Stripe n\'a pas retourné d\'URL de paiement.');
+      throw new Error("Stripe n'a pas retourné d'URL de paiement.");
     }
 
-    console.log(`[api/stripe/checkout] Session ${session.id} créée pour ${userId === 'guest' ? `l'invité ${email}` : `l'utilisateur ${userId}`}.`);
+    console.log(
+      `[api/stripe/checkout] Session ${session.id} créée pour ${
+        userId === 'guest' ? `l'invité ${email}` : `l'utilisateur ${userId}`
+      }.`
+    );
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (error: any) {
     console.error('[api/stripe/checkout] Échec de création de la session :', error);

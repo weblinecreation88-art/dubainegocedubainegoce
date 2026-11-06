@@ -63,7 +63,7 @@ export function getSmartRelatedProducts(currentProduct: Product, limit: number =
       product,
       score: calculateRecommendationScore(currentProduct, product)
     }))
-    .filter(item => item.score > -Infinity) // Exclure le produit actuel
+    .filter(item => item.score > -Infinity && item.product.stock > 0) // Exclure le produit actuel et les ruptures
     .sort((a, b) => b.score - a.score) // Tri décroissant par score
     .slice(0, limit)
     .map(item => item.product);

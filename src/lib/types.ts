@@ -108,6 +108,7 @@ export interface Order {
     customerName?: string;
     customerPhone?: string;
     shippingCost?: number;
+    promoCode?: string;
     shippingAddress?: {
         line1?: string;
         line2?: string;
