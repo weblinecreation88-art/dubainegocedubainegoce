@@ -24,7 +24,7 @@ export function CartDrawer() {
 
   const totalItems = getCartCount();
   const subtotal = getCartSubtotal();
-  const shippingCost = computeShippingCost('colissimo', 'FR', totalItems, subtotal);
+  const shippingCost = computeShippingCost('mondial-relay', 'FR', totalItems, subtotal);
   const total = subtotal + shippingCost;
   const remainingForFree = Math.max(0, FREE_SHIPPING_MIN_ITEMS - totalItems);
   const freeShippingProgress = Math.min(100, (totalItems / FREE_SHIPPING_MIN_ITEMS) * 100);
@@ -76,7 +76,7 @@ export function CartDrawer() {
                       Plus que <strong>{remainingForFree} parfum{remainingForFree > 1 ? 's' : ''}</strong> pour la livraison offerte
                     </span>
                   ) : (
-                    <span className="font-medium text-[#3d7a44]">Livraison Colissimo offerte !</span>
+                    <span className="font-medium text-[#3d7a44]">Livraison offerte dès 2 parfums !</span>
                   )}
                 </p>
                 <div className="mt-2 h-1.5 rounded-full bg-[#e6ded1] overflow-hidden">
@@ -150,7 +150,7 @@ export function CartDrawer() {
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-[#5d564c]">
-                  <span>Livraison (Colissimo 48h)</span>
+                  <span>Livraison dès (Mondial Relay)</span>
                   <span>{shippingCost === 0 ? 'Offerte' : formatPrice(shippingCost)}</span>
                 </div>
                 <div className="flex justify-between font-medium text-base pt-2 border-t border-[#e6ded1]">

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Truck, CreditCard, ShieldCheck, Package } from 'lucide-react';
+import { Truck, CreditCard, ShieldCheck, Package, Store } from 'lucide-react';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export const metadata: Metadata = {

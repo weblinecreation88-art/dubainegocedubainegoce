@@ -35,7 +35,7 @@ export default function ShippingPolicyPage() {
           </div>
 
           <p className="text-sm text-gray-700 leading-relaxed">
-            Toutes les commandes sont expédiées via <strong>Colissimo Domicile avec numéro de suivi</strong> communiqué par e-mail dès la prise en charge du colis.
+            Nous proposons deux modes de livraison avec suivi : <strong>Mondial Relay dès 4,10 €</strong> (en Point Relais et Locker 24/7 avec carte interactive) et <strong>Colissimo Domicile à 7,10 €</strong> (livraison en boîte aux lettres sous 48h).
           </p>
 
           {/* Grille tarifaire identique à computeShippingCost */}

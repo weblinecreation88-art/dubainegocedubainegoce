@@ -196,7 +196,7 @@ export default function CartPage() {
     }
   };
 
-  const hasReadyAddress = isAddressComplete(savedUserAddress);
+  const hasReadyAddress = isAddressComplete(savedUserAddress) && (formShippingMethod !== 'mondial-relay' || Boolean(selectedPickupPoint));
 
   useEffect(() => {
     if (!isClient || cart.length === 0) return;
@@ -468,13 +468,79 @@ export default function CartPage() {
             <span className="font-medium text-[#4f7a4a] whitespace-nowrap">−{formatEuro(promoDiscount)}</span>
           </div>
         )}
-        <div className="flex justify-between gap-4">
-          <span className="text-[#4a443c]">
-            Livraison · {formShippingMethod === 'mondial-relay' ? 'Mondial Relay' : 'Colissimo domicile 48 h'}
-          </span>
-          <span className="font-medium text-[#1d1a16] whitespace-nowrap">
-            {shippingCost === 0 ? 'Offerte' : formatEuro(shippingCost)}
-          </span>
+        <div className="pt-2 pb-2">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6559] mb-2 font-medium">Mode de livraison</p>
+          <div className="space-y-2">
+            <button
+              type="button"
+              onClick={() => setFormShippingMethod('mondial-relay')}
+              className={`w-full text-left flex items-center justify-between p-3 border transition-colors text-xs ${
+                formShippingMethod === 'mondial-relay'
+                  ? 'border-[#1d1a16] bg-white ring-1 ring-[#1d1a16]'
+                  : 'border-[#d9cfbf] hover:border-[#1d1a16]/60 bg-transparent'
+              }`}
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="w-4 h-4 rounded-full border border-[#1d1a16] flex items-center justify-center">
+                  {formShippingMethod === 'mondial-relay' && <div className="w-2 h-2 rounded-full bg-[#1d1a16]" />}
+                </div>
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-semibold text-[#1d1a16]">Mondial Relay</span>
+                    <span className="text-[9px] bg-[#e7f3ec] text-[#1b6b3e] font-semibold px-1 py-0.5 rounded">
+                      Économique
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[#6f6559]">Point Relais &amp; Lockers 24/7</p>
+                </div>
+              </div>
+              <span className="font-bold text-[#1d1a16]">
+                {mondialRelayCost === 0 ? <span className="text-[#1b6b3e]">Offerte</span> : formatEuro(mondialRelayCost)}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setFormShippingMethod('colissimo')}
+              className={`w-full text-left flex items-center justify-between p-3 border transition-colors text-xs ${
+                formShippingMethod === 'colissimo'
+                  ? 'border-[#1d1a16] bg-white ring-1 ring-[#1d1a16]'
+                  : 'border-[#d9cfbf] hover:border-[#1d1a16]/60 bg-transparent'
+              }`}
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="w-4 h-4 rounded-full border border-[#1d1a16] flex items-center justify-center">
+                  {formShippingMethod === 'colissimo' && <div className="w-2 h-2 rounded-full bg-[#1d1a16]" />}
+                </div>
+                <div>
+                  <span className="font-semibold text-[#1d1a16]">Colissimo Domicile</span>
+                  <p className="text-[11px] text-[#6f6559]">Boîte aux lettres (48h)</p>
+                </div>
+              </div>
+              <span className="font-bold text-[#1d1a16]">
+                {colissimoCost === 0 ? <span className="text-[#1b6b3e]">Offerte</span> : formatEuro(colissimoCost)}
+              </span>
+            </button>
+          </div>
+
+          {formShippingMethod === 'mondial-relay' && (
+            <div className="mt-2 text-[11px] text-[#6f6559] flex items-center justify-between bg-white p-2.5 border border-[#e6ded1]">
+              <span className="min-w-0 truncate">
+                {selectedPickupPoint ? (
+                  <span className="text-[#1b6b3e] font-medium">✓ {selectedPickupPoint.name} ({selectedPickupPoint.postalCode})</span>
+                ) : (
+                  <span>📍 Choix du relais sur carte</span>
+                )}
+              </span>
+              <button
+                type="button"
+                onClick={() => setMainStep('checkout-form')}
+                className="text-[#1d1a16] underline underline-offset-2 hover:text-[#b8955f] text-[10px] uppercase font-semibold ml-2 shrink-0"
+              >
+                {selectedPickupPoint ? 'Changer' : 'Choisir'}
+              </button>
+            </div>
+          )}
         </div>
         <div className="flex justify-between items-baseline pt-4 border-t border-[#1d1a16]/20">
           <span className="text-[#1d1a16]">
