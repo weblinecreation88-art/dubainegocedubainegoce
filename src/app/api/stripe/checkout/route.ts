@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
   const { shippingMethod, country, shippingCost, total: orderTotal } = priced;
 
   if (shippingMethod === 'mondial-relay' && !pickupPoint?.id) {
-    return NextResponse.json({ error: 'Veuillez sélectionner un point relais.' }, { status: 400 });
+    return NextResponse.json({ error: 'Veuillez sélectionner un point relais sur la carte.' }, { status: 400 });
   }
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = priced.lines.map(({ product, quantity }) => {
@@ -178,12 +178,14 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  const hasCustomerAddress = Boolean(customerId && customer?.address && customer?.postalCode && customer?.city);
+
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
       line_items: lineItems,
-      ...(customerId
+      ...(hasCustomerAddress
         ? {
             customer: customerId,
             customer_update: {
@@ -191,7 +193,26 @@ export async function POST(req: NextRequest) {
               name: 'auto',
             },
           }
-        : { customer_email: email }),
+        : customerId
+        ? {
+            customer: customerId,
+            customer_update: {
+              shipping: 'auto',
+              address: 'auto',
+              name: 'auto',
+            },
+            phone_number_collection: { enabled: true },
+            shipping_address_collection: {
+              allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+            },
+          }
+        : {
+            customer_email: email,
+            phone_number_collection: { enabled: true },
+            shipping_address_collection: {
+              allowed_countries: [...ALLOWED_COUNTRIES] as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry[],
+            },
+          }),
       // On ne redemande l'adresse et le téléphone sur Stripe QUE s'ils n'ont pas déjà été fournis sur le site
       ...(!hasCompleteAddress
         ? {

@@ -37,10 +37,10 @@ interface Order {
 }
 
 const STATUS_LABEL: Record<string, string> = {
-  completed: 'Payée',
+  completed: 'Payée — À expédier',
   pending: 'En attente',
   processing: 'En préparation',
-  shipped: 'Expédiée',
+  shipped: 'Expédiée ✅',
   delivered: 'Livrée',
   cancelled: 'Annulée',
 };
@@ -58,6 +58,34 @@ function statusClass(status: string) {
     default:
       return 'bg-muted text-muted-foreground border-border';
   }
+}
+
+function buildWhatsAppTrackingUrl(order: Order, trackingCode: string): string | null {
+  const rawPhone = (order.customerPhone || '').replace(/\D/g, '');
+  if (!rawPhone) return null;
+  let intlPhone = rawPhone;
+  if (rawPhone.startsWith('0') && rawPhone.length === 10) {
+    intlPhone = '33' + rawPhone.slice(1);
+  } else if (rawPhone.startsWith('00')) {
+    intlPhone = rawPhone.slice(2);
+  }
+  const code = trackingCode.trim().toUpperCase();
+  const trackUrl = `https://www.laposte.fr/outils/suivre-vos-envois?code=${encodeURIComponent(code)}`;
+  const itemsList = (order.orderItems || [])
+    .map((it) => `${it.name} (x${it.quantity})`)
+    .join(', ');
+  const firstName = (order.customerName || 'Client').split(' ')[0];
+  const msg = [
+    `Bonjour ${firstName}, c'est l'équipe Dubaï Négoce ! 🌟`,
+    ``,
+    `Bonne nouvelle : votre commande (${itemsList || 'Parfums de Dubaï'}) vient d'être expédiée en Colissimo suivi.`,
+    ``,
+    `📦 Numéro de suivi : *${code}*`,
+    `🔗 Suivre votre colis en direct : ${trackUrl}`,
+    ``,
+    `Merci pour votre confiance et excellente réception !`,
+  ].join('\n');
+  return `https://wa.me/${intlPhone}?text=${encodeURIComponent(msg)}`;
 }
 
 function OrderDate({ order }: { order: Order }) {
@@ -87,10 +115,9 @@ export default function AdminOrdersPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [tracking, setTracking] = useState<Record<string, string>>({});
   const [sending, setSending] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<{ id: string; ok: boolean; msg: string } | null>(null);
+  const [feedback, setFeedback] = useState<{ id: string; ok: boolean; msg: string; waUrl?: string | null } | null>(null);
   const { user } = useUser();
 
-  // Les routes /api/admin verifient le jeton Firebase cote serveur.
   const authHeaders = useCallback(async (): Promise<HeadersInit> => {
     if (!user) return {};
     return { Authorization: `Bearer ${await user.getIdToken()}` };
@@ -113,11 +140,16 @@ export default function AdminOrdersPage() {
     fetchOrders();
   }, [fetchOrders]);
 
-  const markAsShipped = async (order: Order) => {
-    const num = (tracking[order.id] || '').trim();
+  const markAsShipped = async (order: Order, alsoOpenWhatsApp = false) => {
+    const num = (tracking[order.id] || '').trim().toUpperCase();
     if (!num) {
-      setFeedback({ id: order.id, ok: false, msg: 'Saisissez un numéro de suivi.' });
+      setFeedback({ id: order.id, ok: false, msg: 'Saisissez un numéro de suivi Colissimo.' });
       return;
+    }
+
+    const waUrl = buildWhatsAppTrackingUrl(order, num);
+    if (alsoOpenWhatsApp && waUrl) {
+      window.open(waUrl, '_blank');
     }
 
     setSending(order.id);
@@ -130,7 +162,7 @@ export default function AdminOrdersPage() {
           userId: order.userId,
           orderId: order.id,
           trackingNumber: num,
-          carrier: order.shippingMethod,
+          carrier: order.shippingMethod || 'colissimo',
         }),
       });
       const data = await res.json();
@@ -141,8 +173,9 @@ export default function AdminOrdersPage() {
         id: order.id,
         ok: true,
         msg: data.emailSent
-          ? `Client prévenu par e-mail (${num}).`
-          : data.message || 'Commande expédiée, e-mail non envoyé.',
+          ? `✅ Commande marquée expédiée ! Le client a reçu son e-mail automatique avec le suivi ${num}.`
+          : data.message || 'Commande expédiée (vous pouvez aussi lui envoyer le WhatsApp ci-dessous).',
+        waUrl,
       });
       await fetchOrders();
     } catch (e: any) {
@@ -169,9 +202,9 @@ export default function AdminOrdersPage() {
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold">Commandes</h1>
+        <h1 className="text-2xl font-semibold">📦 Commandes &amp; Expéditions Colissimo</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Saisissez un numéro de suivi pour prévenir automatiquement le client.
+          Entrez le numéro de suivi Colissimo : le client reçoit <strong>automatiquement un e-mail</strong> avec le lien La Poste, et vous pouvez aussi le prévenir <strong>en 1 clic sur WhatsApp</strong>.
         </p>
       </div>
 
@@ -207,6 +240,9 @@ export default function AdminOrdersPage() {
           {filteredOrders.map((order) => {
             const isOpen = expanded === order.id;
             const canShip = order.status !== 'shipped' && order.status !== 'delivered';
+            const currentCode = (tracking[order.id] || order.trackingNumber || '').trim();
+            const waTrackingLink = currentCode ? buildWhatsAppTrackingUrl(order, currentCode) : null;
+
             return (
               <div key={order.id} className="border rounded-lg overflow-hidden bg-background">
                 <button
@@ -236,41 +272,29 @@ export default function AdminOrdersPage() {
                   <div className="border-t p-4 space-y-4 bg-muted/20">
                     <div className="grid md:grid-cols-2 gap-4 text-sm">
                       <div>
-                        <div className="text-xs uppercase text-muted-foreground mb-1">Livraison</div>
-                        <div>
-                          {order.shippingMethod === 'mondial-relay'
-                            ? 'Mondial Relay'
-                            : 'Colissimo'}
-                        </div>
-                        {order.pickupPoint?.name && (
-                          <div className="text-muted-foreground mt-1">
-                            {order.pickupPoint.name}
+                        <div className="text-xs uppercase text-muted-foreground mb-1 font-semibold">Adresse de Livraison (Colissimo)</div>
+                        {order.shippingAddress && (
+                          <div className="text-foreground font-medium mt-1">
+                            {order.customerName}
                             <br />
-                            {order.pickupPoint.address}
-                            <br />
-                            {order.pickupPoint.postalCode} {order.pickupPoint.city}
-                          </div>
-                        )}
-                        {!order.pickupPoint?.name && order.shippingAddress && (
-                          <div className="text-muted-foreground mt-1">
                             {order.shippingAddress.line1}
                             <br />
-                            {order.shippingAddress.postalCode} {order.shippingAddress.city}
+                            {order.shippingAddress.postalCode} {order.shippingAddress.city} ({order.shippingAddress.country || 'FR'})
                           </div>
                         )}
                         {order.customerPhone && (
                           <div className="text-muted-foreground mt-1">
-                            Tél. {order.customerPhone}
+                            📞 Tél : <strong>{order.customerPhone}</strong>
                           </div>
                         )}
                       </div>
 
                       <div>
-                        <div className="text-xs uppercase text-muted-foreground mb-1">Articles</div>
+                        <div className="text-xs uppercase text-muted-foreground mb-1 font-semibold">Parfums à préparer</div>
                         {(order.orderItems || []).map((it, i) => (
-                          <div key={i} className="flex justify-between gap-2">
-                            <span>{it.name}</span>
-                            <span className="text-muted-foreground whitespace-nowrap">
+                          <div key={i} className="flex justify-between gap-2 py-1 border-b last:border-0">
+                            <span className="font-medium">{it.name}</span>
+                            <span className="font-bold whitespace-nowrap">
                               x{it.quantity}
                             </span>
                           </div>
@@ -279,39 +303,69 @@ export default function AdminOrdersPage() {
                     </div>
 
                     {order.trackingNumber ? (
-                      <div className="rounded-md border bg-background p-3 text-sm">
-                        <span className="text-muted-foreground">Expédiée — suivi </span>
-                        <span className="font-mono font-semibold">{order.trackingNumber}</span>
-                        {order.shippedAt && (
-                          <span className="text-muted-foreground">
-                            {' '}
-                            le {new Date(order.shippedAt).toLocaleDateString('fr-FR')}
-                          </span>
+                      <div className="rounded-md border bg-background p-3 text-sm flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                          <span className="text-muted-foreground">✅ Expédiée — Numéro de suivi : </span>
+                          <a
+                            href={`https://www.laposte.fr/outils/suivre-vos-envois?code=${encodeURIComponent(order.trackingNumber)}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-mono font-bold underline"
+                          >
+                            {order.trackingNumber}
+                          </a>
+                          {order.shippedAt && (
+                            <span className="text-muted-foreground">
+                              {' '}
+                              le {new Date(order.shippedAt).toLocaleDateString('fr-FR')}
+                            </span>
+                          )}
+                        </div>
+                        {waTrackingLink && (
+                          <a
+                            href={waTrackingLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="px-3 py-1.5 rounded-md bg-green-600 hover:bg-green-700 text-white text-xs font-semibold inline-flex items-center gap-1.5"
+                          >
+                            💬 Envoyer le suivi sur WhatsApp au client
+                          </a>
                         )}
                       </div>
                     ) : canShip ? (
-                      <div className="flex flex-wrap items-center gap-2">
-                        <input
-                          value={tracking[order.id] || ''}
-                          onChange={(e) =>
-                            setTracking((t) => ({ ...t, [order.id]: e.target.value }))
-                          }
-                          placeholder="Numéro de suivi transporteur"
-                          className="flex-1 min-w-[220px] px-3 py-2 rounded-md border bg-background text-sm"
-                        />
-                        <button
-                          onClick={() => markAsShipped(order)}
-                          disabled={sending === order.id}
-                          className="px-4 py-2 rounded-md bg-foreground text-background text-sm font-medium disabled:opacity-50"
-                        >
-                          {sending === order.id ? 'Envoi…' : 'Marquer expédiée + prévenir'}
-                        </button>
+                      <div className="space-y-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <input
+                            value={tracking[order.id] || ''}
+                            onChange={(e) =>
+                              setTracking((t) => ({ ...t, [order.id]: e.target.value }))
+                            }
+                            placeholder="Ex: 6A12345678901 (Numéro de suivi Colissimo)"
+                            className="flex-1 min-w-[240px] px-3 py-2 rounded-md border bg-background text-sm font-mono"
+                          />
+                          <button
+                            onClick={() => markAsShipped(order, false)}
+                            disabled={sending === order.id}
+                            className="px-4 py-2 rounded-md bg-foreground text-background text-sm font-semibold disabled:opacity-50"
+                          >
+                            {sending === order.id ? 'Envoi en cours…' : '📧 Valider + Envoyer Email Auto'}
+                          </button>
+                          {order.customerPhone && (
+                            <button
+                              onClick={() => markAsShipped(order, true)}
+                              disabled={sending === order.id}
+                              className="px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white text-sm font-semibold disabled:opacity-50"
+                            >
+                              💬 Valider + Email + WhatsApp Client
+                            </button>
+                          )}
+                        </div>
                       </div>
                     ) : null}
 
                     {feedback?.id === order.id && (
                       <div
-                        className={`text-sm ${feedback.ok ? 'text-green-600' : 'text-red-600'}`}
+                        className={`text-sm font-medium ${feedback.ok ? 'text-green-600' : 'text-red-600'}`}
                       >
                         {feedback.msg}
                       </div>
