@@ -130,6 +130,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/blog/parfums-hiver-dubai-couple-seduction`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/pourquoi-femmes-portent-parfums-orientaux-homme-hiver`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/blog/top-5-lattafa-2025`,
       changeFrequency: 'monthly',
       priority: 0.6,

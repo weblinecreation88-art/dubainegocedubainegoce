@@ -1,4 +1,3 @@
-
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +9,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 export const metadata: Metadata = {
     title: 'Blog Parfums Orientaux — Guides, Avis et Décryptages',
     description: 'Guides d\'achat, avis détaillés, décryptage de l\'oud, sélections des meilleures créations de Dubaï (Lattafa, Maison Alhambra, French Avenue).',
-    keywords: 'guide parfum oriental, avis Khamrah, avis Maison Alhambra, parfum oud guide, parfum oriental femme, Lattafa meilleur parfum, parfums dubai',
+    keywords: 'guide parfum oriental, parfum hiver dubai, avis Khamrah, avis Maison Alhambra, parfum oud guide, parfum oriental femme, Lattafa meilleur parfum, parfums dubai',
     alternates: {
         canonical: 'https://dubainegoce.fr/blog',
     },
@@ -23,6 +22,20 @@ export const metadata: Metadata = {
 };
 
 const blogPosts = [
+    {
+        title: 'L\'hiver arrive : Mesdames, Messieurs, et si vous osiez ce parfum de Dubaï qui fait se retourner tout le monde ?',
+        description: 'Pourquoi le froid sublime les parfums orientaux : notre sélection hiver (vanille bourbon, cannelle, praline, oud) pour Elle, pour Lui et à partager à 35 €.',
+        link: '/blog/parfums-hiver-dubai-couple-seduction',
+        imageUrl: '/images/hero/hero-khamrah.jpg',
+        imageHint: 'Parfums hiver Dubai Khamrah Asad Yara Moi'
+    },
+    {
+        title: 'Mesdames, et si votre meilleur parfum d\'hiver était au rayon Homme ? (Et Messieurs, osez le gourmand !)',
+        description: 'À Dubaï, une grande fragrance appartient à la peau qui la porte. Découvrez pourquoi croiser les genres en hiver offre les sillages les plus complimentés.',
+        link: '/blog/pourquoi-femmes-portent-parfums-orientaux-homme-hiver',
+        imageUrl: '/images/hero/hero-tudor.jpg',
+        imageHint: 'Parfum oriental mixte hiver boisé gourmand'
+    },
     {
         title: 'Fakhar Black Lattafa : le masculin sombre qui s\'installe dans les tops',
         description: 'Intense, boisé, profond — Fakhar Black est le parfum homme de Lattafa qu\'on ne s\'attendait pas à autant apprécier. Avis complet, sillage, occasions.',
