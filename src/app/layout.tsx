@@ -28,8 +28,8 @@ const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || 'AW-875971831';
 
 const reassurances = [
   {
-    title: 'Livraison Colissimo suivie',
-    description: '7,10 € pour 1 parfum, offerte dès 2 parfums',
+    title: 'Livraison Mondial Relay suivie',
+    description: 'Dès 4,10 € en Point Relais, offerte dès 2 parfums',
     href: '/livraison-et-paiement',
   },
   {

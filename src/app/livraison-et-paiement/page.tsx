@@ -4,9 +4,9 @@ import { Truck, CreditCard, ShieldCheck, Package, Store } from 'lucide-react';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 
 export const metadata: Metadata = {
-  title: 'Livraison et Paiement | Dubaï Négoce',
+  title: 'Livraison Mondial Relay & Paiement | Dubaï Négoce',
   description:
-    'Consultez nos tarifs de livraison Colissimo (offerte dès 2 parfums) et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
+    'Consultez nos tarifs de livraison Mondial Relay dès 4,10 € (offerte dès 2 parfums), Colissimo et nos moyens de paiement sécurisés (CB, Visa, Mastercard, Apple Pay, Google Pay).',
 };
 
 export default function DeliveryAndPaymentPage() {
@@ -33,29 +33,33 @@ export default function DeliveryAndPaymentPage() {
           <div className="space-y-4">
             <div className="flex items-center gap-2.5 pb-2 border-b border-[#e6ded1]">
               <Truck className="w-5 h-5 text-[#a8834f]" />
-              <h2 className="text-lg font-headline font-bold">Livraison Colissimo Domicile</h2>
+              <h2 className="text-lg font-headline font-bold">Livraison Mondial Relay &amp; Colissimo</h2>
             </div>
 
             <div className="bg-[#faf7f2] p-5 rounded border border-[#e6ded1] space-y-4">
               <div className="flex items-start gap-3">
                 <div className="bg-[#1d1a16] text-[#a8834f] w-10 h-10 flex items-center justify-center rounded shrink-0">
-                  <Package className="w-5 h-5" />
+                  <Store className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-base">Colissimo Domicile avec suivi</h3>
+                  <h3 className="font-bold text-base">Mondial Relay (Point Relais &amp; Locker 24/7)</h3>
                   <p className="text-xs text-gray-600 mt-1">
-                    Livraison à l&apos;adresse indiquée avec numéro de suivi envoyé par e-mail.
+                    Retrait dans le Point Relais ou Locker de votre choix avec suivi communiqué par e-mail et SMS.
                   </p>
                 </div>
               </div>
 
               <ul className="space-y-2 text-xs sm:text-sm">
                 <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e6ded1]">
-                  <span>1 parfum (flacon 100 ml)</span>
+                  <span>1 parfum en Point Relais (Mondial Relay)</span>
+                  <strong className="text-[#1d1a16]">4,10 € TTC</strong>
+                </li>
+                <li className="flex justify-between items-center bg-white p-2.5 rounded border border-[#e6ded1]">
+                  <span>1 parfum à domicile (Colissimo 48h)</span>
                   <strong className="text-[#1d1a16]">7,10 € TTC</strong>
                 </li>
                 <li className="flex justify-between items-center bg-[#f3ede3] p-2.5 rounded border border-[#a8834f]">
-                  <span className="font-bold">Dès 2 parfums</span>
+                  <span className="font-bold">Dès 2 parfums (Mondial Relay ou Colissimo)</span>
                   <strong className="text-[#46a74e]">OFFERT (0,00 €)</strong>
                 </li>
               </ul>

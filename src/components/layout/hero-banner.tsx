@@ -73,7 +73,7 @@ export function HeroBanner({ images }: HeroBannerProps) {
           </div>
 
           <p className="hidden sm:block mt-10 lg:mt-14 text-[11px] tracking-[0.18em] uppercase text-[#6f6559]">
-            Livraison offerte dès 2 parfums · Paiement sécurisé
+            Livraison Mondial Relay dès 4,10 € · Offerte dès 2 parfums · Paiement sécurisé
           </p>
         </div>
 

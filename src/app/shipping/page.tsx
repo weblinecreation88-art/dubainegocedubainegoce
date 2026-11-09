@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Truck, RotateCcw, ShieldCheck, Mail, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Expédition et Retours | Dubaï Négoce',
+  title: 'Expédition Mondial Relay & Retours | Dubaï Négoce',
   description:
-    'Consultez nos tarifs de livraison Colissimo avec suivi (offerte dès 2 parfums) et notre politique de retour sous 14 jours.',
+    'Consultez nos tarifs de livraison Mondial Relay dès 4,10 € (offerte dès 2 parfums), Colissimo et notre politique de retour sous 14 jours.',
 };
 
 export default function ShippingPolicyPage() {
@@ -31,11 +31,11 @@ export default function ShippingPolicyPage() {
         <section className="space-y-4">
           <div className="flex items-center gap-2.5 border-b border-[#e6ded1] pb-2">
             <Truck className="h-5 w-5 text-[#a8834f]" />
-            <h2 className="text-lg font-headline font-bold">1. Livraison Colissimo avec Suivi</h2>
+            <h2 className="text-lg font-headline font-bold">1. Livraison Mondial Relay &amp; Colissimo avec Suivi</h2>
           </div>
 
           <p className="text-sm text-gray-700 leading-relaxed">
-            Nous proposons deux modes de livraison avec suivi : <strong>Mondial Relay dès 4,10 €</strong> (en Point Relais et Locker 24/7 avec carte interactive) et <strong>Colissimo Domicile à 7,10 €</strong> (livraison en boîte aux lettres sous 48h).
+            Nous mettons en avant la livraison en <strong>Mondial Relay dès 4,10 €</strong> (en Point Relais et Locker 24/7 avec carte interactive) ainsi que <strong>Colissimo Domicile à 7,10 €</strong> (livraison en boîte aux lettres sous 48h). La livraison est <strong>offerte dès 2 parfums</strong>.
           </p>
 
           {/* Grille tarifaire identique à computeShippingCost */}
@@ -51,12 +51,17 @@ export default function ShippingPolicyPage() {
               <tbody>
                 <tr>
                   <td className="border border-[#e6ded1] p-3">1 parfum</td>
+                  <td className="border border-[#e6ded1] p-3 font-semibold">Mondial Relay (Point Relais &amp; Locker)</td>
+                  <td className="border border-[#e6ded1] p-3 font-bold">4,10 €</td>
+                </tr>
+                <tr className="bg-[#faf7f2]">
+                  <td className="border border-[#e6ded1] p-3">1 parfum</td>
                   <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
                   <td className="border border-[#e6ded1] p-3 font-bold">7,10 €</td>
                 </tr>
                 <tr>
                   <td className="border border-[#e6ded1] p-3 font-bold">2 parfums ou plus</td>
-                  <td className="border border-[#e6ded1] p-3">Colissimo Domicile suivi</td>
+                  <td className="border border-[#e6ded1] p-3 font-semibold">Mondial Relay ou Colissimo</td>
                   <td className="border border-[#e6ded1] p-3 font-extrabold text-[#46a74e]">OFFERT (0,00 €)</td>
                 </tr>
               </tbody>

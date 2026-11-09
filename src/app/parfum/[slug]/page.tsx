@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props, _parent: ResolvingMeta
 
   const imageUrl = product.images.length > 0 ? product.images[0] : `${SITE_URL}/og-image.png`;
   const fullUrl = `${SITE_URL}/parfum/${product.slug}`;
-  const enrichedDescription = `${product.metaDescription} | Eau de Parfum ${product.volumeMl}ml | ${product.price.toFixed(2)} € TTC | Livraison Colissimo offerte dès 2 parfums.`;
+  const enrichedDescription = `${product.metaDescription} | Eau de Parfum ${product.volumeMl}ml | ${product.price.toFixed(2)} € TTC | Livraison Mondial Relay dès 4,10 € (offerte dès 2 parfums).`;
 
   const keywords = [
     product.name,
@@ -417,9 +417,9 @@ export default function ProductPage({ params }: Props) {
                   <li className="flex items-start gap-2">
                     <Package className="h-4 w-4 text-[#a8834f] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-[#1d1a16]">Colissimo Domicile suivi :</strong>
+                      <strong className="text-[#1d1a16]">Mondial Relay &amp; Colissimo suivi :</strong>
                       <div className="text-[11px] text-gray-600 mt-0.5">
-                        1 parfum : 7,10 € •{' '}
+                        Mondial Relay dès 4,10 € (Colissimo 7,10 €) •{' '}
                         <strong className="text-[#46a74e]">Offert dès 2 parfums</strong>
                       </div>
                     </div>

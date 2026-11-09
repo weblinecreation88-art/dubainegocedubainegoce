@@ -132,7 +132,7 @@ export default function AboutPage() {
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-[#46a74e] shrink-0" />
-                <span>Stock réel expédié depuis la France avec suivi Colissimo</span>
+                <span>Stock réel expédié depuis la France avec suivi Mondial Relay &amp; Colissimo</span>
               </li>
             </ul>
           </div>
@@ -166,10 +166,10 @@ export default function AboutPage() {
                 <div className="bg-[#1d1a16] text-[#a8834f] w-9 h-9 rounded flex items-center justify-center shrink-0">
                   <Truck className="h-4 w-4" />
                 </div>
-                <h3 className="font-headline font-bold text-base">Expédition Colissimo Suivie</h3>
+                <h3 className="font-headline font-bold text-base">Livraison Mondial Relay Suivie</h3>
               </div>
               <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                Livraison à domicile en <strong>Colissimo 48h avec suivi</strong> (7,10 € pour 1 parfum, et{' '}
+                Livraison en <strong>Mondial Relay avec suivi dès 4,10 €</strong> (ou Colissimo Domicile 7,10 €), et{' '}
                 <strong className="text-[#46a74e]">100 % OFFERTE dès 2 parfums</strong>).
               </p>
             </div>
