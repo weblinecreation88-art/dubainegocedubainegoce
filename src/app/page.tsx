@@ -27,19 +27,18 @@ export default function Home() {
   const allProducts = getProducts();
   const findProduct = (slug: string) => allProducts.find((p) => p.slug === slug);
 
+  // Parfums les plus consultés de la boutique (statistiques réelles), disponibles à l'achat
   const popularSlugs = [
+    'asad-lattafa',
     'yara-moi-lattafa',
-    'liquide-brun-french-avenue',
-    'grise-maison-alhambra',
-    'tobacco-touch-maison-alhambra',
-    'woody-oud-80-ml-maison-alhambra',
+    'badee-al-oud-oud-for-glory-lattafa',
     'porto-neroli-maison-alhambra',
-    'lovely-cherie-maison-alhambra',
+    'now-rave-lattafa',
     'toscano-leather-maison-alhambra',
-    'fleur-de-coton-sublime',
-    'zaffiro-collection-crafted-oud-maison-alhambra',
-    'pose-as-rose-fragrance-world',
+    'vanilla-latte-gulf-orchid',
+    'dark-as-wood-fragrance-world',
     'good-girl-by-killer-loui-martin',
+    'mayar-lattafa',
   ];
 
   // Sélection de produits réellement disponibles en stock
@@ -90,9 +89,9 @@ export default function Home() {
       {/* NOS INCONTOURNABLES */}
       <section className="container mx-auto px-4 sm:px-6 py-16 sm:py-24">
         <SectionHeading
-          eyebrow="La sélection Dubaï Négoce"
-          title="Nos incontournables"
-          intro="Les fragrances que nos clients recommandent le plus, toutes disponibles en stock."
+          eyebrow="Tendances &amp; Plus consultés"
+          title="Les parfums les plus demandés"
+          intro="Les créations les plus plébiscitées et recherchées de notre collection, toutes expédiées depuis la France."
         />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 sm:gap-x-7 sm:gap-y-14">
           {popularProducts.map((product) => (
