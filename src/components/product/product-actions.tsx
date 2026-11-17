@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AddToCartButton } from './add-to-cart-button';
 import type { Product } from '@/lib/types';
 import { Minus, Plus, Heart } from 'lucide-react';
@@ -8,11 +8,25 @@ import { Button } from '@/components/ui/button';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 import { useWishlist } from '@/context/wishlist-context';
 import { cn } from '@/lib/utils';
+import { trackEcommerce } from '@/lib/analytics';
 
 export function ProductActions({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const { isInWishlist, toggleWishlist } = useWishlist();
   const isFavorite = isInWishlist(product.id);
+
+  useEffect(() => {
+    trackEcommerce('view_item', {
+      value: product.price,
+      items: [{
+        item_id: product.id,
+        item_name: product.name,
+        price: product.price,
+        item_brand: product.brand?.name,
+        item_category: product.family || 'Parfum',
+      }],
+    });
+  }, [product.id, product.name, product.price, product.brand?.name, product.family]);
 
   return (
     <div className="space-y-4">

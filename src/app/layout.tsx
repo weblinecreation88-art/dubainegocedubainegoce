@@ -148,6 +148,10 @@ export default function RootLayout({
             if (!window.__ga4Off) {
               gtag('config', '${GA4_MEASUREMENT_ID}');
             }
+            // Événements émis avant ce script (voir sendToGa4 dans lib/analytics.ts).
+            var q = window.__ga4Queue || [];
+            window.__ga4Queue = null;
+            q.forEach(function (send) { send(); });
           `}
         </Script>
         <Script

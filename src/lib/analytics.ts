@@ -35,11 +35,7 @@ export function trackEcommerce(event: string, ecommerce: EcommerceParams) {
   w.dataLayer.push({ ecommerce: null });
   w.dataLayer.push({ event, ecommerce });
 
-  // Décidé une seule fois dans layout.tsx (trafic local ou robot) : pas d'envoi GA4.
-  if (w.__ga4Off !== false) return;
-  // Même mécanisme que gtag() : la commande est mise en file si gtag.js n'est pas encore chargé.
-  const gtag = typeof w.gtag === 'function' ? w.gtag : function () { w.dataLayer.push(arguments); };
-  gtag('event', event, { currency: 'EUR', ...ecommerce, send_to: GA4_MEASUREMENT_ID });
+  sendToGa4(event, { currency: 'EUR', ...ecommerce });
 }
 
 export function trackEvent(event: string, params: AnalyticsParams = {}) {
@@ -48,7 +44,23 @@ export function trackEvent(event: string, params: AnalyticsParams = {}) {
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push({ event, ...params });
 
-  if (w.__ga4Off !== false) return;
-  const gtag = typeof w.gtag === 'function' ? w.gtag : function () { w.dataLayer.push(arguments); };
-  gtag('event', event, { ...params, send_to: GA4_MEASUREMENT_ID });
+  sendToGa4(event, params);
+}
+
+// Décidé une seule fois dans layout.tsx (trafic local ou robot) : pas d'envoi GA4.
+// Ce script est chargé en lazyOnload : un événement émis avant (view_item, purchase au
+// chargement de la page) est mis en attente puis envoyé par ce script.
+function sendToGa4(event: string, params: Record<string, unknown>) {
+  const w = window as any;
+  const send = () => {
+    if (w.__ga4Off !== false) return;
+    // Même mécanisme que gtag() : la commande est mise en file si gtag.js n'est pas encore chargé.
+    const gtag = typeof w.gtag === 'function' ? w.gtag : function () { w.dataLayer.push(arguments); };
+    gtag('event', event, { ...params, send_to: GA4_MEASUREMENT_ID });
+  };
+  if (w.__ga4Off === undefined) {
+    (w.__ga4Queue = w.__ga4Queue || []).push(send);
+    return;
+  }
+  send();
 }
