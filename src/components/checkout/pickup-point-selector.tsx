@@ -142,6 +142,14 @@ export function PickupPointSelector({
 
             widgetInitializedRef.current = true;
             setLoading(false);
+
+            // Masquer tout message technique ou avertissement de démonstration de Mondial Relay
+            const hideDemoNotice = () => {
+              zoneWidget.find('div[style*="red"]').hide();
+            };
+            hideDemoNotice();
+            const obs = new MutationObserver(hideDemoNotice);
+            obs.observe(zoneWidget[0], { childList: true, subtree: true });
           } catch (initErr) {
             console.error('Erreur initialisation MR_ParcelShopPicker :', initErr);
             setWidgetError(true);
@@ -263,7 +271,7 @@ export function PickupPointSelector({
         {/* Zone où Mondial Relay injecte la carte et la liste */}
         <div
           id="Zone_Widget"
-          className="w-full min-h-[480px] rounded-lg border bg-background overflow-hidden text-xs shadow-sm"
+          className="w-full min-h-[480px] rounded-lg border bg-background overflow-hidden text-xs shadow-sm [&_div[style*='color:red']]:!hidden [&_div[style*='color:_red']]:!hidden [&_div[style*='color: red']]:!hidden"
           style={{ minHeight: '480px' }}
         />
         <input type="hidden" id="Retour_Widget" />
