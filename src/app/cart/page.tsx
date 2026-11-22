@@ -16,6 +16,7 @@ import { trackAbandonedCart } from '@/app/actions';
 import { trackEcommerce, trackEvent } from '@/lib/analytics';
 import { PaymentBadges } from '@/components/ui/payment-badges';
 import { computePromoDiscount, type ResolvedPromo } from '@/lib/promo-codes';
+import { CheckoutReassurance } from '@/components/checkout/checkout-reassurance';
 
 const SAVED_ADDRESS_STORAGE_KEY = 'dubainegoce_checkout_address';
 
@@ -615,9 +616,7 @@ export default function CartPage() {
 
       <div className="mt-7 pt-6 border-t border-[#e6ded1]">
         <PaymentBadges showTitle={false} badgeClassName="h-6" />
-        <p className="mt-4 text-[11px] text-[#6f6559] leading-relaxed">
-          Paiement sécurisé par Stripe. Flacons neufs scellés, retour possible sous 14 jours. Une question ? 07 58 99 97 26.
-        </p>
+        <CheckoutReassurance />
       </div>
     </div>
   );

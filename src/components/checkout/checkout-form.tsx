@@ -24,6 +24,7 @@ import { Lock, Loader2, Store, Truck, MapPin, AlertCircle, CheckCircle2 } from '
 import type { MondialRelayPickupPoint } from '@/lib/mondial-relay';
 import { PickupPointSelector } from './pickup-point-selector';
 import { PaymentBadges } from '@/components/ui/payment-badges';
+import { CheckoutReassurance } from './checkout-reassurance';
 
 const checkoutSchema = z.object({
   email: z.string().email('Email invalide').min(1, 'Email requis'),
@@ -436,6 +437,8 @@ export function CheckoutForm({
             <div className="text-center text-xs text-[#6f6559] pt-1">
               <PaymentBadges title="Paiement 100% sécurisé via Stripe :" badgeClassName="h-6" />
             </div>
+
+            <CheckoutReassurance />
           </div>
         </form>
       </Form>
