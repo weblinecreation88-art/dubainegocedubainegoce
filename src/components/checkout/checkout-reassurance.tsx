@@ -26,7 +26,7 @@ export function CheckoutReassurance() {
           </Link>
         </div>
         <p className="text-xs text-[#5d564c] leading-relaxed">
-          « Flacons 100 % originaux reçus sous blister scellé avec le code barre et hologramme. Expédition très rapide. »
+          « Flacons 100 % originaux reçus neufs sous blister d&apos;origine. Expédition très soignée et rapide. »
         </p>
         <p className="text-[10px] text-[#8a8074] mt-1.5 font-medium">
           Dubaï Négoce · Entreprise française vérifiée
@@ -40,7 +40,7 @@ export function CheckoutReassurance() {
           <div>
             <p className="text-xs font-bold text-[#1d1a16]">100% Authentique</p>
             <p className="text-[11px] text-[#6f6559] leading-tight mt-0.5">
-              Flacon neuf sous blister scellé avec hologramme de la marque.
+              Flacon neuf sous blister scellé d&apos;origine de la marque.
             </p>
           </div>
         </div>
